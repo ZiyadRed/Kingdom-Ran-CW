@@ -1,0 +1,54 @@
+{
+  "_comment": "Skill type translations. Each skill belongs to one of these three categories.",
+
+  "戦技": {
+    "en": "Combat Skill",
+    "short": "Combat",
+    "description": "Active skills used during battle. Deals damage, applies buffs/debuffs, or heals.",
+    "color": "#E74C3C"
+  },
+  "軍略": {
+    "en": "Military Strategy",
+    "short": "Strategy",
+    "description": "Passive-style skills that provide persistent buffs or conditional effects to your party.",
+    "color": "#3498DB"
+  },
+  "内政": {
+    "en": "Administration",
+    "short": "Admin",
+    "description": "Non-combat skills that provide alliance-wide stat bonuses. Active even when the unit is not deployed.",
+    "color": "#27AE60"
+  },
+
+  "_base_skill_names": "The attack pattern prefix in skill names (e.g. 猛将一閃【赤象】 = Fierce General Flash [Red Elephant])",
+
+  "猛将一閃":   { "en": "Fierce General Flash" },
+  "猛将双閃":   { "en": "Fierce General Double Flash" },
+  "猛将双撃":   { "en": "Fierce General Double Strike" },
+  "猛将撃滅":   { "en": "Fierce General Annihilation" },
+  "猛将撲滅":   { "en": "Fierce General Eradication" },
+  "名将一閃":   { "en": "Master General Flash" },
+  "名将一掃":   { "en": "Master General Sweep" },
+  "名将双撃":   { "en": "Master General Double Strike" },
+  "名将攻撃":   { "en": "Master General Attack" },
+  "急所一閃":   { "en": "Weak Point Flash" },
+  "急所双撃":   { "en": "Weak Point Double Strike" },
+  "急所攻撃":   { "en": "Weak Point Attack" },
+  "鉄壁一閃":   { "en": "Iron Wall Flash" },
+  "鉄壁攻撃":   { "en": "Iron Wall Attack" },
+  "弱将一閃":   { "en": "Weak General Flash" },
+  "敵将一掃":   { "en": "Enemy General Sweep" },
+  "重追撃":     { "en": "Heavy Pursuit" },
+  "重先駆":     { "en": "Heavy Vanguard" },
+  "堅牢器双壊": { "en": "Fortified Equipment Double Smash" },
+  "攻撃低下":   { "en": "Attack Reduction" },
+  "防御低下":   { "en": "Defense Reduction" },
+  "体力回復":   { "en": "HP Recovery" },
+  "士気回復":   { "en": "Morale Recovery" },
+  "付与率上昇": { "en": "Status Infliction Rate Up" },
+
+  "_animal_colors": "Color + animal tags used in base skill names, e.g. 【赤象】",
+  "赤": "Red",  "青": "Blue",  "黄": "Yellow", "緑": "Green",
+  "橙": "Orange", "灰": "Gray", "黒": "Black", "紺": "Navy", "紫": "Purple",
+  "象": "Elephant", "虎": "Tiger", "亀": "Turtle", "羊": "Sheep", "牛": "Ox"
+}

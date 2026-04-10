@@ -1,0 +1,500 @@
+[
+  {
+    "id": "akou",
+    "name_en": "Akou",
+    "name_jp": "亜光",
+    "country": "qin",
+    "unit": "Ousen Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Blue Sheep]",
+        "name_jp": "重追撃【青羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy archer with lowest remaining HP", "target": "1 enemy archer", "effect": "100% Damage", "duration": null },
+          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "150% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "First General of Ousen's Forces",
+        "name_jp": "王翦軍第一将",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Sure Hit", "duration": null },
+          { "condition": null, "target": "Ally Qin", "effect": "DEF Down Resistance 30%", "duration": null },
+          { "condition": null, "target": "Ally Ousen Forces", "effect": "Status Effect Immunity (excl. Provoke)", "duration": "1 time" }
+        ]
+      },
+      {
+        "name_en": "Frontal Breakthrough",
+        "name_jp": "正面突破",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "ATK Up 40%", "duration": "2 turns" },
+          { "condition": "Enemy archer with lowest remaining HP", "target": "1 enemy archer", "effect": "2-Hit 100% Damage", "duration": null },
+          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "180% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "denrimi",
+    "name_en": "Denrimi",
+    "name_jp": "田里弥",
+    "country": "qin",
+    "unit": "Ousen Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Iron Wall Flash [Blue Sheep]",
+        "name_jp": "鉄壁一閃【青羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Ally Qin", "effect": "Guard 60%", "duration": "1 time" }
+        ]
+      },
+      {
+        "name_en": "Changshan Snake Formation",
+        "name_jp": "常山蛇勢",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Qin", "effect": "DEF Up 20%", "duration": null },
+          { "condition": null, "target": "Ally cavalry", "effect": "DEF Up vs Archers 20%", "duration": null },
+          { "condition": null, "target": "Ally archers", "effect": "DEF Up vs Shield Soldiers 20%", "duration": null },
+          { "condition": "Ally shield soldiers", "target": "Ally shield soldiers", "effect": "DEF Up vs Cavalry 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Firm Defense, Wise Action",
+        "name_jp": "堅守賢明",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "180% Damage", "duration": null },
+          { "condition": null, "target": "Ally Qin", "effect": "Guard 60%", "duration": "1 time" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "youka",
+    "name_en": "Youka",
+    "name_jp": "姚賈",
+    "country": "qin",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Defense Reduction [Red Elephant]",
+        "name_jp": "防御低下【赤象】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "DEF Down 50%", "duration": null },
+          { "condition": null, "target": "Self", "effect": "Less Likely to be Targeted", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Four-Way Sabotage",
+        "name_jp": "四重工作",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Zhao, Wei, Chu, Qi enemy with highest ATK", "target": "1 each of Zhao/Wei/Chu/Qi enemy", "effect": "Betrayal Infliction 65%", "duration": "4 turns" },
+          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "150% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "ATK Enhancement – Special Large Improved [Infantry]",
+        "name_jp": "攻撃力強化・特大改【歩兵】",
+        "type": "Administration",
+        "effects": [
+          { "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally infantry", "effect": "ATK Up 12.4%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "keirei",
+    "name_en": "Kyourei",
+    "name_jp": "京令",
+    "country": "qin",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "HP Recovery [Red Sheep]",
+        "name_jp": "体力回復【赤羊】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": "Surviving", "target": "Ally Qin", "effect": "HP Recovery 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Medical Framework",
+        "name_jp": "医療の枠",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Qin", "effect": "Max HP Up 50%", "duration": null },
+          { "condition": null, "target": "Ally Qin", "effect": "Poison Resistance / Burn Resistance / Paralysis Resistance 100%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "DEF Enhancement – Large Improved [Infantry]",
+        "name_jp": "防御力強化・大改【歩兵】",
+        "type": "Administration",
+        "effects": [
+          { "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally infantry", "effect": "DEF Up 9.9%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "romin",
+    "name_en": "Robin",
+    "name_jp": "呂敏",
+    "country": "qin",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Weak General Flash",
+        "name_jp": "弱将一閃",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Enemy cavalry", "effect": "ATK Down 20%", "duration": "3 turns" }
+        ]
+      },
+      {
+        "name_en": "Versatile Movement",
+        "name_jp": "縦横自在",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Other ally Hi Shin Unit member alive", "target": "All enemy generals", "effect": "Critical Rate Down 20%", "duration": "2 turns" },
+          { "condition": "Other ally Kanki Forces member alive", "target": "All enemy generals", "effect": "Critical Damage Down 20%", "duration": "2 turns" },
+          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "170% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Closing Ambush",
+        "name_jp": "詰めの奇襲",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Sure Hit", "duration": null },
+          { "condition": "Per other ally Hi Shin Unit member", "target": "All ally generals", "effect": "ATK Up 10%", "duration": null },
+          { "condition": "Per other ally Kanki Forces member", "target": "All enemy generals", "effect": "DEF Down 10%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kakuun",
+    "name_en": "Kakuun",
+    "name_jp": "角雲",
+    "country": "qin",
+    "unit": "Kanki Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Attack Reduction [Red Bull]",
+        "name_jp": "攻撃低下【赤牛】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "All enemy generals", "effect": "ATK Down 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Cornerstone of Defense",
+        "name_jp": "守りの要",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy war machine with lowest DEF", "target": "1 enemy war machine", "effect": "100% Damage", "duration": null },
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "160% Damage", "duration": null },
+          { "condition": "When Garrisoning", "target": "Ally Kanki Forces", "effect": "DEF Up 20%", "duration": "4 turns" }
+        ]
+      },
+      {
+        "name_en": "Immovable Guardian",
+        "name_jp": "不動の守護",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Ally Kanki Forces", "effect": "Hit Rate Up 30%", "duration": "4 turns" },
+          { "condition": "Enemy war machine with lowest DEF", "target": "1 enemy war machine", "effect": "150% Damage", "duration": null },
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": "When Garrisoning", "target": "Enemy Zhao / Enemy Wei", "effect": "Critical Rate Down 40%", "duration": "3 turns" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bain",
+    "name_en": "Bain",
+    "name_jp": "馬印",
+    "country": "qin",
+    "unit": "Kanki Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Weak Point Flash [Yellow Sheep]",
+        "name_jp": "急所一閃【黄羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "Feared enemy general present", "target": "All enemy generals", "effect": "Morale Down 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Declaration of Madness",
+        "name_jp": "狂気宣告",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Kanki Forces", "effect": "Hit Rate Up 20%", "duration": null },
+          { "condition": null, "target": "All ally generals", "effect": "Fear Infliction Rate Up 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Madness Execution",
+        "name_jp": "狂気執行",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest remaining morale", "target": "1 enemy general", "effect": "Fear Infliction 50%", "duration": "4 turns" },
+          { "condition": "Per ally Kanki Forces member", "target": "All feared enemy generals", "effect": "DEF Down 10%", "duration": "4 turns" },
+          { "condition": "Feared enemy general with lowest remaining HP", "target": "1 feared enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "170% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "shotaku",
+    "name_en": "Shoutaku",
+    "name_jp": "松琢",
+    "country": "qin",
+    "unit": "Gyokuhou Squad",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Green Bull]",
+        "name_jp": "重追撃【緑牛】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "Enemy war machine with lowest remaining HP", "target": "1 enemy war machine", "effect": "100% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Gyokuhou Oath [Life]",
+        "name_jp": "玉鳳の誓い【生】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Ouhon", "effect": "Max HP Up 50%", "duration": null },
+          { "condition": "Surviving", "target": "Ally Gyokuhou Squad", "effect": "HP Recovery 10%", "duration": null },
+          { "condition": null, "target": "Ally Gyokuhou Squad", "effect": "Hit Rate Up 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Loyalty to the Royal House",
+        "name_jp": "王家への信",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Ally Ouhon", "effect": "DEF Penetration Up 30%", "duration": "4 turns" },
+          { "condition": "Per other ally Gyokuhou Squad member", "target": "Ally Ouhon", "effect": "ATK Up 15%", "duration": "4 turns" },
+          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": "Enemy war machine with lowest remaining HP", "target": "1 enemy war machine", "effect": "100% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kyukou",
+    "name_en": "Kyuukou",
+    "name_jp": "宮康",
+    "country": "qin",
+    "unit": "Gyokuhou Squad",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Gray Sheep]",
+        "name_jp": "猛将一閃【灰羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "From the 150% Damage above", "target": "Self", "effect": "HP Drain 100%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Gyokuhou Oath [Loyalty]",
+        "name_jp": "玉鳳の誓い【忠】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Ouhon", "effect": "Max HP Up 50%", "duration": null },
+          { "condition": null, "target": "Ally Gyokuhou Squad", "effect": "Betrayal Resistance 30%", "duration": null },
+          { "condition": null, "target": "Ally Gyokuhou Squad", "effect": "Confusion Resistance 50%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Hold to the Last",
+        "name_jp": "死守",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Provoke", "duration": "4 turns" },
+          { "condition": "Per other ally Gyokuhou Squad member", "target": "Self", "effect": "DEF Up 15%", "duration": "4 turns" },
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": "From the 170% Damage above", "target": "Self", "effect": "HP Drain 100%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "naki",
+    "name_en": "Naki",
+    "name_jp": "那貴",
+    "country": "qin",
+    "unit": "Kanki Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Master General Flash [Yellow Sheep]",
+        "name_jp": "名将一閃【黄羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Ally Qin", "effect": "DEF Up 20%", "duration": "3 turns" }
+        ]
+      },
+      {
+        "name_en": "Strike First",
+        "name_jp": "機先を制す",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Sure Hit", "duration": null },
+          { "condition": null, "target": "Ally Kanki Forces", "effect": "DEF Penetration Up 20%", "duration": null },
+          { "condition": "When Attacking", "target": "Ally Kanki Forces", "effect": "Dodge Chance 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Silent Intimidation",
+        "name_jp": "静かなる威圧",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Enemy Zhao / Enemy Wei", "effect": "HP Recovery Nullification 70%", "duration": "4 turns" },
+          { "condition": "When Attacking", "target": "Ally Kanki Forces", "effect": "Critical Rate Up 20%", "duration": "3 turns" },
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "180% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ringyoku",
+    "name_en": "Ringyoku",
+    "name_jp": "リン玉",
+    "country": "qin",
+    "unit": "Kanki Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Green Tiger]",
+        "name_jp": "重追撃【緑虎】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Per other ally cavalry member", "target": "Ally cavalry", "effect": "ATK Up 10%", "duration": "3 turns" },
+          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "150% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Clever Lieutenant",
+        "name_jp": "慧敏な側近",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Qin", "effect": "Confusion Resistance 40%", "duration": null },
+          { "condition": "When Attacking", "target": "Ally Kanki Forces", "effect": "Morale Cost Reduction 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Cruel Follow-Up",
+        "name_jp": "残酷な追い打ち",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Poisoned enemy with lowest remaining HP", "target": "1 poisoned enemy general", "effect": "100% Damage", "duration": null },
+          { "condition": "Burned enemy with lowest remaining HP", "target": "1 burned enemy general", "effect": "100% Damage", "duration": null },
+          { "condition": "Feared enemy with lowest remaining HP", "target": "1 feared enemy general", "effect": "100% Damage", "duration": null },
+          { "condition": "When Attacking", "target": "Ally Kanki Forces", "effect": "Evasion Rate Up 20%", "duration": "3 turns" },
+          { "condition": "When Attacking, enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "150% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "zenou",
+    "name_en": "Zenou",
+    "name_jp": "ゼノウ",
+    "country": "qin",
+    "unit": "Kanki Forces",
+    "rarity": "UR",
+    "skills": [
+      {
+        "name_en": "Fierce General Eradication [Red Sheep]",
+        "name_jp": "猛将撲滅【赤羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Rampage", "duration": "3 turns" },
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "200% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Massacre",
+        "name_jp": "鏖殺",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Rampage", "duration": "3 turns" },
+          { "condition": null, "target": "Enemy Zhao / Enemy Wei", "effect": "Morale Down 40%", "duration": null },
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "240% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Bandit's Ultimate Weapon",
+        "name_jp": "野盗の最終兵器",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "DEF Penetration Up 30%", "duration": null },
+          { "condition": "When ally Kanki is present", "target": "Self", "effect": "Status Effect Immunity (excl. Provoke)", "duration": "6 times" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hokaku",
+    "name_en": "Hokaku",
+    "name_jp": "蒲鶮",
+    "country": "qin",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Weak General Flash [Orange Sheep]",
+        "name_jp": "弱将一閃【橙羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "All ally generals", "effect": "DEF Up 20%", "duration": "3 turns" },
+          { "condition": "Other allies", "target": "Ally generals", "effect": "Provoke", "duration": "3 turns" }
+        ]
+      },
+      {
+        "name_en": "Overthrowing the Strong",
+        "name_jp": "下剋上",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "Betrayal Infliction 50%", "duration": "3 turns" },
+          { "condition": "Betrayal-afflicted", "target": "All enemy generals", "effect": "Reckless Infliction 100%", "duration": "4 turns" },
+          { "condition": "Betrayal-afflicted", "target": "All enemy generals", "effect": "Critical Rate Up 30%", "duration": "4 turns" },
+          { "condition": "Enemy general with lowest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "ATK Enhancement – Large Improved [Infantry]",
+        "name_jp": "攻撃力強化・大改【歩兵】",
+        "type": "Administration",
+        "effects": [
+          { "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally infantry", "effect": "ATK Up 9.9%", "duration": null }
+        ]
+      }
+    ]
+  }
+]

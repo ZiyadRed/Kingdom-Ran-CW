@@ -1,0 +1,157 @@
+[
+  {
+    "id": "otaji",
+    "name_en": "Otaji",
+    "name_jp": "オタジ",
+    "country": "yan",
+    "unit": "Ordo Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Iron Wall Flash [Green Turtle]",
+        "name_jp": "鉄壁一閃【緑亀】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Own HP < 100%, enemy general with highest DEF", "target": "1 enemy general", "effect": "80% Damage", "duration": null },
+          { "condition": "Own HP < 50%, enemy general with highest DEF", "target": "1 enemy general", "effect": "100% Damage", "duration": null },
+          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Mountain Ambush",
+        "name_jp": "山岳強襲",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Yan", "effect": "Max Morale Up 50%", "duration": null },
+          { "condition": null, "target": "Ally Ordo", "effect": "DEF Penetration Up / Confusion Infliction Rate Up 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Elite Relentless Pursuers",
+        "name_jp": "窮追する精兵",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Ally Yan", "effect": "Hit Rate Up 30%", "duration": "4 turns" },
+          { "condition": "Per other ally Yan member", "target": "Ally Yan", "effect": "ATK Up 10%", "duration": "3 turns" },
+          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "170% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "yukii",
+    "name_en": "Yukii",
+    "name_jp": "ユキイ",
+    "country": "yan",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Iron Wall Flash [Green Bull]",
+        "name_jp": "鉄壁一閃【緑牛】",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Enemy shield soldiers", "effect": "30% Damage", "duration": null },
+          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Enemy shield soldiers", "effect": "Confusion Infliction 10%", "duration": "3 turns" }
+        ]
+      },
+      {
+        "name_en": "Mountain King's Right Arm",
+        "name_jp": "山岳王の片腕",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Yan", "effect": "DEF Up 20%", "duration": null },
+          { "condition": null, "target": "Ally generals", "effect": "Confusion Infliction Rate Up 10%", "duration": null },
+          { "condition": "When Attacking", "target": "Ally archers vs shield soldiers", "effect": "ATK Up 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Simultaneous Volley",
+        "name_jp": "一斉射撃",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Ally archers", "effect": "DEF Penetration Up 20%", "duration": "2 turns" },
+          { "condition": null, "target": "Enemy shield soldiers", "effect": "2-Hit 30% Damage", "duration": null },
+          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "180% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rakki",
+    "name_en": "Gakuki",
+    "name_jp": "楽毅",
+    "country": "yan",
+    "rarity": "UR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Green Sheep]",
+        "name_jp": "猛将一閃【緑羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Other ally cavalry", "effect": "DEF Up 20%", "duration": "3 turns" }
+        ]
+      },
+      {
+        "name_en": "Hero Who Saved the Nation",
+        "name_jp": "救国の英傑",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Qin / Zhao / Wei / Chu / Han / Yan", "effect": "Critical Damage Up / Hit Rate Up 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Counter-Offensive",
+        "name_jp": "反転攻勢",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Ally Yan", "effect": "ATK Up 20%", "duration": "3 turns" },
+          { "condition": "Own HP < 100%", "target": "Ally Yan", "effect": "Critical Rate Up 10%", "duration": "3 turns" },
+          { "condition": "Own HP < 50%", "target": "Enemy generals", "effect": "100% Damage", "duration": null },
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": "From the 170% Damage", "target": "Self", "effect": "HP Drain 50%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gekishin",
+    "name_en": "Gekishin",
+    "name_jp": "劇辛",
+    "country": "yan",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Blue Tiger]",
+        "name_jp": "猛将一閃【青虎】",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "ATK Up / Critical Rate Up 20%", "duration": "3 turns" },
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Situation Analysis",
+        "name_jp": "状況分析",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Yan", "effect": "Evasion Rate Up 20%", "duration": null },
+          { "condition": null, "target": "Ally cavalry", "effect": "Max HP Up 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Overcoming Adversity",
+        "name_jp": "逆境突破",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Guard 60%", "duration": "1 time" },
+          { "condition": "Own HP < 100%", "target": "Ally Yan", "effect": "Critical Rate Up 10%", "duration": "3 turns" },
+          { "condition": "Own HP < 50%", "target": "Ally Yan", "effect": "Attack Nullification", "duration": "1 time" },
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": "From the 170% Damage", "target": "Self", "effect": "HP Drain 50%", "duration": null }
+        ]
+      }
+    ]
+  }
+]

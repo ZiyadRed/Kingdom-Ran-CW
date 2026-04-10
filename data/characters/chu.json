@@ -1,0 +1,309 @@
+[
+  {
+    "id": "jino",
+    "name_en": "Jinou",
+    "name_jp": "仁凹",
+    "country": "chu",
+    "unit": "Kanmei Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Iron Wall Flash [Green Sheep]",
+        "name_jp": "鉄壁一閃【緑羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Ally Chu vs Qin", "effect": "ATK Up 30%", "duration": "3 turns" }
+        ]
+      },
+      {
+        "name_en": "Veteran Strategist's Command",
+        "name_jp": "老軍師の采配",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Less Likely to be Targeted", "duration": null },
+          { "condition": null, "target": "Ally Chu", "effect": "Sure Hit", "duration": null },
+          { "condition": null, "target": "Enemy generals vs Chu", "effect": "DEF Down 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Giant's Lieutenant [Jino]",
+        "name_jp": "巨人の側近【仁凹】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Other ally Chu", "effect": "Evasion Rate Up 10%", "duration": null },
+          { "condition": null, "target": "Ally cavalry", "effect": "Evasion Rate Up 10%", "duration": null },
+          { "condition": null, "target": "Ally Kanmei", "effect": "Evasion Rate Up 10%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gomosho",
+    "name_en": "Goumasho",
+    "name_jp": "剛摩諸",
+    "country": "chu",
+    "unit": "Kanmei Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [White Tiger]",
+        "name_jp": "猛将一閃【白虎】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "When Garrisoning, enemy war machine with lowest remaining HP", "target": "1 enemy war machine", "effect": "150% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Giant's Lieutenant [Gomosho]",
+        "name_jp": "巨人の側近【剛摩諸】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Critical Damage Up 10%", "duration": null },
+          { "condition": null, "target": "Ally Chu", "effect": "Critical Damage Up 10%", "duration": null },
+          { "condition": null, "target": "Ally cavalry", "effect": "Critical Damage Up 10%", "duration": null },
+          { "condition": null, "target": "Ally Kanmei", "effect": "Critical Damage Up 10%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Heavy Armor Defense",
+        "name_jp": "重装堅守",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Ally Chu", "effect": "Attack Nullification", "duration": "1 time" },
+          { "condition": "When Garrisoning, enemy general with highest remaining HP", "target": "1 enemy general", "effect": "% of Remaining HP Damage 20%", "duration": null },
+          { "condition": "When Garrisoning, % HP Damage triggered", "target": "Self", "effect": "HP Drain 100%", "duration": null },
+          { "condition": "When Garrisoning, enemy war machine with lowest remaining HP", "target": "1 enemy war machine", "effect": "150% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "baiman",
+    "name_en": "Beiman",
+    "name_jp": "貝満",
+    "country": "chu",
+    "unit": "Kanmei Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Master General Sweep [Red Sheep]",
+        "name_jp": "名将一掃【赤羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Per other ally Chu general", "target": "Enemy generals", "effect": "DEF Down 10%", "duration": "3 turns" },
+          { "condition": "Enemy general with highest max morale", "target": "3 enemy generals", "effect": "90% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Solid Advice",
+        "name_jp": "堅実な進言",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Chu", "effect": "Hit Rate Up 20%", "duration": null },
+          { "condition": null, "target": "Enemy Qin", "effect": "Hit Rate Down 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Giant's Lieutenant [Baiman]",
+        "name_jp": "巨人の側近【貝満】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Critical Rate Up 10%", "duration": null },
+          { "condition": null, "target": "Other ally Chu", "effect": "Critical Rate Up 10%", "duration": null },
+          { "condition": null, "target": "Other ally cavalry", "effect": "Critical Rate Up 10%", "duration": null },
+          { "condition": null, "target": "Ally Kanmei", "effect": "Critical Rate Up 10%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kaen",
+    "name_en": "Kaen",
+    "name_jp": "媧偃",
+    "country": "chu",
+    "unit": "Karin Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Purple Tiger]",
+        "name_jp": "猛将一閃【紫虎】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "ATK Down 20%", "duration": "3 turns" }
+        ]
+      },
+      {
+        "name_en": "Loyal Younger Sibling",
+        "name_jp": "忠実なる弟",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self / ally shield soldiers", "effect": "DEF Up 20%", "duration": null },
+          { "condition": null, "target": "Other ally generals", "effect": "Illusion Infliction Rate Up 15%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Careful Ambush",
+        "name_jp": "慎重な奇襲",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": null, "target": "Ally Chu", "effect": "Guard 60%", "duration": "1 time" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "koretsuo",
+    "name_en": "Kouretsu",
+    "name_jp": "考烈王",
+    "country": "chu",
+    "rarity": "UR",
+    "skills": [
+      {
+        "name_en": "Weak Point Double Strike [Red Sheep]",
+        "name_jp": "急所双撃【赤羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Enemy cavalry", "effect": "DEF Down 20%", "duration": "3 turns" },
+          { "condition": "Enemy general with lowest DEF", "target": "2 enemy generals", "effect": "80% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Vessel of the Chu King",
+        "name_jp": "楚王の器",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Chu", "effect": "Max Morale Up 50%", "duration": null },
+          { "condition": null, "target": "Self / ally Renpa / ally Renpa's Four Heavenly Kings", "effect": "Sure Hit", "duration": null },
+          { "condition": "When Garrisoning, gate HP remaining", "target": "Gate", "effect": "HP Recovery 50,000", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Iron Governance",
+        "name_jp": "剛の統治",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Enemy cavalry", "effect": "Morale Down 20%", "duration": null },
+          { "condition": null, "target": "Enemy cavalry", "effect": "Fear Infliction 100%", "duration": "4 turns" },
+          { "condition": "Feared enemies present", "target": "Self / ally cavalry", "effect": "ATK Up 30%", "duration": "3 turns" },
+          { "condition": null, "target": "Self / ally Renpa / ally Renpa's Four Heavenly Kings", "effect": "HP Recovery 20%", "duration": null },
+          { "condition": "Enemy general with lowest DEF", "target": "3 enemy generals", "effect": "100% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hakusui",
+    "name_en": "Hakusui",
+    "name_jp": "白翠",
+    "country": "chu",
+    "unit": "Rinbujun Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Iron Wall Flash [Green Elephant]",
+        "name_jp": "鉄壁一閃【緑象】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Ally Chu", "effect": "HP Recovery / Morale Recovery 10%", "duration": null },
+          { "condition": null, "target": "Self / ally Rinbujun / ally Hakurei", "effect": "Continuous HP Recovery 10%", "duration": "3 turns" }
+        ]
+      },
+      {
+        "name_en": "Prayer for the Battlefield",
+        "name_jp": "戦場への祈り",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Less Likely to be Targeted", "duration": null },
+          { "condition": null, "target": "Self / ally Rinbujun / ally Hakurei", "effect": "Status Effect Immunity (excl. Provoke)", "duration": "1 time" },
+          { "condition": "When Garrisoning", "target": "Ally Chu", "effect": "Guard 60%", "duration": "1 time" }
+        ]
+      },
+      {
+        "name_en": "ATK Enhancement – Special Large Improved [Archers]",
+        "name_jp": "攻撃力強化・特大改【弓兵】",
+        "type": "Administration",
+        "effects": [
+          { "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally archers", "effect": "ATK Up 12.4%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "shunshinkun",
+    "name_en": "Shunshinkun",
+    "name_jp": "春申君",
+    "country": "chu",
+    "rarity": "UR",
+    "skills": [
+      {
+        "name_en": "Iron Wall Flash [Orange Elephant]",
+        "name_jp": "鉄壁一閃【橙象】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Self", "effect": "DEF Up 20%", "duration": "3 turns" }
+        ]
+      },
+      {
+        "name_en": "Coalition Supreme Commander",
+        "name_jp": "合従軍総大将",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Other ally Chu", "effect": "Max HP Up / Morale Cost Reduction 30%", "duration": null },
+          { "condition": "When Attacking", "target": "Ally Zhao / Wei / Han / Yan", "effect": "Max HP Up / Morale Cost Reduction 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Peerless Leader",
+        "name_jp": "稀代の指導者",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Zhao / Wei / other Chu / Han / Yan", "effect": "ATK Up vs Qin / DEF Up vs Qin 30%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bananci",
+    "name_en": "Bananci",
+    "name_jp": "馬南慈",
+    "country": "chu",
+    "unit": "Coalition Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Annihilation [Red Elephant]",
+        "name_jp": "猛将撃滅【赤象】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "180% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Fist Discourse",
+        "name_jp": "拳の語らい",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Enemy generals", "effect": "Critical Rate Up 20%", "duration": null },
+          { "condition": null, "target": "Enemy generals", "effect": "Critical Damage Down 50%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Crushing Iron Hammer",
+        "name_jp": "破砕鉄槌",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Enemy archers", "effect": "Provoke Infliction", "duration": "4 turns" },
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "180% Damage", "duration": null },
+          { "condition": "When ally [?] is alive, enemy general with highest ATK", "target": "1 enemy general", "effect": "180% Damage", "duration": null }
+        ]
+      }
+    ]
+  }
+]

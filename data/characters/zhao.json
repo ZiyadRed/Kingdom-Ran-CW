@@ -1,0 +1,399 @@
+[
+  {
+    "id": "riboku",
+    "name_en": "Riboku",
+    "name_jp": "李牧",
+    "country": "zhao",
+    "rarity": "UR",
+    "notes": "Core Zhao general; many Zhao skills reference his presence as a buff condition."
+  },
+  {
+    "id": "taishi_ka",
+    "name_en": "Ka",
+    "name_jp": "太子嘉",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Morale Recovery [Red Sheep]",
+        "name_jp": "士気回復【赤羊】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": "Surviving", "target": "Ally Zhao", "effect": "Morale Recovery 30%", "duration": null },
+          { "condition": null, "target": "Ally Zhao", "effect": "HP Recovery Rate Up 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Light of Hope",
+        "name_jp": "希望の光",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Zhao", "effect": "ATK Up / DEF Up 30%", "duration": null },
+          { "condition": "Surviving ally Zhao when enemies are alive", "target": "Ally Zhao", "effect": "HP Recovery 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Squad Protection – Special Large Improved",
+        "name_jp": "部隊保護・特大改",
+        "type": "Administration",
+        "effects": [
+          { "condition": "When passing terrain [Ambush] (active even when not deployed)", "target": "Passing squad", "effect": "Squad Damage Reduction 7.8%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "shunsuiki",
+    "name_en": "Shunsuiju",
+    "name_jp": "舜水樹",
+    "country": "zhao",
+    "unit": "Riboku Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Weak Point Flash [Yellow Elephant]",
+        "name_jp": "急所一閃【黄象】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "When ally Riboku is alive", "target": "Ally Riboku", "effect": "HP Recovery 20%", "duration": null },
+          { "condition": "When ally Riboku is alive", "target": "Ally Riboku", "effect": "Morale Recovery 10%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Exceptional Preemptive Strike",
+        "name_jp": "異才の先制",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Enemy cavalry", "effect": "Confusion Infliction 50%", "duration": "4 turns" },
+          { "condition": null, "target": "Enemy shield soldiers", "effect": "Burn Infliction 50%", "duration": "4 turns" },
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "180% Damage", "duration": null },
+          { "condition": "When ally Riboku is alive, enemy with lowest DEF", "target": "1 enemy general", "effect": "180% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Loyal Retainer of a Brilliant General",
+        "name_jp": "智将の忠臣",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Zhao", "effect": "Hit Rate Up 20%", "duration": null },
+          { "condition": null, "target": "Enemy cavalry", "effect": "HP Recovery Rate Down 50%", "duration": null },
+          { "condition": "When ally Riboku is alive", "target": "All enemy generals", "effect": "ATK Down 30%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "shunpeikun",
+    "name_en": "Shunpeikun",
+    "name_jp": "春平君",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Attack Reduction [Red Elephant]",
+        "name_jp": "攻撃低下【赤象】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Enemy infantry", "effect": "ATK Down 30%", "duration": null },
+          { "condition": null, "target": "Self", "effect": "Less Likely to be Targeted", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Beautiful Retainer",
+        "name_jp": "艶美なる臣",
+        "type": "Strategy",
+        "effects": [
+          { "condition": "Surviving", "target": "Ally Zhao", "effect": "Morale Recovery 20%", "duration": null },
+          { "condition": null, "target": "Ally Zhao", "effect": "Guard 60%", "duration": "1 time" },
+          { "condition": "When Garrisoning, gate HP remaining", "target": "Gate", "effect": "HP Recovery 50,000", "duration": null }
+        ]
+      },
+      {
+        "name_en": "DEF Enhancement – Special Large Improved [Infantry]",
+        "name_jp": "防御力強化・特大改【歩兵】",
+        "type": "Administration",
+        "effects": [
+          { "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally infantry", "effect": "DEF Up 12.4%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "seikou",
+    "name_en": "Duke Sei",
+    "name_jp": "青公",
+    "country": "zhao",
+    "unit": "Kisei Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Weak Point Flash [Orange Tiger]",
+        "name_jp": "急所一閃【橙虎】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Per attack by other ally general", "target": "Ally Kisei Forces", "effect": "ATK Up 2% (max 30%)", "duration": "3 turns" },
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Loyalty to the City Lord",
+        "name_jp": "城主への忠誠",
+        "type": "Strategy",
+        "effects": [
+          { "condition": "When ally Kisei is alive", "target": "Ally Zhao", "effect": "ATK Up 20%", "duration": null },
+          { "condition": "When ally Kishou is alive", "target": "Ally Zhao", "effect": "DEF Up 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Unforgivable Atrocity",
+        "name_jp": "許し難き非道",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Kisei Forces", "effect": "Status Effect Immunity (excl. Provoke)", "duration": "2 times" },
+          { "condition": "When ally Kisei is alive", "target": "Ally Kisei Forces", "effect": "Critical Rate Up 10%", "duration": null },
+          { "condition": "When ally Kishou is alive", "target": "Ally Kisei Forces", "effect": "Critical Damage Up 10%", "duration": null },
+          { "condition": "When enemy Kanki Forces are alive", "target": "All enemy generals", "effect": "Evasion Rate Down 50%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kinmo",
+    "name_en": "Kinmou",
+    "name_jp": "金毛",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Gray Elephant]",
+        "name_jp": "猛将一閃【灰象】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "Other Zhao ally alive, enemy with highest remaining HP", "target": "1 enemy general", "effect": "% of Remaining HP Damage 20%", "duration": null },
+          { "condition": "From the % HP Damage above", "target": "Self", "effect": "HP Drain 100%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Lieutenant's Hidden Strength",
+        "name_jp": "副官の底力",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Sure Hit", "duration": "3 turns" },
+          { "condition": "Per turn elapsed", "target": "Ally Zhao", "effect": "DEF Up 5% (max 30%)", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Resolute Resistance",
+        "name_jp": "決意の抵抗",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Provoke", "duration": "3 turns" },
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Self", "effect": "DEF Up vs Infantry / DEF Up vs Cavalry 30%", "duration": "3 turns" },
+          { "condition": "Other Zhao ally alive, enemy with highest remaining HP", "target": "1 infantry / 1 cavalry enemy general", "effect": "% of Remaining HP Damage 20%", "duration": null },
+          { "condition": "From % HP Damage above", "target": "Self", "effect": "HP Drain 100%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gakuei",
+    "name_en": "Gakuei",
+    "name_jp": "岳嬰",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Master General Flash [Yellow Turtle]",
+        "name_jp": "名将一閃【黄亀】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "Feared enemy general with highest max morale", "target": "1 feared enemy general", "effect": "150% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Vengeance",
+        "name_jp": "仇討ち",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Enemy Qin", "effect": "Fear Infliction 50%", "duration": "4 turns" },
+          { "condition": null, "target": "Enemy Hi Shin Unit", "effect": "Skill Attack Seal 70%", "duration": "4 turns" },
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "180% Damage", "duration": null },
+          { "condition": "Hi Shin Unit enemy with highest ATK", "target": "1 enemy Hi Shin Unit member", "effect": "180% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Fury",
+        "name_jp": "激昂",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Sure Hit", "duration": null },
+          { "condition": "When feared enemies are present", "target": "Ally Zhao", "effect": "ATK Up 20%", "duration": null },
+          { "condition": "When enemy Hi Shin Unit are alive", "target": "Ally Zhao", "effect": "Guard 100%", "duration": "1 time" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ryuto",
+    "name_en": "Ryuuto",
+    "name_jp": "劉冬",
+    "country": "zhao",
+    "unit": "Rigan",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Master General Attack [Red Elephant]",
+        "name_jp": "名将攻撃【赤象】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "2-Hit 80% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Rigan Bond [Friend]",
+        "name_jp": "離眼の絆【友】",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Enemy Qin", "effect": "ATK Down 5%", "duration": "8 turns" },
+          { "condition": "When ally [?] is alive", "target": "Ally Zhao", "effect": "Hit Rate Up 5%", "duration": "12 turns" },
+          { "condition": "When ally [?] is alive", "target": "Ally Zhao", "effect": "DEF Penetration Up 5%", "duration": "12 turns" },
+          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "3-Hit 80% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Rigan Bond [Skill]",
+        "name_jp": "離眼の絆【巧】",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Enemy Qin", "effect": "ATK Down 5%", "duration": "8 turns" },
+          { "condition": "When ally [?] is alive", "target": "Ally Zhao", "effect": "Hit Rate Up 5%", "duration": "12 turns" },
+          { "condition": "When ally [?] is alive", "target": "Ally Zhao", "effect": "DEF Penetration Up 5%", "duration": "12 turns" },
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "4-Hit 80% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kishou",
+    "name_en": "Kishou",
+    "name_jp": "紀昌",
+    "country": "zhao",
+    "unit": "Rigan",
+    "rarity": "UR",
+    "skills": [
+      {
+        "name_en": "Master General Flash [Yellow Bull]",
+        "name_jp": "名将一閃【黄牛】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "When Garrisoning, gate HP remaining, ally alive", "target": "Gate", "effect": "HP Recovery 150,000", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Rigan Bond [Memory]",
+        "name_jp": "離眼の絆【想】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "180% Damage", "duration": null },
+          { "condition": "When Garrisoning", "target": "Self", "effect": "Provoke", "duration": "3 turns" },
+          { "condition": "When Garrisoning, gate HP remaining, ally alive", "target": "Gate", "effect": "HP Recovery 200,000", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Inheritance of Will",
+        "name_jp": "想いの継承",
+        "type": "Strategy",
+        "effects": [
+          { "condition": "When ally is alive", "target": "All enemy generals", "effect": "ATK Down 20%", "duration": null },
+          { "condition": "When ally is alive", "target": "All enemy generals", "effect": "Critical Damage Down 20%", "duration": null },
+          { "condition": "When ally is alive", "target": "All enemy generals", "effect": "Critical Rate Down 20%", "duration": null },
+          { "condition": "When Garrisoning, gate HP remaining", "target": "Gate", "effect": "HP Recovery 50,000", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kisei",
+    "name_en": "Kisui",
+    "name_jp": "紀彗",
+    "country": "zhao",
+    "unit": "Kisei Forces / Rigan",
+    "rarity": "UR",
+    "skills": [
+      {
+        "name_en": "Master General Flash [Yellow Elephant]",
+        "name_jp": "名将一閃【黄象】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Ally Zhao", "effect": "Morale Recovery 10%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Rigan War Cry",
+        "name_jp": "離眼の掛け声",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Ally Zhao", "effect": "Continuous Morale Recovery 3%", "duration": "4 turns" },
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "160% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Rigan Bond [Heart]",
+        "name_jp": "離眼の絆【心】",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Ally Zhao", "effect": "Continuous HP Recovery 3%", "duration": "4 turns" },
+          { "condition": "When ally Batei or [?] is alive", "target": "Ally Zhao", "effect": "Guard 60%", "duration": "1 time" },
+          { "condition": "When ally Batei AND [?] are both alive", "target": "Ally Zhao", "effect": "Attack Nullification", "duration": "1 time" },
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "180% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "batei",
+    "name_en": "Batei",
+    "name_jp": "馬呈",
+    "country": "zhao",
+    "unit": "Rigan",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Master General Double Strike [Red Sheep]",
+        "name_jp": "名将双撃【赤羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest max morale", "target": "2 enemy generals", "effect": "80% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Rigan Bond [Body]",
+        "name_jp": "離眼の絆【体】",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Enemy Qin", "effect": "DEF Down 5%", "duration": "8 turns" },
+          { "condition": "When ally [?] is alive", "target": "Ally Zhao", "effect": "ATK Up 10%", "duration": "8 turns" },
+          { "condition": "When ally [?] is alive", "target": "Ally Zhao", "effect": "DEF Up 10%", "duration": "8 turns" },
+          { "condition": "Enemy general with highest max morale", "target": "3 enemy generals", "effect": "90% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Rigan Bond [Strength]",
+        "name_jp": "離眼の絆【剛】",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Enemy Qin", "effect": "DEF Down 5%", "duration": "8 turns" },
+          { "condition": "When ally [?] is alive", "target": "Ally Zhao", "effect": "ATK Up 10%", "duration": "8 turns" },
+          { "condition": "When ally [?] is alive", "target": "Ally Zhao", "effect": "DEF Up 10%", "duration": "8 turns" },
+          { "condition": null, "target": "All enemy generals", "effect": "100% Damage", "duration": null }
+        ]
+      }
+    ]
+  }
+]

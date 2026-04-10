@@ -1,0 +1,208 @@
+[
+  {
+    "id": "yuri",
+    "name_en": "Yuri",
+    "name_jp": "友里",
+    "country": "unknown",
+    "rarity": "NR",
+    "skills": [
+      { "name_en": "ATK Enhancement – Special [Infantry]", "name_jp": "攻撃力強化・特【歩兵】", "type": "Administration",
+        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally infantry", "effect": "ATK Up 1%", "duration": null }] },
+      { "name_en": "DEF Enhancement – Special Large [Infantry]", "name_jp": "防御力強化・特大【歩兵】", "type": "Administration",
+        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally infantry", "effect": "DEF Up 5.4%", "duration": null }] },
+      { "name_en": "HP Enhancement – Special Large Improved [Infantry]", "name_jp": "体力強化・特大改【歩兵】", "type": "Administration",
+        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally infantry", "effect": "Max HP Up 22.8%", "duration": null }] }
+    ]
+  },
+  {
+    "id": "toumi",
+    "name_en": "Toumi",
+    "name_jp": "東美",
+    "country": "unknown",
+    "rarity": "NR",
+    "skills": [
+      { "name_en": "DEF Enhancement – Special [Infantry]", "name_jp": "防御力強化・特【歩兵】", "type": "Administration",
+        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally infantry", "effect": "DEF Up 1%", "duration": null }] },
+      { "name_en": "ATK Enhancement – Special Large [Infantry]", "name_jp": "攻撃力強化・特大【歩兵】", "type": "Administration",
+        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally infantry", "effect": "ATK Up 5.4%", "duration": null }] },
+      { "name_en": "HP Enhancement – Special Large Improved [Infantry]", "name_jp": "体力強化・特大改【歩兵】", "type": "Administration",
+        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally infantry", "effect": "Max HP Up 22.8%", "duration": null }] }
+    ]
+  },
+  {
+    "id": "yugi",
+    "name_en": "Yugi",
+    "name_jp": "有義",
+    "country": "unknown",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Black Turtle]",
+        "name_jp": "猛将一閃【黒亀】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Other ally shield soldiers", "effect": "DEF Up 20%", "duration": "3 turns" }
+        ]
+      },
+      { "name_en": "ATK Enhancement – Large [Shield Soldiers]", "name_jp": "攻撃力強化・大【盾兵】", "type": "Administration",
+        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally shield soldiers", "effect": "ATK Up 4.3%", "duration": null }] },
+      { "name_en": "DEF Enhancement – Large Improved [Shield Soldiers]", "name_jp": "防御力強化・大改【盾兵】", "type": "Administration",
+        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally shield soldiers", "effect": "DEF Up 9.9%", "duration": null }] }
+    ]
+  },
+  {
+    "id": "encho",
+    "name_en": "Entei",
+    "name_jp": "燕呈",
+    "country": "unknown",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Yellow Tiger]",
+        "name_jp": "重追撃【黄虎】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Other ally infantry", "effect": "DEF Up 20%", "duration": "3 turns" },
+          { "condition": "When Attacking", "target": "Other ally infantry", "effect": "DEF Up 15%", "duration": "3 turns" }
+        ]
+      },
+      { "name_en": "Repair Currency Reduction – Large", "name_jp": "修理貨幣減少・大", "type": "Administration",
+        "effects": [{ "condition": "When repairing Souha war machines", "target": "War machine repair", "effect": "Currency Cost Down 3.2%", "duration": null }] },
+      { "name_en": "DEF Enhancement – Large Improved [Attack War Machines]", "name_jp": "防御力強化・大改【攻撃兵器】", "type": "Administration",
+        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally attack war machines", "effect": "DEF Up 6.4%", "duration": null }] }
+    ]
+  },
+  {
+    "id": "bamyuu",
+    "name_en": "Bamyu",
+    "name_jp": "バミュウ",
+    "country": "unknown",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Weak General Flash [Red Tiger]",
+        "name_jp": "弱将一閃【赤虎】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "Enemy war machine with lowest remaining HP", "target": "1 enemy war machine", "effect": "100% Damage", "duration": null }
+        ]
+      },
+      { "name_en": "ATK Enhancement – Large [Attack War Machines]", "name_jp": "攻撃力強化・大【攻撃兵器】", "type": "Administration",
+        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally attack war machines", "effect": "ATK Up 2.8%", "duration": null }] },
+      { "name_en": "Repair Material Reduction – Large Improved", "name_jp": "修理資材減少・大改", "type": "Administration",
+        "effects": [{ "condition": "When repairing Souha war machines", "target": "War machine repair", "effect": "Material Cost Down 6.2%", "duration": null }] }
+    ]
+  },
+  {
+    "id": "kakubi",
+    "name_en": "Kakubi",
+    "name_jp": "郭備",
+    "country": "unknown",
+    "rarity": "NR",
+    "skills": [
+      { "name_en": "ATK/DEF Enhancement [Red Sheep]", "name_jp": "攻防強化【赤羊】", "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally cavalry / other ally shield soldiers", "effect": "ATK Up 20%", "duration": null },
+          { "condition": null, "target": "Other ally shield soldiers", "effect": "DEF Up 20%", "duration": null }
+        ] },
+      { "name_en": "HP Enhancement – Large [Shield Soldiers]", "name_jp": "体力強化・大【盾兵】", "type": "Administration",
+        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally shield soldiers", "effect": "Max HP Up 7.9%", "duration": null }] },
+      { "name_en": "HP Enhancement – Large Improved [Defense War Machines]", "name_jp": "体力強化・大改【防衛兵器】", "type": "Administration",
+        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally defense war machines", "effect": "Max HP Up 28.3%", "duration": null }] }
+    ]
+  },
+  {
+    "id": "kesshi",
+    "name_en": "Kesshi",
+    "name_jp": "竭氏",
+    "country": "unknown",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Orange Tiger]",
+        "name_jp": "重追撃【橙虎】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "Enemy general with highest ATK", "target": "3 enemy generals", "effect": "Illusion Infliction 35%", "duration": "3 turns" },
+          { "condition": null, "target": "Ally infantry", "effect": "Confusion Infliction Rate Up / Paralysis Infliction Rate Up 40%", "duration": "3 turns" }
+        ]
+      },
+      { "name_en": "Repair Currency Reduction – Small", "name_jp": "修理貨幣減少・小", "type": "Administration",
+        "effects": [{ "condition": "When repairing Souha war machines", "target": "War machine repair", "effect": "Currency Cost Down 2.4%", "duration": null }] },
+      { "name_en": "Repair Speed Enhancement – Small Improved", "name_jp": "修理速度強化・小改", "type": "Administration",
+        "effects": [{ "condition": "When repairing Souha war machines", "target": "War machine repair", "effect": "Repair Speed Up 3.9%", "duration": null }] }
+    ]
+  },
+  {
+    "id": "genho",
+    "name_en": "Genho",
+    "name_jp": "玄峰",
+    "country": "unknown",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Iron Wall Flash [Red Elephant]",
+        "name_jp": "鉄壁一閃【赤象】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "Enemy general with highest ATK", "target": "2 enemy generals", "effect": "Illusion Infliction 60%", "duration": "3 turns" }
+        ]
+      },
+      { "name_en": "DEF Enhancement – Large [Attack War Machines]", "name_jp": "防御力強化・大【攻撃兵器】", "type": "Administration",
+        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally attack war machines", "effect": "DEF Up 2.8%", "duration": null }] },
+      { "name_en": "Repair Ore Reduction – Large Improved", "name_jp": "修理鉱石減少・大改", "type": "Administration",
+        "effects": [{ "condition": "When repairing Souha war machines", "target": "War machine repair", "effect": "Ore Cost Down 6.2%", "duration": null }] }
+    ]
+  },
+  {
+    "id": "amon",
+    "name_en": "Amon",
+    "name_jp": "亜門",
+    "country": "unknown",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Red Turtle]",
+        "name_jp": "猛将一閃【赤亀】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Ally shield soldiers", "effect": "DEF Up 20%", "duration": "3 turns" },
+          { "condition": "Enemy general with highest ATK", "target": "3 enemy generals", "effect": "Illusion Infliction 35%", "duration": "3 turns" }
+        ]
+      },
+      { "name_en": "DEF Enhancement – Medium [Archers]", "name_jp": "防御力強化・中【弓兵】", "type": "Administration",
+        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally archers", "effect": "DEF Up 3.8%", "duration": null }] },
+      { "name_en": "Repair Currency Reduction – Medium Improved", "name_jp": "修理貨幣減少・中改", "type": "Administration",
+        "effects": [{ "condition": "When repairing Souha war machines", "target": "War machine repair", "effect": "Currency Cost Down 6.4%", "duration": null }] }
+    ]
+  },
+  {
+    "id": "kosho2",
+    "name_en": "Koshou",
+    "name_jp": "江彰",
+    "country": "unknown",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Weak General Flash [Red Sheep]",
+        "name_jp": "弱将一閃【赤羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Ally shield soldiers", "effect": "DEF Up 20%", "duration": "3 turns" },
+          { "condition": "Enemy general with highest ATK", "target": "2 enemy generals", "effect": "Paralysis Infliction", "duration": "3 turns" }
+        ]
+      },
+      { "name_en": "HP Enhancement – Medium Improved [Archers]", "name_jp": "体力強化・中改【弓兵】", "type": "Administration",
+        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally archers", "effect": "Max HP Up 6.9%", "duration": null }] },
+      { "name_en": "Scout – Medium Improved", "name_jp": "斥候・中改", "type": "Administration",
+        "effects": [{ "condition": "When passing terrain [Checkpoint] (active even when not deployed)", "target": "Passing squad", "effect": "Squad Damage Reduction 5.5%", "duration": null }] }
+    ]
+  }
+]

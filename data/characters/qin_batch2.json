@@ -1,0 +1,639 @@
+[
+  {
+    "id": "sougen",
+    "name_en": "Sougen",
+    "name_jp": "蒼源",
+    "country": "qin",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Navy Elephant]",
+        "name_jp": "猛将一閃【紺象】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "Enemy archer general with highest max morale", "target": "1 enemy archer", "effect": "150% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Father's Back",
+        "name_jp": "父の背中",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Sure Hit", "duration": null },
+          { "condition": null, "target": "Self, ally [?], ally [?]", "effect": "Betrayal Resistance 100%", "duration": null },
+          { "condition": "When ally [?] is alive", "target": "Self", "effect": "Critical Rate Up 30%", "duration": null },
+          { "condition": "When ally [?] is alive", "target": "Self", "effect": "Critical Damage Up 30%", "duration": null },
+          { "condition": "When ally [?] and [?] are both alive", "target": "All ally generals", "effect": "Attack Nullification", "duration": "1 time" }
+        ]
+      },
+      {
+        "name_en": "Ten-Bow Contest",
+        "name_jp": "十弓勝負",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "180% Damage", "duration": null },
+          { "condition": "Enemy archer with highest max morale", "target": "1 enemy archer", "effect": "180% Damage", "duration": null },
+          { "condition": null, "target": "Enemy archers", "effect": "Paralysis Infliction 50%", "duration": "3 turns" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gakurai",
+    "name_en": "Gakurai",
+    "name_jp": "岳雷",
+    "country": "qin",
+    "unit": "Hyoukou Forces / Hi Shin Unit",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "DEF Enhancement [Orange Bull]",
+        "name_jp": "防御強化【橙牛】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Qin", "effect": "DEF Up 20%", "duration": null },
+          { "condition": "When Attacking", "target": "Ally Hyoukou / Ally Hi Shin Unit", "effect": "Betrayal Resistance 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Strike from Behind",
+        "name_jp": "後手必勝",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Own remaining HP < 90%", "target": "Ally Qin", "effect": "Critical Damage Up 20%", "duration": "3 turns" },
+          { "condition": null, "target": "Ally Hyoukou / Ally Hi Shin Unit", "effect": "HP Recovery / Morale Recovery 20%", "duration": null },
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "3-Hit 80% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Melee Expert",
+        "name_jp": "乱戦強者",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Ally Qin", "effect": "Critical Rate Up 10%", "duration": "3 turns" },
+          { "condition": null, "target": "Ally Hyoukou / Ally Hi Shin Unit", "effect": "Critical Rate Up 20%", "duration": "3 turns" },
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "4-Hit 80% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "choto",
+    "name_en": "Choutou",
+    "name_jp": "張唐",
+    "country": "qin",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Purple Bull]",
+        "name_jp": "猛将一閃【紫牛】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Self", "effect": "Provoke", "duration": "3 turns" },
+          { "condition": "When Garrisoning", "target": "Self", "effect": "DEF Up 20%", "duration": "3 turns" }
+        ]
+      },
+      {
+        "name_en": "Veteran General's Power",
+        "name_jp": "老将の底力",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Status Effect Immunity (excl. Provoke)", "duration": "3 times" },
+          { "condition": "When Garrisoning", "target": "Self", "effect": "Guard 60%", "duration": "3 times" },
+          { "condition": "When Garrisoning, gate HP remaining", "target": "Gate", "effect": "HP Recovery 20,000", "duration": null }
+        ]
+      },
+      {
+        "name_en": "General's Strength",
+        "name_jp": "武将の力",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": "Per other ally Qin general", "target": "Self", "effect": "DEF Up 10%", "duration": "4 turns" },
+          { "condition": "When Garrisoning", "target": "Self", "effect": "Continuous HP Recovery 10%", "duration": "3 turns" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "shimasaku",
+    "name_en": "Shibasaku",
+    "name_jp": "司馬錯",
+    "country": "qin",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "ATK Enhancement [Red Turtle]",
+        "name_jp": "攻撃強化【赤亀】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally archers", "effect": "ATK Up 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Six Generals' War Scars",
+        "name_jp": "六将の戦禍",
+        "type": "Strategy",
+        "effects": [
+          { "condition": "Per other ally Six Great General", "target": "Self", "effect": "DEF Up 10%", "duration": null },
+          { "condition": null, "target": "Enemy Wei / Enemy Chu", "effect": "ATK Down 10%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Shield Soldier Annihilation Shot",
+        "name_jp": "盾兵殲滅射撃",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "ATK Up vs Shield Soldiers 30%", "duration": "2 turns" },
+          { "condition": "Enemy general with highest DEF", "target": "3 enemy generals", "effect": "90% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hyoshiga",
+    "name_en": "Hyoushiga",
+    "name_jp": "豹司牙",
+    "country": "qin",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [White Bull]",
+        "name_jp": "猛将一閃【白牛】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "Paralysis Infliction 30%", "duration": "4 turns" }
+        ]
+      },
+      {
+        "name_en": "Supreme Commander's Guard",
+        "name_jp": "軍総司令近衛兵",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally cavalry", "effect": "Hit Rate Up 30%", "duration": null },
+          { "condition": null, "target": "Ally Qin", "effect": "Paralysis Infliction Rate Up 20%", "duration": null },
+          { "condition": "When Garrisoning", "target": "Enemy cavalry", "effect": "Hit Rate Down 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Black Hidden Blade",
+        "name_jp": "黒き懐刀",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Paralysed enemies present", "target": "All paralysed enemy generals", "effect": "100% Damage", "duration": null },
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": "When Garrisoning", "target": "Enemy cavalry", "effect": "ATK Down 20%", "duration": "3 turns" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hakuki",
+    "name_en": "Hakuki",
+    "name_jp": "白起",
+    "country": "qin",
+    "rarity": "UR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Yellow Bull]",
+        "name_jp": "猛将一閃【黄牛】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Enemy cavalry", "effect": "ATK Down 20%", "duration": "3 turns" }
+        ]
+      },
+      {
+        "name_en": "Battlefield Domination",
+        "name_jp": "戦場の支配",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Other ally Qin generals", "effect": "Guard 60%", "duration": "2 times" },
+          { "condition": "When Garrisoning, enemy war machine with highest ATK", "target": "1 enemy war machine", "effect": "150% Damage", "duration": null },
+          { "condition": "When Garrisoning", "target": "Self", "effect": "DEF Up 30%", "duration": "3 turns" },
+          { "condition": "When Garrisoning", "target": "Ally war machines vs enemy war machines", "effect": "ATK Up 40%", "duration": "3 turns" }
+        ]
+      },
+      {
+        "name_en": "Fortification Tactics",
+        "name_jp": "築城戦法",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": null, "target": "Self", "effect": "Guard 80%", "duration": "3 times" },
+          { "condition": "When Garrisoning", "target": "Other ally generals", "effect": "Guard 60%", "duration": "2 times" },
+          { "condition": "When Garrisoning", "target": "Ally war machines", "effect": "Guard 60%", "duration": "3 times" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ohkotsu",
+    "name_en": "Oukotsu",
+    "name_jp": "王齕",
+    "country": "qin",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fortified Equipment Double Smash [Red Sheep]",
+        "name_jp": "堅牢器双壊【赤羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy war machine with highest DEF", "target": "2 enemy war machines", "effect": "100% Damage", "duration": null },
+          { "condition": null, "target": "Other ally infantry", "effect": "ATK Up 20%", "duration": "3 turns" }
+        ]
+      },
+      {
+        "name_en": "Unrivalled Strength",
+        "name_jp": "怪力無双",
+        "type": "Strategy",
+        "effects": [
+          { "condition": "Per ally Shoou / per other ally Six Great General", "target": "Self", "effect": "ATK Up / DEF Up 5%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Symbol of Destruction",
+        "name_jp": "破壊の象徴",
+        "type": "Strategy",
+        "effects": [
+          { "condition": "When Attacking", "target": "Ally war machines", "effect": "ATK Up 15%", "duration": null },
+          { "condition": "When Attacking, per other ally Qin general", "target": "Ally war machines", "effect": "ATK Up 5%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kaioku",
+    "name_en": "Kaioku",
+    "name_jp": "介億",
+    "country": "qin",
+    "unit": "Shouheikun Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Iron Wall Flash [Orange Sheep]",
+        "name_jp": "鉄壁一閃【橙羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Enemy archers", "effect": "ATK Down 20%", "duration": "3 turns" }
+        ]
+      },
+      {
+        "name_en": "Commander-in-Chief's Right Hand",
+        "name_jp": "軍曹司令の右腕",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Other ally Qin generals", "effect": "DEF Up 10%", "duration": null },
+          { "condition": "When ally Shouheikun is present", "target": "Enemy generals vs cavalry", "effect": "DEF Down 30%", "duration": null },
+          { "condition": null, "target": "Ally cavalry", "effect": "ATK Up 10%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Broad Perspective",
+        "name_jp": "大局観",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Own HP ≥ 90%, enemy general with highest DEF", "target": "1 enemy general", "effect": "160% Damage", "duration": null },
+          { "condition": "Own HP ≥ 90%", "target": "Self / ally cavalry", "effect": "Guard 40%", "duration": "3 times" },
+          { "condition": "Own HP < 90%, enemy general with highest DEF", "target": "1 enemy general", "effect": "100% Damage", "duration": null },
+          { "condition": "Own HP < 90%", "target": "Self", "effect": "HP Recovery 30%", "duration": null },
+          { "condition": "Other ally Qin generals' HP < 90% and surviving", "target": "Ally Qin", "effect": "HP Recovery 30%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kosho",
+    "name_en": "Koshou",
+    "name_jp": "胡傷",
+    "country": "qin",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "DEF Enhancement [Orange Elephant]",
+        "name_jp": "防御強化【橙象】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally archers", "effect": "DEF Up 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "One-Sided Invasion",
+        "name_jp": "一方的侵略",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Enemy generals", "effect": "DEF Down 10%", "duration": null },
+          { "condition": null, "target": "Enemy shield soldiers vs archers", "effect": "DEF Down 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Battle Strategy",
+        "name_jp": "戦の攻略",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Other ally Qin generals", "effect": "ATK Up 10%", "duration": "3 turns" },
+          { "condition": "When Attacking, per ally Six Great General", "target": "Enemy war machines", "effect": "DEF Down 10%", "duration": "3 turns" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "garo",
+    "name_en": "Garo",
+    "name_jp": "我呂",
+    "country": "qin",
+    "unit": "Hi Shin Unit",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "ATK Enhancement [Orange Elephant]",
+        "name_jp": "攻撃強化【橙象】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally infantry / other ally cavalry", "effect": "ATK Up 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Strike First",
+        "name_jp": "先手必勝",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Ally infantry / other ally cavalry", "effect": "Attack Nullification", "duration": "1 time" }
+        ]
+      },
+      {
+        "name_en": "Melee Adept",
+        "name_jp": "乱戦巧者",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": "Other ally cavalry alive", "target": "Ally generals", "effect": "ATK Up 10%", "duration": "4 turns" },
+          { "condition": "Ally infantry alive", "target": "Ally generals", "effect": "DEF Up 10%", "duration": "4 turns" },
+          { "condition": null, "target": "Ally Qin", "effect": "Attack Nullification", "duration": "1 time" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rikusen",
+    "name_en": "Rikusen",
+    "name_jp": "陸仙",
+    "country": "qin",
+    "unit": "Gakuka Unit",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Master General Flash [Orange Turtle]",
+        "name_jp": "名将一閃【橙亀】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Ally cavalry", "effect": "ATK Up 20%", "duration": "3 turns" }
+        ]
+      },
+      {
+        "name_en": "Gakuka Main Force",
+        "name_jp": "楽華の主力",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Hi Shin Unit / Ally Gyokuhou Squad / Ally Gakuka Unit", "effect": "Sure Hit", "duration": null },
+          { "condition": null, "target": "Ally Hi Shin Unit / Ally Gyokuhou Squad / Ally Gakuka Unit", "effect": "ATK Up vs Cavalry 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Hidden Ability",
+        "name_jp": "秘めた実力",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Random", "target": "Enemy cavalry", "effect": "4-Hit 30% Damage", "duration": null },
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "170% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kanjo",
+    "name_en": "Kanjou",
+    "name_jp": "関常",
+    "country": "qin",
+    "unit": "Gyokuhou Squad",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "DEF Reduction [Red Sheep]",
+        "name_jp": "防御低下【赤羊】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Enemy generals vs Qin", "effect": "DEF Down 10%", "duration": null },
+          { "condition": null, "target": "Enemy generals vs cavalry", "effect": "DEF Down 10%", "duration": null },
+          { "condition": null, "target": "Enemy generals vs Gyokuhou Squad", "effect": "DEF Down 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Cool and Composed",
+        "name_jp": "冷静沈着",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Other ally cavalry / ally shield soldiers", "effect": "Morale Cost Reduction 20%", "duration": null },
+          { "condition": null, "target": "Other ally Gyokuhou Squad", "effect": "Morale Cost Reduction 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Desperate Charge",
+        "name_jp": "決死の挺身",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": null, "target": "Other ally cavalry / ally shield soldiers", "effect": "DEF Penetration Up 10%", "duration": "4 turns" },
+          { "condition": null, "target": "Ally Gyokuhou Squad", "effect": "Attack Nullification", "duration": "1 time" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "seikyo",
+    "name_en": "Seikyou",
+    "name_jp": "成蟜",
+    "country": "qin",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Frail General Flash [Red Sheep]",
+        "name_jp": "脆将一閃【赤羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest max HP", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "Own HP ≥ 90%", "target": "Ally infantry", "effect": "ATK Up 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Repair Material Reduction – Medium",
+        "name_jp": "修理資材減少・中",
+        "type": "Administration",
+        "effects": [
+          { "condition": "When repairing Souha war machines", "target": "War machine repair", "effect": "Material Cost Down 2.4%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "HP Enhancement – Medium-Large Improved [Archers]",
+        "name_jp": "体力強化・中改【弓兵】",
+        "type": "Administration",
+        "effects": [
+          { "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally archers", "effect": "Max HP Up 15.9%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rui",
+    "name_en": "Rui",
+    "name_jp": "瑠衣",
+    "country": "qin",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Weak Point Flash [Orange Elephant]",
+        "name_jp": "急所一閃【橙象】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Self", "effect": "Attack Nullification", "duration": "3 times" },
+          { "condition": null, "target": "Self", "effect": "Less Likely to be Targeted", "duration": "3 turns" },
+          { "condition": null, "target": "Ally archers", "effect": "Guard 70%", "duration": "2 times" }
+        ]
+      },
+      {
+        "name_en": "Princess's Prayer",
+        "name_jp": "公女の祈り",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally archers", "effect": "ATK Up 20%", "duration": null },
+          { "condition": null, "target": "Ally Seikyo", "effect": "ATK Up / DEF Up 20%", "duration": null },
+          { "condition": "When Garrisoning", "target": "Enemy generals vs archers", "effect": "DEF Down 20%", "duration": null },
+          { "condition": "When Garrisoning", "target": "Ally war machines", "effect": "ATK Up 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "HP Enhancement – Special Large Improved [Infantry]",
+        "name_jp": "体力強化・特大改【歩兵】",
+        "type": "Administration",
+        "effects": [
+          { "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally infantry", "effect": "Max HP Up 22.8%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "yo",
+    "name_en": "You",
+    "name_jp": "陽",
+    "country": "qin",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Yellow Bull]",
+        "name_jp": "重追撃【黄牛】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Self", "effect": "Less Likely to be Targeted", "duration": "3 turns" },
+          { "condition": "When Garrisoning", "target": "Enemy generals", "effect": "ATK Down 20%", "duration": "3 turns" }
+        ]
+      },
+      {
+        "name_en": "Light's Protection",
+        "name_jp": "光の庇護",
+        "type": "Strategy",
+        "effects": [
+          { "condition": "Surviving", "target": "Ally Qin", "effect": "Morale Recovery 10%", "duration": null },
+          { "condition": "When Garrisoning", "target": "Ally archers", "effect": "Guard 60%", "duration": "1 time" }
+        ]
+      },
+      {
+        "name_en": "HP Enhancement – Special Large Improved [Archers]",
+        "name_jp": "体力強化・特大改【弓兵】",
+        "type": "Administration",
+        "effects": [
+          { "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally archers", "effect": "Max HP Up 22.8%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ryuyu",
+    "name_en": "Ryuyu",
+    "name_jp": "竜有",
+    "country": "qin",
+    "unit": "Hi Shin Unit",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Green Bull]",
+        "name_jp": "重追撃【緑牛】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "Enemy war machine with lowest remaining HP", "target": "1 enemy war machine", "effect": "100% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "DEF Enhancement – Large Improved [Attack War Machines]",
+        "name_jp": "防御力強化・大【攻撃兵器】",
+        "type": "Administration",
+        "effects": [
+          { "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally attack war machines", "effect": "DEF Up 2.8%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "DEF Enhancement – Large Improved [Infantry]",
+        "name_jp": "防御力強化・大改【歩兵】",
+        "type": "Administration",
+        "effects": [
+          { "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally infantry", "effect": "DEF Up 9.9%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chutetsu",
+    "name_en": "Chutetsu",
+    "name_jp": "中鉄",
+    "country": "qin",
+    "unit": "Hi Shin Unit",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Weak Point Flash [Orange Sheep]",
+        "name_jp": "急所一閃【橙羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "Enemy war machine with lowest DEF", "target": "1 enemy war machine", "effect": "100% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "ATK Enhancement – Large [Defense War Machines]",
+        "name_jp": "攻撃力強化・大【防衛兵器】",
+        "type": "Administration",
+        "effects": [
+          { "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally defense war machines", "effect": "ATK Up 2.8%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "ATK Enhancement – Large Improved [Infantry]",
+        "name_jp": "攻撃力強化・大改【歩兵】",
+        "type": "Administration",
+        "effects": [
+          { "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally infantry", "effect": "ATK Up 9.9%", "duration": null }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "_comment": "Japanese country names → English display names + metadata",
+  "秦国": { "en": "Qin",          "id": "qin",           "color": "#C0392B" },
+  "趙国": { "en": "Zhao",         "id": "zhao",          "color": "#2980B9" },
+  "楚国": { "en": "Chu",          "id": "chu",           "color": "#8E44AD" },
+  "魏国": { "en": "Wei",          "id": "wei",           "color": "#16A085" },
+  "韓国": { "en": "Han",          "id": "han",           "color": "#F39C12" },
+  "燕国": { "en": "Yan",          "id": "yan",           "color": "#1ABC9C" },
+  "斉国": { "en": "Qi",           "id": "qi",            "color": "#D4AC0D" },
+  "毐国": { "en": "Ai",           "id": "ai",            "color": "#884EA0" },
+  "山の民": { "en": "Mountain Folk", "id": "mountain_folk", "color": "#7D6608" },
+  "合従軍": { "en": "Coalition",   "id": "coalition",     "color": "#5D6D7E" },
+  "Unknown": { "en": "Unknown",   "id": "unknown",       "color": "#808B96" }
+}

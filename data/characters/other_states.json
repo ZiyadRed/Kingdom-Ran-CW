@@ -1,0 +1,435 @@
+[
+  {
+    "id": "kyobou",
+    "name_en": "Kyoubou",
+    "name_jp": "巨暴",
+    "country": "chu",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Enemy General Sweep [Red Elephant]",
+        "name_jp": "敵将一掃【赤象】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Other ally Chu members alive", "target": "All enemy generals", "effect": "Morale Down 10%", "duration": null },
+          { "condition": null, "target": "All enemy generals", "effect": "100% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Encroaching Violence",
+        "name_jp": "迫る暴力",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Other ally Chu members alive", "target": "All enemy generals", "effect": "Morale Down 20%", "duration": null },
+          { "condition": null, "target": "All enemy generals", "effect": "110% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Massive Army",
+        "name_jp": "巨なる軍勢",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Hit Rate Up 50%", "duration": "3 turns" },
+          { "condition": "Per other ally Chu member", "target": "Ally Chu", "effect": "ATK Up 10%", "duration": "3 turns" },
+          { "condition": null, "target": "All enemy generals", "effect": "120% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gotoku",
+    "name_en": "Goutoku",
+    "name_jp": "豪徳",
+    "country": "chu",
+    "unit": "Karin Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Gray Turtle]",
+        "name_jp": "猛将一閃【灰亀】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Ally Karin", "effect": "Attack Nullification", "duration": "1 time" }
+        ]
+      },
+      {
+        "name_en": "Female Hero's Escort",
+        "name_jp": "女傑の護衛",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Karin", "effect": "Max HP Up 100%", "duration": null },
+          { "condition": null, "target": "Ally Karin", "effect": "Illusion Infliction Rate Up 50%", "duration": null },
+          { "condition": "When enemy generals have Illusion status", "target": "Ally Karin Forces", "effect": "ATK Up 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Immediate Response on Command",
+        "name_jp": "思伝即応",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": null, "target": "Ally Karin Forces", "effect": "Attack Nullification", "duration": "1 time" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rien",
+    "name_en": "Rien",
+    "name_jp": "李園",
+    "country": "chu",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Black Sheep]",
+        "name_jp": "猛将一閃【黒羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Enemy cavalry", "effect": "Normal Attack Seal 50%", "duration": "2 turns" }
+        ]
+      },
+      {
+        "name_en": "Rebuilding Great Chu",
+        "name_jp": "大国楚の再建",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Chu", "effect": "ATK Up 20%", "duration": null },
+          { "condition": "When Attacking", "target": "Surviving ally Chu", "effect": "HP Recovery 10%", "duration": null },
+          { "condition": "When Attacking", "target": "Surviving ally Chu", "effect": "Morale Recovery 5%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Shadow Maneuver",
+        "name_jp": "暗躍する影",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": null, "target": "Enemy cavalry", "effect": "HP Recovery Nullification 100%", "duration": "4 turns" },
+          { "condition": "Other ally Chu generals alive", "target": "Enemy cavalry", "effect": "Skill Attack Seal 50%", "duration": "2 turns" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rokin",
+    "name_en": "Rokin",
+    "name_jp": "魯近",
+    "country": "chu",
+    "unit": "Rinbujun Forces (Coalition)",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Weak Point Flash [Yellow Tiger]",
+        "name_jp": "急所一閃【黄虎】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Ally Coalition Forces", "effect": "HP Recovery 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "First General's Loyal Retainer",
+        "name_jp": "第一将の忠臣",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Rinbujun", "effect": "Status Effect Immunity (excl. Provoke)", "duration": "3 times" },
+          { "condition": null, "target": "Ally Rinbujun", "effect": "Sure Hit", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Lieutenant's Pride",
+        "name_jp": "副官の矜持",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Rinbujun", "effect": "DEF Up 30%", "duration": null },
+          { "condition": null, "target": "Ally Rinbujun", "effect": "Guard 100%", "duration": "2 times" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chouin",
+    "name_en": "Chouin",
+    "name_jp": "張印",
+    "country": "han",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Weak Point Flash [Yellow Turtle]",
+        "name_jp": "急所一閃【黄亀】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "From the 150% Damage", "target": "Self", "effect": "HP Drain 100%", "duration": null },
+          { "condition": null, "target": "Ally Han", "effect": "Guard 60%", "duration": "1 time" },
+          { "condition": "Poisoned enemy with highest remaining HP", "target": "1 poisoned enemy general", "effect": "% of Remaining HP Damage 20%", "duration": null },
+          { "condition": "From the % HP Damage", "target": "Self", "effect": "HP Drain 100%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Acting Commander-in-Chief of Han",
+        "name_jp": "韓国軍総大将代理",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Han", "effect": "Sure Hit", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Successor's Duty",
+        "name_jp": "後任の責務",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Ally Han", "effect": "Attack Nullification", "duration": "1 time" },
+          { "condition": "Poisoned enemies present", "target": "All poisoned enemy generals", "effect": "HP Recovery Nullification 70%", "duration": "3 turns" },
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": "From the 170% Damage", "target": "Self", "effect": "HP Drain 100%", "duration": null },
+          { "condition": "Poisoned enemy with highest remaining HP", "target": "1 poisoned enemy general", "effect": "% of Remaining HP Damage 20%", "duration": null },
+          { "condition": "From the % HP Damage", "target": "Self", "effect": "HP Drain 100%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "nako",
+    "name_en": "Nakon",
+    "name_jp": "奈棍",
+    "country": "han",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Weak Point Flash [Yellow Bull]",
+        "name_jp": "急所一閃【黄牛】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "From the 150% Damage", "target": "Self", "effect": "HP Drain 100%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Han Army Defense Commander",
+        "name_jp": "韓国軍守備長",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Han", "effect": "HP Recovery Rate Up 20%", "duration": null },
+          { "condition": null, "target": "Ally Han", "effect": "DEF Up 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Eroding Disease",
+        "name_jp": "浸蝕する病",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "Skill Attack Seal 50%", "duration": "2 turns" },
+          { "condition": "All poisoned enemy generals", "target": "All poisoned enemy generals", "effect": "Skill Attack Seal 70%", "duration": "2 turns" },
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": "From the 170% Damage", "target": "Self", "effect": "HP Drain 100%", "duration": null },
+          { "condition": "Poisoned enemy with highest remaining HP", "target": "1 poisoned enemy general", "effect": "% of Remaining HP Damage 20%", "duration": null },
+          { "condition": "From the % HP Damage", "target": "Self", "effect": "HP Drain 100%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bakan",
+    "name_en": "Bakan",
+    "name_jp": "馬関",
+    "country": "han",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Weak Point Flash [Yellow Bull]",
+        "name_jp": "急所一閃【黄牛】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "From the 150% Damage", "target": "Self", "effect": "HP Drain 100%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Han Army Two-Thousand Commander",
+        "name_jp": "韓国軍二千人将",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Han", "effect": "HP Recovery Rate Up 20%", "duration": null },
+          { "condition": null, "target": "Ally Han", "effect": "Morale Cost Down 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Corroding Pursuit",
+        "name_jp": "蝕む追撃",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "Normal Attack Seal 50%", "duration": "4 turns" },
+          { "condition": null, "target": "All poisoned enemy generals", "effect": "Normal Attack Seal 70%", "duration": "4 turns" },
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": "From the 170% Damage", "target": "Self", "effect": "HP Drain 100%", "duration": null },
+          { "condition": "Poisoned enemy with highest remaining HP", "target": "1 poisoned enemy general", "effect": "% of Remaining HP Damage 20%", "duration": null },
+          { "condition": "From the % HP Damage", "target": "Self", "effect": "HP Drain 100%", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tairoji",
+    "name_en": "Tairoji",
+    "name_jp": "太呂慈",
+    "country": "wei",
+    "rarity": "UR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Black Elephant]",
+        "name_jp": "猛将一閃【黒象】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "When Attacking, enemy with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "When Garrisoning, enemy with highest remaining HP", "target": "1 enemy general", "effect": "% of Remaining HP Damage 20%", "duration": null },
+          { "condition": "When Garrisoning, % HP Damage triggered", "target": "Self", "effect": "HP Drain 100%", "duration": null },
+          { "condition": null, "target": "Ally Wei", "effect": "Morale Recovery 5%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Wei Grand General",
+        "name_jp": "魏国大将軍",
+        "type": "Strategy",
+        "effects": [
+          { "condition": "When Attacking", "target": "Ally Wei", "effect": "Status Effect Immunity (excl. Provoke)", "duration": "2 times" },
+          { "condition": "When Attacking", "target": "Ally Wei", "effect": "Critical Rate Up 20%", "duration": null },
+          { "condition": "When Garrisoning", "target": "Ally Wei", "effect": "Guard 60%", "duration": "1 time" },
+          { "condition": "When Garrisoning", "target": "Enemy generals", "effect": "Critical Rate Down 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Judgment Strike",
+        "name_jp": "断罪の一撃",
+        "type": "Combat",
+        "effects": [
+          { "condition": "When Attacking", "target": "Ally Wei", "effect": "ATK Up 20%", "duration": "4 turns" },
+          { "condition": "When Attacking, enemy with highest ATK", "target": "1 enemy general", "effect": "180% Damage", "duration": null },
+          { "condition": "When Garrisoning", "target": "Self", "effect": "Provoke", "duration": "2 turns" },
+          { "condition": "When Garrisoning", "target": "Self", "effect": "DEF Up 30%", "duration": "4 turns" },
+          { "condition": "When Garrisoning", "target": "Enemy generals", "effect": "100% Damage", "duration": null },
+          { "condition": null, "target": "Ally Wei", "effect": "Continuous HP Recovery 8%", "duration": "4 turns" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "otaji",
+    "name_en": "Otaji",
+    "name_jp": "オタジ",
+    "country": "yan",
+    "unit": "Ordo Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Iron Wall Flash [Green Turtle]",
+        "name_jp": "鉄壁一閃【緑亀】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Own HP < 100%, enemy with highest DEF", "target": "1 enemy general", "effect": "80% Damage", "duration": null },
+          { "condition": "Own HP < 50%, enemy with highest DEF", "target": "1 enemy general", "effect": "100% Damage", "duration": null },
+          { "condition": "Enemy with highest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Mountain Ambush",
+        "name_jp": "山岳強襲",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Yan", "effect": "Max Morale Up 50%", "duration": null },
+          { "condition": null, "target": "Ally Ordo", "effect": "DEF Penetration Up / Confusion Infliction Rate Up 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Elite Relentless Pursuers",
+        "name_jp": "窮追する精兵",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Ally Yan", "effect": "Hit Rate Up 30%", "duration": "4 turns" },
+          { "condition": "Per other ally Yan member", "target": "Ally Yan", "effect": "ATK Up 10%", "duration": "3 turns" },
+          { "condition": "Enemy with highest DEF", "target": "1 enemy general", "effect": "170% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "budai",
+    "name_en": "Budai",
+    "name_jp": "ブダイ",
+    "country": "ai",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Iron Wall Flash [Green Tiger]",
+        "name_jp": "鉄壁一閃【緑虎】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy with highest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "When Attacking", "target": "Ally Ai", "effect": "Guard 60%", "duration": "1 time" }
+        ]
+      },
+      {
+        "name_en": "Inherited Grudge",
+        "name_jp": "継ぎし怨恨",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Ai", "effect": "Max HP Up 50%", "duration": null },
+          { "condition": null, "target": "Ally Juutekkō", "effect": "Confusion Infliction Rate Up 20%", "duration": null },
+          { "condition": "Enemy Qin alive, surviving ally Ai", "target": "Ally Ai", "effect": "HP Recovery 30%", "duration": null },
+          { "condition": "When Attacking", "target": "Ally cavalry", "effect": "DEF Up 40%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Dying Flame",
+        "name_jp": "残火",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy with highest DEF", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": "Enemy Qin alive, surviving ally Ai", "target": "Ally Ai", "effect": "HP Recovery 30%", "duration": null },
+          { "condition": "When Attacking", "target": "Ally Ai", "effect": "Guard 60%", "duration": "1 time" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hamui",
+    "name_en": "Hamui",
+    "name_jp": "ハムイ",
+    "country": "ai",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Gray Bull]",
+        "name_jp": "猛将一閃【灰牛】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Qin enemy with highest ATK", "target": "1 Qin enemy", "effect": "100% Damage", "duration": null },
+          { "condition": "Enemy with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Right Hand of the Wategi King",
+        "name_jp": "戎翟王の右腕",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Ai", "effect": "Max HP Up 50%", "duration": null },
+          { "condition": null, "target": "Ally [?]", "effect": "Confusion Infliction Rate Up 20%", "duration": null },
+          { "condition": "When enemy Qin generals are alive", "target": "Surviving ally Ai", "effect": "Morale Recovery 20%", "duration": null },
+          { "condition": "When Attacking, when enemy Qin alive", "target": "Ally cavalry", "effect": "Evasion Rate Up 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Guerrilla Charge",
+        "name_jp": "遊撃突貫",
+        "type": "Combat",
+        "effects": [
+          { "condition": "When Attacking", "target": "Ally Ai", "effect": "ATK Up 20%", "duration": "4 turns" },
+          { "condition": "Qin enemy with highest ATK", "target": "1 Qin enemy", "effect": "150% Damage", "duration": null },
+          { "condition": "Enemy with highest ATK", "target": "1 enemy general", "effect": "170% Damage", "duration": null }
+        ]
+      }
+    ]
+  }
+]

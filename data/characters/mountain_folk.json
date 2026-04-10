@@ -1,0 +1,292 @@
+[
+  {
+    "id": "yotanwa",
+    "name_en": "Yotanwa",
+    "name_jp": "楊端和",
+    "country": "mountain_folk",
+    "rarity": "UR",
+    "skills": [
+      {
+        "name_en": "Death King's Vanguard",
+        "name_jp": "死王の先陣",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "All ally Kyountain Folk", "effect": "DEF Penetration Up 20%", "duration": "2 turns" },
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "200% Damage", "duration": null }
+        ]
+      }
+    ],
+    "notes": "Core unit; her name appears as a buff target in many Mountain Folk skill conditions."
+  },
+  {
+    "id": "kitari",
+    "name_en": "Kitari",
+    "name_jp": "キタリ",
+    "country": "mountain_folk",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Master General Attack [Red Bull]",
+        "name_jp": "名将攻撃【赤牛】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy archer with highest max morale", "target": "1 enemy archer", "effect": "100% Damage", "duration": null },
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "2-Hit 120% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Brave and Bold",
+        "name_jp": "勇猛果敢",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Dodge Chance 30%", "duration": null },
+          { "condition": null, "target": "Ally Kyountain Folk", "effect": "Critical Rate Up 20%", "duration": null },
+          { "condition": "When enemy archers are alive", "target": "All enemy generals", "effect": "ATK Down 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Severing Twin Blades",
+        "name_jp": "断ち切る双刃",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Per other ally Kyountain Folk member", "target": "Ally Kyountain Folk", "effect": "ATK Up 10%", "duration": "3 turns" },
+          { "condition": null, "target": "Enemy archers", "effect": "100% Damage", "duration": null },
+          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "2-Hit 120% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "danto",
+    "name_en": "Danto",
+    "name_jp": "ダント",
+    "country": "mountain_folk",
+    "rarity": "UR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Gray Tiger]",
+        "name_jp": "猛将一閃【灰虎】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
+          { "condition": "Other ally Kyountain Folk alive, own HP ≥ 50%", "target": "Self", "effect": "DEF Up 20%", "duration": "3 turns" },
+          { "condition": "Other ally Kyountain Folk alive, own HP < 50%", "target": "Self", "effect": "Attack Nullification", "duration": "1 time" },
+          { "condition": "Other ally Kyountain Folk alive, own HP < 50%", "target": "Self", "effect": "HP Recovery 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Vigorous and Aggressive",
+        "name_jp": "剛健猛進",
+        "type": "Strategy",
+        "effects": [
+          { "condition": "Per turn elapsed", "target": "Self", "effect": "DEF Up 5% (max 30%)", "duration": null },
+          { "condition": "When ally [?] is alive", "target": "Self", "effect": "HP Recovery Rate Up 50%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Life in the Midst of Death",
+        "name_jp": "死中に活あり",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "190% Damage", "duration": null },
+          { "condition": null, "target": "Self", "effect": "Provoke", "duration": "3 turns" },
+          { "condition": "Other Mountain Folk alive, own HP ≥ 50%", "target": "Self", "effect": "DEF Up 40%", "duration": "3 turns" },
+          { "condition": "Other Mountain Folk alive, own HP < 50%", "target": "Self", "effect": "Attack Nullification", "duration": "2 times" },
+          { "condition": "Other Mountain Folk alive, own HP < 50%", "target": "Self", "effect": "Continuous HP Recovery 10%", "duration": "3 turns" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "katari",
+    "name_en": "Katari",
+    "name_jp": "カタリ",
+    "country": "mountain_folk",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Double Flash [Red Sheep]",
+        "name_jp": "猛将双閃【赤羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "2-Hit 140% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Calm and Composed",
+        "name_jp": "從容自若",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Dodge Chance 30%", "duration": null },
+          { "condition": null, "target": "Ally Kyountain Folk", "effect": "DEF Penetration Up 20%", "duration": null },
+          { "condition": "When ally [?] is alive", "target": "All enemy generals", "effect": "ATK Down 30%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Flash Blade",
+        "name_jp": "瞬刃",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Per other ally Kyountain Folk member", "target": "Ally Kyountain Folk", "effect": "ATK Up 10%", "duration": "3 turns" },
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "2-Hit 160% Damage", "duration": null },
+          { "condition": "When ally [?] is alive", "target": "Ally Kyountain Folk", "effect": "Attack Nullification", "duration": "1 time" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "todji",
+    "name_en": "Toji",
+    "name_jp": "トッヂ",
+    "country": "mountain_folk",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Weak Point Attack [Red Elephant]",
+        "name_jp": "急所攻撃【赤象】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "120% Damage", "duration": null },
+          { "condition": "Enemy shield soldier with lowest DEF", "target": "1 enemy shield soldier", "effect": "120% Damage", "duration": null },
+          { "condition": null, "target": "Ally Kyountain Folk", "effect": "Guard 60%", "duration": "1 time" }
+        ]
+      },
+      {
+        "name_en": "Death King's Lieutenant [Toji]",
+        "name_jp": "死王の側近【トッヂ】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Kyountain Folk", "effect": "ATK Up / DEF Up 10%", "duration": null },
+          { "condition": null, "target": "Ally Yotanwa", "effect": "ATK Up / DEF Up 30%", "duration": null },
+          { "condition": "When Attacking", "target": "Ally Yotanwa", "effect": "Dodge Chance 40%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Mountain Folk Support [Toji]",
+        "name_jp": "山民援護【トッヂ】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general earliest in formation order", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
+          { "condition": "Enemy shield soldier earliest in formation order", "target": "1 enemy shield soldier", "effect": "150% Damage", "duration": null },
+          { "condition": null, "target": "Ally Kyountain Folk", "effect": "Guard 60%", "duration": "1 time" },
+          { "condition": null, "target": "Ally Yotanwa", "effect": "Attack Nullification", "duration": "1 time" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fuji",
+    "name_en": "Fuji",
+    "name_jp": "フゥヂ",
+    "country": "mountain_folk",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Enemy General Sweep [Red Sheep]",
+        "name_jp": "敵将一掃【赤羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Ally Kyountain Folk", "effect": "DEF Penetration Up 10%", "duration": "2 turns" },
+          { "condition": null, "target": "All enemy generals", "effect": "80% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Death King's Lieutenant [Fuji]",
+        "name_jp": "死王の側近【フゥヂ】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Kyountain Folk", "effect": "Critical Damage Up 10%", "duration": null },
+          { "condition": null, "target": "Ally Yotanwa", "effect": "Critical Damage Up 20%", "duration": null },
+          { "condition": "When Attacking", "target": "Ally Yotanwa", "effect": "Status Effect Immunity (excl. Provoke)", "duration": "6 times" }
+        ]
+      },
+      {
+        "name_en": "Mountain Folk Support [Fuji]",
+        "name_jp": "山民援護【フゥヂ】",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Ally Kyountain Folk", "effect": "DEF Penetration Up 10%", "duration": "2 turns" },
+          { "condition": null, "target": "Ally Yotanwa", "effect": "DEF Penetration Up 20%", "duration": "2 turns" },
+          { "condition": null, "target": "All enemy generals", "effect": "100% Damage", "duration": null }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ramaoji",
+    "name_en": "Ramauji",
+    "name_jp": "ラマウジ",
+    "country": "mountain_folk",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Weak Point Attack [Red Sheep]",
+        "name_jp": "急所攻撃【赤羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "2-Hit 100% Damage", "duration": null },
+          { "condition": "Surviving", "target": "Ally Kyountain Folk", "effect": "HP Recovery 10%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Death King's Lieutenant [Ramauji]",
+        "name_jp": "死王の側近【ラマウジ】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Kyountain Folk", "effect": "Critical Rate Up 10%", "duration": null },
+          { "condition": null, "target": "Ally Yotanwa", "effect": "Critical Rate Up 20%", "duration": null },
+          { "condition": "When Attacking", "target": "Ally Yotanwa", "effect": "Sure Hit", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Mountain Folk Support [Ramauji]",
+        "name_jp": "山民援護【ラマウジ】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy general earliest in formation order", "target": "1 enemy general", "effect": "2-Hit 120% Damage", "duration": null },
+          { "condition": "Surviving", "target": "Mountain Folk", "effect": "HP Recovery 20%", "duration": null },
+          { "condition": null, "target": "Ally Yotanwa", "effect": "Continuous HP Recovery 10%", "duration": "4 turns" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pamu",
+    "name_en": "Pam",
+    "name_jp": "パム",
+    "country": "mountain_folk",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Navy Sheep]",
+        "name_jp": "猛将一閃【紺羊】",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Ally Danto", "effect": "DEF Up 20%", "duration": "3 turns" },
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Stalwart Escort",
+        "name_jp": "剛者随行",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Ally Danto", "effect": "Guard", "duration": "2 times" },
+          { "condition": "Surviving", "target": "Ally Danto", "effect": "HP Recovery Rate Up 50%", "duration": null },
+          { "condition": "Surviving", "target": "Ally Danto", "effect": "HP Recovery 20%", "duration": null },
+          { "condition": "When ally Danto is alive", "target": "Ally Kyountain Folk", "effect": "Status Effect Immunity (excl. Provoke)", "duration": "1 time" }
+        ]
+      },
+      {
+        "name_en": "Stalwart Support",
+        "name_jp": "剛者援護",
+        "type": "Combat",
+        "effects": [
+          { "condition": null, "target": "Ally Danto", "effect": "DEF Up 30%", "duration": "3 turns" },
+          { "condition": "Surviving", "target": "Ally Danto", "effect": "HP Recovery 20%", "duration": null },
+          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "170% Damage", "duration": null }
+        ]
+      }
+    ]
+  }
+]

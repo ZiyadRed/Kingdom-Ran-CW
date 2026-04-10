@@ -1,0 +1,789 @@
+[
+  {
+    "id": "hyoukou",
+    "name_en": "Duke Hyou",
+    "name_jp": "麃公",
+    "country": "qin",
+    "rarity": "UR",
+    "notes": "Core buff target referenced by Gakurai and other Hi Shin Unit / Hyoukou Forces members."
+  },
+  {
+    "id": "mougo",
+    "name_en": "Mougou",
+    "name_jp": "蒙驁",
+    "country": "qin",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "DEF Enhancement [Red Tiger]",
+        "name_jp": "防御強化【赤虎】",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": "Per turn elapsed",
+            "target": "Self",
+            "effect": "DEF Up 5% (max 25%)",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Cavalry Interception Formation",
+        "name_jp": "騎兵迎撃布陣",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally shield soldiers vs cavalry",
+            "effect": "DEF Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Ally shield soldiers",
+            "effect": "ATK Up 10%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Full-Strength Strike",
+        "name_jp": "渾身の一撃",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self vs cavalry",
+            "effect": "ATK Up 40%",
+            "duration": "2 turns"
+          },
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "mouki",
+    "name_en": "Mouki",
+    "name_jp": "蒙毅",
+    "country": "qin",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Weak Point Flash [Red Bull]",
+        "name_jp": "急所一閃【赤牛】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with lowest DEF",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally cavalry",
+            "effect": "DEF Up 20%",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Repair Material Reduction – Large",
+        "name_jp": "修理資材減少・大",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing Souha war machines",
+            "target": "War machine repair",
+            "effect": "Material Cost Down 2.7%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "HP Enhancement – Large Improved [Shield Soldiers]",
+        "name_jp": "体力強化・大改【盾兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally shield soldiers",
+            "effect": "Max HP Up 18.2%",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "muten_grandpa",
+    "name_en": "Mouten's Grandpa",
+    "name_jp": "蒙恬のじぃ",
+    "country": "qin",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Green Sheep]",
+        "name_jp": "猛将一閃【緑羊】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally cavalry",
+            "effect": "DEF Up 20%",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Repair Material Reduction – Large",
+        "name_jp": "修理資材減少・大",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing Souha war machines",
+            "target": "War machine repair",
+            "effect": "Material Cost Down 2.7%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "HP Enhancement – Large Improved [Shield Soldiers]",
+        "name_jp": "体力強化・大改【盾兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally shield soldiers",
+            "effect": "Max HP Up 18.2%",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rishi",
+    "name_en": "Rishi",
+    "name_jp": "李斯",
+    "country": "qin",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Heavy Vanguard [Red Sheep]",
+        "name_jp": "重先駆【赤羊】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest remaining HP",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Other ally archers",
+            "effect": "ATK Up 15%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": null,
+            "target": "Other ally generals",
+            "effect": "Betrayal Infliction Rate Up 35%",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Repair Ore Reduction – Medium",
+        "name_jp": "修理鉱石減少・中",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing Souha war machines",
+            "target": "War machine repair",
+            "effect": "Ore Cost Down 2.4%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "ATK Enhancement – Medium Improved [Defense War Machines]",
+        "name_jp": "攻撃力強化・中改【防衛兵器】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally defense war machines",
+            "effect": "ATK Up 5.8%",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "douken",
+    "name_en": "Douken",
+    "name_jp": "道剣",
+    "country": "unknown",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Status Infliction Rate Up [Red Sheep]",
+        "name_jp": "付与率上昇【赤羊】",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Other ally generals",
+            "effect": "Illusion Infliction Rate Up / Paralysis Infliction Rate Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Ally shield soldiers",
+            "effect": "DEF Up 20%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Forest Terrain Aptitude – Small",
+        "name_jp": "森林適性・小",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing terrain [Forest]",
+            "target": "Passing squad",
+            "effect": "Damage Reduction Effect Resistance 5.4%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Squad Protection – Small Improved",
+        "name_jp": "部隊保護・小改",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing terrain [Ambush]",
+            "target": "Passing squad",
+            "effect": "Squad Damage Reduction 4.6%",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "shishi",
+    "name_en": "Shishi",
+    "name_jp": "肆氏",
+    "country": "unknown",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Yellow Sheep]",
+        "name_jp": "重追撃【黄羊】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Other ally generals",
+            "effect": "Confusion / Poison / Paralysis Infliction Rate Up 40%",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Repair Speed Enhancement – Medium",
+        "name_jp": "修理速度強化・中",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing Souha war machines",
+            "target": "War machine repair",
+            "effect": "Repair Speed Up 2%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "HP Enhancement – Medium Improved [Defense War Machines]",
+        "name_jp": "体力強化・中改【防衛兵器】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally defense war machines",
+            "effect": "Max HP Up 24.8%",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gii",
+    "name_en": "Gii",
+    "name_jp": "魏興",
+    "country": "unknown",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Status Infliction Rate Up [Red Elephant]",
+        "name_jp": "付与率上昇【赤象】",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": "Other ally generals",
+            "target": "Other ally generals",
+            "effect": "Confusion Infliction Rate Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Ally infantry",
+            "effect": "ATK Up / DEF Up 15%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Squad Protection – Small",
+        "name_jp": "部隊保護・小",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing terrain [Ambush]",
+            "target": "Passing squad",
+            "effect": "Squad Damage Reduction 2%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Scout – Small Improved",
+        "name_jp": "斥候・小改",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing terrain [Checkpoint]",
+            "target": "Passing squad",
+            "effect": "Squad Damage Reduction 4.6%",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "maron",
+    "name_en": "Maron",
+    "name_jp": "摩論",
+    "country": "unknown",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Weak Point Flash [Orange Sheep]",
+        "name_jp": "急所一閃【橙羊】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest DEF",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy war machine with lowest DEF",
+            "target": "1 enemy war machine",
+            "effect": "100% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "HP Enhancement – Large [Defense War Machines]",
+        "name_jp": "体力強化・大【防衛兵器】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally defense war machines",
+            "effect": "Max HP Up 12.3%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Repair Material Reduction – Large Improved",
+        "name_jp": "修理資材減少・大改",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing Souha war machines",
+            "target": "War machine repair",
+            "effect": "Material Cost Down 6.2%",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "shunmen",
+    "name_en": "Shunmen",
+    "name_jp": "シュンメン",
+    "country": "mountain_folk",
+    "unit": "Hi Shin Unit",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Red Elephant]",
+        "name_jp": "猛将一閃【赤象】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy war machine with highest ATK",
+            "target": "1 enemy war machine",
+            "effect": "100% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "HP Enhancement – Large [Infantry]",
+        "name_jp": "体力強化・大【歩兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally infantry",
+            "effect": "Max HP Up 7.9%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "DEF Enhancement – Large Improved [Infantry]",
+        "name_jp": "防御力強化・大改【歩兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally infantry",
+            "effect": "DEF Up 9.9%",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rankai",
+    "name_en": "Rankai",
+    "name_jp": "ランカイ",
+    "country": "mountain_folk",
+    "unit": "Hi Shin Unit",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Red Bull]",
+        "name_jp": "猛将一閃【赤牛】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "3 enemy generals",
+            "effect": "Confusion Infliction 30%",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "ATK Enhancement – Large [Infantry]",
+        "name_jp": "攻撃力強化・大【歩兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally infantry",
+            "effect": "ATK Up 4.3%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Scout – Large Improved",
+        "name_jp": "斥候・大改",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing terrain [Checkpoint]",
+            "target": "Passing squad",
+            "effect": "Squad Damage Reduction 6.2%",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kyomei",
+    "name_en": "Kyomei",
+    "name_jp": "羌明",
+    "country": "mountain_folk",
+    "unit": "Hi Shin Unit",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash",
+        "name_jp": "猛将一閃",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally infantry",
+            "effect": "DEF Up 15%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Other ally generals",
+            "effect": "Illusion Infliction Rate Up 45%",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Forest Terrain Aptitude – Large",
+        "name_jp": "森林適性・大",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing terrain [Forest]",
+            "target": "Passing squad",
+            "effect": "Damage Reduction Effect Resistance 7.2%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "HP Enhancement – Large Improved [Infantry]",
+        "name_jp": "体力強化・大改【歩兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally infantry",
+            "effect": "Max HP Up 18.2%",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "suirou",
+    "name_en": "Suirou",
+    "name_jp": "崇原",
+    "country": "qin",
+    "unit": "Hi Shin Unit",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Iron Wall Flash [Red Turtle]",
+        "name_jp": "鉄壁一閃【赤亀】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest DEF",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy war machine with highest DEF",
+            "target": "1 enemy war machine",
+            "effect": "100% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "DEF Enhancement – Medium [Infantry]",
+        "name_jp": "防御力強化・中【歩兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally infantry",
+            "effect": "DEF Up 3.8%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Repair Ore Reduction – Medium Improved",
+        "name_jp": "修理鉱石減少・中改",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing Souha war machines",
+            "target": "War machine repair",
+            "effect": "Ore Cost Down 5.5%",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "obira",
+    "name_en": "Obira",
+    "name_jp": "尾平",
+    "country": "qin",
+    "unit": "Hi Shin Unit",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Weak Point Flash [Red Sheep]",
+        "name_jp": "急所一閃【赤羊】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with lowest DEF",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy war machine with lowest remaining HP",
+            "target": "1 enemy war machine",
+            "effect": "100% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Slope Terrain Aptitude – Medium",
+        "name_jp": "坂路適性・中",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing terrain [Slope]",
+            "target": "Passing squad",
+            "effect": "Damage Reduction Effect Resistance 6.3%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "HP Enhancement – Medium Improved [Infantry]",
+        "name_jp": "体力強化・中改【歩兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally infantry",
+            "effect": "Max HP Up 15.9%",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hyou",
+    "name_en": "Hyou",
+    "name_jp": "漂",
+    "country": "qin",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Weak General Flash [Red Elephant]",
+        "name_jp": "弱将一閃【赤象】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with lowest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Other ally generals",
+            "effect": "Betrayal Resistance 50%",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Scout – Medium",
+        "name_jp": "斥候・中",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing terrain [Checkpoint]",
+            "target": "Passing squad",
+            "effect": "Squad Damage Reduction 2.4%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "HP Enhancement – Medium Improved [Cavalry]",
+        "name_jp": "体力強化・中改【騎兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally cavalry",
+            "effect": "Max HP Up 15.9%",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  }
+]
