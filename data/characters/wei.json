@@ -936,5 +936,78 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kourigen.webp"
+  },
+  {
+    "id": "shihaku",
+    "name_en": "Shihaku",
+    "name_jp": "紫伯",
+    "country": "wei",
+    "rarity": "UR",
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shihaku.webp",
+    "skills": [
+      {
+        "name_en": "Master General Attack [Red Sheep]",
+        "name_jp": "名将攻撃【赤羊】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Per own attack count",
+            "target": "Self",
+            "effect": "ATK Up 5%",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "2-Hit 100% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Meaning of Existence",
+        "name_jp": "存在の意義",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Max HP Up 150%",
+            "duration": null
+          },
+          {
+            "condition": "Ally \"Shikika\" alive",
+            "target": "Self",
+            "effect": "Max HP Up additional 50%",
+            "duration": null
+          },
+          {
+            "condition": "Per other ally Wei Fire Dragon general",
+            "target": "Self",
+            "effect": "ATK Up 10%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "A World Without Color",
+        "name_jp": "色なき世界",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "\"Reckless\"",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "2-Hit 100% Damage",
+            "duration": null
+          }
+        ]
+      }
+    ]
   }
 ]

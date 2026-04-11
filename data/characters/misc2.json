@@ -2551,5 +2551,248 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/rinbou.webp"
+  },
+  {
+    "id": "tasatoya",
+    "name_en": "Tasatoya",
+    "name_jp": "田里弥",
+    "country": "qin",
+    "rarity": "SR",
+    "image": null,
+    "skills": [
+      {
+        "name_en": "Iron Wall Flash [Blue Sheep]",
+        "name_jp": "鉄壁一閃【青羊】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest DEF",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Qin]",
+            "effect": "Guard 60%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Mountain Snake Formation",
+        "name_jp": "常山蛇勢",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Qin]",
+            "effect": "DEF Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Cavalry]",
+            "effect": "Anti-[Archer] DEF Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Archer]",
+            "effect": "Anti-[Shield] DEF Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Shield]",
+            "effect": "Anti-[Cavalry] DEF Up 20%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Wise Steadfast Defense",
+        "name_jp": "堅守賢明",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest DEF",
+            "target": "1 enemy general",
+            "effect": "180% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Qin]",
+            "effect": "Guard 60%",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "linhtama",
+    "name_en": "Linhtama",
+    "name_jp": "ランタマ",
+    "country": "qin",
+    "rarity": "SR",
+    "image": null,
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Green Tiger]",
+        "name_jp": "重追撃【緑虎】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Per other ally [Cavalry]",
+            "target": "Ally [Cavalry]",
+            "effect": "ATK Up 10%",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Kanki's Nimble Aide",
+        "name_jp": "俊敏なる腹心",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Qin]",
+            "effect": "\"Confusion\" Resistance 40%",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Ally Kanki Forces",
+            "effect": "Morale Consumption Reduction 30%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Cruel Pursuit",
+        "name_jp": "残酷追撃",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with lowest HP in \"Poison\" state",
+            "target": "1 enemy \"Poison\" general",
+            "effect": "100% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general with lowest HP in \"Burn\" state",
+            "target": "1 enemy \"Burn\" general",
+            "effect": "100% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general with lowest HP in \"Fear\" state",
+            "target": "1 enemy \"Fear\" general",
+            "effect": "100% Damage",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Ally Kanki Forces",
+            "effect": "Evasion (Dodge Chance) Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking, enemy with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "qingxiang",
+    "name_en": "Qingxiang",
+    "name_jp": "青翔",
+    "country": "zhao",
+    "rarity": "SR",
+    "image": null,
+    "skills": [
+      {
+        "name_en": "Weak Point Flash [Orange Tiger]",
+        "name_jp": "急所一閃【橙虎】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Per other ally Kisui Forces",
+            "target": "Ally Kisui Forces",
+            "effect": "ATK Up 2% (max 30%)",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general with lowest DEF",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Loyalty to the Lord",
+        "name_jp": "城主への忠誠",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": "Ally \"Kisui\" alive",
+            "target": "Ally [Zhao]",
+            "effect": "ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "Ally \"Kishou\" alive",
+            "target": "Ally [Zhao]",
+            "effect": "DEF Up 20%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Unforgivable Atrocity",
+        "name_jp": "許し難き非道",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Kisui Forces",
+            "effect": "Status Abnormality Nullification (except Provoke)",
+            "duration": null
+          },
+          {
+            "condition": "Ally \"Kisui\" alive",
+            "target": "Ally Kisui Forces",
+            "effect": "Critical Rate Up 10%",
+            "duration": null
+          },
+          {
+            "condition": "Ally \"Kishou\" alive",
+            "target": "Ally Kisui Forces",
+            "effect": "Critical Damage Up 10%",
+            "duration": null
+          },
+          {
+            "condition": "Enemy Kanki Forces alive",
+            "target": "All enemy generals",
+            "effect": "Evasion (Dodge Chance) Down 50%",
+            "duration": null
+          }
+        ]
+      }
+    ]
   }
 ]
