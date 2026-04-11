@@ -1,14 +1,5 @@
 [
   {
-    "id": "riboku",
-    "name_en": "Riboku",
-    "name_jp": "李牧",
-    "country": "zhao",
-    "rarity": "UR",
-    "notes": "Core Zhao general; many Zhao skills reference his presence as a buff condition.",
-    "image": "https://touranko.vercel.app/persos/riboku.webp"
-  },
-  {
     "id": "taishi_ka",
     "name_en": "Ka",
     "name_jp": "太子嘉",
@@ -67,7 +58,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/ka.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ka.webp"
   },
   {
     "id": "shunsuiki",
@@ -159,7 +150,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/shunsuiju.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shunsuiju.webp"
   },
   {
     "id": "shunpeikun",
@@ -226,7 +217,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/shunpeikun.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shunpeikun.webp"
   },
   {
     "id": "seikou",
@@ -306,7 +297,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/dukesei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/dukesei.webp"
   },
   {
     "id": "kinmo",
@@ -397,7 +388,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kinmou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kinmou.webp"
   },
   {
     "id": "gakuei",
@@ -482,7 +473,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/gakuei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/gakuei.webp"
   },
   {
     "id": "ryuto",
@@ -568,7 +559,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/ryuuto.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ryuuto.webp"
   },
   {
     "id": "kishou",
@@ -654,7 +645,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kishou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kishou.webp"
   },
   {
     "id": "kisei",
@@ -734,7 +725,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kisui.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kisui.webp"
   },
   {
     "id": "batei",
@@ -820,6 +811,6 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/batei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/batei.webp"
   }
 ]

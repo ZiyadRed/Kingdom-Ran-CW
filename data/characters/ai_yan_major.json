@@ -6,7 +6,7 @@
     "country": "ai",
     "rarity": "UR",
     "notes": "Wategi King of Ai — core buff target for Ai generals.",
-    "image": "https://touranko.vercel.app/persos/rouai.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/rouai.webp"
   },
   {
     "id": "juutekkoo",
@@ -73,7 +73,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/wategi.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/wategi.webp"
   },
   {
     "id": "hanoki",
@@ -158,7 +158,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/hanoki.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/hanoki.webp"
   },
   {
     "id": "hanryuki",
@@ -249,7 +249,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/hanroki.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/hanroki.webp"
   },
   {
     "id": "ordo",
@@ -329,7 +329,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/ordo.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ordo.webp"
   },
   {
     "id": "denti",
@@ -435,7 +435,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/futei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/futei.webp"
   },
   {
     "id": "kouyoku",
@@ -503,7 +503,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kouyoku.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kouyoku.webp"
   },
   {
     "id": "hanroki2",
@@ -526,6 +526,6 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/hanroki.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/hanroki.webp"
   }
 ]

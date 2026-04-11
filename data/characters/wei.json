@@ -138,7 +138,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/tairoji.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/tairoji.webp"
   },
   {
     "id": "ranbishaku",
@@ -280,7 +280,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/ranbihaku.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ranbihaku.webp"
   },
   {
     "id": "shikika",
@@ -372,7 +372,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/shikika.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shikika.webp"
   },
   {
     "id": "keiminoo",
@@ -451,7 +451,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/keibin.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/keibin.webp"
   },
   {
     "id": "gaimo",
@@ -525,7 +525,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/gaimou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/gaimou.webp"
   },
   {
     "id": "junso",
@@ -605,7 +605,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/junsou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/junsou.webp"
   },
   {
     "id": "reiou",
@@ -613,7 +613,7 @@
     "name_jp": "霊凰",
     "country": "wei",
     "rarity": "UR",
-    "image": "https://touranko.vercel.app/persos/reiou.webp",
+    "image": "https://kingdom-ran-cw.vercel.app/persos/reiou.webp",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Yellow Tiger]",
@@ -771,7 +771,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/yuuren.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/yuuren.webp"
   },
   {
     "id": "hoki",
@@ -880,7 +880,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/gika.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/gika.webp"
   },
   {
     "id": "korgen",
@@ -935,6 +935,6 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kourigen.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kourigen.webp"
   }
 ]

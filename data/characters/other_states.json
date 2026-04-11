@@ -70,7 +70,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kyoubou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kyoubou.webp"
   },
   {
     "id": "gotoku",
@@ -144,7 +144,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/goutoku.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/goutoku.webp"
   },
   {
     "id": "rien",
@@ -223,7 +223,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/rien.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/rien.webp"
   },
   {
     "id": "rokin",
@@ -291,7 +291,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/rokin.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/rokin.webp"
   },
   {
     "id": "chouin",
@@ -394,7 +394,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/chouin.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/chouin.webp"
   },
   {
     "id": "nako",
@@ -485,7 +485,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/nakon.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/nakon.webp"
   },
   {
     "id": "bakan",
@@ -576,202 +576,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/bakan.webp"
-  },
-  {
-    "id": "tairoji",
-    "name_en": "Tairoji",
-    "name_jp": "太呂慈",
-    "country": "wei",
-    "rarity": "UR",
-    "skills": [
-      {
-        "name_en": "Fierce General Flash [Black Elephant]",
-        "name_jp": "猛将一閃【黒象】",
-        "type": "Combat",
-        "effects": [
-          {
-            "condition": "When Attacking, enemy with highest ATK",
-            "target": "1 enemy general",
-            "effect": "150% Damage",
-            "duration": null
-          },
-          {
-            "condition": "When Garrisoning, enemy with highest remaining HP",
-            "target": "1 enemy general",
-            "effect": "% of Remaining HP Damage 20%",
-            "duration": null
-          },
-          {
-            "condition": "When Garrisoning, % HP Damage triggered",
-            "target": "Self",
-            "effect": "HP Drain 100%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Wei",
-            "effect": "Morale Recovery 5%",
-            "duration": null
-          }
-        ]
-      },
-      {
-        "name_en": "Wei Grand General",
-        "name_jp": "魏国大将軍",
-        "type": "Strategy",
-        "effects": [
-          {
-            "condition": "When Attacking",
-            "target": "Ally Wei",
-            "effect": "Status Effect Immunity (excl. Provoke)",
-            "duration": "2 times"
-          },
-          {
-            "condition": "When Attacking",
-            "target": "Ally Wei",
-            "effect": "Critical Rate Up 20%",
-            "duration": null
-          },
-          {
-            "condition": "When Garrisoning",
-            "target": "Ally Wei",
-            "effect": "Guard 60%",
-            "duration": "1 time"
-          },
-          {
-            "condition": "When Garrisoning",
-            "target": "Enemy generals",
-            "effect": "Critical Rate Down 20%",
-            "duration": null
-          }
-        ]
-      },
-      {
-        "name_en": "Judgment Strike",
-        "name_jp": "断罪の一撃",
-        "type": "Combat",
-        "effects": [
-          {
-            "condition": "When Attacking",
-            "target": "Ally Wei",
-            "effect": "ATK Up 20%",
-            "duration": "4 turns"
-          },
-          {
-            "condition": "When Attacking, enemy with highest ATK",
-            "target": "1 enemy general",
-            "effect": "180% Damage",
-            "duration": null
-          },
-          {
-            "condition": "When Garrisoning",
-            "target": "Self",
-            "effect": "Provoke",
-            "duration": "2 turns"
-          },
-          {
-            "condition": "When Garrisoning",
-            "target": "Self",
-            "effect": "DEF Up 30%",
-            "duration": "4 turns"
-          },
-          {
-            "condition": "When Garrisoning",
-            "target": "Enemy generals",
-            "effect": "100% Damage",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Wei",
-            "effect": "Continuous HP Recovery 8%",
-            "duration": "4 turns"
-          }
-        ]
-      }
-    ],
-    "image": "https://touranko.vercel.app/persos/tairoji.webp"
-  },
-  {
-    "id": "otaji",
-    "name_en": "Otaji",
-    "name_jp": "オタジ",
-    "country": "yan",
-    "unit": "Ordo Forces",
-    "rarity": "SR",
-    "skills": [
-      {
-        "name_en": "Iron Wall Flash [Green Turtle]",
-        "name_jp": "鉄壁一閃【緑亀】",
-        "type": "Combat",
-        "effects": [
-          {
-            "condition": "Own HP < 100%, enemy with highest DEF",
-            "target": "1 enemy general",
-            "effect": "80% Damage",
-            "duration": null
-          },
-          {
-            "condition": "Own HP < 50%, enemy with highest DEF",
-            "target": "1 enemy general",
-            "effect": "100% Damage",
-            "duration": null
-          },
-          {
-            "condition": "Enemy with highest DEF",
-            "target": "1 enemy general",
-            "effect": "150% Damage",
-            "duration": null
-          }
-        ]
-      },
-      {
-        "name_en": "Mountain Ambush",
-        "name_jp": "山岳強襲",
-        "type": "Strategy",
-        "effects": [
-          {
-            "condition": null,
-            "target": "Ally Yan",
-            "effect": "Max Morale Up 50%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Ordo",
-            "effect": "DEF Penetration Up / Confusion Infliction Rate Up 30%",
-            "duration": null
-          }
-        ]
-      },
-      {
-        "name_en": "Elite Relentless Pursuers",
-        "name_jp": "窮追する精兵",
-        "type": "Combat",
-        "effects": [
-          {
-            "condition": null,
-            "target": "Ally Yan",
-            "effect": "Hit Rate Up 30%",
-            "duration": "4 turns"
-          },
-          {
-            "condition": "Per other ally Yan member",
-            "target": "Ally Yan",
-            "effect": "ATK Up 10%",
-            "duration": "3 turns"
-          },
-          {
-            "condition": "Enemy with highest DEF",
-            "target": "1 enemy general",
-            "effect": "170% Damage",
-            "duration": null
-          }
-        ]
-      }
-    ],
-    "image": "https://touranko.vercel.app/persos/otaji.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/bakan.webp"
   },
   {
     "id": "budai",
@@ -856,7 +661,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/budai.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/budai.webp"
   },
   {
     "id": "hamui",
@@ -941,6 +746,6 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/hamui.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/hamui.webp"
   }
 ]

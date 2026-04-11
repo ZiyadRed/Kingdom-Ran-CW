@@ -77,7 +77,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/akou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/akou.webp"
   },
   {
     "id": "denrimi",
@@ -157,7 +157,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/denrimi.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/denrimi.webp"
   },
   {
     "id": "youka",
@@ -218,7 +218,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/youka.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/youka.webp"
   },
   {
     "id": "keirei",
@@ -273,7 +273,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kyourei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kyourei.webp"
   },
   {
     "id": "romin",
@@ -352,7 +352,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/robin.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/robin.webp"
   },
   {
     "id": "kakuun",
@@ -432,7 +432,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kakuun.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kakuun.webp"
   },
   {
     "id": "bain",
@@ -512,7 +512,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/bain.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/bain.webp"
   },
   {
     "id": "shotaku",
@@ -598,7 +598,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/shoutaku.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shoutaku.webp"
   },
   {
     "id": "kyukou",
@@ -684,7 +684,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kyuukou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kyuukou.webp"
   },
   {
     "id": "naki",
@@ -764,7 +764,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/naki.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/naki.webp"
   },
   {
     "id": "ringyoku",
@@ -850,7 +850,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/ringyoku.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ringyoku.webp"
   },
   {
     "id": "zenou",
@@ -924,7 +924,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/zenou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/zenou.webp"
   },
   {
     "id": "hokaku",
@@ -1003,7 +1003,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/hokaku.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/hokaku.webp"
   },
   {
     "id": "shin",
@@ -1011,7 +1011,7 @@
     "name_jp": "信",
     "country": "qin",
     "rarity": "UR",
-    "image": "https://touranko.vercel.app/persos/shin.webp",
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shin.webp",
     "skills": [
       {
         "name_en": "Fierce General Flash [Yellow Turtle]",

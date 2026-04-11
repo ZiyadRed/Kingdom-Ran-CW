@@ -94,7 +94,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/riboku.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/riboku.webp"
   },
   {
     "id": "houken",
@@ -211,7 +211,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/houken.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/houken.webp"
   },
   {
     "id": "kaine",
@@ -285,7 +285,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kaine.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kaine.webp"
   },
   {
     "id": "mangoku",
@@ -378,7 +378,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/mangoku.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/mangoku.webp"
   },
   {
     "id": "choso",
@@ -427,7 +427,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/chousou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/chousou.webp"
   },
   {
     "id": "chouko",
@@ -482,7 +482,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/chouin.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/chouin.webp"
   },
   {
     "id": "seika",
@@ -655,6 +655,6 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/seikai.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/seikai.webp"
   }
 ]

@@ -46,7 +46,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/yuri.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/yuri.webp"
   },
   {
     "id": "toumi",
@@ -209,7 +209,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/entei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/entei.webp"
   },
   {
     "id": "bamyuu",
@@ -264,7 +264,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/bamyu.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/bamyu.webp"
   },
   {
     "id": "kakubi",
@@ -319,7 +319,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kakubi.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kakubi.webp"
   },
   {
     "id": "kesshi",
@@ -434,7 +434,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/genpou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/genpou.webp"
   },
   {
     "id": "amon",
@@ -500,7 +500,7 @@
     "id": "kosho2",
     "name_en": "Koshou",
     "name_jp": "江彰",
-    "country": "wei",
+    "country": "zhao",
     "rarity": "NR",
     "skills": [
       {
@@ -555,6 +555,6 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/koshou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/koshou.webp"
   }
 ]

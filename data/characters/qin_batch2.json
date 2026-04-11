@@ -88,7 +88,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/sougen.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/sougen.webp"
   },
   {
     "id": "gakurai",
@@ -168,7 +168,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/gakurai.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/gakurai.webp"
   },
   {
     "id": "choto",
@@ -253,7 +253,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/choutou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/choutou.webp"
   },
   {
     "id": "shimasaku",
@@ -314,7 +314,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/shibasaku.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shibasaku.webp"
   },
   {
     "id": "hyoshiga",
@@ -393,7 +393,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/hyoushiga.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/hyoushiga.webp"
   },
   {
     "id": "hakuki",
@@ -528,7 +528,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/hakuki.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/hakuki.webp"
   },
   {
     "id": "ohkotsu",
@@ -589,7 +589,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/oukotsu.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/oukotsu.webp"
   },
   {
     "id": "kaioku",
@@ -681,7 +681,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kaioku.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kaioku.webp"
   },
   {
     "id": "kosho",
@@ -748,7 +748,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/koshou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/koshou.webp"
   },
   {
     "id": "garo",
@@ -822,7 +822,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/garo.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/garo.webp"
   },
   {
     "id": "rikusen",
@@ -890,7 +890,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/rikusen.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/rikusen.webp"
   },
   {
     "id": "kanjo",
@@ -970,7 +970,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kanjou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kanjou.webp"
   },
   {
     "id": "seikyo",
@@ -1025,7 +1025,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/seikyou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/seikyou.webp"
   },
   {
     "id": "rui",
@@ -1110,7 +1110,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/rui.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/rui.webp"
   },
   {
     "id": "yo",
@@ -1177,7 +1177,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/you.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/you.webp"
   },
   {
     "id": "ryuyu",
@@ -1233,7 +1233,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/ryuuto.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ryuuyuu.webp"
   },
   {
     "id": "chutetsu",
@@ -1288,6 +1288,7 @@
           }
         ]
       }
-    ]
+    ],
+    "image": "https://kingdom-ran-cw.vercel.app/persos/choutetsu.webp"
   }
 ]

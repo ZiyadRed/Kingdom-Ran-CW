@@ -460,3 +460,113 @@ h1 { font-family: 'Cinzel Decorative', serif; font-size: 1rem; color: var(--gold
   .archive-toolbar { flex-direction: column; align-items: stretch; }
   .side-selector { justify-content: center; }
 }
+
+/* ─── CW Buffs Tab ───────────────────────────────────────────────────────────── */
+.cw-buffs-page { }
+
+.buff-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.buff-cat-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+  padding: 0.75rem 0.5rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); cursor: pointer;
+  transition: all 0.15s; color: var(--text2);
+}
+.buff-cat-btn:hover { background: var(--surface2); border-color: var(--border2); color: var(--text); }
+.buff-cat-btn.active { background: rgba(201,168,76,0.12); border-color: var(--gold2); color: var(--gold); }
+.buff-cat-icon { font-size: 1.3rem; }
+.buff-cat-label { font-size: 0.75rem; font-family: 'Cinzel', serif; text-align: center; }
+.buff-cat-count {
+  font-size: 0.65rem; background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1px 6px; color: var(--text3);
+}
+.buff-cat-btn.active .buff-cat-count { border-color: var(--gold2); color: var(--gold2); }
+
+.buff-stat-row {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+  margin-bottom: 1.25rem;
+  padding: 0.75rem;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+}
+.buff-stat-btn {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 20px; cursor: pointer; color: var(--text2);
+  font-size: 0.82rem; transition: all 0.15s;
+}
+.buff-stat-btn:hover { border-color: var(--border2); color: var(--text); }
+.buff-stat-btn.active { background: rgba(192,57,43,0.15); border-color: var(--atk); color: #e07060; }
+.buff-stat-name { }
+.buff-stat-total { font-size: 0.75rem; color: var(--gold2); font-weight: 700; }
+.buff-stat-btn.active .buff-stat-total { color: #e07060; }
+
+.buff-results { }
+.buff-results-header {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius) var(--radius) 0 0;
+  border-bottom: none;
+}
+.buff-results-title { font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--gold); }
+.buff-total-badge {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: rgba(192,57,43,0.12); border: 1px solid rgba(192,57,43,0.3);
+  border-radius: 20px; padding: 0.25rem 0.85rem;
+  font-size: 0.8rem; color: #e07060;
+}
+.buff-total-badge strong { font-size: 0.95rem; }
+.buff-total-note { font-size: 0.68rem; color: var(--text3); }
+
+.buff-char-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.5rem;
+  border: 1px solid var(--border); border-radius: 0 0 var(--radius) var(--radius);
+  padding: 0.75rem; background: var(--bg2);
+}
+.buff-char-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 3px solid; border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.15s;
+}
+.buff-char-card:hover { transform: translateY(-1px); }
+.buff-char-top {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+.buff-char-img {
+  width: 36px; height: 36px; border-radius: 50%;
+  object-fit: cover; object-position: top;
+  flex-shrink: 0; border: 2px solid var(--border);
+}
+.buff-char-placeholder {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 0.9rem; font-weight: 700;
+}
+.buff-char-info { flex: 1; min-width: 0; }
+.buff-char-name { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text); }
+.buff-char-total { font-size: 0.75rem; font-weight: 700; }
+.buff-country-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.buff-char-effects { padding: 0.4rem 0.6rem; display: flex; flex-direction: column; gap: 0.2rem; }
+.buff-effect-row { font-size: 0.75rem; display: flex; flex-direction: column; gap: 0.1rem; }
+.buff-effect-text { color: var(--text); }
+.buff-effect-cond { color: var(--text3); font-size: 0.68rem; font-style: italic; }
+
+@media (max-width: 600px) {
+  .buff-cat-grid { grid-template-columns: repeat(3, 1fr); }
+  .buff-char-list { grid-template-columns: 1fr; }
+}

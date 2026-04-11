@@ -77,7 +77,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/otaji.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/otaji.webp"
   },
   {
     "id": "yukii",
@@ -162,7 +162,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/yukii.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/yukii.webp"
   },
   {
     "id": "rakki",
@@ -261,7 +261,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/gakuki.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/gakuki.webp"
   },
   {
     "id": "gekishin",
@@ -346,6 +346,6 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/gekishin.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/gekishin.webp"
   }
 ]

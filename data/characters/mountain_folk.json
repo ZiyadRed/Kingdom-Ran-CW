@@ -146,7 +146,7 @@
       }
     ],
     "notes": "Core unit; her name appears as a buff target in many Mountain Folk skill conditions.",
-    "image": "https://touranko.vercel.app/persos/yotanwa.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/yotanwa.webp"
   },
   {
     "id": "kitari",
@@ -187,7 +187,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Kyountain Folk",
+            "target": "Ally Mountain Folk",
             "effect": "Critical Rate Up 20%",
             "duration": null
           },
@@ -205,8 +205,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Per other ally Kyountain Folk member",
-            "target": "Ally Kyountain Folk",
+            "condition": "Per other ally Mountain Folk member",
+            "target": "Ally Mountain Folk",
             "effect": "ATK Up 10%",
             "duration": "3 turns"
           },
@@ -225,7 +225,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kitari.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kitari.webp"
   },
   {
     "id": "danto",
@@ -246,19 +246,19 @@
             "duration": null
           },
           {
-            "condition": "Other ally Kyountain Folk alive, own HP ≥ 50%",
+            "condition": "Other ally Mountain Folk alive, own HP ≥ 50%",
             "target": "Self",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           },
           {
-            "condition": "Other ally Kyountain Folk alive, own HP < 50%",
+            "condition": "Other ally Mountain Folk alive, own HP < 50%",
             "target": "Self",
             "effect": "Attack Nullification",
             "duration": "1 time"
           },
           {
-            "condition": "Other ally Kyountain Folk alive, own HP < 50%",
+            "condition": "Other ally Mountain Folk alive, own HP < 50%",
             "target": "Self",
             "effect": "HP Recovery 20%",
             "duration": null
@@ -322,7 +322,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/danto.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/danto.webp"
   },
   {
     "id": "katari",
@@ -357,7 +357,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Kyountain Folk",
+            "target": "Ally Mountain Folk",
             "effect": "DEF Penetration Up 20%",
             "duration": null
           },
@@ -375,8 +375,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Per other ally Kyountain Folk member",
-            "target": "Ally Kyountain Folk",
+            "condition": "Per other ally Mountain Folk member",
+            "target": "Ally Mountain Folk",
             "effect": "ATK Up 10%",
             "duration": "3 turns"
           },
@@ -388,14 +388,14 @@
           },
           {
             "condition": "When ally [?] is alive",
-            "target": "Ally Kyountain Folk",
+            "target": "Ally Mountain Folk",
             "effect": "Attack Nullification",
             "duration": "1 time"
           }
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/katari.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/katari.webp"
   },
   {
     "id": "todji",
@@ -423,7 +423,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Kyountain Folk",
+            "target": "Ally Mountain Folk",
             "effect": "Guard 60%",
             "duration": "1 time"
           }
@@ -436,7 +436,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Kyountain Folk",
+            "target": "Ally Mountain Folk",
             "effect": "ATK Up / DEF Up 10%",
             "duration": null
           },
@@ -473,7 +473,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Kyountain Folk",
+            "target": "Ally Mountain Folk",
             "effect": "Guard 60%",
             "duration": "1 time"
           },
@@ -486,7 +486,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/toji.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/toji.webp"
   },
   {
     "id": "fuji",
@@ -502,7 +502,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Kyountain Folk",
+            "target": "Ally Mountain Folk",
             "effect": "DEF Penetration Up 10%",
             "duration": "2 turns"
           },
@@ -521,7 +521,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Kyountain Folk",
+            "target": "Ally Mountain Folk",
             "effect": "Critical Damage Up 10%",
             "duration": null
           },
@@ -546,7 +546,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Kyountain Folk",
+            "target": "Ally Mountain Folk",
             "effect": "DEF Penetration Up 10%",
             "duration": "2 turns"
           },
@@ -565,7 +565,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/fuji.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/fuji.webp"
   },
   {
     "id": "ramaoji",
@@ -587,7 +587,7 @@
           },
           {
             "condition": "Surviving",
-            "target": "Ally Kyountain Folk",
+            "target": "Ally Mountain Folk",
             "effect": "HP Recovery 10%",
             "duration": null
           }
@@ -600,7 +600,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Kyountain Folk",
+            "target": "Ally Mountain Folk",
             "effect": "Critical Rate Up 10%",
             "duration": null
           },
@@ -644,7 +644,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/ramauji.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ramauji.webp"
   },
   {
     "id": "pamu",
@@ -697,7 +697,7 @@
           },
           {
             "condition": "When ally Danto is alive",
-            "target": "Ally Kyountain Folk",
+            "target": "Ally Mountain Folk",
             "effect": "Status Effect Immunity (excl. Provoke)",
             "duration": "1 time"
           }
@@ -729,7 +729,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/pam.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/pam.webp"
   },
   {
     "id": "taijifu",
@@ -784,7 +784,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/taijifu.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/taijifu.webp"
   },
   {
     "id": "bajio",
@@ -857,7 +857,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/bajio.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/bajio.webp"
   },
   {
     "id": "gotan",

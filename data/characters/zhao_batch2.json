@@ -76,7 +76,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kakukai.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kakukai.webp"
   },
   {
     "id": "keisha",
@@ -193,7 +193,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/keisha.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/keisha.webp"
   },
   {
     "id": "rakujo",
@@ -266,7 +266,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/gakujou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/gakujou.webp"
   },
   {
     "id": "shinseicho",
@@ -377,7 +377,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/shinseijou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shinseijou.webp"
   },
   {
     "id": "kousonryu",
@@ -432,7 +432,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kousonryuu.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kousonryuu.webp"
   },
   {
     "id": "domon",
@@ -732,9 +732,9 @@
         ]
       },
       {
-        "name_en": "泥濘 aptitude/small",
+        "name_en": "Marsh Terrain Aptitude",
         "name_jp": "泥濘 aptitude/small",
-        "type": "Combat",
+        "type": "Administration",
         "effects": [
           {
             "condition": "When passing Marsh terrain (effective even if not deployed)",
@@ -745,7 +745,7 @@
         ]
       },
       {
-        "name_en": "防御力強化・小改 [防衛兵器]",
+        "name_en": "DEF Enhancement – Small Improved [Defense War Machines]",
         "name_jp": "防御力強化・小改【防衛兵器】",
         "type": "Administration",
         "effects": [
@@ -758,7 +758,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kou.webp"
   },
   {
     "id": "rihaku2",
@@ -813,7 +813,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/rihaku.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/rihaku.webp"
   },
   {
     "id": "shomou",
@@ -874,7 +874,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/shoumou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shoumou.webp"
   },
   {
     "id": "shika2",
@@ -935,7 +935,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/shika.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shika.webp"
   },
   {
     "id": "kurosa",

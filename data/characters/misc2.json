@@ -6,7 +6,7 @@
     "country": "qin",
     "rarity": "UR",
     "notes": "Core buff target referenced by Gakurai and other Hi Shin Unit / Hyoukou Forces members.",
-    "image": "https://touranko.vercel.app/persos/dukehyou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/dukehyou.webp"
   },
   {
     "id": "mougo",
@@ -67,7 +67,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/mougou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/mougou.webp"
   },
   {
     "id": "mouki",
@@ -122,7 +122,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/mouki.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/mouki.webp"
   },
   {
     "id": "muten_grandpa",
@@ -237,7 +237,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/rishi.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/rishi.webp"
   },
   {
     "id": "douken",
@@ -454,7 +454,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/maron.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/maron.webp"
   },
   {
     "id": "shunmen",
@@ -510,7 +510,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/shunmen.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shunmen.webp"
   },
   {
     "id": "rankai",
@@ -566,7 +566,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/rankai.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/rankai.webp"
   },
   {
     "id": "kyomei",
@@ -628,7 +628,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kyoumei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kyoumei.webp"
   },
   {
     "id": "suirou",
@@ -684,7 +684,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/sougen.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/sougen.webp"
   },
   {
     "id": "obira",
@@ -794,7 +794,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/you.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/you.webp"
   },
   {
     "id": "ogiko",
@@ -855,7 +855,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/ogiko.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ogiko.webp"
   },
   {
     "id": "muta",
@@ -916,7 +916,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/muta.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/muta.webp"
   },
   {
     "id": "kyokai",
@@ -971,7 +971,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kyoukai.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kyoukai.webp"
   },
   {
     "id": "dokin",
@@ -1026,7 +1026,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/doukin.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/doukin.webp"
   },
   {
     "id": "ryofui",
@@ -1117,7 +1117,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/ryofui.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ryofui.webp"
   },
   {
     "id": "heki",
@@ -1172,7 +1172,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/heki.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/heki.webp"
   },
   {
     "id": "taiko",
@@ -1208,38 +1208,7 @@
         ]
       },
       {
-        "name_en": "果てない野望",
-        "name_jp": "果てない野望",
-        "type": "Combat",
-        "effects": [
-          {
-            "condition": "Own remaining HP ≥ 90%、Enemy general with highest DEF",
-            "target": "1 enemy general",
-            "effect": "\"Betrayal\" Infliction 40％",
-            "duration": "2 turns"
-          },
-          {
-            "condition": "Own remaining HP < 90%、Enemy general with highest remaining HP",
-            "target": "1 enemy general",
-            "effect": "% Damage170％",
-            "duration": null
-          },
-          {
-            "condition": "Own HP < 90%, enemy general with highest remaining HP (from same skill damage)",
-            "target": "Self",
-            "effect": "HP Drain 60％",
-            "duration": null
-          },
-          {
-            "condition": "Own remaining HP < 90%、Enemy general with highest ATK",
-            "target": "2 enemy generals",
-            "effect": "\"Betrayal\" Infliction 40％",
-            "duration": "2 turns"
-          }
-        ]
-      },
-      {
-        "name_en": "昏き憎しみ",
+        "name_en": "Dark Hatred",
         "name_jp": "昏き憎しみ",
         "type": "Strategy",
         "effects": [
@@ -1258,7 +1227,7 @@
         ]
       },
       {
-        "name_en": "旅の終着",
+        "name_en": "Journey's End",
         "name_jp": "旅の終着☆6",
         "type": "Strategy",
         "effects": [
@@ -1296,7 +1265,7 @@
         "star6": true
       }
     ],
-    "image": "https://touranko.vercel.app/persos/biki.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/biki.webp"
   },
   {
     "id": "kyouen",
@@ -1351,7 +1320,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kyouen.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kyouen.webp"
   },
   {
     "id": "bikou",
@@ -1406,7 +1375,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/bitou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/bitou.webp"
   },
   {
     "id": "kanou",
@@ -1461,7 +1430,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kanou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kanou.webp"
   },
   {
     "id": "kei",
@@ -1570,7 +1539,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/shousa.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shousa.webp"
   },
   {
     "id": "sosui",
@@ -1619,7 +1588,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/sosui.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/sosui.webp"
   },
   {
     "id": "hairou",
@@ -1674,7 +1643,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/hairou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/hairou.webp"
   },
   {
     "id": "karyoten",
@@ -1837,7 +1806,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/takukei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/takukei.webp"
   },
   {
     "id": "denyu",
@@ -1892,7 +1861,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/denyuu.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/denyuu.webp"
   },
   {
     "id": "denei",
@@ -1947,7 +1916,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/denei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/denei.webp"
   },
   {
     "id": "banyou",
@@ -2002,7 +1971,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/banyou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/banyou.webp"
   },
   {
     "id": "hakukisei",
@@ -2165,7 +2134,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/ryuusen.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ryuusen.webp"
   },
   {
     "id": "bakukoshin",
@@ -2220,7 +2189,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/bakukoshin.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/bakukoshin.webp"
   },
   {
     "id": "kyoukai2",
@@ -2305,7 +2274,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kyoukai.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kyoukai.webp"
   },
   {
     "id": "kyoushou",
@@ -2360,7 +2329,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/kyoushou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kyoushou.webp"
   },
   {
     "id": "rokuomi",
@@ -2415,7 +2384,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/rokuomi.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/rokuomi.webp"
   },
   {
     "id": "ryukoku",
@@ -2470,7 +2439,7 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/ryuukoku.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ryuukoku.webp"
   },
   {
     "id": "roen",
@@ -2579,6 +2548,6 @@
         ]
       }
     ],
-    "image": "https://touranko.vercel.app/persos/rinbou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/rinbou.webp"
   }
 ]
