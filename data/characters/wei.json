@@ -1,14 +1,14 @@
-﻿[
+[
   {
     "id": "tairoji",
     "name_en": "Tairoji",
-    "name_jp": "å¤ªå‘‚æ…ˆ",
+    "name_jp": "太呂慈",
     "country": "wei",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Black Elephant]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€é»’è±¡ã€‘",
+        "name_jp": "猛将一閃【黒象】",
         "type": "Combat",
         "effects": [
           {
@@ -39,7 +39,7 @@
       },
       {
         "name_en": "Wei Grand General",
-        "name_jp": "é­å›½å¤§å°†è»",
+        "name_jp": "魏国大将軍",
         "type": "Strategy",
         "effects": [
           {
@@ -70,7 +70,7 @@
       },
       {
         "name_en": "Judgment Strike",
-        "name_jp": "æ–­ç½ªã®ä¸€æ’ƒ",
+        "name_jp": "断罪の一撃",
         "type": "Combat",
         "effects": [
           {
@@ -117,18 +117,18 @@
   {
     "id": "ranbishaku",
     "name_en": "Ranbihaku",
-    "name_jp": "ä¹±ç¾Žè¿«",
+    "name_jp": "乱美迫",
     "country": "wei",
     "unit": "Wei Fire Dragon",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [White Sheep]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç™½ç¾Šã€‘",
+        "name_jp": "猛将一閃【白羊】",
         "type": "Combat",
         "effects": [
           {
-            "condition": "Own HP â‰¥ 50%, enemy general with highest ATK",
+            "condition": "Own HP ≥ 50%, enemy general with highest ATK",
             "target": "1 enemy general",
             "effect": "160% Damage",
             "duration": null
@@ -155,7 +155,7 @@
       },
       {
         "name_en": "Destructive Impulse",
-        "name_jp": "ç ´å£Šè¡å‹•",
+        "name_jp": "破壊衝動",
         "type": "Strategy",
         "effects": [
           {
@@ -165,7 +165,7 @@
             "duration": null
           },
           {
-            "condition": "When ally ReihÅ is alive",
+            "condition": "When ally Reihō is alive",
             "target": "Self vs war machines",
             "effect": "ATK Up 30%",
             "duration": null
@@ -174,11 +174,11 @@
       },
       {
         "name_en": "Solo Assault",
-        "name_jp": "å˜é¨Žç‰¹æ”»",
+        "name_jp": "単騎特攻",
         "type": "Combat",
         "effects": [
           {
-            "condition": "Own HP â‰¥ 90%, enemy general with highest ATK",
+            "condition": "Own HP ≥ 90%, enemy general with highest ATK",
             "target": "1 enemy general",
             "effect": "170% Damage",
             "duration": null
@@ -215,14 +215,14 @@
   {
     "id": "shikika",
     "name_en": "Shikika",
-    "name_jp": "ç´«å­£æ­Œ",
+    "name_jp": "紫季歌",
     "country": "wei",
     "unit": "Wei Fire Dragon",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Orange Bull]",
-        "name_jp": "æ€¥æ‰€ä¸€é–ƒã€æ©™ç‰›ã€‘",
+        "name_jp": "急所一閃【橙牛】",
         "type": "Combat",
         "effects": [
           {
@@ -259,7 +259,7 @@
       },
       {
         "name_en": "Beauty of Daliang",
-        "name_jp": "å¤§æ¢ã®ç¾Žå§«",
+        "name_jp": "大梁の美姫",
         "type": "Strategy",
         "effects": [
           {
@@ -289,8 +289,8 @@
         ]
       },
       {
-        "name_en": "HP Enhancement â€“ Special Large Improved [Infantry]",
-        "name_jp": "ä½“åŠ›å¼·åŒ–ãƒ»ç‰¹å¤§æ”¹ã€æ­©å…µã€‘",
+        "name_en": "HP Enhancement – Special Large Improved [Infantry]",
+        "name_jp": "体力強化・特大改【歩兵】",
         "type": "Administration",
         "effects": [
           {
@@ -307,13 +307,13 @@
   {
     "id": "keiminoo",
     "name_en": "Keibin",
-    "name_jp": "æ™¯æ¹£çŽ‹",
+    "name_jp": "景湣王",
     "country": "wei",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Purple Sheep]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç´«ç¾Šã€‘",
+        "name_jp": "猛将一閃【紫羊】",
         "type": "Combat",
         "effects": [
           {
@@ -344,7 +344,7 @@
       },
       {
         "name_en": "Vessel of the Wei King",
-        "name_jp": "é­çŽ‹ã®å™¨",
+        "name_jp": "魏王の器",
         "type": "Strategy",
         "effects": [
           {
@@ -361,15 +361,15 @@
           },
           {
             "condition": null,
-            "target": "Ally Renpa / ally Renpa''s Four Heavenly Kings",
+            "target": "Ally Renpa / ally Renpa's Four Heavenly Kings",
             "effect": "Evasion Rate Up 20%",
             "duration": null
           }
         ]
       },
       {
-        "name_en": "HP Enhancement â€“ Special Large Improved [Shield Soldiers]",
-        "name_jp": "ä½“åŠ›å¼·åŒ–ãƒ»ç‰¹å¤§æ”¹ã€ç›¾å…µã€‘",
+        "name_en": "HP Enhancement – Special Large Improved [Shield Soldiers]",
+        "name_jp": "体力強化・特大改【盾兵】",
         "type": "Administration",
         "effects": [
           {
@@ -386,14 +386,14 @@
   {
     "id": "gaimo",
     "name_en": "Gaimou",
-    "name_jp": "å‡±å­Ÿ",
+    "name_jp": "凱孟",
     "country": "wei",
     "unit": "Wei Fire Dragon",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Yellow Turtle]",
-        "name_jp": "é‰„å£ä¸€é–ƒã€é»„äº€ã€‘",
+        "name_jp": "鉄壁一閃【黄亀】",
         "type": "Combat",
         "effects": [
           {
@@ -412,7 +412,7 @@
       },
       {
         "name_en": "Thirst for Battle",
-        "name_jp": "æˆ¦ã¸ã®æ¸‡æœ›",
+        "name_jp": "戦への渇望",
         "type": "Combat",
         "effects": [
           {
@@ -431,7 +431,7 @@
       },
       {
         "name_en": "Slaughter Strike",
-        "name_jp": "æ®ºæˆ®ã®ä¸€æ’ƒ",
+        "name_jp": "殺戮の一撃",
         "type": "Combat",
         "effects": [
           {
@@ -460,14 +460,14 @@
   {
     "id": "junso",
     "name_en": "Junso",
-    "name_jp": "è€æ—©",
+    "name_jp": "荀早",
     "country": "wei",
     "unit": "Wei Fire Dragon",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [White Elephant]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç™½è±¡ã€‘",
+        "name_jp": "猛将一閃【白象】",
         "type": "Combat",
         "effects": [
           {
@@ -486,7 +486,7 @@
       },
       {
         "name_en": "Calm and Steady",
-        "name_jp": "æ³°ç„¶è‡ªè‹¥",
+        "name_jp": "泰然自若",
         "type": "Strategy",
         "effects": [
           {
@@ -511,7 +511,7 @@
       },
       {
         "name_en": "Fierce Bull Support",
-        "name_jp": "çŒ›ç‰›è¼”ç¿¼",
+        "name_jp": "猛牛輔翼",
         "type": "Combat",
         "effects": [
           {

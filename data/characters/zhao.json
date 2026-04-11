@@ -1,8 +1,8 @@
-﻿[
+[
   {
     "id": "riboku",
     "name_en": "Riboku",
-    "name_jp": "æŽç‰§",
+    "name_jp": "李牧",
     "country": "zhao",
     "rarity": "UR",
     "notes": "Core Zhao general; many Zhao skills reference his presence as a buff condition.",
@@ -11,13 +11,13 @@
   {
     "id": "taishi_ka",
     "name_en": "Ka",
-    "name_jp": "å¤ªå­å˜‰",
+    "name_jp": "太子嘉",
     "country": "zhao",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Morale Recovery [Red Sheep]",
-        "name_jp": "å£«æ°—å›žå¾©ã€èµ¤ç¾Šã€‘",
+        "name_jp": "士気回復【赤羊】",
         "type": "Strategy",
         "effects": [
           {
@@ -36,7 +36,7 @@
       },
       {
         "name_en": "Light of Hope",
-        "name_jp": "å¸Œæœ›ã®å…‰",
+        "name_jp": "希望の光",
         "type": "Strategy",
         "effects": [
           {
@@ -54,8 +54,8 @@
         ]
       },
       {
-        "name_en": "Squad Protection â€“ Special Large Improved",
-        "name_jp": "éƒ¨éšŠä¿è­·ãƒ»ç‰¹å¤§æ”¹",
+        "name_en": "Squad Protection – Special Large Improved",
+        "name_jp": "部隊保護・特大改",
         "type": "Administration",
         "effects": [
           {
@@ -72,14 +72,14 @@
   {
     "id": "shunsuiki",
     "name_en": "Shunsuiju",
-    "name_jp": "èˆœæ°´æ¨¹",
+    "name_jp": "舜水樹",
     "country": "zhao",
     "unit": "Riboku Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Yellow Elephant]",
-        "name_jp": "æ€¥æ‰€ä¸€é–ƒã€é»„è±¡ã€‘",
+        "name_jp": "急所一閃【黄象】",
         "type": "Combat",
         "effects": [
           {
@@ -104,7 +104,7 @@
       },
       {
         "name_en": "Exceptional Preemptive Strike",
-        "name_jp": "ç•°æ‰ã®å…ˆåˆ¶",
+        "name_jp": "異才の先制",
         "type": "Combat",
         "effects": [
           {
@@ -135,7 +135,7 @@
       },
       {
         "name_en": "Loyal Retainer of a Brilliant General",
-        "name_jp": "æ™ºå°†ã®å¿ è‡£",
+        "name_jp": "智将の忠臣",
         "type": "Strategy",
         "effects": [
           {
@@ -164,13 +164,13 @@
   {
     "id": "shunpeikun",
     "name_en": "Shunpeikun",
-    "name_jp": "æ˜¥å¹³å›",
+    "name_jp": "春平君",
     "country": "zhao",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Attack Reduction [Red Elephant]",
-        "name_jp": "æ”»æ’ƒä½Žä¸‹ã€èµ¤è±¡ã€‘",
+        "name_jp": "攻撃低下【赤象】",
         "type": "Strategy",
         "effects": [
           {
@@ -189,7 +189,7 @@
       },
       {
         "name_en": "Beautiful Retainer",
-        "name_jp": "è‰¶ç¾Žãªã‚‹è‡£",
+        "name_jp": "艶美なる臣",
         "type": "Strategy",
         "effects": [
           {
@@ -213,8 +213,8 @@
         ]
       },
       {
-        "name_en": "DEF Enhancement â€“ Special Large Improved [Infantry]",
-        "name_jp": "é˜²å¾¡åŠ›å¼·åŒ–ãƒ»ç‰¹å¤§æ”¹ã€æ­©å…µã€‘",
+        "name_en": "DEF Enhancement – Special Large Improved [Infantry]",
+        "name_jp": "防御力強化・特大改【歩兵】",
         "type": "Administration",
         "effects": [
           {
@@ -231,14 +231,14 @@
   {
     "id": "seikou",
     "name_en": "Duke Sei",
-    "name_jp": "é’å…¬",
+    "name_jp": "青公",
     "country": "zhao",
     "unit": "Kisei Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Orange Tiger]",
-        "name_jp": "æ€¥æ‰€ä¸€é–ƒã€æ©™è™Žã€‘",
+        "name_jp": "急所一閃【橙虎】",
         "type": "Combat",
         "effects": [
           {
@@ -257,7 +257,7 @@
       },
       {
         "name_en": "Loyalty to the City Lord",
-        "name_jp": "åŸŽä¸»ã¸ã®å¿ èª ",
+        "name_jp": "城主への忠誠",
         "type": "Strategy",
         "effects": [
           {
@@ -276,7 +276,7 @@
       },
       {
         "name_en": "Unforgivable Atrocity",
-        "name_jp": "è¨±ã—é›£ãéžé“",
+        "name_jp": "許し難き非道",
         "type": "Strategy",
         "effects": [
           {
@@ -311,13 +311,13 @@
   {
     "id": "kinmo",
     "name_en": "Kinmou",
-    "name_jp": "é‡‘æ¯›",
+    "name_jp": "金毛",
     "country": "zhao",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Gray Elephant]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç°è±¡ã€‘",
+        "name_jp": "猛将一閃【灰象】",
         "type": "Combat",
         "effects": [
           {
@@ -341,8 +341,8 @@
         ]
       },
       {
-        "name_en": "Lieutenant''s Hidden Strength",
-        "name_jp": "å‰¯å®˜ã®åº•åŠ›",
+        "name_en": "Lieutenant's Hidden Strength",
+        "name_jp": "副官の底力",
         "type": "Strategy",
         "effects": [
           {
@@ -361,7 +361,7 @@
       },
       {
         "name_en": "Resolute Resistance",
-        "name_jp": "æ±ºæ„ã®æŠµæŠ—",
+        "name_jp": "決意の抵抗",
         "type": "Combat",
         "effects": [
           {
@@ -402,13 +402,13 @@
   {
     "id": "gakuei",
     "name_en": "Gakuei",
-    "name_jp": "å²³å¬°",
+    "name_jp": "岳嬰",
     "country": "zhao",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Master General Flash [Yellow Turtle]",
-        "name_jp": "åå°†ä¸€é–ƒã€é»„äº€ã€‘",
+        "name_jp": "名将一閃【黄亀】",
         "type": "Combat",
         "effects": [
           {
@@ -427,7 +427,7 @@
       },
       {
         "name_en": "Vengeance",
-        "name_jp": "ä»‡è¨Žã¡",
+        "name_jp": "仇討ち",
         "type": "Combat",
         "effects": [
           {
@@ -458,7 +458,7 @@
       },
       {
         "name_en": "Fury",
-        "name_jp": "æ¿€æ˜‚",
+        "name_jp": "激昂",
         "type": "Strategy",
         "effects": [
           {
@@ -487,14 +487,14 @@
   {
     "id": "ryuto",
     "name_en": "Ryuuto",
-    "name_jp": "åŠ‰å†¬",
+    "name_jp": "劉冬",
     "country": "zhao",
     "unit": "Rigan",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Master General Attack [Red Elephant]",
-        "name_jp": "åå°†æ”»æ’ƒã€èµ¤è±¡ã€‘",
+        "name_jp": "名将攻撃【赤象】",
         "type": "Combat",
         "effects": [
           {
@@ -507,7 +507,7 @@
       },
       {
         "name_en": "Rigan Bond [Friend]",
-        "name_jp": "é›¢çœ¼ã®çµ†ã€å‹ã€‘",
+        "name_jp": "離眼の絆【友】",
         "type": "Combat",
         "effects": [
           {
@@ -538,7 +538,7 @@
       },
       {
         "name_en": "Rigan Bond [Skill]",
-        "name_jp": "é›¢çœ¼ã®çµ†ã€å·§ã€‘",
+        "name_jp": "離眼の絆【巧】",
         "type": "Combat",
         "effects": [
           {
@@ -573,14 +573,14 @@
   {
     "id": "kishou",
     "name_en": "Kishou",
-    "name_jp": "ç´€æ˜Œ",
+    "name_jp": "紀昌",
     "country": "zhao",
     "unit": "Rigan",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Master General Flash [Yellow Bull]",
-        "name_jp": "åå°†ä¸€é–ƒã€é»„ç‰›ã€‘",
+        "name_jp": "名将一閃【黄牛】",
         "type": "Combat",
         "effects": [
           {
@@ -599,7 +599,7 @@
       },
       {
         "name_en": "Rigan Bond [Memory]",
-        "name_jp": "é›¢çœ¼ã®çµ†ã€æƒ³ã€‘",
+        "name_jp": "離眼の絆【想】",
         "type": "Combat",
         "effects": [
           {
@@ -624,7 +624,7 @@
       },
       {
         "name_en": "Inheritance of Will",
-        "name_jp": "æƒ³ã„ã®ç¶™æ‰¿",
+        "name_jp": "想いの継承",
         "type": "Strategy",
         "effects": [
           {
@@ -659,14 +659,14 @@
   {
     "id": "kisei",
     "name_en": "Kisui",
-    "name_jp": "ç´€å½—",
+    "name_jp": "紀彗",
     "country": "zhao",
     "unit": "Kisei Forces / Rigan",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Master General Flash [Yellow Elephant]",
-        "name_jp": "åå°†ä¸€é–ƒã€é»„è±¡ã€‘",
+        "name_jp": "名将一閃【黄象】",
         "type": "Combat",
         "effects": [
           {
@@ -685,7 +685,7 @@
       },
       {
         "name_en": "Rigan War Cry",
-        "name_jp": "é›¢çœ¼ã®æŽ›ã‘å£°",
+        "name_jp": "離眼の掛け声",
         "type": "Combat",
         "effects": [
           {
@@ -704,7 +704,7 @@
       },
       {
         "name_en": "Rigan Bond [Heart]",
-        "name_jp": "é›¢çœ¼ã®çµ†ã€å¿ƒã€‘",
+        "name_jp": "離眼の絆【心】",
         "type": "Combat",
         "effects": [
           {
@@ -739,14 +739,14 @@
   {
     "id": "batei",
     "name_en": "Batei",
-    "name_jp": "é¦¬å‘ˆ",
+    "name_jp": "馬呈",
     "country": "zhao",
     "unit": "Rigan",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Master General Double Strike [Red Sheep]",
-        "name_jp": "åå°†åŒæ’ƒã€èµ¤ç¾Šã€‘",
+        "name_jp": "名将双撃【赤羊】",
         "type": "Combat",
         "effects": [
           {
@@ -759,7 +759,7 @@
       },
       {
         "name_en": "Rigan Bond [Body]",
-        "name_jp": "é›¢çœ¼ã®çµ†ã€ä½“ã€‘",
+        "name_jp": "離眼の絆【体】",
         "type": "Combat",
         "effects": [
           {
@@ -790,7 +790,7 @@
       },
       {
         "name_en": "Rigan Bond [Strength]",
-        "name_jp": "é›¢çœ¼ã®çµ†ã€å‰›ã€‘",
+        "name_jp": "離眼の絆【剛】",
         "type": "Combat",
         "effects": [
           {

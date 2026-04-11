@@ -1,14 +1,14 @@
-﻿[
+[
   {
     "id": "kakukai",
     "name_en": "Kakukai",
-    "name_jp": "éƒ­é–‹",
+    "name_jp": "郭開",
     "country": "zhao",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Orange Turtle]",
-        "name_jp": "æ€¥æ‰€ä¸€é–ƒã€æ©™äº€ã€‘",
+        "name_jp": "急所一閃【橙亀】",
         "type": "Combat",
         "effects": [
           {
@@ -39,7 +39,7 @@
       },
       {
         "name_en": "Bloated Self-Interest",
-        "name_jp": "è‚¥å¤§ã—ãŸæˆ‘æ¬²",
+        "name_jp": "肥大した我欲",
         "type": "Strategy",
         "effects": [
           {
@@ -63,8 +63,8 @@
         ]
       },
       {
-        "name_en": "HP Enhancement â€“ Special Large Improved [Infantry]",
-        "name_jp": "ä½“åŠ›å¼·åŒ–ãƒ»ç‰¹å¤§æ”¹ã€æ­©å…µã€‘",
+        "name_en": "HP Enhancement – Special Large Improved [Infantry]",
+        "name_jp": "体力強化・特大改【歩兵】",
         "type": "Administration",
         "effects": [
           {
@@ -81,13 +81,13 @@
   {
     "id": "keisha",
     "name_en": "Keisha",
-    "name_jp": "æ…¶èˆŽ",
+    "name_jp": "慶舎",
     "country": "zhao",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Green Sheep]",
-        "name_jp": "é‡è¿½æ’ƒã€ç·‘ç¾Šã€‘",
+        "name_jp": "重追撃【緑羊】",
         "type": "Combat",
         "effects": [
           {
@@ -111,8 +111,8 @@
         ]
       },
       {
-        "name_en": "Hunter''s Domain",
-        "name_jp": "ç‹©äººã®æœ¬é ˜",
+        "name_en": "Hunter's Domain",
+        "name_jp": "狩人の本領",
         "type": "Strategy",
         "effects": [
           {
@@ -136,8 +136,8 @@
         ]
       },
       {
-        "name_en": "Hunter''s Thread",
-        "name_jp": "ç‹©ã‚Šå–ã‚‹ç³¸",
+        "name_en": "Hunter's Thread",
+        "name_jp": "狩り取る糸",
         "type": "Combat",
         "effects": [
           {
@@ -166,13 +166,13 @@
   {
     "id": "rakujo",
     "name_en": "Gakujou",
-    "name_jp": "æ¥½ä¹—",
+    "name_jp": "楽乗",
     "country": "zhao",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak General Flash [Red Turtle]",
-        "name_jp": "å¼±å°†ä¸€é–ƒã€èµ¤äº€ã€‘",
+        "name_jp": "弱将一閃【赤亀】",
         "type": "Combat",
         "effects": [
           {
@@ -191,7 +191,7 @@
       },
       {
         "name_en": "Devotion to Zhao",
-        "name_jp": "è¶™å›½ã¸ã®æƒ³ã„",
+        "name_jp": "趙国への想い",
         "type": "Strategy",
         "effects": [
           {
@@ -210,7 +210,7 @@
       },
       {
         "name_en": "Will to Protect the Nation",
-        "name_jp": "è­·å›½ã®æ„æ€",
+        "name_jp": "護国の意思",
         "type": "Combat",
         "effects": [
           {
@@ -239,13 +239,13 @@
   {
     "id": "shinseicho",
     "name_en": "Shinseijou",
-    "name_jp": "æ™‹æˆå¸¸",
+    "name_jp": "晋成常",
     "country": "zhao",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Purple Elephant]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç´«è±¡ã€‘",
+        "name_jp": "猛将一閃【紫象】",
         "type": "Combat",
         "effects": [
           {
@@ -269,8 +269,8 @@
         ]
       },
       {
-        "name_en": "Veteran''s Support",
-        "name_jp": "ç†Ÿç·´ã®æ”¯æ´",
+        "name_en": "Veteran's Support",
+        "name_jp": "熟練の支援",
         "type": "Strategy",
         "effects": [
           {
@@ -282,18 +282,18 @@
         ]
       },
       {
-        "name_en": "Veteran''s Dedication",
-        "name_jp": "è€å°†ã®çŒ®èº«",
+        "name_en": "Veteran's Dedication",
+        "name_jp": "老将の献身",
         "type": "Combat",
         "effects": [
           {
-            "condition": "Own HP â‰¥ 90%, enemy general with highest ATK",
+            "condition": "Own HP ≥ 90%, enemy general with highest ATK",
             "target": "1 enemy general",
             "effect": "160% Damage",
             "duration": null
           },
           {
-            "condition": "Own HP â‰¥ 90%",
+            "condition": "Own HP ≥ 90%",
             "target": "Ally Zhao",
             "effect": "Guard 60%",
             "duration": "1 time"
@@ -311,7 +311,7 @@
             "duration": null
           },
           {
-            "condition": "Other ally Zhao generals'' HP < 90% and surviving",
+            "condition": "Other ally Zhao generals' HP < 90% and surviving",
             "target": "Other ally Zhao",
             "effect": "HP Recovery 30%",
             "duration": null

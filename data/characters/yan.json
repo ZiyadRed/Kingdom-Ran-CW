@@ -1,15 +1,15 @@
-﻿[
+[
   {
     "id": "otaji",
     "name_en": "Otaji",
-    "name_jp": "ã‚ªã‚¿ã‚¸",
+    "name_jp": "オタジ",
     "country": "yan",
     "unit": "Ordo Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Green Turtle]",
-        "name_jp": "é‰„å£ä¸€é–ƒã€ç·‘äº€ã€‘",
+        "name_jp": "鉄壁一閃【緑亀】",
         "type": "Combat",
         "effects": [
           {
@@ -34,7 +34,7 @@
       },
       {
         "name_en": "Mountain Ambush",
-        "name_jp": "å±±å²³å¼·è¥²",
+        "name_jp": "山岳強襲",
         "type": "Strategy",
         "effects": [
           {
@@ -53,7 +53,7 @@
       },
       {
         "name_en": "Elite Relentless Pursuers",
-        "name_jp": "çª®è¿½ã™ã‚‹ç²¾å…µ",
+        "name_jp": "窮追する精兵",
         "type": "Combat",
         "effects": [
           {
@@ -82,13 +82,13 @@
   {
     "id": "yukii",
     "name_en": "Yukii",
-    "name_jp": "ãƒ¦ã‚­ã‚¤",
+    "name_jp": "ユキイ",
     "country": "yan",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Green Bull]",
-        "name_jp": "é‰„å£ä¸€é–ƒã€ç·‘ç‰›ã€‘",
+        "name_jp": "鉄壁一閃【緑牛】",
         "type": "Combat",
         "effects": [
           {
@@ -112,8 +112,8 @@
         ]
       },
       {
-        "name_en": "Mountain King''s Right Arm",
-        "name_jp": "å±±å²³çŽ‹ã®ç‰‡è…•",
+        "name_en": "Mountain King's Right Arm",
+        "name_jp": "山岳王の片腕",
         "type": "Strategy",
         "effects": [
           {
@@ -138,7 +138,7 @@
       },
       {
         "name_en": "Simultaneous Volley",
-        "name_jp": "ä¸€æ–‰å°„æ’ƒ",
+        "name_jp": "一斉射撃",
         "type": "Combat",
         "effects": [
           {
@@ -167,13 +167,13 @@
   {
     "id": "rakki",
     "name_en": "Gakuki",
-    "name_jp": "æ¥½æ¯…",
+    "name_jp": "楽毅",
     "country": "yan",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Green Sheep]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç·‘ç¾Šã€‘",
+        "name_jp": "猛将一閃【緑羊】",
         "type": "Combat",
         "effects": [
           {
@@ -192,7 +192,7 @@
       },
       {
         "name_en": "Hero Who Saved the Nation",
-        "name_jp": "æ•‘å›½ã®è‹±å‚‘",
+        "name_jp": "救国の英傑",
         "type": "Strategy",
         "effects": [
           {
@@ -205,7 +205,7 @@
       },
       {
         "name_en": "Counter-Offensive",
-        "name_jp": "åè»¢æ”»å‹¢",
+        "name_jp": "反転攻勢",
         "type": "Combat",
         "effects": [
           {
@@ -246,13 +246,13 @@
   {
     "id": "gekishin",
     "name_en": "Gekishin",
-    "name_jp": "åŠ‡è¾›",
+    "name_jp": "劇辛",
     "country": "yan",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Blue Tiger]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€é’è™Žã€‘",
+        "name_jp": "猛将一閃【青虎】",
         "type": "Combat",
         "effects": [
           {
@@ -271,7 +271,7 @@
       },
       {
         "name_en": "Situation Analysis",
-        "name_jp": "çŠ¶æ³åˆ†æž",
+        "name_jp": "状況分析",
         "type": "Strategy",
         "effects": [
           {
@@ -290,7 +290,7 @@
       },
       {
         "name_en": "Overcoming Adversity",
-        "name_jp": "é€†å¢ƒçªç ´",
+        "name_jp": "逆境突破",
         "type": "Combat",
         "effects": [
           {

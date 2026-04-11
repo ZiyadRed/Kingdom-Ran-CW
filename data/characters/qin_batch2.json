@@ -1,14 +1,14 @@
-﻿[
+[
   {
     "id": "sougen",
     "name_en": "Sougen",
-    "name_jp": "è’¼æº",
+    "name_jp": "蒼源",
     "country": "qin",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Navy Elephant]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç´ºè±¡ã€‘",
+        "name_jp": "猛将一閃【紺象】",
         "type": "Combat",
         "effects": [
           {
@@ -26,8 +26,8 @@
         ]
       },
       {
-        "name_en": "Father''s Back",
-        "name_jp": "çˆ¶ã®èƒŒä¸­",
+        "name_en": "Father's Back",
+        "name_jp": "父の背中",
         "type": "Strategy",
         "effects": [
           {
@@ -64,7 +64,7 @@
       },
       {
         "name_en": "Ten-Bow Contest",
-        "name_jp": "åå¼“å‹è² ",
+        "name_jp": "十弓勝負",
         "type": "Combat",
         "effects": [
           {
@@ -93,14 +93,14 @@
   {
     "id": "gakurai",
     "name_en": "Gakurai",
-    "name_jp": "å²³é›·",
+    "name_jp": "岳雷",
     "country": "qin",
     "unit": "Hyoukou Forces / Hi Shin Unit",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "DEF Enhancement [Orange Bull]",
-        "name_jp": "é˜²å¾¡å¼·åŒ–ã€æ©™ç‰›ã€‘",
+        "name_jp": "防御強化【橙牛】",
         "type": "Strategy",
         "effects": [
           {
@@ -119,7 +119,7 @@
       },
       {
         "name_en": "Strike from Behind",
-        "name_jp": "å¾Œæ‰‹å¿…å‹",
+        "name_jp": "後手必勝",
         "type": "Combat",
         "effects": [
           {
@@ -144,7 +144,7 @@
       },
       {
         "name_en": "Melee Expert",
-        "name_jp": "ä¹±æˆ¦å¼·è€…",
+        "name_jp": "乱戦強者",
         "type": "Combat",
         "effects": [
           {
@@ -173,13 +173,13 @@
   {
     "id": "choto",
     "name_en": "Choutou",
-    "name_jp": "å¼µå”",
+    "name_jp": "張唐",
     "country": "qin",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Purple Bull]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç´«ç‰›ã€‘",
+        "name_jp": "猛将一閃【紫牛】",
         "type": "Combat",
         "effects": [
           {
@@ -203,8 +203,8 @@
         ]
       },
       {
-        "name_en": "Veteran General''s Power",
-        "name_jp": "è€å°†ã®åº•åŠ›",
+        "name_en": "Veteran General's Power",
+        "name_jp": "老将の底力",
         "type": "Strategy",
         "effects": [
           {
@@ -228,8 +228,8 @@
         ]
       },
       {
-        "name_en": "General''s Strength",
-        "name_jp": "æ­¦å°†ã®åŠ›",
+        "name_en": "General's Strength",
+        "name_jp": "武将の力",
         "type": "Combat",
         "effects": [
           {
@@ -258,13 +258,13 @@
   {
     "id": "shimasaku",
     "name_en": "Shibasaku",
-    "name_jp": "å¸é¦¬éŒ¯",
+    "name_jp": "司馬錯",
     "country": "qin",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "ATK Enhancement [Red Turtle]",
-        "name_jp": "æ”»æ’ƒå¼·åŒ–ã€èµ¤äº€ã€‘",
+        "name_jp": "攻撃強化【赤亀】",
         "type": "Strategy",
         "effects": [
           {
@@ -276,8 +276,8 @@
         ]
       },
       {
-        "name_en": "Six Generals'' War Scars",
-        "name_jp": "å…­å°†ã®æˆ¦ç¦",
+        "name_en": "Six Generals' War Scars",
+        "name_jp": "六将の戦禍",
         "type": "Strategy",
         "effects": [
           {
@@ -296,7 +296,7 @@
       },
       {
         "name_en": "Shield Soldier Annihilation Shot",
-        "name_jp": "ç›¾å…µæ®²æ»…å°„æ’ƒ",
+        "name_jp": "盾兵殲滅射撃",
         "type": "Combat",
         "effects": [
           {
@@ -319,13 +319,13 @@
   {
     "id": "hyoshiga",
     "name_en": "Hyoushiga",
-    "name_jp": "è±¹å¸ç‰™",
+    "name_jp": "豹司牙",
     "country": "qin",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [White Bull]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç™½ç‰›ã€‘",
+        "name_jp": "猛将一閃【白牛】",
         "type": "Combat",
         "effects": [
           {
@@ -343,8 +343,8 @@
         ]
       },
       {
-        "name_en": "Supreme Commander''s Guard",
-        "name_jp": "è»ç·å¸ä»¤è¿‘è¡›å…µ",
+        "name_en": "Supreme Commander's Guard",
+        "name_jp": "軍総司令近衛兵",
         "type": "Strategy",
         "effects": [
           {
@@ -369,7 +369,7 @@
       },
       {
         "name_en": "Black Hidden Blade",
-        "name_jp": "é»’ãæ‡åˆ€",
+        "name_jp": "黒き懐刀",
         "type": "Combat",
         "effects": [
           {
@@ -398,13 +398,13 @@
   {
     "id": "hakuki",
     "name_en": "Hakuki",
-    "name_jp": "ç™½èµ·",
+    "name_jp": "白起",
     "country": "qin",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Yellow Bull]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€é»„ç‰›ã€‘",
+        "name_jp": "猛将一閃【黄牛】",
         "type": "Combat",
         "effects": [
           {
@@ -423,7 +423,7 @@
       },
       {
         "name_en": "Battlefield Domination",
-        "name_jp": "æˆ¦å ´ã®æ”¯é…",
+        "name_jp": "戦場の支配",
         "type": "Combat",
         "effects": [
           {
@@ -460,7 +460,7 @@
       },
       {
         "name_en": "Fortification Tactics",
-        "name_jp": "ç¯‰åŸŽæˆ¦æ³•",
+        "name_jp": "築城戦法",
         "type": "Combat",
         "effects": [
           {
@@ -495,13 +495,13 @@
   {
     "id": "ohkotsu",
     "name_en": "Oukotsu",
-    "name_jp": "çŽ‹é½•",
+    "name_jp": "王齕",
     "country": "qin",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fortified Equipment Double Smash [Red Sheep]",
-        "name_jp": "å …ç‰¢å™¨åŒå£Šã€èµ¤ç¾Šã€‘",
+        "name_jp": "堅牢器双壊【赤羊】",
         "type": "Combat",
         "effects": [
           {
@@ -520,7 +520,7 @@
       },
       {
         "name_en": "Unrivalled Strength",
-        "name_jp": "æ€ªåŠ›ç„¡åŒ",
+        "name_jp": "怪力無双",
         "type": "Strategy",
         "effects": [
           {
@@ -533,7 +533,7 @@
       },
       {
         "name_en": "Symbol of Destruction",
-        "name_jp": "ç ´å£Šã®è±¡å¾´",
+        "name_jp": "破壊の象徴",
         "type": "Strategy",
         "effects": [
           {
@@ -556,14 +556,14 @@
   {
     "id": "kaioku",
     "name_en": "Kaioku",
-    "name_jp": "ä»‹å„„",
+    "name_jp": "介億",
     "country": "qin",
     "unit": "Shouheikun Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Orange Sheep]",
-        "name_jp": "é‰„å£ä¸€é–ƒã€æ©™ç¾Šã€‘",
+        "name_jp": "鉄壁一閃【橙羊】",
         "type": "Combat",
         "effects": [
           {
@@ -581,8 +581,8 @@
         ]
       },
       {
-        "name_en": "Commander-in-Chief''s Right Hand",
-        "name_jp": "è»æ›¹å¸ä»¤ã®å³è…•",
+        "name_en": "Commander-in-Chief's Right Hand",
+        "name_jp": "軍曹司令の右腕",
         "type": "Strategy",
         "effects": [
           {
@@ -607,17 +607,17 @@
       },
       {
         "name_en": "Broad Perspective",
-        "name_jp": "å¤§å±€è¦³",
+        "name_jp": "大局観",
         "type": "Combat",
         "effects": [
           {
-            "condition": "Own HP â‰¥ 90%, enemy general with highest DEF",
+            "condition": "Own HP ≥ 90%, enemy general with highest DEF",
             "target": "1 enemy general",
             "effect": "160% Damage",
             "duration": null
           },
           {
-            "condition": "Own HP â‰¥ 90%",
+            "condition": "Own HP ≥ 90%",
             "target": "Self / ally cavalry",
             "effect": "Guard 40%",
             "duration": "3 times"
@@ -635,7 +635,7 @@
             "duration": null
           },
           {
-            "condition": "Other ally Qin generals'' HP < 90% and surviving",
+            "condition": "Other ally Qin generals' HP < 90% and surviving",
             "target": "Ally Qin",
             "effect": "HP Recovery 30%",
             "duration": null
@@ -648,13 +648,13 @@
   {
     "id": "kosho",
     "name_en": "Koshou",
-    "name_jp": "èƒ¡å‚·",
+    "name_jp": "胡傷",
     "country": "qin",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "DEF Enhancement [Orange Elephant]",
-        "name_jp": "é˜²å¾¡å¼·åŒ–ã€æ©™è±¡ã€‘",
+        "name_jp": "防御強化【橙象】",
         "type": "Strategy",
         "effects": [
           {
@@ -667,7 +667,7 @@
       },
       {
         "name_en": "One-Sided Invasion",
-        "name_jp": "ä¸€æ–¹çš„ä¾µç•¥",
+        "name_jp": "一方的侵略",
         "type": "Strategy",
         "effects": [
           {
@@ -686,7 +686,7 @@
       },
       {
         "name_en": "Battle Strategy",
-        "name_jp": "æˆ¦ã®æ”»ç•¥",
+        "name_jp": "戦の攻略",
         "type": "Combat",
         "effects": [
           {
@@ -715,14 +715,14 @@
   {
     "id": "garo",
     "name_en": "Garo",
-    "name_jp": "æˆ‘å‘‚",
+    "name_jp": "我呂",
     "country": "qin",
     "unit": "Hi Shin Unit",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "ATK Enhancement [Orange Elephant]",
-        "name_jp": "æ”»æ’ƒå¼·åŒ–ã€æ©™è±¡ã€‘",
+        "name_jp": "攻撃強化【橙象】",
         "type": "Strategy",
         "effects": [
           {
@@ -735,7 +735,7 @@
       },
       {
         "name_en": "Strike First",
-        "name_jp": "å…ˆæ‰‹å¿…å‹",
+        "name_jp": "先手必勝",
         "type": "Combat",
         "effects": [
           {
@@ -754,7 +754,7 @@
       },
       {
         "name_en": "Melee Adept",
-        "name_jp": "ä¹±æˆ¦å·§è€…",
+        "name_jp": "乱戦巧者",
         "type": "Combat",
         "effects": [
           {
@@ -789,14 +789,14 @@
   {
     "id": "rikusen",
     "name_en": "Rikusen",
-    "name_jp": "é™¸ä»™",
+    "name_jp": "陸仙",
     "country": "qin",
     "unit": "Gakuka Unit",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Master General Flash [Orange Turtle]",
-        "name_jp": "åå°†ä¸€é–ƒã€æ©™äº€ã€‘",
+        "name_jp": "名将一閃【橙亀】",
         "type": "Combat",
         "effects": [
           {
@@ -815,7 +815,7 @@
       },
       {
         "name_en": "Gakuka Main Force",
-        "name_jp": "æ¥½è¯ã®ä¸»åŠ›",
+        "name_jp": "楽華の主力",
         "type": "Strategy",
         "effects": [
           {
@@ -834,7 +834,7 @@
       },
       {
         "name_en": "Hidden Ability",
-        "name_jp": "ç§˜ã‚ãŸå®ŸåŠ›",
+        "name_jp": "秘めた実力",
         "type": "Combat",
         "effects": [
           {
@@ -857,14 +857,14 @@
   {
     "id": "kanjo",
     "name_en": "Kanjou",
-    "name_jp": "é–¢å¸¸",
+    "name_jp": "関常",
     "country": "qin",
     "unit": "Gyokuhou Squad",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "DEF Reduction [Red Sheep]",
-        "name_jp": "é˜²å¾¡ä½Žä¸‹ã€èµ¤ç¾Šã€‘",
+        "name_jp": "防御低下【赤羊】",
         "type": "Strategy",
         "effects": [
           {
@@ -889,7 +889,7 @@
       },
       {
         "name_en": "Cool and Composed",
-        "name_jp": "å†·é™æ²ˆç€",
+        "name_jp": "冷静沈着",
         "type": "Strategy",
         "effects": [
           {
@@ -908,7 +908,7 @@
       },
       {
         "name_en": "Desperate Charge",
-        "name_jp": "æ±ºæ­»ã®æŒºèº«",
+        "name_jp": "決死の挺身",
         "type": "Combat",
         "effects": [
           {
@@ -937,13 +937,13 @@
   {
     "id": "seikyo",
     "name_en": "Seikyou",
-    "name_jp": "æˆèŸœ",
+    "name_jp": "成蟜",
     "country": "qin",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Frail General Flash [Red Sheep]",
-        "name_jp": "è„†å°†ä¸€é–ƒã€èµ¤ç¾Šã€‘",
+        "name_jp": "脆将一閃【赤羊】",
         "type": "Combat",
         "effects": [
           {
@@ -953,7 +953,7 @@
             "duration": null
           },
           {
-            "condition": "Own HP â‰¥ 90%",
+            "condition": "Own HP ≥ 90%",
             "target": "Ally infantry",
             "effect": "ATK Up 30%",
             "duration": null
@@ -961,8 +961,8 @@
         ]
       },
       {
-        "name_en": "Repair Material Reduction â€“ Medium",
-        "name_jp": "ä¿®ç†è³‡ææ¸›å°‘ãƒ»ä¸­",
+        "name_en": "Repair Material Reduction – Medium",
+        "name_jp": "修理資材減少・中",
         "type": "Administration",
         "effects": [
           {
@@ -974,8 +974,8 @@
         ]
       },
       {
-        "name_en": "HP Enhancement â€“ Medium-Large Improved [Archers]",
-        "name_jp": "ä½“åŠ›å¼·åŒ–ãƒ»ä¸­æ”¹ã€å¼“å…µã€‘",
+        "name_en": "HP Enhancement – Medium-Large Improved [Archers]",
+        "name_jp": "体力強化・中改【弓兵】",
         "type": "Administration",
         "effects": [
           {
@@ -992,13 +992,13 @@
   {
     "id": "rui",
     "name_en": "Rui",
-    "name_jp": "ç‘ è¡£",
+    "name_jp": "瑠衣",
     "country": "qin",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Orange Elephant]",
-        "name_jp": "æ€¥æ‰€ä¸€é–ƒã€æ©™è±¡ã€‘",
+        "name_jp": "急所一閃【橙象】",
         "type": "Combat",
         "effects": [
           {
@@ -1028,8 +1028,8 @@
         ]
       },
       {
-        "name_en": "Princess''s Prayer",
-        "name_jp": "å…¬å¥³ã®ç¥ˆã‚Š",
+        "name_en": "Princess's Prayer",
+        "name_jp": "公女の祈り",
         "type": "Strategy",
         "effects": [
           {
@@ -1059,8 +1059,8 @@
         ]
       },
       {
-        "name_en": "HP Enhancement â€“ Special Large Improved [Infantry]",
-        "name_jp": "ä½“åŠ›å¼·åŒ–ãƒ»ç‰¹å¤§æ”¹ã€æ­©å…µã€‘",
+        "name_en": "HP Enhancement – Special Large Improved [Infantry]",
+        "name_jp": "体力強化・特大改【歩兵】",
         "type": "Administration",
         "effects": [
           {
@@ -1077,13 +1077,13 @@
   {
     "id": "yo",
     "name_en": "You",
-    "name_jp": "é™½",
+    "name_jp": "陽",
     "country": "qin",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Yellow Bull]",
-        "name_jp": "é‡è¿½æ’ƒã€é»„ç‰›ã€‘",
+        "name_jp": "重追撃【黄牛】",
         "type": "Combat",
         "effects": [
           {
@@ -1107,8 +1107,8 @@
         ]
       },
       {
-        "name_en": "Light''s Protection",
-        "name_jp": "å…‰ã®åº‡è­·",
+        "name_en": "Light's Protection",
+        "name_jp": "光の庇護",
         "type": "Strategy",
         "effects": [
           {
@@ -1126,8 +1126,8 @@
         ]
       },
       {
-        "name_en": "HP Enhancement â€“ Special Large Improved [Archers]",
-        "name_jp": "ä½“åŠ›å¼·åŒ–ãƒ»ç‰¹å¤§æ”¹ã€å¼“å…µã€‘",
+        "name_en": "HP Enhancement – Special Large Improved [Archers]",
+        "name_jp": "体力強化・特大改【弓兵】",
         "type": "Administration",
         "effects": [
           {
@@ -1144,14 +1144,14 @@
   {
     "id": "ryuyu",
     "name_en": "Ryuyu",
-    "name_jp": "ç«œæœ‰",
+    "name_jp": "竜有",
     "country": "qin",
     "unit": "Hi Shin Unit",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Green Bull]",
-        "name_jp": "é‡è¿½æ’ƒã€ç·‘ç‰›ã€‘",
+        "name_jp": "重追撃【緑牛】",
         "type": "Combat",
         "effects": [
           {
@@ -1169,8 +1169,8 @@
         ]
       },
       {
-        "name_en": "DEF Enhancement â€“ Large Improved [Attack War Machines]",
-        "name_jp": "é˜²å¾¡åŠ›å¼·åŒ–ãƒ»å¤§ã€æ”»æ’ƒå…µå™¨ã€‘",
+        "name_en": "DEF Enhancement – Large Improved [Attack War Machines]",
+        "name_jp": "防御力強化・大【攻撃兵器】",
         "type": "Administration",
         "effects": [
           {
@@ -1182,8 +1182,8 @@
         ]
       },
       {
-        "name_en": "DEF Enhancement â€“ Large Improved [Infantry]",
-        "name_jp": "é˜²å¾¡åŠ›å¼·åŒ–ãƒ»å¤§æ”¹ã€æ­©å…µã€‘",
+        "name_en": "DEF Enhancement – Large Improved [Infantry]",
+        "name_jp": "防御力強化・大改【歩兵】",
         "type": "Administration",
         "effects": [
           {
@@ -1199,14 +1199,14 @@
   {
     "id": "chutetsu",
     "name_en": "Chutetsu",
-    "name_jp": "ä¸­é‰„",
+    "name_jp": "中鉄",
     "country": "qin",
     "unit": "Hi Shin Unit",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Orange Sheep]",
-        "name_jp": "æ€¥æ‰€ä¸€é–ƒã€æ©™ç¾Šã€‘",
+        "name_jp": "急所一閃【橙羊】",
         "type": "Combat",
         "effects": [
           {
@@ -1224,8 +1224,8 @@
         ]
       },
       {
-        "name_en": "ATK Enhancement â€“ Large [Defense War Machines]",
-        "name_jp": "æ”»æ’ƒåŠ›å¼·åŒ–ãƒ»å¤§ã€é˜²è¡›å…µå™¨ã€‘",
+        "name_en": "ATK Enhancement – Large [Defense War Machines]",
+        "name_jp": "攻撃力強化・大【防衛兵器】",
         "type": "Administration",
         "effects": [
           {
@@ -1237,8 +1237,8 @@
         ]
       },
       {
-        "name_en": "ATK Enhancement â€“ Large Improved [Infantry]",
-        "name_jp": "æ”»æ’ƒåŠ›å¼·åŒ–ãƒ»å¤§æ”¹ã€æ­©å…µã€‘",
+        "name_en": "ATK Enhancement – Large Improved [Infantry]",
+        "name_jp": "攻撃力強化・大改【歩兵】",
         "type": "Administration",
         "effects": [
           {

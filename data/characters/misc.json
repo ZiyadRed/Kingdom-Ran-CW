@@ -1,14 +1,14 @@
-﻿[
+[
   {
     "id": "yuri",
     "name_en": "Yuri",
-    "name_jp": "å‹é‡Œ",
+    "name_jp": "友里",
     "country": "unknown",
     "rarity": "NR",
     "skills": [
       {
-        "name_en": "ATK Enhancement â€“ Special [Infantry]",
-        "name_jp": "æ”»æ’ƒåŠ›å¼·åŒ–ãƒ»ç‰¹ã€æ­©å…µã€‘",
+        "name_en": "ATK Enhancement – Special [Infantry]",
+        "name_jp": "攻撃力強化・特【歩兵】",
         "type": "Administration",
         "effects": [
           {
@@ -20,8 +20,8 @@
         ]
       },
       {
-        "name_en": "DEF Enhancement â€“ Special Large [Infantry]",
-        "name_jp": "é˜²å¾¡åŠ›å¼·åŒ–ãƒ»ç‰¹å¤§ã€æ­©å…µã€‘",
+        "name_en": "DEF Enhancement – Special Large [Infantry]",
+        "name_jp": "防御力強化・特大【歩兵】",
         "type": "Administration",
         "effects": [
           {
@@ -33,8 +33,8 @@
         ]
       },
       {
-        "name_en": "HP Enhancement â€“ Special Large Improved [Infantry]",
-        "name_jp": "ä½“åŠ›å¼·åŒ–ãƒ»ç‰¹å¤§æ”¹ã€æ­©å…µã€‘",
+        "name_en": "HP Enhancement – Special Large Improved [Infantry]",
+        "name_jp": "体力強化・特大改【歩兵】",
         "type": "Administration",
         "effects": [
           {
@@ -51,13 +51,13 @@
   {
     "id": "toumi",
     "name_en": "Toumi",
-    "name_jp": "æ±ç¾Ž",
+    "name_jp": "東美",
     "country": "unknown",
     "rarity": "NR",
     "skills": [
       {
-        "name_en": "DEF Enhancement â€“ Special [Infantry]",
-        "name_jp": "é˜²å¾¡åŠ›å¼·åŒ–ãƒ»ç‰¹ã€æ­©å…µã€‘",
+        "name_en": "DEF Enhancement – Special [Infantry]",
+        "name_jp": "防御力強化・特【歩兵】",
         "type": "Administration",
         "effects": [
           {
@@ -69,8 +69,8 @@
         ]
       },
       {
-        "name_en": "ATK Enhancement â€“ Special Large [Infantry]",
-        "name_jp": "æ”»æ’ƒåŠ›å¼·åŒ–ãƒ»ç‰¹å¤§ã€æ­©å…µã€‘",
+        "name_en": "ATK Enhancement – Special Large [Infantry]",
+        "name_jp": "攻撃力強化・特大【歩兵】",
         "type": "Administration",
         "effects": [
           {
@@ -82,8 +82,8 @@
         ]
       },
       {
-        "name_en": "HP Enhancement â€“ Special Large Improved [Infantry]",
-        "name_jp": "ä½“åŠ›å¼·åŒ–ãƒ»ç‰¹å¤§æ”¹ã€æ­©å…µã€‘",
+        "name_en": "HP Enhancement – Special Large Improved [Infantry]",
+        "name_jp": "体力強化・特大改【歩兵】",
         "type": "Administration",
         "effects": [
           {
@@ -99,13 +99,13 @@
   {
     "id": "yugi",
     "name_en": "Yugi",
-    "name_jp": "æœ‰ç¾©",
+    "name_jp": "有義",
     "country": "unknown",
     "rarity": "NR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Black Turtle]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€é»’äº€ã€‘",
+        "name_jp": "猛将一閃【黒亀】",
         "type": "Combat",
         "effects": [
           {
@@ -123,8 +123,8 @@
         ]
       },
       {
-        "name_en": "ATK Enhancement â€“ Large [Shield Soldiers]",
-        "name_jp": "æ”»æ’ƒåŠ›å¼·åŒ–ãƒ»å¤§ã€ç›¾å…µã€‘",
+        "name_en": "ATK Enhancement – Large [Shield Soldiers]",
+        "name_jp": "攻撃力強化・大【盾兵】",
         "type": "Administration",
         "effects": [
           {
@@ -136,8 +136,8 @@
         ]
       },
       {
-        "name_en": "DEF Enhancement â€“ Large Improved [Shield Soldiers]",
-        "name_jp": "é˜²å¾¡åŠ›å¼·åŒ–ãƒ»å¤§æ”¹ã€ç›¾å…µã€‘",
+        "name_en": "DEF Enhancement – Large Improved [Shield Soldiers]",
+        "name_jp": "防御力強化・大改【盾兵】",
         "type": "Administration",
         "effects": [
           {
@@ -153,13 +153,13 @@
   {
     "id": "encho",
     "name_en": "Entei",
-    "name_jp": "ç‡•å‘ˆ",
+    "name_jp": "燕呈",
     "country": "unknown",
     "rarity": "NR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Yellow Tiger]",
-        "name_jp": "é‡è¿½æ’ƒã€é»„è™Žã€‘",
+        "name_jp": "重追撃【黄虎】",
         "type": "Combat",
         "effects": [
           {
@@ -183,8 +183,8 @@
         ]
       },
       {
-        "name_en": "Repair Currency Reduction â€“ Large",
-        "name_jp": "ä¿®ç†è²¨å¹£æ¸›å°‘ãƒ»å¤§",
+        "name_en": "Repair Currency Reduction – Large",
+        "name_jp": "修理貨幣減少・大",
         "type": "Administration",
         "effects": [
           {
@@ -196,8 +196,8 @@
         ]
       },
       {
-        "name_en": "DEF Enhancement â€“ Large Improved [Attack War Machines]",
-        "name_jp": "é˜²å¾¡åŠ›å¼·åŒ–ãƒ»å¤§æ”¹ã€æ”»æ’ƒå…µå™¨ã€‘",
+        "name_en": "DEF Enhancement – Large Improved [Attack War Machines]",
+        "name_jp": "防御力強化・大改【攻撃兵器】",
         "type": "Administration",
         "effects": [
           {
@@ -214,13 +214,13 @@
   {
     "id": "bamyuu",
     "name_en": "Bamyu",
-    "name_jp": "ãƒãƒŸãƒ¥ã‚¦",
+    "name_jp": "バミュウ",
     "country": "unknown",
     "rarity": "NR",
     "skills": [
       {
         "name_en": "Weak General Flash [Red Tiger]",
-        "name_jp": "å¼±å°†ä¸€é–ƒã€èµ¤è™Žã€‘",
+        "name_jp": "弱将一閃【赤虎】",
         "type": "Combat",
         "effects": [
           {
@@ -238,8 +238,8 @@
         ]
       },
       {
-        "name_en": "ATK Enhancement â€“ Large [Attack War Machines]",
-        "name_jp": "æ”»æ’ƒåŠ›å¼·åŒ–ãƒ»å¤§ã€æ”»æ’ƒå…µå™¨ã€‘",
+        "name_en": "ATK Enhancement – Large [Attack War Machines]",
+        "name_jp": "攻撃力強化・大【攻撃兵器】",
         "type": "Administration",
         "effects": [
           {
@@ -251,8 +251,8 @@
         ]
       },
       {
-        "name_en": "Repair Material Reduction â€“ Large Improved",
-        "name_jp": "ä¿®ç†è³‡ææ¸›å°‘ãƒ»å¤§æ”¹",
+        "name_en": "Repair Material Reduction – Large Improved",
+        "name_jp": "修理資材減少・大改",
         "type": "Administration",
         "effects": [
           {
@@ -269,13 +269,13 @@
   {
     "id": "kakubi",
     "name_en": "Kakubi",
-    "name_jp": "éƒ­å‚™",
+    "name_jp": "郭備",
     "country": "unknown",
     "rarity": "NR",
     "skills": [
       {
         "name_en": "ATK/DEF Enhancement [Red Sheep]",
-        "name_jp": "æ”»é˜²å¼·åŒ–ã€èµ¤ç¾Šã€‘",
+        "name_jp": "攻防強化【赤羊】",
         "type": "Strategy",
         "effects": [
           {
@@ -293,8 +293,8 @@
         ]
       },
       {
-        "name_en": "HP Enhancement â€“ Large [Shield Soldiers]",
-        "name_jp": "ä½“åŠ›å¼·åŒ–ãƒ»å¤§ã€ç›¾å…µã€‘",
+        "name_en": "HP Enhancement – Large [Shield Soldiers]",
+        "name_jp": "体力強化・大【盾兵】",
         "type": "Administration",
         "effects": [
           {
@@ -306,8 +306,8 @@
         ]
       },
       {
-        "name_en": "HP Enhancement â€“ Large Improved [Defense War Machines]",
-        "name_jp": "ä½“åŠ›å¼·åŒ–ãƒ»å¤§æ”¹ã€é˜²è¡›å…µå™¨ã€‘",
+        "name_en": "HP Enhancement – Large Improved [Defense War Machines]",
+        "name_jp": "体力強化・大改【防衛兵器】",
         "type": "Administration",
         "effects": [
           {
@@ -324,13 +324,13 @@
   {
     "id": "kesshi",
     "name_en": "Kesshi",
-    "name_jp": "ç«­æ°",
+    "name_jp": "竭氏",
     "country": "unknown",
     "rarity": "NR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Orange Tiger]",
-        "name_jp": "é‡è¿½æ’ƒã€æ©™è™Žã€‘",
+        "name_jp": "重追撃【橙虎】",
         "type": "Combat",
         "effects": [
           {
@@ -354,8 +354,8 @@
         ]
       },
       {
-        "name_en": "Repair Currency Reduction â€“ Small",
-        "name_jp": "ä¿®ç†è²¨å¹£æ¸›å°‘ãƒ»å°",
+        "name_en": "Repair Currency Reduction – Small",
+        "name_jp": "修理貨幣減少・小",
         "type": "Administration",
         "effects": [
           {
@@ -367,8 +367,8 @@
         ]
       },
       {
-        "name_en": "Repair Speed Enhancement â€“ Small Improved",
-        "name_jp": "ä¿®ç†é€Ÿåº¦å¼·åŒ–ãƒ»å°æ”¹",
+        "name_en": "Repair Speed Enhancement – Small Improved",
+        "name_jp": "修理速度強化・小改",
         "type": "Administration",
         "effects": [
           {
@@ -384,13 +384,13 @@
   {
     "id": "genho",
     "name_en": "Genho",
-    "name_jp": "çŽ„å³°",
+    "name_jp": "玄峰",
     "country": "unknown",
     "rarity": "NR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Red Elephant]",
-        "name_jp": "é‰„å£ä¸€é–ƒã€èµ¤è±¡ã€‘",
+        "name_jp": "鉄壁一閃【赤象】",
         "type": "Combat",
         "effects": [
           {
@@ -408,8 +408,8 @@
         ]
       },
       {
-        "name_en": "DEF Enhancement â€“ Large [Attack War Machines]",
-        "name_jp": "é˜²å¾¡åŠ›å¼·åŒ–ãƒ»å¤§ã€æ”»æ’ƒå…µå™¨ã€‘",
+        "name_en": "DEF Enhancement – Large [Attack War Machines]",
+        "name_jp": "防御力強化・大【攻撃兵器】",
         "type": "Administration",
         "effects": [
           {
@@ -421,8 +421,8 @@
         ]
       },
       {
-        "name_en": "Repair Ore Reduction â€“ Large Improved",
-        "name_jp": "ä¿®ç†é‰±çŸ³æ¸›å°‘ãƒ»å¤§æ”¹",
+        "name_en": "Repair Ore Reduction – Large Improved",
+        "name_jp": "修理鉱石減少・大改",
         "type": "Administration",
         "effects": [
           {
@@ -438,13 +438,13 @@
   {
     "id": "amon",
     "name_en": "Amon",
-    "name_jp": "äºœé–€",
+    "name_jp": "亜門",
     "country": "unknown",
     "rarity": "NR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Red Turtle]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€èµ¤äº€ã€‘",
+        "name_jp": "猛将一閃【赤亀】",
         "type": "Combat",
         "effects": [
           {
@@ -468,8 +468,8 @@
         ]
       },
       {
-        "name_en": "DEF Enhancement â€“ Medium [Archers]",
-        "name_jp": "é˜²å¾¡åŠ›å¼·åŒ–ãƒ»ä¸­ã€å¼“å…µã€‘",
+        "name_en": "DEF Enhancement – Medium [Archers]",
+        "name_jp": "防御力強化・中【弓兵】",
         "type": "Administration",
         "effects": [
           {
@@ -481,8 +481,8 @@
         ]
       },
       {
-        "name_en": "Repair Currency Reduction â€“ Medium Improved",
-        "name_jp": "ä¿®ç†è²¨å¹£æ¸›å°‘ãƒ»ä¸­æ”¹",
+        "name_en": "Repair Currency Reduction – Medium Improved",
+        "name_jp": "修理貨幣減少・中改",
         "type": "Administration",
         "effects": [
           {
@@ -498,13 +498,13 @@
   {
     "id": "kosho2",
     "name_en": "Koshou",
-    "name_jp": "æ±Ÿå½°",
+    "name_jp": "江彰",
     "country": "unknown",
     "rarity": "NR",
     "skills": [
       {
         "name_en": "Weak General Flash [Red Sheep]",
-        "name_jp": "å¼±å°†ä¸€é–ƒã€èµ¤ç¾Šã€‘",
+        "name_jp": "弱将一閃【赤羊】",
         "type": "Combat",
         "effects": [
           {
@@ -528,8 +528,8 @@
         ]
       },
       {
-        "name_en": "HP Enhancement â€“ Medium Improved [Archers]",
-        "name_jp": "ä½“åŠ›å¼·åŒ–ãƒ»ä¸­æ”¹ã€å¼“å…µã€‘",
+        "name_en": "HP Enhancement – Medium Improved [Archers]",
+        "name_jp": "体力強化・中改【弓兵】",
         "type": "Administration",
         "effects": [
           {
@@ -541,8 +541,8 @@
         ]
       },
       {
-        "name_en": "Scout â€“ Medium Improved",
-        "name_jp": "æ–¥å€™ãƒ»ä¸­æ”¹",
+        "name_en": "Scout – Medium Improved",
+        "name_jp": "斥候・中改",
         "type": "Administration",
         "effects": [
           {

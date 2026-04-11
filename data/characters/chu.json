@@ -1,15 +1,15 @@
-﻿[
+[
   {
     "id": "jino",
     "name_en": "Jinou",
-    "name_jp": "ä»å‡¹",
+    "name_jp": "仁凹",
     "country": "chu",
     "unit": "Kanmei Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Green Sheep]",
-        "name_jp": "é‰„å£ä¸€é–ƒã€ç·‘ç¾Šã€‘",
+        "name_jp": "鉄壁一閃【緑羊】",
         "type": "Combat",
         "effects": [
           {
@@ -27,8 +27,8 @@
         ]
       },
       {
-        "name_en": "Veteran Strategist''s Command",
-        "name_jp": "è€è»å¸«ã®é‡‡é…",
+        "name_en": "Veteran Strategist's Command",
+        "name_jp": "老軍師の采配",
         "type": "Strategy",
         "effects": [
           {
@@ -52,8 +52,8 @@
         ]
       },
       {
-        "name_en": "Giant''s Lieutenant [Jino]",
-        "name_jp": "å·¨äººã®å´è¿‘ã€ä»å‡¹ã€‘",
+        "name_en": "Giant's Lieutenant [Jino]",
+        "name_jp": "巨人の側近【仁凹】",
         "type": "Strategy",
         "effects": [
           {
@@ -82,14 +82,14 @@
   {
     "id": "gomosho",
     "name_en": "Goumasho",
-    "name_jp": "å‰›æ‘©è«¸",
+    "name_jp": "剛摩諸",
     "country": "chu",
     "unit": "Kanmei Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [White Tiger]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç™½è™Žã€‘",
+        "name_jp": "猛将一閃【白虎】",
         "type": "Combat",
         "effects": [
           {
@@ -107,8 +107,8 @@
         ]
       },
       {
-        "name_en": "Giant''s Lieutenant [Gomosho]",
-        "name_jp": "å·¨äººã®å´è¿‘ã€å‰›æ‘©è«¸ã€‘",
+        "name_en": "Giant's Lieutenant [Gomosho]",
+        "name_jp": "巨人の側近【剛摩諸】",
         "type": "Strategy",
         "effects": [
           {
@@ -139,7 +139,7 @@
       },
       {
         "name_en": "Heavy Armor Defense",
-        "name_jp": "é‡è£…å …å®ˆ",
+        "name_jp": "重装堅守",
         "type": "Combat",
         "effects": [
           {
@@ -180,14 +180,14 @@
   {
     "id": "baiman",
     "name_en": "Beiman",
-    "name_jp": "è²æº€",
+    "name_jp": "貝満",
     "country": "chu",
     "unit": "Kanmei Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Master General Sweep [Red Sheep]",
-        "name_jp": "åå°†ä¸€æŽƒã€èµ¤ç¾Šã€‘",
+        "name_jp": "名将一掃【赤羊】",
         "type": "Combat",
         "effects": [
           {
@@ -206,7 +206,7 @@
       },
       {
         "name_en": "Solid Advice",
-        "name_jp": "å …å®Ÿãªé€²è¨€",
+        "name_jp": "堅実な進言",
         "type": "Strategy",
         "effects": [
           {
@@ -224,8 +224,8 @@
         ]
       },
       {
-        "name_en": "Giant''s Lieutenant [Baiman]",
-        "name_jp": "å·¨äººã®å´è¿‘ã€è²æº€ã€‘",
+        "name_en": "Giant's Lieutenant [Baiman]",
+        "name_jp": "巨人の側近【貝満】",
         "type": "Strategy",
         "effects": [
           {
@@ -260,14 +260,14 @@
   {
     "id": "kaen",
     "name_en": "Kaen",
-    "name_jp": "åª§åƒ",
+    "name_jp": "媧偃",
     "country": "chu",
     "unit": "Karin Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Purple Tiger]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç´«è™Žã€‘",
+        "name_jp": "猛将一閃【紫虎】",
         "type": "Combat",
         "effects": [
           {
@@ -286,7 +286,7 @@
       },
       {
         "name_en": "Loyal Younger Sibling",
-        "name_jp": "å¿ å®Ÿãªã‚‹å¼Ÿ",
+        "name_jp": "忠実なる弟",
         "type": "Strategy",
         "effects": [
           {
@@ -305,7 +305,7 @@
       },
       {
         "name_en": "Careful Ambush",
-        "name_jp": "æ…Žé‡ãªå¥‡è¥²",
+        "name_jp": "慎重な奇襲",
         "type": "Combat",
         "effects": [
           {
@@ -328,13 +328,13 @@
   {
     "id": "koretsuo",
     "name_en": "Kouretsu",
-    "name_jp": "è€ƒçƒˆçŽ‹",
+    "name_jp": "考烈王",
     "country": "chu",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Weak Point Double Strike [Red Sheep]",
-        "name_jp": "æ€¥æ‰€åŒæ’ƒã€èµ¤ç¾Šã€‘",
+        "name_jp": "急所双撃【赤羊】",
         "type": "Combat",
         "effects": [
           {
@@ -353,7 +353,7 @@
       },
       {
         "name_en": "Vessel of the Chu King",
-        "name_jp": "æ¥šçŽ‹ã®å™¨",
+        "name_jp": "楚王の器",
         "type": "Strategy",
         "effects": [
           {
@@ -364,7 +364,7 @@
           },
           {
             "condition": null,
-            "target": "Self / ally Renpa / ally Renpa''s Four Heavenly Kings",
+            "target": "Self / ally Renpa / ally Renpa's Four Heavenly Kings",
             "effect": "Sure Hit",
             "duration": null
           },
@@ -378,7 +378,7 @@
       },
       {
         "name_en": "Iron Governance",
-        "name_jp": "å‰›ã®çµ±æ²»",
+        "name_jp": "剛の統治",
         "type": "Combat",
         "effects": [
           {
@@ -401,7 +401,7 @@
           },
           {
             "condition": null,
-            "target": "Self / ally Renpa / ally Renpa''s Four Heavenly Kings",
+            "target": "Self / ally Renpa / ally Renpa's Four Heavenly Kings",
             "effect": "HP Recovery 20%",
             "duration": null
           },
@@ -419,14 +419,14 @@
   {
     "id": "hakusui",
     "name_en": "Hakusui",
-    "name_jp": "ç™½ç¿ ",
+    "name_jp": "白翠",
     "country": "chu",
     "unit": "Rinbujun Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Green Elephant]",
-        "name_jp": "é‰„å£ä¸€é–ƒã€ç·‘è±¡ã€‘",
+        "name_jp": "鉄壁一閃【緑象】",
         "type": "Combat",
         "effects": [
           {
@@ -451,7 +451,7 @@
       },
       {
         "name_en": "Prayer for the Battlefield",
-        "name_jp": "æˆ¦å ´ã¸ã®ç¥ˆã‚Š",
+        "name_jp": "戦場への祈り",
         "type": "Strategy",
         "effects": [
           {
@@ -475,8 +475,8 @@
         ]
       },
       {
-        "name_en": "ATK Enhancement â€“ Special Large Improved [Archers]",
-        "name_jp": "æ”»æ’ƒåŠ›å¼·åŒ–ãƒ»ç‰¹å¤§æ”¹ã€å¼“å…µã€‘",
+        "name_en": "ATK Enhancement – Special Large Improved [Archers]",
+        "name_jp": "攻撃力強化・特大改【弓兵】",
         "type": "Administration",
         "effects": [
           {
@@ -493,13 +493,13 @@
   {
     "id": "shunshinkun",
     "name_en": "Shunshinkun",
-    "name_jp": "æ˜¥ç”³å›",
+    "name_jp": "春申君",
     "country": "chu",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Orange Elephant]",
-        "name_jp": "é‰„å£ä¸€é–ƒã€æ©™è±¡ã€‘",
+        "name_jp": "鉄壁一閃【橙象】",
         "type": "Combat",
         "effects": [
           {
@@ -518,7 +518,7 @@
       },
       {
         "name_en": "Coalition Supreme Commander",
-        "name_jp": "åˆå¾“è»ç·å¤§å°†",
+        "name_jp": "合従軍総大将",
         "type": "Strategy",
         "effects": [
           {
@@ -537,7 +537,7 @@
       },
       {
         "name_en": "Peerless Leader",
-        "name_jp": "ç¨€ä»£ã®æŒ‡å°Žè€…",
+        "name_jp": "稀代の指導者",
         "type": "Strategy",
         "effects": [
           {
@@ -554,14 +554,14 @@
   {
     "id": "bananci",
     "name_en": "Bananci",
-    "name_jp": "é¦¬å—æ…ˆ",
+    "name_jp": "馬南慈",
     "country": "chu",
     "unit": "Coalition Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Annihilation [Red Elephant]",
-        "name_jp": "çŒ›å°†æ’ƒæ»…ã€èµ¤è±¡ã€‘",
+        "name_jp": "猛将撃滅【赤象】",
         "type": "Combat",
         "effects": [
           {
@@ -574,7 +574,7 @@
       },
       {
         "name_en": "Fist Discourse",
-        "name_jp": "æ‹³ã®èªžã‚‰ã„",
+        "name_jp": "拳の語らい",
         "type": "Strategy",
         "effects": [
           {
@@ -593,7 +593,7 @@
       },
       {
         "name_en": "Crushing Iron Hammer",
-        "name_jp": "ç ´ç •é‰„æ§Œ",
+        "name_jp": "破砕鉄槌",
         "type": "Combat",
         "effects": [
           {

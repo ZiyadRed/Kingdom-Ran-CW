@@ -1,14 +1,14 @@
-﻿[
+[
   {
     "id": "yotanwa",
     "name_en": "Yotanwa",
-    "name_jp": "æ¥Šç«¯å’Œ",
+    "name_jp": "楊端和",
     "country": "mountain_folk",
     "rarity": "UR",
     "skills": [
       {
-        "name_en": "Death King''s Vanguard",
-        "name_jp": "æ­»çŽ‹ã®å…ˆé™£",
+        "name_en": "Death King's Vanguard",
+        "name_jp": "死王の先陣",
         "type": "Combat",
         "effects": [
           {
@@ -32,13 +32,13 @@
   {
     "id": "kitari",
     "name_en": "Kitari",
-    "name_jp": "ã‚­ã‚¿ãƒª",
+    "name_jp": "キタリ",
     "country": "mountain_folk",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Master General Attack [Red Bull]",
-        "name_jp": "åå°†æ”»æ’ƒã€èµ¤ç‰›ã€‘",
+        "name_jp": "名将攻撃【赤牛】",
         "type": "Combat",
         "effects": [
           {
@@ -57,7 +57,7 @@
       },
       {
         "name_en": "Brave and Bold",
-        "name_jp": "å‹‡çŒ›æžœæ•¢",
+        "name_jp": "勇猛果敢",
         "type": "Strategy",
         "effects": [
           {
@@ -82,7 +82,7 @@
       },
       {
         "name_en": "Severing Twin Blades",
-        "name_jp": "æ–­ã¡åˆ‡ã‚‹åŒåˆƒ",
+        "name_jp": "断ち切る双刃",
         "type": "Combat",
         "effects": [
           {
@@ -111,13 +111,13 @@
   {
     "id": "danto",
     "name_en": "Danto",
-    "name_jp": "ãƒ€ãƒ³ãƒˆ",
+    "name_jp": "ダント",
     "country": "mountain_folk",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Gray Tiger]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç°è™Žã€‘",
+        "name_jp": "猛将一閃【灰虎】",
         "type": "Combat",
         "effects": [
           {
@@ -127,7 +127,7 @@
             "duration": null
           },
           {
-            "condition": "Other ally Kyountain Folk alive, own HP â‰¥ 50%",
+            "condition": "Other ally Kyountain Folk alive, own HP ≥ 50%",
             "target": "Self",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
@@ -148,7 +148,7 @@
       },
       {
         "name_en": "Vigorous and Aggressive",
-        "name_jp": "å‰›å¥çŒ›é€²",
+        "name_jp": "剛健猛進",
         "type": "Strategy",
         "effects": [
           {
@@ -167,7 +167,7 @@
       },
       {
         "name_en": "Life in the Midst of Death",
-        "name_jp": "æ­»ä¸­ã«æ´»ã‚ã‚Š",
+        "name_jp": "死中に活あり",
         "type": "Combat",
         "effects": [
           {
@@ -183,7 +183,7 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Other Mountain Folk alive, own HP â‰¥ 50%",
+            "condition": "Other Mountain Folk alive, own HP ≥ 50%",
             "target": "Self",
             "effect": "DEF Up 40%",
             "duration": "3 turns"
@@ -208,13 +208,13 @@
   {
     "id": "katari",
     "name_en": "Katari",
-    "name_jp": "ã‚«ã‚¿ãƒª",
+    "name_jp": "カタリ",
     "country": "mountain_folk",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Double Flash [Red Sheep]",
-        "name_jp": "çŒ›å°†åŒé–ƒã€èµ¤ç¾Šã€‘",
+        "name_jp": "猛将双閃【赤羊】",
         "type": "Combat",
         "effects": [
           {
@@ -227,7 +227,7 @@
       },
       {
         "name_en": "Calm and Composed",
-        "name_jp": "å¾žå®¹è‡ªè‹¥",
+        "name_jp": "從容自若",
         "type": "Strategy",
         "effects": [
           {
@@ -252,7 +252,7 @@
       },
       {
         "name_en": "Flash Blade",
-        "name_jp": "çž¬åˆƒ",
+        "name_jp": "瞬刃",
         "type": "Combat",
         "effects": [
           {
@@ -281,13 +281,13 @@
   {
     "id": "todji",
     "name_en": "Toji",
-    "name_jp": "ãƒˆãƒƒãƒ‚",
+    "name_jp": "トッヂ",
     "country": "mountain_folk",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak Point Attack [Red Elephant]",
-        "name_jp": "æ€¥æ‰€æ”»æ’ƒã€èµ¤è±¡ã€‘",
+        "name_jp": "急所攻撃【赤象】",
         "type": "Combat",
         "effects": [
           {
@@ -311,8 +311,8 @@
         ]
       },
       {
-        "name_en": "Death King''s Lieutenant [Toji]",
-        "name_jp": "æ­»çŽ‹ã®å´è¿‘ã€ãƒˆãƒƒãƒ‚ã€‘",
+        "name_en": "Death King's Lieutenant [Toji]",
+        "name_jp": "死王の側近【トッヂ】",
         "type": "Strategy",
         "effects": [
           {
@@ -337,7 +337,7 @@
       },
       {
         "name_en": "Mountain Folk Support [Toji]",
-        "name_jp": "å±±æ°‘æ´è­·ã€ãƒˆãƒƒãƒ‚ã€‘",
+        "name_jp": "山民援護【トッヂ】",
         "type": "Combat",
         "effects": [
           {
@@ -372,13 +372,13 @@
   {
     "id": "fuji",
     "name_en": "Fuji",
-    "name_jp": "ãƒ•ã‚¥ãƒ‚",
+    "name_jp": "フゥヂ",
     "country": "mountain_folk",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Enemy General Sweep [Red Sheep]",
-        "name_jp": "æ•µå°†ä¸€æŽƒã€èµ¤ç¾Šã€‘",
+        "name_jp": "敵将一掃【赤羊】",
         "type": "Combat",
         "effects": [
           {
@@ -396,8 +396,8 @@
         ]
       },
       {
-        "name_en": "Death King''s Lieutenant [Fuji]",
-        "name_jp": "æ­»çŽ‹ã®å´è¿‘ã€ãƒ•ã‚¥ãƒ‚ã€‘",
+        "name_en": "Death King's Lieutenant [Fuji]",
+        "name_jp": "死王の側近【フゥヂ】",
         "type": "Strategy",
         "effects": [
           {
@@ -422,7 +422,7 @@
       },
       {
         "name_en": "Mountain Folk Support [Fuji]",
-        "name_jp": "å±±æ°‘æ´è­·ã€ãƒ•ã‚¥ãƒ‚ã€‘",
+        "name_jp": "山民援護【フゥヂ】",
         "type": "Combat",
         "effects": [
           {
@@ -451,13 +451,13 @@
   {
     "id": "ramaoji",
     "name_en": "Ramauji",
-    "name_jp": "ãƒ©ãƒžã‚¦ã‚¸",
+    "name_jp": "ラマウジ",
     "country": "mountain_folk",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak Point Attack [Red Sheep]",
-        "name_jp": "æ€¥æ‰€æ”»æ’ƒã€èµ¤ç¾Šã€‘",
+        "name_jp": "急所攻撃【赤羊】",
         "type": "Combat",
         "effects": [
           {
@@ -475,8 +475,8 @@
         ]
       },
       {
-        "name_en": "Death King''s Lieutenant [Ramauji]",
-        "name_jp": "æ­»çŽ‹ã®å´è¿‘ã€ãƒ©ãƒžã‚¦ã‚¸ã€‘",
+        "name_en": "Death King's Lieutenant [Ramauji]",
+        "name_jp": "死王の側近【ラマウジ】",
         "type": "Strategy",
         "effects": [
           {
@@ -501,7 +501,7 @@
       },
       {
         "name_en": "Mountain Folk Support [Ramauji]",
-        "name_jp": "å±±æ°‘æ´è­·ã€ãƒ©ãƒžã‚¦ã‚¸ã€‘",
+        "name_jp": "山民援護【ラマウジ】",
         "type": "Combat",
         "effects": [
           {
@@ -530,13 +530,13 @@
   {
     "id": "pamu",
     "name_en": "Pam",
-    "name_jp": "ãƒ‘ãƒ ",
+    "name_jp": "パム",
     "country": "mountain_folk",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Navy Sheep]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç´ºç¾Šã€‘",
+        "name_jp": "猛将一閃【紺羊】",
         "type": "Combat",
         "effects": [
           {
@@ -555,7 +555,7 @@
       },
       {
         "name_en": "Stalwart Escort",
-        "name_jp": "å‰›è€…éšè¡Œ",
+        "name_jp": "剛者随行",
         "type": "Strategy",
         "effects": [
           {
@@ -586,7 +586,7 @@
       },
       {
         "name_en": "Stalwart Support",
-        "name_jp": "å‰›è€…æ´è­·",
+        "name_jp": "剛者援護",
         "type": "Combat",
         "effects": [
           {

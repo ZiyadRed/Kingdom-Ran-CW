@@ -1,14 +1,14 @@
-﻿[
+[
   {
     "id": "kyobou",
     "name_en": "Kyoubou",
-    "name_jp": "å·¨æš´",
+    "name_jp": "巨暴",
     "country": "chu",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Enemy General Sweep [Red Elephant]",
-        "name_jp": "æ•µå°†ä¸€æŽƒã€èµ¤è±¡ã€‘",
+        "name_jp": "敵将一掃【赤象】",
         "type": "Combat",
         "effects": [
           {
@@ -27,7 +27,7 @@
       },
       {
         "name_en": "Encroaching Violence",
-        "name_jp": "è¿«ã‚‹æš´åŠ›",
+        "name_jp": "迫る暴力",
         "type": "Combat",
         "effects": [
           {
@@ -46,7 +46,7 @@
       },
       {
         "name_en": "Massive Army",
-        "name_jp": "å·¨ãªã‚‹è»å‹¢",
+        "name_jp": "巨なる軍勢",
         "type": "Combat",
         "effects": [
           {
@@ -75,14 +75,14 @@
   {
     "id": "gotoku",
     "name_en": "Goutoku",
-    "name_jp": "è±ªå¾³",
+    "name_jp": "豪徳",
     "country": "chu",
     "unit": "Karin Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Gray Turtle]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç°äº€ã€‘",
+        "name_jp": "猛将一閃【灰亀】",
         "type": "Combat",
         "effects": [
           {
@@ -100,8 +100,8 @@
         ]
       },
       {
-        "name_en": "Female Hero''s Escort",
-        "name_jp": "å¥³å‚‘ã®è­·è¡›",
+        "name_en": "Female Hero's Escort",
+        "name_jp": "女傑の護衛",
         "type": "Strategy",
         "effects": [
           {
@@ -126,7 +126,7 @@
       },
       {
         "name_en": "Immediate Response on Command",
-        "name_jp": "æ€ä¼å³å¿œ",
+        "name_jp": "思伝即応",
         "type": "Combat",
         "effects": [
           {
@@ -149,13 +149,13 @@
   {
     "id": "rien",
     "name_en": "Rien",
-    "name_jp": "æŽåœ’",
+    "name_jp": "李園",
     "country": "chu",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Black Sheep]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€é»’ç¾Šã€‘",
+        "name_jp": "猛将一閃【黒羊】",
         "type": "Combat",
         "effects": [
           {
@@ -174,7 +174,7 @@
       },
       {
         "name_en": "Rebuilding Great Chu",
-        "name_jp": "å¤§å›½æ¥šã®å†å»º",
+        "name_jp": "大国楚の再建",
         "type": "Strategy",
         "effects": [
           {
@@ -199,7 +199,7 @@
       },
       {
         "name_en": "Shadow Maneuver",
-        "name_jp": "æš—èºã™ã‚‹å½±",
+        "name_jp": "暗躍する影",
         "type": "Combat",
         "effects": [
           {
@@ -228,14 +228,14 @@
   {
     "id": "rokin",
     "name_en": "Rokin",
-    "name_jp": "é­¯è¿‘",
+    "name_jp": "魯近",
     "country": "chu",
     "unit": "Rinbujun Forces (Coalition)",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Yellow Tiger]",
-        "name_jp": "æ€¥æ‰€ä¸€é–ƒã€é»„è™Žã€‘",
+        "name_jp": "急所一閃【黄虎】",
         "type": "Combat",
         "effects": [
           {
@@ -253,8 +253,8 @@
         ]
       },
       {
-        "name_en": "First General''s Loyal Retainer",
-        "name_jp": "ç¬¬ä¸€å°†ã®å¿ è‡£",
+        "name_en": "First General's Loyal Retainer",
+        "name_jp": "第一将の忠臣",
         "type": "Strategy",
         "effects": [
           {
@@ -272,8 +272,8 @@
         ]
       },
       {
-        "name_en": "Lieutenant''s Pride",
-        "name_jp": "å‰¯å®˜ã®çŸœæŒ",
+        "name_en": "Lieutenant's Pride",
+        "name_jp": "副官の矜持",
         "type": "Strategy",
         "effects": [
           {
@@ -296,13 +296,13 @@
   {
     "id": "chouin",
     "name_en": "Chouin",
-    "name_jp": "å¼µå°",
+    "name_jp": "張印",
     "country": "han",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Yellow Turtle]",
-        "name_jp": "æ€¥æ‰€ä¸€é–ƒã€é»„äº€ã€‘",
+        "name_jp": "急所一閃【黄亀】",
         "type": "Combat",
         "effects": [
           {
@@ -339,7 +339,7 @@
       },
       {
         "name_en": "Acting Commander-in-Chief of Han",
-        "name_jp": "éŸ“å›½è»ç·å¤§å°†ä»£ç†",
+        "name_jp": "韓国軍総大将代理",
         "type": "Strategy",
         "effects": [
           {
@@ -351,8 +351,8 @@
         ]
       },
       {
-        "name_en": "Successor''s Duty",
-        "name_jp": "å¾Œä»»ã®è²¬å‹™",
+        "name_en": "Successor's Duty",
+        "name_jp": "後任の責務",
         "type": "Combat",
         "effects": [
           {
@@ -399,13 +399,13 @@
   {
     "id": "nako",
     "name_en": "Nakon",
-    "name_jp": "å¥ˆæ£",
+    "name_jp": "奈棍",
     "country": "han",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Yellow Bull]",
-        "name_jp": "æ€¥æ‰€ä¸€é–ƒã€é»„ç‰›ã€‘",
+        "name_jp": "急所一閃【黄牛】",
         "type": "Combat",
         "effects": [
           {
@@ -424,7 +424,7 @@
       },
       {
         "name_en": "Han Army Defense Commander",
-        "name_jp": "éŸ“å›½è»å®ˆå‚™é•·",
+        "name_jp": "韓国軍守備長",
         "type": "Strategy",
         "effects": [
           {
@@ -443,7 +443,7 @@
       },
       {
         "name_en": "Eroding Disease",
-        "name_jp": "æµ¸è•ã™ã‚‹ç—…",
+        "name_jp": "浸蝕する病",
         "type": "Combat",
         "effects": [
           {
@@ -490,13 +490,13 @@
   {
     "id": "bakan",
     "name_en": "Bakan",
-    "name_jp": "é¦¬é–¢",
+    "name_jp": "馬関",
     "country": "han",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Yellow Bull]",
-        "name_jp": "æ€¥æ‰€ä¸€é–ƒã€é»„ç‰›ã€‘",
+        "name_jp": "急所一閃【黄牛】",
         "type": "Combat",
         "effects": [
           {
@@ -515,7 +515,7 @@
       },
       {
         "name_en": "Han Army Two-Thousand Commander",
-        "name_jp": "éŸ“å›½è»äºŒåƒäººå°†",
+        "name_jp": "韓国軍二千人将",
         "type": "Strategy",
         "effects": [
           {
@@ -534,7 +534,7 @@
       },
       {
         "name_en": "Corroding Pursuit",
-        "name_jp": "è•ã‚€è¿½æ’ƒ",
+        "name_jp": "蝕む追撃",
         "type": "Combat",
         "effects": [
           {
@@ -581,13 +581,13 @@
   {
     "id": "tairoji",
     "name_en": "Tairoji",
-    "name_jp": "å¤ªå‘‚æ…ˆ",
+    "name_jp": "太呂慈",
     "country": "wei",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Black Elephant]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€é»’è±¡ã€‘",
+        "name_jp": "猛将一閃【黒象】",
         "type": "Combat",
         "effects": [
           {
@@ -618,7 +618,7 @@
       },
       {
         "name_en": "Wei Grand General",
-        "name_jp": "é­å›½å¤§å°†è»",
+        "name_jp": "魏国大将軍",
         "type": "Strategy",
         "effects": [
           {
@@ -649,7 +649,7 @@
       },
       {
         "name_en": "Judgment Strike",
-        "name_jp": "æ–­ç½ªã®ä¸€æ’ƒ",
+        "name_jp": "断罪の一撃",
         "type": "Combat",
         "effects": [
           {
@@ -696,14 +696,14 @@
   {
     "id": "otaji",
     "name_en": "Otaji",
-    "name_jp": "ã‚ªã‚¿ã‚¸",
+    "name_jp": "オタジ",
     "country": "yan",
     "unit": "Ordo Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Green Turtle]",
-        "name_jp": "é‰„å£ä¸€é–ƒã€ç·‘äº€ã€‘",
+        "name_jp": "鉄壁一閃【緑亀】",
         "type": "Combat",
         "effects": [
           {
@@ -728,7 +728,7 @@
       },
       {
         "name_en": "Mountain Ambush",
-        "name_jp": "å±±å²³å¼·è¥²",
+        "name_jp": "山岳強襲",
         "type": "Strategy",
         "effects": [
           {
@@ -747,7 +747,7 @@
       },
       {
         "name_en": "Elite Relentless Pursuers",
-        "name_jp": "çª®è¿½ã™ã‚‹ç²¾å…µ",
+        "name_jp": "窮追する精兵",
         "type": "Combat",
         "effects": [
           {
@@ -776,13 +776,13 @@
   {
     "id": "budai",
     "name_en": "Budai",
-    "name_jp": "ãƒ–ãƒ€ã‚¤",
+    "name_jp": "ブダイ",
     "country": "ai",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Green Tiger]",
-        "name_jp": "é‰„å£ä¸€é–ƒã€ç·‘è™Žã€‘",
+        "name_jp": "鉄壁一閃【緑虎】",
         "type": "Combat",
         "effects": [
           {
@@ -801,7 +801,7 @@
       },
       {
         "name_en": "Inherited Grudge",
-        "name_jp": "ç¶™ãŽã—æ€¨æ¨",
+        "name_jp": "継ぎし怨恨",
         "type": "Strategy",
         "effects": [
           {
@@ -812,7 +812,7 @@
           },
           {
             "condition": null,
-            "target": "Ally JuutekkÅ",
+            "target": "Ally Juutekkō",
             "effect": "Confusion Infliction Rate Up 20%",
             "duration": null
           },
@@ -832,7 +832,7 @@
       },
       {
         "name_en": "Dying Flame",
-        "name_jp": "æ®‹ç«",
+        "name_jp": "残火",
         "type": "Combat",
         "effects": [
           {
@@ -861,13 +861,13 @@
   {
     "id": "hamui",
     "name_en": "Hamui",
-    "name_jp": "ãƒãƒ ã‚¤",
+    "name_jp": "ハムイ",
     "country": "ai",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Gray Bull]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç°ç‰›ã€‘",
+        "name_jp": "猛将一閃【灰牛】",
         "type": "Combat",
         "effects": [
           {
@@ -886,7 +886,7 @@
       },
       {
         "name_en": "Right Hand of the Wategi King",
-        "name_jp": "æˆŽç¿ŸçŽ‹ã®å³è…•",
+        "name_jp": "戎翟王の右腕",
         "type": "Strategy",
         "effects": [
           {
@@ -917,7 +917,7 @@
       },
       {
         "name_en": "Guerrilla Charge",
-        "name_jp": "éŠæ’ƒçªè²«",
+        "name_jp": "遊撃突貫",
         "type": "Combat",
         "effects": [
           {

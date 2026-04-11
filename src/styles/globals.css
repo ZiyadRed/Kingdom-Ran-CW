@@ -1,6 +1,6 @@
-﻿/* â”€â”€â”€ Design Tokens â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Design Tokens ──────────────────────────────────────────────────────── */
 :root {
-  /* Palette â€“ ink & parchment with blood-red accent */
+  /* Palette – ink & parchment with blood-red accent */
   --bg:           #0d0c0a;
   --bg-card:      #141210;
   --bg-card-alt:  #1a1714;
@@ -32,9 +32,9 @@
   --admin:        #27ae60;
 
   /* Typography */
-  --font-display: ''Cinzel Decorative'', serif;
-  --font-heading: ''Cinzel'', serif;
-  --font-body:    ''Crimson Pro'', Georgia, serif;
+  --font-display: 'Cinzel Decorative', serif;
+  --font-heading: 'Cinzel', serif;
+  --font-body:    'Crimson Pro', Georgia, serif;
 
   /* Spacing */
   --gap-xs: 4px;
@@ -49,7 +49,7 @@
   --radius-lg: 12px;
 }
 
-/* â”€â”€â”€ Reset â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Reset ───────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 16px; }
 body {
@@ -64,14 +64,14 @@ a { color: var(--gold); text-decoration: none; }
 a:hover { text-decoration: underline; }
 button { cursor: pointer; font-family: inherit; }
 
-/* â”€â”€â”€ App Shell â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── App Shell ───────────────────────────────────────────────────────────── */
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* â”€â”€â”€ Header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Header ──────────────────────────────────────────────────────────────── */
 .site-header {
   background: linear-gradient(180deg, #1a0f0a 0%, #0d0c0a 100%);
   border-bottom: 1px solid var(--border);
@@ -131,7 +131,7 @@ button { cursor: pointer; font-family: inherit; }
 .nav-btn:hover { border-color: var(--gold-soft); color: var(--gold); }
 .nav-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-/* â”€â”€â”€ Main Content â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Main Content ────────────────────────────────────────────────────────── */
 .main-content {
   flex: 1;
   max-width: 1400px;
@@ -140,7 +140,7 @@ button { cursor: pointer; font-family: inherit; }
   padding: var(--gap-lg);
 }
 
-/* â”€â”€â”€ Filter Bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Filter Bar ──────────────────────────────────────────────────────────── */
 .filter-bar {
   display: flex;
   flex-wrap: wrap;
@@ -174,14 +174,14 @@ button { cursor: pointer; font-family: inherit; }
   letter-spacing: 0.06em;
 }
 
-/* â”€â”€â”€ Character Grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Character Grid ──────────────────────────────────────────────────────── */
 .character-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: var(--gap-md);
 }
 
-/* â”€â”€â”€ Character Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Character Card ──────────────────────────────────────────────────────── */
 .char-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -197,7 +197,7 @@ button { cursor: pointer; font-family: inherit; }
 }
 /* Left accent bar by country */
 .char-card::before {
-  content: '''';
+  content: '';
   position: absolute;
   left: 0; top: 0; bottom: 0;
   width: 3px;
@@ -303,7 +303,7 @@ button { cursor: pointer; font-family: inherit; }
 }
 .btn-party--remove:hover { background: var(--accent); color: #fff; }
 
-/* â”€â”€â”€ Skill Block â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Skill Block ─────────────────────────────────────────────────────────── */
 .skill-list { margin-top: var(--gap-md); display: flex; flex-direction: column; gap: var(--gap-md); }
 .skill-block {
   background: var(--bg-card-alt);
@@ -376,7 +376,7 @@ button { cursor: pointer; font-family: inherit; }
   font-style: italic;
 }
 
-/* â”€â”€â”€ Party Builder â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Party Builder ───────────────────────────────────────────────────────── */
 .party-page h2, .order-page h2 {
   font-family: var(--font-heading);
   font-size: 1.4rem;
@@ -434,7 +434,7 @@ button { cursor: pointer; font-family: inherit; }
 }
 .slot-remove:hover { color: var(--accent); }
 
-/* â”€â”€â”€ Activation Order â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Activation Order ────────────────────────────────────────────────────── */
 .order-list { display: flex; flex-direction: column; gap: var(--gap-sm); }
 .order-item {
   display: flex;
@@ -464,7 +464,7 @@ button { cursor: pointer; font-family: inherit; }
   color: var(--text-muted);
 }
 
-/* â”€â”€â”€ Empty State â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Empty State ─────────────────────────────────────────────────────────── */
 .empty-state {
   text-align: center;
   padding: var(--gap-xl);
@@ -472,7 +472,7 @@ button { cursor: pointer; font-family: inherit; }
   font-style: italic;
 }
 
-/* â”€â”€â”€ Footer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Footer ──────────────────────────────────────────────────────────────── */
 .site-footer {
   border-top: 1px solid var(--border);
   padding: var(--gap-md) var(--gap-lg);
@@ -482,7 +482,7 @@ button { cursor: pointer; font-family: inherit; }
   line-height: 1.8;
 }
 
-/* â”€â”€â”€ Responsive â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .header-inner { flex-direction: column; align-items: flex-start; }
   .character-grid { grid-template-columns: 1fr; }
@@ -494,7 +494,7 @@ button { cursor: pointer; font-family: inherit; }
   .filter-bar { flex-direction: column; align-items: stretch; }
 }
 
-/* â”€â”€â”€ Simulation / Activation Order â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Simulation / Activation Order ──────────────────────────────────────── */
 
 .formation-bar {
   display: flex;
@@ -525,8 +525,8 @@ button { cursor: pointer; font-family: inherit; }
 .formation-general.country-ai           { border-top-color: #884ea0; }
 .formation-general.country-mountain_folk{ border-top-color: #7d6608; }
 
-.formation-num       { font-size: 0.7rem; color: var(--gold); font-family: ''Cinzel'', serif; margin-bottom: 0.25rem; }
-.formation-name      { font-size: 0.95rem; font-family: ''Cinzel'', serif; color: var(--text); }
+.formation-num       { font-size: 0.7rem; color: var(--gold); font-family: 'Cinzel', serif; margin-bottom: 0.25rem; }
+.formation-name      { font-size: 0.95rem; font-family: 'Cinzel', serif; color: var(--text); }
 .formation-name-jp   { font-size: 0.75rem; color: #8a7d6a; margin-top: 2px; }
 
 .sim-section {
@@ -534,7 +534,7 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 .sim-section-title {
-  font-family: ''Cinzel'', serif;
+  font-family: 'Cinzel', serif;
   font-size: 1rem;
   padding: 0.6rem 1rem;
   border-radius: 6px;
@@ -586,7 +586,7 @@ button { cursor: pointer; font-family: inherit; }
   background: #1a1815;
   border-bottom: 1px solid #2e2a24;
 }
-.sim-general-name    { font-family: ''Cinzel'', serif; font-size: 0.9rem; color: var(--gold); }
+.sim-general-name    { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold); }
 .sim-general-name-jp { font-size: 0.75rem; color: #8a7d6a; }
 
 .sim-skill-row {
@@ -618,7 +618,7 @@ button { cursor: pointer; font-family: inherit; }
   margin-bottom: 1.5rem;
 }
 .sim-turn-header {
-  font-family: ''Cinzel'', serif;
+  font-family: 'Cinzel', serif;
   font-size: 0.85rem;
   color: var(--gold);
   letter-spacing: 0.1em;
@@ -645,7 +645,7 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 /* Party slots */
-.slot-num        { font-family: ''Cinzel'', serif; font-size: 0.7rem; color: var(--gold); margin-right: 0.5rem; flex-shrink: 0; }
+.slot-num        { font-family: 'Cinzel', serif; font-size: 0.7rem; color: var(--gold); margin-right: 0.5rem; flex-shrink: 0; }
 .slot-names      { display: flex; flex-direction: column; flex: 1; }
 .slot-name       { font-size: 0.9rem; color: var(--text); }
 .slot-name-jp    { font-size: 0.75rem; color: #8a7d6a; }
@@ -655,7 +655,7 @@ button { cursor: pointer; font-family: inherit; }
   cursor: not-allowed;
 }
 
-/* â”€â”€â”€ Character Images â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── Character Images ────────────────────────────────────────────────────── */
 
 .char-image-wrap {
   width: 100%;
@@ -687,4 +687,3 @@ button { cursor: pointer; font-family: inherit; }
   border: 2px solid #2e2a24;
   margin-bottom: 4px;
 }
-

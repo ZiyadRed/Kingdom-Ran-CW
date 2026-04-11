@@ -1,14 +1,14 @@
-﻿[
+[
   {
     "id": "oukenwang",
     "name_en": "Ouken",
-    "name_jp": "çŽ‹å»ºçŽ‹",
+    "name_jp": "王建王",
     "country": "qi",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Orange Turtle]",
-        "name_jp": "é‰„å£ä¸€é–ƒã€æ©™äº€ã€‘",
+        "name_jp": "鉄壁一閃【橙亀】",
         "type": "Combat",
         "effects": [
           {
@@ -33,7 +33,7 @@
       },
       {
         "name_en": "Deal Concluded",
-        "name_jp": "å•†è«‡æˆç«‹",
+        "name_jp": "商談成立",
         "type": "Strategy",
         "effects": [
           {
@@ -57,8 +57,8 @@
         ]
       },
       {
-        "name_en": "HP Enhancement â€“ Special Large Improved [Shield Soldiers]",
-        "name_jp": "ä½“åŠ›å¼·åŒ–ãƒ»ç‰¹å¤§æ”¹ã€ç›¾å…µã€‘",
+        "name_en": "HP Enhancement – Special Large Improved [Shield Soldiers]",
+        "name_jp": "体力強化・特大改【盾兵】",
         "type": "Administration",
         "effects": [
           {

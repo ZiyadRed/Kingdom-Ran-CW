@@ -1,15 +1,15 @@
-﻿[
+[
   {
     "id": "akou",
     "name_en": "Akou",
-    "name_jp": "äºœå…‰",
+    "name_jp": "亜光",
     "country": "qin",
     "unit": "Ousen Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Blue Sheep]",
-        "name_jp": "é‡è¿½æ’ƒã€é’ç¾Šã€‘",
+        "name_jp": "重追撃【青羊】",
         "type": "Combat",
         "effects": [
           {
@@ -27,8 +27,8 @@
         ]
       },
       {
-        "name_en": "First General of Ousen''s Forces",
-        "name_jp": "çŽ‹ç¿¦è»ç¬¬ä¸€å°†",
+        "name_en": "First General of Ousen's Forces",
+        "name_jp": "王翦軍第一将",
         "type": "Strategy",
         "effects": [
           {
@@ -53,7 +53,7 @@
       },
       {
         "name_en": "Frontal Breakthrough",
-        "name_jp": "æ­£é¢çªç ´",
+        "name_jp": "正面突破",
         "type": "Combat",
         "effects": [
           {
@@ -82,14 +82,14 @@
   {
     "id": "denrimi",
     "name_en": "Denrimi",
-    "name_jp": "ç”°é‡Œå¼¥",
+    "name_jp": "田里弥",
     "country": "qin",
     "unit": "Ousen Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Blue Sheep]",
-        "name_jp": "é‰„å£ä¸€é–ƒã€é’ç¾Šã€‘",
+        "name_jp": "鉄壁一閃【青羊】",
         "type": "Combat",
         "effects": [
           {
@@ -108,7 +108,7 @@
       },
       {
         "name_en": "Changshan Snake Formation",
-        "name_jp": "å¸¸å±±è›‡å‹¢",
+        "name_jp": "常山蛇勢",
         "type": "Strategy",
         "effects": [
           {
@@ -139,7 +139,7 @@
       },
       {
         "name_en": "Firm Defense, Wise Action",
-        "name_jp": "å …å®ˆè³¢æ˜Ž",
+        "name_jp": "堅守賢明",
         "type": "Combat",
         "effects": [
           {
@@ -162,13 +162,13 @@
   {
     "id": "youka",
     "name_en": "Youka",
-    "name_jp": "å§šè³ˆ",
+    "name_jp": "姚賈",
     "country": "qin",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Defense Reduction [Red Elephant]",
-        "name_jp": "é˜²å¾¡ä½Žä¸‹ã€èµ¤è±¡ã€‘",
+        "name_jp": "防御低下【赤象】",
         "type": "Strategy",
         "effects": [
           {
@@ -187,7 +187,7 @@
       },
       {
         "name_en": "Four-Way Sabotage",
-        "name_jp": "å››é‡å·¥ä½œ",
+        "name_jp": "四重工作",
         "type": "Combat",
         "effects": [
           {
@@ -205,8 +205,8 @@
         ]
       },
       {
-        "name_en": "ATK Enhancement â€“ Special Large Improved [Infantry]",
-        "name_jp": "æ”»æ’ƒåŠ›å¼·åŒ–ãƒ»ç‰¹å¤§æ”¹ã€æ­©å…µã€‘",
+        "name_en": "ATK Enhancement – Special Large Improved [Infantry]",
+        "name_jp": "攻撃力強化・特大改【歩兵】",
         "type": "Administration",
         "effects": [
           {
@@ -223,13 +223,13 @@
   {
     "id": "keirei",
     "name_en": "Kyourei",
-    "name_jp": "äº¬ä»¤",
+    "name_jp": "京令",
     "country": "qin",
     "rarity": "NR",
     "skills": [
       {
         "name_en": "HP Recovery [Red Sheep]",
-        "name_jp": "ä½“åŠ›å›žå¾©ã€èµ¤ç¾Šã€‘",
+        "name_jp": "体力回復【赤羊】",
         "type": "Strategy",
         "effects": [
           {
@@ -242,7 +242,7 @@
       },
       {
         "name_en": "Medical Framework",
-        "name_jp": "åŒ»ç™‚ã®æž ",
+        "name_jp": "医療の枠",
         "type": "Strategy",
         "effects": [
           {
@@ -260,8 +260,8 @@
         ]
       },
       {
-        "name_en": "DEF Enhancement â€“ Large Improved [Infantry]",
-        "name_jp": "é˜²å¾¡åŠ›å¼·åŒ–ãƒ»å¤§æ”¹ã€æ­©å…µã€‘",
+        "name_en": "DEF Enhancement – Large Improved [Infantry]",
+        "name_jp": "防御力強化・大改【歩兵】",
         "type": "Administration",
         "effects": [
           {
@@ -278,13 +278,13 @@
   {
     "id": "romin",
     "name_en": "Robin",
-    "name_jp": "å‘‚æ•",
+    "name_jp": "呂敏",
     "country": "qin",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak General Flash",
-        "name_jp": "å¼±å°†ä¸€é–ƒ",
+        "name_jp": "弱将一閃",
         "type": "Combat",
         "effects": [
           {
@@ -303,7 +303,7 @@
       },
       {
         "name_en": "Versatile Movement",
-        "name_jp": "ç¸¦æ¨ªè‡ªåœ¨",
+        "name_jp": "縦横自在",
         "type": "Combat",
         "effects": [
           {
@@ -328,7 +328,7 @@
       },
       {
         "name_en": "Closing Ambush",
-        "name_jp": "è©°ã‚ã®å¥‡è¥²",
+        "name_jp": "詰めの奇襲",
         "type": "Strategy",
         "effects": [
           {
@@ -357,14 +357,14 @@
   {
     "id": "kakuun",
     "name_en": "Kakuun",
-    "name_jp": "è§’é›²",
+    "name_jp": "角雲",
     "country": "qin",
     "unit": "Kanki Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Attack Reduction [Red Bull]",
-        "name_jp": "æ”»æ’ƒä½Žä¸‹ã€èµ¤ç‰›ã€‘",
+        "name_jp": "攻撃低下【赤牛】",
         "type": "Strategy",
         "effects": [
           {
@@ -377,7 +377,7 @@
       },
       {
         "name_en": "Cornerstone of Defense",
-        "name_jp": "å®ˆã‚Šã®è¦",
+        "name_jp": "守りの要",
         "type": "Combat",
         "effects": [
           {
@@ -402,7 +402,7 @@
       },
       {
         "name_en": "Immovable Guardian",
-        "name_jp": "ä¸å‹•ã®å®ˆè­·",
+        "name_jp": "不動の守護",
         "type": "Combat",
         "effects": [
           {
@@ -437,14 +437,14 @@
   {
     "id": "bain",
     "name_en": "Bain",
-    "name_jp": "é¦¬å°",
+    "name_jp": "馬印",
     "country": "qin",
     "unit": "Kanki Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Yellow Sheep]",
-        "name_jp": "æ€¥æ‰€ä¸€é–ƒã€é»„ç¾Šã€‘",
+        "name_jp": "急所一閃【黄羊】",
         "type": "Combat",
         "effects": [
           {
@@ -463,7 +463,7 @@
       },
       {
         "name_en": "Declaration of Madness",
-        "name_jp": "ç‹‚æ°—å®£å‘Š",
+        "name_jp": "狂気宣告",
         "type": "Strategy",
         "effects": [
           {
@@ -482,7 +482,7 @@
       },
       {
         "name_en": "Madness Execution",
-        "name_jp": "ç‹‚æ°—åŸ·è¡Œ",
+        "name_jp": "狂気執行",
         "type": "Combat",
         "effects": [
           {
@@ -517,14 +517,14 @@
   {
     "id": "shotaku",
     "name_en": "Shoutaku",
-    "name_jp": "æ¾ç¢",
+    "name_jp": "松琢",
     "country": "qin",
     "unit": "Gyokuhou Squad",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Green Bull]",
-        "name_jp": "é‡è¿½æ’ƒã€ç·‘ç‰›ã€‘",
+        "name_jp": "重追撃【緑牛】",
         "type": "Combat",
         "effects": [
           {
@@ -543,7 +543,7 @@
       },
       {
         "name_en": "Gyokuhou Oath [Life]",
-        "name_jp": "çŽ‰é³³ã®èª“ã„ã€ç”Ÿã€‘",
+        "name_jp": "玉鳳の誓い【生】",
         "type": "Strategy",
         "effects": [
           {
@@ -568,7 +568,7 @@
       },
       {
         "name_en": "Loyalty to the Royal House",
-        "name_jp": "çŽ‹å®¶ã¸ã®ä¿¡",
+        "name_jp": "王家への信",
         "type": "Combat",
         "effects": [
           {
@@ -603,14 +603,14 @@
   {
     "id": "kyukou",
     "name_en": "Kyuukou",
-    "name_jp": "å®®åº·",
+    "name_jp": "宮康",
     "country": "qin",
     "unit": "Gyokuhou Squad",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Gray Sheep]",
-        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç°ç¾Šã€‘",
+        "name_jp": "猛将一閃【灰羊】",
         "type": "Combat",
         "effects": [
           {
@@ -629,7 +629,7 @@
       },
       {
         "name_en": "Gyokuhou Oath [Loyalty]",
-        "name_jp": "çŽ‰é³³ã®èª“ã„ã€å¿ ã€‘",
+        "name_jp": "玉鳳の誓い【忠】",
         "type": "Strategy",
         "effects": [
           {
@@ -654,7 +654,7 @@
       },
       {
         "name_en": "Hold to the Last",
-        "name_jp": "æ­»å®ˆ",
+        "name_jp": "死守",
         "type": "Combat",
         "effects": [
           {
@@ -689,14 +689,14 @@
   {
     "id": "naki",
     "name_en": "Naki",
-    "name_jp": "é‚£è²´",
+    "name_jp": "那貴",
     "country": "qin",
     "unit": "Kanki Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Master General Flash [Yellow Sheep]",
-        "name_jp": "åå°†ä¸€é–ƒã€é»„ç¾Šã€‘",
+        "name_jp": "名将一閃【黄羊】",
         "type": "Combat",
         "effects": [
           {
@@ -715,7 +715,7 @@
       },
       {
         "name_en": "Strike First",
-        "name_jp": "æ©Ÿå…ˆã‚’åˆ¶ã™",
+        "name_jp": "機先を制す",
         "type": "Strategy",
         "effects": [
           {
@@ -740,7 +740,7 @@
       },
       {
         "name_en": "Silent Intimidation",
-        "name_jp": "é™ã‹ãªã‚‹å¨åœ§",
+        "name_jp": "静かなる威圧",
         "type": "Combat",
         "effects": [
           {
@@ -769,14 +769,14 @@
   {
     "id": "ringyoku",
     "name_en": "Ringyoku",
-    "name_jp": "ãƒªãƒ³çŽ‰",
+    "name_jp": "リン玉",
     "country": "qin",
     "unit": "Kanki Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Green Tiger]",
-        "name_jp": "é‡è¿½æ’ƒã€ç·‘è™Žã€‘",
+        "name_jp": "重追撃【緑虎】",
         "type": "Combat",
         "effects": [
           {
@@ -795,7 +795,7 @@
       },
       {
         "name_en": "Clever Lieutenant",
-        "name_jp": "æ…§æ•ãªå´è¿‘",
+        "name_jp": "慧敏な側近",
         "type": "Strategy",
         "effects": [
           {
@@ -814,7 +814,7 @@
       },
       {
         "name_en": "Cruel Follow-Up",
-        "name_jp": "æ®‹é…·ãªè¿½ã„æ‰“ã¡",
+        "name_jp": "残酷な追い打ち",
         "type": "Combat",
         "effects": [
           {
@@ -855,14 +855,14 @@
   {
     "id": "zenou",
     "name_en": "Zenou",
-    "name_jp": "ã‚¼ãƒŽã‚¦",
+    "name_jp": "ゼノウ",
     "country": "qin",
     "unit": "Kanki Forces",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Eradication [Red Sheep]",
-        "name_jp": "çŒ›å°†æ’²æ»…ã€èµ¤ç¾Šã€‘",
+        "name_jp": "猛将撲滅【赤羊】",
         "type": "Combat",
         "effects": [
           {
@@ -881,7 +881,7 @@
       },
       {
         "name_en": "Massacre",
-        "name_jp": "é–æ®º",
+        "name_jp": "鏖殺",
         "type": "Combat",
         "effects": [
           {
@@ -905,8 +905,8 @@
         ]
       },
       {
-        "name_en": "Bandit''s Ultimate Weapon",
-        "name_jp": "é‡Žç›—ã®æœ€çµ‚å…µå™¨",
+        "name_en": "Bandit's Ultimate Weapon",
+        "name_jp": "野盗の最終兵器",
         "type": "Strategy",
         "effects": [
           {
@@ -929,13 +929,13 @@
   {
     "id": "hokaku",
     "name_en": "Hokaku",
-    "name_jp": "è’²é¶®",
+    "name_jp": "蒲鶮",
     "country": "qin",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak General Flash [Orange Sheep]",
-        "name_jp": "å¼±å°†ä¸€é–ƒã€æ©™ç¾Šã€‘",
+        "name_jp": "弱将一閃【橙羊】",
         "type": "Combat",
         "effects": [
           {
@@ -960,7 +960,7 @@
       },
       {
         "name_en": "Overthrowing the Strong",
-        "name_jp": "ä¸‹å‰‹ä¸Š",
+        "name_jp": "下剋上",
         "type": "Combat",
         "effects": [
           {
@@ -990,8 +990,8 @@
         ]
       },
       {
-        "name_en": "ATK Enhancement â€“ Large Improved [Infantry]",
-        "name_jp": "æ”»æ’ƒåŠ›å¼·åŒ–ãƒ»å¤§æ”¹ã€æ­©å…µã€‘",
+        "name_en": "ATK Enhancement – Large Improved [Infantry]",
+        "name_jp": "攻撃力強化・大改【歩兵】",
         "type": "Administration",
         "effects": [
           {
