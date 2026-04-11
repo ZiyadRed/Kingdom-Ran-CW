@@ -210,7 +210,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally infantry",
             "effect": "ATK Up 12.4%",
             "duration": null
@@ -265,7 +265,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally infantry",
             "effect": "DEF Up 9.9%",
             "duration": null
@@ -995,7 +995,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally infantry",
             "effect": "ATK Up 9.9%",
             "duration": null

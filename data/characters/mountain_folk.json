@@ -730,5 +730,295 @@
       }
     ],
     "image": "https://touranko.vercel.app/persos/pam.webp"
+  },
+  {
+    "id": "taijifu",
+    "name_en": "Taijifu",
+    "name_jp": "タジフ",
+    "country": "mountain_folk",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "ATK & DEF Enhancement [Red Elephant]",
+        "name_jp": "攻防強化【赤象】",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "DEF Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Infantry]",
+            "effect": "Ally [Cavalry] ATK Up 20%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "修理鉱石減少・大",
+        "name_jp": "修理鉱石減少・大",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing CW war machines",
+            "target": "Self",
+            "effect": "War machine repair Ore Consumption Down 2.7%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "攻撃力強化・大改 [盾兵]",
+        "name_jp": "攻撃力強化・大改【盾兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even if not deployed)",
+            "target": "Ally [Shield]",
+            "effect": "ATK Up 9.9%",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "https://touranko.vercel.app/persos/taijifu.webp"
+  },
+  {
+    "id": "bajio",
+    "name_en": "Bajio",
+    "name_jp": "バジオウ",
+    "country": "mountain_folk",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Iron Wall Flash [Red Sheep]",
+        "name_jp": "鉄壁一閃【赤羊】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest DEF",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Other ally [Mountain Folk]",
+            "effect": "ATK Up 20％",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "獣の心",
+        "name_jp": "獣の心",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Anti-[Archer] ATK Up 15%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Higher own remaining HP (scales)",
+            "target": "Self",
+            "effect": "ATK Up",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "% Damage130％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "山界の咆哮",
+        "name_jp": "山界の咆哮",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": "When Attacking、Ally war machine with highest ATK",
+            "target": "Ally war machines",
+            "effect": "1 war machine ATK Up 20％",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking、Ally war machine with highest ATK、Per other ally [Mountain Folk]",
+            "target": "Ally war machines",
+            "effect": "1 war machine ATK Up 5％",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "https://touranko.vercel.app/persos/bajio.webp"
+  },
+  {
+    "id": "gotan",
+    "name_en": "Gotan",
+    "name_jp": "剛炭",
+    "country": "mountain_folk",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Red Elephant]",
+        "name_jp": "猛将一閃【赤象】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": "Enemy war machine with highest ATK",
+            "target": "1 enemy war machine",
+            "effect": "% Damage100％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "体力強化・中 [歩兵]",
+        "name_jp": "体力強化・中【歩兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally [Infantry]",
+            "effect": "Max HP Up 6.9％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "修理資材減少・中改",
+        "name_jp": "修理資材減少・中改",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing CW war machines",
+            "target": "Self",
+            "effect": "War machine repair Material Consumption Down 5.5％",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "shuki",
+    "name_en": "Shuki",
+    "name_jp": "朱鬼",
+    "country": "mountain_folk",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "ATK Enhancement [Red Sheep]",
+        "name_jp": "攻撃強化【赤羊】",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Other ally",
+            "effect": "[Infantry] ATK Up 20％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally \"Maki\"",
+            "effect": "ATK Up 20％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "斥候・小",
+        "name_jp": "斥候・小",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing Checkpoint terrain (effective even if not deployed)",
+            "target": "Passing unit",
+            "effect": "Squad Damage Reduction 2％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "攻撃力強化・小改 [攻撃兵器]",
+        "name_jp": "攻撃力強化・小改【攻撃兵器】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally attack war machines",
+            "effect": "ATK Up 4.8％",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "maki",
+    "name_en": "Maki",
+    "name_jp": "麻鬼",
+    "country": "mountain_folk",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Red Elephant]",
+        "name_jp": "猛将一閃【赤象】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": "Enemy war machine with highest ATK",
+            "target": "1 enemy war machine",
+            "effect": "% Damage100％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "坂路適性・小",
+        "name_jp": "坂路適性・小",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing Slope terrain (effective even if not deployed)",
+            "target": "Passing unit",
+            "effect": "Damage Dealt Reduction Resistance 5.4％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "攻撃力強化・小改 [防衛兵器]",
+        "name_jp": "攻撃力強化・小改【防衛兵器】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally defense war machines",
+            "effect": "ATK Up 4.8％",
+            "duration": null
+          }
+        ]
+      }
+    ]
   }
 ]

@@ -62,7 +62,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally shield soldiers",
             "effect": "Max HP Up 22.8%",
             "duration": null

@@ -409,25 +409,25 @@
         "star6": true,
         "effects": [
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Self",
             "effect": "Max HP Up 100％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Self",
             "effect": "ATK Up, DEF Up 30％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Enemy infantry and cavalry",
             "effect": "Evasion (Dodge Chance) Down 25％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Self",
             "effect": "Evasion (Dodge Chance) 25％",
             "duration": null
@@ -504,5 +504,28 @@
       }
     ],
     "image": "https://touranko.vercel.app/persos/kouyoku.webp"
+  },
+  {
+    "id": "hanroki2",
+    "name_en": "Hanroki",
+    "name_jp": "樊琊期",
+    "country": "ai",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "弱者への蹂躙",
+        "name_jp": "弱者への蹂躙",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy HP ≤ 50%, Enemy general with lowest remaining HP",
+            "target": "2 enemy generals",
+            "effect": "% Damage60％",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "https://touranko.vercel.app/persos/hanroki.webp"
   }
 ]

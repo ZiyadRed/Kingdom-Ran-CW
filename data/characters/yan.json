@@ -247,13 +247,13 @@
         "star6": true,
         "effects": [
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Ally Qin, Zhao, Wei, Chu, Han, and Yan",
             "effect": "Max HP Up 100%",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Ally Qin, Zhao, Wei, Chu, Han, and Yan",
             "effect": "DEF Up 30%",
             "duration": null

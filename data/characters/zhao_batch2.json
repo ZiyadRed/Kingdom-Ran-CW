@@ -68,7 +68,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally infantry",
             "effect": "Max HP Up 22.8%",
             "duration": null
@@ -167,25 +167,25 @@
         "star6": true,
         "effects": [
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Self",
             "effect": "Max HP Up 100%",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Ally archers",
             "effect": "Critical Rate Up 25%",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Ally archers",
             "effect": "Confusion Infliction Rate Up 30%",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】敵盾兵が生存",
+            "condition": "Enemy [Shield] alive",
             "target": "Ally archers",
             "effect": "Guard 60%",
             "duration": "3 times"
@@ -357,19 +357,19 @@
         "star6": true,
         "effects": [
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Ally Zhao",
             "effect": "DEF Up 20％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Ally Zhao",
-            "effect": "対秦国DEF Up 30％",
+            "effect": "Anti-[Qin] DEF Up 30%",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】敵秦国または山の民の生存",
+            "condition": "Enemy [Qin] or [Mountain Folk] alive",
             "target": "Self",
             "effect": "HP Recovery 20％",
             "duration": null
@@ -378,5 +378,617 @@
       }
     ],
     "image": "https://touranko.vercel.app/persos/shinseijou.webp"
+  },
+  {
+    "id": "kousonryu",
+    "name_en": "Kousonryu",
+    "name_jp": "公孫龍",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Orange Turtle]",
+        "name_jp": "猛将一閃【橙亀】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Other ally",
+            "effect": "[Shield] DEF Up 20％",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "攻撃力強化・大 [盾兵]",
+        "name_jp": "攻撃力強化・大【盾兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally [Shield]",
+            "effect": "ATK Up 4.3％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "攻撃力強化・大改 [防衛兵器]",
+        "name_jp": "攻撃力強化・大改【防衛兵器】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally defense war machines",
+            "effect": "ATK Up 6.4％",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "https://touranko.vercel.app/persos/kousonryuu.webp"
+  },
+  {
+    "id": "domon",
+    "name_en": "Domon",
+    "name_jp": "土門",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Orange Turtle]",
+        "name_jp": "猛将一閃【橙亀】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Shield]",
+            "effect": "DEF Up 20％",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "防御力強化・大 [弓兵]",
+        "name_jp": "防御力強化・大【弓兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally [Archer]",
+            "effect": "DEF Up 4.3％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "坂路適性・大改",
+        "name_jp": "坂路適性・大改",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing Slope terrain (effective even if not deployed)",
+            "target": "Passing unit",
+            "effect": "Damage Dealt Reduction Resistance 16.6％",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "miyamoto",
+    "name_en": "Miyamoto",
+    "name_jp": "宮元",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "DEF Enhancement [Red Sheep]",
+        "name_jp": "防御強化【赤羊】",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Shield]",
+            "effect": "DEF Up 10％",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Enemy [Cavalry]",
+            "effect": "ATK Down 20％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "修理速度強化・小",
+        "name_jp": "修理速度強化・小",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing CW war machines",
+            "target": "Self",
+            "effect": "War machine repair Repair Speed Up 1.7％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "修理貨幣減少・小改",
+        "name_jp": "修理貨幣減少・小改",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing CW war machines",
+            "target": "Self",
+            "effect": "War machine repair Coin Consumption Down 5.5％",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "shoka",
+    "name_en": "Shoka",
+    "name_jp": "尚鹿",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "DEF Enhancement [Red Elephant]",
+        "name_jp": "防御強化【赤象】",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Ally [Cavalry] DEF Up 20％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "防御力強化・大 [防衛兵器]",
+        "name_jp": "防御力強化・大【防衛兵器】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally defense war machines",
+            "effect": "DEF Up 2.8％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "修理貨幣減少・大改",
+        "name_jp": "修理貨幣減少・大改",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing CW war machines",
+            "target": "Self",
+            "effect": "War machine repair Coin Consumption Down 7.4％",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "saji",
+    "name_en": "Saji",
+    "name_jp": "左慈",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Yellow Sheep]",
+        "name_jp": "猛将一閃【黄羊】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": "Enemy with highest max HP",
+            "target": "1 enemy general",
+            "effect": "\"Paralysis\" Infliction 70％",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "攻撃力強化・中 [歩兵]",
+        "name_jp": "攻撃力強化・中【歩兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally [Infantry]",
+            "effect": "ATK Up 3.8％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "泥濘適性・中改",
+        "name_jp": "泥濘適性・中改",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing Marsh terrain (effective even if not deployed)",
+            "target": "Passing unit",
+            "effect": "Damage Taken Increase Resistance 14.5％",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "jokan",
+    "name_en": "Jokan",
+    "name_jp": "徐完",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Red Turtle]",
+        "name_jp": "重追撃【赤亀】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "The enemy with the lowest remaining strength",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Other ally",
+            "effect": "\"Illusion\" Infliction Rate Up 45％",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "泥濘適性・中",
+        "name_jp": "泥濘適性・中",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing Marsh terrain (effective even if not deployed)",
+            "target": "Passing unit",
+            "effect": "Damage Taken Increase Resistance 6.3％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "攻撃力強化・中改 [攻撃兵器]",
+        "name_jp": "攻撃力強化・中改【攻撃兵器】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "During the Alliance War (effective even if you do not have to attack yourself)",
+            "target": "Ally attack war machines",
+            "effect": "ATK Up 5.8％",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kou2",
+    "name_en": "Kou",
+    "name_jp": "昂",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Red Ox]",
+        "name_jp": "重追撃【赤牛】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "The enemy with the lowest remaining strength",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Heavy Pursuit [Red Cow]",
+        "name_jp": "Heavy Pursuit [Red Cow]",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Infantry]",
+            "effect": "Ally [Shield] \"Burn\" Resistance 100％",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "泥濘 aptitude/small",
+        "name_jp": "泥濘 aptitude/small",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "When passing Marsh terrain (effective even if not deployed)",
+            "target": "Passing unit",
+            "effect": "Damage Taken Increase Resistance 5.4％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "防御力強化・小改 [防衛兵器]",
+        "name_jp": "防御力強化・小改【防衛兵器】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally defense war machines",
+            "effect": "DEF Up 4.8％",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "https://touranko.vercel.app/persos/kou.webp"
+  },
+  {
+    "id": "rihaku2",
+    "name_en": "Rihaku",
+    "name_jp": "李白",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Green Ox]",
+        "name_jp": "猛将一閃【緑牛】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "\"Provoke\"",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "防御力強化・大 [盾兵]",
+        "name_jp": "防御力強化・大【盾兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally [Shield]",
+            "effect": "DEF Up 4.3％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "防御力強化・大改 [防衛兵器]",
+        "name_jp": "防御力強化・大改【防衛兵器】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even if not deployed)",
+            "target": "Ally defense war machines",
+            "effect": "DEF Up 6.4％",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "https://touranko.vercel.app/persos/rihaku.webp"
+  },
+  {
+    "id": "shomou",
+    "name_en": "Shoumou",
+    "name_jp": "渉孟",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Red Tiger]",
+        "name_jp": "重追撃【赤虎】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "The enemy with the lowest remaining strength",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Other ally",
+            "effect": "[Cavalry] ATK Up 20％",
+            "duration": "3 turns"
+          },
+          {
+            "condition": null,
+            "target": "Ally [Shield]",
+            "effect": "DEF Up 20％",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "体力強化・大 [騎兵]",
+        "name_jp": "体力強化・大【騎兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even if not deployed)",
+            "target": "Ally [Cavalry]",
+            "effect": "Max HP Up 7.9％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "体力強化・大改 [攻撃兵器]",
+        "name_jp": "体力強化・大改【攻撃兵器】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally attack war machines",
+            "effect": "Max HP Up 28.3％",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "https://touranko.vercel.app/persos/shoumou.webp"
+  },
+  {
+    "id": "shika2",
+    "name_en": "Shika",
+    "name_jp": "紫夏",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Yellow Elephant]",
+        "name_jp": "猛将一閃【黄象】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Shield]",
+            "effect": "DEF Up 20％",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Lower own remaining HP (scales)",
+            "target": "Self",
+            "effect": "ATK Up (max 50%)",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "修理貨幣減少・大",
+        "name_jp": "修理貨幣減少・大",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing CW war machines",
+            "target": "Self",
+            "effect": "War machine repair Coin Consumption Down 3.2％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "防御力強化・大改 [弓兵]",
+        "name_jp": "防御力強化・大改【弓兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even if not deployed)",
+            "target": "Ally [Archer]",
+            "effect": "DEF Up 9.9％",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "https://touranko.vercel.app/persos/shika.webp"
+  },
+  {
+    "id": "kurosa",
+    "name_en": "Kurosa",
+    "name_jp": "黒桜",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Orange Tiger]",
+        "name_jp": "猛将一閃【橙虎】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Archer]",
+            "effect": "ATK Up 20％",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Physical strength, large [bow soldier]",
+        "name_jp": "Physical strength, large [bow soldier]",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "During the Alliance War (effective even if you do not have to attack yourself)",
+            "target": "Ally [Archer]",
+            "effect": "Max HP Up 7.9％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "森林適性・大改",
+        "name_jp": "森林適性・大改",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing Forest terrain (effective even if not deployed)",
+            "target": "Passing unit",
+            "effect": "Damage Dealt Reduction Resistance 16.6％",
+            "duration": null
+          }
+        ]
+      }
+    ]
   }
 ]

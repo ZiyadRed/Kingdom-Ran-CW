@@ -496,31 +496,31 @@
         "star6": true,
         "effects": [
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Self",
-            "effect": "対騎兵ATK Up 20％",
+            "effect": "Anti-[Cavalry] ATK Up 20％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Self",
-            "effect": "味方「昭王」、味方六大将軍DEF Up 、Hit Rate Up 20％",
+            "effect": "Ally \"Shoou\" and Six Great Generals DEF Up 、Hit Rate Up 20％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】When Garrisoning",
+            "condition": "When Garrisoning",
             "target": "Enemy cavalry generals",
             "effect": "ATK Down 、Critical Damage Down 20％",
             "duration": null
           },
           {
-            "condition": "[Additional skills] At the time of garrison",
+            "condition": "At the time of garrison",
             "target": "Ally war machines",
             "effect": "ATK Up, DEF Up 50％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】When Garrisoning、城門の体力残存時",
+            "condition": "When Garrisoning、While gate has HP remaining",
             "target": "Gate",
             "effect": "HP Recovery 50,000",
             "duration": null
@@ -1004,7 +1004,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "When repairing Souha war machines",
+            "condition": "When repairing CW war machines",
             "target": "War machine repair",
             "effect": "Material Cost Down 2.4%",
             "duration": null
@@ -1017,7 +1017,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally archers",
             "effect": "Max HP Up 15.9%",
             "duration": null
@@ -1102,7 +1102,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally infantry",
             "effect": "Max HP Up 22.8%",
             "duration": null
@@ -1169,7 +1169,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally archers",
             "effect": "Max HP Up 22.8%",
             "duration": null
@@ -1212,7 +1212,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally attack war machines",
             "effect": "DEF Up 2.8%",
             "duration": null
@@ -1225,14 +1225,15 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally infantry",
             "effect": "DEF Up 9.9%",
             "duration": null
           }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/ryuuto.webp"
   },
   {
     "id": "chutetsu",
@@ -1267,7 +1268,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally defense war machines",
             "effect": "ATK Up 2.8%",
             "duration": null
@@ -1280,7 +1281,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally infantry",
             "effect": "ATK Up 9.9%",
             "duration": null

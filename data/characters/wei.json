@@ -242,37 +242,37 @@
         "star6": true,
         "effects": [
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Self",
             "effect": "Max HP Up 100％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Self",
-            "effect": "対騎兵ATK Up 30％",
+            "effect": "Anti-[Cavalry] ATK Up 30％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Self",
-            "effect": "対騎兵DEF Up 30％",
+            "effect": "Anti-[Cavalry] DEF Up 30％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Self",
-            "effect": "、味方魏火龍HP Recovery Up 50％",
+            "effect": "Ally Wei Fire Dragon HP Recovery Up 50％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】味方魏火龍1名につき",
+            "condition": "Per ally Wei Fire Dragon",
             "target": "Enemy cavalry",
             "effect": "ATK Down 10％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】When Garrisoning、敵騎兵武将が生存",
+            "condition": "When Garrisoning, enemy [Cavalry] alive",
             "target": "Self",
             "effect": "HP Recovery 20％",
             "duration": null
@@ -364,7 +364,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally infantry",
             "effect": "Max HP Up 22.8%",
             "duration": null
@@ -443,7 +443,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally shield soldiers",
             "effect": "Max HP Up 22.8%",
             "duration": null
@@ -613,7 +613,7 @@
     "name_jp": "霊凰",
     "country": "wei",
     "rarity": "UR",
-    "image": null,
+    "image": "https://touranko.vercel.app/persos/reiou.webp",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Yellow Tiger]",
@@ -717,5 +717,224 @@
         ]
       }
     ]
+  },
+  {
+    "id": "yuren",
+    "name_en": "Yuuren",
+    "name_jp": "幽連",
+    "country": "wei",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Green Elephant]",
+        "name_jp": "猛将一閃【緑象】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "3 enemy generals",
+            "effect": "\"Illusion\"35％",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "泥濘適性・大",
+        "name_jp": "泥濘適性・大",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing Marsh terrain (effective even if not deployed)",
+            "target": "Passing unit",
+            "effect": "Damage Taken Increase Resistance 7.2％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "攻撃力強化・大改 [歩兵]",
+        "name_jp": "攻撃力強化・大改【歩兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "During the Alliance War (effective even if you do not have to attack yourself)",
+            "target": "Ally [Infantry]",
+            "effect": "ATK Up 9.9％",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "https://touranko.vercel.app/persos/yuuren.webp"
+  },
+  {
+    "id": "hoki",
+    "name_en": "Hoki",
+    "name_jp": "馮忌",
+    "country": "wei",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Blue Sheep]",
+        "name_jp": "猛将一閃【青羊】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": "Per other ally [Infantry]",
+            "target": "Self",
+            "effect": "ATK Up 10％",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "体力強化・大 [攻撃兵器]",
+        "name_jp": "体力強化・大【攻撃兵器】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally attack war machines",
+            "effect": "Max HP Up 12.3％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "体力強化・大改 [防衛兵器]",
+        "name_jp": "体力強化・大改【防衛兵器】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even if not deployed)",
+            "target": "Ally defense war machines",
+            "effect": "Max HP Up 28.3％",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gika",
+    "name_en": "Gika",
+    "name_jp": "魏加",
+    "country": "wei",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Yellow Elephant]",
+        "name_jp": "重追撃【黄象】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "The enemy with the lowest remaining strength",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "\"Reckless\"",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "修理貨幣減少・大",
+        "name_jp": "修理貨幣減少・大",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing CW war machines",
+            "target": "Self",
+            "effect": "War machine repair Coin Consumption Down 3.2％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "攻撃力強化・大改 [弓兵]",
+        "name_jp": "攻撃力強化・大改【弓兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally [Archer]",
+            "effect": "ATK Up 9.9％",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "https://touranko.vercel.app/persos/gika.webp"
+  },
+  {
+    "id": "korgen",
+    "name_en": "Kourigen",
+    "name_jp": "黄離弦",
+    "country": "wei",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Orange Sheep]",
+        "name_jp": "猛将一閃【橙羊】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Other ally",
+            "effect": "[Archer] Anti-[Shield] ATK Up 20%",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "坂路適正・大",
+        "name_jp": "坂路適正・大",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing Slope terrain (effective even if not deployed)",
+            "target": "Passing unit",
+            "effect": "Damage Dealt Reduction Resistance 7.2％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "修理鉱石減少・大改",
+        "name_jp": "修理鉱石減少・大改",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing CW war machines",
+            "target": "Self",
+            "effect": "War machine repair Ore Consumption Down 6.2％",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "https://touranko.vercel.app/persos/kourigen.webp"
   }
 ]

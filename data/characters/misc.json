@@ -12,7 +12,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally infantry",
             "effect": "ATK Up 1%",
             "duration": null
@@ -25,7 +25,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally infantry",
             "effect": "DEF Up 5.4%",
             "duration": null
@@ -38,7 +38,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally infantry",
             "effect": "Max HP Up 22.8%",
             "duration": null
@@ -61,7 +61,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally infantry",
             "effect": "DEF Up 1%",
             "duration": null
@@ -74,7 +74,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally infantry",
             "effect": "ATK Up 5.4%",
             "duration": null
@@ -87,7 +87,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally infantry",
             "effect": "Max HP Up 22.8%",
             "duration": null
@@ -128,7 +128,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally shield soldiers",
             "effect": "ATK Up 4.3%",
             "duration": null
@@ -141,7 +141,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally shield soldiers",
             "effect": "DEF Up 9.9%",
             "duration": null
@@ -188,7 +188,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "When repairing Souha war machines",
+            "condition": "When repairing CW war machines",
             "target": "War machine repair",
             "effect": "Currency Cost Down 3.2%",
             "duration": null
@@ -201,7 +201,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally attack war machines",
             "effect": "DEF Up 6.4%",
             "duration": null
@@ -243,7 +243,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally attack war machines",
             "effect": "ATK Up 2.8%",
             "duration": null
@@ -256,7 +256,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "When repairing Souha war machines",
+            "condition": "When repairing CW war machines",
             "target": "War machine repair",
             "effect": "Material Cost Down 6.2%",
             "duration": null
@@ -298,7 +298,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally shield soldiers",
             "effect": "Max HP Up 7.9%",
             "duration": null
@@ -311,7 +311,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally defense war machines",
             "effect": "Max HP Up 28.3%",
             "duration": null
@@ -359,7 +359,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "When repairing Souha war machines",
+            "condition": "When repairing CW war machines",
             "target": "War machine repair",
             "effect": "Currency Cost Down 2.4%",
             "duration": null
@@ -372,7 +372,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "When repairing Souha war machines",
+            "condition": "When repairing CW war machines",
             "target": "War machine repair",
             "effect": "Repair Speed Up 3.9%",
             "duration": null
@@ -413,7 +413,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally attack war machines",
             "effect": "DEF Up 2.8%",
             "duration": null
@@ -426,14 +426,15 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "When repairing Souha war machines",
+            "condition": "When repairing CW war machines",
             "target": "War machine repair",
             "effect": "Ore Cost Down 6.2%",
             "duration": null
           }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/genpou.webp"
   },
   {
     "id": "amon",
@@ -473,7 +474,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally archers",
             "effect": "DEF Up 3.8%",
             "duration": null
@@ -486,7 +487,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "When repairing Souha war machines",
+            "condition": "When repairing CW war machines",
             "target": "War machine repair",
             "effect": "Currency Cost Down 6.4%",
             "duration": null
@@ -533,7 +534,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally archers",
             "effect": "Max HP Up 6.9%",
             "duration": null
@@ -553,6 +554,7 @@
           }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/koshou.webp"
   }
 ]

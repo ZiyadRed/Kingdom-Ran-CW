@@ -77,39 +77,39 @@
         "star6": true,
         "effects": [
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Ally Gyokuhou Unit",
             "effect": "Max HP Up 100％",
             "duration": null
           },
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Ally Gyokuhou Unit",
             "effect": "ATK Up 30％",
             "duration": null
           },
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Ally Gyokuhou Unit",
             "effect": "DEF Up 30％",
             "duration": null
           },
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Ally Gyokuhou Unit",
             "effect": "Guard 100％",
             "duration": "1 times"
           },
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Self",
             "effect": "Critical Rate Up 30％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】自身以外の味方玉鳳隊が生存",
+            "condition": "Other ally [Gyokuhou] Unit alive",
             "target": "Self",
-            "effect": "敵武将ATK Down 40％",
+            "effect": "Enemy generals ATK Down 40%",
             "duration": null
           }
         ]
@@ -721,31 +721,31 @@
         "star6": true,
         "effects": [
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Self",
             "effect": "Max HP Up 100%",
             "duration": null
           },
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Self",
             "effect": "ATK Up, DEF Up 30%",
             "duration": null
           },
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Self and ally Six Great Generals of Qin",
-            "effect": "対弓兵ATK Up 20%",
+            "effect": "Anti-[Archer] ATK Up 20%",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】Alive",
+            "condition": "Alive",
             "target": "Self and ally Six Great Generals of Qin",
             "effect": "Morale Recovery 20%",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】敵弓兵武将が生存",
+            "condition": "Enemy [Archer] alive",
             "target": "Self and ally Six Great Generals of Qin",
             "effect": "Confusion Resistance 、Betrayal Resistance 100%",
             "duration": null
@@ -992,7 +992,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally infantry",
             "effect": "ATK Up 3.8%",
             "duration": null
@@ -1006,25 +1006,25 @@
         "star6": true,
         "effects": [
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Self",
             "effect": "Max HP Up 100％",
             "duration": null
           },
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Self",
             "effect": "ATK Up, DEF Up 30％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】When Attacking",
+            "condition": "When Attacking",
             "target": "Ally Kanki Forces",
             "effect": "Hit Rate Up 25％",
             "duration": null
           },
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Self",
             "effect": "Guard 100％",
             "duration": "2 times"
@@ -1091,7 +1091,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally archers",
             "effect": "ATK Up 12.4%",
             "duration": null
@@ -1133,7 +1133,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "When repairing Souha war machines",
+            "condition": "When repairing CW war machines",
             "target": "War machine repair",
             "effect": "Currency Cost Down 2.8%",
             "duration": null
@@ -1146,7 +1146,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "When repairing Souha war machines",
+            "condition": "When repairing CW war machines",
             "target": "War machine repair",
             "effect": "Material Cost Down 5.5%",
             "duration": null

@@ -179,31 +179,31 @@
         "star6": true,
         "effects": [
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Self",
             "effect": "ATK Up 30％",
             "duration": null
           },
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Self",
             "effect": "Critical Rate Up 30％",
             "duration": null
           },
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Self",
             "effect": "DEF Penetration 30％",
             "duration": null
           },
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Self",
             "effect": "Hit Rate Up 20％",
             "duration": null
           },
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Self",
             "effect": "Evasion (Dodge Chance) Up 20％",
             "duration": null
@@ -319,7 +319,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally attack war machines",
             "effect": "Max HP Up 12.3%",
             "duration": null
@@ -346,31 +346,31 @@
         "star6": true,
         "effects": [
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Self",
             "effect": "Max HP Up 100％",
             "duration": null
           },
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Self",
             "effect": "ATK Up, DEF Up 30％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】敵に秦国",
+            "condition": "Enemy [Qin] present",
             "target": "Ally Zhao",
             "effect": "Fear Resistance 100％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】敵に秦国",
+            "condition": "Enemy [Qin] present",
             "target": "All enemy generals",
             "effect": "DEF Down 、Evasion (Dodge Chance) Down 30％",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】敵に秦国",
+            "condition": "Enemy [Qin] present",
             "target": "Self",
             "effect": "ATK Up 40％",
             "duration": null
@@ -419,7 +419,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "condition": "CW battle (active even when not deployed)",
             "target": "Ally cavalry",
             "effect": "Max HP Up 18.2%",
             "duration": null
@@ -461,7 +461,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "When repairing Souha war machines",
+            "condition": "When repairing CW war machines",
             "target": "War machine repair",
             "effect": "Ore Cost Down 2%",
             "duration": null
@@ -474,14 +474,15 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "When repairing Souha war machines",
+            "condition": "When repairing CW war machines",
             "target": "War machine repair",
             "effect": "Material Cost Down 4.6%",
             "duration": null
           }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/chouin.webp"
   },
   {
     "id": "seika",
@@ -628,25 +629,25 @@
         "star6": true,
         "effects": [
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Self",
             "effect": "DEF Penetration Up 、Evasion (Dodge Chance) Up 30%",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "Self",
             "effect": "Poison Infliction Rate Up 60%",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】",
+            "condition": null,
             "target": "All enemy generals",
             "effect": "Poison Damage Up 100%",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】When Attacking",
+            "condition": "When Attacking",
             "target": "Enemy shield infantry",
             "effect": "ATK Down 20%",
             "duration": null
