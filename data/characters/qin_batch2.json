@@ -101,18 +101,18 @@
       {
         "name_en": "DEF Enhancement [Orange Bull]",
         "name_jp": "防御強化【橙牛】",
-        "type": "Strategy",
+        "type": "Administration",
         "effects": [
           {
-            "condition": null,
-            "target": "Ally Qin",
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally [Qin]",
             "effect": "DEF Up 20%",
             "duration": null
           },
           {
             "condition": "When Attacking",
-            "target": "Ally Hyoukou / Ally Hi Shin Unit",
-            "effect": "Betrayal Resistance 20%",
+            "target": "Ally \"Duke Hyou\" and [Hishin] Unit",
+            "effect": "\"Betrayal\" Resistance 20%",
             "duration": null
           }
         ]
@@ -123,15 +123,15 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Own remaining HP < 90%",
-            "target": "Ally Qin",
+            "condition": "Own HP < 90%",
+            "target": "Ally [Qin]",
             "effect": "Critical Damage Up 20%",
-            "duration": "3 turns"
+            "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Hyoukou / Ally Hi Shin Unit",
-            "effect": "HP Recovery / Morale Recovery 20%",
+            "target": "Ally \"Duke Hyou\" and [Hishin] Unit",
+            "effect": "HP Recovery 20%, Morale Recovery 20%",
             "duration": null
           },
           {
@@ -149,15 +149,15 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Qin",
+            "target": "Ally [Qin]",
             "effect": "Critical Rate Up 10%",
-            "duration": "3 turns"
+            "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Hyoukou / Ally Hi Shin Unit",
+            "target": "Ally \"Duke Hyou\" and [Hishin] Unit",
             "effect": "Critical Rate Up 20%",
-            "duration": "3 turns"
+            "duration": null
           },
           {
             "condition": "Enemy general with highest max morale",

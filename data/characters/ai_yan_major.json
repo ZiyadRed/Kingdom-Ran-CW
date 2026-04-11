@@ -507,20 +507,26 @@
   },
   {
     "id": "hanroki2",
-    "name_en": "Hanroki",
+    "name_en": "Fanroki",
     "name_jp": "樊琊期",
     "country": "ai",
     "rarity": "SR",
     "skills": [
       {
-        "name_en": "弱者への蹂躙",
+        "name_en": "Trampling the Weak",
         "name_jp": "弱者への蹂躙",
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy HP ≤ 50%, Enemy general with lowest remaining HP",
+            "condition": "Enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "160% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy HP ≤ 50%",
             "target": "2 enemy generals",
-            "effect": "% Damage60％",
+            "effect": "60% Damage",
             "duration": null
           }
         ]

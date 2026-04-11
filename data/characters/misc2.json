@@ -739,7 +739,8 @@
           }
         ]
       }
-    ]
+    ],
+    "image": "https://kingdom-ran-cw.vercel.app/persos/bihei.webp"
   },
   {
     "id": "hyou",
@@ -1697,7 +1698,8 @@
           }
         ]
       }
-    ]
+    ],
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ten.webp"
   },
   {
     "id": "fuchi",
