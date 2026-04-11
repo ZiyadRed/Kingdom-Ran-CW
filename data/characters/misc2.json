@@ -6,7 +6,66 @@
     "country": "qin",
     "rarity": "UR",
     "notes": "Core buff target referenced by Gakurai and other Hi Shin Unit / Hyoukou Forces members.",
-    "image": "https://kingdom-ran-cw.vercel.app/persos/dukehyou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/dukehyou.webp",
+    "skills": [
+      {
+        "name_en": "Master General Flash [Orange Turtle]",
+        "name_jp": "名将一閃【橙亀】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Cavalry]",
+            "effect": "ATK Up 20%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Brave General's Command",
+        "name_jp": "猛将の号令",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Cavalry]",
+            "effect": "Max HP Up 20%, Max Morale Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Self",
+            "effect": "DEF Penetration Up 20%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Gift from the Underworld",
+        "name_jp": "冥土の土産",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "170% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Own remaining HP < 50%, enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "ATK Down 50%",
+            "duration": null
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "mougo",
