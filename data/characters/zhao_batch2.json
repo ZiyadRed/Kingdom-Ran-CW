@@ -1,155 +1,324 @@
-[
+﻿[
   {
     "id": "kakukai",
     "name_en": "Kakukai",
-    "name_jp": "郭開",
+    "name_jp": "éƒ­é–‹",
     "country": "zhao",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Orange Turtle]",
-        "name_jp": "急所一閃【橙亀】",
+        "name_jp": "æ€¥æ‰€ä¸€é–ƒã€æ©™äº€ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Riboku", "effect": "Attack Seal Infliction 100%", "duration": "2 turns" },
-          { "condition": null, "target": "Self", "effect": "Attack Nullification", "duration": "1 time" },
-          { "condition": "When Garrisoning, gate HP remaining", "target": "Gate", "effect": "HP Recovery 100,000", "duration": null }
+          {
+            "condition": "Enemy general with lowest DEF",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Riboku",
+            "effect": "Attack Seal Infliction 100%",
+            "duration": "2 turns"
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Attack Nullification",
+            "duration": "1 time"
+          },
+          {
+            "condition": "When Garrisoning, gate HP remaining",
+            "target": "Gate",
+            "effect": "HP Recovery 100,000",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Bloated Self-Interest",
-        "name_jp": "肥大した我欲",
+        "name_jp": "è‚¥å¤§ã—ãŸæˆ‘æ¬²",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Self", "effect": "Less Likely to be Targeted", "duration": null },
-          { "condition": null, "target": "Other ally generals / enemy generals", "effect": "DEF Down 20%", "duration": null },
-          { "condition": "When Garrisoning, gate HP remaining", "target": "Gate", "effect": "HP Recovery 80,000", "duration": null }
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Less Likely to be Targeted",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Other ally generals / enemy generals",
+            "effect": "DEF Down 20%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning, gate HP remaining",
+            "target": "Gate",
+            "effect": "HP Recovery 80,000",
+            "duration": null
+          }
         ]
       },
       {
-        "name_en": "HP Enhancement – Special Large Improved [Infantry]",
-        "name_jp": "体力強化・特大改【歩兵】",
+        "name_en": "HP Enhancement â€“ Special Large Improved [Infantry]",
+        "name_jp": "ä½“åŠ›å¼·åŒ–ãƒ»ç‰¹å¤§æ”¹ã€æ­©å…µã€‘",
         "type": "Administration",
         "effects": [
-          { "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally infantry", "effect": "Max HP Up 22.8%", "duration": null }
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally infantry",
+            "effect": "Max HP Up 22.8%",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/kakukai.webp"
   },
   {
     "id": "keisha",
     "name_en": "Keisha",
-    "name_jp": "慶舎",
+    "name_jp": "æ…¶èˆŽ",
     "country": "zhao",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Green Sheep]",
-        "name_jp": "重追撃【緑羊】",
+        "name_jp": "é‡è¿½æ’ƒã€ç·‘ç¾Šã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Enemy cavalry", "effect": "ATK Down 20%", "duration": "3 turns" },
-          { "condition": "When Garrisoning, enemy general with highest ATK", "target": "1 enemy general", "effect": "Confusion Infliction 70%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy cavalry",
+            "effect": "ATK Down 20%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "When Garrisoning, enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "Confusion Infliction 70%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
-        "name_en": "Hunter's Domain",
-        "name_jp": "狩人の本領",
+        "name_en": "Hunter''s Domain",
+        "name_jp": "ç‹©äººã®æœ¬é ˜",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Ally archers", "effect": "DEF Penetration Up 20%", "duration": null },
-          { "condition": null, "target": "Ally Zhao", "effect": "Critical Damage Up 20%", "duration": null },
-          { "condition": "When Garrisoning", "target": "Self", "effect": "Less Likely to be Targeted", "duration": null }
+          {
+            "condition": null,
+            "target": "Ally archers",
+            "effect": "DEF Penetration Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Zhao",
+            "effect": "Critical Damage Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Self",
+            "effect": "Less Likely to be Targeted",
+            "duration": null
+          }
         ]
       },
       {
-        "name_en": "Hunter's Thread",
-        "name_jp": "狩り取る糸",
+        "name_en": "Hunter''s Thread",
+        "name_jp": "ç‹©ã‚Šå–ã‚‹ç³¸",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy shield soldier with highest DEF", "target": "1 enemy shield soldier", "effect": "180% Damage", "duration": null },
-          { "condition": "When Garrisoning, gate HP remaining", "target": "Gate", "effect": "HP Recovery 100,000", "duration": null },
-          { "condition": "When Garrisoning", "target": "Ally archers", "effect": "Attack Nullification", "duration": "1 time" }
+          {
+            "condition": "Enemy shield soldier with highest DEF",
+            "target": "1 enemy shield soldier",
+            "effect": "180% Damage",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning, gate HP remaining",
+            "target": "Gate",
+            "effect": "HP Recovery 100,000",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Ally archers",
+            "effect": "Attack Nullification",
+            "duration": "1 time"
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/keisha.webp"
   },
   {
     "id": "rakujo",
     "name_en": "Gakujou",
-    "name_jp": "楽乗",
+    "name_jp": "æ¥½ä¹—",
     "country": "zhao",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak General Flash [Red Turtle]",
-        "name_jp": "弱将一閃【赤亀】",
+        "name_jp": "å¼±å°†ä¸€é–ƒã€èµ¤äº€ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with lowest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Enemy cavalry", "effect": "ATK Down 20%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with lowest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy cavalry",
+            "effect": "ATK Down 20%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "Devotion to Zhao",
-        "name_jp": "趙国への想い",
+        "name_jp": "è¶™å›½ã¸ã®æƒ³ã„",
         "type": "Strategy",
         "effects": [
-          { "condition": "Per other ally Zhao general", "target": "Ally Zhao", "effect": "ATK Up 10%", "duration": null },
-          { "condition": null, "target": "Ally Zhao", "effect": "Betrayal Resistance 50%", "duration": null }
+          {
+            "condition": "Per other ally Zhao general",
+            "target": "Ally Zhao",
+            "effect": "ATK Up 10%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Zhao",
+            "effect": "Betrayal Resistance 50%",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Will to Protect the Nation",
-        "name_jp": "護国の意思",
+        "name_jp": "è­·å›½ã®æ„æ€",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "180% Damage", "duration": null },
-          { "condition": "From the 180% Damage", "target": "Self", "effect": "HP Drain 100%", "duration": null },
-          { "condition": null, "target": "Enemy Qin", "effect": "Normal Attack Seal Infliction 40%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest DEF",
+            "target": "1 enemy general",
+            "effect": "180% Damage",
+            "duration": null
+          },
+          {
+            "condition": "From the 180% Damage",
+            "target": "Self",
+            "effect": "HP Drain 100%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy Qin",
+            "effect": "Normal Attack Seal Infliction 40%",
+            "duration": "3 turns"
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/gakujou.webp"
   },
   {
     "id": "shinseicho",
     "name_en": "Shinseijou",
-    "name_jp": "晋成常",
+    "name_jp": "æ™‹æˆå¸¸",
     "country": "zhao",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Purple Elephant]",
-        "name_jp": "猛将一閃【紫象】",
+        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç´«è±¡ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Other ally cavalry", "effect": "DEF Up 20%", "duration": "3 turns" },
-          { "condition": "When Attacking", "target": "Other ally cavalry", "effect": "ATK Up 20%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Other ally cavalry",
+            "effect": "DEF Up 20%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Other ally cavalry",
+            "effect": "ATK Up 20%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
-        "name_en": "Veteran's Support",
-        "name_jp": "熟練の支援",
+        "name_en": "Veteran''s Support",
+        "name_jp": "ç†Ÿç·´ã®æ”¯æ´",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Ally Zhao", "effect": "DEF Penetration Up 20%", "duration": null }
+          {
+            "condition": null,
+            "target": "Ally Zhao",
+            "effect": "DEF Penetration Up 20%",
+            "duration": null
+          }
         ]
       },
       {
-        "name_en": "Veteran's Dedication",
-        "name_jp": "老将の献身",
+        "name_en": "Veteran''s Dedication",
+        "name_jp": "è€å°†ã®çŒ®èº«",
         "type": "Combat",
         "effects": [
-          { "condition": "Own HP ≥ 90%, enemy general with highest ATK", "target": "1 enemy general", "effect": "160% Damage", "duration": null },
-          { "condition": "Own HP ≥ 90%", "target": "Ally Zhao", "effect": "Guard 60%", "duration": "1 time" },
-          { "condition": "Own HP < 90%, enemy general with highest ATK", "target": "1 enemy general", "effect": "100% Damage", "duration": null },
-          { "condition": "Own HP < 90%", "target": "Self", "effect": "HP Recovery 50%", "duration": null },
-          { "condition": "Other ally Zhao generals' HP < 90% and surviving", "target": "Other ally Zhao", "effect": "HP Recovery 30%", "duration": null }
+          {
+            "condition": "Own HP â‰¥ 90%, enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "160% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Own HP â‰¥ 90%",
+            "target": "Ally Zhao",
+            "effect": "Guard 60%",
+            "duration": "1 time"
+          },
+          {
+            "condition": "Own HP < 90%, enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "100% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Own HP < 90%",
+            "target": "Self",
+            "effect": "HP Recovery 50%",
+            "duration": null
+          },
+          {
+            "condition": "Other ally Zhao generals'' HP < 90% and surviving",
+            "target": "Other ally Zhao",
+            "effect": "HP Recovery 30%",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/shinseijou.webp"
   }
 ]

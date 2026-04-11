@@ -1,39 +1,75 @@
-[
+﻿[
   {
     "id": "oukenwang",
     "name_en": "Ouken",
-    "name_jp": "王建王",
+    "name_jp": "çŽ‹å»ºçŽ‹",
     "country": "qi",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Orange Turtle]",
-        "name_jp": "鉄壁一閃【橙亀】",
+        "name_jp": "é‰„å£ä¸€é–ƒã€æ©™äº€ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Self", "effect": "Less Likely to be Targeted", "duration": null },
-          { "condition": "The higher own remaining HP", "target": "Ally cavalry", "effect": "ATK Up (max 30%)", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest DEF",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Less Likely to be Targeted",
+            "duration": null
+          },
+          {
+            "condition": "The higher own remaining HP",
+            "target": "Ally cavalry",
+            "effect": "ATK Up (max 30%)",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "Deal Concluded",
-        "name_jp": "商談成立",
+        "name_jp": "å•†è«‡æˆç«‹",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Enemy Zhao / Wei / Chu / Han / Yan", "effect": "Evasion Rate Down 20%", "duration": null },
-          { "condition": null, "target": "Ally Qin / ally Qi", "effect": "Evasion Rate Up 40%", "duration": null },
-          { "condition": "When Attacking", "target": "Ally Qin / ally Qi", "effect": "Morale Cost Reduction 20%", "duration": null }
+          {
+            "condition": null,
+            "target": "Enemy Zhao / Wei / Chu / Han / Yan",
+            "effect": "Evasion Rate Down 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Qin / ally Qi",
+            "effect": "Evasion Rate Up 40%",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Ally Qin / ally Qi",
+            "effect": "Morale Cost Reduction 20%",
+            "duration": null
+          }
         ]
       },
       {
-        "name_en": "HP Enhancement – Special Large Improved [Shield Soldiers]",
-        "name_jp": "体力強化・特大改【盾兵】",
+        "name_en": "HP Enhancement â€“ Special Large Improved [Shield Soldiers]",
+        "name_jp": "ä½“åŠ›å¼·åŒ–ãƒ»ç‰¹å¤§æ”¹ã€ç›¾å…µã€‘",
         "type": "Administration",
         "effects": [
-          { "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally shield soldiers", "effect": "Max HP Up 22.8%", "duration": null }
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally shield soldiers",
+            "effect": "Max HP Up 22.8%",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/ouken.webp"
   }
 ]

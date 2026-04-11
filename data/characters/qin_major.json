@@ -1,310 +1,647 @@
-[
+﻿[
   {
     "id": "ouhon",
     "name_en": "Ouhon",
-    "name_jp": "王賁",
+    "name_jp": "çŽ‹è³",
     "country": "qin",
     "unit": "Gyokuhou Squad",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Master General Flash [Red Elephant]",
-        "name_jp": "名将一閃【赤象】",
+        "name_jp": "åå°†ä¸€é–ƒã€èµ¤è±¡ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Self vs cavalry", "effect": "ATK Up 30%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self vs cavalry",
+            "effect": "ATK Up 30%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "New Generation Rivalry",
-        "name_jp": "新鋭角逐",
+        "name_jp": "æ–°é‹­è§’é€",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Ally Hi Shin Unit / Gyokuhou Squad / Gakuka Unit", "effect": "ATK Up 10%", "duration": null },
-          { "condition": null, "target": "Self vs cavalry", "effect": "DEF Up 30%", "duration": null }
+          {
+            "condition": null,
+            "target": "Ally Hi Shin Unit / Gyokuhou Squad / Gakuka Unit",
+            "effect": "ATK Up 10%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self vs cavalry",
+            "effect": "DEF Up 30%",
+            "duration": null
+          }
         ]
       },
       {
-        "name_en": "Dragon's Nest",
-        "name_jp": "龍巣",
+        "name_en": "Dragon''s Nest",
+        "name_jp": "é¾å·£",
         "type": "Combat",
         "effects": [
-          { "condition": "Per own attack count", "target": "Self", "effect": "ATK Up 8% (max 40%)", "duration": "3 turns" },
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "5-Hit 60% Damage", "duration": null },
-          { "condition": null, "target": "Self", "effect": "Guard 70%", "duration": "2 times" }
+          {
+            "condition": "Per own attack count",
+            "target": "Self",
+            "effect": "ATK Up 8% (max 40%)",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "5-Hit 60% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Guard 70%",
+            "duration": "2 times"
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/ouhon.webp"
   },
   {
     "id": "ousen",
     "name_en": "Ousen",
-    "name_jp": "王翦",
+    "name_jp": "çŽ‹ç¿¦",
     "country": "qin",
     "unit": "Ousen Forces",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Red Tiger]",
-        "name_jp": "猛将一閃【赤虎】",
+        "name_jp": "çŒ›å°†ä¸€é–ƒã€èµ¤è™Žã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Enemy cavalry", "effect": "ATK Down 20%", "duration": "3 turns" },
-          { "condition": "When Garrisoning", "target": "Self", "effect": "DEF Up 20%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy cavalry",
+            "effect": "ATK Down 20%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Self",
+            "effect": "DEF Up 20%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "Guaranteed Victory Siege",
-        "name_jp": "必勝の籠城",
+        "name_jp": "å¿…å‹ã®ç± åŸŽ",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Enemy cavalry", "effect": "Critical Rate Down 20%", "duration": null },
-          { "condition": "When Garrisoning", "target": "Ally shield soldiers", "effect": "DEF Penetration Up 30%", "duration": null },
-          { "condition": "When Garrisoning, gate HP remaining", "target": "Gate", "effect": "HP Recovery 50,000", "duration": null }
+          {
+            "condition": null,
+            "target": "Enemy cavalry",
+            "effect": "Critical Rate Down 20%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Ally shield soldiers",
+            "effect": "DEF Penetration Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning, gate HP remaining",
+            "target": "Gate",
+            "effect": "HP Recovery 50,000",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Deep Strategy Deployment",
-        "name_jp": "深謀の用兵術",
+        "name_jp": "æ·±è¬€ã®ç”¨å…µè¡“",
         "type": "Combat",
         "effects": [
-          { "condition": null, "target": "Ally shield soldiers", "effect": "ATK Up 20%", "duration": "3 turns" },
-          { "condition": "When Garrisoning", "target": "Other ally shield soldiers", "effect": "Provoke", "duration": "3 turns" },
-          { "condition": "When Garrisoning", "target": "Other ally shield soldiers", "effect": "Guard 60%", "duration": "2 times" },
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "170% Damage", "duration": null }
+          {
+            "condition": null,
+            "target": "Ally shield soldiers",
+            "effect": "ATK Up 20%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Other ally shield soldiers",
+            "effect": "Provoke",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Other ally shield soldiers",
+            "effect": "Guard 60%",
+            "duration": "2 times"
+          },
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "170% Damage",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/ousen.webp"
   },
   {
     "id": "kanki",
     "name_en": "Kanki",
-    "name_jp": "桓騎",
+    "name_jp": "æ¡“é¨Ž",
     "country": "qin",
     "unit": "Kanki Forces",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Red Elephant]",
-        "name_jp": "重追撃【赤象】",
+        "name_jp": "é‡è¿½æ’ƒã€èµ¤è±¡ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Self", "effect": "Less Likely to be Targeted", "duration": "3 turns" },
-          { "condition": "When Garrisoning, enemy general with highest max HP", "target": "3 enemy generals", "effect": "Burn Infliction 50%", "duration": "4 turns" }
+          {
+            "condition": "Enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Less Likely to be Targeted",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "When Garrisoning, enemy general with highest max HP",
+            "target": "3 enemy generals",
+            "effect": "Burn Infliction 50%",
+            "duration": "4 turns"
+          }
         ]
       },
       {
-        "name_en": "Bandit's Signature Move",
-        "name_jp": "野盗の十八番",
+        "name_en": "Bandit''s Signature Move",
+        "name_jp": "é‡Žç›—ã®åå…«ç•ª",
         "type": "Strategy",
         "effects": [
-          { "condition": "Burned enemy generals present", "target": "Ally Qin", "effect": "ATK Up 20%", "duration": null },
-          { "condition": "Feared enemy generals present", "target": "Ally Qin", "effect": "ATK Up 20%", "duration": null },
-          { "condition": null, "target": "Ally Kanki Forces", "effect": "Evasion Rate Up 40%", "duration": null },
-          { "condition": "When Garrisoning", "target": "Ally shield soldiers", "effect": "Critical Rate Up 20%", "duration": null }
+          {
+            "condition": "Burned enemy generals present",
+            "target": "Ally Qin",
+            "effect": "ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "Feared enemy generals present",
+            "target": "Ally Qin",
+            "effect": "ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Kanki Forces",
+            "effect": "Evasion Rate Up 40%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Ally shield soldiers",
+            "effect": "Critical Rate Up 20%",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Mad Scheme",
-        "name_jp": "狂気の所業",
+        "name_jp": "ç‹‚æ°—ã®æ‰€æ¥­",
         "type": "Combat",
         "effects": [
-          { "condition": null, "target": "Enemy archers", "effect": "Morale Down 20%", "duration": null },
-          { "condition": null, "target": "Enemy archers", "effect": "Fear Infliction 50%", "duration": "4 turns" },
-          { "condition": null, "target": "Enemy Zhao / Enemy Wei", "effect": "Fear Infliction 100%", "duration": "4 turns" },
-          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
-          { "condition": "Enemy war machine with highest ATK", "target": "1 enemy war machine", "effect": "180% Damage", "duration": null }
+          {
+            "condition": null,
+            "target": "Enemy archers",
+            "effect": "Morale Down 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy archers",
+            "effect": "Fear Infliction 50%",
+            "duration": "4 turns"
+          },
+          {
+            "condition": null,
+            "target": "Enemy Zhao / Enemy Wei",
+            "effect": "Fear Infliction 100%",
+            "duration": "4 turns"
+          },
+          {
+            "condition": "Enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "170% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy war machine with highest ATK",
+            "target": "1 enemy war machine",
+            "effect": "180% Damage",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/kanki.webp"
   },
   {
     "id": "muten",
     "name_en": "Mouten",
-    "name_jp": "蒙恬",
+    "name_jp": "è’™æ¬",
     "country": "qin",
     "unit": "Gakuka Unit",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Master General Flash [Red Tiger]",
-        "name_jp": "名将一閃【赤虎】",
+        "name_jp": "åå°†ä¸€é–ƒã€èµ¤è™Žã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Enemy cavalry / enemy archers", "effect": "ATK Down 15%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy cavalry / enemy archers",
+            "effect": "ATK Down 15%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "Brilliant Outburst",
-        "name_jp": "才気爆発",
+        "name_jp": "æ‰æ°—çˆ†ç™º",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Ally Qin", "effect": "Max Morale Up 50%", "duration": null },
-          { "condition": null, "target": "Ally Hi Shin Unit / Gyokuhou Squad / Gakuka Unit", "effect": "Max HP Up 50%", "duration": null }
+          {
+            "condition": null,
+            "target": "Ally Qin",
+            "effect": "Max Morale Up 50%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Hi Shin Unit / Gyokuhou Squad / Gakuka Unit",
+            "effect": "Max HP Up 50%",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Skirmishing Mastery",
-        "name_jp": "遊撃の妙技",
+        "name_jp": "éŠæ’ƒã®å¦™æŠ€",
         "type": "Combat",
         "effects": [
-          { "condition": null, "target": "Enemy generals vs cavalry", "effect": "DEF Down 20%", "duration": "3 turns" },
-          { "condition": "When Garrisoning", "target": "Other ally cavalry", "effect": "DEF Up 20%", "duration": "3 turns" },
-          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "160% Damage", "duration": null }
+          {
+            "condition": null,
+            "target": "Enemy generals vs cavalry",
+            "effect": "DEF Down 20%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Other ally cavalry",
+            "effect": "DEF Up 20%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "160% Damage",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/mouten.webp"
   },
   {
     "id": "moubu",
     "name_en": "Moubu",
-    "name_jp": "蒙武",
+    "name_jp": "è’™æ­¦",
     "country": "qin",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "ATK/DEF Enhancement [Red Turtle]",
-        "name_jp": "攻防強化【赤亀】",
+        "name_jp": "æ”»é˜²å¼·åŒ–ã€èµ¤äº€ã€‘",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Self", "effect": "ATK Up 15%", "duration": null },
-          { "condition": null, "target": "Ally shield soldiers", "effect": "DEF Up 20%", "duration": null }
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "ATK Up 15%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally shield soldiers",
+            "effect": "DEF Up 20%",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Single Point Breakthrough",
-        "name_jp": "一点突破",
+        "name_jp": "ä¸€ç‚¹çªç ´",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "DEF Down 30%", "duration": "3 turns" },
-          { "condition": null, "target": "Ally Qin vs Chu", "effect": "ATK Up 20%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "DEF Down 30%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": null,
+            "target": "Ally Qin vs Chu",
+            "effect": "ATK Up 20%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "Reaching Supreme Martial Might",
-        "name_jp": "至強に至る武",
+        "name_jp": "è‡³å¼·ã«è‡³ã‚‹æ­¦",
         "type": "Combat",
         "effects": [
-          { "condition": null, "target": "Self", "effect": "Reckless", "duration": "3 turns" },
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": "Enemy Chu general with highest ATK", "target": "1 enemy Chu general", "effect": "150% Damage", "duration": null }
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Reckless",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy Chu general with highest ATK",
+            "target": "1 enemy Chu general",
+            "effect": "150% Damage",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/moubu.webp"
   },
   {
     "id": "shouheikun",
     "name_en": "Shouheikun",
-    "name_jp": "昌平君",
+    "name_jp": "æ˜Œå¹³å›",
     "country": "qin",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Master General Flash [Red Bull]",
-        "name_jp": "名将一閃【赤牛】",
+        "name_jp": "åå°†ä¸€é–ƒã€èµ¤ç‰›ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Self / ally cavalry", "effect": "DEF Up 20%", "duration": "3 turns" },
-          { "condition": "When Garrisoning", "target": "Ally shield soldiers", "effect": "DEF Up 20%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self / ally cavalry",
+            "effect": "DEF Up 20%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Ally shield soldiers",
+            "effect": "DEF Up 20%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "Strategic Vision",
-        "name_jp": "戦略眼",
+        "name_jp": "æˆ¦ç•¥çœ¼",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Ally Qin", "effect": "Morale Cost Reduction 40%", "duration": null }
+          {
+            "condition": null,
+            "target": "Ally Qin",
+            "effect": "Morale Cost Reduction 40%",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Enveloping Thunder",
-        "name_jp": "包雷",
+        "name_jp": "åŒ…é›·",
         "type": "Combat",
         "effects": [
-          { "condition": null, "target": "Enemy generals", "effect": "Paralysis Infliction 40%", "duration": "2 turns" },
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "190% Damage", "duration": null }
+          {
+            "condition": null,
+            "target": "Enemy generals",
+            "effect": "Paralysis Infliction 40%",
+            "duration": "2 turns"
+          },
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "190% Damage",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/shouheikun.webp"
   },
   {
     "id": "shoumounkun",
     "name_en": "Shoumounkun",
-    "name_jp": "昌文君",
+    "name_jp": "æ˜Œæ–‡å›",
     "country": "qin",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Yellow Bull]",
-        "name_jp": "猛将一閃【黄牛】",
+        "name_jp": "çŒ›å°†ä¸€é–ƒã€é»„ç‰›ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Enemy cavalry", "effect": "ATK Down 20%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy cavalry",
+            "effect": "ATK Down 20%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
-        "name_en": "Left Chancellor's Expertise",
-        "name_jp": "秦国左丞相の手腕",
+        "name_en": "Left Chancellor''s Expertise",
+        "name_jp": "ç§¦å›½å·¦ä¸žç›¸ã®æ‰‹è…•",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Ally Qin", "effect": "DEF Up 10%", "duration": null },
-          { "condition": "When Garrisoning", "target": "Ally shield soldiers vs cavalry", "effect": "DEF Up 10%", "duration": null },
-          { "condition": "When Garrisoning", "target": "Ally war machines", "effect": "DEF Up 30%", "duration": null }
+          {
+            "condition": null,
+            "target": "Ally Qin",
+            "effect": "DEF Up 10%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Ally shield soldiers vs cavalry",
+            "effect": "DEF Up 10%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Ally war machines",
+            "effect": "DEF Up 30%",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Mastery of Both Arts",
-        "name_jp": "文武両道",
+        "name_jp": "æ–‡æ­¦ä¸¡é“",
         "type": "Combat",
         "effects": [
-          { "condition": "Own HP ≥ 50%", "target": "Self", "effect": "ATK Up 20%", "duration": "3 turns" },
-          { "condition": "Own HP ≤ 70%", "target": "Other ally Qin generals", "effect": "DEF Up 20%", "duration": "3 turns" },
-          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Self", "effect": "DEF Up 30%", "duration": "3 turns" }
+          {
+            "condition": "Own HP â‰¥ 50%",
+            "target": "Self",
+            "effect": "ATK Up 20%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Own HP â‰¤ 70%",
+            "target": "Other ally Qin generals",
+            "effect": "DEF Up 20%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Enemy general with highest DEF",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "DEF Up 30%",
+            "duration": "3 turns"
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/shoubunkun.webp"
   },
   {
     "id": "shoou",
     "name_en": "Shoou",
-    "name_jp": "昭王",
+    "name_jp": "æ˜­çŽ‹",
     "country": "qin",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Orange Elephant]",
-        "name_jp": "猛将一閃【橙象】",
+        "name_jp": "çŒ›å°†ä¸€é–ƒã€æ©™è±¡ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Ally cavalry", "effect": "ATK Up 20%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally cavalry",
+            "effect": "ATK Up 20%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "Six Generals Gathered",
-        "name_jp": "集いし六将",
+        "name_jp": "é›†ã„ã—å…­å°†",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Other ally Qin generals", "effect": "ATK Up 10%", "duration": null },
-          { "condition": null, "target": "Ally Six Great Generals", "effect": "ATK Up 10% (additional)", "duration": null },
-          { "condition": "Per ally Six Great General", "target": "Self", "effect": "ATK Up 10%", "duration": null }
+          {
+            "condition": null,
+            "target": "Other ally Qin generals",
+            "effect": "ATK Up 10%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Six Great Generals",
+            "effect": "ATK Up 10% (additional)",
+            "duration": null
+          },
+          {
+            "condition": "Per ally Six Great General",
+            "target": "Self",
+            "effect": "ATK Up 10%",
+            "duration": null
+          }
         ]
       },
       {
-        "name_en": "War God's Divine Protection",
-        "name_jp": "戦神の加護",
+        "name_en": "War God''s Divine Protection",
+        "name_jp": "æˆ¦ç¥žã®åŠ è­·",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "180% Damage", "duration": null },
-          { "condition": null, "target": "Self / ally Six Great Generals", "effect": "Attack Nullification", "duration": "1 time" }
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "180% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self / ally Six Great Generals",
+            "effect": "Attack Nullification",
+            "duration": "1 time"
+          }
         ]
       }
     ]
@@ -312,172 +649,338 @@
   {
     "id": "ei_sei",
     "name_en": "Ei Sei",
-    "name_jp": "嬴政",
+    "name_jp": "å¬´æ”¿",
     "country": "qin",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Blue Bull]",
-        "name_jp": "猛将一閃【青牛】",
+        "name_jp": "çŒ›å°†ä¸€é–ƒã€é’ç‰›ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Ally archers", "effect": "ATK Up 20%", "duration": "3 turns" },
-          { "condition": "When Garrisoning", "target": "Self", "effect": "Provoke", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally archers",
+            "effect": "ATK Up 20%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Self",
+            "effect": "Provoke",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "Alliance with the Mountain Folk",
-        "name_jp": "山界との盟約",
+        "name_jp": "å±±ç•Œã¨ã®ç›Ÿç´„",
         "type": "Strategy",
         "effects": [
-          { "condition": "Per other ally Qin / Mountain Folk general", "target": "Ally generals", "effect": "ATK Up / DEF Up 5%", "duration": null },
-          { "condition": "When Garrisoning", "target": "Self", "effect": "DEF Up 20%", "duration": null }
+          {
+            "condition": "Per other ally Qin / Mountain Folk general",
+            "target": "Ally generals",
+            "effect": "ATK Up / DEF Up 5%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Self",
+            "effect": "DEF Up 20%",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Unification of China",
-        "name_jp": "天下統一",
+        "name_jp": "å¤©ä¸‹çµ±ä¸€",
         "type": "Combat",
-        "notes": "Skill data partially captured — effects pending confirmation",
+        "notes": "Skill data partially captured â€” effects pending confirmation",
         "effects": [
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "170% Damage", "duration": null }
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "170% Damage",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/sei.webp"
   },
   {
     "id": "mou",
     "name_en": "Kyou",
-    "name_jp": "摎",
+    "name_jp": "æ‘Ž",
     "country": "qin",
     "unit": "Ouki Forces",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Master General Flash [Orange Bull]",
-        "name_jp": "名将一閃【橙牛】",
+        "name_jp": "åå°†ä¸€é–ƒã€æ©™ç‰›ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Self", "effect": "Reckless", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Reckless",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "Childhood Promise",
-        "name_jp": "幼き約束",
+        "name_jp": "å¹¼ãç´„æŸ",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Self vs archers", "effect": "ATK Up 15%", "duration": null },
-          { "condition": "When ally Ouki is present", "target": "Self", "effect": "ATK Up 15%", "duration": null }
+          {
+            "condition": null,
+            "target": "Self vs archers",
+            "effect": "ATK Up 15%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Ouki is present",
+            "target": "Self",
+            "effect": "ATK Up 15%",
+            "duration": null
+          }
         ]
       },
       {
-        "name_en": "War God's Bloodline",
-        "name_jp": "戦神の血統",
+        "name_en": "War God''s Bloodline",
+        "name_jp": "æˆ¦ç¥žã®è¡€çµ±",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "160% Damage", "duration": null },
-          { "condition": "When Attacking, enemy general with highest max morale", "target": "1 enemy general", "effect": "190% Damage", "duration": null },
-          { "condition": "When Attacking, own HP ≤ 50%, enemy general with highest max morale", "target": "1 enemy general", "effect": "220% Damage", "duration": null }
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "160% Damage",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking, enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "190% Damage",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking, own HP â‰¤ 50%, enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "220% Damage",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/kyou.webp"
   },
   {
     "id": "raido",
     "name_en": "Raido",
-    "name_jp": "雷土",
+    "name_jp": "é›·åœŸ",
     "country": "qin",
     "unit": "Kanki Forces",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Black Bull]",
-        "name_jp": "猛将一閃【黒牛】",
+        "name_jp": "çŒ›å°†ä¸€é–ƒã€é»’ç‰›ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": "Own HP ≤ 70%", "target": "Enemy generals", "effect": "Illusion Infliction 40%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Own HP â‰¤ 70%",
+            "target": "Enemy generals",
+            "effect": "Illusion Infliction 40%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "Evening Bonfire",
-        "name_jp": "宵の篝火",
+        "name_jp": "å®µã®ç¯ç«",
         "type": "Combat",
         "effects": [
-          { "condition": null, "target": "Enemy generals", "effect": "Burn Infliction 40%", "duration": "4 turns" },
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "180% Damage", "duration": null },
-          { "condition": null, "target": "Self", "effect": "Provoke", "duration": "4 turns" },
-          { "condition": null, "target": "Self", "effect": "DEF Up 30%", "duration": "4 turns" }
+          {
+            "condition": null,
+            "target": "Enemy generals",
+            "effect": "Burn Infliction 40%",
+            "duration": "4 turns"
+          },
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "180% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Provoke",
+            "duration": "4 turns"
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "DEF Up 30%",
+            "duration": "4 turns"
+          }
         ]
       },
       {
-        "name_en": "ATK Enhancement – Large Improved [Infantry]",
-        "name_jp": "攻撃力強化・中【歩兵】",
+        "name_en": "ATK Enhancement â€“ Large Improved [Infantry]",
+        "name_jp": "æ”»æ’ƒåŠ›å¼·åŒ–ãƒ»ä¸­ã€æ­©å…µã€‘",
         "type": "Administration",
         "effects": [
-          { "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally infantry", "effect": "ATK Up 3.8%", "duration": null }
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally infantry",
+            "effect": "ATK Up 3.8%",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/raido.webp"
   },
   {
     "id": "ko",
     "name_en": "Kou",
-    "name_jp": "向",
+    "name_jp": "å‘",
     "country": "qin",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Yellow Turtle]",
-        "name_jp": "重追撃【黄亀】",
+        "name_jp": "é‡è¿½æ’ƒã€é»„äº€ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Self", "effect": "Less Likely to be Targeted", "duration": null },
-          { "condition": "When Garrisoning", "target": "Ally shield soldiers", "effect": "DEF Up 20%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Less Likely to be Targeted",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Ally shield soldiers",
+            "effect": "DEF Up 20%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
-        "name_en": "Heart's Companion",
-        "name_jp": "心の伽",
+        "name_en": "Heart''s Companion",
+        "name_jp": "å¿ƒã®ä¼½",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Ally Ei Sei / ally archers", "effect": "Status Effect Immunity (excl. Provoke)", "duration": "1 time" },
-          { "condition": null, "target": "Ally Ei Sei / ally archers", "effect": "Evasion Rate Up 20%", "duration": null }
+          {
+            "condition": null,
+            "target": "Ally Ei Sei / ally archers",
+            "effect": "Status Effect Immunity (excl. Provoke)",
+            "duration": "1 time"
+          },
+          {
+            "condition": null,
+            "target": "Ally Ei Sei / ally archers",
+            "effect": "Evasion Rate Up 20%",
+            "duration": null
+          }
         ]
       },
       {
-        "name_en": "ATK Enhancement – Special Large Improved [Archers]",
-        "name_jp": "攻撃力強化・特大改【弓兵】",
+        "name_en": "ATK Enhancement â€“ Special Large Improved [Archers]",
+        "name_jp": "æ”»æ’ƒåŠ›å¼·åŒ–ãƒ»ç‰¹å¤§æ”¹ã€å¼“å…µã€‘",
         "type": "Administration",
         "effects": [
-          { "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally archers", "effect": "ATK Up 12.4%", "duration": null }
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally archers",
+            "effect": "ATK Up 12.4%",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/kou.webp"
   },
   {
     "id": "saizatsu",
     "name_en": "Saizatsu",
-    "name_jp": "蔡沢",
+    "name_jp": "è”¡æ²¢",
     "country": "qin",
     "rarity": "NR",
     "skills": [
       {
         "name_en": "Iron Wall Attack [Red Sheep]",
-        "name_jp": "鉄壁攻撃【赤羊】",
+        "name_jp": "é‰„å£æ”»æ’ƒã€èµ¤ç¾Šã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "120% Damage", "duration": null },
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "Betrayal Infliction 50%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest DEF",
+            "target": "1 enemy general",
+            "effect": "120% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "Betrayal Infliction 50%",
+            "duration": "3 turns"
+          }
         ]
       },
-      { "name_en": "Repair Currency Reduction – Medium", "name_jp": "修理貨幣減少・中", "type": "Administration",
-        "effects": [{ "condition": "When repairing Souha war machines", "target": "War machine repair", "effect": "Currency Cost Down 2.8%", "duration": null }] },
-      { "name_en": "Repair Material Reduction – Medium Improved", "name_jp": "修理資材減少・中改", "type": "Administration",
-        "effects": [{ "condition": "When repairing Souha war machines", "target": "War machine repair", "effect": "Material Cost Down 5.5%", "duration": null }] }
+      {
+        "name_en": "Repair Currency Reduction â€“ Medium",
+        "name_jp": "ä¿®ç†è²¨å¹£æ¸›å°‘ãƒ»ä¸­",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing Souha war machines",
+            "target": "War machine repair",
+            "effect": "Currency Cost Down 2.8%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Repair Material Reduction â€“ Medium Improved",
+        "name_jp": "ä¿®ç†è³‡ææ¸›å°‘ãƒ»ä¸­æ”¹",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing Souha war machines",
+            "target": "War machine repair",
+            "effect": "Material Cost Down 5.5%",
+            "duration": null
+          }
+        ]
+      }
     ]
   }
 ]

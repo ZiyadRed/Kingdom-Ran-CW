@@ -1,217 +1,519 @@
-[
+﻿[
   {
     "id": "riboku",
     "name_en": "Riboku",
-    "name_jp": "李牧",
+    "name_jp": "æŽç‰§",
     "country": "zhao",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Green Turtle]",
-        "name_jp": "猛将一閃【緑亀】",
+        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç·‘äº€ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": "Per ally cavalry general", "target": "Self", "effect": "DEF Up 10%", "duration": "3 turns" },
-          { "condition": "When Attacking", "target": "Self", "effect": "ATK Up 20%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Per ally cavalry general",
+            "target": "Self",
+            "effect": "DEF Up 10%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Self",
+            "effect": "ATK Up 20%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
-        "name_en": "Strategist's Expertise",
-        "name_jp": "参謀の手腕",
+        "name_en": "Strategist''s Expertise",
+        "name_jp": "å‚è¬€ã®æ‰‹è…•",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Other ally Zhao / Wei / Chu / Han / Yan", "effect": "DEF Up 20%", "duration": null },
-          { "condition": "Surviving", "target": "Other ally Zhao / Wei / Chu / Han / Yan", "effect": "HP Recovery 10%", "duration": null }
+          {
+            "condition": null,
+            "target": "Other ally Zhao / Wei / Chu / Han / Yan",
+            "effect": "DEF Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "Surviving",
+            "target": "Other ally Zhao / Wei / Chu / Han / Yan",
+            "effect": "HP Recovery 10%",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Master of Defensive Warfare",
-        "name_jp": "守戦の名将",
+        "name_jp": "å®ˆæˆ¦ã®åå°†",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Ally Houken", "effect": "Attack Nullification", "duration": "1 time" },
-          { "condition": null, "target": "Other ally Zhao / Wei / Chu / Han / Yan", "effect": "Morale Recovery 10%", "duration": null },
-          { "condition": "When Garrisoning, enemy general with highest remaining HP", "target": "1 enemy general", "effect": "% of Remaining HP Damage 20%", "duration": null },
-          { "condition": "When Garrisoning, from % HP Damage", "target": "Self", "effect": "HP Drain 100%", "duration": null },
-          { "condition": "When Garrisoning, enemy war machine with lowest remaining HP", "target": "1 enemy war machine", "effect": "180% Damage", "duration": null }
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Houken",
+            "effect": "Attack Nullification",
+            "duration": "1 time"
+          },
+          {
+            "condition": null,
+            "target": "Other ally Zhao / Wei / Chu / Han / Yan",
+            "effect": "Morale Recovery 10%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning, enemy general with highest remaining HP",
+            "target": "1 enemy general",
+            "effect": "% of Remaining HP Damage 20%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning, from % HP Damage",
+            "target": "Self",
+            "effect": "HP Drain 100%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning, enemy war machine with lowest remaining HP",
+            "target": "1 enemy war machine",
+            "effect": "180% Damage",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/riboku.webp"
   },
   {
     "id": "houken",
     "name_en": "Houken",
-    "name_jp": "龐煖",
+    "name_jp": "é¾ç…–",
     "country": "zhao",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Blue Turtle]",
-        "name_jp": "猛将一閃【青亀】",
+        "name_jp": "çŒ›å°†ä¸€é–ƒã€é’äº€ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": "Own HP ≥ 70%", "target": "Self", "effect": "ATK Up / DEF Up 30%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Own HP â‰¥ 70%",
+            "target": "Self",
+            "effect": "ATK Up / DEF Up 30%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "Incarnation of Martial Arts",
-        "name_jp": "武の化身",
+        "name_jp": "æ­¦ã®åŒ–èº«",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Self vs Qin", "effect": "ATK Up 20%", "duration": null },
-          { "condition": null, "target": "Self vs archers", "effect": "DEF Up 40%", "duration": null },
-          { "condition": null, "target": "Self", "effect": "Evasion Rate Up 20%", "duration": null }
+          {
+            "condition": null,
+            "target": "Self vs Qin",
+            "effect": "ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self vs archers",
+            "effect": "DEF Up 40%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Evasion Rate Up 20%",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Strike of Despair",
-        "name_jp": "絶望の一撃",
+        "name_jp": "çµ¶æœ›ã®ä¸€æ’ƒ",
         "type": "Combat",
         "effects": [
-          { "condition": null, "target": "Self vs Six Great Generals", "effect": "ATK Up 40%", "duration": "3 turns" },
-          { "condition": null, "target": "All enemy generals", "effect": "90% Damage", "duration": null },
-          { "condition": "Own HP < 100%", "target": "Self", "effect": "HP Recovery 40%", "duration": null }
+          {
+            "condition": null,
+            "target": "Self vs Six Great Generals",
+            "effect": "ATK Up 40%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": null,
+            "target": "All enemy generals",
+            "effect": "90% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Own HP < 100%",
+            "target": "Self",
+            "effect": "HP Recovery 40%",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/houken.webp"
   },
   {
     "id": "kaine",
     "name_en": "Kaine",
-    "name_jp": "カイネ",
+    "name_jp": "ã‚«ã‚¤ãƒ",
     "country": "zhao",
     "unit": "Riboku Forces",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Red Sheep]",
-        "name_jp": "猛将一閃【赤羊】",
+        "name_jp": "çŒ›å°†ä¸€é–ƒã€èµ¤ç¾Šã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Self / ally shield soldiers", "effect": "DEF Up 20%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self / ally shield soldiers",
+            "effect": "DEF Up 20%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
-        "name_en": "Lieutenant's Wisdom",
-        "name_jp": "側近の心得",
+        "name_en": "Lieutenant''s Wisdom",
+        "name_jp": "å´è¿‘ã®å¿ƒå¾—",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Ally Zhao", "effect": "Critical Rate Up / Hit Rate Up 20%", "duration": null },
-          { "condition": "When ally Riboku is present", "target": "Ally Zhao", "effect": "Max Morale Up 50%", "duration": null }
+          {
+            "condition": null,
+            "target": "Ally Zhao",
+            "effect": "Critical Rate Up / Hit Rate Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Riboku is present",
+            "target": "Ally Zhao",
+            "effect": "Max Morale Up 50%",
+            "duration": null
+          }
         ]
       },
       {
-        "name_en": "Escort's Role",
-        "name_jp": "護衛の役割",
+        "name_en": "Escort''s Role",
+        "name_jp": "è­·è¡›ã®å½¹å‰²",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
-          { "condition": null, "target": "Self / ally shield soldiers", "effect": "Guard 60%", "duration": "1 time" },
-          { "condition": "When ally Riboku is alive", "target": "Ally Zhao", "effect": "Evasion Rate Up 20%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "170% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self / ally shield soldiers",
+            "effect": "Guard 60%",
+            "duration": "1 time"
+          },
+          {
+            "condition": "When ally Riboku is alive",
+            "target": "Ally Zhao",
+            "effect": "Evasion Rate Up 20%",
+            "duration": "3 turns"
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/kaine.webp"
   },
   {
     "id": "mangoku",
     "name_en": "Mangoku",
-    "name_jp": "万極",
+    "name_jp": "ä¸‡æ¥µ",
     "country": "zhao",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Orange Bull]",
-        "name_jp": "重追撃【橙牛】",
+        "name_jp": "é‡è¿½æ’ƒã€æ©™ç‰›ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": "The lower own remaining HP", "target": "Self", "effect": "ATK Up (max 50%)", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "The lower own remaining HP",
+            "target": "Self",
+            "effect": "ATK Up (max 50%)",
+            "duration": "3 turns"
+          }
         ]
       },
-      { "name_en": "HP Enhancement – Large [Attack War Machines]", "name_jp": "体力強化・大【攻撃兵器】", "type": "Administration",
-        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally attack war machines", "effect": "Max HP Up 12.3%", "duration": null }] },
-      { "name_en": "Marsh Terrain Aptitude – Large Improved", "name_jp": "泥濘適性・大改", "type": "Administration",
-        "effects": [{ "condition": "When passing terrain [Marsh] (active even when not deployed)", "target": "Passing squad", "effect": "Damage Taken Increase Resistance 16.6%", "duration": null }] }
-    ]
+      {
+        "name_en": "HP Enhancement â€“ Large [Attack War Machines]",
+        "name_jp": "ä½“åŠ›å¼·åŒ–ãƒ»å¤§ã€æ”»æ’ƒå…µå™¨ã€‘",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally attack war machines",
+            "effect": "Max HP Up 12.3%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Marsh Terrain Aptitude â€“ Large Improved",
+        "name_jp": "æ³¥æ¿˜é©æ€§ãƒ»å¤§æ”¹",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing terrain [Marsh] (active even when not deployed)",
+            "target": "Passing squad",
+            "effect": "Damage Taken Increase Resistance 16.6%",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "https://touranko.vercel.app/persos/mangoku.webp"
   },
   {
     "id": "choso",
     "name_en": "Chousou",
-    "name_jp": "趙荘",
+    "name_jp": "è¶™è˜",
     "country": "zhao",
     "rarity": "NR",
     "skills": [
-      { "name_en": "DEF Enhancement [Orange Sheep]", "name_jp": "防御強化【橙羊】", "type": "Strategy",
-        "effects": [{ "condition": null, "target": "Other ally cavalry / ally shield soldiers", "effect": "DEF Up 20%", "duration": null }] },
-      { "name_en": "Squad Protection – Large", "name_jp": "部隊保護・大", "type": "Administration",
-        "effects": [{ "condition": "When passing terrain [Ambush] (active even when not deployed)", "target": "Passing squad", "effect": "Squad Damage Reduction 2.7%", "duration": null }] },
-      { "name_en": "HP Enhancement – Large Improved [Cavalry]", "name_jp": "体力強化・大改【騎兵】", "type": "Administration",
-        "effects": [{ "condition": "Alliance Souha Battle (active even when not deployed)", "target": "Ally cavalry", "effect": "Max HP Up 18.2%", "duration": null }] }
-    ]
+      {
+        "name_en": "DEF Enhancement [Orange Sheep]",
+        "name_jp": "é˜²å¾¡å¼·åŒ–ã€æ©™ç¾Šã€‘",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Other ally cavalry / ally shield soldiers",
+            "effect": "DEF Up 20%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Squad Protection â€“ Large",
+        "name_jp": "éƒ¨éšŠä¿è­·ãƒ»å¤§",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When passing terrain [Ambush] (active even when not deployed)",
+            "target": "Passing squad",
+            "effect": "Squad Damage Reduction 2.7%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "HP Enhancement â€“ Large Improved [Cavalry]",
+        "name_jp": "ä½“åŠ›å¼·åŒ–ãƒ»å¤§æ”¹ã€é¨Žå…µã€‘",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "Alliance Souha Battle (active even when not deployed)",
+            "target": "Ally cavalry",
+            "effect": "Max HP Up 18.2%",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "https://touranko.vercel.app/persos/chousou.webp"
   },
   {
     "id": "chouko",
     "name_en": "Chouko",
-    "name_jp": "趙高",
+    "name_jp": "è¶™é«˜",
     "country": "zhao",
     "rarity": "NR",
     "skills": [
-      { "name_en": "ATK Enhancement [Red Bull]", "name_jp": "攻撃強化【赤牛】", "type": "Strategy",
+      {
+        "name_en": "ATK Enhancement [Red Bull]",
+        "name_jp": "æ”»æ’ƒå¼·åŒ–ã€èµ¤ç‰›ã€‘",
+        "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Ally archers", "effect": "ATK Up 20%", "duration": null },
-          { "condition": null, "target": "Other ally generals", "effect": "Poison Infliction Rate Up / Betrayal Infliction Rate Up 25%", "duration": null }
-        ] },
-      { "name_en": "Repair Ore Reduction – Small", "name_jp": "修理鉱石減少・小", "type": "Administration",
-        "effects": [{ "condition": "When repairing Souha war machines", "target": "War machine repair", "effect": "Ore Cost Down 2%", "duration": null }] },
-      { "name_en": "Repair Material Reduction – Small Improved", "name_jp": "修理資材減少・小改", "type": "Administration",
-        "effects": [{ "condition": "When repairing Souha war machines", "target": "War machine repair", "effect": "Material Cost Down 4.6%", "duration": null }] }
+          {
+            "condition": null,
+            "target": "Ally archers",
+            "effect": "ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Other ally generals",
+            "effect": "Poison Infliction Rate Up / Betrayal Infliction Rate Up 25%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Repair Ore Reduction â€“ Small",
+        "name_jp": "ä¿®ç†é‰±çŸ³æ¸›å°‘ãƒ»å°",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing Souha war machines",
+            "target": "War machine repair",
+            "effect": "Ore Cost Down 2%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Repair Material Reduction â€“ Small Improved",
+        "name_jp": "ä¿®ç†è³‡ææ¸›å°‘ãƒ»å°æ”¹",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing Souha war machines",
+            "target": "War machine repair",
+            "effect": "Material Cost Down 4.6%",
+            "duration": null
+          }
+        ]
+      }
     ]
   },
   {
     "id": "seika",
     "name_en": "Seikai",
-    "name_jp": "成恢",
+    "name_jp": "æˆæ¢",
     "country": "han",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Orange Tiger]",
-        "name_jp": "鉄壁一閃【橙虎】",
+        "name_jp": "é‰„å£ä¸€é–ƒã€æ©™è™Žã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": "Enemy general with highest DEF", "target": "3 enemy generals", "effect": "Poison Infliction 50%", "duration": "4 turns" },
-          { "condition": "When Attacking", "target": "Ally archers", "effect": "DEF Up 20%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest DEF",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general with highest DEF",
+            "target": "3 enemy generals",
+            "effect": "Poison Infliction 50%",
+            "duration": "4 turns"
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Ally archers",
+            "effect": "DEF Up 20%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "Efficient Tactics",
-        "name_jp": "効率的戦術",
+        "name_jp": "åŠ¹çŽ‡çš„æˆ¦è¡“",
         "type": "Combat",
         "effects": [
-          { "condition": "Own HP ≥ 90%, enemy general with highest DEF", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": "Own HP ≥ 90%, poisoned enemy general with highest remaining HP", "target": "1 poisoned enemy general", "effect": "100% Damage", "duration": null },
-          { "condition": "Own HP < 90%, enemy general with highest DEF", "target": "2 enemy generals", "effect": "90% Damage", "duration": null },
-          { "condition": "Own HP < 90%, from damage", "target": "Self", "effect": "HP Drain 60%", "duration": null },
-          { "condition": "Own HP < 90%, poisoned enemies present", "target": "All poisoned enemy generals", "effect": "80% Damage", "duration": null }
+          {
+            "condition": "Own HP â‰¥ 90%, enemy general with highest DEF",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Own HP â‰¥ 90%, poisoned enemy general with highest remaining HP",
+            "target": "1 poisoned enemy general",
+            "effect": "100% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Own HP < 90%, enemy general with highest DEF",
+            "target": "2 enemy generals",
+            "effect": "90% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Own HP < 90%, from damage",
+            "target": "Self",
+            "effect": "HP Drain 60%",
+            "duration": null
+          },
+          {
+            "condition": "Own HP < 90%, poisoned enemies present",
+            "target": "All poisoned enemy generals",
+            "effect": "80% Damage",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Research Results",
-        "name_jp": "研究の成果",
+        "name_jp": "ç ”ç©¶ã®æˆæžœ",
         "type": "Combat",
         "effects": [
-          { "condition": "Own HP ≥ 90%, enemy general with highest DEF", "target": "1 enemy general", "effect": "160% Damage", "duration": null },
-          { "condition": "Own HP ≥ 90%, enemy general with highest remaining HP", "target": "1 enemy general", "effect": "Poison Infliction", "duration": "2 turns" },
-          { "condition": "Own HP < 90%", "target": "Enemy generals", "effect": "70% Damage", "duration": null },
-          { "condition": "Own HP < 90%, from damage", "target": "Self", "effect": "HP Drain 60%", "duration": null },
-          { "condition": "Own HP < 90%", "target": "Enemy generals", "effect": "Poison Infliction 40%", "duration": "2 turns" }
+          {
+            "condition": "Own HP â‰¥ 90%, enemy general with highest DEF",
+            "target": "1 enemy general",
+            "effect": "160% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Own HP â‰¥ 90%, enemy general with highest remaining HP",
+            "target": "1 enemy general",
+            "effect": "Poison Infliction",
+            "duration": "2 turns"
+          },
+          {
+            "condition": "Own HP < 90%",
+            "target": "Enemy generals",
+            "effect": "70% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Own HP < 90%, from damage",
+            "target": "Self",
+            "effect": "HP Drain 60%",
+            "duration": null
+          },
+          {
+            "condition": "Own HP < 90%",
+            "target": "Enemy generals",
+            "effect": "Poison Infliction 40%",
+            "duration": "2 turns"
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/seikai.webp"
   }
 ]

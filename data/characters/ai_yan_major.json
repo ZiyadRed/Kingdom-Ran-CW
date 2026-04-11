@@ -1,239 +1,476 @@
-[
+﻿[
   {
     "id": "raoai",
     "name_en": "Rouai",
-    "name_jp": "嫪毐",
+    "name_jp": "å«ªæ¯",
     "country": "ai",
     "rarity": "UR",
-    "notes": "Wategi King of Ai — core buff target for Ai generals."
+    "notes": "Wategi King of Ai â€” core buff target for Ai generals.",
+    "image": "https://touranko.vercel.app/persos/rouai.webp"
   },
   {
     "id": "juutekkoo",
     "name_en": "Wategi",
-    "name_jp": "戎翟公",
+    "name_jp": "æˆŽç¿Ÿå…¬",
     "country": "ai",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [White Turtle]",
-        "name_jp": "猛将一閃【白亀】",
+        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç™½äº€ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": null, "target": "Ally cavalry vs Qin", "effect": "ATK Up 30%", "duration": "3 turns" },
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null }
+          {
+            "condition": null,
+            "target": "Ally cavalry vs Qin",
+            "effect": "ATK Up 30%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Grudge of the Fallen Nation",
-        "name_jp": "亡国の怨恨",
+        "name_jp": "äº¡å›½ã®æ€¨æ¨",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Enemy Qin vs Qin", "effect": "DEF Down 30%", "duration": null },
-          { "condition": "When enemy Qin generals are present", "target": "Ally generals", "effect": "Critical Rate Up 20%", "duration": null }
+          {
+            "condition": null,
+            "target": "Enemy Qin vs Qin",
+            "effect": "DEF Down 30%",
+            "duration": null
+          },
+          {
+            "condition": "When enemy Qin generals are present",
+            "target": "Ally generals",
+            "effect": "Critical Rate Up 20%",
+            "duration": null
+          }
         ]
       },
       {
-        "name_en": "Rebellion's Signal Fire",
-        "name_jp": "反乱の狼煙",
+        "name_en": "Rebellion''s Signal Fire",
+        "name_jp": "åä¹±ã®ç‹¼ç…™",
         "type": "Combat",
         "effects": [
-          { "condition": null, "target": "Enemy Qin", "effect": "Confusion Infliction 30%", "duration": "3 turns" },
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "170% Damage", "duration": null }
+          {
+            "condition": null,
+            "target": "Enemy Qin",
+            "effect": "Confusion Infliction 30%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "170% Damage",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/wategi.webp"
   },
   {
     "id": "hanoki",
     "name_en": "Hanoki",
-    "name_jp": "樊於期",
+    "name_jp": "æ¨Šæ–¼æœŸ",
     "country": "ai",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Master General Flash [Orange Tiger]",
-        "name_jp": "名将一閃【橙虎】",
+        "name_jp": "åå°†ä¸€é–ƒã€æ©™è™Žã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": "Enemy Qin general with highest ATK", "target": "1 enemy Qin general", "effect": "Betrayal Infliction 20%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy Qin general with highest ATK",
+            "target": "1 enemy Qin general",
+            "effect": "Betrayal Infliction 20%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "Instigation of Chaos",
-        "name_jp": "争乱扇動",
+        "name_jp": "äº‰ä¹±æ‰‡å‹•",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Self", "effect": "Betrayal Infliction Rate Up 10%", "duration": null },
-          { "condition": null, "target": "Other ally generals", "effect": "Confusion Infliction Rate Up 10%", "duration": null },
-          { "condition": null, "target": "Ally Ai", "effect": "Hit Rate Up 30%", "duration": null }
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Betrayal Infliction Rate Up 10%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Other ally generals",
+            "effect": "Confusion Infliction Rate Up 10%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Ai",
+            "effect": "Hit Rate Up 30%",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Forced Training",
-        "name_jp": "強制練兵",
+        "name_jp": "å¼·åˆ¶ç·´å…µ",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy Qin generals alive", "target": "Ally Ai", "effect": "ATK Up 20%", "duration": "3 turns" },
-          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "170% Damage", "duration": null },
-          { "condition": "Enemy Qin general with highest ATK", "target": "1 enemy Qin general", "effect": "Betrayal Infliction", "duration": "3 turns" },
-          { "condition": "Confused enemy generals present", "target": "Enemy generals", "effect": "Betrayal Infliction 40%", "duration": "3 turns" }
+          {
+            "condition": "Enemy Qin generals alive",
+            "target": "Ally Ai",
+            "effect": "ATK Up 20%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "170% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy Qin general with highest ATK",
+            "target": "1 enemy Qin general",
+            "effect": "Betrayal Infliction",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Confused enemy generals present",
+            "target": "Enemy generals",
+            "effect": "Betrayal Infliction 40%",
+            "duration": "3 turns"
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/hanoki.webp"
   },
   {
     "id": "hanryuki",
     "name_en": "Hanroki",
-    "name_jp": "樊琉期",
+    "name_jp": "æ¨Šç‰æœŸ",
     "country": "ai",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Green Turtle]",
-        "name_jp": "重追撃【緑亀】",
+        "name_jp": "é‡è¿½æ’ƒã€ç·‘äº€ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "140% Damage", "duration": null },
-          { "condition": "Enemy Qin general's HP ≤ 50%, enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "60% Damage", "duration": null },
-          { "condition": "From the 60% Damage", "target": "Self", "effect": "HP Drain 50%", "duration": null }
+          {
+            "condition": "Enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "140% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy Qin general''s HP â‰¤ 50%, enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "60% Damage",
+            "duration": null
+          },
+          {
+            "condition": "From the 60% Damage",
+            "target": "Self",
+            "effect": "HP Drain 50%",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Dominance over the Weak",
-        "name_jp": "優勝劣勢",
+        "name_jp": "å„ªå‹åŠ£å‹¢",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": "Enemy general's HP ≤ 50%, enemy general with lowest remaining HP", "target": "1 enemy general", "effect": "60% Damage", "duration": null },
-          { "condition": "From the 60% Damage", "target": "Self", "effect": "HP Drain 50%", "duration": null }
+          {
+            "condition": "Enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general''s HP â‰¤ 50%, enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "60% Damage",
+            "duration": null
+          },
+          {
+            "condition": "From the 60% Damage",
+            "target": "Self",
+            "effect": "HP Drain 50%",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Trampling the Weak",
-        "name_jp": "弱者への蹂躙",
+        "name_jp": "å¼±è€…ã¸ã®è¹‚èº™",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with lowest DEF", "target": "1 enemy general", "effect": "160% Damage", "duration": null },
-          { "condition": "Enemy general's HP ≤ 50%, enemy general with lowest remaining HP", "target": "2 enemy generals", "effect": "60% Damage", "duration": null },
-          { "condition": "From the 60% Damage", "target": "Self", "effect": "HP Drain 10%", "duration": null },
-          { "condition": null, "target": "Ally Ai", "effect": "Morale Recovery 10%", "duration": null }
+          {
+            "condition": "Enemy general with lowest DEF",
+            "target": "1 enemy general",
+            "effect": "160% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general''s HP â‰¤ 50%, enemy general with lowest remaining HP",
+            "target": "2 enemy generals",
+            "effect": "60% Damage",
+            "duration": null
+          },
+          {
+            "condition": "From the 60% Damage",
+            "target": "Self",
+            "effect": "HP Drain 10%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Ai",
+            "effect": "Morale Recovery 10%",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/hanroki.webp"
   },
   {
     "id": "ordo",
     "name_en": "Ordo",
-    "name_jp": "オルド",
+    "name_jp": "ã‚ªãƒ«ãƒ‰",
     "country": "yan",
     "unit": "Ordo Forces",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Master General Flash [Orange Turtle]",
-        "name_jp": "名将一閃【橙亀】",
+        "name_jp": "åå°†ä¸€é–ƒã€æ©™äº€ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Ally cavalry", "effect": "ATK Up 20%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally cavalry",
+            "effect": "ATK Up 20%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "Mountain Assault Talent",
-        "name_jp": "山攻めの才",
+        "name_jp": "å±±æ”»ã‚ã®æ‰",
         "type": "Combat",
         "effects": [
-          { "condition": "Per ally general attack count", "target": "Other ally Yan", "effect": "ATK Up 2% (max 30%)", "duration": "4 turns" },
-          { "condition": "When enemy Qin present", "target": "Enemy Qin", "effect": "50% Damage", "duration": null },
-          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "2-Hit 80% Damage", "duration": null }
+          {
+            "condition": "Per ally general attack count",
+            "target": "Other ally Yan",
+            "effect": "ATK Up 2% (max 30%)",
+            "duration": "4 turns"
+          },
+          {
+            "condition": "When enemy Qin present",
+            "target": "Enemy Qin",
+            "effect": "50% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "2-Hit 80% Damage",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Elite Assault",
-        "name_jp": "精鋭突撃",
+        "name_jp": "ç²¾é‹­çªæ’ƒ",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest max morale", "target": "1 enemy general", "effect": "3-Hit 100% Damage", "duration": null },
-          { "condition": null, "target": "Enemy Qin", "effect": "DEF Down 30%", "duration": "3 turns" },
-          { "condition": "Enemy general with highest DEF", "target": "3 enemy generals", "effect": "Confusion Infliction 20%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "3-Hit 100% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy Qin",
+            "effect": "DEF Down 30%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Enemy general with highest DEF",
+            "target": "3 enemy generals",
+            "effect": "Confusion Infliction 20%",
+            "duration": "3 turns"
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/ordo.webp"
   },
   {
     "id": "denti",
     "name_en": "Futei",
-    "name_jp": "傳抵",
+    "name_jp": "å‚³æŠµ",
     "country": "zhao",
     "unit": "Riboku Forces",
     "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Green Sheep]",
-        "name_jp": "猛将一閃【緑羊】",
+        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç·‘ç¾Šã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Other ally cavalry", "effect": "DEF Up 20%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Other ally cavalry",
+            "effect": "DEF Up 20%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "Swift Hand-to-Hand Combat",
-        "name_jp": "神速の白兵戦",
+        "name_jp": "ç¥žé€Ÿã®ç™½å…µæˆ¦",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Enemy infantry / enemy cavalry", "effect": "Evasion Rate Down 10%", "duration": null },
-          { "condition": "When ally Kaine is present", "target": "Self vs infantry / vs cavalry", "effect": "ATK Up 20%", "duration": null }
+          {
+            "condition": null,
+            "target": "Enemy infantry / enemy cavalry",
+            "effect": "Evasion Rate Down 10%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Kaine is present",
+            "target": "Self vs infantry / vs cavalry",
+            "effect": "ATK Up 20%",
+            "duration": null
+          }
         ]
       },
       {
         "name_en": "Bewildering Speed",
-        "name_jp": "翻弄する韋駄天",
+        "name_jp": "ç¿»å¼„ã™ã‚‹éŸ‹é§„å¤©",
         "type": "Combat",
         "effects": [
-          { "condition": "Random", "target": "2 enemy generals", "effect": "100% Damage", "duration": null },
-          { "condition": null, "target": "Self", "effect": "Evasion Rate Up 50%", "duration": "3 turns" },
-          { "condition": "When Garrisoning", "target": "Self", "effect": "Provoke", "duration": "3 turns" }
+          {
+            "condition": "Random",
+            "target": "2 enemy generals",
+            "effect": "100% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Evasion Rate Up 50%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Self",
+            "effect": "Provoke",
+            "duration": "3 turns"
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/futei.webp"
   },
   {
     "id": "kouyoku",
     "name_en": "Kouyoku",
-    "name_jp": "項翼",
+    "name_jp": "é …ç¿¼",
     "country": "chu",
     "unit": "Wei Fire Dragon",
     "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Purple Turtle]",
-        "name_jp": "猛将一閃【紫亀】",
+        "name_jp": "çŒ›å°†ä¸€é–ƒã€ç´«äº€ã€‘",
         "type": "Combat",
         "effects": [
-          { "condition": "Enemy general with highest ATK", "target": "1 enemy general", "effect": "150% Damage", "duration": null },
-          { "condition": null, "target": "Ally cavalry vs cavalry", "effect": "ATK Up 30%", "duration": "3 turns" }
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally cavalry vs cavalry",
+            "effect": "ATK Up 30%",
+            "duration": "3 turns"
+          }
         ]
       },
       {
         "name_en": "Curse of Moye",
-        "name_jp": "莫邪の呪い",
+        "name_jp": "èŽ«é‚ªã®å‘ªã„",
         "type": "Combat",
         "effects": [
-          { "condition": "Random", "target": "Enemy generals", "effect": "6-Hit 50% Damage", "duration": null },
-          { "condition": null, "target": "Enemy generals", "effect": "HP Recovery Nullification 50%", "duration": "4 turns" }
+          {
+            "condition": "Random",
+            "target": "Enemy generals",
+            "effect": "6-Hit 50% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy generals",
+            "effect": "HP Recovery Nullification 50%",
+            "duration": "4 turns"
+          }
         ]
       },
       {
         "name_en": "Rallying Advance",
-        "name_jp": "鼓舞進撃",
+        "name_jp": "é¼“èˆžé€²æ’ƒ",
         "type": "Strategy",
         "effects": [
-          { "condition": null, "target": "Self", "effect": "Critical Damage Up 30%", "duration": null },
-          { "condition": null, "target": "Self", "effect": "DEF Penetration Up 20%", "duration": null }
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Critical Damage Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "DEF Penetration Up 20%",
+            "duration": null
+          }
         ]
       }
-    ]
+    ],
+    "image": "https://touranko.vercel.app/persos/kouyoku.webp"
   }
 ]
