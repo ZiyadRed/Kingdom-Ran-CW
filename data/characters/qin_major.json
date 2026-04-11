@@ -69,6 +69,50 @@
             "duration": "2 times"
           }
         ]
+      },
+      {
+        "name_en": "Together",
+        "name_jp": "共にある☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "[Additional skills]",
+            "target": "Ally Gyokuhou Unit",
+            "effect": "Max HP Up 100％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Ally Gyokuhou Unit",
+            "effect": "ATK Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Ally Gyokuhou Unit",
+            "effect": "DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Ally Gyokuhou Unit",
+            "effect": "Guard 100％",
+            "duration": "1 times"
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "Critical Rate Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】自身以外の味方玉鳳隊が生存",
+            "target": "Self",
+            "effect": "敵武将ATK Down 40％",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "https://touranko.vercel.app/persos/ouhon.webp"
@@ -643,6 +687,44 @@
             "duration": "1 time"
           }
         ]
+      },
+      {
+        "name_en": "Loyalty",
+        "name_jp": "忠義☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "ATK Up, DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Self and ally Six Great Generals of Qin",
+            "effect": "対弓兵ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】Alive",
+            "target": "Self and ally Six Great Generals of Qin",
+            "effect": "Morale Recovery 20%",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】敵弓兵武将が生存",
+            "target": "Self and ally Six Great Generals of Qin",
+            "effect": "Confusion Resistance 、Betrayal Resistance 100%",
+            "duration": null
+          }
+        ]
       }
     ]
   },
@@ -856,6 +938,38 @@
             "target": "Ally infantry",
             "effect": "ATK Up 3.8%",
             "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Bandit's Confidant",
+        "name_jp": "野盗の腹心☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "Max HP Up 100％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "ATK Up, DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】When Attacking",
+            "target": "Ally Kanki Forces",
+            "effect": "Hit Rate Up 25％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "Guard 100％",
+            "duration": "2 times"
           }
         ]
       }

@@ -74,6 +74,44 @@
             "duration": "3 turns"
           }
         ]
+      },
+      {
+        "name_en": "Unification of the Mountain World",
+        "name_jp": "山界ノ統一☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "対趙国ATK Up 、対魏国ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Ally Mountain Folk",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】Alive",
+            "target": "Ally Mountain Folk",
+            "effect": "Morale Recovery 20%",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】When Attacking",
+            "target": "Ally Mountain Folk",
+            "effect": "Betrayal Resistance 、Fear Resistance 60%",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】When Attacking",
+            "target": "Ally Mountain Folk",
+            "effect": "ATK Up 30%",
+            "duration": null
+          }
+        ]
       }
     ],
     "notes": "Core unit; her name appears as a buff target in many Mountain Folk skill conditions.",

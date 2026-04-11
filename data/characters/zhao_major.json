@@ -171,6 +171,44 @@
             "duration": null
           }
         ]
+      },
+      {
+        "name_en": "End of the Path",
+        "name_jp": "求道の果て☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "ATK Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "Critical Rate Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "DEF Penetration 30％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "Hit Rate Up 20％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "Evasion (Dodge Chance) Up 20％",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "https://touranko.vercel.app/persos/houken.webp"
@@ -297,6 +335,44 @@
             "condition": "When passing terrain [Marsh] (active even when not deployed)",
             "target": "Passing squad",
             "effect": "Damage Taken Increase Resistance 16.6%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Grudge",
+        "name_jp": "怨讐☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "Max HP Up 100％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "ATK Up, DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】敵に秦国",
+            "target": "Ally Zhao",
+            "effect": "Fear Resistance 100％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】敵に秦国",
+            "target": "All enemy generals",
+            "effect": "DEF Down 、Evasion (Dodge Chance) Down 30％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】敵に秦国",
+            "target": "Self",
+            "effect": "ATK Up 40％",
             "duration": null
           }
         ]
@@ -510,6 +586,70 @@
             "target": "Enemy generals",
             "effect": "Poison Infliction 40%",
             "duration": "2 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Poison Domination",
+        "name_jp": "毒の支配",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "DEF Penetration Up 30%, Evasion (Dodge Chance) Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Poison Infliction Rate Up 60%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy generals",
+            "effect": "Poison Damage Up 100%",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Enemy shield infantry",
+            "effect": "ATK Down 20%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Poison Domination",
+        "name_jp": "毒の支配☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Self",
+            "effect": "DEF Penetration Up 、Evasion (Dodge Chance) Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Self",
+            "effect": "Poison Infliction Rate Up 60%",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "All enemy generals",
+            "effect": "Poison Damage Up 100%",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】When Attacking",
+            "target": "Enemy shield infantry",
+            "effect": "ATK Down 20%",
+            "duration": null
           }
         ]
       }

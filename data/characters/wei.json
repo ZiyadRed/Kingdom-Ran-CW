@@ -208,6 +208,50 @@
             "duration": null
           }
         ]
+      },
+      {
+        "name_en": "Axe of Overwhelming Force",
+        "name_jp": "暴威の鉞☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Self",
+            "effect": "Max HP Up 100％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Self",
+            "effect": "対騎兵ATK Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Self",
+            "effect": "対騎兵DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Self",
+            "effect": "、味方魏火龍HP Recovery Up 50％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】味方魏火龍1名につき",
+            "target": "Enemy cavalry",
+            "effect": "ATK Down 10％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】When Garrisoning、敵騎兵武将が生存",
+            "target": "Self",
+            "effect": "HP Recovery 20％",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "https://touranko.vercel.app/persos/ranbihaku.webp"

@@ -488,6 +488,44 @@
             "duration": "3 times"
           }
         ]
+      },
+      {
+        "name_en": "Undefeated",
+        "name_jp": "不敗☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Self",
+            "effect": "対騎兵ATK Up 20％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Self",
+            "effect": "味方「昭王」、味方六大将軍DEF Up 、Hit Rate Up 20％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】When Garrisoning",
+            "target": "Enemy cavalry generals",
+            "effect": "ATK Down 、Critical Damage Down 20％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills] At the time of garrison",
+            "target": "Ally war machines",
+            "effect": "ATK Up, DEF Up 50％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】When Garrisoning、城門の体力残存時",
+            "target": "Gate",
+            "effect": "HP Recovery 50,000",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "https://touranko.vercel.app/persos/hakuki.webp"

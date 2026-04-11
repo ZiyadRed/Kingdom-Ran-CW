@@ -547,6 +547,38 @@
             "duration": null
           }
         ]
+      },
+      {
+        "name_en": "Ruler of a Superpower",
+        "name_jp": "超大国の執政者☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "[Additional skills]",
+            "target": "Ally Chu",
+            "effect": "Max HP Up 200％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Ally Chu",
+            "effect": "Max Morale Up 100%",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】敵武将がAlive場合、Alive味方楚国",
+            "target": "Ally Chu",
+            "effect": "HP Recovery 30%",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】敵武将がAlive場合、Alive味方楚国",
+            "target": "Ally Chu",
+            "effect": "Morale Recovery 20%",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "https://touranko.vercel.app/persos/shunshinkun.webp"

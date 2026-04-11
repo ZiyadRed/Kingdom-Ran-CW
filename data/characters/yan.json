@@ -239,6 +239,26 @@
             "duration": null
           }
         ]
+      },
+      {
+        "name_en": "The Conqueror Who Moves the World",
+        "name_jp": "天下を動かす傑物☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Ally Qin, Zhao, Wei, Chu, Han, and Yan",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Ally Qin, Zhao, Wei, Chu, Han, and Yan",
+            "effect": "DEF Up 30%",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "https://touranko.vercel.app/persos/gakuki.webp"

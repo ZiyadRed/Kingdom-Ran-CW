@@ -159,6 +159,38 @@
             "duration": "1 time"
           }
         ]
+      },
+      {
+        "name_en": "Hunter's Instinct",
+        "name_jp": "狩人の嗅覚☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Self",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Ally archers",
+            "effect": "Critical Rate Up 25%",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Ally archers",
+            "effect": "Confusion Infliction Rate Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】敵盾兵が生存",
+            "target": "Ally archers",
+            "effect": "Guard 60%",
+            "duration": "3 times"
+          }
+        ]
       }
     ],
     "image": "https://touranko.vercel.app/persos/keisha.webp"
@@ -314,6 +346,32 @@
             "condition": "Other ally Zhao generals' HP < 90% and surviving",
             "target": "Other ally Zhao",
             "effect": "HP Recovery 30%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "The General's Pride",
+        "name_jp": "殿の意地☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Ally Zhao",
+            "effect": "DEF Up 20％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Ally Zhao",
+            "effect": "対秦国DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】敵秦国または山の民の生存",
+            "target": "Self",
+            "effect": "HP Recovery 20％",
             "duration": null
           }
         ]

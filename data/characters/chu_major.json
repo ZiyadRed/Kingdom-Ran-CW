@@ -137,6 +137,38 @@
             "duration": null
           }
         ]
+      },
+      {
+        "name_en": "Supreme Wisdom",
+        "name_jp": "至強の知☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Ally Kanmei Forces",
+            "effect": "Max HP Up 100％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Ally Kanmei Forces",
+            "effect": "ATK Up, DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Ally Kanmei Forces",
+            "effect": "ATK Down 耐性50％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】自身以外の味方楚国が生存",
+            "target": "All enemy generals",
+            "effect": "DEF Down 30％",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "https://touranko.vercel.app/persos/kanmei.webp"
@@ -211,6 +243,32 @@
             "duration": null
           }
         ]
+      },
+      {
+        "name_en": "Vanguard Smasher",
+        "name_jp": "先陣割砕☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Self",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Self",
+            "effect": "Critical Rate Up 、Critical Damage Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Ally Chu",
+            "effect": "ATK Down 耐性60%",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "https://touranko.vercel.app/persos/rinbukun.webp"
@@ -277,6 +335,70 @@
             "target": "1 enemy general",
             "effect": "180% Damage",
             "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Warm Embrace",
+        "name_jp": "熱き抱擁",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Renpa Forces",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Renpa Forces",
+            "effect": "ATK Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Renpa Forces",
+            "effect": "DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "Ally Renpa Forces (other than self) alive",
+            "target": "All ally generals",
+            "effect": "Guard 60%",
+            "duration": "2 times"
+          }
+        ]
+      },
+      {
+        "name_en": "Warm Embrace",
+        "name_jp": "熱き抱擁☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Ally Renpa Forces",
+            "effect": "Max HP Up 100％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Ally Renpa Forces",
+            "effect": "ATK Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Ally Renpa Forces",
+            "effect": "DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】Other ally Renpa Forces alive",
+            "target": "Self",
+            "effect": "味方全武将Guard 60％",
+            "duration": "2 times"
           }
         ]
       }
@@ -477,6 +599,38 @@
             "duration": null
           }
         ]
+      },
+      {
+        "name_en": "Loyalty to the Great General",
+        "name_jp": "大将軍への忠心☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "【追想追加スキル】自身以外の味方廉頗軍1名につき",
+            "target": "Ally Renpa Forces",
+            "effect": "ATK Up 10％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】自身以外の味方廉頗軍1名につき",
+            "target": "Ally Renpa Forces",
+            "effect": "DEF Up 10％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "All enemy generals",
+            "effect": "対廉頗軍DEF Down 30％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Ally Renpa Forces",
+            "effect": "Betrayal Resistance 60％",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "https://touranko.vercel.app/persos/kaishibou.webp"
@@ -621,6 +775,44 @@
             "target": "Other ally Wei",
             "effect": "ATK Up 30%",
             "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Passion for Conquest",
+        "name_jp": "侵略への激情☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "対騎兵ATK Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "対騎兵DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Ally shield infantry",
+            "effect": "Hit Rate Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills]",
+            "target": "Self",
+            "effect": "味方魏国Burn Resistance 100％",
+            "duration": null
+          },
+          {
+            "condition": "[Additional skills] At the time of garrison",
+            "target": "Enemy cavalry",
+            "effect": "ATK Down 40％",
+            "duration": null
           }
         ]
       }

@@ -401,6 +401,38 @@
             "duration": "3 turns"
           }
         ]
+      },
+      {
+        "name_en": "Flash",
+        "name_jp": "閃光☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Self",
+            "effect": "Max HP Up 100％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Self",
+            "effect": "ATK Up, DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Enemy infantry and cavalry",
+            "effect": "Evasion (Dodge Chance) Down 25％",
+            "duration": null
+          },
+          {
+            "condition": "【追想追加スキル】",
+            "target": "Self",
+            "effect": "Evasion (Dodge Chance) 25％",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "https://touranko.vercel.app/persos/futei.webp"
