@@ -808,3 +808,15 @@ button { cursor: pointer; font-family: inherit; }
 .party-slot.occupied.country-yan          { border-left-color: #1abc9c; }
 .party-slot.occupied.country-ai           { border-left-color: #884ea0; }
 .party-slot.occupied.country-mountain_folk{ border-left-color: #7d6608; }
+
+/* ─── Map-only / Administration skill tag ─────────────────────────────────── */
+.skill-map-tag {
+  font-size: 0.65rem;
+  background: #1a3a2a;
+  color: #27ae60;
+  border: 1px solid #27ae60;
+  border-radius: 4px;
+  padding: 1px 6px;
+  margin-left: 6px;
+  white-space: nowrap;
+}

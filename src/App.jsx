@@ -44,13 +44,13 @@ const FACTIONS = [
 // ─── Simulation Logic ────────────────────────────────────────────────────────
 
 function simulate(party) {
+  // Strategy skills only (NOT Administration — those are passive map skills, not CW skills)
   const strategySkills = []
   for (const general of party) {
-    const strats = (general.skills || []).filter(
-      s => s.type === 'Strategy' || s.type === 'Administration'
-    )
+    const strats = (general.skills || []).filter(s => s.type === 'Strategy')
     if (strats.length > 0) strategySkills.push({ general, skills: strats })
   }
+  // Combat queues — last skill fires first
   const combatQueues = party.map(general => {
     const combatSkills = (general.skills || []).filter(s => s.type === 'Combat')
     return [...combatSkills].reverse()
@@ -92,7 +92,7 @@ export default function App() {
           <div className="site-title">
             <span className="title-kanji">キンラン</span>
             <h1>Kingdom Ran EN</h1>
-            <span className="title-sub">Souha Skill Simulator</span>
+            <span className="title-sub">CW Skill Simulator</span>
           </div>
           <nav className="site-nav">
             {PAGES.map(p => (
@@ -273,11 +273,13 @@ function CharacterCard({ char, inParty, onToggleParty, partyFull }) {
 
 function SkillBlock({ skill }) {
   const typeColors = { Combat: '#c0392b', Strategy: '#2980b9', Administration: '#27ae60' }
+  const isAdmin = skill.type === 'Administration'
   return (
     <div className="skill-block">
       <div className="skill-header">
         <span className="skill-name">{skill.name_en}</span>
         <span className="skill-type" style={{ background: typeColors[skill.type] || '#555' }}>{skill.type}</span>
+        {isAdmin && <span className="skill-map-tag">Map only</span>}
       </div>
       <div className="skill-name-jp">{skill.name_jp}</div>
       <table className="effect-table">
@@ -373,7 +375,7 @@ function ActivationOrderPage({ party, goToParty }) {
       <div className="sim-section">
         <h3 className="sim-section-title sim-title-strategy">⚑ Strategy Skills — Always Active</h3>
         {strategySkills.length === 0 ? (
-          <p className="sim-empty">No strategy or administration skills in this party.</p>
+          <p className="sim-empty">No strategy skills in this party. (Administration skills are map-only and excluded from CW simulation.)</p>
         ) : (
           strategySkills.map(({ general, skills }) => (
             <div key={general.id} className="sim-general-block">
