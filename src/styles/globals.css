@@ -687,3 +687,124 @@ button { cursor: pointer; font-family: inherit; }
   border: 2px solid #2e2a24;
   margin-bottom: 4px;
 }
+
+/* ─── Faction-grouped Archive ────────────────────────────────────────────── */
+
+.archive-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.search-clear {
+  background: none;
+  border: none;
+  color: #8a7d6a;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+}
+
+.faction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.faction-section {
+  border: 1px solid #2e2a24;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.faction-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: #141210;
+  border: none;
+  border-left: 4px solid #c0392b;
+  cursor: pointer;
+  color: var(--text);
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.faction-header:hover {
+  background: #1a1815;
+}
+
+.faction-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.faction-name-en {
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  color: var(--gold);
+}
+
+.faction-name-jp {
+  font-size: 0.85rem;
+  color: #8a7d6a;
+}
+
+.faction-count {
+  font-size: 0.8rem;
+  color: #8a7d6a;
+}
+
+.faction-chevron {
+  font-size: 0.75rem;
+  color: #8a7d6a;
+}
+
+.faction-grid {
+  padding: 1rem;
+  background: #0f0e0c;
+  border-top: 1px solid #2e2a24;
+}
+
+.nav-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-left: 6px;
+}
+
+/* Slot image in party builder */
+.slot-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  border: 2px solid #2e2a24;
+  flex-shrink: 0;
+}
+
+.party-slot.occupied {
+  border-left: 3px solid #2e2a24;
+}
+.party-slot.occupied.country-qin          { border-left-color: #c0392b; }
+.party-slot.occupied.country-zhao         { border-left-color: #2980b9; }
+.party-slot.occupied.country-chu          { border-left-color: #8e44ad; }
+.party-slot.occupied.country-wei          { border-left-color: #16a085; }
+.party-slot.occupied.country-han          { border-left-color: #d4ac0d; }
+.party-slot.occupied.country-yan          { border-left-color: #1abc9c; }
+.party-slot.occupied.country-ai           { border-left-color: #884ea0; }
+.party-slot.occupied.country-mountain_folk{ border-left-color: #7d6608; }

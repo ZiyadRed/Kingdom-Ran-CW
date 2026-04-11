@@ -243,7 +243,7 @@
     "id": "douken",
     "name_en": "Douken",
     "name_jp": "道剣",
-    "country": "unknown",
+    "country": "zhao",
     "rarity": "NR",
     "skills": [
       {
@@ -297,7 +297,7 @@
     "id": "shishi",
     "name_en": "Shishi",
     "name_jp": "肆氏",
-    "country": "unknown",
+    "country": "qin",
     "rarity": "NR",
     "skills": [
       {
@@ -351,7 +351,7 @@
     "id": "gii",
     "name_en": "Gii",
     "name_jp": "魏興",
-    "country": "unknown",
+    "country": "wei",
     "rarity": "NR",
     "skills": [
       {
@@ -405,7 +405,7 @@
     "id": "maron",
     "name_en": "Maron",
     "name_jp": "摩論",
-    "country": "unknown",
+    "country": "qin",
     "rarity": "NR",
     "skills": [
       {

@@ -13,7 +13,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "All ally Kyountain Folk",
+            "target": "All ally Mountain Folk",
             "effect": "DEF Penetration Up 20%",
             "duration": "2 turns"
           },
@@ -22,6 +22,56 @@
             "target": "1 enemy general",
             "effect": "200% Damage",
             "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Death King's Command",
+        "name_jp": "死王の号令",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "All ally Mountain Folk",
+            "effect": "ATK Up 20%, DEF Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking",
+            "target": "All ally Mountain Folk",
+            "effect": "Evasion (Dodge Chance) 30%",
+            "duration": null
+          },
+          {
+            "condition": "Ally 'Bajio' is alive",
+            "target": "All ally Mountain Folk",
+            "effect": "Attack Nullification",
+            "duration": "1 time"
+          }
+        ]
+      },
+      {
+        "name_en": "Ruler of the Mountain Folk",
+        "name_jp": "山の民の王",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": null,
+            "target": "All ally Mountain Folk",
+            "effect": "DEF Penetration Up 30%",
+            "duration": "2 turns"
+          },
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "220% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Ally 'Bajio' is alive",
+            "target": "All ally Mountain Folk",
+            "effect": "ATK Up 30%",
+            "duration": "3 turns"
           }
         ]
       }

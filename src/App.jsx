@@ -1,5 +1,4 @@
 import { useState } from 'react'
-// Data imports
 import mountainFolk  from '../data/characters/mountain_folk.json'
 import qin           from '../data/characters/qin.json'
 import qinBatch2     from '../data/characters/qin_batch2.json'
@@ -28,12 +27,23 @@ const ALL_CHARACTERS = [
   ...wei, ...yan, ...qi,
   ...aiYanMajor,
   ...misc, ...misc2,
+].filter(c => c.country !== 'unknown')
+
+const FACTIONS = [
+  { id: 'qin',           label: 'Qin',           jp: '秦',    color: '#c0392b' },
+  { id: 'zhao',          label: 'Zhao',          jp: '趙',    color: '#2980b9' },
+  { id: 'chu',           label: 'Chu',           jp: '楚',    color: '#8e44ad' },
+  { id: 'wei',           label: 'Wei',           jp: '魏',    color: '#16a085' },
+  { id: 'yan',           label: 'Yan',           jp: '燕',    color: '#1abc9c' },
+  { id: 'ai',            label: 'Ai',            jp: '毐',    color: '#884ea0' },
+  { id: 'han',           label: 'Han',           jp: '韓',    color: '#d4ac0d' },
+  { id: 'qi',            label: 'Qi',            jp: '斉',    color: '#e67e22' },
+  { id: 'mountain_folk', label: 'Mountain Folk', jp: '山の民', color: '#7d6608' },
 ]
 
 // ─── Simulation Logic ────────────────────────────────────────────────────────
 
 function simulate(party) {
-  // Section 1: Strategy + Administration (always active)
   const strategySkills = []
   for (const general of party) {
     const strats = (general.skills || []).filter(
@@ -41,23 +51,19 @@ function simulate(party) {
     )
     if (strats.length > 0) strategySkills.push({ general, skills: strats })
   }
-
-  // Section 2: Combat queues — last skill fires first
   const combatQueues = party.map(general => {
     const combatSkills = (general.skills || []).filter(s => s.type === 'Combat')
     return [...combatSkills].reverse()
   })
-
   const turns = []
   for (let turn = 1; turn <= 4; turn++) {
     const entries = []
     for (let i = 0; i < party.length; i++) {
-      const skill = combatQueues[i].shift() || null  // null = Normal Attack
+      const skill = combatQueues[i].shift() || null
       entries.push({ general: party[i], skill })
     }
     turns.push({ turn, entries })
   }
-
   return { strategySkills, turns }
 }
 
@@ -66,19 +72,9 @@ function simulate(party) {
 const PAGES = ['Skill Archive', 'Party Builder', 'Activation Order']
 
 export default function App() {
-  const [page, setPage]                   = useState('Skill Archive')
-  const [filterCountry, setFilterCountry] = useState('all')
-  const [filterType, setFilterType]       = useState('all')
-  const [search, setSearch]               = useState('')
-  const [party, setParty]                 = useState([])
-
-  const filtered = ALL_CHARACTERS.filter(c => {
-    if (filterCountry !== 'all' && c.country !== filterCountry) return false
-    if (filterType !== 'all' && c.skills && !c.skills.some(s => s.type === filterType)) return false
-    if (search && !c.name_en.toLowerCase().includes(search.toLowerCase()) &&
-        !c.name_jp.includes(search)) return false
-    return true
-  })
+  const [page, setPage]     = useState('Skill Archive')
+  const [party, setParty]   = useState([])
+  const [search, setSearch] = useState('')
 
   const toggleParty = (char) => {
     setParty(prev => {
@@ -88,8 +84,6 @@ export default function App() {
       return [...prev, char]
     })
   }
-
-  const countryOptions = Object.entries(countries).filter(([k]) => k !== '_comment')
 
   return (
     <div className="app">
@@ -104,6 +98,9 @@ export default function App() {
             {PAGES.map(p => (
               <button key={p} className={`nav-btn ${page === p ? 'active' : ''}`} onClick={() => setPage(p)}>
                 {p}
+                {p === 'Party Builder' && party.length > 0 && (
+                  <span className="nav-badge">{party.length}</span>
+                )}
               </button>
             ))}
           </nav>
@@ -113,17 +110,17 @@ export default function App() {
       <main className="main-content">
         {page === 'Skill Archive' && (
           <SkillArchivePage
-            characters={filtered}
-            filterCountry={filterCountry} setFilterCountry={setFilterCountry}
-            filterType={filterType} setFilterType={setFilterType}
-            search={search} setSearch={setSearch}
-            party={party} toggleParty={toggleParty}
-            countryOptions={countryOptions} index={index}
+            allCharacters={ALL_CHARACTERS}
+            party={party}
+            toggleParty={toggleParty}
+            search={search}
+            setSearch={setSearch}
           />
         )}
         {page === 'Party Builder' && (
           <PartyBuilderPage
-            party={party} setParty={setParty} toggleParty={toggleParty}
+            party={party}
+            toggleParty={toggleParty}
             goToOrder={() => setPage('Activation Order')}
           />
         )}
@@ -134,7 +131,7 @@ export default function App() {
 
       <footer className="site-footer">
         <p>Fan-made English resource for Kingdom Ran (キングダム乱). Not affiliated with Cygames or Shueisha.</p>
-        <p>Data sourced from <a href="https://pirock55.work/souha-skill-archive/" target="_blank" rel="noreferrer">pirock55.work</a>. Characters: {index.characters.filter(c => c.status === 'done').length} / {index._meta.total_characters_in_game} translated.</p>
+        <p>Data from <a href="https://pirock55.work/souha-skill-archive/" target="_blank" rel="noreferrer">pirock55.work</a> · {index.characters.filter(c => c.status === 'done').length} / {index._meta.total_characters_in_game} characters translated</p>
       </footer>
     </div>
   )
@@ -142,46 +139,99 @@ export default function App() {
 
 // ─── Skill Archive ────────────────────────────────────────────────────────────
 
-function SkillArchivePage({ characters, filterCountry, setFilterCountry, filterType, setFilterType, search, setSearch, party, toggleParty, countryOptions }) {
+function SkillArchivePage({ allCharacters, party, toggleParty, search, setSearch }) {
+  const [openFactions, setOpenFactions] = useState({})
+
+  const toggleFaction = (id) => {
+    setOpenFactions(prev => ({ ...prev, [id]: !prev[id] }))
+  }
+
+  const searchLower = search.toLowerCase()
+  const filtered = search
+    ? allCharacters.filter(c =>
+        c.name_en.toLowerCase().includes(searchLower) ||
+        c.name_jp.includes(search)
+      )
+    : null
+
   return (
     <section className="archive-page">
-      <div className="filter-bar">
-        <input className="search-input" placeholder="Search by name…" value={search} onChange={e => setSearch(e.target.value)} />
-        <select className="filter-select" value={filterCountry} onChange={e => setFilterCountry(e.target.value)}>
-          <option value="all">All Countries</option>
-          {countryOptions.map(([key, val]) => <option key={key} value={val.id}>{val.en}</option>)}
-        </select>
-        <select className="filter-select" value={filterType} onChange={e => setFilterType(e.target.value)}>
-          <option value="all">All Skill Types</option>
-          <option value="Combat">Combat Skills</option>
-          <option value="Strategy">Military Strategy</option>
-          <option value="Administration">Administration</option>
-        </select>
-        <span className="result-count">{characters.length} general{characters.length !== 1 ? 's' : ''}</span>
+      <div className="archive-search-bar">
+        <input
+          className="search-input"
+          placeholder="Search generals by name…"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />
+        {search && (
+          <button className="search-clear" onClick={() => setSearch('')}>✕</button>
+        )}
       </div>
 
-      <div className="character-grid">
-        {characters.map(char => (
-          <CharacterCard
-            key={char.id} char={char}
-            inParty={party.some(p => p.id === char.id)}
-            onToggleParty={() => toggleParty(char)}
-            partyFull={party.length >= 4}
-          />
-        ))}
-      </div>
+      {/* Search results mode */}
+      {filtered && (
+        <div>
+          <p className="result-count">{filtered.length} general{filtered.length !== 1 ? 's' : ''} found</p>
+          <div className="character-grid">
+            {filtered.map(char => (
+              <CharacterCard
+                key={char.id} char={char}
+                inParty={party.some(p => p.id === char.id)}
+                onToggleParty={() => toggleParty(char)}
+                partyFull={party.length >= 4}
+              />
+            ))}
+          </div>
+          {filtered.length === 0 && <p className="empty-state">No generals match your search.</p>}
+        </div>
+      )}
 
-      {characters.length === 0 && <div className="empty-state"><p>No generals match your filters.</p></div>}
+      {/* Faction browse mode */}
+      {!filtered && (
+        <div className="faction-list">
+          {FACTIONS.map(faction => {
+            const chars = allCharacters.filter(c => c.country === faction.id)
+            if (chars.length === 0) return null
+            const isOpen = openFactions[faction.id]
+            return (
+              <div key={faction.id} className="faction-section">
+                <button
+                  className="faction-header"
+                  style={{ borderLeftColor: faction.color }}
+                  onClick={() => toggleFaction(faction.id)}
+                >
+                  <span className="faction-label">
+                    <span className="faction-name-en">{faction.label}</span>
+                    <span className="faction-name-jp">{faction.jp}</span>
+                  </span>
+                  <span className="faction-count">{chars.length} generals</span>
+                  <span className="faction-chevron">{isOpen ? '▲' : '▼'}</span>
+                </button>
+
+                {isOpen && (
+                  <div className="character-grid faction-grid">
+                    {chars.map(char => (
+                      <CharacterCard
+                        key={char.id} char={char}
+                        inParty={party.some(p => p.id === char.id)}
+                        onToggleParty={() => toggleParty(char)}
+                        partyFull={party.length >= 4}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </div>
+      )}
     </section>
   )
 }
 
 function CharacterCard({ char, inParty, onToggleParty, partyFull }) {
   const [expanded, setExpanded] = useState(false)
-  const countryLabels = {
-    qin: 'Qin', zhao: 'Zhao', chu: 'Chu', wei: 'Wei',
-    han: 'Han', yan: 'Yan', qi: 'Qi', ai: 'Ai', mountain_folk: 'Mountain Folk',
-  }
+
   return (
     <div className={`char-card country-${char.country} ${inParty ? 'in-party' : ''}`}>
       {char.image && (
@@ -194,15 +244,11 @@ function CharacterCard({ char, inParty, onToggleParty, partyFull }) {
           <span className="char-name-en">{char.name_en}</span>
           <span className="char-name-jp">{char.name_jp}</span>
         </div>
-        <div className="char-meta">
-          <span className={`country-tag country-tag--${char.country}`}>{countryLabels[char.country] || char.country}</span>
-          {char.rarity && <span className={`rarity-tag rarity-${char.rarity}`}>{char.rarity}</span>}
-        </div>
       </div>
-      {char.unit && <p className="char-unit">Unit: {char.unit}</p>}
+      {char.unit && <p className="char-unit">{char.unit}</p>}
       <div className="char-card-actions">
         <button className="btn-expand" onClick={() => setExpanded(e => !e)}>
-          {expanded ? '▲ Hide Skills' : '▼ Show Skills'}
+          {expanded ? '▲ Hide' : '▼ Skills'}
         </button>
         <button
           className={`btn-party ${inParty ? 'btn-party--remove' : 'btn-party--add'}`}
@@ -213,12 +259,14 @@ function CharacterCard({ char, inParty, onToggleParty, partyFull }) {
           {inParty ? '− Remove' : '+ Party'}
         </button>
       </div>
-      {expanded && char.skills && (
+      {expanded && char.skills && char.skills.length > 0 && (
         <div className="skill-list">
           {char.skills.map((skill, si) => <SkillBlock key={si} skill={skill} />)}
         </div>
       )}
-      {expanded && !char.skills && <p className="pending-note">⏳ Skill translation pending</p>}
+      {expanded && (!char.skills || char.skills.length === 0) && (
+        <p className="pending-note">⏳ Skills pending translation</p>
+      )}
     </div>
   )
 }
@@ -237,10 +285,10 @@ function SkillBlock({ skill }) {
         <tbody>
           {skill.effects.map((eff, ei) => (
             <tr key={ei}>
-              <td className="eff-condition">{eff.condition || '—'}</td>
-              <td className="eff-target">{eff.target}</td>
-              <td className="eff-effect">{eff.effect}</td>
-              <td className="eff-duration">{eff.duration || '—'}</td>
+              <td>{eff.condition || '—'}</td>
+              <td>{eff.target}</td>
+              <td>{eff.effect}</td>
+              <td>{eff.duration || '—'}</td>
             </tr>
           ))}
         </tbody>
@@ -256,15 +304,15 @@ function PartyBuilderPage({ party, toggleParty, goToOrder }) {
     <section className="party-page">
       <h2>Party Builder</h2>
       <p className="page-hint">Select up to <strong>4 generals</strong> from the Skill Archive. Formation order (left → right) determines skill firing order.</p>
-
       <div className="party-slots">
         {Array.from({ length: 4 }).map((_, i) => {
           const member = party[i]
           return (
-            <div key={i} className={`party-slot ${member ? 'occupied' : 'empty'}`}>
+            <div key={i} className={`party-slot ${member ? `occupied country-${member.country}` : 'empty'}`}>
               <span className="slot-num">{i + 1}</span>
               {member ? (
                 <>
+                  {member.image && <img src={member.image} alt={member.name_en} className="slot-img" />}
                   <div className="slot-names">
                     <span className="slot-name">{member.name_en}</span>
                     <span className="slot-name-jp">{member.name_jp}</span>
@@ -272,13 +320,12 @@ function PartyBuilderPage({ party, toggleParty, goToOrder }) {
                   <button className="slot-remove" onClick={() => toggleParty(member)}>✕</button>
                 </>
               ) : (
-                <span className="slot-placeholder">Empty slot</span>
+                <span className="slot-placeholder">Empty</span>
               )}
             </div>
           )
         })}
       </div>
-
       {party.length === 0 && (
         <p className="empty-state">Go to <strong>Skill Archive</strong> and click <em>+ Party</em> to add generals.</p>
       )}
@@ -299,8 +346,7 @@ function ActivationOrderPage({ party, goToParty }) {
       <section className="order-page">
         <h2>Activation Order</h2>
         <p className="empty-state">
-          Build a party first.
-          <br />
+          Build a party first.<br />
           <button className="nav-btn active" style={{ marginTop: '1rem' }} onClick={goToParty}>Go to Party Builder</button>
         </p>
       </section>
@@ -313,7 +359,6 @@ function ActivationOrderPage({ party, goToParty }) {
     <section className="order-page">
       <h2>Skill Activation Order</h2>
 
-      {/* Formation bar */}
       <div className="formation-bar">
         {party.map((g, i) => (
           <div key={g.id} className={`formation-general country-${g.country}`}>
@@ -325,7 +370,6 @@ function ActivationOrderPage({ party, goToParty }) {
         ))}
       </div>
 
-      {/* Section 1: Strategy / Admin */}
       <div className="sim-section">
         <h3 className="sim-section-title sim-title-strategy">⚑ Strategy Skills — Always Active</h3>
         {strategySkills.length === 0 ? (
@@ -337,15 +381,12 @@ function ActivationOrderPage({ party, goToParty }) {
                 <span className="sim-general-name">{general.name_en}</span>
                 <span className="sim-general-name-jp">{general.name_jp}</span>
               </div>
-              {skills.map((skill, si) => (
-                <SimSkillRow key={si} skill={skill} showType />
-              ))}
+              {skills.map((skill, si) => <SimSkillRow key={si} skill={skill} showType />)}
             </div>
           ))
         )}
       </div>
 
-      {/* Section 2: Turn by turn */}
       <div className="sim-section">
         <h3 className="sim-section-title sim-title-combat">⚔ Turn-by-Turn Combat</h3>
         {turns.map(({ turn, entries }) => (
@@ -358,10 +399,7 @@ function ActivationOrderPage({ party, goToParty }) {
                     <span className="sim-general-name">{general.name_en}</span>
                     <span className="sim-general-name-jp">{general.name_jp}</span>
                   </div>
-                  {skill
-                    ? <SimSkillRow skill={skill} />
-                    : <p className="sim-normal-attack">— Normal Attack —</p>
-                  }
+                  {skill ? <SimSkillRow skill={skill} /> : <p className="sim-normal-attack">— Normal Attack —</p>}
                 </div>
               ))}
             </div>

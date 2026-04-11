@@ -3,7 +3,7 @@
     "id": "yuri",
     "name_en": "Yuri",
     "name_jp": "友里",
-    "country": "unknown",
+    "country": "qin",
     "rarity": "NR",
     "skills": [
       {
@@ -52,7 +52,7 @@
     "id": "toumi",
     "name_en": "Toumi",
     "name_jp": "東美",
-    "country": "unknown",
+    "country": "qin",
     "rarity": "NR",
     "skills": [
       {
@@ -100,7 +100,7 @@
     "id": "yugi",
     "name_en": "Yugi",
     "name_jp": "有義",
-    "country": "unknown",
+    "country": "qin",
     "rarity": "NR",
     "skills": [
       {
@@ -154,7 +154,7 @@
     "id": "encho",
     "name_en": "Entei",
     "name_jp": "燕呈",
-    "country": "unknown",
+    "country": "qin",
     "rarity": "NR",
     "skills": [
       {
@@ -215,7 +215,7 @@
     "id": "bamyuu",
     "name_en": "Bamyu",
     "name_jp": "バミュウ",
-    "country": "unknown",
+    "country": "chu",
     "rarity": "NR",
     "skills": [
       {
@@ -270,7 +270,7 @@
     "id": "kakubi",
     "name_en": "Kakubi",
     "name_jp": "郭備",
-    "country": "unknown",
+    "country": "qin",
     "rarity": "NR",
     "skills": [
       {
@@ -325,7 +325,7 @@
     "id": "kesshi",
     "name_en": "Kesshi",
     "name_jp": "竭氏",
-    "country": "unknown",
+    "country": "zhao",
     "rarity": "NR",
     "skills": [
       {
@@ -385,7 +385,7 @@
     "id": "genho",
     "name_en": "Genho",
     "name_jp": "玄峰",
-    "country": "unknown",
+    "country": "qin",
     "rarity": "NR",
     "skills": [
       {
@@ -439,7 +439,7 @@
     "id": "amon",
     "name_en": "Amon",
     "name_jp": "亜門",
-    "country": "unknown",
+    "country": "qin",
     "rarity": "NR",
     "skills": [
       {
@@ -499,7 +499,7 @@
     "id": "kosho2",
     "name_en": "Koshou",
     "name_jp": "江彰",
-    "country": "unknown",
+    "country": "wei",
     "rarity": "NR",
     "skills": [
       {
