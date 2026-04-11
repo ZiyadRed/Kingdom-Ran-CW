@@ -1004,5 +1004,72 @@
       }
     ],
     "image": "https://touranko.vercel.app/persos/hokaku.webp"
+  },
+  {
+    "id": "shin",
+    "name_en": "Shin",
+    "name_jp": "信",
+    "country": "qin",
+    "rarity": "UR",
+    "image": "https://touranko.vercel.app/persos/shin.webp",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Yellow Turtle]",
+        "name_jp": "猛将一閃【黄亀】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking",
+            "target": "All ally generals",
+            "effect": "ATK Up 10%",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Sword of the Hishin Unit",
+        "name_jp": "飛信隊の剣",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": "Per other ally [Qin] general",
+            "target": "Ally [Qin]",
+            "effect": "ATK Up 5%",
+            "duration": null
+          },
+          {
+            "condition": "Per other ally [Hishin] general",
+            "target": "Ally [Hishin] Unit",
+            "effect": "ATK Up 5%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Inherited Will",
+        "name_jp": "受け継ぐ意思",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "160% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Per allied attack count",
+            "target": "Ally [Infantry] and [Cavalry]",
+            "effect": "ATK Up 3% (max 25%)",
+            "duration": null
+          }
+        ]
+      }
+    ]
   }
 ]

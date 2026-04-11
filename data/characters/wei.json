@@ -110,6 +110,32 @@
             "duration": "4 turns"
           }
         ]
+      },
+      {
+        "name_en": "Wei Great General",
+        "name_jp": "魏国大将軍☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Ally [Wei]",
+            "effect": "ATK Up 20%, DEF Penetration Resistance Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Ally [Wei]",
+            "effect": "DEF Penetration Up 30%, Enemy [Cavalry] Critical Rate Down 40%",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "https://touranko.vercel.app/persos/tairoji.webp"
@@ -580,5 +606,116 @@
       }
     ],
     "image": "https://touranko.vercel.app/persos/junsou.webp"
+  },
+  {
+    "id": "reiou",
+    "name_en": "Reiou",
+    "name_jp": "霊凰",
+    "country": "wei",
+    "rarity": "UR",
+    "image": null,
+    "skills": [
+      {
+        "name_en": "Iron Wall Flash [Yellow Tiger]",
+        "name_jp": "鉄壁一閃【黄虎】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest DEF and own HP > 90%",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general with highest DEF and own HP < 90%",
+            "target": "1 enemy general",
+            "effect": "160% Damage + HP Drain 60%",
+            "duration": null
+          },
+          {
+            "condition": "Own HP > 90%",
+            "target": "Enemy [Cavalry]",
+            "effect": "ATK Down 10%",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Wei Fire Dragon Commander",
+        "name_jp": "魏火龍軍師",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "All ally [Wei] other than self",
+            "effect": "ATK Up 10%, DEF Up 10%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Situational Judgment",
+        "name_jp": "戦況判断",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest DEF and own HP > 90%",
+            "target": "1 enemy general",
+            "effect": "170% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Own HP > 90%",
+            "target": "Enemy [Qin] war machines",
+            "effect": "ATK Down 20%, Guard 60%",
+            "duration": "2 turns"
+          },
+          {
+            "condition": "Own HP < 90%",
+            "target": "1 enemy general",
+            "effect": "70% Damage + HP Drain 60%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Cold-Blooded Strategy",
+        "name_jp": "冷酷な軍略☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Reiou",
+            "effect": "DEF Penetration Up 30%, Hit Rate Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Archer] and Wei Fire Dragon",
+            "effect": "DEF Down 10% against enemy",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All ally generals fighting vs [Archer] and Wei Fire Dragon",
+            "effect": "DEF Down additional 10%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Enemy [Shield]",
+            "effect": "ATK Down 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Surviving ally \"Ranbihaku\", \"GHM\", and Wei Fire Dragon generals",
+            "effect": "Morale Recovery 10%",
+            "duration": null
+          }
+        ]
+      }
+    ]
   }
 ]

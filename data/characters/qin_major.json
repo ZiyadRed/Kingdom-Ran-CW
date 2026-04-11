@@ -205,6 +205,32 @@
             "duration": null
           }
         ]
+      },
+      {
+        "name_en": "Supreme Siege Commander",
+        "name_jp": "必勝の籠城☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Qin] [Cavalry]",
+            "effect": "DEF Up 20%, DEF Penetration Resistance Up 40%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Enemy [Cavalry]",
+            "effect": "ATK Down 20%, Critical Damage Down 40%",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "https://touranko.vercel.app/persos/ousen.webp"
@@ -866,6 +892,38 @@
             "duration": null
           }
         ]
+      },
+      {
+        "name_en": "Oath",
+        "name_jp": "誓い☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self and ally \"Ouki\"",
+            "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self and ally \"Ouki\"",
+            "effect": "Evasion (Dodge Chance) 40%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Cavalry]",
+            "effect": "\"Poison\" Resistance 60%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Archer]",
+            "effect": "Critical Damage Down 30%",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "https://touranko.vercel.app/persos/kyou.webp"
@@ -1091,6 +1149,228 @@
             "condition": "When repairing Souha war machines",
             "target": "War machine repair",
             "effect": "Material Cost Down 5.5%",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ouki",
+    "name_en": "Ouki",
+    "name_jp": "王騎",
+    "country": "qin",
+    "rarity": "UR",
+    "image": "https://touranko.vercel.app/persos/ouki.webp",
+    "skills": [
+      {
+        "name_en": "Master General Flash [Red Sheep]",
+        "name_jp": "名将一閃【赤羊】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Cavalry]",
+            "effect": "ATK Up 20%",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Ouki Army's Radiance",
+        "name_jp": "王騎軍の威光",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Cavalry] other than self",
+            "effect": "Anti-[Archer] ATK Up 15%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Ouki Forces other than self",
+            "effect": "ATK Up 15%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Iron Loyalty of the War God and the Divine Bird",
+        "name_jp": "怪鳥と戦神の鉄の忠義",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally \"Shoou\" and Six Great Generals",
+            "effect": "DEF Up 10%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Own remaining HP < 50%",
+            "target": "Ally [Qin]",
+            "effect": "ATK Up 20%",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Oath",
+        "name_jp": "誓い☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self and ally \"Kyou\"",
+            "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self and ally \"Kyou\"",
+            "effect": "Evasion (Dodge Chance) 40%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Cavalry]",
+            "effect": "\"Poison\" Resistance 60%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Archer]",
+            "effect": "Critical Damage Down 30%",
+            "duration": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tou",
+    "name_en": "Tou",
+    "name_jp": "騰",
+    "country": "qin",
+    "rarity": "UR",
+    "image": "https://touranko.vercel.app/persos/tou.webp",
+    "skills": [
+      {
+        "name_en": "ATK Enhancement [Red Elephant]",
+        "name_jp": "攻撃強化【赤象】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Per defeated ally general",
+            "target": "Self",
+            "effect": "ATK Up 15%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Unfathomable Ability",
+        "name_jp": "底知れぬ実力",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Critical Rate Up, Critical Damage Up, Hit Rate Up, Evasion (Dodge Chance) Up 30%",
+            "duration": "4 turns"
+          },
+          {
+            "condition": null,
+            "target": "Ally \"Ouki\" and Ouki Forces",
+            "effect": "ATK Up 30%, DEF Up 30%",
+            "duration": "4 turns"
+          },
+          {
+            "condition": null,
+            "target": "1 enemy general with highest ATK",
+            "effect": "180% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Pillar of Strength",
+        "name_jp": "支柱の力",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "HP Recovery 20%, Morale Recovery 10%",
+            "duration": null
+          },
+          {
+            "condition": "Alive",
+            "target": "Surviving ally [Qin] other than self",
+            "effect": "HP Recovery 10%, Morale Recovery 5%",
+            "duration": null
+          },
+          {
+            "condition": "Alive",
+            "target": "Surviving ally \"Ouki\" and Ouki Forces other than self",
+            "effect": "HP Recovery 10%, Morale Recovery 5%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Born Strong",
+        "name_jp": "生来強者☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Qin]",
+            "effect": "HP Recovery Rate Up 50%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Wei] generals",
+            "effect": "ATK Down 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Chu] generals",
+            "effect": "Critical Damage Down 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Han] generals",
+            "effect": "Current HP Down 20%",
             "duration": null
           }
         ]

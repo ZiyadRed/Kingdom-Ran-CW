@@ -7,20 +7,26 @@
     "rarity": "UR",
     "skills": [
       {
-        "name_en": "Death King's Vanguard",
-        "name_jp": "死王の先陣",
+        "name_en": "Master General Flash [Orange Sheep]",
+        "name_jp": "名将一閃【橙羊】",
         "type": "Combat",
         "effects": [
           {
-            "condition": null,
-            "target": "All ally Mountain Folk",
-            "effect": "DEF Penetration Up 20%",
-            "duration": "2 turns"
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
-            "effect": "200% Damage",
+            "condition": null,
+            "target": "Ally [Cavalry] other than self",
+            "effect": "ATK Up 20%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": null,
+            "target": "Ally [Shield]",
+            "effect": "DEF Up 20%",
             "duration": null
           }
         ]
@@ -28,50 +34,75 @@
       {
         "name_en": "Death King's Command",
         "name_jp": "死王の号令",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Mountain Folk]",
+            "effect": "\"Reckless\"",
+            "duration": "3 turns"
+          },
+          {
+            "condition": null,
+            "target": "Ally [Mountain Folk]",
+            "effect": "Guard 80%",
+            "duration": "2 times"
+          },
+          {
+            "condition": "Random",
+            "target": "3 enemy generals",
+            "effect": "60% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Trampling Advance",
+        "name_jp": "蹂躙する進撃",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "2-Hit 80% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Other ally [Qin] or [Mountain Folk] alive, first enemy in formation",
+            "target": "1 enemy general",
+            "effect": "2-Hit 80% Damage",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking, enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "100% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Death King's Decree",
+        "name_jp": "死王の指令",
         "type": "Strategy",
         "effects": [
           {
             "condition": null,
-            "target": "All ally Mountain Folk",
+            "target": "All ally [Mountain Folk]",
             "effect": "ATK Up 20%, DEF Up 20%",
             "duration": null
           },
           {
             "condition": "When Attacking",
-            "target": "All ally Mountain Folk",
+            "target": "All ally [Mountain Folk]",
             "effect": "Evasion (Dodge Chance) 30%",
             "duration": null
           },
           {
-            "condition": "Ally 'Bajio' is alive",
-            "target": "All ally Mountain Folk",
-            "effect": "Attack Nullification",
+            "condition": "Ally \"Bajio\" alive",
+            "target": "All ally [Mountain Folk]",
+            "effect": "\"Attack Nullification\"",
             "duration": "1 time"
-          }
-        ]
-      },
-      {
-        "name_en": "Ruler of the Mountain Folk",
-        "name_jp": "山の民の王",
-        "type": "Combat",
-        "effects": [
-          {
-            "condition": null,
-            "target": "All ally Mountain Folk",
-            "effect": "DEF Penetration Up 30%",
-            "duration": "2 turns"
-          },
-          {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
-            "effect": "220% Damage",
-            "duration": null
-          },
-          {
-            "condition": "Ally 'Bajio' is alive",
-            "target": "All ally Mountain Folk",
-            "effect": "ATK Up 30%",
-            "duration": "3 turns"
           }
         ]
       },
@@ -82,32 +113,32 @@
         "star6": true,
         "effects": [
           {
-            "condition": "[Additional skills]",
+            "condition": null,
             "target": "Self",
-            "effect": "対趙国ATK Up 、対魏国ATK Up 20%",
+            "effect": "Anti-[Zhao] ATK Up, Anti-[Wei] ATK Up 20%",
             "duration": null
           },
           {
-            "condition": "[Additional skills]",
-            "target": "Ally Mountain Folk",
+            "condition": null,
+            "target": "Ally [Mountain Folk]",
             "effect": "Max HP Up 100%",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】Alive",
-            "target": "Ally Mountain Folk",
+            "condition": "Alive",
+            "target": "Ally [Mountain Folk]",
             "effect": "Morale Recovery 20%",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】When Attacking",
-            "target": "Ally Mountain Folk",
-            "effect": "Betrayal Resistance 、Fear Resistance 60%",
+            "condition": "When Attacking",
+            "target": "Ally [Mountain Folk]",
+            "effect": "\"Betrayal\" Resistance, \"Fear\" Resistance 60%",
             "duration": null
           },
           {
-            "condition": "【追想追加スキル】When Attacking",
-            "target": "Ally Mountain Folk",
+            "condition": "When Attacking",
+            "target": "Ally [Mountain Folk]",
             "effect": "ATK Up 30%",
             "duration": null
           }

@@ -69,6 +69,32 @@
             "duration": null
           }
         ]
+      },
+      {
+        "name_en": "Karin's Supremacy",
+        "name_jp": "女傑の覇道☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Karin",
+            "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%, Evasion (Dodge Chance) Up 60%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All ally [Chu]",
+            "effect": "DEF Penetration Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy generals",
+            "effect": "Critical Rate Down 40%",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "https://touranko.vercel.app/persos/karin.webp"
@@ -466,6 +492,32 @@
             "condition": "Enemy general with lowest max HP",
             "target": "1 enemy general",
             "effect": "170% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Renpa's Flying Spear (☆6)",
+        "name_jp": "廉頗の飛槍☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Renpa Forces",
+            "effect": "Evasion (Dodge Chance) 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self and ally Renpa Forces",
+            "effect": "Critical Rate Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "Ally \"Renpa\" alive in same formation",
+            "target": "All ally generals",
+            "effect": "Morale Consumption Down 30%",
             "duration": null
           }
         ]
