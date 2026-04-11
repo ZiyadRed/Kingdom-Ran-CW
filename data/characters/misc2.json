@@ -572,7 +572,7 @@
     "id": "kyomei",
     "name_en": "Kyomei",
     "name_jp": "羌明",
-    "country": "mountain_folk",
+    "country": "zhao",
     "unit": "Hi Shin Unit",
     "rarity": "SR",
     "skills": [
@@ -2197,7 +2197,7 @@
     "id": "kyoukai2",
     "name_en": "Kyoukai",
     "name_jp": "羌瘣",
-    "country": "qin",
+    "country": "zhao",
     "rarity": "SR",
     "skills": [
       {
@@ -2282,7 +2282,7 @@
     "id": "kyoushou",
     "name_en": "Kyoushou",
     "name_jp": "羌象",
-    "country": "qin",
+    "country": "zhao",
     "rarity": "SR",
     "skills": [
       {
@@ -2551,85 +2551,6 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/rinbou.webp"
-  },
-  {
-    "id": "tasatoya",
-    "name_en": "Tasatoya",
-    "name_jp": "田里弥",
-    "country": "qin",
-    "rarity": "SR",
-    "image": null,
-    "skills": [
-      {
-        "name_en": "Iron Wall Flash [Blue Sheep]",
-        "name_jp": "鉄壁一閃【青羊】",
-        "type": "Combat",
-        "effects": [
-          {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
-            "effect": "150% Damage",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally [Qin]",
-            "effect": "Guard 60%",
-            "duration": null
-          }
-        ]
-      },
-      {
-        "name_en": "Mountain Snake Formation",
-        "name_jp": "常山蛇勢",
-        "type": "Strategy",
-        "effects": [
-          {
-            "condition": null,
-            "target": "Ally [Qin]",
-            "effect": "DEF Up 20%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally [Cavalry]",
-            "effect": "Anti-[Archer] DEF Up 20%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally [Archer]",
-            "effect": "Anti-[Shield] DEF Up 20%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally [Shield]",
-            "effect": "Anti-[Cavalry] DEF Up 20%",
-            "duration": null
-          }
-        ]
-      },
-      {
-        "name_en": "Wise Steadfast Defense",
-        "name_jp": "堅守賢明",
-        "type": "Combat",
-        "effects": [
-          {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
-            "effect": "180% Damage",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally [Qin]",
-            "effect": "Guard 60%",
-            "duration": null
-          }
-        ]
-      }
-    ]
   },
   {
     "id": "linhtama",

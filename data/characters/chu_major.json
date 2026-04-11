@@ -303,7 +303,7 @@
     "id": "renpa",
     "name_en": "Renpa",
     "name_jp": "廉頗",
-    "country": "chu",
+    "country": "wei",
     "unit": "Renpa Forces",
     "rarity": "UR",
     "skills": [
@@ -435,7 +435,7 @@
     "id": "rinka",
     "name_en": "Rinko",
     "name_jp": "輪虎",
-    "country": "chu",
+    "country": "wei",
     "unit": "Renpa Forces",
     "rarity": "SR",
     "skills": [
@@ -603,7 +603,7 @@
     "id": "kaishi_renmei",
     "name_en": "Kaishibou",
     "name_jp": "介子坊",
-    "country": "chu",
+    "country": "wei",
     "unit": "Renpa Forces",
     "rarity": "SR",
     "skills": [

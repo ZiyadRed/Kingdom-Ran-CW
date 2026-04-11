@@ -3,7 +3,7 @@
     "id": "jino",
     "name_en": "Jinou",
     "name_jp": "仁凹",
-    "country": "chu",
+    "country": "wei",
     "unit": "Kanmei Forces",
     "rarity": "SR",
     "skills": [
@@ -585,9 +585,9 @@
   },
   {
     "id": "bananci",
-    "name_en": "Bananci",
+    "name_en": "Bananji",
     "name_jp": "馬南慈",
-    "country": "chu",
+    "country": "zhao",
     "unit": "Coalition Forces",
     "rarity": "SR",
     "skills": [
