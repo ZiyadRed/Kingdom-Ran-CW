@@ -1901,7 +1901,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "During the Alliance War (effective even if you do not have to attack yourself)",
+            "condition": "CW battle (effective even when not deployed)",
             "target": "Ally defense war machines",
             "effect": "Max HP Up 12.3％",
             "duration": null
@@ -1914,7 +1914,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "During the Alliance War (effective even if you do not have to attack yourself)",
+            "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Cavalry]",
             "effect": "DEF Up 9.9％",
             "duration": null
