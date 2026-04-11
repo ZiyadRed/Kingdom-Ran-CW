@@ -254,15 +254,28 @@ function GenRow({char}){
         </button>
       </div>
 
-      {/* Skills panel — FULL WIDTH, no column constraints */}
+      {/* Skills panel — full width, with big portrait on the left */}
       {open&&(
         <div className="gr-skills">
-          {!skills.length
-            ?<p className="no-skills-note">⏳ Translation pending for this general.</p>
-            :<div className="skills-layout">
-              {skills.map((sk,i)=><SkillCard key={i} skill={sk}/>)}
-            </div>
-          }
+          {/* Full portrait */}
+          <div className="gr-skills-portrait">
+            {char.image
+              ?<img src={char.image} alt={char.name_en} className="gr-skills-portrait-img"/>
+              :<div className="gr-skills-portrait-ph" style={{color:col,background:col+'18'}}>
+                {char.name_en[0]}
+              </div>}
+            <div className="gr-skills-portrait-name">{char.name_en}</div>
+            <div className="gr-skills-portrait-jp">{char.name_jp}</div>
+          </div>
+          {/* Skills */}
+          <div className="gr-skills-content">
+            {!skills.length
+              ?<p className="no-skills-note">⏳ Translation pending for this general.</p>
+              :<div className="skills-layout">
+                {skills.map((sk,i)=><SkillCard key={i} skill={sk}/>)}
+              </div>
+            }
+          </div>
         </div>
       )}
     </div>
