@@ -58,7 +58,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ka.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ka.webp",
+    "icon": "/icons/taishi_ka.png"
   },
   {
     "id": "shunsuiki",
@@ -150,7 +151,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shunsuiju.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shunsuiju.webp",
+    "icon": "/icons/shunsuiki.png"
   },
   {
     "id": "shunpeikun",
@@ -297,7 +299,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/dukesei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/dukesei.webp",
+    "icon": "/icons/seikou.png"
   },
   {
     "id": "kinmo",
@@ -388,7 +391,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kinmou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kinmou.webp",
+    "icon": "/icons/kinmo.png"
   },
   {
     "id": "gakuei",
@@ -725,7 +729,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kisui.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kisui.webp",
+    "icon": "/icons/kisei.png"
   },
   {
     "id": "batei",
@@ -811,6 +816,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/batei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/batei.webp",
+    "icon": "/icons/batei.png"
   }
 ]

@@ -323,7 +323,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kaen.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kaen.webp",
+    "icon": "/icons/kaen.png"
   },
   {
     "id": "koretsuo",
@@ -649,7 +650,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/bananji.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/bananji.webp",
+    "icon": "/icons/bananci.png"
   },
   {
     "id": "hyouki",

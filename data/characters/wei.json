@@ -138,7 +138,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/tairoji.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/tairoji.webp",
+    "icon": "/icons/tairoji.png"
   },
   {
     "id": "ranbishaku",
@@ -280,7 +281,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ranbihaku.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ranbihaku.webp",
+    "icon": "/icons/ranbishaku.png"
   },
   {
     "id": "shikika",
@@ -525,7 +527,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/gaimou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/gaimou.webp",
+    "icon": "/icons/gaimo.png"
   },
   {
     "id": "junso",
@@ -716,7 +719,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/reiou.png"
   },
   {
     "id": "yuren",

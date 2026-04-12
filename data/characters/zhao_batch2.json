@@ -76,7 +76,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kakukai.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kakukai.webp",
+    "icon": "/icons/kakukai.png"
   },
   {
     "id": "keisha",
@@ -193,7 +194,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/keisha.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/keisha.webp",
+    "icon": "/icons/keisha.png"
   },
   {
     "id": "rakujo",

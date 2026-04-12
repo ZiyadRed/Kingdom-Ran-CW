@@ -412,7 +412,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ordo.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ordo.webp",
+    "icon": "/icons/ordo.png"
   },
   {
     "id": "denti",
@@ -518,7 +519,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/futei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/futei.webp",
+    "icon": "/icons/denti.png"
   },
   {
     "id": "kouyoku",

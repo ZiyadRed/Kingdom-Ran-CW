@@ -113,7 +113,7 @@ function Picker({onSelect,onClose,excl=[]}){
         <div className="picker-grid">
           {chars.map(c=>(
             <button key={c.id} className="p-card" style={{borderTopColor:CC[c.country]||'#999'}} onClick={()=>{onSelect(c);onClose()}}>
-              {c.image?<img src={c.image} className="p-img" alt={c.name_en}/>
+              {(c.icon||c.image)?<img src={c.icon||c.image} className="p-img" alt={c.name_en}/>
                 :<div className="p-ph" style={{background:CC[c.country]+'22',color:CC[c.country]||'#999'}}>{c.name_en[0]}</div>}
               <span className="p-name">{c.name_en}</span>
             </button>
@@ -190,7 +190,7 @@ function ArchivePage(){
       {/* Sidebar */}
       <aside className="fac-sidebar">
         <div className="fac-search-wrap">
-          <input className="fac-search" placeholder="Search…" value={search} onChange={e=>{setSearch(e.target.value);setSelected(null)}}/>
+          <input className="fac-search" placeholder="Search generals…" value={search} onChange={e=>{setSearch(e.target.value);setSelected(null)}}/>
         </div>
         <div className="fac-nav">
           {FACTIONS.map(f=>{
@@ -211,6 +211,16 @@ function ArchivePage(){
 
       {/* Gallery */}
       <div className="gallery-wrap">
+        {/* Mobile-only search bar — visible on small screens */}
+        <div className="mobile-search-bar">
+          <span className="mobile-search-icon">⌕</span>
+          <input
+            className="mobile-search-input"
+            placeholder="Search generals…"
+            value={search}
+            onChange={e=>{setSearch(e.target.value);setSelected(null)}}/>
+          {search&&<button className="mobile-search-clear" onClick={()=>setSearch('')}>✕</button>}
+        </div>
         <div className="gallery-header">
           <h2 className="gallery-title">{search?`Results (${filtered.length})`:`${FACTIONS.find(f=>f.id===activeFac)?.label} Roster`}</h2>
           <span className="gallery-count">{filtered.length} generals</span>
@@ -236,7 +246,13 @@ function ArchivePage(){
       {selected&&(
         <aside className="detail-panel">
           <div className="detail-header">
-            {selected.image&&<img src={selected.image} className="detail-portrait" alt={selected.name_en}/>}
+            <div className="detail-icon-wrap">
+              {selected.icon
+                ?<img src={selected.icon} className="detail-icon" alt={selected.name_en}/>
+                :selected.image
+                  ?<img src={selected.image} className="detail-portrait" alt={selected.name_en}/>
+                  :<div className="detail-icon-ph" style={{background:CC[selected.country]+'33',color:CC[selected.country]||'#999'}}>{selected.name_en[0]}</div>}
+            </div>
             <div className="detail-info">
               <div className="detail-name">{selected.name_en}</div>
               <div className="detail-jp">{selected.name_jp}</div>
@@ -302,8 +318,8 @@ function MetaTeamCard({team,onLoad}){
       <div className="meta-members">
         {chars.map((c,i)=>(
           <div key={i} className="meta-member">
-            {c.image
-              ?<img src={c.image} className="meta-member-img" alt={c.name_en}/>
+            {(c.icon||c.image)
+              ?<img src={c.icon||c.image} className="meta-member-img" alt={c.name_en}/>
               :<div className="meta-member-ph" style={{background:CC[c.country]+'22',color:CC[c.country]||'#999'}}>{c.name_en[0]}</div>}
             <span className="meta-member-name">{c.name_en}</span>
           </div>
@@ -355,7 +371,7 @@ function SideSlots({side,label,party,onSlot,onRm}){
         return m?(
           <div key={i} className="slot-filled" style={{borderLeftColor:CC[m.country]||'#999'}}>
             <span className="sn" style={{color:ac}}>{i+1}</span>
-            {m.image&&<img src={m.image} className="slot-av" alt={m.name_en}/>}
+            {(m.icon||m.image)&&<img src={m.icon||m.image} className="slot-av" alt={m.name_en}/>}
             <div className="slot-info"><span className="slot-en">{m.name_en}</span><span className="slot-jp">{m.name_jp}</span></div>
             <button className="slot-rm" onClick={()=>onRm(m)}>✕</button>
           </div>
@@ -564,8 +580,8 @@ function TierPage(){
                           return(
                             <div key={ci} className="tier-member">
                               <div className="tier-member-img-wrap">
-                                {c.image
-                                  ?<img src={c.image} className="tier-member-img" alt={c.name_en}/>
+                                {(c.icon||c.image)
+                                  ?<img src={c.icon||(c.image)} className="tier-member-img" alt={c.name_en}/>
                                   :<div className="tier-member-ph" style={{background:CC[c.country]+'33',color:CC[c.country]||'#888'}}>{c.name_en[0]}</div>}
                                 {hasStar6&&<span className="tier-s6">☆6</span>}
                               </div>

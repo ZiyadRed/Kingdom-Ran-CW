@@ -97,7 +97,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/karin.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/karin.webp",
+    "icon": "/icons/karin.png"
   },
   {
     "id": "kanmei",
@@ -197,7 +198,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kanmei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kanmei.webp",
+    "icon": "/icons/kanmei.png"
   },
   {
     "id": "rinbujun",
@@ -297,7 +299,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/rinbukun.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/rinbukun.webp",
+    "icon": "/icons/rinbujun.png"
   },
   {
     "id": "renpa",
@@ -429,7 +432,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/renpa.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/renpa.webp",
+    "icon": "/icons/renpa.png"
   },
   {
     "id": "rinka",
@@ -685,7 +689,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kaishibou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kaishibou.webp",
+    "icon": "/icons/kaishi_renmei.png"
   },
   {
     "id": "gofuumei",

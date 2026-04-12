@@ -223,7 +223,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/rien.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/rien.webp",
+    "icon": "/icons/rien.png"
   },
   {
     "id": "rokin",
@@ -576,7 +577,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/bakan.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/bakan.webp",
+    "icon": "/icons/bakan.png"
   },
   {
     "id": "budai",
@@ -746,6 +748,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/hamui.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/hamui.webp",
+    "icon": "/icons/hamui.png"
   }
 ]

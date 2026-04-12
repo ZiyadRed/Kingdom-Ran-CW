@@ -77,7 +77,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/otaji.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/otaji.webp",
+    "icon": "/icons/otaji.png"
   },
   {
     "id": "yukii",
@@ -261,7 +262,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/gakuki.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/gakuki.webp",
+    "icon": "/icons/rakki.png"
   },
   {
     "id": "gekishin",
@@ -346,6 +348,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/gekishin.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/gekishin.webp",
+    "icon": "/icons/gekishin.png"
   }
 ]

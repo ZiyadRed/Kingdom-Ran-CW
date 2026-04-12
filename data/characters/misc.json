@@ -210,7 +210,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/entei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/entei.webp",
+    "icon": "/icons/encho.png"
   },
   {
     "id": "bamyuu",
@@ -435,7 +436,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/genpou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/genpou.webp",
+    "icon": "/icons/genho.png"
   },
   {
     "id": "amon",

@@ -146,7 +146,8 @@
       }
     ],
     "notes": "Core unit; her name appears as a buff target in many Mountain Folk skill conditions.",
-    "image": "https://kingdom-ran-cw.vercel.app/persos/yotanwa.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/yotanwa.webp",
+    "icon": "/icons/yotanwa.png"
   },
   {
     "id": "kitari",
@@ -225,7 +226,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kitari.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kitari.webp",
+    "icon": "/icons/kitari.png"
   },
   {
     "id": "danto",
@@ -322,7 +324,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/danto.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/danto.webp",
+    "icon": "/icons/danto.png"
   },
   {
     "id": "katari",
@@ -395,7 +398,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/katari.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/katari.webp",
+    "icon": "/icons/katari.png"
   },
   {
     "id": "todji",
@@ -644,7 +648,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ramauji.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ramauji.webp",
+    "icon": "/icons/ramaoji.png"
   },
   {
     "id": "pamu",
@@ -729,7 +734,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/pam.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/pam.webp",
+    "icon": "/icons/pamu.png"
   },
   {
     "id": "taijifu",
