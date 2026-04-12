@@ -39,16 +39,45 @@ const CC=Object.fromEntries(FACTIONS.map(f=>[f.id,f.color]))
 
 const TYPE_COLOR={Combat:'#c0392b',Strategy:'#3d6eb5',Administration:'#1a8a72'}
 
+// Unit type symbols derived from character card badges (bottom-left corner)
+// Cavalry = red diamond + horse | Shield = blue rounded square | Archer = green pentagon + crossbow | Infantry = gold circle + spear
+const UNIT_ICONS = {
+  Cavalry: (
+    <svg width="22" height="22" viewBox="0 0 22 22">
+      <path d="M11 2L20 11L11 20L2 11Z" fill="#c0392b" stroke="#922b21" strokeWidth="1"/>
+      <text x="11" y="15" textAnchor="middle" fontSize="9" fill="white" fontWeight="bold">♞</text>
+    </svg>
+  ),
+  Infantry: (
+    <svg width="22" height="22" viewBox="0 0 22 22">
+      <circle cx="11" cy="11" r="9" fill="#c9a84c" stroke="#a07030" strokeWidth="1"/>
+      <text x="11" y="15" textAnchor="middle" fontSize="11" fill="white" fontWeight="bold">⚔</text>
+    </svg>
+  ),
+  Archer: (
+    <svg width="22" height="22" viewBox="0 0 22 22">
+      <polygon points="11,2 20,7 17,18 5,18 2,7" fill="#27ae60" stroke="#1a7a40" strokeWidth="1"/>
+      <text x="11" y="15" textAnchor="middle" fontSize="10" fill="white" fontWeight="bold">🏹</text>
+    </svg>
+  ),
+  Shield: (
+    <svg width="22" height="22" viewBox="0 0 22 22">
+      <rect x="2" y="3" width="18" height="16" rx="4" ry="4" fill="#2471a3" stroke="#1a5580" strokeWidth="1"/>
+      <text x="11" y="15" textAnchor="middle" fontSize="11" fill="white" fontWeight="bold">🛡</text>
+    </svg>
+  ),
+}
+
 const BUFF_CATS=[
-  {id:'Cavalry',            label:'Cavalry',      icon:'🐴'},
-  {id:'Infantry',           label:'Infantry',     icon:'⚔'},
-  {id:'Archer',             label:'Archer',       icon:'🏹'},
-  {id:'Shield',             label:'Shield',       icon:'🛡'},
-  {id:'War Machine',        label:'War Machine',  icon:'⚙'},
-  {id:'Attack War Machine', label:'Atk W.M.',     icon:'💥'},
-  {id:'Defense War Machine',label:'Def W.M.',     icon:'🔩'},
-  {id:'Terrain',            label:'Terrain',      icon:'🗺'},
-  {id:'CW Repair',          label:'Repair',       icon:'🔧'},
+  {id:'Cavalry',            label:'Cavalry',      icon: UNIT_ICONS.Cavalry,   unitType: true},
+  {id:'Infantry',           label:'Infantry',     icon: UNIT_ICONS.Infantry,  unitType: true},
+  {id:'Archer',             label:'Archer',       icon: UNIT_ICONS.Archer,    unitType: true},
+  {id:'Shield',             label:'Shield',       icon: UNIT_ICONS.Shield,    unitType: true},
+  {id:'War Machine',        label:'War Machine',  icon:'⚙',  unitType: false},
+  {id:'Attack War Machine', label:'Atk W.M.',     icon:'💥', unitType: false},
+  {id:'Defense War Machine',label:'Def W.M.',     icon:'🔩', unitType: false},
+  {id:'Terrain',            label:'Terrain',      icon:'🗺', unitType: false},
+  {id:'CW Repair',          label:'Repair',       icon:'🔧', unitType: false},
 ]
 
 // ── Simulate ─────────────────────────────────────────────────────────────────
@@ -114,7 +143,7 @@ function Picker({onSelect,onClose,excl=[]}){
 }
 
 // ── App Shell ─────────────────────────────────────────────────────────────────
-const PAGES=['Skill Archive','Party Builder','Activation Order','CW Buffs']
+const PAGES=['Skill Archive','Party Builder','Activation Order','CW Buffs','Tier List']
 export default function App(){
   const[page,setPage]=useState('Skill Archive')
   const[atk,setAtk]=useState([])
@@ -151,6 +180,7 @@ export default function App(){
         {page==='Party Builder'    && <BuilderPage atk={atk} def={def} setSlot={setSlot} rm={rm} goSim={()=>setPage('Activation Order')}/>}
         {page==='Activation Order' && <SimPage atk={atk} def={def} goBuilder={()=>setPage('Party Builder')}/>}
         {page==='CW Buffs'         && <BuffsPage/>}
+        {page==='Tier List'         && <TierListPage/>}
       </main>
       <footer className="footer">{ALL.length} generals · Fan resource · Not affiliated with Cygames</footer>
     </div>
@@ -557,6 +587,21 @@ function BuffsPage(){
           </div>
         </div>
       )}
+    </div>
+  )
+}
+
+// ── Tier List ─────────────────────────────────────────────────────────────────
+function TierListPage(){
+  return(
+    <div className="tier-page">
+      <h2 className="pg-title">Tier List</h2>
+      <p className="pg-sub">Coming soon — rank generals by performance in Castle Wars.</p>
+      <div className="tier-placeholder">
+        <div className="tier-placeholder-icon">⚔</div>
+        <p>The tier list is being prepared.</p>
+        <p className="tier-placeholder-sub">Check back soon.</p>
+      </div>
     </div>
   )
 }

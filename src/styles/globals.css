@@ -424,3 +424,17 @@ a { color: var(--terra) }
   .gr-portrait { width: 48px; height: 48px }
   .gr-names { min-width: 100px }
 }
+
+/* ── Tier List ─────────────────────────────────────────────── */
+.tier-page {}
+.tier-placeholder {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1rem; padding: 5rem 2rem;
+  background: var(--sur); border: 2px dashed var(--bdr);
+  border-radius: 12px; color: var(--txt3); text-align: center;
+}
+.tier-placeholder-icon { font-size: 3rem; opacity: .4 }
+.tier-placeholder-sub { font-size: .82rem; color: var(--txt3) }
+
+/* ── Unit type SVG icons in cat pills ─────────────────────── */
+.cat-pill .unit-icon { display: flex; align-items: center; justify-content: center }

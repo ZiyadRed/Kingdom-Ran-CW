@@ -689,7 +689,7 @@
         "type": "Administration",
         "effects": [
           {
-            "condition": "During the Alliance War (effective even if you do not have to attack yourself)",
+            "condition": "CW battle (effective even when not deployed)",
             "target": "Ally attack war machines",
             "effect": "ATK Up 5.8％",
             "duration": null
@@ -969,7 +969,7 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "During the Alliance War (effective even if you do not have to attack yourself)",
+            "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Archer]",
             "effect": "Max HP Up 7.9％",
             "duration": null
