@@ -758,7 +758,7 @@
         ]
       },
       {
-        "name_en": "修理鉱石減少・大",
+        "name_en": "Repair Ore Reduction – Large",
         "name_jp": "修理鉱石減少・大",
         "type": "Administration",
         "effects": [
@@ -771,7 +771,7 @@
         ]
       },
       {
-        "name_en": "攻撃力強化・大改 [盾兵]",
+        "name_en": "ATK Enhancement – Large Improved [Shield]",
         "name_jp": "攻撃力強化・大改【盾兵】",
         "type": "Administration",
         "effects": [
@@ -813,7 +813,7 @@
         ]
       },
       {
-        "name_en": "獣の心",
+        "name_en": "Heart of the Beast",
         "name_jp": "獣の心",
         "type": "Combat",
         "effects": [
@@ -838,7 +838,7 @@
         ]
       },
       {
-        "name_en": "山界の咆哮",
+        "name_en": "Roar of the Mountain World",
         "name_jp": "山界の咆哮",
         "type": "Strategy",
         "effects": [
@@ -886,7 +886,7 @@
         ]
       },
       {
-        "name_en": "体力強化・中 [歩兵]",
+        "name_en": "HP Enhancement – Medium [Infantry]",
         "name_jp": "体力強化・中【歩兵】",
         "type": "Administration",
         "effects": [
@@ -899,7 +899,7 @@
         ]
       },
       {
-        "name_en": "修理資材減少・中改",
+        "name_en": "Repair Material Reduction – Medium Improved",
         "name_jp": "修理資材減少・中改",
         "type": "Administration",
         "effects": [
@@ -940,7 +940,7 @@
         ]
       },
       {
-        "name_en": "斥候・小",
+        "name_en": "Scouting – Small",
         "name_jp": "斥候・小",
         "type": "Administration",
         "effects": [
@@ -953,7 +953,7 @@
         ]
       },
       {
-        "name_en": "攻撃力強化・小改 [攻撃兵器]",
+        "name_en": "ATK Enhancement – Small Improved [Attack War Machines]",
         "name_jp": "攻撃力強化・小改【攻撃兵器】",
         "type": "Administration",
         "effects": [
@@ -994,7 +994,7 @@
         ]
       },
       {
-        "name_en": "坂路適性・小",
+        "name_en": "Slope Terrain Aptitude – Small",
         "name_jp": "坂路適性・小",
         "type": "Administration",
         "effects": [
@@ -1007,7 +1007,7 @@
         ]
       },
       {
-        "name_en": "攻撃力強化・小改 [防衛兵器]",
+        "name_en": "ATK Enhancement – Small Improved [Defense War Machines]",
         "name_jp": "攻撃力強化・小改【防衛兵器】",
         "type": "Administration",
         "effects": [

@@ -36,51 +36,52 @@ const FACTIONS=[
   {id:'mountain_folk', label:'Mountain Folk', jp:'山の民', color:'#5a7a30'},
 ]
 const CC=Object.fromEntries(FACTIONS.map(f=>[f.id,f.color]))
-
 const TYPE_COLOR={Combat:'#c0392b',Strategy:'#3d6eb5',Administration:'#1a8a72'}
 
-// Unit type symbols derived from character card badges (bottom-left corner)
-// Cavalry = red diamond + horse | Shield = blue rounded square | Archer = green pentagon + crossbow | Infantry = gold circle + spear
-const UNIT_ICONS = {
-  Cavalry: (
-    <svg width="22" height="22" viewBox="0 0 22 22">
-      <path d="M11 2L20 11L11 20L2 11Z" fill="#c0392b" stroke="#922b21" strokeWidth="1"/>
-      <text x="11" y="15" textAnchor="middle" fontSize="9" fill="white" fontWeight="bold">♞</text>
-    </svg>
-  ),
-  Infantry: (
-    <svg width="22" height="22" viewBox="0 0 22 22">
-      <circle cx="11" cy="11" r="9" fill="#c9a84c" stroke="#a07030" strokeWidth="1"/>
-      <text x="11" y="15" textAnchor="middle" fontSize="11" fill="white" fontWeight="bold">⚔</text>
-    </svg>
-  ),
-  Archer: (
-    <svg width="22" height="22" viewBox="0 0 22 22">
-      <polygon points="11,2 20,7 17,18 5,18 2,7" fill="#27ae60" stroke="#1a7a40" strokeWidth="1"/>
-      <text x="11" y="15" textAnchor="middle" fontSize="10" fill="white" fontWeight="bold">🏹</text>
-    </svg>
-  ),
-  Shield: (
-    <svg width="22" height="22" viewBox="0 0 22 22">
-      <rect x="2" y="3" width="18" height="16" rx="4" ry="4" fill="#2471a3" stroke="#1a5580" strokeWidth="1"/>
-      <text x="11" y="15" textAnchor="middle" fontSize="11" fill="white" fontWeight="bold">🛡</text>
-    </svg>
-  ),
-}
-
 const BUFF_CATS=[
-  {id:'Cavalry',            label:'Cavalry',      icon: UNIT_ICONS.Cavalry,   unitType: true},
-  {id:'Infantry',           label:'Infantry',     icon: UNIT_ICONS.Infantry,  unitType: true},
-  {id:'Archer',             label:'Archer',       icon: UNIT_ICONS.Archer,    unitType: true},
-  {id:'Shield',             label:'Shield',       icon: UNIT_ICONS.Shield,    unitType: true},
-  {id:'War Machine',        label:'War Machine',  icon:'⚙',  unitType: false},
-  {id:'Attack War Machine', label:'Atk W.M.',     icon:'💥', unitType: false},
-  {id:'Defense War Machine',label:'Def W.M.',     icon:'🔩', unitType: false},
-  {id:'Terrain',            label:'Terrain',      icon:'🗺', unitType: false},
-  {id:'CW Repair',          label:'Repair',       icon:'🔧', unitType: false},
+  {id:'Cavalry',            label:'Cavalry',      svgColor:'#c0392b', svgShape:'diamond', svgIcon:'♞'},
+  {id:'Infantry',           label:'Infantry',     svgColor:'#c9a84c', svgShape:'circle',  svgIcon:'⚔'},
+  {id:'Archer',             label:'Archer',       svgColor:'#27ae60', svgShape:'pentagon',svgIcon:'🏹'},
+  {id:'Shield',             label:'Shield',       svgColor:'#2471a3', svgShape:'shield',  svgIcon:'🛡'},
+  {id:'War Machine',        label:'War Machine',  svgColor:'#666',    svgShape:'none',    svgIcon:'⚙'},
+  {id:'Attack War Machine', label:'Atk W.M.',     svgColor:'#666',    svgShape:'none',    svgIcon:'💥'},
+  {id:'Defense War Machine',label:'Def W.M.',     svgColor:'#666',    svgShape:'none',    svgIcon:'🔩'},
+  {id:'Terrain',            label:'Terrain',      svgColor:'#666',    svgShape:'none',    svgIcon:'🗺'},
+  {id:'CW Repair',          label:'Repair',       svgColor:'#666',    svgShape:'none',    svgIcon:'🔧'},
 ]
 
-// ── Simulate ─────────────────────────────────────────────────────────────────
+function UnitBadge({cat,size=28}){
+  const bc=BUFF_CATS.find(c=>c.id===cat)
+  if(!bc||bc.svgShape==='none') return <span style={{fontSize:size*.6+'px'}}>{bc?.svgIcon||'⚙'}</span>
+  const s=size, h=size
+  if(bc.svgShape==='diamond') return(
+    <svg width={s} height={h} viewBox="0 0 28 28">
+      <path d="M14 2L26 14L14 26L2 14Z" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/>
+      <text x="14" y="18" textAnchor="middle" fontSize="11" fill="white" fontWeight="bold">♞</text>
+    </svg>
+  )
+  if(bc.svgShape==='circle') return(
+    <svg width={s} height={h} viewBox="0 0 28 28">
+      <circle cx="14" cy="14" r="12" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/>
+      <text x="14" y="19" textAnchor="middle" fontSize="13" fill="white">⚔</text>
+    </svg>
+  )
+  if(bc.svgShape==='pentagon') return(
+    <svg width={s} height={h} viewBox="0 0 28 28">
+      <polygon points="14,2 26,10 22,24 6,24 2,10" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/>
+      <text x="14" y="19" textAnchor="middle" fontSize="11" fill="white">🏹</text>
+    </svg>
+  )
+  if(bc.svgShape==='shield') return(
+    <svg width={s} height={h} viewBox="0 0 28 28">
+      <path d="M14 2L26 8V16C26 22 20 26 14 27C8 26 2 22 2 16V8Z" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/>
+      <text x="14" y="19" textAnchor="middle" fontSize="12" fill="white">🛡</text>
+    </svg>
+  )
+  return <span>{bc.svgIcon}</span>
+}
+
+// Simulate
 function simulate(a,d){
   const st={attack:[],defense:[]}
   for(const g of a){const s=(g.skills||[]).filter(s=>s.type==='Strategy');if(s.length)st.attack.push({general:g,skills:s})}
@@ -99,53 +100,36 @@ function simulate(a,d){
   return{st,turns}
 }
 
-// ── Picker Modal ──────────────────────────────────────────────────────────────
+// Picker
 function Picker({onSelect,onClose,excl=[]}){
-  const[q,setQ]=useState(''),
-       [fac,setFac]=useState('all'),
-       ref=useRef(null)
+  const[q,setQ]=useState(''),ref=useRef(null)
   useEffect(()=>{ref.current?.focus()},[])
-  const chars=ALL.filter(c=>{
-    if(excl.includes(c.id))return false
-    if(fac!=='all'&&c.country!==fac)return false
-    if(q){const s=q.toLowerCase();return c.name_en.toLowerCase().includes(s)||c.name_jp.includes(q)}
-    return true
-  })
+  const chars=ALL.filter(c=>!excl.includes(c.id)&&(!q||(c.name_en.toLowerCase().includes(q.toLowerCase())||c.name_jp.includes(q))))
   return(
     <div className="overlay" onClick={onClose}>
       <div className="picker" onClick={e=>e.stopPropagation()}>
-        <div className="picker-head">
-          <span className="picker-title">Select General</span>
-          <button className="x-btn" onClick={onClose}>✕</button>
-        </div>
+        <div className="picker-head"><span>Select General</span><button className="x-btn" onClick={onClose}>✕</button></div>
         <div className="picker-filters">
           <input ref={ref} className="picker-search" placeholder="Search…" value={q} onChange={e=>setQ(e.target.value)}/>
-          <select className="picker-fac" value={fac} onChange={e=>setFac(e.target.value)}>
-            <option value="all">All Factions</option>
-            {FACTIONS.map(f=><option key={f.id} value={f.id}>{f.label} {f.jp}</option>)}
-          </select>
         </div>
         <div className="picker-grid">
           {chars.map(c=>(
             <button key={c.id} className="p-card" style={{borderTopColor:CC[c.country]||'#999'}} onClick={()=>{onSelect(c);onClose()}}>
-              {c.image
-                ?<img src={c.image} className="p-img" alt={c.name_en}/>
+              {c.image?<img src={c.image} className="p-img" alt={c.name_en}/>
                 :<div className="p-ph" style={{background:CC[c.country]+'22',color:CC[c.country]||'#999'}}>{c.name_en[0]}</div>}
               <span className="p-name">{c.name_en}</span>
-              <span className="p-jp">{c.name_jp}</span>
             </button>
           ))}
-          {!chars.length&&<p className="p-empty">No results</p>}
         </div>
       </div>
     </div>
   )
 }
 
-// ── App Shell ─────────────────────────────────────────────────────────────────
-const PAGES=['Skill Archive','Party Builder','Activation Order','CW Buffs','Tier List']
+// App
+const PAGES=['Archive','Party Builder','Activation Order','CW Buffs','Tier List']
 export default function App(){
-  const[page,setPage]=useState('Skill Archive')
+  const[page,setPage]=useState('Archive')
   const[atk,setAtk]=useState([])
   const[def,setDef]=useState([])
   const rm=(char,side)=>(side==='attack'?setAtk:setDef)(p=>p.filter(x=>x.id!==char.id))
@@ -159,7 +143,7 @@ export default function App(){
         <div className="hdr-in">
           <div className="logo">
             <div className="logo-badge">⚔</div>
-            <div className="logo-text">
+            <div>
               <div className="logo-ja">キングダム乱</div>
               <div className="logo-en">Kingdom Ran EN</div>
             </div>
@@ -168,183 +152,149 @@ export default function App(){
             {PAGES.map(p=>(
               <button key={p} className={`nb${page===p?' nb-on':''}`} onClick={()=>setPage(p)}>
                 {p}
-                {p==='Party Builder'&&(atk.length+def.length)>0&&
-                  <span className="nb-dot">{atk.length+def.length}</span>}
+                {p==='Party Builder'&&(atk.length+def.length)>0&&<span className="nb-dot">{atk.length+def.length}</span>}
               </button>
             ))}
           </nav>
         </div>
       </header>
-      <main className="main">
-        {page==='Skill Archive'    && <ArchivePage/>}
-        {page==='Party Builder'    && <BuilderPage atk={atk} def={def} setSlot={setSlot} rm={rm} goSim={()=>setPage('Activation Order')}/>}
-        {page==='Activation Order' && <SimPage atk={atk} def={def} goBuilder={()=>setPage('Party Builder')}/>}
-        {page==='CW Buffs'         && <BuffsPage/>}
-        {page==='Tier List'         && <TierListPage/>}
-      </main>
-      <footer className="footer">{ALL.length} generals · Fan resource · Not affiliated with Cygames</footer>
+      <div className="app-body">
+        {page==='Archive'           && <ArchivePage/>}
+        {page==='Party Builder'     && <BuilderPage atk={atk} def={def} setSlot={setSlot} rm={rm} goSim={()=>setPage('Activation Order')}/>}
+        {page==='Activation Order'  && <SimPage atk={atk} def={def} goBuilder={()=>setPage('Party Builder')}/>}
+        {page==='CW Buffs'          && <BuffsPage/>}
+        {page==='Tier List'         && <TierPage/>}
+      </div>
+      <footer className="foot">{ALL.length} generals · Fan resource · Not affiliated with Cygames</footer>
     </div>
   )
 }
 
-// ── SKILL ARCHIVE — list layout so skills can expand freely ──────────────────
+// ── ARCHIVE — sidebar factions + card gallery + right panel ──────────────────
 function ArchivePage(){
-  const[q,setQ]=useState('')
-  const[openFac,setOpenFac]=useState({})
-  const sl=q.toLowerCase()
-  const filtered=q?ALL.filter(c=>c.name_en.toLowerCase().includes(sl)||c.name_jp.includes(q)):null
+  const[activeFac,setActiveFac]=useState('qin')
+  const[selected,setSelected]=useState(null)
+  const[search,setSearch]=useState('')
+
+  const facChars=ALL.filter(c=>c.country===activeFac)
+  const filtered=search
+    ?ALL.filter(c=>c.name_en.toLowerCase().includes(search.toLowerCase())||c.name_jp.includes(search))
+    :facChars
+
+  const handleFacClick=(fid)=>{
+    setActiveFac(fid)
+    setSelected(null)
+    setSearch('')
+  }
 
   return(
-    <div className="archive">
-      <div className="search-row">
-        <div className="search-box">
-          <span className="s-icon">⌕</span>
-          <input className="s-input" placeholder="Search generals…" value={q} onChange={e=>setQ(e.target.value)}/>
-          {q&&<button className="s-clear" onClick={()=>setQ('')}>✕</button>}
+    <div className="archive-layout">
+      {/* Left sidebar — factions */}
+      <aside className="fac-sidebar">
+        <div className="fac-search-wrap">
+          <input className="fac-search" placeholder="Search…" value={search}
+            onChange={e=>{setSearch(e.target.value);setSelected(null)}}/>
         </div>
-      </div>
-
-      {filtered?(
-        <div>
-          <p className="res-count">{filtered.length} general{filtered.length!==1?'s':''}</p>
-          <div className="gen-list">
-            {filtered.map(c=><GenRow key={c.id} char={c}/>)}
-          </div>
-        </div>
-      ):(
-        <div className="fac-accordion">
+        <div className="fac-nav">
           {FACTIONS.map(f=>{
-            const chars=ALL.filter(c=>c.country===f.id)
-            if(!chars.length)return null
-            const isOpen=openFac[f.id]
+            const n=ALL.filter(c=>c.country===f.id).length
+            if(!n) return null
             return(
-              <div key={f.id} className="fac-item">
-                <button className="fac-btn" onClick={()=>setOpenFac(o=>({...o,[f.id]:!o[f.id]}))}>
-                  <span className="fac-stripe" style={{background:f.color}}/>
-                  <span className="fac-label">{f.label}</span>
-                  <span className="fac-jp">{f.jp}</span>
-                  <span className="fac-n">{chars.length}</span>
-                  <span className="fac-chev">{isOpen?'▲':'▼'}</span>
-                </button>
-                {isOpen&&(
-                  <div className="fac-body">
-                    <div className="gen-list">
-                      {chars.map(c=><GenRow key={c.id} char={c}/>)}
-                    </div>
-                  </div>
-                )}
-              </div>
+              <button key={f.id}
+                className={`fac-item${activeFac===f.id&&!search?' fac-active':''}`}
+                style={activeFac===f.id&&!search?{'--fc':f.color}:{}}
+                onClick={()=>handleFacClick(f.id)}>
+                <span className="fac-stripe" style={{background:f.color}}/>
+                <span className="fac-name">{f.label}</span>
+                <span className="fac-jp">{f.jp}</span>
+                <span className="fac-n">{n}</span>
+              </button>
             )
           })}
         </div>
-      )}
-    </div>
-  )
-}
+      </aside>
 
-// ── GenRow — horizontal list item, skills expand BELOW full width ─────────────
-function GenRow({char}){
-  const[open,setOpen]=useState(false)
-  const col=CC[char.country]||'#999'
-  const skills=char.skills||[]
-  const combat=skills.filter(s=>s.type==='Combat')
-  const strat=skills.filter(s=>s.type==='Strategy')
-
-  return(
-    <div className="gr">
-      {/* Portrait + info row — always visible, full width */}
-      <div className="gr-header" onClick={()=>setOpen(o=>!o)} style={{borderLeftColor:col}}>
-        {/* Portrait: fixed size, shows full image */}
-        <div className="gr-portrait" style={{borderColor:col}}>
-          {char.image
-            ?<img src={char.image} alt={char.name_en} className="gr-img"/>
-            :<div className="gr-ph" style={{background:col+'22',color:col}}>{char.name_en[0]}</div>}
+      {/* Centre — banner gallery */}
+      <div className="gallery-wrap">
+        <div className="gallery-header">
+          <h2 className="gallery-title">
+            {search?`Results (${filtered.length})`:`${FACTIONS.find(f=>f.id===activeFac)?.label} Roster`}
+          </h2>
+          <span className="gallery-count">{filtered.length} generals</span>
         </div>
-        {/* Names */}
-        <div className="gr-names">
-          <span className="gr-en">{char.name_en}</span>
-          <span className="gr-jp">{char.name_jp}</span>
-        </div>
-        {/* Skill preview chips */}
-        <div className="gr-chips">
-          {combat.map((s,i)=>(
-            <span key={i} className="chip chip-c" title={s.name_en}>C{i+1}</span>
+        <div className="gallery-grid">
+          {filtered.map(c=>(
+            <button key={c.id}
+              className={`banner-card${selected?.id===c.id?' banner-selected':''}`}
+              onClick={()=>setSelected(selected?.id===c.id?null:c)}
+              style={selected?.id===c.id?{outline:`3px solid ${CC[c.country]||'#999'}`}:{}}>
+              {/* Unit type badge top-left */}
+              {/* Faction badge top-right */}
+              <div className="banner-faction-tag" style={{background:CC[c.country]||'#666'}}>
+                {FACTIONS.find(f=>f.id===c.country)?.jp||c.country}
+              </div>
+              {c.image
+                ?<img src={c.image} alt={c.name_en} className="banner-img"/>
+                :<div className="banner-ph" style={{background:(CC[c.country]||'#555')+'33',color:CC[c.country]||'#888'}}>
+                  {c.name_en[0]}
+                </div>}
+              <div className="banner-footer">
+                <span className="banner-name">{c.name_en}</span>
+              </div>
+            </button>
           ))}
-          {strat.map((s,i)=>(
-            <span key={i} className={`chip chip-s${s.star6?' chip-6':''}`} title={s.name_en}>
-              {s.star6?'☆6':'S'}
-            </span>
-          ))}
-          {!skills.length&&<span className="chip chip-x">pending</span>}
         </div>
-        {/* Toggle */}
-        <button className="gr-toggle" aria-label="toggle skills">
-          <span className="gr-toggle-arrow">{open?'▲':'▼'}</span>
-          <span className="gr-toggle-txt">{open?'Hide':'Skills'}</span>
-        </button>
       </div>
 
-      {/* Skills panel — full width, with big portrait on the left */}
-      {open&&(
-        <div className="gr-skills">
-          {/* Full portrait */}
-          <div className="gr-skills-portrait">
-            {char.image
-              ?<img src={char.image} alt={char.name_en} className="gr-skills-portrait-img"/>
-              :<div className="gr-skills-portrait-ph" style={{color:col,background:col+'18'}}>
-                {char.name_en[0]}
-              </div>}
-            <div className="gr-skills-portrait-name">{char.name_en}</div>
-            <div className="gr-skills-portrait-jp">{char.name_jp}</div>
-          </div>
-          {/* Skills */}
-          <div className="gr-skills-content">
-            {!skills.length
-              ?<p className="no-skills-note">⏳ Translation pending for this general.</p>
-              :<div className="skills-layout">
-                {skills.map((sk,i)=><SkillCard key={i} skill={sk}/>)}
+      {/* Right panel — selected char skills */}
+      {selected&&(
+        <aside className="detail-panel">
+          <div className="detail-header">
+            {selected.image&&<img src={selected.image} className="detail-portrait" alt={selected.name_en}/>}
+            <div className="detail-info">
+              <div className="detail-name">{selected.name_en}</div>
+              <div className="detail-jp">{selected.name_jp}</div>
+              <div className="detail-faction" style={{color:CC[selected.country]||'#999'}}>
+                {FACTIONS.find(f=>f.id===selected.country)?.label}
               </div>
+            </div>
+            <button className="detail-close" onClick={()=>setSelected(null)}>✕</button>
+          </div>
+          <div className="detail-skills">
+            {(selected.skills||[]).length===0
+              ?<p className="no-skills">Translation pending</p>
+              :(selected.skills||[]).map((sk,i)=><SkillCard key={i} skill={sk}/>)
             }
           </div>
-        </div>
+        </aside>
       )}
     </div>
   )
 }
 
-// ── SkillCard — the KEY component, must be readable ──────────────────────────
 function SkillCard({skill}){
-  const col=TYPE_COLOR[skill.type]||'#999'
+  const col=TYPE_COLOR[skill.type]||'#888'
   return(
     <div className="sk">
-      {/* Skill header */}
-      <div className="sk-head" style={{borderLeftColor:col,background:col+'18'}}>
-        <div className="sk-name-col">
+      <div className="sk-head" style={{borderLeftColor:col}}>
+        <div>
           <span className="sk-name">{skill.name_en}</span>
           <span className="sk-jp">{skill.name_jp}</span>
         </div>
         <div className="sk-tags">
           {skill.star6&&<span className="tag t-star">☆6</span>}
-          <span className="tag" style={{background:col+'30',color:col,border:`1px solid ${col}60`}}>
-            {skill.type}
-          </span>
-          {skill.type==='Administration'&&<span className="tag t-map">Map only</span>}
+          <span className="tag" style={{background:col+'22',color:col,border:`1px solid ${col}55`}}>{skill.type}</span>
+          {skill.type==='Administration'&&<span className="tag t-map">Map</span>}
         </div>
       </div>
-      {/* Effects table */}
       <div className="sk-effects">
-        {skill.effects.map((e,i)=>(
+        {(skill.effects||[]).map((e,i)=>(
           <div key={i} className="eff">
-            {e.condition&&(
-              <div className="eff-if">
-                <span className="eff-if-label">IF</span>
-                <span className="eff-if-text">{e.condition}</span>
-              </div>
-            )}
+            {e.condition&&<div className="eff-if"><span className="eff-if-lbl">IF</span>{e.condition}</div>}
             <div className="eff-body">
-              <span className="eff-target">{e.target}</span>
+              <span className="eff-tgt">{e.target}</span>
               <span className="eff-sep">→</span>
-              <span className="eff-effect">{e.effect}</span>
+              <span className="eff-val">{e.effect}</span>
               {e.duration&&<span className="eff-dur">{e.duration}</span>}
             </div>
           </div>
@@ -359,20 +309,16 @@ function BuilderPage({atk,def,setSlot,rm,goSim}){
   const[picker,setPicker]=useState(null)
   const excl=[...atk,...def].map(c=>c.id)
   return(
-    <div className="builder">
+    <div className="main-page">
       {picker&&<Picker onSelect={c=>setSlot(c,picker.side,picker.idx)} onClose={()=>setPicker(null)} excl={excl}/>}
       <h2 className="pg-title">Party Builder</h2>
-      <p className="pg-sub">Click any slot to add a general. Slot order = skill firing order (last slot fires first).</p>
+      <p className="pg-sub">Click slots to add generals. Last slot fires first.</p>
       <div className="two-sides">
         <SideSlots side="attack"  label="⚔ Attacking" party={atk} onSlot={i=>setPicker({side:'attack',idx:i})}  onRm={c=>rm(c,'attack')}/>
-        <div className="vs-badge">VS</div>
+        <div className="vs-sep">VS</div>
         <SideSlots side="defense" label="🛡 Defending" party={def} onSlot={i=>setPicker({side:'defense',idx:i})} onRm={c=>rm(c,'defense')}/>
       </div>
-      {(atk.length||def.length)>0&&(
-        <div className="cta-row">
-          <button className="cta-btn" onClick={goSim}>View Activation Order →</button>
-        </div>
-      )}
+      {(atk.length||def.length)>0&&<div className="cta-row"><button className="cta-btn" onClick={goSim}>View Activation Order →</button></div>}
     </div>
   )
 }
@@ -381,23 +327,20 @@ function SideSlots({side,label,party,onSlot,onRm}){
   const ac=side==='attack'?'var(--red)':'var(--blue)'
   return(
     <div className="side">
-      <div className="side-label" style={{color:ac,borderBottomColor:ac}}>{label}</div>
+      <div className="side-lbl" style={{color:ac,borderBottomColor:ac}}>{label}</div>
       {Array.from({length:4}).map((_,i)=>{
         const m=party[i]
         return m?(
           <div key={i} className="slot-filled" style={{borderLeftColor:CC[m.country]||'#999'}}>
             <span className="sn" style={{color:ac}}>{i+1}</span>
             {m.image&&<img src={m.image} className="slot-av" alt={m.name_en}/>}
-            <div className="slot-info">
-              <span className="slot-en">{m.name_en}</span>
-              <span className="slot-jp">{m.name_jp}</span>
-            </div>
+            <div className="slot-info"><span className="slot-en">{m.name_en}</span><span className="slot-jp">{m.name_jp}</span></div>
             <button className="slot-rm" onClick={()=>onRm(m)}>✕</button>
           </div>
         ):(
-          <button key={i} className="slot-empty" style={{borderColor:ac+'55'}} onClick={()=>onSlot(i)}>
-            <span style={{color:ac+'88',fontSize:'1.3rem',lineHeight:1}}>+</span>
-            <span style={{color:ac+'77',fontSize:'.78rem',fontWeight:600}}>{i+1} — Click to add</span>
+          <button key={i} className="slot-empty" style={{borderColor:ac+'44'}} onClick={()=>onSlot(i)}>
+            <span style={{color:ac+'88',fontSize:'1.3rem'}}>+</span>
+            <span style={{color:ac+'77',fontSize:'.78rem'}}>{i+1} — Click to add</span>
           </button>
         )
       })}
@@ -408,32 +351,24 @@ function SideSlots({side,label,party,onSlot,onRm}){
 // ── Activation Order ──────────────────────────────────────────────────────────
 function SimPage({atk,def,goBuilder}){
   if(!atk.length&&!def.length) return(
-    <div className="empty-cta">
-      <p>No formations set.</p>
-      <button className="cta-btn" onClick={goBuilder}>Go to Party Builder</button>
-    </div>
+    <div className="main-page empty-cta"><p>No formations set.</p><button className="cta-btn" onClick={goBuilder}>Go to Party Builder</button></div>
   )
   const{st,turns}=simulate(atk,def)
   return(
-    <div className="sim">
+    <div className="main-page">
       <h2 className="pg-title">Activation Order</h2>
-      {/* Formation bars */}
       <div className="form-bars">
         <FormBar generals={atk} side="attack" label="⚔ Attacking"/>
         <div className="form-vs">VS</div>
         <FormBar generals={def} side="defense" label="🛡 Defending"/>
       </div>
-
-      {/* Strategy */}
       <div className="sim-sec">
         <div className="sec-hd sec-strat">⚑ Strategy Skills — Always Active</div>
         <div className="strat-cols">
-          <StratCol label="⚔ Attacker Strategy" entries={st.attack} side="attack"/>
-          <StratCol label="🛡 Defender Strategy" entries={st.defense} side="defense"/>
+          <StratCol label="⚔ Attacker" entries={st.attack} side="attack"/>
+          <StratCol label="🛡 Defender" entries={st.defense} side="defense"/>
         </div>
       </div>
-
-      {/* Turns */}
       <div className="sim-sec">
         <div className="sec-hd sec-combat">⚔ Turn-by-Turn Combat</div>
         {turns.map(({turn,entries})=>(
@@ -446,14 +381,8 @@ function SimPage({atk,def,goBuilder}){
                   <div className="te-body">
                     <div className="te-gen">
                       {general.image&&<img src={general.image} className="te-av" alt={general.name_en}/>}
-                      <div>
-                        <b className="te-name">{general.name_en}</b>
-                        <span className="te-jp">{general.name_jp}</span>
-                      </div>
-                      <span className="te-tag" style={{
-                        background:side==='attack'?'rgba(192,57,43,.15)':'rgba(61,110,181,.15)',
-                        color:side==='attack'?'#e88':'#8ab'
-                      }}>{side==='attack'?'ATK':'DEF'}</span>
+                      <div><b className="te-name">{general.name_en}</b><span className="te-jp">{general.name_jp}</span></div>
+                      <span className="te-tag" style={{background:side==='attack'?'rgba(192,57,43,.15)':'rgba(36,113,163,.15)',color:side==='attack'?'#e88':'#8ab'}}>{side==='attack'?'ATK':'DEF'}</span>
                     </div>
                     {skill?<SkillCard skill={skill}/>:<div className="normal-atk">Normal Attack</div>}
                   </div>
@@ -466,7 +395,6 @@ function SimPage({atk,def,goBuilder}){
     </div>
   )
 }
-
 function FormBar({generals,side,label}){
   const ac=side==='attack'?'var(--red)':'var(--blue)'
   return(
@@ -484,25 +412,20 @@ function FormBar({generals,side,label}){
     </div>
   )
 }
-
 function StratCol({label,entries,side}){
   const ac=side==='attack'?'var(--red)':'var(--blue)'
   return(
     <div className="scol">
-      <div className="scol-lbl" style={{color:ac,borderBottomColor:ac+'55'}}>{label}</div>
-      {!entries.length
-        ?<p className="scol-none">None</p>
-        :entries.map(({general:g,skills:gs})=>(
-          <div key={g.id} className="scol-gen">
-            <div className="scol-gen-hdr" style={{color:ac}}>
-              {g.image&&<img src={g.image} className="scol-av" alt={g.name_en}/>}
-              <b>{g.name_en}</b>
-              <span className="scol-jp">{g.name_jp}</span>
-            </div>
-            {gs.map((sk,i)=><SkillCard key={i} skill={sk}/>)}
+      <div className="scol-lbl" style={{color:ac,borderBottomColor:ac+'44'}}>{label}</div>
+      {!entries.length?<p className="scol-none">None</p>:entries.map(({general:g,skills:gs})=>(
+        <div key={g.id} className="scol-gen">
+          <div className="scol-gen-hdr" style={{color:ac}}>
+            {g.image&&<img src={g.image} className="scol-av" alt={g.name_en}/>}
+            <b>{g.name_en}</b><span className="scol-jp">{g.name_jp}</span>
           </div>
-        ))
-      }
+          {gs.map((sk,i)=><SkillCard key={i} skill={sk}/>)}
+        </div>
+      ))}
     </div>
   )
 }
@@ -521,17 +444,18 @@ function BuffsPage(){
   const grand=filtered.reduce((s,b)=>s+b.pct,0)
   const isPct=!['Repair Speed','Coin Cost','Material Cost','Ore Cost','Terrain Bonus','Status Resistance','Other'].includes(stat)
   return(
-    <div className="buffs">
+    <div className="main-page">
       <h2 className="pg-title">CW Buffs</h2>
-      <p className="pg-sub">Administration skills active during Castle Wars, even when the general isn't deployed.</p>
+      <p className="pg-sub">Administration skills active during Castle Wars even when not deployed.</p>
       <div className="cat-pills">
         {BUFF_CATS.map(c=>{
-          const n=catCnt[c.id]||0
-          if(!n)return null
+          const n=catCnt[c.id]||0;if(!n)return null
           return(
             <button key={c.id} className={`cat-pill${cat===c.id?' active':''}`}
               onClick={()=>{setCat(cat===c.id?null:c.id);setStat(null)}}>
-              {c.icon} {c.label} <span className="cat-n">{n}</span>
+              <UnitBadge cat={c.id} size={22}/>
+              <span>{c.label}</span>
+              <span className="cat-n">{n}</span>
             </button>
           )
         })}
@@ -542,9 +466,8 @@ function BuffsPage(){
           {statsForCat.map(s=>{
             const t=buffs.filter(b=>b.unit_cat===cat&&b.stat===s).reduce((x,b)=>x+b.pct,0)
             return(
-              <button key={s} className={`stat-pill${stat===s?' active':''}`}
-                onClick={()=>setStat(stat===s?null:s)}>
-                {s}{t>0&&<span className="stat-pct"> +{t.toFixed(1)}%</span>}
+              <button key={s} className={`stat-pill${stat===s?' active':''}`} onClick={()=>setStat(stat===s?null:s)}>
+                <span>{s}</span>{t>0&&<span className="stat-pct"> +{t.toFixed(1)}%</span>}
               </button>
             )
           })}
@@ -553,8 +476,11 @@ function BuffsPage(){
       {cat&&stat&&(
         <div className="buff-panel">
           <div className="buff-panel-hdr">
-            <span className="buff-panel-title">{cat} · {stat}</span>
-            {isPct&&grand>0&&<span className="buff-total">Stack total: <b>+{grand.toFixed(1)}%</b></span>}
+            <div className="buff-panel-title-row">
+              <UnitBadge cat={cat} size={32}/>
+              <span className="buff-res-title">{cat} · {stat}</span>
+            </div>
+            {isPct&&grand>0&&<span className="buff-grand">Stack total: <b>+{grand.toFixed(1)}%</b></span>}
           </div>
           <div className="buff-cards">
             {chars.map(entry=>{
@@ -563,13 +489,9 @@ function BuffsPage(){
               return(
                 <div key={entry.char_id} className="bc" style={{borderTopColor:col}}>
                   <div className="bc-top">
-                    {entry.char_image
-                      ?<img src={entry.char_image} className="bc-av" alt={entry.char_name}/>
+                    {entry.char_image?<img src={entry.char_image} className="bc-av" alt={entry.char_name}/>
                       :<div className="bc-ph" style={{color:col,background:col+'22'}}>{entry.char_name[0]}</div>}
-                    <div>
-                      <div className="bc-name">{entry.char_name}</div>
-                      {tot>0&&<div className="bc-pct" style={{color:col}}>+{tot.toFixed(1)}%</div>}
-                    </div>
+                    <div><div className="bc-name">{entry.char_name}</div>{tot>0&&<div className="bc-pct" style={{color:col}}>+{tot.toFixed(1)}%</div>}</div>
                   </div>
                   <div className="bc-effs">
                     {entry.list.map((b,i)=>(
@@ -592,15 +514,14 @@ function BuffsPage(){
 }
 
 // ── Tier List ─────────────────────────────────────────────────────────────────
-function TierListPage(){
+function TierPage(){
   return(
-    <div className="tier-page">
+    <div className="main-page">
       <h2 className="pg-title">Tier List</h2>
-      <p className="pg-sub">Coming soon — rank generals by performance in Castle Wars.</p>
+      <p className="pg-sub">Coming soon — ranking generals by CW performance.</p>
       <div className="tier-placeholder">
-        <div className="tier-placeholder-icon">⚔</div>
-        <p>The tier list is being prepared.</p>
-        <p className="tier-placeholder-sub">Check back soon.</p>
+        <div style={{fontSize:'3rem',opacity:.3}}>⚔</div>
+        <p>Work in progress.</p>
       </div>
     </div>
   )

@@ -406,7 +406,7 @@
         ]
       },
       {
-        "name_en": "攻撃力強化・大 [盾兵]",
+        "name_en": "ATK Enhancement – Large [Shield]",
         "name_jp": "攻撃力強化・大【盾兵】",
         "type": "Administration",
         "effects": [
@@ -419,7 +419,7 @@
         ]
       },
       {
-        "name_en": "攻撃力強化・大改 [防衛兵器]",
+        "name_en": "ATK Enhancement – Large Improved [Defense War Machines]",
         "name_jp": "攻撃力強化・大改【防衛兵器】",
         "type": "Administration",
         "effects": [
@@ -461,7 +461,7 @@
         ]
       },
       {
-        "name_en": "防御力強化・大 [弓兵]",
+        "name_en": "DEF Enhancement – Large [Archer]",
         "name_jp": "防御力強化・大【弓兵】",
         "type": "Administration",
         "effects": [
@@ -474,7 +474,7 @@
         ]
       },
       {
-        "name_en": "坂路適性・大改",
+        "name_en": "Slope Terrain Aptitude – Large Improved",
         "name_jp": "坂路適性・大改",
         "type": "Administration",
         "effects": [
@@ -515,7 +515,7 @@
         ]
       },
       {
-        "name_en": "修理速度強化・小",
+        "name_en": "Repair Speed Enhancement – Small",
         "name_jp": "修理速度強化・小",
         "type": "Administration",
         "effects": [
@@ -528,7 +528,7 @@
         ]
       },
       {
-        "name_en": "修理貨幣減少・小改",
+        "name_en": "Repair Currency Reduction – Small Improved",
         "name_jp": "修理貨幣減少・小改",
         "type": "Administration",
         "effects": [
@@ -563,7 +563,7 @@
         ]
       },
       {
-        "name_en": "防御力強化・大 [防衛兵器]",
+        "name_en": "DEF Enhancement – Large [Defense War Machines]",
         "name_jp": "防御力強化・大【防衛兵器】",
         "type": "Administration",
         "effects": [
@@ -576,7 +576,7 @@
         ]
       },
       {
-        "name_en": "修理貨幣減少・大改",
+        "name_en": "Repair Currency Reduction – Large Improved",
         "name_jp": "修理貨幣減少・大改",
         "type": "Administration",
         "effects": [
@@ -617,7 +617,7 @@
         ]
       },
       {
-        "name_en": "攻撃力強化・中 [歩兵]",
+        "name_en": "ATK Enhancement – Medium [Infantry]",
         "name_jp": "攻撃力強化・中【歩兵】",
         "type": "Administration",
         "effects": [
@@ -630,7 +630,7 @@
         ]
       },
       {
-        "name_en": "泥濘適性・中改",
+        "name_en": "Marsh Terrain Aptitude – Medium Improved",
         "name_jp": "泥濘適性・中改",
         "type": "Administration",
         "effects": [
@@ -671,7 +671,7 @@
         ]
       },
       {
-        "name_en": "泥濘適性・中",
+        "name_en": "Marsh Terrain Aptitude – Medium",
         "name_jp": "泥濘適性・中",
         "type": "Administration",
         "effects": [
@@ -684,7 +684,7 @@
         ]
       },
       {
-        "name_en": "攻撃力強化・中改 [攻撃兵器]",
+        "name_en": "ATK Enhancement – Medium Improved [Attack War Machines]",
         "name_jp": "攻撃力強化・中改【攻撃兵器】",
         "type": "Administration",
         "effects": [
@@ -787,7 +787,7 @@
         ]
       },
       {
-        "name_en": "防御力強化・大 [盾兵]",
+        "name_en": "DEF Enhancement – Large [Shield]",
         "name_jp": "防御力強化・大【盾兵】",
         "type": "Administration",
         "effects": [
@@ -800,7 +800,7 @@
         ]
       },
       {
-        "name_en": "防御力強化・大改 [防衛兵器]",
+        "name_en": "DEF Enhancement – Large Improved [Defense War Machines]",
         "name_jp": "防御力強化・大改【防衛兵器】",
         "type": "Administration",
         "effects": [
@@ -848,7 +848,7 @@
         ]
       },
       {
-        "name_en": "体力強化・大 [騎兵]",
+        "name_en": "HP Enhancement – Large [Cavalry]",
         "name_jp": "体力強化・大【騎兵】",
         "type": "Administration",
         "effects": [
@@ -861,7 +861,7 @@
         ]
       },
       {
-        "name_en": "体力強化・大改 [攻撃兵器]",
+        "name_en": "HP Enhancement – Large Improved [Attack War Machines]",
         "name_jp": "体力強化・大改【攻撃兵器】",
         "type": "Administration",
         "effects": [
@@ -909,7 +909,7 @@
         ]
       },
       {
-        "name_en": "修理貨幣減少・大",
+        "name_en": "Repair Currency Reduction – Large",
         "name_jp": "修理貨幣減少・大",
         "type": "Administration",
         "effects": [
@@ -922,7 +922,7 @@
         ]
       },
       {
-        "name_en": "防御力強化・大改 [弓兵]",
+        "name_en": "DEF Enhancement – Large Improved [Archer]",
         "name_jp": "防御力強化・大改【弓兵】",
         "type": "Administration",
         "effects": [
@@ -977,7 +977,7 @@
         ]
       },
       {
-        "name_en": "森林適性・大改",
+        "name_en": "Forest Terrain Aptitude – Large Improved",
         "name_jp": "森林適性・大改",
         "type": "Administration",
         "effects": [

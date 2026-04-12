@@ -745,7 +745,7 @@
         ]
       },
       {
-        "name_en": "泥濘適性・大",
+        "name_en": "Marsh Terrain Aptitude – Large",
         "name_jp": "泥濘適性・大",
         "type": "Administration",
         "effects": [
@@ -758,7 +758,7 @@
         ]
       },
       {
-        "name_en": "攻撃力強化・大改 [歩兵]",
+        "name_en": "ATK Enhancement – Large Improved [Infantry]",
         "name_jp": "攻撃力強化・大改【歩兵】",
         "type": "Administration",
         "effects": [
@@ -800,7 +800,7 @@
         ]
       },
       {
-        "name_en": "体力強化・大 [攻撃兵器]",
+        "name_en": "HP Enhancement – Large [Attack War Machines]",
         "name_jp": "体力強化・大【攻撃兵器】",
         "type": "Administration",
         "effects": [
@@ -813,7 +813,7 @@
         ]
       },
       {
-        "name_en": "体力強化・大改 [防衛兵器]",
+        "name_en": "HP Enhancement – Large Improved [Defense War Machines]",
         "name_jp": "体力強化・大改【防衛兵器】",
         "type": "Administration",
         "effects": [
@@ -854,7 +854,7 @@
         ]
       },
       {
-        "name_en": "修理貨幣減少・大",
+        "name_en": "Repair Currency Reduction – Large",
         "name_jp": "修理貨幣減少・大",
         "type": "Administration",
         "effects": [
@@ -867,7 +867,7 @@
         ]
       },
       {
-        "name_en": "攻撃力強化・大改 [弓兵]",
+        "name_en": "ATK Enhancement – Large Improved [Archer]",
         "name_jp": "攻撃力強化・大改【弓兵】",
         "type": "Administration",
         "effects": [
@@ -909,7 +909,7 @@
         ]
       },
       {
-        "name_en": "坂路適正・大",
+        "name_en": "Slope Terrain Aptitude – Large",
         "name_jp": "坂路適正・大",
         "type": "Administration",
         "effects": [
@@ -922,7 +922,7 @@
         ]
       },
       {
-        "name_en": "修理鉱石減少・大改",
+        "name_en": "Repair Ore Reduction – Large Improved",
         "name_jp": "修理鉱石減少・大改",
         "type": "Administration",
         "effects": [

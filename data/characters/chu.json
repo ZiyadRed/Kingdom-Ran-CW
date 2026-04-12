@@ -678,7 +678,7 @@
         ]
       },
       {
-        "name_en": "体力強化・大 [弓兵]",
+        "name_en": "HP Enhancement – Large [Archer]",
         "name_jp": "体力強化・大【弓兵】",
         "type": "Administration",
         "effects": [
@@ -691,7 +691,7 @@
         ]
       },
       {
-        "name_en": "修理資材減少・大改",
+        "name_en": "Repair Material Reduction – Large Improved",
         "name_jp": "修理資材減少・大改",
         "type": "Administration",
         "effects": [
