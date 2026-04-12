@@ -185,7 +185,7 @@
   },
   {
     "id": "muten_grandpa",
-    "name_en": "Mouten's Grandpa",
+    "name_en": "Kuzen",
     "name_jp": "蒙恬のじぃ",
     "country": "qin",
     "rarity": "NR",
@@ -235,7 +235,8 @@
           }
         ]
       }
-    ]
+    ],
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kozen.webp"
   },
   {
     "id": "rishi",
@@ -1031,7 +1032,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kyoukai.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kyogai.webp"
   },
   {
     "id": "dokin",
@@ -2251,91 +2252,6 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/bakukoshin.webp"
-  },
-  {
-    "id": "kyoukai2",
-    "name_en": "Kyoukai",
-    "name_jp": "羌瘣",
-    "country": "qin",
-    "rarity": "SR",
-    "skills": [
-      {
-        "name_en": "Onsho Ichisen [Ao-god]",
-        "name_jp": "Onsho Ichisen [Ao-god]",
-        "type": "Combat",
-        "effects": [
-          {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
-            "effect": "% Damage150％",
-            "duration": null
-          },
-          {
-            "condition": "for one infantry warlord on his own's side.",
-            "target": "Self",
-            "effect": "ATK Up 10％",
-            "duration": "3 turns"
-          }
-        ]
-      },
-      {
-        "name_en": "A place to go home",
-        "name_jp": "A place to go home",
-        "type": "Combat",
-        "effects": [
-          {
-            "condition": "Ally Hisshintai Busho Surviving",
-            "target": "Self",
-            "effect": "HP Recovery 30％",
-            "duration": null
-          },
-          {
-            "condition": "Ally \"Faith\" Survival",
-            "target": "Self",
-            "effect": "DEF Penetration 30％↑",
-            "duration": "3 turns"
-          },
-          {
-            "condition": "A warlord with the highest attack power",
-            "target": "1 enemy general",
-            "effect": "% Damage160％",
-            "duration": null
-          }
-        ]
-      },
-      {
-        "name_en": "Shaman Dance",
-        "name_jp": "巫舞",
-        "type": "Combat",
-        "effects": [
-          {
-            "condition": null,
-            "target": "Self",
-            "effect": "Evasion (Dodge Chance) 60％",
-            "duration": "2 turns"
-          },
-          {
-            "condition": "Three enemy warlords with low attack power",
-            "target": "3 enemy generals",
-            "effect": "% Damage80％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Self",
-            "effect": "ATK Down 、DEF Down 、Evasion (Dodge Chance) Down 30％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Self",
-            "effect": "ATK Up 40％",
-            "duration": "2 turns"
-          }
-        ]
-      }
-    ],
-    "image": null
   },
   {
     "id": "kyoushou",

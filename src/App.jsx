@@ -177,9 +177,10 @@ function ArchivePage(){
   const[search,setSearch]=useState('')
 
   const facChars=ALL.filter(c=>c.country===activeFac)
-  const filtered=search
+  const filtered=(search
     ?ALL.filter(c=>c.name_en.toLowerCase().includes(search.toLowerCase())||c.name_jp.includes(search))
     :facChars
+  ).slice().sort((a,b)=>a.name_en.localeCompare(b.name_en))
 
   const handleFacClick=(fid)=>{
     setActiveFac(fid)

@@ -52,12 +52,12 @@ button{font-family:inherit;cursor:pointer;transition:all .15s}
 /* ── ARCHIVE LAYOUT ────────────────────────────────────────── */
 .archive-layout{
   display:flex;
-  flex:1;
+  height:calc(100vh - 58px); /* fill remaining screen below header */
   overflow:hidden;
-  height:calc(100vh - 60px);
+  position:relative;
 }
 
-/* Left sidebar */
+/* Left sidebar — sticky, scrolls independently */
 .fac-sidebar{
   width:var(--sidebar-w);
   flex-shrink:0;
@@ -66,19 +66,23 @@ button{font-family:inherit;cursor:pointer;transition:all .15s}
   display:flex;
   flex-direction:column;
   overflow-y:auto;
+  position:sticky;
+  top:0;
+  height:100%;
 }
-.fac-search-wrap{padding:.6rem .65rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.fac-search-wrap{padding:.6rem .65rem;border-bottom:1px solid rgba(255,255,255,.1);flex-shrink:0}
 .fac-search{
   width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);
   color:#fff;padding:.38rem .6rem;border-radius:6px;font-size:.78rem;font-family:inherit;
 }
 .fac-search::placeholder{color:rgba(255,255,255,.4)}
 .fac-search:focus{outline:none;border-color:var(--terra)}
-.fac-nav{display:flex;flex-direction:column;padding:.4rem 0}
+.fac-nav{display:flex;flex-direction:column;padding:.4rem 0;overflow-y:auto;flex:1}
 .fac-item{
   display:flex;align-items:center;gap:.5rem;
   padding:.55rem .75rem;border:none;background:transparent;
   color:rgba(255,255,255,.65);text-align:left;font-size:.8rem;font-weight:600;
+  flex-shrink:0;
 }
 .fac-item:hover{background:rgba(255,255,255,.08);color:#fff}
 .fac-active{background:rgba(255,255,255,.12)!important;color:#fff!important}
@@ -88,13 +92,14 @@ button{font-family:inherit;cursor:pointer;transition:all .15s}
 .fac-jp{font-size:.65rem;color:rgba(255,255,255,.4)}
 .fac-n{font-size:.65rem;background:rgba(255,255,255,.12);border-radius:10px;padding:1px 6px;color:rgba(255,255,255,.5)}
 
-/* Centre gallery */
+/* Centre gallery — scrolls independently */
 .gallery-wrap{
   flex:1;
   overflow-y:auto;
   background:var(--bg);
   display:flex;
   flex-direction:column;
+  height:100%;
 }
 .gallery-header{
   display:flex;align-items:center;justify-content:space-between;
@@ -102,16 +107,18 @@ button{font-family:inherit;cursor:pointer;transition:all .15s}
   border-bottom:1px solid var(--bdr);
   background:var(--sur);
   position:sticky;top:0;z-index:10;
+  flex-shrink:0;
 }
 .gallery-title{font-size:1rem;font-weight:800;color:var(--navy);letter-spacing:.04em}
 .gallery-count{font-size:.75rem;color:var(--txt3);background:var(--bg2);border:1px solid var(--bdr);border-radius:20px;padding:2px 10px}
 
-/* Banner card grid — matches the screenshot layout */
+/* Banner card grid */
 .gallery-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
   gap:.75rem;
   padding:.85rem;
+  align-content:start;
 }
 
 .banner-card{
@@ -154,7 +161,7 @@ button{font-family:inherit;cursor:pointer;transition:all .15s}
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 
-/* Right detail panel */
+/* Right detail panel — sticky, scrolls independently */
 .detail-panel{
   width:var(--panel-w);
   flex-shrink:0;
@@ -162,13 +169,17 @@ button{font-family:inherit;cursor:pointer;transition:all .15s}
   border-left:1px solid var(--bdr);
   display:flex;flex-direction:column;
   overflow-y:auto;
+  height:100%;
+  position:sticky;
+  top:0;
 }
 .detail-header{
   display:flex;align-items:flex-start;gap:.65rem;
   padding:.85rem .9rem;
   border-bottom:2px solid var(--terra);
   background:var(--navy);
-  position:relative;
+  position:sticky;top:0;z-index:5;
+  flex-shrink:0;
 }
 .detail-portrait{
   width:70px;height:90px;
@@ -185,7 +196,7 @@ button{font-family:inherit;cursor:pointer;transition:all .15s}
   color:rgba(255,255,255,.7);border-radius:4px;width:24px;height:24px;font-size:.7rem;
 }
 .detail-close:hover{background:rgba(255,255,255,.2);color:#fff}
-.detail-skills{padding:.65rem .75rem;display:flex;flex-direction:column;gap:.55rem}
+.detail-skills{padding:.65rem .75rem;display:flex;flex-direction:column;gap:.55rem;overflow-y:auto;flex:1}
 .no-skills{color:var(--txt3);font-style:italic;font-size:.82rem;padding:.5rem 0}
 
 /* ── Skill Cards ───────────────────────────────────────────── */
