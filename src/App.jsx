@@ -39,47 +39,47 @@ const CC=Object.fromEntries(FACTIONS.map(f=>[f.id,f.color]))
 const TYPE_COLOR={Combat:'#c0392b',Strategy:'#3d6eb5',Administration:'#1a8a72'}
 
 const BUFF_CATS=[
-  {id:'Cavalry',            label:'Cavalry',      svgColor:'#c0392b', svgShape:'diamond', svgIcon:'♞'},
-  {id:'Infantry',           label:'Infantry',     svgColor:'#c9a84c', svgShape:'circle',  svgIcon:'⚔'},
-  {id:'Archer',             label:'Archer',       svgColor:'#27ae60', svgShape:'pentagon',svgIcon:'🏹'},
-  {id:'Shield',             label:'Shield',       svgColor:'#2471a3', svgShape:'shield',  svgIcon:'🛡'},
-  {id:'War Machine',        label:'War Machine',  svgColor:'#666',    svgShape:'none',    svgIcon:'⚙'},
-  {id:'Attack War Machine', label:'Atk W.M.',     svgColor:'#666',    svgShape:'none',    svgIcon:'💥'},
-  {id:'Defense War Machine',label:'Def W.M.',     svgColor:'#666',    svgShape:'none',    svgIcon:'🔩'},
-  {id:'Terrain',            label:'Terrain',      svgColor:'#666',    svgShape:'none',    svgIcon:'🗺'},
-  {id:'CW Repair',          label:'Repair',       svgColor:'#666',    svgShape:'none',    svgIcon:'🔧'},
+  {id:'Cavalry',            label:'Cavalry',      svgColor:'#c0392b',svgShape:'diamond', svgIcon:'♞'},
+  {id:'Infantry',           label:'Infantry',     svgColor:'#c9a84c',svgShape:'circle',  svgIcon:'⚔'},
+  {id:'Archer',             label:'Archer',       svgColor:'#27ae60',svgShape:'pentagon',svgIcon:'🏹'},
+  {id:'Shield',             label:'Shield',       svgColor:'#2471a3',svgShape:'shield',  svgIcon:'🛡'},
+  {id:'War Machine',        label:'War Machine',  svgColor:'#666',   svgShape:'none',    svgIcon:'⚙'},
+  {id:'Attack War Machine', label:'Atk W.M.',     svgColor:'#666',   svgShape:'none',    svgIcon:'💥'},
+  {id:'Defense War Machine',label:'Def W.M.',     svgColor:'#666',   svgShape:'none',    svgIcon:'🔩'},
+  {id:'Terrain',            label:'Terrain',      svgColor:'#666',   svgShape:'none',    svgIcon:'🗺'},
+  {id:'CW Repair',          label:'Repair',       svgColor:'#666',   svgShape:'none',    svgIcon:'🔧'},
 ]
 
 function UnitBadge({cat,size=28}){
   const bc=BUFF_CATS.find(c=>c.id===cat)
   if(!bc||bc.svgShape==='none') return <span style={{fontSize:size*.6+'px'}}>{bc?.svgIcon||'⚙'}</span>
-  const s=size, h=size
-  if(bc.svgShape==='diamond') return(
-    <svg width={s} height={h} viewBox="0 0 28 28">
-      <path d="M14 2L26 14L14 26L2 14Z" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/>
-      <text x="14" y="18" textAnchor="middle" fontSize="11" fill="white" fontWeight="bold">♞</text>
-    </svg>
-  )
-  if(bc.svgShape==='circle') return(
-    <svg width={s} height={h} viewBox="0 0 28 28">
-      <circle cx="14" cy="14" r="12" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/>
-      <text x="14" y="19" textAnchor="middle" fontSize="13" fill="white">⚔</text>
-    </svg>
-  )
-  if(bc.svgShape==='pentagon') return(
-    <svg width={s} height={h} viewBox="0 0 28 28">
-      <polygon points="14,2 26,10 22,24 6,24 2,10" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/>
-      <text x="14" y="19" textAnchor="middle" fontSize="11" fill="white">🏹</text>
-    </svg>
-  )
-  if(bc.svgShape==='shield') return(
-    <svg width={s} height={h} viewBox="0 0 28 28">
-      <path d="M14 2L26 8V16C26 22 20 26 14 27C8 26 2 22 2 16V8Z" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/>
-      <text x="14" y="19" textAnchor="middle" fontSize="12" fill="white">🛡</text>
-    </svg>
-  )
+  const s=size,h=size
+  if(bc.svgShape==='diamond') return(<svg width={s} height={h} viewBox="0 0 28 28"><path d="M14 2L26 14L14 26L2 14Z" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/><text x="14" y="18" textAnchor="middle" fontSize="11" fill="white" fontWeight="bold">♞</text></svg>)
+  if(bc.svgShape==='circle')  return(<svg width={s} height={h} viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/><text x="14" y="19" textAnchor="middle" fontSize="13" fill="white">⚔</text></svg>)
+  if(bc.svgShape==='pentagon') return(<svg width={s} height={h} viewBox="0 0 28 28"><polygon points="14,2 26,10 22,24 6,24 2,10" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/><text x="14" y="19" textAnchor="middle" fontSize="11" fill="white">🏹</text></svg>)
+  if(bc.svgShape==='shield')  return(<svg width={s} height={h} viewBox="0 0 28 28"><path d="M14 2L26 8V16C26 22 20 26 14 27C8 26 2 22 2 16V8Z" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/><text x="14" y="19" textAnchor="middle" fontSize="12" fill="white">🛡</text></svg>)
   return <span>{bc.svgIcon}</span>
 }
+
+// ── Meta Teams data ───────────────────────────────────────────────────────────
+const META_TEAMS=[
+  {tier:'S',color:'#c0392b',name:'Ouhon',     members:['Shoutaku','Ouhon','Kanjou','Gakuki']},
+  {tier:'S',color:'#c0392b',name:'Archers',   members:['Keisha','Seikai','Hakurei','Queen Biki']},
+  {tier:'S',color:'#c0392b',name:'Zhao',      members:['Shunsuiju','Houken','Shinseijou','Riboku']},
+  {tier:'S',color:'#c0392b',name:'YTW',       members:['Katari','Yotanwa','Kitari','Ramauji']},
+  {tier:'A',color:'#e07f48',name:'Renpa',     members:['Rinko','Tairoji','Renpa','Kouretsu']},
+  {tier:'A',color:'#e07f48',name:'Qin Shields',members:['Hakuki','Akou','Ousen','Ei Sei']},
+  {tier:'A',color:'#e07f48',name:'Hi Shin',   members:['Garo','Gakuei','Naki','Robin']},
+  {tier:'A',color:'#e07f48',name:'Wei',       members:['Ranbihaku','Tairoji','Reiou','Gokei']},
+  {tier:'B',color:'#cc972d',name:'Ai',        members:['Wategi','Budai','Hanoki','Hamui']},
+  {tier:'B',color:'#cc972d',name:'6GG',       members:['Shoou','Ouki','Tou','Kyou']},
+  {tier:'B',color:'#cc972d',name:'Karin',     members:['Rien','Karin','Kaen','Goutoku']},
+  {tier:'B',color:'#cc972d',name:'Chu',       members:['Kyoubou','Rinbukun','Kanmei','Shunshinkun']},
+  {tier:'C',color:'#3d6eb5',name:'Han',       members:['Seikai','Chouin','Bakan','Nakon']},
+  {tier:'C',color:'#3d6eb5',name:'Archer Garrison',members:['Rouai','Queen Biki','Seikai','Keisha']},
+  {tier:'C',color:'#3d6eb5',name:'Rigan',     members:['Kisui','Kishou','Batei','Duke Sei']},
+  {tier:'C',color:'#3d6eb5',name:'Kanki',     members:['Zenou','Raido','Kanki','Naki']},
+]
 
 // Simulate
 function simulate(a,d){
@@ -109,9 +109,7 @@ function Picker({onSelect,onClose,excl=[]}){
     <div className="overlay" onClick={onClose}>
       <div className="picker" onClick={e=>e.stopPropagation()}>
         <div className="picker-head"><span>Select General</span><button className="x-btn" onClick={onClose}>✕</button></div>
-        <div className="picker-filters">
-          <input ref={ref} className="picker-search" placeholder="Search…" value={q} onChange={e=>setQ(e.target.value)}/>
-        </div>
+        <div className="picker-filters"><input ref={ref} className="picker-search" placeholder="Search…" value={q} onChange={e=>setQ(e.target.value)}/></div>
         <div className="picker-grid">
           {chars.map(c=>(
             <button key={c.id} className="p-card" style={{borderTopColor:CC[c.country]||'#999'}} onClick={()=>{onSelect(c);onClose()}}>
@@ -137,6 +135,12 @@ export default function App(){
     const set=side==='attack'?setAtk:setDef
     set(p=>{const n=[...p];const e=n.findIndex(x=>x.id===char.id);if(e!==-1)n.splice(e,1);n[idx]=char;return n.filter(Boolean)})
   }
+  const loadMetaTeam=(team,side)=>{
+    const chars=team.members.map(n=>ALL.find(c=>c.name_en===n||c.name_en.toLowerCase()===n.toLowerCase())).filter(Boolean).slice(0,4)
+    if(side==='attack') setAtk(chars)
+    else setDef(chars)
+    setPage('Party Builder')
+  }
   return(
     <div className="app">
       <header className="hdr">
@@ -151,61 +155,50 @@ export default function App(){
           <nav className="nav">
             {PAGES.map(p=>(
               <button key={p} className={`nb${page===p?' nb-on':''}`} onClick={()=>setPage(p)}>
-                {p}
-                {p==='Party Builder'&&(atk.length+def.length)>0&&<span className="nb-dot">{atk.length+def.length}</span>}
+                {p}{p==='Party Builder'&&(atk.length+def.length)>0&&<span className="nb-dot">{atk.length+def.length}</span>}
               </button>
             ))}
           </nav>
         </div>
       </header>
       <div className="app-body">
-        {page==='Archive'           && <ArchivePage/>}
-        {page==='Party Builder'     && <BuilderPage atk={atk} def={def} setSlot={setSlot} rm={rm} goSim={()=>setPage('Activation Order')}/>}
-        {page==='Activation Order'  && <SimPage atk={atk} def={def} goBuilder={()=>setPage('Party Builder')}/>}
-        {page==='CW Buffs'          && <BuffsPage/>}
-        {page==='Tier List'         && <TierPage/>}
+        {page==='Archive'          && <ArchivePage/>}
+        {page==='Party Builder'    && <BuilderPage atk={atk} def={def} setSlot={setSlot} rm={rm} goSim={()=>setPage('Activation Order')} loadMetaTeam={loadMetaTeam}/>}
+        {page==='Activation Order' && <SimPage atk={atk} def={def} goBuilder={()=>setPage('Party Builder')}/>}
+        {page==='CW Buffs'         && <BuffsPage/>}
+        {page==='Tier List'        && <TierPage/>}
       </div>
       <footer className="foot">{ALL.length} generals · Fan resource · Not affiliated with Cygames</footer>
     </div>
   )
 }
 
-// ── ARCHIVE — sidebar factions + card gallery + right panel ──────────────────
+// ── ARCHIVE ───────────────────────────────────────────────────────────────────
 function ArchivePage(){
   const[activeFac,setActiveFac]=useState('qin')
   const[selected,setSelected]=useState(null)
   const[search,setSearch]=useState('')
-
   const facChars=ALL.filter(c=>c.country===activeFac&&c.image)
   const filtered=(search
     ?ALL.filter(c=>c.name_en.toLowerCase().includes(search.toLowerCase())||c.name_jp.includes(search))
     :facChars
   ).slice().sort((a,b)=>a.name_en.localeCompare(b.name_en))
-
-  const handleFacClick=(fid)=>{
-    setActiveFac(fid)
-    setSelected(null)
-    setSearch('')
-  }
+  const handleFacClick=(fid)=>{setActiveFac(fid);setSelected(null);setSearch('')}
 
   return(
-    <>
-    <div className="archive-layout">
-      {/* Left sidebar — factions */}
+    <div className={`archive-layout${selected?' has-selection':''}`}>
+      {/* Sidebar */}
       <aside className="fac-sidebar">
         <div className="fac-search-wrap">
-          <input className="fac-search" placeholder="Search…" value={search}
-            onChange={e=>{setSearch(e.target.value);setSelected(null)}}/>
+          <input className="fac-search" placeholder="Search…" value={search} onChange={e=>{setSearch(e.target.value);setSelected(null)}}/>
         </div>
         <div className="fac-nav">
           {FACTIONS.map(f=>{
-            const n=ALL.filter(c=>c.country===f.id).length
+            const n=ALL.filter(c=>c.country===f.id&&c.image).length
             if(!n) return null
             return(
-              <button key={f.id}
-                className={`fac-item${activeFac===f.id&&!search?' fac-active':''}`}
-                style={activeFac===f.id&&!search?{'--fc':f.color}:{}}
-                onClick={()=>handleFacClick(f.id)}>
+              <button key={f.id} className={`fac-item${activeFac===f.id&&!search?' fac-active':''}`}
+                style={activeFac===f.id&&!search?{'--fc':f.color}:{}} onClick={()=>handleFacClick(f.id)}>
                 <span className="fac-stripe" style={{background:f.color}}/>
                 <span className="fac-name">{f.label}</span>
                 <span className="fac-jp">{f.jp}</span>
@@ -216,12 +209,10 @@ function ArchivePage(){
         </div>
       </aside>
 
-      {/* Centre — banner gallery */}
+      {/* Gallery */}
       <div className="gallery-wrap">
         <div className="gallery-header">
-          <h2 className="gallery-title">
-            {search?`Results (${filtered.length})`:`${FACTIONS.find(f=>f.id===activeFac)?.label} Roster`}
-          </h2>
+          <h2 className="gallery-title">{search?`Results (${filtered.length})`:`${FACTIONS.find(f=>f.id===activeFac)?.label} Roster`}</h2>
           <span className="gallery-count">{filtered.length} generals</span>
         </div>
         <div className="gallery-grid">
@@ -230,25 +221,18 @@ function ArchivePage(){
               className={`banner-card${selected?.id===c.id?' banner-selected':''}`}
               onClick={()=>setSelected(selected?.id===c.id?null:c)}
               style={selected?.id===c.id?{outline:`3px solid ${CC[c.country]||'#999'}`}:{}}>
-              {/* Unit type badge top-left */}
-              {/* Faction badge top-right */}
               <div className="banner-faction-tag" style={{background:CC[c.country]||'#666'}}>
                 {FACTIONS.find(f=>f.id===c.country)?.jp||c.country}
               </div>
-              {c.image
-                ?<img src={c.image} alt={c.name_en} className="banner-img"/>
-                :<div className="banner-ph" style={{background:(CC[c.country]||'#555')+'33',color:CC[c.country]||'#888'}}>
-                  {c.name_en[0]}
-                </div>}
-              <div className="banner-footer">
-                <span className="banner-name">{c.name_en}</span>
-              </div>
+              {c.image?<img src={c.image} alt={c.name_en} className="banner-img"/>
+                :<div className="banner-ph" style={{background:(CC[c.country]||'#555')+'33',color:CC[c.country]||'#888'}}>{c.name_en[0]}</div>}
+              <div className="banner-footer"><span className="banner-name">{c.name_en}</span></div>
             </button>
           ))}
         </div>
       </div>
 
-      {/* Right panel — selected char skills */}
+      {/* Skills panel — desktop: right column, mobile: bottom sheet */}
       {selected&&(
         <aside className="detail-panel">
           <div className="detail-header">
@@ -271,8 +255,6 @@ function ArchivePage(){
         </aside>
       )}
     </div>
-    <div className="archive-thanks">Special thanks to <b>Wiper</b> for helping build this archive 🙏</div>
-    </>
   )
 }
 
@@ -308,8 +290,35 @@ function SkillCard({skill}){
   )
 }
 
-// ── Party Builder ─────────────────────────────────────────────────────────────
-function BuilderPage({atk,def,setSlot,rm,goSim}){
+// ── META TEAM CARD ────────────────────────────────────────────────────────────
+function MetaTeamCard({team,onLoad}){
+  const chars=team.members.map(n=>ALL.find(c=>c.name_en===n||c.name_en.toLowerCase()===n.toLowerCase())).filter(Boolean)
+  return(
+    <div className="meta-card" style={{borderTopColor:team.color}}>
+      <div className="meta-card-head">
+        <span className="meta-tier-badge" style={{background:team.color}}>{team.tier}</span>
+        <span className="meta-name">{team.name}</span>
+      </div>
+      <div className="meta-members">
+        {chars.map((c,i)=>(
+          <div key={i} className="meta-member">
+            {c.image
+              ?<img src={c.image} className="meta-member-img" alt={c.name_en}/>
+              :<div className="meta-member-ph" style={{background:CC[c.country]+'22',color:CC[c.country]||'#999'}}>{c.name_en[0]}</div>}
+            <span className="meta-member-name">{c.name_en}</span>
+          </div>
+        ))}
+      </div>
+      <div className="meta-btns">
+        <button className="meta-btn meta-atk" onClick={()=>onLoad(team,'attack')}>⚔ Set as Attacker</button>
+        <button className="meta-btn meta-def" onClick={()=>onLoad(team,'defense')}>🛡 Set as Defender</button>
+      </div>
+    </div>
+  )
+}
+
+// ── PARTY BUILDER ─────────────────────────────────────────────────────────────
+function BuilderPage({atk,def,setSlot,rm,goSim,loadMetaTeam}){
   const[picker,setPicker]=useState(null)
   const excl=[...atk,...def].map(c=>c.id)
   return(
@@ -323,6 +332,27 @@ function BuilderPage({atk,def,setSlot,rm,goSim}){
         <SideSlots side="defense" label="🛡 Defending" party={def} onSlot={i=>setPicker({side:'defense',idx:i})} onRm={c=>rm(c,'defense')}/>
       </div>
       {(atk.length||def.length)>0&&<div className="cta-row"><button className="cta-btn" onClick={goSim}>View Activation Order →</button></div>}
+
+      {/* Meta Teams */}
+      <div className="meta-section">
+        <h3 className="meta-section-title">Meta Teams</h3>
+        <p className="meta-section-sub">Click Attack or Defense to load a team into the formation above.</p>
+        {['S','A','B','C'].map(tier=>{
+          const teams=META_TEAMS.filter(t=>t.tier===tier)
+          const col=teams[0]?.color||'#999'
+          return(
+            <div key={tier} className="meta-tier-group">
+              <div className="meta-tier-label" style={{color:col,borderLeftColor:col}}>
+                <span className="meta-tier-letter" style={{background:col}}>{tier}</span>
+                <span>Tier</span>
+              </div>
+              <div className="meta-grid">
+                {teams.map((team,i)=><MetaTeamCard key={i} team={team} onLoad={loadMetaTeam}/>)}
+              </div>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
@@ -352,7 +382,7 @@ function SideSlots({side,label,party,onSlot,onRm}){
   )
 }
 
-// ── Activation Order ──────────────────────────────────────────────────────────
+// ── ACTIVATION ORDER ──────────────────────────────────────────────────────────
 function SimPage({atk,def,goBuilder}){
   if(!atk.length&&!def.length) return(
     <div className="main-page empty-cta"><p>No formations set.</p><button className="cta-btn" onClick={goBuilder}>Go to Party Builder</button></div>
@@ -434,7 +464,7 @@ function StratCol({label,entries,side}){
   )
 }
 
-// ── CW Buffs ──────────────────────────────────────────────────────────────────
+// ── CW BUFFS ──────────────────────────────────────────────────────────────────
 function BuffsPage(){
   const[cat,setCat]=useState(null)
   const[stat,setStat]=useState(null)
@@ -454,36 +484,24 @@ function BuffsPage(){
       <div className="cat-pills">
         {BUFF_CATS.map(c=>{
           const n=catCnt[c.id]||0;if(!n)return null
-          return(
-            <button key={c.id} className={`cat-pill${cat===c.id?' active':''}`}
-              onClick={()=>{setCat(cat===c.id?null:c.id);setStat(null)}}>
-              <UnitBadge cat={c.id} size={22}/>
-              <span>{c.label}</span>
-              <span className="cat-n">{n}</span>
-            </button>
-          )
+          return(<button key={c.id} className={`cat-pill${cat===c.id?' active':''}`} onClick={()=>{setCat(cat===c.id?null:c.id);setStat(null)}}>
+            <UnitBadge cat={c.id} size={22}/><span>{c.label}</span><span className="cat-n">{n}</span>
+          </button>)
         })}
       </div>
-      {cat&&(
-        <div className="stat-pills">
-          <span className="stat-lbl">Sub-category:</span>
-          {statsForCat.map(s=>{
-            const t=buffs.filter(b=>b.unit_cat===cat&&b.stat===s).reduce((x,b)=>x+b.pct,0)
-            return(
-              <button key={s} className={`stat-pill${stat===s?' active':''}`} onClick={()=>setStat(stat===s?null:s)}>
-                <span>{s}</span>{t>0&&<span className="stat-pct"> +{t.toFixed(1)}%</span>}
-              </button>
-            )
-          })}
-        </div>
-      )}
+      {cat&&(<div className="stat-pills">
+        <span className="stat-lbl">Sub-category:</span>
+        {statsForCat.map(s=>{
+          const t=buffs.filter(b=>b.unit_cat===cat&&b.stat===s).reduce((x,b)=>x+b.pct,0)
+          return(<button key={s} className={`stat-pill${stat===s?' active':''}`} onClick={()=>setStat(stat===s?null:s)}>
+            <span>{s}</span>{t>0&&<span className="stat-pct"> +{t.toFixed(1)}%</span>}
+          </button>)
+        })}
+      </div>)}
       {cat&&stat&&(
         <div className="buff-panel">
           <div className="buff-panel-hdr">
-            <div className="buff-panel-title-row">
-              <UnitBadge cat={cat} size={32}/>
-              <span className="buff-res-title">{cat} · {stat}</span>
-            </div>
+            <div className="buff-panel-title-row"><UnitBadge cat={cat} size={32}/><span className="buff-res-title">{cat} · {stat}</span></div>
             {isPct&&grand>0&&<span className="buff-grand">Stack total: <b>+{grand.toFixed(1)}%</b></span>}
           </div>
           <div className="buff-cards">
@@ -501,9 +519,7 @@ function BuffsPage(){
                     {entry.list.map((b,i)=>(
                       <div key={i} className="bc-eff">
                         <span className="bc-val">{b.effect}</span>
-                        {b.condition&&!b.condition.includes('deployed')&&!b.condition.includes('CW battle')&&(
-                          <span className="bc-cond">{b.condition}</span>
-                        )}
+                        {b.condition&&!b.condition.includes('deployed')&&!b.condition.includes('CW battle')&&(<span className="bc-cond">{b.condition}</span>)}
                       </div>
                     ))}
                   </div>
@@ -517,128 +533,68 @@ function BuffsPage(){
   )
 }
 
-// ── Tier List ─────────────────────────────────────────────────────────────────
-const TIER_DATA=[
-  {tier:"S",color:"#c0392b",def:"Tech Plays and must have all CW6* Cards available to them",armies:[
-    {name:"Ouhon",unit:"cavalry",s_since:"Jan 25",note:"S Rank Since Jan 25",nc:"red",teams:[[{n:"Ouhon",s6:true},{n:"Akou",s6:false},{n:"Mouten",s6:false},{n:"Heki",s6:false}],[{n:"Tou",s6:true},{n:"Shin",s6:false},{n:"Mouten",s6:false},{n:"Denyuu",s6:false}]]},
-    {name:"Archers (Invasion)",unit:"archer",s_since:"Aug 25",note:"Sep 25 - New Addition to S",nc:"red",teams:[[{n:"Kyomei",s6:false},{n:"You",s6:false},{n:"Robin",s6:false},{n:"Kou",s6:false}]]},
-    {name:"YTW MtnMen",unit:"infantry",s_since:"Dec 25",note:"Dec 25 - Moved to S",nc:"red",teams:[[{n:"Yotanwa",s6:true},{n:"Bajio",s6:false},{n:"Shunmen",s6:false},{n:"Kitari",s6:false}]]},
-  ]},
-  {tier:"A",color:"#e07f48",def:"Able to handle enough of S Tier Armies (Must have <1 CW6* Card)",armies:[
-    {name:"Zhao (Silver)",unit:"cavalry",s_since:"May 24",note:"S Rank Since May 24",nc:"red",teams:[[{n:"Riboku",s6:false},{n:"Chousou",s6:false},{n:"Rihaku",s6:false},{n:"Kousonryu",s6:false}]]},
-    {name:"Ousen",unit:"shield",s_since:"Mar 26",note:"Mar 26 - New Addition to A",nc:"orange",teams:[[{n:"Ousen",s6:true},{n:"Akou",s6:false},{n:"Ouhon",s6:true},{n:"Mouten",s6:false}]]},
-    {name:"HSU (with Robin)",unit:"cavalry",s_since:"Aug 25",note:"Sep 25 - New Addition to A",nc:"orange",teams:[[{n:"Shin",s6:false},{n:"Robin",s6:false},{n:"Kyoukai",s6:false},{n:"Mouten",s6:false}]]},
-    {name:"Renpa",unit:"cavalry",s_since:"Dec 24",note:"Sep 25 - Dropped to A",nc:"orange",teams:[[{n:"Renpa",s6:true},{n:"Ranbihaku",s6:true},{n:"Rinko",s6:true},{n:"Kaishibou",s6:true}]]},
-  ]},
-  {tier:"B",color:"#cc972d",def:"Good enough for S5 but niche/expensive / Not seen doing enough at Gold relative to above",armies:[
-    {name:"WFD (Shields)",unit:"shield",s_since:"Feb 25",note:"Dec 25 - Dropped to A",nc:"orange",teams:[[{n:"Ousen",s6:true},{n:"Rihaku",s6:false},{n:"Mouki",s6:false},{n:"Taijifu",s6:false}]]},
-    {name:"Kanmei",unit:"infantry",s_since:null,note:"Moved to B (SSK, RinBK, Kanmei)",nc:"orange",teams:[[{n:"Kanmei",s6:true},{n:"Shunshinkun",s6:true},{n:"Rinbukun",s6:true},{n:"Beiman",s6:false}]]},
-    {name:"Archers (Garrison)",unit:"archer",s_since:null,note:"Dec 25 - Dropped to B",nc:"orange",teams:[[{n:"Kou",s6:false},{n:"You",s6:false},{n:"Kyomei",s6:false},{n:"Gika",s6:false}]]},
-    {name:"Ai (Invasion)",unit:"infantry",s_since:null,note:"Dec 25 - Dropped to B",nc:"orange",teams:[[{n:"Rouai",s6:false},{n:"Hamui",s6:false},{n:"Hanoki",s6:false},{n:"Rankai",s6:false}]]},
-    {name:"6GG",unit:"cavalry",s_since:"Dec 25",note:"Mar 26 - Dropped to B",nc:"orange",teams:[[{n:"Hakuki",s6:true},{n:"Shoou",s6:true},{n:"Ouki",s6:true},{n:"Tou",s6:true}]]},
-    {name:"Karin",unit:"cavalry",s_since:"Mar 26",note:"Mar 26 - Moved to B",nc:"orange",teams:[[{n:"Karin",s6:true},{n:"Kanmei",s6:true},{n:"Beiman",s6:false},{n:"Kouyoku",s6:false}]]},
-  ]},
-  {tier:"C",color:"#3d6eb5",def:"Will struggle in S5 and higher / Too expensive for value / Appeared recently but need more data to confirm",armies:[
-    {name:"Kanki",unit:"cavalry",s_since:null,note:"Dec 25 - Dropped to C",nc:"blue",teams:[[{n:"Kanki",s6:false},{n:"Ranbihaku",s6:true},{n:"Rinko",s6:true},{n:"Maron",s6:false}]]},
-    {name:"Rigan",unit:"cavalry",s_since:null,note:"Feb 25 - Dropped to C",nc:"blue",teams:[[{n:"Riboku",s6:false},{n:"Kisui",s6:false},{n:"Batei",s6:false},{n:"Kinmou",s6:false}]]},
-    {name:"Han",unit:"infantry",s_since:null,note:"Jan 26 - Dropped to C",nc:"blue",teams:[[{n:"Seikai",s6:true},{n:"Chouin",s6:false},{n:"Bakan",s6:false},{n:"Nakon",s6:false}]]},
-    {name:"WFD (Cavarlys)",unit:"cavalry",s_since:null,note:"D Tier",nc:"gray",teams:[[{n:"Ousen",s6:true},{n:"Akou",s6:false},{n:"Denyuu",s6:false},{n:"Chousou",s6:false}]]},
-  ]},
-]
+// ── TIER LIST ─────────────────────────────────────────────────────────────────
+const TIER_DEFS={
+  S:{color:'#c0392b',def:'Top-tier armies — tech plays, require all CW6★ cards'},
+  A:{color:'#e07f48',def:'Strong armies — can handle S Tier, need at least 1 CW6★ card'},
+  B:{color:'#cc972d',def:'Solid but niche / expensive — struggle at Gold vs above'},
+  C:{color:'#3d6eb5',def:'Struggle in S5+ / need more data to confirm viability'},
+}
 
 function TierPage(){
-  const charByName={}
-  ALL.forEach(c=>{charByName[c.name_en.toLowerCase()]=c})
-  const getChar=n=>{
-    const c=charByName[n.toLowerCase()]
-    return c||null
-  }
-  const NOTE_COLOR={red:'#e74c3c',orange:'#e07f48',blue:'#3d6eb5',gray:'#888'}
+  const byName={}
+  ALL.forEach(c=>{byName[c.name_en.toLowerCase()]=c;byName[c.name_en]=c})
+  const getChar=n=>byName[n]||byName[n.toLowerCase()]||null
   return(
     <div className="tier-page-wrap">
-      <div className="tier-header-bar">
-        <div>
-          <h2 className="tier-main-title">Metawatch: CW Armies</h2>
-          <p className="tier-subtitle">Commonly Seen · Last updated: 3rd Apr 2026</p>
-        </div>
+      <div className="tier-page-header">
+        <h2 className="tier-main-title">⚔ CW Metawatch</h2>
+        <p className="tier-main-sub">Commonly Seen Armies · Last updated: Apr 2026</p>
       </div>
-      <p className="tier-credit">Special thanks to <b>Doge</b> for his work on this tier list.</p>
-
-      <div className="tier-layout">
-        {/* Left: tier table */}
-        <div className="tier-left">
-          {TIER_DATA.map(({tier,color,def,armies})=>(
-            <div key={tier} className="tier-row">
-              <div className="tier-badge-col">
-                <div className="tier-badge" style={{background:color,boxShadow:`0 4px 14px ${color}66`}}>{tier}</div>
-                <div className="tier-def">{def}</div>
+      <div className="tier-list">
+        {['S','A','B','C'].map(tier=>{
+          const {color,def}=TIER_DEFS[tier]
+          const teams=META_TEAMS.filter(t=>t.tier===tier)
+          return(
+            <div key={tier} className="tier-section">
+              <div className="tier-section-head">
+                <div className="tier-big-badge" style={{background:color}}>{tier}</div>
+                <div className="tier-section-info">
+                  <div className="tier-section-label" style={{color}}>Tier {tier}</div>
+                  <div className="tier-section-def">{def}</div>
+                </div>
               </div>
-              <div className="tier-armies-col">
-                {armies.map((army,ai)=>(
-                  <div key={ai} className="tier-army-block">
-                    <div className="tier-army-name">
-                      <UnitBadge cat={army.unit==='cavalry'?'Cavalry':army.unit==='shield'?'Shield':army.unit==='archer'?'Archer':'Infantry'} size={18}/>
-                      <span>{army.name}</span>
-                      {army.s_since&&<span className="tier-since">{army.s_since}</span>}
-                    </div>
-                    {army.teams.map((team,ti)=>(
-                      <div key={ti} className="tier-team-row">
-                        {team.map(({n,s6},ci)=>{
-                          const c=getChar(n)
+              <div className="tier-teams-grid">
+                {teams.map((team,ti)=>{
+                  const chars=team.members.map(n=>getChar(n)).filter(Boolean)
+                  return(
+                    <div key={ti} className="tier-team-card" style={{borderTopColor:color}}>
+                      <div className="tier-team-name">{team.name}</div>
+                      <div className="tier-team-members">
+                        {chars.map((c,ci)=>{
+                          const hasStar6=(c.skills||[]).some(s=>s.star6)
                           return(
-                            <div key={ci} className="tier-char-slot">
-                              {c?.image
-                                ?<img src={c.image} className="tier-char-img" alt={n}/>
-                                :<div className="tier-char-ph" style={{background:CC[c?.country||'qin']+'33',color:CC[c?.country||'qin']||'#888'}}>{n[0]}</div>}
-                              {s6&&<span className="tier-star6">☆6</span>}
-                              <span className="tier-char-name">{n}</span>
+                            <div key={ci} className="tier-member">
+                              <div className="tier-member-img-wrap">
+                                {c.image
+                                  ?<img src={c.image} className="tier-member-img" alt={c.name_en}/>
+                                  :<div className="tier-member-ph" style={{background:CC[c.country]+'33',color:CC[c.country]||'#888'}}>{c.name_en[0]}</div>}
+                                {hasStar6&&<span className="tier-s6">☆6</span>}
+                              </div>
+                              <span className="tier-member-name">{c.name_en}</span>
                             </div>
                           )
                         })}
                       </div>
-                    ))}
-                  </div>
-                ))}
+                    </div>
+                  )
+                })}
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Right: formations table */}
-        <div className="tier-right">
-          <div className="tier-table-head">
-            <span className="tth-formations">Formations</span>
-            <span className="tth-since">S/A Rank Since</span>
-            <span className="tth-move">Rank Performance Movement</span>
-          </div>
-          {TIER_DATA.flatMap(({tier,color,armies})=>
-            armies.map((army,ai)=>(
-              <div key={`${tier}-${ai}`} className="tier-table-row" style={{borderLeftColor:color}}>
-                <div className="ttr-formations">
-                  <div className="ttr-badge" style={{background:color}}>{tier}</div>
-                  <UnitBadge cat={army.unit==='cavalry'?'Cavalry':army.unit==='shield'?'Shield':army.unit==='archer'?'Archer':'Infantry'} size={18}/>
-                  <div className="ttr-team-imgs">
-                    {(army.teams[0]||[]).map(({n,s6},i)=>{
-                      const c=getChar(n)
-                      return(
-                        <div key={i} className="ttr-char">
-                          {c?.image?<img src={c.image} className="ttr-img" alt={n}/>
-                            :<div className="ttr-ph">{n[0]}</div>}
-                          {s6&&<span className="ttr-s6">☆</span>}
-                        </div>
-                      )
-                    })}
-                  </div>
-                  <span className="ttr-name">{army.name}</span>
-                </div>
-                <div className="ttr-since">{army.s_since||'–'}</div>
-                <div className="ttr-note" style={{color:NOTE_COLOR[army.nc]||'#888'}}>{army.note}</div>
-              </div>
-            ))
-          )}
-        </div>
+          )
+        })}
       </div>
-      <p className="tier-source">Source: Gold fights, X, Youtube and Community insights · Benchmark: Army Synergy, Unique Skills, Unit Stats and Training Cost</p>
+      <p className="tier-source">Source: Gold fights, X, YouTube and Community insights · Benchmark: Army Synergy, Unique Skills, Unit Stats and Training Cost</p>
     </div>
   )
 }
