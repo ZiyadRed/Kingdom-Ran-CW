@@ -149,7 +149,7 @@ export default function App(){
             <div className="logo-badge">⚔</div>
             <div>
               <div className="logo-ja">キングダム乱</div>
-              <div className="logo-en">Kingdom Ran EN</div>
+              <div className="logo-en">Kingdom Ran CW</div>
             </div>
           </div>
           <nav className="nav">
