@@ -188,7 +188,8 @@ function ArchivePage(){
     setSearch('')
   }
 
-  return(
+    return(
+    <>
     <div className="archive-layout">
       {/* Left sidebar — factions */}
       <aside className="fac-sidebar">
@@ -269,8 +270,8 @@ function ArchivePage(){
           </div>
         </aside>
       )}
-    </div>
-    <div className="archive-thanks">Special thanks to <b>Wiper</b> for helping build this archive 🙏</div>
+        <div className="archive-thanks">Special thanks to <b>Wiper</b> for helping build this archive 🙏</div>
+    </>
   )
 }
 
