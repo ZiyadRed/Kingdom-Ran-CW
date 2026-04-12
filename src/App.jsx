@@ -189,6 +189,7 @@ function ArchivePage(){
   }
 
   return(
+    <>
     <div className="archive-layout">
       {/* Left sidebar — factions */}
       <aside className="fac-sidebar">
@@ -271,6 +272,7 @@ function ArchivePage(){
       )}
     </div>
     <div className="archive-thanks">Special thanks to <b>Wiper</b> for helping build this archive 🙏</div>
+    </>
   )
 }
 
