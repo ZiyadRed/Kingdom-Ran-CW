@@ -176,7 +176,7 @@ function ArchivePage(){
   const[selected,setSelected]=useState(null)
   const[search,setSearch]=useState('')
 
-  const facChars=ALL.filter(c=>c.country===activeFac)
+  const facChars=ALL.filter(c=>c.country===activeFac&&c.image)
   const filtered=(search
     ?ALL.filter(c=>c.name_en.toLowerCase().includes(search.toLowerCase())||c.name_jp.includes(search))
     :facChars
@@ -269,7 +269,7 @@ function ArchivePage(){
           </div>
         </aside>
       )}
-    </div>
+    <div className="archive-thanks">Special thanks to <b>Wiper</b> for helping build this archive 🙏</div>
   )
 }
 
@@ -515,15 +515,127 @@ function BuffsPage(){
 }
 
 // ── Tier List ─────────────────────────────────────────────────────────────────
+const TIER_DATA=[
+  {tier:"S",color:"#c0392b",def:"Tech Plays and must have all CW6* Cards available to them",armies:[
+    {name:"Ouhon",unit:"cavalry",s_since:"Jan 25",note:"S Rank Since Jan 25",nc:"red",teams:[[{n:"Ouhon",s6:true},{n:"Akou",s6:false},{n:"Mouten",s6:false},{n:"Heki",s6:false}],[{n:"Tou",s6:true},{n:"Shin",s6:false},{n:"Mouten",s6:false},{n:"Denyuu",s6:false}]]},
+    {name:"Archers (Invasion)",unit:"archer",s_since:"Aug 25",note:"Sep 25 - New Addition to S",nc:"red",teams:[[{n:"Kyomei",s6:false},{n:"You",s6:false},{n:"Robin",s6:false},{n:"Kou",s6:false}]]},
+    {name:"YTW MtnMen",unit:"infantry",s_since:"Dec 25",note:"Dec 25 - Moved to S",nc:"red",teams:[[{n:"Yotanwa",s6:true},{n:"Bajio",s6:false},{n:"Shunmen",s6:false},{n:"Kitari",s6:false}]]},
+  ]},
+  {tier:"A",color:"#e07f48",def:"Able to handle enough of S Tier Armies (Must have <1 CW6* Card)",armies:[
+    {name:"Zhao (Silver)",unit:"cavalry",s_since:"May 24",note:"S Rank Since May 24",nc:"red",teams:[[{n:"Riboku",s6:false},{n:"Chousou",s6:false},{n:"Rihaku",s6:false},{n:"Kousonryu",s6:false}]]},
+    {name:"Ousen",unit:"shield",s_since:"Mar 26",note:"Mar 26 - New Addition to A",nc:"orange",teams:[[{n:"Ousen",s6:true},{n:"Akou",s6:false},{n:"Ouhon",s6:true},{n:"Mouten",s6:false}]]},
+    {name:"HSU (with Robin)",unit:"cavalry",s_since:"Aug 25",note:"Sep 25 - New Addition to A",nc:"orange",teams:[[{n:"Shin",s6:false},{n:"Robin",s6:false},{n:"Kyoukai",s6:false},{n:"Mouten",s6:false}]]},
+    {name:"Renpa",unit:"cavalry",s_since:"Dec 24",note:"Sep 25 - Dropped to A",nc:"orange",teams:[[{n:"Renpa",s6:true},{n:"Ranbihaku",s6:true},{n:"Rinko",s6:true},{n:"Kaishibou",s6:true}]]},
+  ]},
+  {tier:"B",color:"#cc972d",def:"Good enough for S5 but niche/expensive / Not seen doing enough at Gold relative to above",armies:[
+    {name:"WFD (Shields)",unit:"shield",s_since:"Feb 25",note:"Dec 25 - Dropped to A",nc:"orange",teams:[[{n:"Ousen",s6:true},{n:"Rihaku",s6:false},{n:"Mouki",s6:false},{n:"Taijifu",s6:false}]]},
+    {name:"Kanmei",unit:"infantry",s_since:null,note:"Moved to B (SSK, RinBK, Kanmei)",nc:"orange",teams:[[{n:"Kanmei",s6:true},{n:"Shunshinkun",s6:true},{n:"Rinbukun",s6:true},{n:"Beiman",s6:false}]]},
+    {name:"Archers (Garrison)",unit:"archer",s_since:null,note:"Dec 25 - Dropped to B",nc:"orange",teams:[[{n:"Kou",s6:false},{n:"You",s6:false},{n:"Kyomei",s6:false},{n:"Gika",s6:false}]]},
+    {name:"Ai (Invasion)",unit:"infantry",s_since:null,note:"Dec 25 - Dropped to B",nc:"orange",teams:[[{n:"Rouai",s6:false},{n:"Hamui",s6:false},{n:"Hanoki",s6:false},{n:"Rankai",s6:false}]]},
+    {name:"6GG",unit:"cavalry",s_since:"Dec 25",note:"Mar 26 - Dropped to B",nc:"orange",teams:[[{n:"Hakuki",s6:true},{n:"Shoou",s6:true},{n:"Ouki",s6:true},{n:"Tou",s6:true}]]},
+    {name:"Karin",unit:"cavalry",s_since:"Mar 26",note:"Mar 26 - Moved to B",nc:"orange",teams:[[{n:"Karin",s6:true},{n:"Kanmei",s6:true},{n:"Beiman",s6:false},{n:"Kouyoku",s6:false}]]},
+  ]},
+  {tier:"C",color:"#3d6eb5",def:"Will struggle in S5 and higher / Too expensive for value / Appeared recently but need more data to confirm",armies:[
+    {name:"Kanki",unit:"cavalry",s_since:null,note:"Dec 25 - Dropped to C",nc:"blue",teams:[[{n:"Kanki",s6:false},{n:"Ranbihaku",s6:true},{n:"Rinko",s6:true},{n:"Maron",s6:false}]]},
+    {name:"Rigan",unit:"cavalry",s_since:null,note:"Feb 25 - Dropped to C",nc:"blue",teams:[[{n:"Riboku",s6:false},{n:"Kisui",s6:false},{n:"Batei",s6:false},{n:"Kinmou",s6:false}]]},
+    {name:"Han",unit:"infantry",s_since:null,note:"Jan 26 - Dropped to C",nc:"blue",teams:[[{n:"Seikai",s6:true},{n:"Chouin",s6:false},{n:"Bakan",s6:false},{n:"Nakon",s6:false}]]},
+    {name:"WFD (Cavarlys)",unit:"cavalry",s_since:null,note:"D Tier",nc:"gray",teams:[[{n:"Ousen",s6:true},{n:"Akou",s6:false},{n:"Denyuu",s6:false},{n:"Chousou",s6:false}]]},
+  ]},
+]
+
 function TierPage(){
+  const charByName={}
+  ALL.forEach(c=>{charByName[c.name_en.toLowerCase()]=c})
+  const getChar=n=>{
+    const c=charByName[n.toLowerCase()]
+    return c||null
+  }
+  const NOTE_COLOR={red:'#e74c3c',orange:'#e07f48',blue:'#3d6eb5',gray:'#888'}
   return(
-    <div className="main-page">
-      <h2 className="pg-title">Tier List</h2>
-      <p className="pg-sub">Coming soon — ranking generals by CW performance.</p>
-      <div className="tier-placeholder">
-        <div style={{fontSize:'3rem',opacity:.3}}>⚔</div>
-        <p>Work in progress.</p>
+    <div className="tier-page-wrap">
+      <div className="tier-header-bar">
+        <div>
+          <h2 className="tier-main-title">Metawatch: CW Armies</h2>
+          <p className="tier-subtitle">Commonly Seen · Last updated: 3rd Apr 2026</p>
+        </div>
       </div>
+      <p className="tier-credit">Special thanks to <b>Doge</b> for his work on this tier list.</p>
+
+      <div className="tier-layout">
+        {/* Left: tier table */}
+        <div className="tier-left">
+          {TIER_DATA.map(({tier,color,def,armies})=>(
+            <div key={tier} className="tier-row">
+              <div className="tier-badge-col">
+                <div className="tier-badge" style={{background:color,boxShadow:`0 4px 14px ${color}66`}}>{tier}</div>
+                <div className="tier-def">{def}</div>
+              </div>
+              <div className="tier-armies-col">
+                {armies.map((army,ai)=>(
+                  <div key={ai} className="tier-army-block">
+                    <div className="tier-army-name">
+                      <UnitBadge cat={army.unit==='cavalry'?'Cavalry':army.unit==='shield'?'Shield':army.unit==='archer'?'Archer':'Infantry'} size={18}/>
+                      <span>{army.name}</span>
+                      {army.s_since&&<span className="tier-since">{army.s_since}</span>}
+                    </div>
+                    {army.teams.map((team,ti)=>(
+                      <div key={ti} className="tier-team-row">
+                        {team.map(({n,s6},ci)=>{
+                          const c=getChar(n)
+                          return(
+                            <div key={ci} className="tier-char-slot">
+                              {c?.image
+                                ?<img src={c.image} className="tier-char-img" alt={n}/>
+                                :<div className="tier-char-ph" style={{background:CC[c?.country||'qin']+'33',color:CC[c?.country||'qin']||'#888'}}>{n[0]}</div>}
+                              {s6&&<span className="tier-star6">☆6</span>}
+                              <span className="tier-char-name">{n}</span>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Right: formations table */}
+        <div className="tier-right">
+          <div className="tier-table-head">
+            <span className="tth-formations">Formations</span>
+            <span className="tth-since">S/A Rank Since</span>
+            <span className="tth-move">Rank Performance Movement</span>
+          </div>
+          {TIER_DATA.flatMap(({tier,color,armies})=>
+            armies.map((army,ai)=>(
+              <div key={`${tier}-${ai}`} className="tier-table-row" style={{borderLeftColor:color}}>
+                <div className="ttr-formations">
+                  <div className="ttr-badge" style={{background:color}}>{tier}</div>
+                  <UnitBadge cat={army.unit==='cavalry'?'Cavalry':army.unit==='shield'?'Shield':army.unit==='archer'?'Archer':'Infantry'} size={18}/>
+                  <div className="ttr-team-imgs">
+                    {(army.teams[0]||[]).map(({n,s6},i)=>{
+                      const c=getChar(n)
+                      return(
+                        <div key={i} className="ttr-char">
+                          {c?.image?<img src={c.image} className="ttr-img" alt={n}/>
+                            :<div className="ttr-ph">{n[0]}</div>}
+                          {s6&&<span className="ttr-s6">☆</span>}
+                        </div>
+                      )
+                    })}
+                  </div>
+                  <span className="ttr-name">{army.name}</span>
+                </div>
+                <div className="ttr-since">{army.s_since||'–'}</div>
+                <div className="ttr-note" style={{color:NOTE_COLOR[army.nc]||'#888'}}>{army.note}</div>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+      <p className="tier-source">Source: Gold fights, X, Youtube and Community insights · Benchmark: Army Synergy, Unique Skills, Unit Stats and Training Cost</p>
     </div>
   )
 }

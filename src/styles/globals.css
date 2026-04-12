@@ -355,3 +355,68 @@ button{font-family:inherit;cursor:pointer;transition:all .15s}
   .hdr-in{padding:.45rem .8rem}
   .nb{padding:.24rem .5rem;font-size:.68rem}
 }
+
+/* ── Archive thanks ───────────────────────────────────────── */
+.archive-thanks{
+  text-align:center;padding:.85rem 1rem;
+  background:var(--sur);border-top:1px solid var(--bdr);
+  color:var(--txt2);font-size:.8rem;
+  flex-shrink:0;
+}
+.archive-thanks b{color:var(--terra)}
+
+/* ── Tier List ─────────────────────────────────────────────── */
+.tier-page-wrap{max-width:1400px;margin:0 auto;padding:1.25rem 1.5rem}
+.tier-header-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:.35rem}
+.tier-main-title{font-size:1.2rem;font-weight:800;color:var(--navy)}
+.tier-subtitle{font-size:.78rem;color:var(--txt3);margin-top:.15rem}
+.tier-credit{font-size:.78rem;color:var(--txt2);margin-bottom:1rem;padding:.42rem .75rem;background:var(--sur);border:1px solid var(--bdr);border-radius:6px;display:inline-block}
+.tier-credit b{color:var(--terra)}
+.tier-source{font-size:.68rem;color:var(--txt3);margin-top:1.25rem;padding-top:.75rem;border-top:1px solid var(--bdr)}
+
+.tier-layout{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;align-items:start}
+
+/* Left side — tier table */
+.tier-left{display:flex;flex-direction:column;gap:.5rem}
+.tier-row{display:flex;gap:.65rem;background:var(--sur);border:1.5px solid var(--bdr);border-radius:10px;overflow:hidden}
+.tier-badge-col{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:.75rem .5rem;background:var(--bg2);border-right:1px solid var(--bdr);min-width:80px;flex-shrink:0}
+.tier-badge{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:900;color:#fff;flex-shrink:0}
+.tier-def{font-size:.65rem;color:var(--txt2);text-align:center;line-height:1.4}
+.tier-armies-col{flex:1;padding:.5rem .6rem;display:flex;flex-direction:column;gap:.5rem}
+.tier-army-block{border-bottom:1px solid var(--bdr);padding-bottom:.45rem}
+.tier-army-block:last-child{border-bottom:none;padding-bottom:0}
+.tier-army-name{display:flex;align-items:center;gap:.35rem;font-size:.78rem;font-weight:700;color:var(--navy);margin-bottom:.35rem}
+.tier-since{font-size:.65rem;color:var(--txt3);background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;padding:1px 7px;margin-left:auto}
+.tier-team-row{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.2rem}
+.tier-char-slot{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;width:52px}
+.tier-char-img{width:48px;height:48px;border-radius:6px;object-fit:cover;object-position:top;border:2px solid var(--bdr)}
+.tier-char-ph{width:48px;height:48px;border-radius:6px;border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700}
+.tier-star6{position:absolute;top:-4px;right:-4px;background:var(--gold);color:var(--navy);font-size:.5rem;font-weight:800;padding:1px 4px;border-radius:3px;line-height:1.4}
+.tier-char-name{font-size:.58rem;color:var(--txt2);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
+
+/* Right side — formations table */
+.tier-right{background:var(--sur);border:1.5px solid var(--bdr);border-radius:10px;overflow:hidden}
+.tier-table-head{display:grid;grid-template-columns:1fr 80px 180px;gap:.5rem;padding:.55rem .75rem;background:var(--navy);font-size:.72rem;font-weight:700;color:#fff;letter-spacing:.04em}
+.tier-table-row{display:grid;grid-template-columns:1fr 80px 180px;gap:.5rem;padding:.5rem .75rem;border-bottom:1px solid var(--bdr);border-left:4px solid;align-items:center}
+.tier-table-row:last-child{border-bottom:none}
+.ttr-formations{display:flex;align-items:center;gap:.35rem;min-width:0;flex-wrap:wrap}
+.ttr-badge{font-size:.62rem;font-weight:800;color:#fff;padding:2px 7px;border-radius:4px;flex-shrink:0}
+.ttr-team-imgs{display:flex;gap:2px}
+.ttr-char{position:relative}
+.ttr-img{width:28px;height:28px;border-radius:4px;object-fit:cover;object-position:top;border:1px solid var(--bdr)}
+.ttr-ph{width:28px;height:28px;border-radius:4px;border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;background:var(--bg2);color:var(--txt3)}
+.ttr-s6{position:absolute;top:-3px;right:-3px;background:var(--gold);color:var(--navy);font-size:.45rem;font-weight:800;padding:0px 2px;border-radius:2px}
+.ttr-name{font-size:.72rem;font-weight:600;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ttr-since{font-size:.72rem;color:var(--txt2);text-align:center}
+.ttr-note{font-size:.72rem;font-weight:700}
+.tth-since,.tth-move{text-align:center}
+
+@media(max-width:1000px){
+  .tier-layout{grid-template-columns:1fr}
+  .tier-table-head,.tier-table-row{grid-template-columns:1fr 60px 1fr}
+}
+@media(max-width:600px){
+  .tier-table-head,.tier-table-row{grid-template-columns:1fr;gap:.25rem}
+  .tth-since,.tth-move{display:none}
+  .ttr-since,.ttr-note{display:none}
+}

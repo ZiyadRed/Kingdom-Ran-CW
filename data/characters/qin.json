@@ -1071,5 +1071,65 @@
         ]
       }
     ]
+  },
+  {
+    "id": "kyoukai",
+    "name_en": "Kyoukai",
+    "name_jp": "羌瘣",
+    "country": "qin",
+    "image": null,
+    "skills": [
+      {
+        "name_en": "Corpse Dance [Purple Elephant]",
+        "name_jp": "屍舞【紫象】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "160% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "ATK Up 20%",
+            "duration": "2 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Shaman Dance",
+        "name_jp": "巫舞",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Qin]",
+            "effect": "ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Evasion (Dodge Chance) Up 30%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "ATK Enhancement – Medium [Archer]",
+        "name_jp": "攻撃力強化・中【弓兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally [Archer]",
+            "effect": "ATK Up 3.8%",
+            "duration": null
+          }
+        ]
+      }
+    ]
   }
 ]

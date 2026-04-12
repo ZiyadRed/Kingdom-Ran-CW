@@ -715,14 +715,7 @@
             "target": "1 enemy general",
             "effect": "% Damage150％",
             "duration": null
-          }
-        ]
-      },
-      {
-        "name_en": "Heavy Pursuit [Red Cow]",
-        "name_jp": "Heavy Pursuit [Red Cow]",
-        "type": "Combat",
-        "effects": [
+          },
           {
             "condition": null,
             "target": "Ally [Infantry]",
@@ -939,9 +932,9 @@
   },
   {
     "id": "kurosa",
-    "name_en": "Kurosa",
+    "name_en": "Kokuou",
     "name_jp": "黒桜",
-    "country": "zhao",
+    "country": "qin",
     "rarity": "SR",
     "skills": [
       {
@@ -964,7 +957,7 @@
         ]
       },
       {
-        "name_en": "Physical strength, large [bow soldier]",
+        "name_en": "HP Enhancement – Large [Archer]",
         "name_jp": "Physical strength, large [bow soldier]",
         "type": "Combat",
         "effects": [
