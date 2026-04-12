@@ -269,8 +269,9 @@ function ArchivePage(){
             }
           </div>
         </aside>
-      )}
-        <div className="archive-thanks">Special thanks to <b>Wiper</b> for helping build this archive 🙏</div>
+              )}
+    </div>
+    <div className="archive-thanks">Special thanks to <b>Wiper</b> for helping build this archive 🙏</div>
     </>
   )
 }
