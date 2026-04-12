@@ -125,7 +125,7 @@ function Picker({onSelect,onClose,excl=[]}){
 }
 
 // App
-const PAGES=['Archive','Party Builder','Activation Order','CW Buffs','Tier List']
+const PAGES=['Archive','Party Builder','Simulate','CW Buffs','Tier List']
 export default function App(){
   const[page,setPage]=useState('Archive')
   const[atk,setAtk]=useState([])
@@ -163,8 +163,8 @@ export default function App(){
       </header>
       <div className="app-body">
         {page==='Archive'          && <ArchivePage/>}
-        {page==='Party Builder'    && <BuilderPage atk={atk} def={def} setSlot={setSlot} rm={rm} goSim={()=>setPage('Activation Order')} loadMetaTeam={loadMetaTeam}/>}
-        {page==='Activation Order' && <SimPage atk={atk} def={def} goBuilder={()=>setPage('Party Builder')}/>}
+        {page==='Party Builder'    && <BuilderPage atk={atk} def={def} setSlot={setSlot} rm={rm} goSim={()=>setPage('Simulate')} loadMetaTeam={loadMetaTeam}/>}
+        {page==='Simulate' && <SimPage atk={atk} def={def} goBuilder={()=>setPage('Party Builder')}/>}
         {page==='CW Buffs'         && <BuffsPage/>}
         {page==='Tier List'        && <TierPage/>}
       </div>
@@ -261,7 +261,7 @@ function ArchivePage(){
 function SkillCard({skill}){
   const col=TYPE_COLOR[skill.type]||'#888'
   return(
-    <div className="sk">
+    <div className="sk" data-type={skill.type}>
       <div className="sk-head" style={{borderLeftColor:col}}>
         <div>
           <span className="sk-name">{skill.name_en}</span>
@@ -337,21 +337,9 @@ function BuilderPage({atk,def,setSlot,rm,goSim,loadMetaTeam}){
       <div className="meta-section">
         <h3 className="meta-section-title">Meta Teams</h3>
         <p className="meta-section-sub">Click Attack or Defense to load a team into the formation above.</p>
-        {['S','A','B','C'].map(tier=>{
-          const teams=META_TEAMS.filter(t=>t.tier===tier)
-          const col=teams[0]?.color||'#999'
-          return(
-            <div key={tier} className="meta-tier-group">
-              <div className="meta-tier-label" style={{color:col,borderLeftColor:col}}>
-                <span className="meta-tier-letter" style={{background:col}}>{tier}</span>
-                <span>Tier</span>
-              </div>
-              <div className="meta-grid">
-                {teams.map((team,i)=><MetaTeamCard key={i} team={team} onLoad={loadMetaTeam}/>)}
-              </div>
-            </div>
-          )
-        })}
+        <div className="meta-grid">
+          {META_TEAMS.map((team,i)=><MetaTeamCard key={i} team={team} onLoad={loadMetaTeam}/>)}
+        </div>
       </div>
     </div>
   )
