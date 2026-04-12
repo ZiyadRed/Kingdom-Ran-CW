@@ -79,7 +79,7 @@ button{font-family:inherit;cursor:pointer;transition:all .15s}
 .banner-name{display:block;font-size:.8rem;font-weight:700;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* Detail panel — desktop: right column, mobile: fixed bottom sheet */
-.detail-panel{width:var(--panel-w);flex-shrink:0;background:var(--sur);border-left:1px solid var(--bdr);display:flex;flex-direction:column;overflow-y:auto;height:100%}
+.detail-panel{width:var(--panel-w);flex-shrink:0;background:var(--sur);border-left:1px solid var(--bdr);display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;height:100%}
 .detail-header{display:flex;align-items:flex-start;gap:.65rem;padding:.85rem .9rem;border-bottom:2px solid var(--terra);background:var(--navy);position:sticky;top:0;z-index:5;flex-shrink:0}
 .detail-portrait{width:70px;height:90px;border-radius:8px;object-fit:cover;object-position:top;flex-shrink:0;border:2px solid rgba(255,255,255,.2)}
 .detail-info{flex:1;min-width:0;padding-top:.1rem}
@@ -88,15 +88,15 @@ button{font-family:inherit;cursor:pointer;transition:all .15s}
 .detail-faction{font-size:.75rem;font-weight:700;margin-top:.3rem}
 .detail-close{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);border-radius:4px;width:24px;height:24px;font-size:.7rem}
 .detail-close:hover{background:rgba(255,255,255,.2);color:#fff}
-.detail-skills{padding:.65rem .75rem;display:flex;flex-direction:column;gap:.55rem;overflow-y:auto;flex:1}
+.detail-skills{padding:.65rem .75rem .85rem;display:flex;flex-direction:column;gap:.65rem;overflow-y:auto;flex:1}
 .no-skills{color:var(--txt3);font-style:italic;font-size:.82rem;padding:.5rem 0}
 
 /* ── Skill Cards — strong visual contrast per type ───────────── */
 /* Combat = warm red bg | Strategy = deep blue bg | Administration = green bg */
-.sk{border-radius:8px;overflow:hidden;border:2px solid var(--bdr);box-shadow:0 2px 8px rgba(6,38,76,.08)}
+.sk{border-radius:8px;overflow:visible;border:2px solid var(--bdr);box-shadow:0 2px 8px rgba(6,38,76,.08)}
 
 /* Skill header — colour-coded background per type */
-.sk-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.6rem;padding:.65rem .8rem;border-left:5px solid}
+.sk-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.6rem;padding:.65rem .8rem;border-left:5px solid;border-radius:6px 6px 0 0}
 /* Combat header: deep red tint */
 .sk[data-type="Combat"] .sk-head{background:#3a0e0e}
 .sk[data-type="Combat"]{border-color:#7a2020}
@@ -115,7 +115,7 @@ button{font-family:inherit;cursor:pointer;transition:all .15s}
 .t-map{background:rgba(39,174,96,.2);color:#4ddb8a;border:1px solid rgba(39,174,96,.5)}
 
 /* Effects section - light cream, high contrast text */
-.sk-effects{padding:.65rem .8rem .85rem;display:flex;flex-direction:column;gap:.65rem;background:var(--sur);width:100%;overflow:visible}
+.sk-effects{padding:.65rem .8rem .9rem;display:flex;flex-direction:column;gap:.65rem;background:var(--sur);width:100%;border-radius:0 0 6px 6px}
 .eff{display:flex;flex-direction:column;gap:.28rem;width:100%}
 
 /* IF condition - amber highlight box */
@@ -128,11 +128,11 @@ button{font-family:inherit;cursor:pointer;transition:all .15s}
 /* Effect row - white card, navy text, very readable */
 .eff-body{display:grid;grid-template-columns:auto auto 1fr;align-items:start;gap:.3rem .45rem;
   padding:.45rem .65rem;background:#fff;border-radius:6px;border:1.5px solid #d0b898;
-  box-shadow:0 1px 3px rgba(6,38,76,.08);width:100%}
-.eff-tgt{color:#06264C;font-weight:900;font-size:.9rem;white-space:nowrap;grid-column:1}
-.eff-sep{color:#888;font-size:.85rem;white-space:nowrap;grid-column:2}
-.eff-val{color:#c0392b;font-size:.9rem;font-weight:700;line-height:1.45;
-  grid-column:3;word-break:break-word;overflow-wrap:anywhere;min-width:0}
+  box-shadow:0 1px 3px rgba(6,38,76,.08);width:100%;box-sizing:border-box;min-width:0}
+.eff-tgt{color:#06264C;font-weight:900;font-size:.88rem;white-space:nowrap;grid-column:1;min-width:0}
+.eff-sep{color:#888;font-size:.82rem;white-space:nowrap;grid-column:2;flex-shrink:0}
+.eff-val{color:#c0392b;font-size:.88rem;font-weight:700;line-height:1.5;
+  grid-column:3;word-break:break-word;overflow-wrap:break-word;white-space:normal;min-width:0;max-width:100%}
 .eff-dur{font-size:.7rem;color:#555;font-weight:600;font-family:monospace;
   background:#f0e8d8;border:1px solid #c8b898;border-radius:3px;padding:1px 8px;
   white-space:nowrap;grid-column:3;justify-self:start;margin-top:.2rem}
