@@ -988,13 +988,13 @@
         ]
       },
       {
-        "name_en": "ATK Enhancement – Large Improved [Infantry]",
+        "name_en": "ATK Enhancement – Large Improved [Shield]",
         "name_jp": "攻撃力強化・中【歩兵】",
         "type": "Administration",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally infantry",
+            "target": "Ally [Shield]",
             "effect": "ATK Up 3.8%",
             "duration": null
           }
