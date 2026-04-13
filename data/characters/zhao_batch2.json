@@ -77,7 +77,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kakukai.webp",
-    "icon": "/icons/kakukai.png"
+    "icon": "/icons/cg052_i01.png"
   },
   {
     "id": "keisha",
@@ -195,7 +195,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/keisha.webp",
-    "icon": "/icons/keisha.png"
+    "icon": "/icons/Keisha.png"
   },
   {
     "id": "rakujo",
@@ -379,7 +379,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shinseijou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shinseijou.webp",
+    "icon": "/icons/cg087_i02.png"
   },
   {
     "id": "kousonryu",
@@ -985,6 +986,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kokuou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kokuou.webp",
+    "icon": "/icons/cg079_i01.png"
   }
 ]

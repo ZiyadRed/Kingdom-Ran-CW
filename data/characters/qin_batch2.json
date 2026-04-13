@@ -89,7 +89,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/sougen.webp",
-    "icon": "/icons/sougen.png"
+    "icon": "/icons/Sougen.png"
   },
   {
     "id": "gakurai",
@@ -99,25 +99,6 @@
     "unit": "Hyoukou Forces / Hi Shin Unit",
     "rarity": "SR",
     "skills": [
-      {
-        "name_en": "DEF Enhancement [Orange Bull]",
-        "name_jp": "防御強化【橙牛】",
-        "type": "Administration",
-        "effects": [
-          {
-            "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally [Qin]",
-            "effect": "DEF Up 20%",
-            "duration": null
-          },
-          {
-            "condition": "When Attacking",
-            "target": "Ally \"Duke Hyou\" and [Hishin] Unit",
-            "effect": "\"Betrayal\" Resistance 20%",
-            "duration": null
-          }
-        ]
-      },
       {
         "name_en": "Strike from Behind",
         "name_jp": "後手必勝",
@@ -139,6 +120,25 @@
             "condition": "Enemy general with highest max morale",
             "target": "1 enemy general",
             "effect": "3-Hit 80% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Hishin Unit Vanguard",
+        "name_jp": "飛信隊の先陣",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Qin]",
+            "effect": "DEF Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Ally \"Duke Hyou\" and [Hishin] Unit",
+            "effect": "\"Betrayal\" Resistance 20%",
             "duration": null
           }
         ]
@@ -316,7 +316,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/shibasaku.webp",
-    "icon": "/icons/shimasaku.png"
+    "icon": "/icons/Shibasaku.png"
   },
   {
     "id": "hyoshiga",
@@ -531,7 +531,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/hakuki.webp",
-    "icon": "/icons/hakuki.png"
+    "icon": "/icons/Hakuki.png"
   },
   {
     "id": "ohkotsu",
@@ -593,7 +593,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/oukotsu.webp",
-    "icon": "/icons/ohkotsu.png"
+    "icon": "/icons/Okutso.png"
   },
   {
     "id": "kaioku",
@@ -753,7 +753,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/koshou.webp",
-    "icon": "/icons/kosho.png"
+    "icon": "/icons/Koshou.png"
   },
   {
     "id": "garo",
@@ -828,7 +828,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/garo.webp",
-    "icon": "/icons/garo.png"
+    "icon": "/icons/Garo.png"
   },
   {
     "id": "rikusen",
@@ -1185,7 +1185,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/you.webp",
-    "icon": "/icons/yo.png"
+    "icon": "/icons/You.png"
   },
   {
     "id": "ryuyu",

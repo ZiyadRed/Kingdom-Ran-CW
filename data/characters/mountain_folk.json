@@ -227,7 +227,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kitari.webp",
-    "icon": "/icons/kitari.png"
+    "icon": "/icons/Kitari.png"
   },
   {
     "id": "danto",
@@ -325,7 +325,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/danto.webp",
-    "icon": "/icons/danto.png"
+    "icon": "/icons/Danto.png"
   },
   {
     "id": "katari",
@@ -399,7 +399,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/katari.webp",
-    "icon": "/icons/katari.png"
+    "icon": "/icons/Katari.png"
   },
   {
     "id": "todji",
@@ -649,7 +649,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/ramauji.webp",
-    "icon": "/icons/ramaoji.png"
+    "icon": "/icons/Ramauji.png"
   },
   {
     "id": "pamu",
@@ -735,7 +735,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/pam.webp",
-    "icon": "/icons/pamu.png"
+    "icon": "/icons/Pam.png"
   },
   {
     "id": "taijifu",
@@ -863,7 +863,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/bajio.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/bajio.webp",
+    "icon": "/icons/cg093_i03.png"
   },
   {
     "id": "gotan",

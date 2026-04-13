@@ -127,7 +127,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/mougou.webp",
-    "icon": "/icons/mougo.png"
+    "icon": "/icons/Mougou.png"
   },
   {
     "id": "mouki",
@@ -516,7 +516,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/maron.webp",
-    "icon": "/icons/maron.png"
+    "icon": "/icons/Maron.png"
   },
   {
     "id": "shunmen",
@@ -628,7 +628,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/rankai.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/rankai.webp",
+    "icon": "/icons/cg060_i03.png"
   },
   {
     "id": "kyomei",
@@ -803,7 +804,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/bihei.webp",
-    "icon": "/icons/obira.png"
+    "icon": "/icons/cg018_i02.png"
   },
   {
     "id": "hyou",
@@ -1182,7 +1183,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/ryofui.webp",
-    "icon": "/icons/ryofui.png"
+    "icon": "/icons/cg040_i01.png"
   },
   {
     "id": "heki",
@@ -1238,7 +1239,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/heki.webp",
-    "icon": "/icons/heki.png"
+    "icon": "/icons/Heki.png"
   },
   {
     "id": "taiko",
@@ -1332,7 +1333,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/biki.webp",
-    "icon": "/icons/taiko.png"
+    "icon": "/icons/Queen Biki.png"
   },
   {
     "id": "kyouen",
@@ -1766,7 +1767,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/ten.webp",
-    "icon": "/icons/karyoten.png"
+    "icon": "/icons/Karyou ten.png"
   },
   {
     "id": "fuchi",

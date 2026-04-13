@@ -203,7 +203,7 @@ img { display: block; max-width: 100% }
   background: var(--navy);
   position: sticky; top: 0; z-index: 5; flex-shrink: 0;
 }
-.detail-portrait      { width: 58px; height: 76px; border-radius: 8px; object-fit: cover; object-position: top; flex-shrink: 0; border: 2px solid rgba(255,255,255,.2) }
+.detail-portrait      { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid rgba(255,255,255,.25); box-shadow: 0 2px 8px rgba(0,0,0,.3) }
 .detail-info          { flex: 1; min-width: 0; padding-top: .1rem }
 .detail-name          { font-size: .95rem; font-weight: 800; color: #fff; line-height: 1.25 }
 .detail-jp            { font-size: .68rem; color: rgba(255,255,255,.5); margin-top: .1rem }
@@ -271,7 +271,7 @@ img { display: block; max-width: 100% }
 .meta-name          { font-size: .86rem; font-weight: 800; color: var(--navy) }
 .meta-members       { display: grid; grid-template-columns: repeat(4, 1fr); gap: .3rem; padding: .55rem .55rem .4rem }
 .meta-member        { display: flex; flex-direction: column; align-items: center; gap: .18rem }
-.meta-member-img    { width: 100%; aspect-ratio: 1; border-radius: 6px; object-fit: cover; object-position: top center; border: 1.5px solid var(--bdr) }
+.meta-member-img    { width: 100%; aspect-ratio: 1; border-radius: 6px; object-fit: cover; object-position: center top; border: 1.5px solid var(--bdr) }
 .meta-member-ph     { width: 100%; aspect-ratio: 1; border-radius: 6px; border: 1.5px solid var(--bdr); display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700 }
 .meta-member-name   { font-size: .58rem; color: var(--txt2); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; font-weight: 600 }
 .meta-btns          { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--bdr) }
@@ -312,10 +312,12 @@ img { display: block; max-width: 100% }
 .form-vs     { font-size: .88rem; font-weight: 800; color: var(--txt3); display: flex; align-items: center; padding-top: 1.2rem; letter-spacing: .1em }
 .sim-sec     { margin-bottom: 1.5rem }
 .sec-hd      { font-size: .78rem; font-weight: 700; letter-spacing: .05em; padding: .48rem .85rem; border-radius: 8px 8px 0 0 }
-.sec-strat   { background: rgba(26,95,168,.08); border: 1.5px solid rgba(26,95,168,.2); color: #1a5fa8 }
+.sec-strat   { background: rgba(26,95,168,.06); border: 1.5px solid rgba(26,95,168,.2); color: #1a5fa8 }
 .sec-combat  { background: rgba(224,127,72,.1); border: 1.5px solid rgba(224,127,72,.3); color: var(--terra2) }
-.strat-cols  { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid var(--bdr); border-top: none; border-radius: 0 0 8px 8px; overflow: hidden }
+.strat-cols  { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid var(--bdr); border-top: none; border-radius: 0 0 8px 8px; overflow: hidden; gap: 0 }
 .scol        { padding: .75rem; background: var(--sur) }
+.scol.atk  { background: rgba(192,57,43,.04) }
+.scol.def  { background: rgba(26,95,168,.04) }
 .scol:first-child { border-right: 1.5px solid var(--bdr) }
 .scol-lbl    { font-size: .73rem; font-weight: 700; letter-spacing: .04em; padding-bottom: .35rem; border-bottom: 1.5px solid; margin-bottom: .5rem }
 .scol-none   { color: var(--txt3); font-style: italic; font-size: .78rem }
@@ -324,19 +326,19 @@ img { display: block; max-width: 100% }
 .scol-av     { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; object-position: top; flex-shrink: 0 }
 .scol-jp     { font-size: .63rem; color: var(--txt3); font-weight: 400 }
 .turn        { margin-bottom: .85rem }
-.turn-lbl    { font-size: .76rem; font-weight: 700; color: var(--navy); letter-spacing: .08em; padding: .32rem .72rem; background: var(--sur); border: 1.5px solid var(--bdr); border-radius: 8px 8px 0 0; border-bottom: none }
+.turn-lbl    { font-size: .76rem; font-weight: 700; color: var(--navy); letter-spacing: .08em; padding: .32rem .72rem; background: var(--bg2); border: 1.5px solid var(--bdr); border-radius: 8px 8px 0 0; border-bottom: none }
 .turn-entries { border: 1.5px solid var(--bdr); border-radius: 0 0 8px 8px; overflow: hidden }
 .te          { display: flex; border-bottom: 1px solid var(--bdr) }
 .te:last-child { border-bottom: none }
-.te-attack   { background: rgba(224,127,72,.04) }
-.te-defense  { background: rgba(26,95,168,.04) }
-.te-stripe   { width: 4px; flex-shrink: 0 }
+.te-attack   { background: rgba(192,57,43,.07); border-left: 3px solid rgba(192,57,43,.3) }
+.te-defense  { background: rgba(26,95,168,.07); border-left: 3px solid rgba(26,95,168,.3) }
+.te-stripe   { width: 5px; flex-shrink: 0 }
 .te-body     { flex: 1; padding: .52rem .78rem; min-width: 0 }
 .te-gen      { display: flex; align-items: center; gap: .45rem; margin-bottom: .42rem }
 .te-av       { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; object-position: top; flex-shrink: 0 }
 .te-name     { font-size: .88rem; display: block; font-weight: 700; color: var(--navy) }
 .te-jp       { font-size: .63rem; color: var(--txt3); display: block }
-.te-tag      { font-size: .62rem; font-weight: 700; border-radius: 4px; padding: 1px 6px; margin-left: auto; font-family: monospace; flex-shrink: 0 }
+.te-tag      { font-size: .64rem; font-weight: 800; border-radius: 4px; padding: 2px 8px; margin-left: auto; font-family: monospace; flex-shrink: 0; letter-spacing: .04em }
 .normal-atk  { color: var(--txt3); font-style: italic; font-size: .8rem; padding: .12rem 0 }
 
 /* ══════════════════════════════════════════════════════════════

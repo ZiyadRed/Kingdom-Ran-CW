@@ -36,6 +36,18 @@ const FACTIONS=[
   {id:'mountain_folk', label:'Mountain Folk', jp:'山の民', color:'#5a7a30'},
 ]
 const CC=Object.fromEntries(FACTIONS.map(f=>[f.id,f.color]))
+
+// Icon: use c.icon if available, else fall back to c.image cropped, else initials
+function CharIcon({c,size=40,round=false,className=''}){
+  const r=round?'50%':'8px'
+  const s={width:size,height:size,borderRadius:r,objectFit:'cover',objectPosition:'center top',flexShrink:0,display:'block'}
+  if(c?.icon) return <img src={c.icon} style={s} className={className} alt={c.name_en}/>
+  if(c?.image) return <img src={c.image} style={{...s,objectPosition:'top center'}} className={className} alt={c.name_en}/>
+  const col=(CC[c?.country]||'#888')
+  return <div style={{...s,background:col+'33',color:col,display:'flex',alignItems:'center',justifyContent:'center',fontWeight:700,fontSize:size*.38+'px'}} className={className}>{c?.name_en?.[0]||'?'}</div>
+}
+
+
 const TYPE_COLOR={Combat:'#c0392b',Strategy:'#3d6eb5',Administration:'#1a8a72'}
 
 const BUFF_CATS=[
@@ -113,8 +125,7 @@ function Picker({onSelect,onClose,excl=[]}){
         <div className="picker-grid">
           {chars.map(c=>(
             <button key={c.id} className="p-card" style={{borderTopColor:CC[c.country]||'#999'}} onClick={()=>{onSelect(c);onClose()}}>
-              {(c.icon||c.image)?<img src={c.icon||c.image} className="p-img" alt={c.name_en}/>
-                :<div className="p-ph" style={{background:CC[c.country]+'22',color:CC[c.country]||'#999'}}>{c.name_en[0]}</div>}
+              <CharIcon c={c} size={46} round={true}/>
               <span className="p-name">{c.name_en}</span>
             </button>
           ))}
@@ -246,13 +257,7 @@ function ArchivePage(){
       {selected&&(
         <aside className="detail-panel">
           <div className="detail-header">
-            <div className="detail-icon-wrap">
-              {selected.icon
-                ?<img src={selected.icon} className="detail-icon" alt={selected.name_en}/>
-                :selected.image
-                  ?<img src={selected.image} className="detail-portrait" alt={selected.name_en}/>
-                  :<div className="detail-icon-ph" style={{background:CC[selected.country]+'33',color:CC[selected.country]||'#999'}}>{selected.name_en[0]}</div>}
-            </div>
+            <CharIcon c={selected} size={64} round={false} className="detail-portrait"/>
             <div className="detail-info">
               <div className="detail-name">{selected.name_en}</div>
               <div className="detail-jp">{selected.name_jp}</div>
@@ -318,9 +323,7 @@ function MetaTeamCard({team,onLoad}){
       <div className="meta-members">
         {chars.map((c,i)=>(
           <div key={i} className="meta-member">
-            {(c.icon||c.image)
-              ?<img src={c.icon||c.image} className="meta-member-img" alt={c.name_en}/>
-              :<div className="meta-member-ph" style={{background:CC[c.country]+'22',color:CC[c.country]||'#999'}}>{c.name_en[0]}</div>}
+            <CharIcon c={c} size={56} round={false} className="meta-member-img"/>
             <span className="meta-member-name">{c.name_en}</span>
           </div>
         ))}
@@ -371,7 +374,7 @@ function SideSlots({side,label,party,onSlot,onRm}){
         return m?(
           <div key={i} className="slot-filled" style={{borderLeftColor:CC[m.country]||'#999'}}>
             <span className="sn" style={{color:ac}}>{i+1}</span>
-            {(m.icon||m.image)&&<img src={m.icon||m.image} className="slot-av" alt={m.name_en}/>}
+            <CharIcon c={m} size={36} round={true}/>
             <div className="slot-info"><span className="slot-en">{m.name_en}</span><span className="slot-jp">{m.name_jp}</span></div>
             <button className="slot-rm" onClick={()=>onRm(m)}>✕</button>
           </div>
@@ -403,8 +406,8 @@ function SimPage({atk,def,goBuilder}){
       <div className="sim-sec">
         <div className="sec-hd sec-strat">⚑ Strategy Skills — Always Active</div>
         <div className="strat-cols">
-          <StratCol label="⚔ Attacker" entries={st.attack} side="attack"/>
-          <StratCol label="🛡 Defender" entries={st.defense} side="defense"/>
+          <StratCol label="⚔ Attacking Formation" entries={st.attack} side="attack"/>
+          <StratCol label="🛡 Defending Formation" entries={st.defense} side="defense"/>
         </div>
       </div>
       <div className="sim-sec">
@@ -418,9 +421,9 @@ function SimPage({atk,def,goBuilder}){
                   <div className="te-stripe" style={{background:side==='attack'?'var(--red)':'var(--blue)'}}/>
                   <div className="te-body">
                     <div className="te-gen">
-                      {general.image&&<img src={general.image} className="te-av" alt={general.name_en}/>}
+                      <CharIcon c={general} size={28} round={true}/>
                       <div><b className="te-name">{general.name_en}</b><span className="te-jp">{general.name_jp}</span></div>
-                      <span className="te-tag" style={{background:side==='attack'?'rgba(192,57,43,.15)':'rgba(36,113,163,.15)',color:side==='attack'?'#e88':'#8ab'}}>{side==='attack'?'ATK':'DEF'}</span>
+                      <span className="te-tag" style={{background:side==='attack'?'rgba(192,57,43,.18)':'rgba(26,95,168,.18)',color:side==='attack'?'#c0392b':'#1a5fa8',border:`1px solid ${side==='attack'?'rgba(192,57,43,.3)':'rgba(26,95,168,.3)'}`}}>{side==='attack'?'ATK':'DEF'}</span>
                     </div>
                     {skill?<SkillCard skill={skill}/>:<div className="normal-atk">Normal Attack</div>}
                   </div>
@@ -441,7 +444,7 @@ function FormBar({generals,side,label}){
       <div className="form-chips">
         {generals.map((g,i)=>(
           <div key={g.id} className="f-chip" style={{borderTopColor:CC[g.country]||'#999'}}>
-            {g.image&&<img src={g.image} className="f-chip-img" alt={g.name_en}/>}
+            <CharIcon c={g} size={30} round={true}/>
             <span className="f-chip-name">{g.name_en}</span>
           </div>
         ))}
@@ -453,12 +456,12 @@ function FormBar({generals,side,label}){
 function StratCol({label,entries,side}){
   const ac=side==='attack'?'var(--red)':'var(--blue)'
   return(
-    <div className="scol">
+    <div className={`scol ${side==='attack'?'atk':'def'}`}>
       <div className="scol-lbl" style={{color:ac,borderBottomColor:ac+'44'}}>{label}</div>
       {!entries.length?<p className="scol-none">None</p>:entries.map(({general:g,skills:gs})=>(
         <div key={g.id} className="scol-gen">
           <div className="scol-gen-hdr" style={{color:ac}}>
-            {g.image&&<img src={g.image} className="scol-av" alt={g.name_en}/>}
+            <CharIcon c={g} size={24} round={true}/>
             <b>{g.name_en}</b><span className="scol-jp">{g.name_jp}</span>
           </div>
           {gs.map((sk,i)=><SkillCard key={i} skill={sk}/>)}
@@ -580,9 +583,7 @@ function TierPage(){
                           return(
                             <div key={ci} className="tier-member">
                               <div className="tier-member-img-wrap">
-                                {(c.icon||c.image)
-                                  ?<img src={c.icon||(c.image)} className="tier-member-img" alt={c.name_en}/>
-                                  :<div className="tier-member-ph" style={{background:CC[c.country]+'33',color:CC[c.country]||'#888'}}>{c.name_en[0]}</div>}
+                                <CharIcon c={c} size={72} round={false} className="tier-member-img"/>
                                 {hasStar6&&<span className="tier-s6">☆6</span>}
                               </div>
                               <span className="tier-member-name">{c.name_en}</span>

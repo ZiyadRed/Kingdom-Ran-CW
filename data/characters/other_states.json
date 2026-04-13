@@ -224,7 +224,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/rien.webp",
-    "icon": "/icons/rien.png"
+    "icon": "/icons/Rien.png"
   },
   {
     "id": "rokin",
@@ -749,6 +749,6 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/hamui.webp",
-    "icon": "/icons/hamui.png"
+    "icon": "/icons/Hamui.png"
   }
 ]

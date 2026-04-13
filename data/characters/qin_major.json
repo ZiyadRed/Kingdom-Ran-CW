@@ -116,7 +116,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/ouhon.webp",
-    "icon": "/icons/ouhon.png"
+    "icon": "/icons/Ouhon.png"
   },
   {
     "id": "ousen",
@@ -235,7 +235,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/ousen.webp",
-    "icon": "/icons/ousen.png"
+    "icon": "/icons/Ousen.png"
   },
   {
     "id": "kanki",
@@ -340,7 +340,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kanki.webp",
-    "icon": "/icons/kanki.png"
+    "icon": "/icons/cg039_i03.png"
   },
   {
     "id": "muten",
@@ -415,7 +415,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/mouten.webp",
-    "icon": "/icons/muten.png"
+    "icon": "/icons/cg015_i03.png"
   },
   {
     "id": "moubu",
@@ -495,7 +495,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/moubu.webp",
-    "icon": "/icons/moubu.png"
+    "icon": "/icons/Moubo.png"
   },
   {
     "id": "shouheikun",
@@ -562,7 +562,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shouheikun.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shouheikun.webp",
+    "icon": "/icons/cg009_i03.png"
   },
   {
     "id": "shoumounkun",
@@ -760,7 +761,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/sho.webp",
-    "icon": "/icons/shoou.png"
+    "icon": "/icons/Shouu.png"
   },
   {
     "id": "ei_sei",
@@ -829,7 +830,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/sei.webp",
-    "icon": "/icons/ei_sei.png"
+    "icon": "/icons/Ei Sei.png"
   },
   {
     "id": "mou",
@@ -935,7 +936,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kyou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kyou.webp",
+    "icon": "/icons/cg057_i03.png"
   },
   {
     "id": "raido",
@@ -1041,7 +1043,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/raido.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/raido.webp",
+    "icon": "/icons/cg088_i02.png"
   },
   {
     "id": "ko",
@@ -1109,7 +1112,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kou.webp",
-    "icon": "/icons/ko.png"
+    "icon": "/icons/Kou.png"
   },
   {
     "id": "saizatsu",
@@ -1269,7 +1272,7 @@
         ]
       }
     ],
-    "icon": "/icons/ouki.png"
+    "icon": "/icons/Ouki.png"
   },
   {
     "id": "tou",
@@ -1387,6 +1390,6 @@
         ]
       }
     ],
-    "icon": "/icons/tou.png"
+    "icon": "/icons/cg022_i01.png"
   }
 ]
