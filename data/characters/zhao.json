@@ -220,7 +220,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/shunpeikun.webp",
-    "icon": "/icons/cg030_i04.png"
+    "icon": "/icons/Shunpeikun.png"
   },
   {
     "id": "seikou",
@@ -478,7 +478,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/gakuei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/gakuei.webp",
+    "icon": "/icons/Gakuei.png"
   },
   {
     "id": "ryuto",
@@ -564,7 +565,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ryuuto.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ryuuto.webp",
+    "icon": "/icons/Ryuuto.png"
   },
   {
     "id": "kishou",
@@ -650,7 +652,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kishou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kishou.webp",
+    "icon": "/icons/Kishou.png"
   },
   {
     "id": "kisei",
@@ -819,5 +822,117 @@
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/batei.webp",
     "icon": "/icons/Batei.png"
+  },
+  {
+    "id": "gika",
+    "name_en": "Gika",
+    "name_jp": "魏加",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Yellow Elephant]",
+        "name_jp": "重追撃【黄象】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "The enemy with the lowest remaining strength",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "\"Reckless\"",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Repair Currency Reduction – Large",
+        "name_jp": "修理貨幣減少・大",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing CW war machines",
+            "target": "Self",
+            "effect": "War machine repair Coin Consumption Down 3.2％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "ATK Enhancement – Large Improved [Archer]",
+        "name_jp": "攻撃力強化・大改【弓兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally [Archer]",
+            "effect": "ATK Up 9.9％",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "https://kingdom-ran-cw.vercel.app/persos/gika.webp",
+    "icon": "/icons/Gika.png"
+  },
+  {
+    "id": "hoki",
+    "name_en": "Hoki",
+    "name_jp": "馮忌",
+    "country": "zhao",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Fierce General Flash [Blue Sheep]",
+        "name_jp": "猛将一閃【青羊】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "% Damage150％",
+            "duration": null
+          },
+          {
+            "condition": "Per other ally [Infantry]",
+            "target": "Self",
+            "effect": "ATK Up 10％",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "HP Enhancement – Large [Attack War Machines]",
+        "name_jp": "体力強化・大【攻撃兵器】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally attack war machines",
+            "effect": "Max HP Up 12.3％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "HP Enhancement – Large Improved [Defense War Machines]",
+        "name_jp": "体力強化・大改【防衛兵器】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even if not deployed)",
+            "target": "Ally defense war machines",
+            "effect": "Max HP Up 28.3％",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "https://kingdom-ran-cw.vercel.app/persos/fuuki.webp",
+    "icon": "/icons/Hoki.png"
   }
 ]

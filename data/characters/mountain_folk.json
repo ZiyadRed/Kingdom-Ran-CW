@@ -147,7 +147,7 @@
     ],
     "notes": "Core unit; her name appears as a buff target in many Mountain Folk skill conditions.",
     "image": "https://kingdom-ran-cw.vercel.app/persos/yotanwa.webp",
-    "icon": "/icons/yotanwa.png"
+    "icon": "/icons/Yotanwa.png"
   },
   {
     "id": "kitari",
@@ -490,7 +490,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/toji.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/toji.webp",
+    "icon": "/icons/Toji.png"
   },
   {
     "id": "fuji",
@@ -569,7 +570,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/fuji.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/fuji.webp",
+    "icon": "/icons/Fuji.png"
   },
   {
     "id": "ramaoji",
@@ -790,7 +792,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/taijifu.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/taijifu.webp",
+    "icon": "/icons/Taijifu.png"
   },
   {
     "id": "bajio",
@@ -864,7 +867,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/bajio.webp",
-    "icon": "/icons/cg093_i03.png"
+    "icon": "/icons/Bajio.png"
   },
   {
     "id": "gotan",

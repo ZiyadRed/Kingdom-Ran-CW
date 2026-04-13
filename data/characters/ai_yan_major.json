@@ -89,7 +89,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Rouai.png"
   },
   {
     "id": "juutekkoo",
@@ -156,7 +157,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/wategi.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/wategi.webp",
+    "icon": "/icons/Wategi.png"
   },
   {
     "id": "hanoki",
@@ -241,7 +243,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/hanoki.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/hanoki.webp",
+    "icon": "/icons/Hanoki.png"
   },
   {
     "id": "hanryuki",
@@ -332,7 +335,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/hanroki.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/hanroki.webp",
+    "icon": "/icons/Hanroki.png"
   },
   {
     "id": "ordo",
@@ -588,6 +592,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kouyoku.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kouyoku.webp",
+    "icon": "/icons/Kouyoku.png"
   }
 ]

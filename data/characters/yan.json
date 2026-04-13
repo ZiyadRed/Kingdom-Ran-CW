@@ -163,7 +163,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/yukii.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/yukii.webp",
+    "icon": "/icons/Yukii.png"
   },
   {
     "id": "rakki",

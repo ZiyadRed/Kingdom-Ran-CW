@@ -81,7 +81,7 @@ const META_TEAMS=[
   {tier:'S',color:'#c0392b',name:'YTW',       members:['Katari','Yotanwa','Kitari','Ramauji']},
   {tier:'A',color:'#e07f48',name:'Renpa',     members:['Rinko','Tairoji','Renpa','Kouretsu']},
   {tier:'A',color:'#e07f48',name:'Qin Shields',members:['Hakuki','Akou','Ousen','Ei Sei']},
-  {tier:'A',color:'#e07f48',name:'Hi Shin',   members:['Garo','Gakuei','Naki','Robin']},
+  {tier:'A',color:'#e07f48',name:'Hi Shin',   members:['Garo','Gakurai','Naki','Robin']},
   {tier:'A',color:'#e07f48',name:'Wei',       members:['Ranbihaku','Tairoji','Reiou','Gokei']},
   {tier:'B',color:'#cc972d',name:'Ai',        members:['Wategi','Budai','Hanoki','Hamui']},
   {tier:'B',color:'#cc972d',name:'6GG',       members:['Shoou','Ouki','Tou','Kyou']},
@@ -323,7 +323,7 @@ function MetaTeamCard({team,onLoad}){
       <div className="meta-members">
         {chars.map((c,i)=>(
           <div key={i} className="meta-member">
-            <CharIcon c={c} size={56} round={false} className="meta-member-img"/>
+            <CharIcon c={c} size={60} round={true} className="meta-member-img"/>
             <span className="meta-member-name">{c.name_en}</span>
           </div>
         ))}
@@ -421,7 +421,7 @@ function SimPage({atk,def,goBuilder}){
                   <div className="te-stripe" style={{background:side==='attack'?'var(--red)':'var(--blue)'}}/>
                   <div className="te-body">
                     <div className="te-gen">
-                      <CharIcon c={general} size={28} round={true}/>
+                      <CharIcon c={general} size={38} round={true}/>
                       <div><b className="te-name">{general.name_en}</b><span className="te-jp">{general.name_jp}</span></div>
                       <span className="te-tag" style={{background:side==='attack'?'rgba(192,57,43,.18)':'rgba(26,95,168,.18)',color:side==='attack'?'#c0392b':'#1a5fa8',border:`1px solid ${side==='attack'?'rgba(192,57,43,.3)':'rgba(26,95,168,.3)'}`}}>{side==='attack'?'ATK':'DEF'}</span>
                     </div>
@@ -444,7 +444,7 @@ function FormBar({generals,side,label}){
       <div className="form-chips">
         {generals.map((g,i)=>(
           <div key={g.id} className="f-chip" style={{borderTopColor:CC[g.country]||'#999'}}>
-            <CharIcon c={g} size={30} round={true}/>
+            <CharIcon c={g} size={36} round={true}/>
             <span className="f-chip-name">{g.name_en}</span>
           </div>
         ))}
@@ -461,7 +461,7 @@ function StratCol({label,entries,side}){
       {!entries.length?<p className="scol-none">None</p>:entries.map(({general:g,skills:gs})=>(
         <div key={g.id} className="scol-gen">
           <div className="scol-gen-hdr" style={{color:ac}}>
-            <CharIcon c={g} size={24} round={true}/>
+            <CharIcon c={g} size={32} round={true}/>
             <b>{g.name_en}</b><span className="scol-jp">{g.name_jp}</span>
           </div>
           {gs.map((sk,i)=><SkillCard key={i} skill={sk}/>)}
@@ -518,8 +518,7 @@ function BuffsPage(){
               return(
                 <div key={entry.char_id} className="bc" style={{borderTopColor:col}}>
                   <div className="bc-top">
-                    {entry.char_image?<img src={entry.char_image} className="bc-av" alt={entry.char_name}/>
-                      :<div className="bc-ph" style={{color:col,background:col+'22'}}>{entry.char_name[0]}</div>}
+                    <CharIcon c={ALL.find(x=>x.id===entry.char_id)||{name_en:entry.char_name,image:entry.char_image,icon:entry.char_icon,country:entry.char_country}} size={44} round={true}/>
                     <div><div className="bc-name">{entry.char_name}</div>{tot>0&&<div className="bc-pct" style={{color:col}}>+{tot.toFixed(1)}%</div>}</div>
                   </div>
                   <div className="bc-effs">

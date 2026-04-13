@@ -271,7 +271,7 @@ img { display: block; max-width: 100% }
 .meta-name          { font-size: .86rem; font-weight: 800; color: var(--navy) }
 .meta-members       { display: grid; grid-template-columns: repeat(4, 1fr); gap: .3rem; padding: .55rem .55rem .4rem }
 .meta-member        { display: flex; flex-direction: column; align-items: center; gap: .18rem }
-.meta-member-img    { width: 100%; aspect-ratio: 1; border-radius: 6px; object-fit: cover; object-position: center top; border: 1.5px solid var(--bdr) }
+.meta-member-img    { border-radius: 50% !important; object-fit: cover; object-position: center top; border: 2px solid var(--bdr); box-shadow: 0 2px 6px rgba(0,0,0,.25) }
 .meta-member-ph     { width: 100%; aspect-ratio: 1; border-radius: 6px; border: 1.5px solid var(--bdr); display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700 }
 .meta-member-name   { font-size: .58rem; color: var(--txt2); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; font-weight: 600 }
 .meta-btns          { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--bdr) }
@@ -395,7 +395,7 @@ img { display: block; max-width: 100% }
 .tier-team-members { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; padding: .75rem }
 .tier-member       { display: flex; flex-direction: column; align-items: center; gap: .2rem }
 .tier-member-img-wrap { position: relative; width: 100% }
-.tier-member-img   { width: 100%; aspect-ratio: 3/4; border-radius: 8px; object-fit: cover; object-position: top center; border: 2px solid var(--bdr); box-shadow: 0 3px 8px rgba(6,38,76,.15) }
+.tier-member-img   { width: 100%; aspect-ratio: 3/4; border-radius: 8px; object-fit: cover; object-position: top center; border: 2px solid var(--bdr); box-shadow: 0 3px 8px rgba(6,38,76,.15); display: block }
 .tier-member-ph    { width: 100%; aspect-ratio: 3/4; border-radius: 8px; border: 2px solid var(--bdr); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; background: var(--bg2) }
 .tier-s6           { position: absolute; top: -4px; right: -4px; background: var(--gold); color: var(--navy); font-size: .48rem; font-weight: 800; padding: 1px 4px; border-radius: 3px; line-height: 1.4 }
 .tier-member-name  { font-size: .65rem; color: var(--navy); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; font-weight: 700 }

@@ -220,7 +220,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/youka.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/youka.webp",
+    "icon": "/icons/Youka.png"
   },
   {
     "id": "keirei",
@@ -356,7 +357,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/robin.webp",
-    "icon": "/icons/cg046_i01.png"
+    "icon": "/icons/Robin.png"
   },
   {
     "id": "kakuun",
@@ -436,7 +437,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kakuun.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kakuun.webp",
+    "icon": "/icons/Kakuun.png"
   },
   {
     "id": "bain",
@@ -516,7 +518,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/bain.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/bain.webp",
+    "icon": "/icons/Bain.png"
   },
   {
     "id": "shotaku",
@@ -689,7 +692,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kyuukou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kyuukou.webp",
+    "icon": "/icons/Kyuukou.png"
   },
   {
     "id": "naki",
@@ -770,7 +774,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/naki.webp",
-    "icon": "/icons/cg047_i01.png"
+    "icon": "/icons/Naki.png"
   },
   {
     "id": "ringyoku",
@@ -856,7 +860,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ringyoku.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ringyoku.webp",
+    "icon": "/icons/Ringyoku.png"
   },
   {
     "id": "zenou",

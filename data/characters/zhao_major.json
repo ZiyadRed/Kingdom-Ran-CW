@@ -288,7 +288,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kaine.webp",
-    "icon": "/icons/cg017_i02.png"
+    "icon": "/icons/Kaine.png"
   },
   {
     "id": "mangoku",
@@ -382,7 +382,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/mangoku.webp",
-    "icon": "/icons/cg032_i01.png"
+    "icon": "/icons/Mangoku.png"
   },
   {
     "id": "choso",

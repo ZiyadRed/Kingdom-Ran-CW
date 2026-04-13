@@ -77,7 +77,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kakukai.webp",
-    "icon": "/icons/cg052_i01.png"
+    "icon": "/icons/Kakukai.png"
   },
   {
     "id": "keisha",
@@ -268,7 +268,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/gakujou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/gakujou.webp",
+    "icon": "/icons/Gakujou.png"
   },
   {
     "id": "shinseicho",
@@ -380,7 +381,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/shinseijou.webp",
-    "icon": "/icons/cg087_i02.png"
+    "icon": "/icons/Shinseijou.png"
   },
   {
     "id": "kousonryu",
@@ -435,7 +436,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kousonryuu.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/kousonryuu.webp",
+    "icon": "/icons/Kousonryu.png"
   },
   {
     "id": "domon",
@@ -702,61 +704,6 @@
     ]
   },
   {
-    "id": "kou2",
-    "name_en": "Kou",
-    "name_jp": "昂",
-    "country": "zhao",
-    "rarity": "SR",
-    "skills": [
-      {
-        "name_en": "Heavy Pursuit [Red Ox]",
-        "name_jp": "重追撃【赤牛】",
-        "type": "Combat",
-        "effects": [
-          {
-            "condition": "The enemy with the lowest remaining strength",
-            "target": "1 enemy general",
-            "effect": "% Damage150％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally [Infantry]",
-            "effect": "Ally [Shield] \"Burn\" Resistance 100％",
-            "duration": "3 turns"
-          }
-        ]
-      },
-      {
-        "name_en": "Marsh Terrain Aptitude",
-        "name_jp": "泥濘 aptitude/small",
-        "type": "Administration",
-        "effects": [
-          {
-            "condition": "When passing Marsh terrain (effective even if not deployed)",
-            "target": "Passing unit",
-            "effect": "Damage Taken Increase Resistance 5.4％",
-            "duration": null
-          }
-        ]
-      },
-      {
-        "name_en": "DEF Enhancement – Small Improved [Defense War Machines]",
-        "name_jp": "防御力強化・小改【防衛兵器】",
-        "type": "Administration",
-        "effects": [
-          {
-            "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally defense war machines",
-            "effect": "DEF Up 4.8％",
-            "duration": null
-          }
-        ]
-      }
-    ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kou.webp"
-  },
-  {
     "id": "rihaku2",
     "name_en": "Rihaku",
     "name_jp": "李白",
@@ -809,7 +756,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/rihaku.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/rihaku.webp",
+    "icon": "/icons/Rihaku.png"
   },
   {
     "id": "shomou",
@@ -870,7 +818,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shoumou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shoumou.webp",
+    "icon": "/icons/Shoumou.png"
   },
   {
     "id": "shika2",
@@ -931,7 +880,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shika.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shika.webp",
+    "icon": "/icons/Shika.png"
   },
   {
     "id": "kurosa",

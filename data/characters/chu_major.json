@@ -528,7 +528,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/rinko.webp",
-    "icon": "/icons/cg014_i03.png"
+    "icon": "/icons/Rinko.png"
   },
   {
     "id": "hakurei",
@@ -602,7 +602,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/hakurei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/hakurei.webp",
+    "icon": "/icons/Hakurei.png"
   },
   {
     "id": "kaishi_renmei",
@@ -764,7 +765,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/gohoumei.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/gohoumei.webp",
+    "icon": "/icons/Gohoumei.png"
   },
   {
     "id": "gokei",
@@ -876,6 +878,6 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/gokei.webp",
-    "icon": "/icons/cg031_i03.png"
+    "icon": "/icons/Gokei.png"
   }
 ]
