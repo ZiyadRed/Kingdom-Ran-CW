@@ -24,6 +24,22 @@ const ALL = [
   ...aiYanMajor,...misc,...misc2,
 ].filter(c=>c.country!=='unknown')
 
+// Character icon overrides — webp files in public/icons/chars/
+const CHAR_ICONS={
+  'Bakan':   '/icons/chars/Bakan.webp',
+  'Bihei':   '/icons/chars/Bihei.webp',
+  'Bikou':   '/icons/chars/Bikou.webp',
+  'Denyuu':  '/icons/chars/Denyuu.webp',
+  'Kanki':   '/icons/chars/Kanki.webp',
+  'Naki':    '/icons/chars/Naki.webp',
+  'Nakon':   '/icons/chars/Nakon.webp',
+  'Tou':     '/icons/chars/Tou.webp',
+  'Yotanwa': '/icons/chars/Yotanwa.webp',
+}
+
+// Patch ALL characters with icon overrides
+ALL.forEach(c=>{ if(CHAR_ICONS[c.name_en]) c.icon=CHAR_ICONS[c.name_en] })
+
 const FACTIONS=[
   {id:'qin',           label:'Qin',           jp:'秦',    color:'#c0392b'},
   {id:'zhao',          label:'Zhao',          jp:'趙',    color:'#3d6eb5'},
@@ -51,26 +67,22 @@ function CharIcon({c,size=40,round=false,className=''}){
 const TYPE_COLOR={Combat:'#c0392b',Strategy:'#3d6eb5',Administration:'#1a8a72'}
 
 const BUFF_CATS=[
-  {id:'Cavalry',            label:'Cavalry',      svgColor:'#c0392b',svgShape:'diamond', svgIcon:'♞'},
-  {id:'Infantry',           label:'Infantry',     svgColor:'#c9a84c',svgShape:'circle',  svgIcon:'⚔'},
-  {id:'Archer',             label:'Archer',       svgColor:'#27ae60',svgShape:'pentagon',svgIcon:'🏹'},
-  {id:'Shield',             label:'Shield',       svgColor:'#2471a3',svgShape:'shield',  svgIcon:'🛡'},
-  {id:'War Machine',        label:'War Machine',  svgColor:'#666',   svgShape:'none',    svgIcon:'⚙'},
-  {id:'Attack War Machine', label:'Atk W.M.',     svgColor:'#666',   svgShape:'none',    svgIcon:'💥'},
-  {id:'Defense War Machine',label:'Def W.M.',     svgColor:'#666',   svgShape:'none',    svgIcon:'🔩'},
-  {id:'Terrain',            label:'Terrain',      svgColor:'#666',   svgShape:'none',    svgIcon:'🗺'},
-  {id:'CW Repair',          label:'Repair',       svgColor:'#666',   svgShape:'none',    svgIcon:'🔧'},
+  {id:'Cavalry',            label:'Cavalry',      img:'/icons/unit_cavalry.webp',      svgColor:'#c0392b'},
+  {id:'Infantry',           label:'Infantry',     img:'/icons/unit_infantry.webp',     svgColor:'#c9a84c'},
+  {id:'Archer',             label:'Archer',       img:'/icons/unit_archer.webp',       svgColor:'#27ae60'},
+  {id:'Shield',             label:'Shield',       img:'/icons/unit_shield.webp',       svgColor:'#2471a3'},
+  {id:'War Machine',        label:'War Machine',  img:'/icons/unit_warmachine.webp',   svgColor:'#666'},
+  {id:'Attack War Machine', label:'Atk W.M.',     img:'/icons/unit_atk_wm.webp',      svgColor:'#666'},
+  {id:'Defense War Machine',label:'Def W.M.',     img:'/icons/unit_def_wm.webp',      svgColor:'#666'},
+  {id:'Terrain',            label:'Terrain',      img:'/icons/unit_terrain.webp',      svgColor:'#666'},
+  {id:'CW Repair',          label:'Repair',       img:'/icons/unit_repair.webp',       svgColor:'#666'},
 ]
 
 function UnitBadge({cat,size=28}){
   const bc=BUFF_CATS.find(c=>c.id===cat)
-  if(!bc||bc.svgShape==='none') return <span style={{fontSize:size*.6+'px'}}>{bc?.svgIcon||'⚙'}</span>
-  const s=size,h=size
-  if(bc.svgShape==='diamond') return(<svg width={s} height={h} viewBox="0 0 28 28"><path d="M14 2L26 14L14 26L2 14Z" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/><text x="14" y="18" textAnchor="middle" fontSize="11" fill="white" fontWeight="bold">♞</text></svg>)
-  if(bc.svgShape==='circle')  return(<svg width={s} height={h} viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/><text x="14" y="19" textAnchor="middle" fontSize="13" fill="white">⚔</text></svg>)
-  if(bc.svgShape==='pentagon') return(<svg width={s} height={h} viewBox="0 0 28 28"><polygon points="14,2 26,10 22,24 6,24 2,10" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/><text x="14" y="19" textAnchor="middle" fontSize="11" fill="white">🏹</text></svg>)
-  if(bc.svgShape==='shield')  return(<svg width={s} height={h} viewBox="0 0 28 28"><path d="M14 2L26 8V16C26 22 20 26 14 27C8 26 2 22 2 16V8Z" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/><text x="14" y="19" textAnchor="middle" fontSize="12" fill="white">🛡</text></svg>)
-  return <span>{bc.svgIcon}</span>
+  if(!bc) return null
+  if(bc.img) return <img src={bc.img} alt={bc.label} style={{width:size,height:size,objectFit:'contain',flexShrink:0}}/>
+  return null
 }
 
 // ── Meta Teams data ───────────────────────────────────────────────────────────
