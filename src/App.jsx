@@ -574,7 +574,7 @@ function TierPage(){
                 {teams.map((team,ti)=>{
                   const chars=team.members.map(n=>getChar(n)).filter(Boolean)
                   return(
-                    <div key={ti} className="tier-team-card" style={{borderTopColor:color}}>
+                    <div key={ti} className="tier-team-card" style={{borderLeftColor:color}}>
                       <div className="tier-team-name">{team.name}</div>
                       <div className="tier-team-members">
                         {chars.map((c,ci)=>{
@@ -582,7 +582,7 @@ function TierPage(){
                           return(
                             <div key={ci} className="tier-member">
                               <div className="tier-member-img-wrap">
-                                <CharIcon c={c} size={72} round={false} className="tier-member-img"/>
+                                <CharIcon c={c} size={52} round={true} className="tier-member-img"/>
                                 {hasStar6&&<span className="tier-s6">☆6</span>}
                               </div>
                               <span className="tier-member-name">{c.name_en}</span>

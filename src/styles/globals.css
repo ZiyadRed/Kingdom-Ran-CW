@@ -23,7 +23,7 @@
   --red:     #c0392b;
   --blue:    #1a5fa8;
   --sidebar: 180px;
-  --panel:   340px;
+  --panel:   400px;
   --hdr-h:   52px;
 }
 
@@ -217,14 +217,14 @@ img { display: block; max-width: 100% }
    SKILL CARDS — strong color coding per type
    ══════════════════════════════════════════════════════════════ */
 .sk { border-radius: 8px; overflow: visible; border: 2px solid var(--bdr); box-shadow: 0 2px 6px rgba(6,38,76,.08) }
-.sk-head { display: flex; align-items: flex-start; justify-content: space-between; gap: .6rem; padding: .62rem .8rem; border-left: 5px solid; border-radius: 6px 6px 0 0 }
+.sk-head { display: flex; align-items: flex-start; justify-content: space-between; gap: .5rem; padding: .62rem .8rem; border-left: 5px solid; border-radius: 6px 6px 0 0; flex-wrap: wrap }
 .sk[data-type="Combat"]         { border-color: #7a2020 }
 .sk[data-type="Combat"] .sk-head         { background: #3a0e0e }
 .sk[data-type="Strategy"]       { border-color: #1a3a6e }
 .sk[data-type="Strategy"] .sk-head      { background: #0e1e3a }
 .sk[data-type="Administration"]  { border-color: #1a5e2a }
 .sk[data-type="Administration"] .sk-head { background: #0e2e1a }
-.sk-name   { display: block; font-size: .94rem; font-weight: 800; color: #fff; line-height: 1.3 }
+.sk-name   { display: block; font-size: .94rem; font-weight: 800; color: #fff; line-height: 1.3; min-width: 0; flex-shrink: 1 }
 .sk-jp     { display: block; font-size: .67rem; color: rgba(255,255,255,.48); margin-top: .1rem }
 .sk-tags   { display: flex; gap: .22rem; flex-wrap: wrap; flex-shrink: 0 }
 .tag       { font-size: .6rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; font-family: monospace; white-space: nowrap }
@@ -234,11 +234,11 @@ img { display: block; max-width: 100% }
 .eff        { display: flex; flex-direction: column; gap: .25rem; width: 100% }
 .eff-if     { display: flex; align-items: flex-start; gap: .38rem; font-size: .75rem; color: #7a3800; font-style: italic; padding: .28rem .55rem; background: #fff3e0; border-left: 3px solid #e07f48; border-radius: 0 5px 5px 0; line-height: 1.45 }
 .eff-if-lbl { font-style: normal; font-size: .6rem; font-weight: 900; font-family: monospace; background: #e07f48; color: #fff; padding: 1px 6px; border-radius: 3px; flex-shrink: 0; letter-spacing: .04em; margin-top: 1px }
-.eff-body   { display: grid; grid-template-columns: auto auto 1fr; align-items: start; gap: .3rem .42rem; padding: .42rem .62rem; background: #fff; border-radius: 6px; border: 1.5px solid #d0b898; box-shadow: 0 1px 3px rgba(6,38,76,.07); width: 100%; box-sizing: border-box; min-width: 0 }
-.eff-tgt    { color: #06264C; font-weight: 900; font-size: .88rem; white-space: nowrap; grid-column: 1 }
-.eff-sep    { color: #888; font-size: .82rem; white-space: nowrap; grid-column: 2 }
-.eff-val    { color: #c0392b; font-size: .88rem; font-weight: 700; line-height: 1.5; grid-column: 3; word-break: break-word; overflow-wrap: break-word; white-space: normal; min-width: 0 }
-.eff-dur    { font-size: .7rem; color: #555; font-weight: 600; font-family: monospace; background: #f0e8d8; border: 1px solid #c8b898; border-radius: 3px; padding: 1px 8px; white-space: nowrap; grid-column: 3; justify-self: start; margin-top: .18rem }
+.eff-body   { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .4rem; padding: .42rem .62rem; background: #fff; border-radius: 6px; border: 1.5px solid #d0b898; box-shadow: 0 1px 3px rgba(6,38,76,.07); width: 100%; box-sizing: border-box; min-width: 0 }
+.eff-tgt    { color: #06264C; font-weight: 900; font-size: .88rem; white-space: normal; word-break: break-word; grid-column: 1 }
+.eff-sep    { color: #888; font-size: .82rem; white-space: nowrap; flex-shrink: 0 }
+.eff-val    { color: #c0392b; font-size: .88rem; font-weight: 700; line-height: 1.5; word-break: break-word; overflow-wrap: break-word; white-space: normal; min-width: 0; flex: 1 }
+.eff-dur    { font-size: .7rem; color: #555; font-weight: 600; font-family: monospace; background: #f0e8d8; border: 1px solid #c8b898; border-radius: 3px; padding: 1px 8px; white-space: nowrap; flex-basis: 100%; margin-top: .05rem }
 
 /* ══════════════════════════════════════════════════════════════
    PARTY BUILDER
@@ -383,23 +383,51 @@ img { display: block; max-width: 100% }
 .tier-page-header { text-align: center; margin-bottom: 1.5rem; padding: 1.25rem; background: var(--navy); border-radius: 12px }
 .tier-main-title  { font-size: 1.4rem; font-weight: 900; color: #fff; letter-spacing: .06em }
 .tier-main-sub    { font-size: .8rem; color: rgba(255,255,255,.55); margin-top: .3rem }
-.tier-list        { display: flex; flex-direction: column; gap: 1.25rem }
-.tier-section     { background: var(--sur); border: 1.5px solid var(--bdr); border-radius: 12px; overflow: hidden }
-.tier-section-head { display: flex; align-items: center; gap: 1rem; padding: .9rem 1.1rem; border-bottom: 1px solid var(--bdr); background: var(--bg2) }
-.tier-big-badge   { width: 52px; height: 52px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 900; color: #fff; flex-shrink: 0; box-shadow: 0 3px 10px rgba(0,0,0,.2) }
-.tier-section-label { font-size: .9rem; font-weight: 800; letter-spacing: .04em }
-.tier-section-def   { font-size: .75rem; color: var(--txt2); margin-top: .15rem }
-.tier-teams-grid  { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; padding: 1rem }
-.tier-team-card   { background: var(--sur2); border: 1.5px solid var(--bdr); border-top: 3px solid; border-radius: 10px; overflow: hidden }
-.tier-team-name   { font-size: .9rem; font-weight: 900; color: var(--navy); padding: .5rem .72rem; border-bottom: 1px solid var(--bdr); background: var(--bg2); letter-spacing: .02em }
-.tier-team-members { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; padding: .75rem }
-.tier-member       { display: flex; flex-direction: column; align-items: center; gap: .2rem }
-.tier-member-img-wrap { position: relative; width: 100% }
-.tier-member-img   { width: 100%; aspect-ratio: 3/4; border-radius: 8px; object-fit: cover; object-position: top center; border: 2px solid var(--bdr); box-shadow: 0 3px 8px rgba(6,38,76,.15); display: block }
-.tier-member-ph    { width: 100%; aspect-ratio: 3/4; border-radius: 8px; border: 2px solid var(--bdr); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; background: var(--bg2) }
-.tier-s6           { position: absolute; top: -4px; right: -4px; background: var(--gold); color: var(--navy); font-size: .48rem; font-weight: 800; padding: 1px 4px; border-radius: 3px; line-height: 1.4 }
-.tier-member-name  { font-size: .65rem; color: var(--navy); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; font-weight: 700 }
-.tier-source       { font-size: .68rem; color: var(--txt3); margin-top: 1.25rem; padding-top: .75rem; border-top: 1px solid var(--bdr); text-align: center }
+
+/* New tier list — each tier = section with colored left bar */
+.tier-list        { display: flex; flex-direction: column; gap: .75rem }
+.tier-section     { border-radius: 12px; overflow: hidden; border: 1.5px solid var(--bdr) }
+.tier-section-head {
+  display: flex; align-items: center; gap: .9rem;
+  padding: .7rem 1rem; border-bottom: 1px solid var(--bdr);
+  background: var(--bg2)
+}
+.tier-big-badge   {
+  width: 44px; height: 44px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; font-weight: 900; color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25)
+}
+.tier-section-label { font-size: .85rem; font-weight: 800; letter-spacing: .04em }
+.tier-section-def   { font-size: .72rem; color: var(--txt2); margin-top: .1rem }
+
+/* Rows of team cards stacked vertically inside each section */
+.tier-teams-grid  { display: flex; flex-direction: column; gap: 0; background: var(--sur) }
+
+/* Each team = horizontal row: colored badge | name | member icons */
+.tier-team-card {
+  display: flex; align-items: center; gap: .85rem;
+  padding: .65rem 1rem; border-bottom: 1px solid var(--bdr);
+  border-left: 4px solid transparent;
+  transition: background .15s
+}
+.tier-team-card:last-child { border-bottom: none }
+.tier-team-card:hover { background: var(--sur2) }
+
+.tier-team-name {
+  font-size: .82rem; font-weight: 900; color: var(--navy);
+  min-width: 90px; flex-shrink: 0; letter-spacing: .02em
+}
+
+/* Member cells — icon + name stacked, displayed in a row */
+.tier-team-members { display: flex; gap: .6rem; flex-wrap: nowrap; flex: 1 }
+.tier-member       { display: flex; flex-direction: column; align-items: center; gap: .22rem; flex: 0 0 auto }
+.tier-member-img-wrap { position: relative }
+.tier-member-img   { border-radius: 50% !important; border: 2px solid var(--bdr); box-shadow: 0 2px 6px rgba(6,38,76,.18); display: block; object-fit: cover; object-position: top center }
+.tier-member-ph    { width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--bdr); display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; background: var(--bg2) }
+.tier-s6           { position: absolute; top: -3px; right: -3px; background: var(--gold); color: var(--navy); font-size: .45rem; font-weight: 800; padding: 1px 3px; border-radius: 3px; line-height: 1.4 }
+.tier-member-name  { font-size: .62rem; color: var(--txt2); text-align: center; max-width: 58px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 600 }
+.tier-source       { font-size: .68rem; color: var(--txt3); margin-top: 1rem; padding-top: .75rem; border-top: 1px solid var(--bdr); text-align: center }
 
 /* ══════════════════════════════════════════════════════════════
    RESPONSIVE — Tablet (≤1024px)
@@ -407,7 +435,7 @@ img { display: block; max-width: 100% }
 @media (max-width: 1024px) {
   :root { --panel: 300px }
   .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) }
-  .tier-teams-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) }
+  .tier-team-name { min-width: 75px }
   .meta-grid { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)) }
 }
 
@@ -527,8 +555,10 @@ img { display: block; max-width: 100% }
   /* Main pages */
   .main-page      { padding: 1rem .75rem }
   .tier-page-wrap { padding: 1rem .75rem }
-  .tier-teams-grid { grid-template-columns: repeat(2, 1fr) }
-  .tier-big-badge  { width: 42px; height: 42px; font-size: 1.4rem }
+  .tier-big-badge  { width: 38px; height: 38px; font-size: 1.3rem }
+  .tier-team-card  { gap: .5rem; padding: .5rem .65rem }
+  .tier-team-name  { min-width: 65px; font-size: .75rem }
+  .tier-member-img, .tier-member-ph { width: 44px; height: 44px }
   .meta-grid       { grid-template-columns: repeat(2, 1fr) }
 
   /* Simulate */
@@ -543,8 +573,10 @@ img { display: block; max-width: 100% }
   .banner-name     { font-size: .7rem }
   .banner-faction-tag { font-size: .52rem; padding: 1px 5px }
   .nb              { padding: .2rem .42rem; font-size: .62rem }
-  .tier-teams-grid { grid-template-columns: 1fr 1fr }
-  .tier-member-name { font-size: .6rem }
+  .tier-team-card  { gap: .35rem; padding: .4rem .5rem }
+  .tier-team-name  { min-width: 54px; font-size: .7rem }
+  .tier-member-img, .tier-member-ph { width: 38px; height: 38px }
+  .tier-member-name { font-size: .56rem; max-width: 42px }
   .meta-grid       { grid-template-columns: 1fr 1fr }
   .meta-member-name { font-size: .55rem }
   .foot            { font-size: .62rem; padding: .85rem .65rem }
