@@ -474,77 +474,110 @@ function StratCol({label,entries,side}){
 // ── CW BUFFS ──────────────────────────────────────────────────────────────────
 const BUFF_UNIT_CATS = ['Infantry','Cavalry','Archer','Shield']
 const BUFF_STAT_COLORS = {HP:'#1a8a72', Attack:'#c0392b', Defense:'#2471a3'}
+const CAT_COLOR = {Infantry:'#b8880a', Cavalry:'#c0392b', Archer:'#27ae60', Shield:'#6a4fc8'}
 
 function UnitCatIcon({cat, size=48}){
   if(cat==='Infantry') return(
-    <svg width={size} height={size} viewBox="0 0 56 56" fill="none">
+    <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
       <defs>
-        <radialGradient id="ig" cx="38%" cy="30%" r="70%">
-          <stop offset="0%" stopColor="#e8c050"/><stop offset="55%" stopColor="#c9902a"/><stop offset="100%" stopColor="#8a5e10"/>
+        <radialGradient id="ig1" cx="45%" cy="35%" r="65%">
+          <stop offset="0%" stopColor="#f5e070"/>
+          <stop offset="50%" stopColor="#d4a020"/>
+          <stop offset="100%" stopColor="#8a6000"/>
+        </radialGradient>
+        <radialGradient id="ig2" cx="45%" cy="30%" r="55%">
+          <stop offset="0%" stopColor="rgba(255,255,200,0.35)"/>
+          <stop offset="100%" stopColor="rgba(255,255,200,0)"/>
         </radialGradient>
       </defs>
-      <circle cx="28" cy="28" r="27" fill="url(#ig)" stroke="#f0c840" strokeWidth="1.5"/>
-      <circle cx="28" cy="28" r="22" fill="none" stroke="rgba(255,220,80,0.25)" strokeWidth="1"/>
-      <line x1="14" y1="14" x2="42" y2="42" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-      <line x1="12" y1="20" x2="20" y2="12" stroke="white" strokeWidth="2.2" strokeLinecap="round"/>
-      <circle cx="43" cy="43" r="2.5" fill="white"/>
-      <line x1="42" y1="14" x2="14" y2="42" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-      <line x1="44" y1="20" x2="36" y2="12" stroke="white" strokeWidth="2.2" strokeLinecap="round"/>
-      <circle cx="13" cy="43" r="2.5" fill="white"/>
+      <circle cx="50" cy="50" r="48" fill="url(#ig1)" stroke="#c8900a" strokeWidth="2"/>
+      <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,240,100,0.4)" strokeWidth="2"/>
+      <circle cx="50" cy="50" r="48" fill="url(#ig2)"/>
+      {/* Mace/hammer: handle diagonal, rectangular head */}
+      <g transform="rotate(-40, 50, 50)">
+        <rect x="46" y="20" width="8" height="38" rx="4" fill="white" opacity="0.95"/>
+        <rect x="32" y="15" width="36" height="20" rx="5" fill="white" opacity="0.95"/>
+        <rect x="35" y="12" width="30" height="6" rx="3" fill="white" opacity="0.7"/>
+      </g>
     </svg>
   )
   if(cat==='Cavalry') return(
-    <svg width={size} height={size} viewBox="0 0 56 56" fill="none">
+    <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
       <defs>
-        <linearGradient id="cg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#e84040"/><stop offset="50%" stopColor="#c0392b"/><stop offset="100%" stopColor="#7a1515"/>
+        <linearGradient id="cg1" x1="20%" y1="0%" x2="80%" y2="100%">
+          <stop offset="0%" stopColor="#ff5555"/>
+          <stop offset="45%" stopColor="#d42020"/>
+          <stop offset="100%" stopColor="#7a0a0a"/>
         </linearGradient>
+        <radialGradient id="cg2" cx="40%" cy="30%" r="55%">
+          <stop offset="0%" stopColor="rgba(255,200,200,0.4)"/>
+          <stop offset="100%" stopColor="rgba(255,200,200,0)"/>
+        </radialGradient>
       </defs>
-      <path d="M28 3L53 28L28 53L3 28Z" fill="url(#cg)" stroke="#ff6060" strokeWidth="1.2"/>
-      <path d="M28 8L48 28L28 48L8 28Z" fill="none" stroke="rgba(255,160,160,0.2)" strokeWidth="1"/>
-      <path d="M22 38C20 34 20 28 23 24C24 22 26 21 28 21C30 21 31 22 31 24L30 26C29 25 27 25 26 26C24 28 24 32 24 36Z" fill="white"/>
-      <path d="M26 21C26 18 27 16 29 15C31 14 33 15 34 17C35 19 34 21 33 22C32 23 30 23 29 23C28 23 27 22 26 21Z" fill="white"/>
-      <path d="M33 17C35 16 37 17 37 19C37 21 35 22 34 21Z" fill="white"/>
-      <path d="M29 15C29 13 31 12 32 13C32 14 31 15 30 15Z" fill="white"/>
-      <circle cx="31" cy="18" r="1.2" fill="#c0392b"/>
+      <path d="M50 4L96 50L50 96L4 50Z" fill="url(#cg1)" stroke="#ff8080" strokeWidth="2"/>
+      <path d="M50 12L88 50L50 88L12 50Z" fill="none" stroke="rgba(255,150,150,0.3)" strokeWidth="1.5"/>
+      <path d="M50 4L96 50L50 96L4 50Z" fill="url(#cg2)"/>
+      {/* Horse head silhouette facing left */}
+      <path d="M62 28 C68 28 74 32 76 38 C78 44 76 50 72 54 C70 56 67 57 65 58 L63 66 C62 68 60 69 58 68 L55 67 C53 66 52 64 53 62 L54 58 C50 57 46 55 43 51 C39 46 38 40 40 35 C42 30 47 27 52 27 C55 27 58 28 60 29 Z" fill="white" opacity="0.95"/>
+      <path d="M62 28 C65 24 68 22 70 23 C72 24 72 27 70 29 C68 30 65 30 63 30 Z" fill="white" opacity="0.95"/>
+      <circle cx="57" cy="36" r="2.5" fill="#d42020"/>
     </svg>
   )
   if(cat==='Archer') return(
-    <svg width={size} height={size} viewBox="0 0 56 56" fill="none">
+    <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
       <defs>
-        <linearGradient id="ag" x1="20%" y1="0%" x2="80%" y2="100%">
-          <stop offset="0%" stopColor="#3dba6a"/><stop offset="50%" stopColor="#27ae60"/><stop offset="100%" stopColor="#145a30"/>
+        <linearGradient id="ag1" x1="30%" y1="0%" x2="70%" y2="100%">
+          <stop offset="0%" stopColor="#50d060"/>
+          <stop offset="45%" stopColor="#22a030"/>
+          <stop offset="100%" stopColor="#0a5018"/>
         </linearGradient>
+        <radialGradient id="ag2" cx="40%" cy="25%" r="55%">
+          <stop offset="0%" stopColor="rgba(180,255,180,0.45)"/>
+          <stop offset="100%" stopColor="rgba(180,255,180,0)"/>
+        </radialGradient>
       </defs>
-      <path d="M28 3L53 20L44 50L12 50L3 20Z" fill="url(#ag)" stroke="#60e890" strokeWidth="1.2"/>
-      <path d="M28 8L48 23L40 46L16 46L8 23Z" fill="none" stroke="rgba(100,240,150,0.2)" strokeWidth="1"/>
-      <rect x="14" y="27" width="28" height="3" rx="1.5" fill="white"/>
-      <path d="M18 20Q28 15 38 20" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
-      <line x1="18" y1="20" x2="18" y2="28" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-      <line x1="38" y1="20" x2="38" y2="28" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-      <line x1="20" y1="28.5" x2="40" y2="28.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" opacity="0.9"/>
-      <path d="M40 28.5L36 26L36 31Z" fill="white" opacity="0.9"/>
-      <rect x="25" y="30" width="6" height="5" rx="1" fill="white" opacity="0.8"/>
+      {/* Pentagon flat-bottom */}
+      <path d="M50 5L95 36L78 92L22 92L5 36Z" fill="url(#ag1)" stroke="#50e870" strokeWidth="2"/>
+      <path d="M50 13L87 40L72 86L28 86L13 40Z" fill="none" stroke="rgba(150,255,150,0.3)" strokeWidth="1.5"/>
+      <path d="M50 5L95 36L78 92L22 92L5 36Z" fill="url(#ag2)"/>
+      {/* Bow */}
+      <path d="M28 65 Q50 30 72 65" stroke="white" strokeWidth="4" fill="none" strokeLinecap="round"/>
+      <line x1="28" y1="65" x2="72" y2="65" stroke="white" strokeWidth="1.8" strokeLinecap="round" opacity="0.7"/>
+      {/* Arrow pointing up */}
+      <line x1="50" y1="20" x2="50" y2="72" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+      {/* Arrowhead */}
+      <path d="M50 14 L44 26 L50 22 L56 26 Z" fill="white"/>
+      {/* Tail feathers */}
+      <path d="M50 72 L44 80 L50 76 L56 80 Z" fill="white" opacity="0.8"/>
+      {/* Bow tips curl */}
+      <circle cx="28" cy="65" r="3" fill="white" opacity="0.8"/>
+      <circle cx="72" cy="65" r="3" fill="white" opacity="0.8"/>
     </svg>
   )
-  // Shield
+  // Shield — purple/blue rounded square with hourglass shield
   return(
-    <svg width={size} height={size} viewBox="0 0 56 56" fill="none">
+    <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
       <defs>
-        <linearGradient id="sg" x1="20%" y1="0%" x2="80%" y2="100%">
-          <stop offset="0%" stopColor="#6aaeee"/><stop offset="45%" stopColor="#3d7fcf"/><stop offset="100%" stopColor="#1a3a70"/>
+        <linearGradient id="sg1" x1="20%" y1="0%" x2="80%" y2="100%">
+          <stop offset="0%" stopColor="#9070e8"/>
+          <stop offset="50%" stopColor="#5535b0"/>
+          <stop offset="100%" stopColor="#2a1870"/>
         </linearGradient>
+        <radialGradient id="sg2" cx="40%" cy="25%" r="60%">
+          <stop offset="0%" stopColor="rgba(180,200,255,0.45)"/>
+          <stop offset="100%" stopColor="rgba(180,200,255,0)"/>
+        </radialGradient>
       </defs>
-      <rect x="5" y="5" width="46" height="46" rx="10" fill="url(#sg)" stroke="#80c0ff" strokeWidth="1.5"/>
-      <rect x="9" y="9" width="38" height="38" rx="7" fill="none" stroke="rgba(160,210,255,0.25)" strokeWidth="1"/>
-      <path d="M28 13L40 19V30C40 37 34 42 28 44C22 42 16 37 16 30V19Z" fill="white" opacity="0.95"/>
-      <line x1="28" y1="22" x2="28" y2="38" stroke="#3d7fcf" strokeWidth="2" strokeLinecap="round"/>
-      <line x1="21" y1="28" x2="35" y2="28" stroke="#3d7fcf" strokeWidth="2" strokeLinecap="round"/>
+      {/* Outer rounded square with blue rim */}
+      <rect x="3" y="3" width="94" height="94" rx="18" fill="url(#sg1)" stroke="#88aaff" strokeWidth="3"/>
+      <rect x="3" y="3" width="94" height="94" rx="18" fill="url(#sg2)"/>
+      {/* Inner border */}
+      <rect x="10" y="10" width="80" height="80" rx="13" fill="none" stroke="rgba(180,180,255,0.3)" strokeWidth="2"/>
+      {/* Hourglass shield shape — wide top, narrow waist, wide bottom */}
+      <path d="M50 18 C50 18 70 18 72 22 C74 28 66 40 64 48 C66 56 74 68 72 76 C70 80 50 82 50 82 C50 82 30 80 28 76 C26 68 34 56 36 48 C34 40 26 28 28 22 C30 18 50 18 50 18 Z" fill="white" opacity="0.95"/>
     </svg>
   )
 }
-
-const CAT_COLOR = {Infantry:'#b8880a', Cavalry:'#c0392b', Archer:'#27ae60', Shield:'#2471a3'}
 
 function BuffsPage(){
   const[activeCat,setActiveCat]=useState(null)
@@ -565,7 +598,6 @@ function BuffsPage(){
       <h2 className="pg-title">CW Buffs</h2>
       <p className="pg-sub">Administration skills active during Castle Wars — stackable buffs by unit type.</p>
 
-      {/* Category pills */}
       <div style={{display:'grid',gridTemplateColumns:'repeat(4,minmax(0,1fr))',gap:'10px',marginBottom:'1.5rem',maxWidth:'680px'}}>
         {BUFF_UNIT_CATS.map(cat=>{
           const isActive=activeCat===cat
@@ -576,8 +608,8 @@ function BuffsPage(){
               display:'flex',flexDirection:'column',alignItems:'center',gap:'7px',
               padding:'14px 8px',borderRadius:'14px',cursor:'pointer',
               border:`${isActive?'2px':'1.5px'} solid ${isActive?col:'var(--bdr)'}`,
-              background:isActive?col+'12':'var(--sur)',
-              boxShadow:isActive?`0 2px 14px ${col}28`:'none',
+              background:isActive?col+'14':'var(--sur)',
+              boxShadow:isActive?`0 2px 14px ${col}30`:'none',
               transform:isActive?'translateY(-2px)':'none',
               transition:'all .18s',
             }}>
@@ -589,7 +621,6 @@ function BuffsPage(){
         })}
       </div>
 
-      {/* Stat accordion */}
       {activeCat&&(
         <div style={{maxWidth:'720px'}}>
           <div style={{display:'flex',alignItems:'center',gap:'10px',padding:'10px 14px',marginBottom:'12px',borderLeft:`4px solid ${CAT_COLOR[activeCat]}`,background:'var(--sur)',borderRadius:'0 8px 8px 0'}}>
