@@ -472,73 +472,208 @@ function StratCol({label,entries,side}){
 }
 
 // ── CW BUFFS ──────────────────────────────────────────────────────────────────
+const BUFF_UNIT_CATS = ['Infantry','Cavalry','Archer','Shield']
+const BUFF_STAT_COLORS = {HP:'#1a8a72', Attack:'#c0392b', Defense:'#2471a3'}
+
+function UnitCatIcon({cat, size=48}){
+  if(cat==='Infantry') return(
+    <svg width={size} height={size} viewBox="0 0 56 56" fill="none">
+      <defs>
+        <radialGradient id="ig" cx="38%" cy="30%" r="70%">
+          <stop offset="0%" stopColor="#e8c050"/><stop offset="55%" stopColor="#c9902a"/><stop offset="100%" stopColor="#8a5e10"/>
+        </radialGradient>
+      </defs>
+      <circle cx="28" cy="28" r="27" fill="url(#ig)" stroke="#f0c840" strokeWidth="1.5"/>
+      <circle cx="28" cy="28" r="22" fill="none" stroke="rgba(255,220,80,0.25)" strokeWidth="1"/>
+      <line x1="14" y1="14" x2="42" y2="42" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+      <line x1="12" y1="20" x2="20" y2="12" stroke="white" strokeWidth="2.2" strokeLinecap="round"/>
+      <circle cx="43" cy="43" r="2.5" fill="white"/>
+      <line x1="42" y1="14" x2="14" y2="42" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+      <line x1="44" y1="20" x2="36" y2="12" stroke="white" strokeWidth="2.2" strokeLinecap="round"/>
+      <circle cx="13" cy="43" r="2.5" fill="white"/>
+    </svg>
+  )
+  if(cat==='Cavalry') return(
+    <svg width={size} height={size} viewBox="0 0 56 56" fill="none">
+      <defs>
+        <linearGradient id="cg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#e84040"/><stop offset="50%" stopColor="#c0392b"/><stop offset="100%" stopColor="#7a1515"/>
+        </linearGradient>
+      </defs>
+      <path d="M28 3L53 28L28 53L3 28Z" fill="url(#cg)" stroke="#ff6060" strokeWidth="1.2"/>
+      <path d="M28 8L48 28L28 48L8 28Z" fill="none" stroke="rgba(255,160,160,0.2)" strokeWidth="1"/>
+      <path d="M22 38C20 34 20 28 23 24C24 22 26 21 28 21C30 21 31 22 31 24L30 26C29 25 27 25 26 26C24 28 24 32 24 36Z" fill="white"/>
+      <path d="M26 21C26 18 27 16 29 15C31 14 33 15 34 17C35 19 34 21 33 22C32 23 30 23 29 23C28 23 27 22 26 21Z" fill="white"/>
+      <path d="M33 17C35 16 37 17 37 19C37 21 35 22 34 21Z" fill="white"/>
+      <path d="M29 15C29 13 31 12 32 13C32 14 31 15 30 15Z" fill="white"/>
+      <circle cx="31" cy="18" r="1.2" fill="#c0392b"/>
+    </svg>
+  )
+  if(cat==='Archer') return(
+    <svg width={size} height={size} viewBox="0 0 56 56" fill="none">
+      <defs>
+        <linearGradient id="ag" x1="20%" y1="0%" x2="80%" y2="100%">
+          <stop offset="0%" stopColor="#3dba6a"/><stop offset="50%" stopColor="#27ae60"/><stop offset="100%" stopColor="#145a30"/>
+        </linearGradient>
+      </defs>
+      <path d="M28 3L53 20L44 50L12 50L3 20Z" fill="url(#ag)" stroke="#60e890" strokeWidth="1.2"/>
+      <path d="M28 8L48 23L40 46L16 46L8 23Z" fill="none" stroke="rgba(100,240,150,0.2)" strokeWidth="1"/>
+      <rect x="14" y="27" width="28" height="3" rx="1.5" fill="white"/>
+      <path d="M18 20Q28 15 38 20" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+      <line x1="18" y1="20" x2="18" y2="28" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="38" y1="20" x2="38" y2="28" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="20" y1="28.5" x2="40" y2="28.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" opacity="0.9"/>
+      <path d="M40 28.5L36 26L36 31Z" fill="white" opacity="0.9"/>
+      <rect x="25" y="30" width="6" height="5" rx="1" fill="white" opacity="0.8"/>
+    </svg>
+  )
+  // Shield
+  return(
+    <svg width={size} height={size} viewBox="0 0 56 56" fill="none">
+      <defs>
+        <linearGradient id="sg" x1="20%" y1="0%" x2="80%" y2="100%">
+          <stop offset="0%" stopColor="#6aaeee"/><stop offset="45%" stopColor="#3d7fcf"/><stop offset="100%" stopColor="#1a3a70"/>
+        </linearGradient>
+      </defs>
+      <rect x="5" y="5" width="46" height="46" rx="10" fill="url(#sg)" stroke="#80c0ff" strokeWidth="1.5"/>
+      <rect x="9" y="9" width="38" height="38" rx="7" fill="none" stroke="rgba(160,210,255,0.25)" strokeWidth="1"/>
+      <path d="M28 13L40 19V30C40 37 34 42 28 44C22 42 16 37 16 30V19Z" fill="white" opacity="0.95"/>
+      <line x1="28" y1="22" x2="28" y2="38" stroke="#3d7fcf" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="21" y1="28" x2="35" y2="28" stroke="#3d7fcf" strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  )
+}
+
+const CAT_COLOR = {Infantry:'#b8880a', Cavalry:'#c0392b', Archer:'#27ae60', Shield:'#2471a3'}
+
 function BuffsPage(){
-  const[cat,setCat]=useState(null)
-  const[stat,setStat]=useState(null)
-  const buffs=cwBuffsData.buffs
-  const catCnt=Object.fromEntries(BUFF_CATS.map(c=>[c.id,buffs.filter(b=>b.unit_cat===c.id).length]))
-  const statsForCat=cat?[...new Set(buffs.filter(b=>b.unit_cat===cat).map(b=>b.stat))].sort():[]
-  const filtered=cat&&stat?buffs.filter(b=>b.unit_cat===cat&&b.stat===stat):[]
-  const byChar={}
-  for(const b of filtered){if(!byChar[b.char_id])byChar[b.char_id]={...b,list:[]};byChar[b.char_id].list.push(b)}
-  const chars=Object.values(byChar).sort((a,b)=>b.list.reduce((s,x)=>s+x.pct,0)-a.list.reduce((s,x)=>s+x.pct,0))
-  const grand=filtered.reduce((s,b)=>s+b.pct,0)
-  const isPct=!['Repair Speed','Coin Cost','Material Cost','Ore Cost','Terrain Bonus','Status Resistance','Other'].includes(stat)
+  const[activeCat,setActiveCat]=useState(null)
+  const[openStats,setOpenStats]=useState({})
+  const data=cwBuffsData
+
+  const toggleStat=(cat,stat)=>{
+    const k=`${cat}__${stat}`
+    setOpenStats(p=>({...p,[k]:!p[k]}))
+  }
+  const handleCat=(cat)=>{
+    if(activeCat===cat){setActiveCat(null)}
+    else{setActiveCat(cat);setOpenStats(p=>({...p,[`${cat}__HP`]:true}))}
+  }
+
   return(
     <div className="main-page">
       <h2 className="pg-title">CW Buffs</h2>
-      <p className="pg-sub">Administration skills active during Castle Wars even when not deployed.</p>
-      <div className="cat-pills">
-        {BUFF_CATS.map(c=>{
-          const n=catCnt[c.id]||0;if(!n)return null
-          return(<button key={c.id} className={`cat-pill${cat===c.id?' active':''}`} onClick={()=>{setCat(cat===c.id?null:c.id);setStat(null)}}>
-            <UnitBadge cat={c.id} size={22}/><span>{c.label}</span><span className="cat-n">{n}</span>
-          </button>)
+      <p className="pg-sub">Administration skills active during Castle Wars — stackable buffs by unit type.</p>
+
+      {/* Category pills */}
+      <div style={{display:'grid',gridTemplateColumns:'repeat(4,minmax(0,1fr))',gap:'10px',marginBottom:'1.5rem',maxWidth:'680px'}}>
+        {BUFF_UNIT_CATS.map(cat=>{
+          const isActive=activeCat===cat
+          const col=CAT_COLOR[cat]
+          const uniqueNames=new Set(Object.values(data[cat]||{}).flat().map(e=>e.name))
+          return(
+            <button key={cat} onClick={()=>handleCat(cat)} style={{
+              display:'flex',flexDirection:'column',alignItems:'center',gap:'7px',
+              padding:'14px 8px',borderRadius:'14px',cursor:'pointer',
+              border:`${isActive?'2px':'1.5px'} solid ${isActive?col:'var(--bdr)'}`,
+              background:isActive?col+'12':'var(--sur)',
+              boxShadow:isActive?`0 2px 14px ${col}28`:'none',
+              transform:isActive?'translateY(-2px)':'none',
+              transition:'all .18s',
+            }}>
+              <UnitCatIcon cat={cat} size={44}/>
+              <span style={{fontWeight:700,fontSize:'.78rem',color:isActive?col:'var(--txt)'}}>{cat}</span>
+              <span style={{fontSize:'.62rem',color:'var(--txt3)',background:'var(--bg2)',padding:'1px 7px',borderRadius:'10px',border:'1px solid var(--bdr)'}}>{uniqueNames.size} chars</span>
+            </button>
+          )
         })}
       </div>
-      {cat&&(<div className="stat-pills">
-        <span className="stat-lbl">Sub-category:</span>
-        {statsForCat.map(s=>{
-          const t=buffs.filter(b=>b.unit_cat===cat&&b.stat===s).reduce((x,b)=>x+b.pct,0)
-          return(<button key={s} className={`stat-pill${stat===s?' active':''}`} onClick={()=>setStat(stat===s?null:s)}>
-            <span>{s}</span>{t>0&&<span className="stat-pct"> +{t.toFixed(1)}%</span>}
-          </button>)
-        })}
-      </div>)}
-      {cat&&stat&&(
-        <div className="buff-panel">
-          <div className="buff-panel-hdr">
-            <div className="buff-panel-title-row"><UnitBadge cat={cat} size={32}/><span className="buff-res-title">{cat} · {stat}</span></div>
-            {isPct&&grand>0&&<span className="buff-grand">Stack total: <b>+{grand.toFixed(1)}%</b></span>}
+
+      {/* Stat accordion */}
+      {activeCat&&(
+        <div style={{maxWidth:'720px'}}>
+          <div style={{display:'flex',alignItems:'center',gap:'10px',padding:'10px 14px',marginBottom:'12px',borderLeft:`4px solid ${CAT_COLOR[activeCat]}`,background:'var(--sur)',borderRadius:'0 8px 8px 0'}}>
+            <UnitCatIcon cat={activeCat} size={32}/>
+            <div>
+              <div style={{fontWeight:700,fontSize:'.9rem',color:CAT_COLOR[activeCat]}}>{activeCat} Buffs</div>
+              <div style={{fontSize:'.72rem',color:'var(--txt3)'}}>Click a stat to expand characters and stack total</div>
+            </div>
           </div>
-          <div className="buff-cards">
-            {chars.map(entry=>{
-              const col=CC[entry.char_country]||'#999'
-              const tot=entry.list.reduce((s,b)=>s+b.pct,0)
+          <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
+            {['HP','Attack','Defense'].map(stat=>{
+              const entries=(data[activeCat]||{})[stat]||[]
+              const total=entries.reduce((s,e)=>s+e.value,0)
+              const isOpen=!!openStats[`${activeCat}__${stat}`]
+              const sc=BUFF_STAT_COLORS[stat]
+              const catCol=CAT_COLOR[activeCat]
               return(
-                <div key={entry.char_id} className="bc" style={{borderTopColor:col}}>
-                  <div className="bc-top">
-                    <CharIcon c={ALL.find(x=>x.id===entry.char_id)||{name_en:entry.char_name,image:entry.char_image,icon:entry.char_icon,country:entry.char_country}} size={44} round={true}/>
-                    <div><div className="bc-name">{entry.char_name}</div>{tot>0&&<div className="bc-pct" style={{color:col}}>+{tot.toFixed(1)}%</div>}</div>
-                  </div>
-                  <div className="bc-effs">
-                    {entry.list.map((b,i)=>(
-                      <div key={i} className="bc-eff">
-                        <span className="bc-val">{b.effect}</span>
-                        {b.condition&&!b.condition.includes('deployed')&&!b.condition.includes('CW battle')&&(<span className="bc-cond">{b.condition}</span>)}
+                <div key={stat} style={{border:`1px solid ${isOpen?catCol+'55':'var(--bdr)'}`,borderRadius:'12px',overflow:'hidden',background:'var(--sur2)',transition:'border-color .2s'}}>
+                  <button onClick={()=>toggleStat(activeCat,stat)} style={{
+                    width:'100%',display:'flex',alignItems:'center',gap:'8px',
+                    padding:'11px 14px',background:isOpen?catCol+'10':'transparent',
+                    border:'none',cursor:'pointer',
+                    borderBottom:isOpen?`1px solid ${catCol}33`:'1px solid transparent',
+                    transition:'background .15s',
+                  }}>
+                    <span style={{fontSize:'14px',color:sc}}>{stat==='HP'?'♥':stat==='Attack'?'⚔':'⛨'}</span>
+                    <span style={{fontWeight:700,fontSize:'.84rem',color:'var(--txt)',flex:1,textAlign:'left'}}>{stat}</span>
+                    <span style={{fontSize:'.7rem',fontWeight:700,color:sc,background:sc+'18',border:`1px solid ${sc}44`,padding:'2px 8px',borderRadius:'20px'}}>Stack: +{total.toFixed(1)}%</span>
+                    <span style={{fontSize:'.65rem',color:'var(--txt3)',background:'var(--bg2)',padding:'2px 7px',borderRadius:'20px',border:'1px solid var(--bdr)'}}>{entries.length}</span>
+                    <span style={{color:catCol,fontWeight:700,fontSize:'1rem',transform:isOpen?'rotate(90deg)':'rotate(0)',transition:'transform .2s'}}>›</span>
+                  </button>
+                  {isOpen&&(
+                    <div style={{padding:'10px',display:'flex',flexDirection:'column',gap:'5px'}}>
+                      <div style={{display:'flex',alignItems:'center',gap:'8px',padding:'7px 12px',borderRadius:'8px',marginBottom:'4px',background:sc+'10',border:`1px solid ${sc}30`}}>
+                        <span style={{fontSize:'13px',color:sc}}>{stat==='HP'?'♥':stat==='Attack'?'⚔':'⛨'}</span>
+                        <span style={{fontSize:'.76rem',color:'var(--txt2)',flex:1}}>Total stackable <b style={{color:sc}}>{stat}</b> buff</span>
+                        <span style={{fontWeight:800,fontSize:'.95rem',color:sc}}>+{total.toFixed(1)}%</span>
                       </div>
-                    ))}
-                  </div>
+                      {entries.map((e,i)=>{
+                        const char=ALL.find(c=>c.name_en===e.name||c.name_en.toLowerCase()===e.name.toLowerCase())
+                        const fc=CC[e.faction]||'#888'
+                        const barW=Math.min(100,(e.value/25)*100).toFixed(1)
+                        return(
+                          <div key={e.name+i} style={{display:'flex',alignItems:'center',gap:'9px',padding:'7px 11px',borderRadius:'10px',background:'var(--sur)',border:'1px solid var(--bdr)',transition:'transform .12s'}}
+                            onMouseEnter={ev=>{ev.currentTarget.style.transform='translateY(-1px)'}}
+                            onMouseLeave={ev=>{ev.currentTarget.style.transform=''}}>
+                            <span style={{minWidth:'20px',textAlign:'center',fontSize:'.65rem',fontWeight:700,color:i<3?catCol:'var(--txt3)'}}># {i+1}</span>
+                            <div style={{width:34,height:34,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                              {char?.icon?<img src={char.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}} alt={e.name}/>
+                              :char?.image?<img src={char.image} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
+                              :<span style={{fontSize:'.85rem',fontWeight:700,color:fc}}>{e.name[0]}</span>}
+                            </div>
+                            <div style={{flex:1,minWidth:0}}>
+                              <div style={{display:'flex',alignItems:'baseline',gap:'5px',marginBottom:'3px'}}>
+                                <span style={{fontWeight:700,fontSize:'.78rem',color:'var(--txt)',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{e.name}</span>
+                                <span style={{fontSize:'.6rem',color:'var(--txt3)',flexShrink:0}}>{e.name_jp}</span>
+                                {e.star6&&<span style={{fontSize:'.58rem',color:'#c9902a',flexShrink:0}}>☆6</span>}
+                                <span style={{fontSize:'.55rem',padding:'1px 5px',borderRadius:'4px',background:fc+'22',color:fc,border:`1px solid ${fc}44`,fontWeight:700,flexShrink:0}}>{e.type}</span>
+                              </div>
+                              <div style={{height:'4px',borderRadius:'2px',background:'var(--bg3)',overflow:'hidden'}}>
+                                <div style={{height:'100%',borderRadius:'2px',width:barW+'%',background:sc,transition:'width .5s ease'}}/>
+                              </div>
+                            </div>
+                            <span style={{fontWeight:800,fontSize:'.85rem',color:sc,minWidth:'46px',textAlign:'right',flexShrink:0}}>+{e.value.toFixed(1)}%</span>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )}
                 </div>
               )
             })}
           </div>
         </div>
       )}
+      {!activeCat&&(
+        <div style={{textAlign:'center',padding:'3rem 1rem',color:'var(--txt3)',fontSize:'.82rem',maxWidth:'360px',margin:'0 auto'}}>
+          <div style={{fontSize:'2rem',opacity:.3,marginBottom:'.75rem'}}>⚔</div>
+          Select a unit type above to see CW administration buffs
+        </div>
+      )}
     </div>
   )
 }
-
 // ── TIER LIST ─────────────────────────────────────────────────────────────────
 const TIER_DEFS={
   S:{color:'#c0392b',def:'Top-tier armies — tech plays, require all CW6★ cards'},
