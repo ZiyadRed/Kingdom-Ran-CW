@@ -82,31 +82,6 @@
         ]
       },
       {
-        "name_en": "Death King's Decree",
-        "name_jp": "死王の指令",
-        "type": "Strategy",
-        "effects": [
-          {
-            "condition": null,
-            "target": "All ally [Mountain Folk]",
-            "effect": "ATK Up 20%, DEF Up 20%",
-            "duration": null
-          },
-          {
-            "condition": "When Attacking",
-            "target": "All ally [Mountain Folk]",
-            "effect": "Evasion (Dodge Chance) 30%",
-            "duration": null
-          },
-          {
-            "condition": "Ally \"Bajio\" alive",
-            "target": "All ally [Mountain Folk]",
-            "effect": "\"Attack Nullification\"",
-            "duration": "1 time"
-          }
-        ]
-      },
-      {
         "name_en": "Unification of the Mountain World",
         "name_jp": "山界ノ統一☆6",
         "type": "Strategy",

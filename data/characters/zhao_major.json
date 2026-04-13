@@ -626,38 +626,6 @@
             "duration": null
           }
         ]
-      },
-      {
-        "name_en": "Poison Domination",
-        "name_jp": "毒の支配☆6",
-        "type": "Strategy",
-        "star6": true,
-        "effects": [
-          {
-            "condition": null,
-            "target": "Self",
-            "effect": "DEF Penetration Up 、Evasion (Dodge Chance) Up 30%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Self",
-            "effect": "Poison Infliction Rate Up 60%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "All enemy generals",
-            "effect": "Poison Damage Up 100%",
-            "duration": null
-          },
-          {
-            "condition": "When Attacking",
-            "target": "Enemy shield infantry",
-            "effect": "ATK Down 20%",
-            "duration": null
-          }
-        ]
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/seikai.webp",

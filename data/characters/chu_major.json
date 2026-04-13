@@ -398,38 +398,6 @@
             "duration": "2 times"
           }
         ]
-      },
-      {
-        "name_en": "Warm Embrace",
-        "name_jp": "熱き抱擁☆6",
-        "type": "Strategy",
-        "star6": true,
-        "effects": [
-          {
-            "condition": null,
-            "target": "Ally Renpa Forces",
-            "effect": "Max HP Up 100％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Renpa Forces",
-            "effect": "ATK Up 30％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Renpa Forces",
-            "effect": "DEF Up 30％",
-            "duration": null
-          },
-          {
-            "condition": "Other ally Renpa Forces alive",
-            "target": "Self",
-            "effect": "All ally generals Guard 60％",
-            "duration": "2 times"
-          }
-        ]
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/renpa.webp",
