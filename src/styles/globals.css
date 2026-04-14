@@ -367,13 +367,13 @@ img { display: block; max-width: 100% }
 .buff-grand  { font-size: .78rem; color: var(--salmon); background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 20px; padding: .18rem .65rem }
 .buff-grand b { font-size: .9rem }
 .buff-cards  { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .45rem; border: 1.5px solid var(--bdr); border-radius: 0 0 8px 8px; padding: .6rem; background: var(--bg2) }
-.buff-stats      { display: flex; flex-direction: column; gap: 2px; padding-left: .2rem }
-.buff-row        { display: flex; align-items: center; justify-content: space-between; font-size: .72rem; padding: 2px 4px; border-radius: 4px; background: var(--bg2) }
-.buff-stat-name  { color: var(--txt2); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
-.buff-vals       { display: flex; gap: 4px; flex-shrink: 0; margin-left: .4rem }
-.buff-up         { font-weight: 700; color: #1a8a72; font-size: .72rem }
-.buff-down       { font-weight: 700; color: #c0392b; font-size: .72rem }
-.buff-none-row   { color: var(--txt3); font-style: italic; font-size: .72rem; padding: 2px 4px }
+.buff-stats      { display: flex; flex-direction: column; gap: 4px; padding-left: .2rem }
+.buff-row        { display: flex; align-items: center; justify-content: space-between; font-size: .82rem; padding: 5px 8px; border-radius: 6px; background: var(--bg2); border: 1px solid var(--bdr) }
+.buff-stat-name  { color: var(--txt); font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.buff-vals       { display: flex; gap: 6px; flex-shrink: 0; margin-left: .6rem }
+.buff-up         { font-weight: 800; color: #fff; font-size: .8rem; background: #1a8a72; padding: 1px 7px; border-radius: 20px }
+.buff-down       { font-weight: 800; color: #fff; font-size: .8rem; background: #c0392b; padding: 1px 7px; border-radius: 20px }
+.buff-none-row   { color: var(--txt3); font-style: italic; font-size: .78rem; padding: 4px 6px }
 .bc          { background: var(--sur); border: 1.5px solid var(--bdr); border-top: 3px solid; border-radius: 8px; overflow: hidden; transition: transform .15s }
 .bc:hover    { transform: translateY(-1px) }
 .bc-top      { display: flex; align-items: center; gap: .45rem; padding: .4rem .55rem; border-bottom: 1px solid var(--bdr) }
