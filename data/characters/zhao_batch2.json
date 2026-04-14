@@ -836,7 +836,7 @@
     "icon": "/icons/Shika.webp"
   },
   {
-    "id": "kurosa",
+    "id": "kokuou",
     "name_en": "Kokuou",
     "name_jp": "黒桜",
     "country": "qin",
@@ -889,6 +889,6 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kokuou.webp",
-    "icon": "/icons/cg079_i01.webp"
+    "icon": "/icons/Kokuou.webp"
   }
 ]

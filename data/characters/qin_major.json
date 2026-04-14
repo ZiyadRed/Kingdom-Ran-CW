@@ -761,7 +761,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/sho.webp",
-    "icon": "/icons/Shouu.webp"
+    "icon": "/icons/Shoou.webp"
   },
   {
     "id": "ei_sei",
@@ -1395,10 +1395,54 @@
   {
     "id": "shoukaku",
     "name_en": "Shoukaku",
-    "name_jp": "昌平君",
+    "name_jp": "尚鹿",
     "country": "qin",
     "rarity": "SR",
-    "skills": [],
+    "skills": [
+      {
+        "name_en": "DEF Enhancement [Red Elephant]",
+        "name_jp": "軍略:防御強化【赤象】",
+        "type": "Strategy",
+        "star6": false,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self, Ally Cavalry",
+            "effect": "DEF Up 20%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "DEF Enhancement – Large [Defense War Machines]",
+        "name_jp": "内政:防御力強化・大【防衛兵器】",
+        "type": "Administration",
+        "star6": false,
+        "effects": [
+          {
+            "condition": "CW battle (effective even if not deployed)",
+            "target": "Ally Defense War Machines",
+            "effect": "DEF Up 2.8%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Repair Currency Reduction – Large Improved",
+        "name_jp": "内政:修理貨幣減少・大改",
+        "type": "Administration",
+        "star6": false,
+        "effects": [
+          {
+            "condition": "When repairing CW war machines",
+            "target": "War machine repair",
+            "effect": "War machine repair Coin Consumption Down 7.4％",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "https://kingdom-ran-cw.vercel.app/persos/shoukaku.webp",
     "icon": "/icons/Shoukaku.webp"
   }
 ]
