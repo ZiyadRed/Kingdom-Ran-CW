@@ -35,20 +35,32 @@ const GROUPS={
   'Hi Shin Unit':       ['shin','naki','romin','garo','gakurai'],
 }
 const UNIT_TYPES={
-  // Cavalry
-  ouhon:'Cavalry',tou:'Cavalry',mou:'Cavalry',ouki:'Cavalry',gaimo:'Cavalry',
-  rinka:'Cavalry',gofuumei:'Cavalry',rakki:'Cavalry',hyoukou:'Cavalry',kyouen:'Cavalry',
-  reiou:'Cavalry',shunsuiki:'Cavalry',ryuto:'Cavalry',choto:'Cavalry',gii:'Cavalry',
-  korgen:'Cavalry',muten:'Cavalry',hanryuki:'Cavalry',ordo:'Cavalry',ohkotsu:'Cavalry',
-  kanjo:'Cavalry',shotaku:'Cavalry',tairoji:'Cavalry',raoai:'Cavalry',taijifu:'Cavalry',
-  kokuou:'Cavalry',rinbujun:'Cavalry',bajio:'Cavalry',
+  // Cavalry — confirmed from KingdomRanCW_Characters.xlsx
+  akou:'Cavalry',bakan:'Cavalry',bakukoshin:'Cavalry',choso:'Cavalry',
+  denyu:'Cavalry',douken:'Cavalry',gakuei:'Cavalry',gekishin:'Cavalry',
+  hyou:'Cavalry',kaen:'Cavalry',kaishi_renmei:'Cavalry',kanou:'Cavalry',
+  nako:'Cavalry',rinbo:'Cavalry',ringyoku:'Cavalry',rokuomi:'Cavalry',
+  shomou:'Cavalry',sosui:'Cavalry',juutekkoo:'Cavalry',
   // Archer
-  keisha:'Archer',hakurei:'Archer',taiko:'Archer',seika:'Archer',kouyoku:'Archer',
-  heki:'Archer',kaen:'Archer',karyoten:'Archer',
+  amon:'Archer',budai:'Archer',domon:'Archer',seikou:'Archer',gika:'Archer',
+  hakusui:'Archer',hanryuki:'Archer',hyouki:'Archer',kosho2:'Archer',
+  karyoten:'Archer',ko:'Archer',kyouen:'Archer',kyokai:'Archer',
+  kokuou:'Archer',ogiko:'Archer',otaji:'Archer',taiko:'Archer',
+  romin:'Archer',seikyo:'Archer',shika2:'Archer',takukei:'Archer',
+  yo:'Archer',yukii:'Archer',
+  // Infantry
+  bain:'Infantry',obira:'Infantry',chutetsu:'Infantry',gotan:'Infantry',
+  hairou:'Infantry',hokaku:'Infantry',kakukai:'Infantry',keirei:'Infantry',
+  kyoushou:'Infantry',ohkotsu:'Infantry',kyomei:'Infantry',rankai:'Infantry',
+  rui:'Infantry',ryusen:'Infantry',ryuto:'Infantry',ryuyu:'Infantry',
+  saji:'Infantry',shikika:'Infantry',shunmen:'Infantry',shunpeikun:'Infantry',
+  suirou:'Infantry',toumi:'Infantry',youka:'Infantry',yuri:'Infantry',yuren:'Infantry',
   // Shield
-  hakuki:'Shield',akou:'Shield',kyukou:'Shield',kaishi_renmei:'Shield',
-  baiman:'Shield',ousen:'Shield',ei_sei:'Shield',
-  // Infantry (all others default to Infantry)
+  banyou:'Shield',bikou:'Shield',heki:'Shield',hakuki:'Shield',
+  kakubi:'Shield',kakuun:'Shield',keiminoo:'Shield',kishou:'Shield',
+  kousonryu:'Shield',muten_grandpa:'Shield',mouki:'Shield',
+  oukenwang:'Shield',raido:'Shield',rihaku2:'Shield',raoai:'Shield',
+  ryukoku:'Shield',shoukaku:'Shield',taijifu:'Shield',yugi:'Shield',
 }
 const UNIT_COLOR={Infantry:'#7a7020',Cavalry:'#c0392b',Archer:'#27ae60',Shield:'#2471a3'}
 const UNIT_ICON_SRC={Infantry:'/icons/unit_infantry.png',Cavalry:'/icons/unit_cavalry.png',Archer:'/icons/unit_archer.png',Shield:'/icons/unit_shield.png'}
@@ -57,7 +69,7 @@ const UNIT_ICON_SRC={Infantry:'/icons/unit_infantry.png',Cavalry:'/icons/unit_ca
 ALL.forEach(c=>{
   if(c.icon) c.icon=c.icon.replace('.png','.webp')
   if(c.id==='shoka'){c.name_en='Shouheikun';c.country='qin'}
-  c.unit_type=UNIT_TYPES[c.id]||'Infantry'
+  c.unit_type=UNIT_TYPES[c.id]||null
   c.groups=Object.entries(GROUPS).filter(([,ids])=>ids.includes(c.id)).map(([gn])=>gn)
 })
 
@@ -225,7 +237,6 @@ function calcCharBuffs(G,team,isDefense){
   const stats={}
   for(const owner of team){
     for(const skill of(owner.skills||[])){
-      if(skill.type==='Combat') continue
       for(const eff of(skill.effects||[])){
         if(!isTargetedBy(eff.target,G,owner,team)) continue
         if(!isCondActive(eff.condition,isDefense)) continue
@@ -579,9 +590,6 @@ function ArchivePage(){
               <div className="banner-faction-tag" style={{background:CC[c.country]||'#666'}}>
                 {FACTIONS.find(f=>f.id===c.country)?.jp||c.country}
               </div>
-              <div className="banner-unit-badge" style={{background:UNIT_COLOR[c.unit_type]+'cc'}} title={c.unit_type}>
-                <img src={UNIT_ICON_SRC[c.unit_type]} alt={c.unit_type} className="unit-badge-img"/>
-              </div>
               {c.image?<img src={c.image} alt={c.name_en} className="banner-img"/>
                 :<div className="banner-ph" style={{background:(CC[c.country]||'#555')+'33',color:CC[c.country]||'#888'}}>{c.name_en[0]}</div>}
               <div className="banner-footer"><span className="banner-name">{c.name_en}</span></div>
@@ -688,6 +696,7 @@ function BuilderPage({atk,def,setSlot,rm,goSim,loadMetaTeam}){
         <SideSlots side="defense" label="🛡 Defending" party={def} onSlot={i=>setPicker({side:'defense',idx:i})} onRm={c=>rm(c,'defense')}/>
       </div>
       {(atk.length||def.length)>0&&<div className="cta-row"><button className="cta-btn" onClick={goSim}>View Activation Order →</button></div>}
+      <BuffTable atk={atk} def={def}/>
 
       {/* Meta Teams */}
       <div className="meta-section">
@@ -747,7 +756,6 @@ function SimPage({atk,def,goBuilder}){
           <StratCol label="🛡 Defending Formation" entries={st.defense} side="defense"/>
         </div>
       </div>
-      <BuffTable atk={atk} def={def}/>
       <div className="sim-sec">
         <div className="sec-hd sec-combat">⚔ Turn-by-Turn Combat</div>
         {turns.map(({turn,entries})=>(
