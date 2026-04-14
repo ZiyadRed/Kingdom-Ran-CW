@@ -24,10 +24,41 @@ const ALL = [
   ...aiYanMajor,...misc,...misc2,
 ].filter(c=>c.country!=='unknown')
 
-// Fix .png icon refs → .webp, and rename Shoka → Shouheikun in Qin
+const GROUPS={
+  'Gyokuhou':           ['ouhon','kanjo','shotaku','kyukou'],
+  'Six Great Generals': ['hakuki','ouki','mou','shimasaku','kosho','ohkotsu'],
+  'Wei Fire Dragon':    ['ranbishaku','tairoji','reiou','gokei','gaimo','gofuumei','shihaku'],
+  'Renpa Forces':       ['renpa','rinka','genho','kyouen','kaishi_renmei'],
+  'Kanmei Forces':      ['kanmei','baiman','gomosho','jino','kyobou'],
+  'Karin Forces':       ['karin','kaen','gotoku','bamyuu','kouyoku','hakurei'],
+  'Ouki Forces':        ['ouki','tou'],
+  'Hi Shin Unit':       ['shin','naki','romin','garo','gakurai'],
+}
+const UNIT_TYPES={
+  // Cavalry
+  ouhon:'Cavalry',tou:'Cavalry',mou:'Cavalry',ouki:'Cavalry',gaimo:'Cavalry',
+  rinka:'Cavalry',gofuumei:'Cavalry',rakki:'Cavalry',hyoukou:'Cavalry',kyouen:'Cavalry',
+  reiou:'Cavalry',shunsuiki:'Cavalry',ryuto:'Cavalry',choto:'Cavalry',gii:'Cavalry',
+  korgen:'Cavalry',muten:'Cavalry',hanryuki:'Cavalry',ordo:'Cavalry',ohkotsu:'Cavalry',
+  kanjo:'Cavalry',shotaku:'Cavalry',tairoji:'Cavalry',raoai:'Cavalry',taijifu:'Cavalry',
+  kokuou:'Cavalry',rinbujun:'Cavalry',bajio:'Cavalry',
+  // Archer
+  keisha:'Archer',hakurei:'Archer',taiko:'Archer',seika:'Archer',kouyoku:'Archer',
+  heki:'Archer',kaen:'Archer',karyoten:'Archer',
+  // Shield
+  hakuki:'Shield',akou:'Shield',kyukou:'Shield',kaishi_renmei:'Shield',
+  baiman:'Shield',ousen:'Shield',ei_sei:'Shield',
+  // Infantry (all others default to Infantry)
+}
+const UNIT_COLOR={Infantry:'#7a7020',Cavalry:'#c0392b',Archer:'#27ae60',Shield:'#2471a3'}
+const UNIT_ICON_SRC={Infantry:'/icons/unit_infantry.png',Cavalry:'/icons/unit_cavalry.png',Archer:'/icons/unit_archer.png',Shield:'/icons/unit_shield.png'}
+
+// Fix .png icon refs → .webp, rename Shoka → Shouheikun, patch unit_type + groups
 ALL.forEach(c=>{
   if(c.icon) c.icon=c.icon.replace('.png','.webp')
   if(c.id==='shoka'){c.name_en='Shouheikun';c.country='qin'}
+  c.unit_type=UNIT_TYPES[c.id]||'Infantry'
+  c.groups=Object.entries(GROUPS).filter(([,ids])=>ids.includes(c.id)).map(([gn])=>gn)
 })
 
 const FACTIONS=[
@@ -118,11 +149,103 @@ function simulate(a,d){
   return{st,turns}
 }
 
+// ── BUFF ENGINE ───────────────────────────────────────────────────────────────
+function parseBuffEffect(str){
+  if(!str) return []
+  const results=[]
+  for(let part of str.split(/[,、]/)){
+    part=part.trim()
+    if(/\d+[%％]\s*Damage|Normal Attack|HP Drain|Provoke/i.test(part)) continue
+    let m=part.match(/^(.+?)\s+(Up|Down)\s+(\d+(?:\.\d+)?)[%％]/)
+    if(m){results.push({stat:m[1].replace(/^(Anti-\[.+?\]\s*)/i,'').trim(),dir:m[2],val:parseFloat(m[3])}); continue}
+    m=part.match(/^(Guard|Hit Rate|Critical Rate|HP Recovery)\s+(\d+(?:\.\d+)?)[%％]$/)
+    if(m){results.push({stat:m[1],dir:'Up',val:parseFloat(m[2])}); continue}
+  }
+  return results
+}
+function inGroup(c,groupName){
+  const g=groupName.toLowerCase().replace(/[^a-z]/g,'')
+  return(c.groups||[]).some(gn=>{const n=gn.toLowerCase().replace(/[^a-z]/g,'');return n===g||n.includes(g)||g.includes(n)})
+}
+function isTargetedBy(target,G,owner,team){
+  if(!target) return false
+  const t=target.trim()
+  if(/^enemy|^1\s*enemy|^other\s+enemy|^war\s+machine|^ally\s+war|^gate|^\d+\s+enemy/i.test(t)) return false
+  // "Self and/or ally X"
+  const selfAnd=/^self(?:\s+and|\s*[\/,])\s*ally\s+(.+)/i.exec(t)
+  if(selfAnd){if(G.id===owner.id) return true; return isTargetedBy('Ally '+selfAnd[1],G,owner,team)}
+  // "Self" or "Self vs X"
+  if(/^self/i.test(t)) return G.id===owner.id
+  // Multi-target split on "/"
+  if(t.includes('/')) return t.split('/').some(p=>isTargetedBy(p.trim(),G,owner,team))
+  const isOther=/^other/i.test(t)
+  if(isOther&&G.id===owner.id) return false
+  // Group matching
+  for(const gn of Object.keys(GROUPS)){
+    if(t.toLowerCase().includes(gn.toLowerCase())) return inGroup(G,gn)
+  }
+  // Specific name: "Ally 'Name'" or "Ally Name"
+  const nameM=/ally\s+"?([^"\/\n,\[\]]+?)"?\s*$/i.exec(t)
+  if(nameM){
+    const nm=nameM[1].trim()
+    for(const gn of Object.keys(GROUPS)){if(gn.toLowerCase().includes(nm.toLowerCase().split(' ')[0])) return inGroup(G,gn)}
+    return G.name_en.toLowerCase()===nm.toLowerCase()&&G.id!==owner.id
+  }
+  // Country generals
+  const cM=/ally\s+(\w+)\s+generals?/i.exec(t)
+  if(cM) return G.country===cM[1].toLowerCase()
+  if(/other\s+ally\s+generals?/i.test(t)) return G.id!==owner.id
+  if(/all\s+all(?:ies|y)|ally\s+generals?/i.test(t)) return true
+  return false
+}
+function getMultiplier(cond,owner,team){
+  if(!cond) return 1
+  const perM=/per\s+(?:other\s+)?ally\s+(.+?)\s+(?:member|general)/i.exec(cond)
+  if(perM){
+    const gName=perM[1].trim()
+    for(const [gn,ids] of Object.entries(GROUPS)){
+      if(gn.toLowerCase().includes(gName.toLowerCase())||gName.toLowerCase().includes(gn.toLowerCase().split(' ')[0])){
+        return team.filter(m=>ids.includes(m.id)&&m.id!==owner.id).length
+      }
+    }
+    return 0
+  }
+  const perNameM=/per\s+ally\s+"?([A-Za-z]+)"?/i.exec(cond)
+  if(perNameM){const nm=perNameM[1].toLowerCase();return team.some(m=>m.name_en.toLowerCase()===nm)?1:0}
+  return 1
+}
+function isCondActive(cond,isDefense){
+  if(!cond) return true
+  const c=cond.toLowerCase()
+  if(c.includes('garrison')) return isDefense
+  if(c.includes('when attacking')) return !isDefense
+  return true
+}
+function calcCharBuffs(G,team,isDefense){
+  const stats={}
+  for(const owner of team){
+    for(const skill of(owner.skills||[])){
+      if(skill.type==='Combat') continue
+      for(const eff of(skill.effects||[])){
+        if(!isTargetedBy(eff.target,G,owner,team)) continue
+        if(!isCondActive(eff.condition,isDefense)) continue
+        const mult=getMultiplier(eff.condition,owner,team)
+        if(mult===0) continue
+        for(const{stat,dir,val} of parseBuffEffect(eff.effect)){
+          if(!stats[stat]) stats[stat]={up:0,down:0}
+          if(dir==='Up') stats[stat].up+=val*mult; else stats[stat].down+=val*mult
+        }
+      }
+    }
+  }
+  return stats
+}
+
 // Picker
 function Picker({onSelect,onClose,excl=[]}){
   const[q,setQ]=useState(''),ref=useRef(null)
   useEffect(()=>{ref.current?.focus()},[])
-  const chars=ALL.filter(c=>!excl.includes(c.id)&&(!q||(c.name_en.toLowerCase().includes(q.toLowerCase())||c.name_jp.includes(q))))
+  const chars=ALL.filter(c=>!excl.includes(c.id)&&(!q||(c.name_en.toLowerCase().includes(q.toLowerCase())||c.name_jp.includes(q)||(c.unit_type&&c.unit_type.toLowerCase().includes(q.toLowerCase()))||(c.groups&&c.groups.some(g=>g.toLowerCase().includes(q.toLowerCase()))))))
   return(
     <div className="overlay" onClick={onClose}>
       <div className="picker" onClick={e=>e.stopPropagation()}>
@@ -402,7 +525,7 @@ function ArchivePage(){
   const[search,setSearch]=useState('')
   const facChars=ALL.filter(c=>c.country===activeFac&&c.image)
   const filtered=(search
-    ?ALL.filter(c=>c.name_en.toLowerCase().includes(search.toLowerCase())||c.name_jp.includes(search))
+    ?ALL.filter(c=>{const q=search.toLowerCase();return c.name_en.toLowerCase().includes(q)||c.name_jp.includes(search)||(c.unit_type&&c.unit_type.toLowerCase().includes(q))||(c.groups&&c.groups.some(g=>g.toLowerCase().includes(q)))})
     :facChars
   ).slice().sort((a,b)=>a.name_en.localeCompare(b.name_en))
   const handleFacClick=(fid)=>{setActiveFac(fid);setSelected(null);setSearch('')}
@@ -455,6 +578,9 @@ function ArchivePage(){
               style={selected?.id===c.id?{outline:`3px solid ${CC[c.country]||'#999'}`}:{}}>
               <div className="banner-faction-tag" style={{background:CC[c.country]||'#666'}}>
                 {FACTIONS.find(f=>f.id===c.country)?.jp||c.country}
+              </div>
+              <div className="banner-unit-badge" style={{background:UNIT_COLOR[c.unit_type]+'cc'}} title={c.unit_type}>
+                <img src={UNIT_ICON_SRC[c.unit_type]} alt={c.unit_type} className="unit-badge-img"/>
               </div>
               {c.image?<img src={c.image} alt={c.name_en} className="banner-img"/>
                 :<div className="banner-ph" style={{background:(CC[c.country]||'#555')+'33',color:CC[c.country]||'#888'}}>{c.name_en[0]}</div>}
@@ -621,6 +747,7 @@ function SimPage({atk,def,goBuilder}){
           <StratCol label="🛡 Defending Formation" entries={st.defense} side="defense"/>
         </div>
       </div>
+      <BuffTable atk={atk} def={def}/>
       <div className="sim-sec">
         <div className="sec-hd sec-combat">⚔ Turn-by-Turn Combat</div>
         {turns.map(({turn,entries})=>(
@@ -678,6 +805,57 @@ function StratCol({label,entries,side}){
           {gs.map((sk,i)=><SkillCard key={i} skill={sk}/>)}
         </div>
       ))}
+    </div>
+  )
+}
+
+// ── BUFF TABLE ────────────────────────────────────────────────────────────────
+function BuffTable({atk,def}){
+  if(!atk.length&&!def.length) return null
+  const atkBuffs=atk.map(g=>({general:g,buffs:calcCharBuffs(g,atk,false)}))
+  const defBuffs=def.map(g=>({general:g,buffs:calcCharBuffs(g,def,true)}))
+  const hasAny=arr=>arr.some(({buffs})=>Object.keys(buffs).length>0)
+  if(!hasAny(atkBuffs)&&!hasAny(defBuffs)) return null
+  return(
+    <div className="sim-sec">
+      <div className="sec-hd sec-buff">⚡ Team Buff Summary</div>
+      <div className="strat-cols">
+        <BuffSideTable label="⚔ Attacking Formation" entries={atkBuffs} side="attack"/>
+        <BuffSideTable label="🛡 Defending Formation" entries={defBuffs} side="defense"/>
+      </div>
+    </div>
+  )
+}
+function BuffSideTable({label,entries,side}){
+  const ac=side==='attack'?'var(--red)':'var(--blue)'
+  const hasAny=entries.some(({buffs})=>Object.keys(buffs).length>0)
+  return(
+    <div className={`scol ${side==='attack'?'atk':'def'}`}>
+      <div className="scol-lbl" style={{color:ac,borderBottomColor:ac+'44'}}>{label}</div>
+      {!hasAny?<p className="scol-none">No relevant buffs</p>:entries.map(({general:g,buffs})=>{
+        const stats=Object.entries(buffs).filter(([,v])=>v.up>0||v.down>0)
+        return(
+          <div key={g.id} className="scol-gen">
+            <div className="scol-gen-hdr" style={{color:ac}}>
+              <CharIcon c={g} size={28} round={true}/>
+              <b>{g.name_en}</b>
+            </div>
+            {!stats.length?<div className="buff-none-row">—</div>:(
+              <div className="buff-stats">
+                {stats.map(([stat,{up,down}])=>(
+                  <div key={stat} className="buff-row">
+                    <span className="buff-stat-name">{stat}</span>
+                    <span className="buff-vals">
+                      {up>0&&<span className="buff-up">+{Number.isInteger(up)?up:up.toFixed(1)}%</span>}
+                      {down>0&&<span className="buff-down">−{Number.isInteger(down)?down:down.toFixed(1)}%</span>}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )
+      })}
     </div>
   )
 }
