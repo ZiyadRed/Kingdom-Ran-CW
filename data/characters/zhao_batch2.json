@@ -548,54 +548,6 @@
     ]
   },
   {
-    "id": "shoka",
-    "name_en": "Shoka",
-    "name_jp": "尚鹿",
-    "country": "zhao",
-    "rarity": "SR",
-    "skills": [
-      {
-        "name_en": "DEF Enhancement [Red Elephant]",
-        "name_jp": "防御強化【赤象】",
-        "type": "Strategy",
-        "effects": [
-          {
-            "condition": null,
-            "target": "Self",
-            "effect": "Ally [Cavalry] DEF Up 20％",
-            "duration": null
-          }
-        ]
-      },
-      {
-        "name_en": "DEF Enhancement – Large [Defense War Machines]",
-        "name_jp": "防御力強化・大【防衛兵器】",
-        "type": "Administration",
-        "effects": [
-          {
-            "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally defense war machines",
-            "effect": "DEF Up 2.8％",
-            "duration": null
-          }
-        ]
-      },
-      {
-        "name_en": "Repair Currency Reduction – Large Improved",
-        "name_jp": "修理貨幣減少・大改",
-        "type": "Administration",
-        "effects": [
-          {
-            "condition": "When repairing CW war machines",
-            "target": "Self",
-            "effect": "War machine repair Coin Consumption Down 7.4％",
-            "duration": null
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "saji",
     "name_en": "Saji",
     "name_jp": "左慈",

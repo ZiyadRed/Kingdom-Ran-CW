@@ -24,18 +24,48 @@ const ALL = [
   ...aiYanMajor,...misc,...misc2,
 ].filter(c=>c.country!=='unknown')
 
+// Character icon overrides — all files live in public/icons/
 const CHAR_ICONS={
-  'Bakan':   '/icons/chars/Bakan.webp',
-  'Bihei':   '/icons/chars/Bihei.webp',
-  'Bikou':   '/icons/chars/Bikou.webp',
-  'Denyuu':  '/icons/chars/Denyuu.webp',
-  'Kanki':   '/icons/chars/Kanki.webp',
-  'Naki':    '/icons/chars/Naki.webp',
-  'Nakon':   '/icons/chars/Nakon.webp',
-  'Tou':     '/icons/chars/Tou.webp',
-  'Yotanwa': '/icons/chars/Yotanwa.webp',
+  'Bakan':      '/icons/Bakan.webp',
+  'Bihei':      '/icons/Bihei.webp',
+  'Bikou':      '/icons/Bikou.webp',
+  'Denyuu':     '/icons/Denyuu.webp',
+  'Kanki':      '/icons/Kanki.webp',
+  'Naki':       '/icons/Naki.webp',
+  'Nakon':      '/icons/Nakon.webp',
+  'Tou':        '/icons/Tou.webp',
+  'Yotanwa':    '/icons/Yotanwa.webp',
+  'Shoukaku':   '/icons/Shoukaku.webp',
 }
-ALL.forEach(c=>{ if(CHAR_ICONS[c.name_en]) c.icon=CHAR_ICONS[c.name_en] })
+// Also build a full map for every webp icon in /icons/
+// so ALL characters with matching name_en get their icon automatically
+const ALL_ICON_NAMES=[
+  'Akou','Bain','Bajio','Bakukoshin','Bamyu','Bananji','Batei','Budai',
+  'Chouin','Chousou','Choutou','Danto','Denrimi','Doukin','Duke Hyou','Duke Sei',
+  'Ei Sei','En','Entei','Fuji','Futei','Gaimou','Gakuei','Gakujou','Gakuki',
+  'Gakurai','Garo','Gekishin','Genpo','Gika','Gohoumei','Gokei','Goumasho',
+  'Goutoku','Hakuki','Hakurei','Hakusui','Hamui','Hanoki','Hanroki','Heki',
+  'Hokaku','Hoki','Houken','Hyou','Hyouki','Hyoushiga','Jinou','Junso','Ka',
+  'Kaen','Kaine','Kaioku','Kaishibou','Kakubi','Kakukai','Kakuun','Kanjou',
+  'Kanmei','Kanou','Karin','Karyou ten','Katari','Keibin','Keisha','Kinmou',
+  'Kishou','Kisui','Kitari','KoKou','Koshou','Kou','Kouretsu','Kourigen',
+  'Kousonryu','Kouyoku','Kyobou','Kyomei','Kyorei','Kyou','Kyouen','Kyougai',
+  'Kyoushou','Kyuukou','Mangoku','Maron','Moubo','Mougou','Mouki','Mouten',
+  'Muta','Ogiko','Okutso','Ordo','Otaji','Ouhon','Ouken','Ouki','Ousen','Pam',
+  'Queen Biki','Raido','Ramauji','Ranbihaku','Rankai','Reiou','Renpa','Riboku',
+  'Rien','Rihaku','Rikusen','Rinbou','Rinbukun','Ringyoku','Rinko','Robin',
+  'Rokuomi','Rouai','Rui','Ryofui','Ryuukoku','Ryuusen','Ryuuto','Seikai',
+  'Seikyu','Shibasaku','Shihaku','Shika','Shikika','Shinseijou','Shoukaku',
+  'Shoumou','Shoumounkun','Shoutaku','Shouu','Shuheikun','Shunmen','Shunpeikun',
+  'Shunshinkun','Shunsuiju','Sosui','Sougen','Taijifu','Tairoji','Toji','Toumi',
+  'Wategi','You','Youka','Yukii','Yuri','Yuuren','Zenou',
+]
+ALL_ICON_NAMES.forEach(n=>{ if(!CHAR_ICONS[n]) CHAR_ICONS[n]=`/icons/${n}.webp` })
+
+ALL.forEach(c=>{
+  if(c.id==='shoka'){ c.name_en='Shoukaku'; c.country='qin' }
+  if(CHAR_ICONS[c.name_en]) c.icon=CHAR_ICONS[c.name_en]
+})
 
 const FACTIONS=[
   {id:'qin',           label:'Qin',           jp:'秦',    color:'#c0392b'},
@@ -489,7 +519,7 @@ const BUFF_UNIT_CATS = ['Infantry','Cavalry','Archer','Shield']
 const BUFF_STAT_COLORS = {HP:'#1a8a72', Attack:'#c0392b', Defense:'#2471a3'}
 const CAT_COLOR = {Infantry:'#b8880a', Cavalry:'#c0392b', Archer:'#27ae60', Shield:'#6a4fc8'}
 
-function UnitCatIcon({cat, size=48}){
+function UnitCatIcon({cat, size=72}){
   const imgs={
     'Infantry': '/icons/unit_infantry.png',
     'Cavalry':  '/icons/unit_cavalry.png',
@@ -518,24 +548,24 @@ function BuffsPage(){
       <h2 className="pg-title">CW Buffs</h2>
       <p className="pg-sub">Administration skills active during Castle Wars — stackable buffs by unit type.</p>
 
-      <div style={{display:'grid',gridTemplateColumns:'repeat(4,minmax(0,1fr))',gap:'10px',marginBottom:'1.5rem',maxWidth:'680px'}}>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(4,minmax(0,1fr))',gap:'14px',marginBottom:'2rem',maxWidth:'780px'}}>
         {BUFF_UNIT_CATS.map(cat=>{
           const isActive=activeCat===cat
           const col=CAT_COLOR[cat]
           const uniqueNames=new Set(Object.values(data[cat]||{}).flat().map(e=>e.name))
           return(
             <button key={cat} onClick={()=>handleCat(cat)} style={{
-              display:'flex',flexDirection:'column',alignItems:'center',gap:'7px',
-              padding:'14px 8px',borderRadius:'14px',cursor:'pointer',
-              border:`${isActive?'2px':'1.5px'} solid ${isActive?col:'var(--bdr)'}`,
+              display:'flex',flexDirection:'column',alignItems:'center',gap:'10px',
+              padding:'22px 12px 18px',borderRadius:'18px',cursor:'pointer',
+              border:`${isActive?'2.5px':'1.5px'} solid ${isActive?col:'var(--bdr)'}`,
               background:isActive?col+'14':'var(--sur)',
-              boxShadow:isActive?`0 2px 14px ${col}30`:'none',
-              transform:isActive?'translateY(-2px)':'none',
+              boxShadow:isActive?`0 4px 20px ${col}40`:'0 1px 4px rgba(0,0,0,0.06)',
+              transform:isActive?'translateY(-3px)':'none',
               transition:'all .18s',
             }}>
-              <UnitCatIcon cat={cat} size={44}/>
-              <span style={{fontWeight:700,fontSize:'.78rem',color:isActive?col:'var(--txt)'}}>{cat}</span>
-              <span style={{fontSize:'.62rem',color:'var(--txt3)',background:'var(--bg2)',padding:'1px 7px',borderRadius:'10px',border:'1px solid var(--bdr)'}}>{uniqueNames.size} chars</span>
+              <UnitCatIcon cat={cat} size={72}/>
+              <span style={{fontWeight:700,fontSize:'.9rem',color:isActive?col:'var(--txt)'}}>{cat}</span>
+              <span style={{fontSize:'.68rem',color:'var(--txt3)',background:'var(--bg2)',padding:'2px 9px',borderRadius:'10px',border:'1px solid var(--bdr)'}}>{uniqueNames.size} chars</span>
             </button>
           )
         })}
