@@ -191,7 +191,7 @@ const UNIT_TYPE_LIST=['Infantry','Cavalry','Archer','Shield']
 const FACTION_MAP={'qin':'qin','zhao':'zhao','chu':'chu','wei':'wei','yan':'yan','qi':'qi','han':'han','mountain folk':'mountain_folk','ai':'ai'}
 function parseBuffEffect(str){
   if(!str) return []
-  const results=[],deferred=[]
+  const results=[];let deferred=[]
   for(let part of str.split(/[,、]/)){
     part=part.trim()
     if(/\d+[%％]\s*Damage|Normal Attack|HP Drain|Provoke|Confusion Infliction|Stun Rate|Seal Rate/i.test(part)) continue
