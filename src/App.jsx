@@ -1030,7 +1030,7 @@ function TeamCostPage(){
         boxShadow:'0 8px 32px rgba(106,48,200,0.25)',
       }}>
         <div style={{display:'flex',alignItems:'center',gap:'14px'}}>
-          <div style={{fontSize:'2.2rem'}}>💎</div>
+          <img src="/icons/Red_Crystal.png" alt="Red Crystal" style={{width:56,height:56,objectFit:"contain",flexShrink:0}}/>
           <div>
             <div style={{fontSize:'.72rem',color:'#b89fe0',fontWeight:600,textTransform:'uppercase',letterSpacing:'1px'}}>Total Red Crystals</div>
             <div style={{fontSize:'2.4rem',fontWeight:900,color:'#e8c0ff',lineHeight:1}}>{total.toLocaleString()}</div>
@@ -1087,7 +1087,7 @@ function TeamCostPage(){
                 <div style={{fontWeight:700,fontSize:'.85rem',color:'var(--txt)',marginBottom:'2px'}}>{char.name_en}</div>
                 <div style={{fontSize:'.65rem',color:'var(--txt3)',marginBottom:'6px'}}>{char.name_jp} · {FACTIONS.find(f=>f.id===char.country)?.label||char.country}</div>
                 <div style={{display:'flex',alignItems:'center',gap:'4px'}}>
-                  <span style={{fontSize:'.65rem',color:'#b89fe0'}}>💎</span>
+                  <img src="/icons/Red_Crystal.png" alt="RC" style={{width:18,height:18,objectFit:"contain",verticalAlign:"middle"}}/>
                   <span style={{fontWeight:800,fontSize:'.95rem',color:rc}}>{cost?.toLocaleString()}</span>
                 </div>
               </div>
@@ -1116,7 +1116,7 @@ function TeamCostPage(){
         {[['R',595],['SR',800],['UR',1750]].map(([r,c])=>(
           <div key={r} style={{display:'flex',alignItems:'center',gap:'8px',padding:'8px 18px',borderRadius:'10px',background:RBG[r],border:`1px solid ${RCOL[r]}44`}}>
             <span style={{fontWeight:800,fontSize:'.85rem',color:RCOL[r]}}>{r}</span>
-            <span style={{fontSize:'.75rem',color:'var(--txt3)'}}>= 💎 {c.toLocaleString()}</span>
+            <span style={{fontSize:'.75rem',color:'var(--txt3)'}}><img src="/icons/Red_Crystal.png" alt="RC" style={{width:16,height:16,objectFit:"contain",verticalAlign:"middle",margin:"0 3px"}}/> {c.toLocaleString()}</span>
           </div>
         ))}
       </div>
@@ -1155,7 +1155,7 @@ function TeamCostPage(){
                       </div>
                       <div style={{fontWeight:700,fontSize:'.68rem',color:'var(--txt)',textAlign:'center',lineHeight:1.2}}>{c.name_en}</div>
                       <div style={{padding:'1px 7px',borderRadius:'5px',background:rc,color:'white',fontSize:'.6rem',fontWeight:800}}>{rarity}</div>
-                      <div style={{fontSize:'.62rem',color:rc,fontWeight:700}}>💎 {COST[rarity]}</div>
+                      <div style={{fontSize:'.62rem',color:rc,fontWeight:700}}><img src="/icons/Red_Crystal.png" alt="RC" style={{width:14,height:14,objectFit:"contain",verticalAlign:"middle",marginRight:2}}/>{COST[rarity]}</div>
                     </button>
                   )
                 })}
