@@ -254,7 +254,7 @@
             "duration": null
           },
           {
-            "condition": "When ally [?] is alive",
+            "condition": "When ally Kitari is alive",
             "target": "Self",
             "effect": "HP Recovery Rate Up 50%",
             "duration": null
@@ -340,7 +340,7 @@
             "duration": null
           },
           {
-            "condition": "When ally [?] is alive",
+            "condition": "When ally Kitari is alive",
             "target": "All enemy generals",
             "effect": "ATK Down 30%",
             "duration": null
@@ -365,7 +365,7 @@
             "duration": null
           },
           {
-            "condition": "When ally [?] is alive",
+            "condition": "When ally Kitari is alive",
             "target": "Ally Mountain Folk",
             "effect": "Attack Nullification",
             "duration": "1 time"

@@ -195,6 +195,7 @@ function parseBuffEffect(str){
   for(let part of str.split(/[,、]/)){
     part=part.trim()
     if(/\d+[%％]\s*Damage|Normal Attack|HP Drain|Provoke|Confusion Infliction|Stun Rate|Seal Rate/i.test(part)) continue
+    if(/^enemy/i.test(part)) continue
     let ownerType=null,antiEnemy=null,m
     // "Ally [X] Anti-[Y] ..." — owner unit type + anti enemy type (from effect field)
     m=part.match(/^(?:Ally\s+)\[([A-Za-z]+)\]\s+Anti-\[([^\]]+)\]\s+(.+)/i)
@@ -366,20 +367,41 @@ function normalizeEnemyTarget(t){
     if(tl.includes(label)) return `Enemy ${label[0].toUpperCase()+label.slice(1)}`
   return 'Enemies'
 }
-function calcTeamEnemyDebuffs(team){
+function calcTeamEnemyDebuffs(team,enemyTeam=[]){
   const byTarget={}
+  function addToTarget(key,parsed){
+    if(!parsed.length) return
+    if(enemyTeam.length>0){
+      const ut=UNIT_TYPE_LIST.find(u=>key===`Enemy ${u}`)
+      if(ut&&!enemyTeam.some(g=>g.unit_type===ut)) return
+      for(const[label] of Object.entries(FACTION_MAP)){
+        const cap=label[0].toUpperCase()+label.slice(1)
+        if(key===`Enemy ${cap}`&&!enemyTeam.some(g=>g.country===FACTION_MAP[label])) return
+      }
+    }
+    if(!byTarget[key]) byTarget[key]={up:{},down:{}}
+    for(const{stat,dir,val} of parsed){
+      const d=dir==='Up'?'up':'down'
+      byTarget[key][d][stat]=(byTarget[key][d][stat]||0)+val
+    }
+  }
   for(const owner of team){
     for(const sk of(owner.skills||[])){
       for(const eff of(sk.effects||[])){
         const t=(eff.target||'').trim()
-        if(!/^enemy|^all\s+enemy/i.test(t)) continue
-        const parsed=parseBuffEffect(eff.effect)
-        if(!parsed.length) continue
-        const key=normalizeEnemyTarget(t)
-        if(!byTarget[key]) byTarget[key]={up:{},down:{}}
-        for(const{stat,dir,val} of parsed){
-          const d=dir==='Up'?'up':'down'
-          byTarget[key][d][stat]=(byTarget[key][d][stat]||0)+val
+        if(/^enemy|^all\s+enemy/i.test(t)){
+          addToTarget(normalizeEnemyTarget(t),parseBuffEffect(eff.effect))
+        } else {
+          // collect embedded "Enemy [X] Stat Dir Val" parts from ally-target effects
+          for(const part of (eff.effect||'').split(/[,、]/)){
+            const p=part.trim()
+            if(!/^enemy\s*\[/i.test(p)) continue
+            const m=p.match(/^Enemy\s+\[([^\]]+)\]\s+(.+?)\s+(Up|Down)\s+(\d+(?:\.\d+)?)[%％]/i)
+            if(!m) continue
+            const targetType=m[1].trim()
+            const key=UNIT_TYPE_LIST.includes(targetType)?`Enemy ${targetType}`:`Enemy ${targetType[0].toUpperCase()+targetType.slice(1)}`
+            addToTarget(key,[{stat:m[2].trim(),dir:m[3],val:parseFloat(m[4])}])
+          }
         }
       }
     }
@@ -966,8 +988,8 @@ function BuffTable({atk,def}){
   if(!atk.length&&!def.length) return null
   const atkBuffs=atk.map(g=>({general:g,buffs:calcCharBuffs(g,atk,def,false,true)}))
   const defBuffs=def.map(g=>({general:g,buffs:calcCharBuffs(g,def,atk,true,true)}))
-  const atkEnemyDebuffs=calcTeamEnemyDebuffs(atk)
-  const defEnemyDebuffs=calcTeamEnemyDebuffs(def)
+  const atkEnemyDebuffs=calcTeamEnemyDebuffs(atk,def)
+  const defEnemyDebuffs=calcTeamEnemyDebuffs(def,atk)
   const hasAny=arr=>arr.some(({buffs})=>Object.keys(buffs).length>0)
   if(!hasAny(atkBuffs)&&!hasAny(defBuffs)&&!Object.keys(atkEnemyDebuffs).length&&!Object.keys(defEnemyDebuffs).length) return null
   return(
