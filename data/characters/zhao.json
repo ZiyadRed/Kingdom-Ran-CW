@@ -59,7 +59,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/ka.webp",
-    "icon": "/icons/Ka.png"
+    "icon": "/icons/Ka.webp"
   },
   {
     "id": "shunsuiki",
@@ -152,7 +152,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/shunsuiju.webp",
-    "icon": "/icons/Shunsuiju.png"
+    "icon": "/icons/Shunsuiju.webp"
   },
   {
     "id": "shunpeikun",
@@ -220,7 +220,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/shunpeikun.webp",
-    "icon": "/icons/Shunpeikun.png"
+    "icon": "/icons/Shunpeikun.webp"
   },
   {
     "id": "seikou",
@@ -301,7 +301,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/dukesei.webp",
-    "icon": "/icons/Duke Sei.png"
+    "icon": "/icons/Duke Sei.webp"
   },
   {
     "id": "kinmo",
@@ -393,7 +393,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kinmou.webp",
-    "icon": "/icons/Kinmou.png"
+    "icon": "/icons/Kinmou.webp"
   },
   {
     "id": "gakuei",
@@ -479,7 +479,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/gakuei.webp",
-    "icon": "/icons/Gakuei.png"
+    "icon": "/icons/Gakuei.webp"
   },
   {
     "id": "ryuto",
@@ -566,7 +566,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/ryuuto.webp",
-    "icon": "/icons/Ryuuto.png"
+    "icon": "/icons/Ryuuto.webp"
   },
   {
     "id": "kishou",
@@ -653,7 +653,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kishou.webp",
-    "icon": "/icons/Kishou.png"
+    "icon": "/icons/Kishou.webp"
   },
   {
     "id": "kisei",
@@ -734,7 +734,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kisui.webp",
-    "icon": "/icons/Kisui.png"
+    "icon": "/icons/Kisui.webp"
   },
   {
     "id": "batei",
@@ -821,7 +821,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/batei.webp",
-    "icon": "/icons/Batei.png"
+    "icon": "/icons/Batei.webp"
   },
   {
     "id": "gika",
@@ -877,7 +877,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/gika.webp",
-    "icon": "/icons/Gika.png"
+    "icon": "/icons/Gika.webp"
   },
   {
     "id": "hoki",
@@ -933,6 +933,6 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/fuuki.webp",
-    "icon": "/icons/Hoki.png"
+    "icon": "/icons/Hoki.webp"
   }
 ]

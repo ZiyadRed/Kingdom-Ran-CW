@@ -24,48 +24,8 @@ const ALL = [
   ...aiYanMajor,...misc,...misc2,
 ].filter(c=>c.country!=='unknown')
 
-// Character icon overrides — all files live in public/icons/
-const CHAR_ICONS={
-  'Bakan':      '/icons/Bakan.webp',
-  'Bihei':      '/icons/Bihei.webp',
-  'Bikou':      '/icons/Bikou.webp',
-  'Denyuu':     '/icons/Denyuu.webp',
-  'Kanki':      '/icons/Kanki.webp',
-  'Naki':       '/icons/Naki.webp',
-  'Nakon':      '/icons/Nakon.webp',
-  'Tou':        '/icons/Tou.webp',
-  'Yotanwa':    '/icons/Yotanwa.webp',
-  'Shoukaku':   '/icons/Shoukaku.webp',
-}
-// Also build a full map for every webp icon in /icons/
-// so ALL characters with matching name_en get their icon automatically
-const ALL_ICON_NAMES=[
-  'Akou','Bain','Bajio','Bakukoshin','Bamyu','Bananji','Batei','Budai',
-  'Chouin','Chousou','Choutou','Danto','Denrimi','Doukin','Duke Hyou','Duke Sei',
-  'Ei Sei','En','Entei','Fuji','Futei','Gaimou','Gakuei','Gakujou','Gakuki',
-  'Gakurai','Garo','Gekishin','Genpo','Gika','Gohoumei','Gokei','Goumasho',
-  'Goutoku','Hakuki','Hakurei','Hakusui','Hamui','Hanoki','Hanroki','Heki',
-  'Hokaku','Hoki','Houken','Hyou','Hyouki','Hyoushiga','Jinou','Junso','Ka',
-  'Kaen','Kaine','Kaioku','Kaishibou','Kakubi','Kakukai','Kakuun','Kanjou',
-  'Kanmei','Kanou','Karin','Karyou ten','Katari','Keibin','Keisha','Kinmou',
-  'Kishou','Kisui','Kitari','KoKou','Koshou','Kou','Kouretsu','Kourigen',
-  'Kousonryu','Kouyoku','Kyobou','Kyomei','Kyorei','Kyou','Kyouen','Kyougai',
-  'Kyoushou','Kyuukou','Mangoku','Maron','Moubo','Mougou','Mouki','Mouten',
-  'Muta','Ogiko','Okutso','Ordo','Otaji','Ouhon','Ouken','Ouki','Ousen','Pam',
-  'Queen Biki','Raido','Ramauji','Ranbihaku','Rankai','Reiou','Renpa','Riboku',
-  'Rien','Rihaku','Rikusen','Rinbou','Rinbukun','Ringyoku','Rinko','Robin',
-  'Rokuomi','Rouai','Rui','Ryofui','Ryuukoku','Ryuusen','Ryuuto','Seikai',
-  'Seikyu','Shibasaku','Shihaku','Shika','Shikika','Shinseijou','Shoukaku',
-  'Shoumou','Shoumounkun','Shoutaku','Shouu','Shuheikun','Shunmen','Shunpeikun',
-  'Shunshinkun','Shunsuiju','Sosui','Sougen','Taijifu','Tairoji','Toji','Toumi',
-  'Wategi','You','Youka','Yukii','Yuri','Yuuren','Zenou',
-]
-ALL_ICON_NAMES.forEach(n=>{ if(!CHAR_ICONS[n]) CHAR_ICONS[n]=`/icons/${n}.webp` })
-
-ALL.forEach(c=>{
-  if(c.id==='shoka'){ c.name_en='Shoukaku'; c.country='qin' }
-  if(CHAR_ICONS[c.name_en]) c.icon=CHAR_ICONS[c.name_en]
-})
+// Fix any remaining .png icon refs to .webp at runtime (safety net)
+ALL.forEach(c=>{ if(c.icon) c.icon=c.icon.replace('.png','.webp') })
 
 const FACTIONS=[
   {id:'qin',           label:'Qin',           jp:'秦',    color:'#c0392b'},
@@ -519,36 +479,133 @@ const BUFF_UNIT_CATS = ['Infantry','Cavalry','Archer','Shield']
 const BUFF_STAT_COLORS = {HP:'#1a8a72', Attack:'#c0392b', Defense:'#2471a3'}
 const CAT_COLOR = {Infantry:'#b8880a', Cavalry:'#c0392b', Archer:'#27ae60', Shield:'#6a4fc8'}
 
-function UnitCatIcon({cat, size=72}){
-  const imgs={
-    'Infantry': '/icons/unit_infantry.png',
-    'Cavalry':  '/icons/unit_cavalry.png',
-    'Archer':   '/icons/unit_archer.png',
-    'Shield':   '/icons/unit_shield.png',
-  }
+function UnitCatIcon({cat,size=80}){
+  const imgs={'Infantry':'/icons/unit_infantry.png','Cavalry':'/icons/unit_cavalry.png','Archer':'/icons/unit_archer.png','Shield':'/icons/unit_shield.png'}
   return <img src={imgs[cat]} alt={cat} style={{width:size,height:size,objectFit:'contain',flexShrink:0}}/>
+}
+function UnitCatIcon_UNUSED({cat, size=48}){
+  if(cat==='Infantry') return(
+    <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
+      <defs>
+        <radialGradient id="ig1" cx="45%" cy="35%" r="65%">
+          <stop offset="0%" stopColor="#f5e070"/>
+          <stop offset="50%" stopColor="#d4a020"/>
+          <stop offset="100%" stopColor="#8a6000"/>
+        </radialGradient>
+        <radialGradient id="ig2" cx="45%" cy="30%" r="55%">
+          <stop offset="0%" stopColor="rgba(255,255,200,0.35)"/>
+          <stop offset="100%" stopColor="rgba(255,255,200,0)"/>
+        </radialGradient>
+      </defs>
+      <circle cx="50" cy="50" r="48" fill="url(#ig1)" stroke="#c8900a" strokeWidth="2"/>
+      <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,240,100,0.4)" strokeWidth="2"/>
+      <circle cx="50" cy="50" r="48" fill="url(#ig2)"/>
+      {/* Mace/hammer: handle diagonal, rectangular head */}
+      <g transform="rotate(-40, 50, 50)">
+        <rect x="46" y="20" width="8" height="38" rx="4" fill="white" opacity="0.95"/>
+        <rect x="32" y="15" width="36" height="20" rx="5" fill="white" opacity="0.95"/>
+        <rect x="35" y="12" width="30" height="6" rx="3" fill="white" opacity="0.7"/>
+      </g>
+    </svg>
+  )
+  if(cat==='Cavalry') return(
+    <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
+      <defs>
+        <linearGradient id="cg1" x1="20%" y1="0%" x2="80%" y2="100%">
+          <stop offset="0%" stopColor="#ff5555"/>
+          <stop offset="45%" stopColor="#d42020"/>
+          <stop offset="100%" stopColor="#7a0a0a"/>
+        </linearGradient>
+        <radialGradient id="cg2" cx="40%" cy="30%" r="55%">
+          <stop offset="0%" stopColor="rgba(255,200,200,0.4)"/>
+          <stop offset="100%" stopColor="rgba(255,200,200,0)"/>
+        </radialGradient>
+      </defs>
+      <path d="M50 4L96 50L50 96L4 50Z" fill="url(#cg1)" stroke="#ff8080" strokeWidth="2"/>
+      <path d="M50 12L88 50L50 88L12 50Z" fill="none" stroke="rgba(255,150,150,0.3)" strokeWidth="1.5"/>
+      <path d="M50 4L96 50L50 96L4 50Z" fill="url(#cg2)"/>
+      {/* Horse head silhouette facing left */}
+      <path d="M62 28 C68 28 74 32 76 38 C78 44 76 50 72 54 C70 56 67 57 65 58 L63 66 C62 68 60 69 58 68 L55 67 C53 66 52 64 53 62 L54 58 C50 57 46 55 43 51 C39 46 38 40 40 35 C42 30 47 27 52 27 C55 27 58 28 60 29 Z" fill="white" opacity="0.95"/>
+      <path d="M62 28 C65 24 68 22 70 23 C72 24 72 27 70 29 C68 30 65 30 63 30 Z" fill="white" opacity="0.95"/>
+      <circle cx="57" cy="36" r="2.5" fill="#d42020"/>
+    </svg>
+  )
+  if(cat==='Archer') return(
+    <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
+      <defs>
+        <linearGradient id="ag1" x1="30%" y1="0%" x2="70%" y2="100%">
+          <stop offset="0%" stopColor="#50d060"/>
+          <stop offset="45%" stopColor="#22a030"/>
+          <stop offset="100%" stopColor="#0a5018"/>
+        </linearGradient>
+        <radialGradient id="ag2" cx="40%" cy="25%" r="55%">
+          <stop offset="0%" stopColor="rgba(180,255,180,0.45)"/>
+          <stop offset="100%" stopColor="rgba(180,255,180,0)"/>
+        </radialGradient>
+      </defs>
+      {/* Pentagon flat-bottom */}
+      <path d="M50 5L95 36L78 92L22 92L5 36Z" fill="url(#ag1)" stroke="#50e870" strokeWidth="2"/>
+      <path d="M50 13L87 40L72 86L28 86L13 40Z" fill="none" stroke="rgba(150,255,150,0.3)" strokeWidth="1.5"/>
+      <path d="M50 5L95 36L78 92L22 92L5 36Z" fill="url(#ag2)"/>
+      {/* Bow */}
+      <path d="M28 65 Q50 30 72 65" stroke="white" strokeWidth="4" fill="none" strokeLinecap="round"/>
+      <line x1="28" y1="65" x2="72" y2="65" stroke="white" strokeWidth="1.8" strokeLinecap="round" opacity="0.7"/>
+      {/* Arrow pointing up */}
+      <line x1="50" y1="20" x2="50" y2="72" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+      {/* Arrowhead */}
+      <path d="M50 14 L44 26 L50 22 L56 26 Z" fill="white"/>
+      {/* Tail feathers */}
+      <path d="M50 72 L44 80 L50 76 L56 80 Z" fill="white" opacity="0.8"/>
+      {/* Bow tips curl */}
+      <circle cx="28" cy="65" r="3" fill="white" opacity="0.8"/>
+      <circle cx="72" cy="65" r="3" fill="white" opacity="0.8"/>
+    </svg>
+  )
+  // Shield — purple/blue rounded square with hourglass shield
+  return(
+    <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
+      <defs>
+        <linearGradient id="sg1" x1="20%" y1="0%" x2="80%" y2="100%">
+          <stop offset="0%" stopColor="#9070e8"/>
+          <stop offset="50%" stopColor="#5535b0"/>
+          <stop offset="100%" stopColor="#2a1870"/>
+        </linearGradient>
+        <radialGradient id="sg2" cx="40%" cy="25%" r="60%">
+          <stop offset="0%" stopColor="rgba(180,200,255,0.45)"/>
+          <stop offset="100%" stopColor="rgba(180,200,255,0)"/>
+        </radialGradient>
+      </defs>
+      {/* Outer rounded square with blue rim */}
+      <rect x="3" y="3" width="94" height="94" rx="18" fill="url(#sg1)" stroke="#88aaff" strokeWidth="3"/>
+      <rect x="3" y="3" width="94" height="94" rx="18" fill="url(#sg2)"/>
+      {/* Inner border */}
+      <rect x="10" y="10" width="80" height="80" rx="13" fill="none" stroke="rgba(180,180,255,0.3)" strokeWidth="2"/>
+      {/* Hourglass shield shape — wide top, narrow waist, wide bottom */}
+      <path d="M50 18 C50 18 70 18 72 22 C74 28 66 40 64 48 C66 56 74 68 72 76 C70 80 50 82 50 82 C50 82 30 80 28 76 C26 68 34 56 36 48 C34 40 26 28 28 22 C30 18 50 18 50 18 Z" fill="white" opacity="0.95"/>
+    </svg>
+  )
 }
 
 function BuffsPage(){
   const[activeCat,setActiveCat]=useState(null)
-  const[openStats,setOpenStats]=useState({})
+  const[activeStat,setActiveStat]=useState('HP')
   const data=cwBuffsData
 
-  const toggleStat=(cat,stat)=>{
-    const k=`${cat}__${stat}`
-    setOpenStats(p=>({...p,[k]:!p[k]}))
-  }
   const handleCat=(cat)=>{
     if(activeCat===cat){setActiveCat(null)}
-    else{setActiveCat(cat);setOpenStats(p=>({...p,[`${cat}__HP`]:true}))}
+    else{setActiveCat(cat);setActiveStat('HP')}
   }
 
   return(
-    <div className="main-page">
-      <h2 className="pg-title">CW Buffs</h2>
-      <p className="pg-sub">Administration skills active during Castle Wars — stackable buffs by unit type.</p>
+    <div style={{maxWidth:'860px',margin:'0 auto',padding:'0 1rem'}}>
+      {/* Header */}
+      <div style={{textAlign:'center',marginBottom:'2rem',paddingTop:'1rem'}}>
+        <h2 style={{fontSize:'1.5rem',fontWeight:800,color:'var(--txt)',marginBottom:'.3rem'}}>CW Buffs</h2>
+        <p style={{fontSize:'.82rem',color:'var(--txt3)'}}>Administration skills active during Castle Wars — stackable buffs by unit type</p>
+      </div>
 
-      <div style={{display:'grid',gridTemplateColumns:'repeat(4,minmax(0,1fr))',gap:'14px',marginBottom:'2rem',maxWidth:'780px'}}>
+      {/* Unit type selector — centered row */}
+      <div style={{display:'flex',justifyContent:'center',gap:'16px',marginBottom:'2.5rem',flexWrap:'wrap'}}>
         {BUFF_UNIT_CATS.map(cat=>{
           const isActive=activeCat===cat
           const col=CAT_COLOR[cat]
@@ -556,97 +613,123 @@ function BuffsPage(){
           return(
             <button key={cat} onClick={()=>handleCat(cat)} style={{
               display:'flex',flexDirection:'column',alignItems:'center',gap:'10px',
-              padding:'22px 12px 18px',borderRadius:'18px',cursor:'pointer',
-              border:`${isActive?'2.5px':'1.5px'} solid ${isActive?col:'var(--bdr)'}`,
-              background:isActive?col+'14':'var(--sur)',
-              boxShadow:isActive?`0 4px 20px ${col}40`:'0 1px 4px rgba(0,0,0,0.06)',
-              transform:isActive?'translateY(-3px)':'none',
-              transition:'all .18s',
+              padding:'20px 24px 16px',borderRadius:'20px',cursor:'pointer',width:'160px',
+              border:`2px solid ${isActive?col:'var(--bdr)'}`,
+              background:isActive?`linear-gradient(135deg,${col}18,${col}08)`:'var(--sur)',
+              boxShadow:isActive?`0 6px 24px ${col}35`:'0 2px 8px rgba(0,0,0,0.06)',
+              transform:isActive?'translateY(-4px) scale(1.03)':'scale(1)',
+              transition:'all .2s ease',
             }}>
-              <UnitCatIcon cat={cat} size={72}/>
-              <span style={{fontWeight:700,fontSize:'.9rem',color:isActive?col:'var(--txt)'}}>{cat}</span>
-              <span style={{fontSize:'.68rem',color:'var(--txt3)',background:'var(--bg2)',padding:'2px 9px',borderRadius:'10px',border:'1px solid var(--bdr)'}}>{uniqueNames.size} chars</span>
+              <UnitCatIcon cat={cat} size={80}/>
+              <div style={{textAlign:'center'}}>
+                <div style={{fontWeight:800,fontSize:'.95rem',color:isActive?col:'var(--txt)',marginBottom:'4px'}}>{cat}</div>
+                <div style={{fontSize:'.68rem',color:'var(--txt3)',background:'var(--bg2)',padding:'2px 10px',borderRadius:'20px',border:'1px solid var(--bdr)',display:'inline-block'}}>{uniqueNames.size} generals</div>
+              </div>
             </button>
           )
         })}
       </div>
 
-      {activeCat&&(
-        <div style={{maxWidth:'720px'}}>
-          <div style={{display:'flex',alignItems:'center',gap:'10px',padding:'10px 14px',marginBottom:'12px',borderLeft:`4px solid ${CAT_COLOR[activeCat]}`,background:'var(--sur)',borderRadius:'0 8px 8px 0'}}>
-            <UnitCatIcon cat={activeCat} size={32}/>
-            <div>
-              <div style={{fontWeight:700,fontSize:'.9rem',color:CAT_COLOR[activeCat]}}>{activeCat} Buffs</div>
-              <div style={{fontSize:'.72rem',color:'var(--txt3)'}}>Click a stat to expand characters and stack total</div>
+      {/* Content area */}
+      {activeCat&&(()=>{
+        const col=CAT_COLOR[activeCat]
+        const stats=['HP','Attack','Defense']
+        const entries=(data[activeCat]||{})[activeStat]||[]
+        const total=entries.reduce((s,e)=>s+e.value,0)
+        const sc=BUFF_STAT_COLORS[activeStat]
+        return(
+          <div>
+            {/* Stat tabs */}
+            <div style={{display:'flex',justifyContent:'center',gap:'10px',marginBottom:'1.5rem'}}>
+              {stats.map(stat=>{
+                const isOn=activeStat===stat
+                const c=BUFF_STAT_COLORS[stat]
+                const ents=(data[activeCat]||{})[stat]||[]
+                const tot=ents.reduce((s,e)=>s+e.value,0)
+                return(
+                  <button key={stat} onClick={()=>setActiveStat(stat)} style={{
+                    display:'flex',flexDirection:'column',alignItems:'center',gap:'4px',
+                    padding:'10px 28px',borderRadius:'12px',cursor:'pointer',
+                    border:`2px solid ${isOn?c:'var(--bdr)'}`,
+                    background:isOn?c+'15':'var(--sur)',
+                    transition:'all .15s',
+                  }}>
+                    <span style={{fontWeight:700,fontSize:'.85rem',color:isOn?c:'var(--txt)'}}>{stat}</span>
+                    <span style={{fontSize:'.7rem',fontWeight:700,color:c}}>+{tot.toFixed(1)}%</span>
+                  </button>
+                )
+              })}
+            </div>
+
+            {/* Stack total banner */}
+            <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'12px 20px',borderRadius:'14px',marginBottom:'1rem',background:`linear-gradient(90deg,${sc}18,${sc}08)`,border:`1.5px solid ${sc}44`}}>
+              <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
+                <UnitCatIcon cat={activeCat} size={36}/>
+                <div>
+                  <div style={{fontWeight:700,fontSize:'.88rem',color:col}}>{activeCat} · {activeStat}</div>
+                  <div style={{fontSize:'.7rem',color:'var(--txt3)'}}>Total stackable buff from {entries.length} generals</div>
+                </div>
+              </div>
+              <div style={{fontWeight:900,fontSize:'1.5rem',color:sc}}>+{total.toFixed(1)}%</div>
+            </div>
+
+            {/* Character list */}
+            <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
+              {entries.map((e,i)=>{
+                const char=ALL.find(c=>c.name_en===e.name||c.name_en.toLowerCase()===e.name.toLowerCase())
+                const fc=CC[e.faction]||'#888'
+                const isTop=i<3
+                return(
+                  <div key={e.name+i} style={{
+                    display:'flex',alignItems:'center',gap:'14px',
+                    padding:'12px 16px',borderRadius:'14px',
+                    background:isTop?`linear-gradient(90deg,${sc}0a,var(--sur))`:'var(--sur)',
+                    border:`1px solid ${isTop?sc+'44':'var(--bdr)'}`,
+                    transition:'transform .12s, box-shadow .12s',
+                  }}
+                    onMouseEnter={ev=>{ev.currentTarget.style.transform='translateY(-1px)';ev.currentTarget.style.boxShadow=`0 4px 14px ${sc}20`}}
+                    onMouseLeave={ev=>{ev.currentTarget.style.transform='';ev.currentTarget.style.boxShadow=''}}>
+                    {/* Rank */}
+                    <div style={{minWidth:'32px',textAlign:'center'}}>
+                      {isTop
+                        ?<div style={{width:28,height:28,borderRadius:'50%',background:sc,color:'white',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:800,fontSize:'.75rem',margin:'0 auto'}}>{i+1}</div>
+                        :<span style={{fontSize:'.7rem',fontWeight:700,color:'var(--txt3)'}}>{i+1}</span>
+                      }
+                    </div>
+                    {/* Portrait */}
+                    <div style={{width:56,height:56,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2.5px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                      {char?.icon?<img src={char.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}} alt={e.name}/>
+                      :char?.image?<img src={char.image} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
+                      :<span style={{fontSize:'1.2rem',fontWeight:700,color:fc}}>{e.name[0]}</span>}
+                    </div>
+                    {/* Info */}
+                    <div style={{flex:1,minWidth:0}}>
+                      <div style={{display:'flex',alignItems:'center',gap:'6px',flexWrap:'wrap',marginBottom:'3px'}}>
+                        <span style={{fontWeight:700,fontSize:'.92rem',color:'var(--txt)'}}>{e.name}</span>
+                        <span style={{fontSize:'.65rem',color:'var(--txt3)'}}>{e.name_jp}</span>
+                        {e.star6&&<span style={{fontSize:'.65rem',color:'#c9902a',fontWeight:800}}>☆6</span>}
+                      </div>
+                      <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
+                        <span style={{fontSize:'.62rem',padding:'1px 7px',borderRadius:'4px',background:fc+'22',color:fc,border:`1px solid ${fc}44`,fontWeight:700}}>{e.type}</span>
+                        <span style={{fontSize:'.62rem',color:'var(--txt3)'}}>{FACTIONS.find(f=>f.id===e.faction)?.label||e.faction}</span>
+                      </div>
+                    </div>
+                    {/* Value */}
+                    <div style={{textAlign:'right',flexShrink:0}}>
+                      <div style={{fontWeight:900,fontSize:'1.1rem',color:sc}}>+{e.value.toFixed(1)}%</div>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </div>
-          <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
-            {['HP','Attack','Defense'].map(stat=>{
-              const entries=(data[activeCat]||{})[stat]||[]
-              const total=entries.reduce((s,e)=>s+e.value,0)
-              const isOpen=!!openStats[`${activeCat}__${stat}`]
-              const sc=BUFF_STAT_COLORS[stat]
-              const catCol=CAT_COLOR[activeCat]
-              return(
-                <div key={stat} style={{border:`1px solid ${isOpen?catCol+'55':'var(--bdr)'}`,borderRadius:'12px',overflow:'hidden',background:'var(--sur2)',transition:'border-color .2s'}}>
-                  <button onClick={()=>toggleStat(activeCat,stat)} style={{
-                    width:'100%',display:'flex',alignItems:'center',gap:'8px',
-                    padding:'11px 14px',background:isOpen?catCol+'10':'transparent',
-                    border:'none',cursor:'pointer',
-                    borderBottom:isOpen?`1px solid ${catCol}33`:'1px solid transparent',
-                    transition:'background .15s',
-                  }}>
-                    <span style={{fontSize:'14px',color:sc}}>{stat==='HP'?'♥':stat==='Attack'?'⚔':'⛨'}</span>
-                    <span style={{fontWeight:700,fontSize:'.84rem',color:'var(--txt)',flex:1,textAlign:'left'}}>{stat}</span>
-                    <span style={{fontSize:'.7rem',fontWeight:700,color:sc,background:sc+'18',border:`1px solid ${sc}44`,padding:'2px 8px',borderRadius:'20px'}}>Stack: +{total.toFixed(1)}%</span>
-                    <span style={{fontSize:'.65rem',color:'var(--txt3)',background:'var(--bg2)',padding:'2px 7px',borderRadius:'20px',border:'1px solid var(--bdr)'}}>{entries.length}</span>
-                    <span style={{color:catCol,fontWeight:700,fontSize:'1rem',transform:isOpen?'rotate(90deg)':'rotate(0)',transition:'transform .2s'}}>›</span>
-                  </button>
-                  {isOpen&&(
-                    <div style={{padding:'10px',display:'flex',flexDirection:'column',gap:'5px'}}>
-                      <div style={{display:'flex',alignItems:'center',gap:'8px',padding:'7px 12px',borderRadius:'8px',marginBottom:'4px',background:sc+'10',border:`1px solid ${sc}30`}}>
-                        <span style={{fontSize:'13px',color:sc}}>{stat==='HP'?'♥':stat==='Attack'?'⚔':'⛨'}</span>
-                        <span style={{fontSize:'.76rem',color:'var(--txt2)',flex:1}}>Total stackable <b style={{color:sc}}>{stat}</b> buff</span>
-                        <span style={{fontWeight:800,fontSize:'.95rem',color:sc}}>+{total.toFixed(1)}%</span>
-                      </div>
-                      {entries.map((e,i)=>{
-                        const char=ALL.find(c=>c.name_en===e.name||c.name_en.toLowerCase()===e.name.toLowerCase())
-                        const fc=CC[e.faction]||'#888'
-                        return(
-                          <div key={e.name+i} style={{display:'flex',alignItems:'center',gap:'12px',padding:'10px 14px',borderRadius:'12px',background:'var(--sur)',border:'1px solid var(--bdr)',transition:'transform .12s'}}
-                            onMouseEnter={ev=>{ev.currentTarget.style.transform='translateY(-1px)'}}
-                            onMouseLeave={ev=>{ev.currentTarget.style.transform=''}}>
-                            <span style={{minWidth:'26px',textAlign:'center',fontSize:'.7rem',fontWeight:700,color:i<3?catCol:'var(--txt3)'}}># {i+1}</span>
-                            <div style={{width:52,height:52,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2.5px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                              {char?.icon?<img src={char.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}} alt={e.name}/>
-                              :char?.image?<img src={char.image} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
-                              :<span style={{fontSize:'1.1rem',fontWeight:700,color:fc}}>{e.name[0]}</span>}
-                            </div>
-                            <div style={{flex:1,minWidth:0}}>
-                              <div style={{display:'flex',alignItems:'center',gap:'6px',flexWrap:'wrap'}}>
-                                <span style={{fontWeight:700,fontSize:'.88rem',color:'var(--txt)'}}>{e.name}</span>
-                                <span style={{fontSize:'.65rem',color:'var(--txt3)'}}>{e.name_jp}</span>
-                                {e.star6&&<span style={{fontSize:'.62rem',color:'#c9902a',fontWeight:700}}>☆6</span>}
-                                <span style={{fontSize:'.6rem',padding:'1px 6px',borderRadius:'4px',background:fc+'22',color:fc,border:`1px solid ${fc}44`,fontWeight:700}}>{e.type}</span>
-                              </div>
-                              <div style={{fontSize:'.72rem',color:'var(--txt3)',marginTop:'2px'}}>{FACTIONS.find(f=>f.id===e.faction)?.label||e.faction}</div>
-                            </div>
-                            <span style={{fontWeight:800,fontSize:'1rem',color:sc,minWidth:'54px',textAlign:'right',flexShrink:0}}>+{e.value.toFixed(1)}%</span>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  )}
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      )}
+        )
+      })()}
+
       {!activeCat&&(
-        <div style={{textAlign:'center',padding:'3rem 1rem',color:'var(--txt3)',fontSize:'.82rem',maxWidth:'360px',margin:'0 auto'}}>
-          <div style={{fontSize:'2rem',opacity:.3,marginBottom:'.75rem'}}>⚔</div>
-          Select a unit type above to see CW administration buffs
+        <div style={{textAlign:'center',padding:'4rem 1rem',color:'var(--txt3)'}}>
+          <div style={{fontSize:'3rem',opacity:.15,marginBottom:'1rem'}}>⚔</div>
+          <div style={{fontSize:'.9rem'}}>Select a unit type above to see CW buffs</div>
         </div>
       )}
     </div>

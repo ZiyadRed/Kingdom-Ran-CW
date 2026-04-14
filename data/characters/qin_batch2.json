@@ -89,7 +89,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/sougen.webp",
-    "icon": "/icons/Sougen.png"
+    "icon": "/icons/Sougen.webp"
   },
   {
     "id": "gakurai",
@@ -170,7 +170,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/gakurai.webp",
-    "icon": "/icons/Gakurai.png"
+    "icon": "/icons/Gakurai.webp"
   },
   {
     "id": "choto",
@@ -256,7 +256,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/choutou.webp",
-    "icon": "/icons/Choutou.png"
+    "icon": "/icons/Choutou.webp"
   },
   {
     "id": "shimasaku",
@@ -318,7 +318,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/shibasaku.webp",
-    "icon": "/icons/Shibasaku.png"
+    "icon": "/icons/Shibasaku.webp"
   },
   {
     "id": "hyoshiga",
@@ -398,7 +398,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/hyoushiga.webp",
-    "icon": "/icons/Hyoushiga.png"
+    "icon": "/icons/Hyoushiga.webp"
   },
   {
     "id": "hakuki",
@@ -534,7 +534,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/hakuki.webp",
-    "icon": "/icons/Hakuki.png"
+    "icon": "/icons/Hakuki.webp"
   },
   {
     "id": "ohkotsu",
@@ -596,7 +596,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/oukotsu.webp",
-    "icon": "/icons/Okutso.png"
+    "icon": "/icons/Okutso.webp"
   },
   {
     "id": "kaioku",
@@ -689,7 +689,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kaioku.webp",
-    "icon": "/icons/Kaioku.png"
+    "icon": "/icons/Kaioku.webp"
   },
   {
     "id": "kosho",
@@ -757,7 +757,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/koshou.webp",
-    "icon": "/icons/Koshou.png"
+    "icon": "/icons/Koshou.webp"
   },
   {
     "id": "garo",
@@ -832,7 +832,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/garo.webp",
-    "icon": "/icons/Garo.png"
+    "icon": "/icons/Garo.webp"
   },
   {
     "id": "rikusen",
@@ -901,7 +901,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/rikusen.webp",
-    "icon": "/icons/Rikusen.png"
+    "icon": "/icons/Rikusen.webp"
   },
   {
     "id": "kanjo",
@@ -982,7 +982,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kanjou.webp",
-    "icon": "/icons/Kanjou.png"
+    "icon": "/icons/Kanjou.webp"
   },
   {
     "id": "seikyo",
@@ -1038,7 +1038,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/seikyou.webp",
-    "icon": "/icons/Seikyu.png"
+    "icon": "/icons/Seikyu.webp"
   },
   {
     "id": "rui",
@@ -1124,7 +1124,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/rui.webp",
-    "icon": "/icons/Rui.png"
+    "icon": "/icons/Rui.webp"
   },
   {
     "id": "yo",
@@ -1192,7 +1192,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/you.webp",
-    "icon": "/icons/You.png"
+    "icon": "/icons/You.webp"
   },
   {
     "id": "ryuyu",

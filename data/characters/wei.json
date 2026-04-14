@@ -139,7 +139,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/tairoji.webp",
-    "icon": "/icons/Tairoji.png"
+    "icon": "/icons/Tairoji.webp"
   },
   {
     "id": "ranbishaku",
@@ -282,7 +282,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/ranbihaku.webp",
-    "icon": "/icons/Ranbihaku.png"
+    "icon": "/icons/Ranbihaku.webp"
   },
   {
     "id": "shikika",
@@ -375,7 +375,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/shikika.webp",
-    "icon": "/icons/Shikika.png"
+    "icon": "/icons/Shikika.webp"
   },
   {
     "id": "keiminoo",
@@ -455,7 +455,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/keibin.webp",
-    "icon": "/icons/Keibin.png"
+    "icon": "/icons/Keibin.webp"
   },
   {
     "id": "gaimo",
@@ -530,7 +530,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/gaimou.webp",
-    "icon": "/icons/Gaimou.png"
+    "icon": "/icons/Gaimou.webp"
   },
   {
     "id": "junso",
@@ -611,7 +611,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/junsou.webp",
-    "icon": "/icons/Junso.png"
+    "icon": "/icons/Junso.webp"
   },
   {
     "id": "reiou",
@@ -723,7 +723,7 @@
         ]
       }
     ],
-    "icon": "/icons/Reiou.png"
+    "icon": "/icons/Reiou.webp"
   },
   {
     "id": "yuren",
@@ -779,7 +779,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/yuuren.webp",
-    "icon": "/icons/Yuuren.png"
+    "icon": "/icons/Yuuren.webp"
   },
   {
     "id": "korgen",
@@ -835,7 +835,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kourigen.webp",
-    "icon": "/icons/Kourigen.png"
+    "icon": "/icons/Kourigen.webp"
   },
   {
     "id": "shihaku",
@@ -909,6 +909,6 @@
         ]
       }
     ],
-    "icon": "/icons/Shihaku.png"
+    "icon": "/icons/Shihaku.webp"
   }
 ]

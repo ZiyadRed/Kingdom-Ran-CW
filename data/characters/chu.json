@@ -78,7 +78,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/jinou.webp",
-    "icon": "/icons/Jinou.png"
+    "icon": "/icons/Jinou.webp"
   },
   {
     "id": "gomosho",
@@ -177,7 +177,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/goumasho.webp",
-    "icon": "/icons/Goumasho.png"
+    "icon": "/icons/Goumasho.webp"
   },
   {
     "id": "baiman",
@@ -326,7 +326,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kaen.webp",
-    "icon": "/icons/Kaen.png"
+    "icon": "/icons/Kaen.webp"
   },
   {
     "id": "koretsuo",
@@ -418,7 +418,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kouretsu.webp",
-    "icon": "/icons/Kouretsu.png"
+    "icon": "/icons/Kouretsu.webp"
   },
   {
     "id": "hakusui",
@@ -493,7 +493,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/hakusui.webp",
-    "icon": "/icons/Hakusui.png"
+    "icon": "/icons/Hakusui.webp"
   },
   {
     "id": "shunshinkun",
@@ -587,7 +587,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/shunshinkun.webp",
-    "icon": "/icons/Shunshinkun.png"
+    "icon": "/icons/Shunshinkun.webp"
   },
   {
     "id": "bananci",
@@ -656,7 +656,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/bananji.webp",
-    "icon": "/icons/Bananji.png"
+    "icon": "/icons/Bananji.webp"
   },
   {
     "id": "hyouki",
@@ -712,6 +712,6 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/hyouki.webp",
-    "icon": "/icons/Hyouki.png"
+    "icon": "/icons/Hyouki.webp"
   }
 ]

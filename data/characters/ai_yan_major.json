@@ -90,7 +90,7 @@
         ]
       }
     ],
-    "icon": "/icons/Rouai.png"
+    "icon": "/icons/Rouai.webp"
   },
   {
     "id": "juutekkoo",
@@ -158,7 +158,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/wategi.webp",
-    "icon": "/icons/Wategi.png"
+    "icon": "/icons/Wategi.webp"
   },
   {
     "id": "hanoki",
@@ -244,7 +244,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/hanoki.webp",
-    "icon": "/icons/Hanoki.png"
+    "icon": "/icons/Hanoki.webp"
   },
   {
     "id": "hanryuki",
@@ -336,7 +336,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/hanroki.webp",
-    "icon": "/icons/Hanroki.png"
+    "icon": "/icons/Hanroki.webp"
   },
   {
     "id": "ordo",
@@ -417,7 +417,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/ordo.webp",
-    "icon": "/icons/Ordo.png"
+    "icon": "/icons/Ordo.webp"
   },
   {
     "id": "denti",
@@ -524,7 +524,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/futei.webp",
-    "icon": "/icons/Futei.png"
+    "icon": "/icons/Futei.webp"
   },
   {
     "id": "kouyoku",
@@ -593,6 +593,6 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kouyoku.webp",
-    "icon": "/icons/Kouyoku.png"
+    "icon": "/icons/Kouyoku.webp"
   }
 ]

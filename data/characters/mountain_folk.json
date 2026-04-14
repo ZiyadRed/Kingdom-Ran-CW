@@ -122,7 +122,7 @@
     ],
     "notes": "Core unit; her name appears as a buff target in many Mountain Folk skill conditions.",
     "image": "https://kingdom-ran-cw.vercel.app/persos/yotanwa.webp",
-    "icon": "/icons/Yotanwa.png"
+    "icon": "/icons/Yotanwa.webp"
   },
   {
     "id": "kitari",
@@ -202,7 +202,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kitari.webp",
-    "icon": "/icons/Kitari.png"
+    "icon": "/icons/Kitari.webp"
   },
   {
     "id": "danto",
@@ -300,7 +300,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/danto.webp",
-    "icon": "/icons/Danto.png"
+    "icon": "/icons/Danto.webp"
   },
   {
     "id": "katari",
@@ -374,7 +374,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/katari.webp",
-    "icon": "/icons/Katari.png"
+    "icon": "/icons/Katari.webp"
   },
   {
     "id": "todji",
@@ -466,7 +466,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/toji.webp",
-    "icon": "/icons/Toji.png"
+    "icon": "/icons/Toji.webp"
   },
   {
     "id": "fuji",
@@ -546,7 +546,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/fuji.webp",
-    "icon": "/icons/Fuji.png"
+    "icon": "/icons/Fuji.webp"
   },
   {
     "id": "ramaoji",
@@ -626,7 +626,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/ramauji.webp",
-    "icon": "/icons/Ramauji.png"
+    "icon": "/icons/Ramauji.webp"
   },
   {
     "id": "pamu",
@@ -712,7 +712,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/pam.webp",
-    "icon": "/icons/Pam.png"
+    "icon": "/icons/Pam.webp"
   },
   {
     "id": "taijifu",
@@ -768,7 +768,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/taijifu.webp",
-    "icon": "/icons/Taijifu.png"
+    "icon": "/icons/Taijifu.webp"
   },
   {
     "id": "bajio",
@@ -842,7 +842,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/bajio.webp",
-    "icon": "/icons/Bajio.png"
+    "icon": "/icons/Bajio.webp"
   },
   {
     "id": "gotan",

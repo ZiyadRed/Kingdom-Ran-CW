@@ -47,7 +47,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/yuri.webp",
-    "icon": "/icons/Yuri.png"
+    "icon": "/icons/Yuri.webp"
   },
   {
     "id": "toumi",
@@ -97,7 +97,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/toubi.webp",
-    "icon": "/icons/Toumi.png"
+    "icon": "/icons/Toumi.webp"
   },
   {
     "id": "yugi",
@@ -213,7 +213,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/entei.webp",
-    "icon": "/icons/Entei.png"
+    "icon": "/icons/Entei.webp"
   },
   {
     "id": "bamyuu",
@@ -269,7 +269,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/bamyu.webp",
-    "icon": "/icons/Bamyu.png"
+    "icon": "/icons/Bamyu.webp"
   },
   {
     "id": "kakubi",
@@ -325,7 +325,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kakubi.webp",
-    "icon": "/icons/Kakubi.png"
+    "icon": "/icons/Kakubi.webp"
   },
   {
     "id": "kesshi",
@@ -441,7 +441,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/genpou.webp",
-    "icon": "/icons/Genpo.png"
+    "icon": "/icons/Genpo.webp"
   },
   {
     "id": "amon",
