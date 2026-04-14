@@ -24,8 +24,11 @@ const ALL = [
   ...aiYanMajor,...misc,...misc2,
 ].filter(c=>c.country!=='unknown')
 
-// Fix any remaining .png icon refs to .webp at runtime (safety net)
-ALL.forEach(c=>{ if(c.icon) c.icon=c.icon.replace('.png','.webp') })
+// Fix .png icon refs → .webp, and rename Shoka → Shouheikun in Qin
+ALL.forEach(c=>{
+  if(c.icon) c.icon=c.icon.replace('.png','.webp')
+  if(c.id==='shoka'){c.name_en='Shouheikun';c.country='qin'}
+})
 
 const FACTIONS=[
   {id:'qin',           label:'Qin',           jp:'秦',    color:'#c0392b'},
@@ -138,8 +141,212 @@ function Picker({onSelect,onClose,excl=[]}){
   )
 }
 
-// App
-const PAGES=['Archive','Party Builder','Simulate','CW Buffs','Tier List']
+// ── TEAM COST ─────────────────────────────────────────────────────────────────
+const RARITY_COST={R:595,SR:800,UR:1750}
+const RARITY_COLOR={R:'#3d9970',SR:'#3d6eb5',UR:'#c0392b'}
+
+const RARITY_DATA={
+  'Akou':{rarity:'UR',faction:'Qin',name_jp:'亜光'},
+  'Amon':{rarity:'SR',faction:'Qin',name_jp:'亜門'},
+  'Bain':{rarity:'UR',faction:'Qin',name_jp:'馬印'},
+  'Bajio':{rarity:'UR',faction:'Mountain Folk',name_jp:'バジオウ'},
+  'Bakan':{rarity:'SR',faction:'Han',name_jp:'馬関'},
+  'Bakukoshin':{rarity:'SR',faction:'Qin',name_jp:'縛虎申'},
+  'Bamyu':{rarity:'SR',faction:'Chu',name_jp:'バミュウ'},
+  'Bananji':{rarity:'UR',faction:'Zhao',name_jp:'馬南慈'},
+  'Banyou':{rarity:'SR',faction:'Qin',name_jp:'番陽'},
+  'Batei':{rarity:'SR',faction:'Zhao',name_jp:'馬呈'},
+  'Beiman':{rarity:'UR',faction:'Chu',name_jp:'貝満'},
+  'Bihei':{rarity:'R',faction:'Qin',name_jp:'尾平'},
+  'Bikou':{rarity:'R',faction:'Qin',name_jp:'尾到'},
+  'Budai':{rarity:'UR',faction:'Ai',name_jp:'ブダイ'},
+  'Chouin':{rarity:'UR',faction:'Han',name_jp:'張印'},
+  'Chouko':{rarity:'SR',faction:'Zhao',name_jp:'趙高'},
+  'Chousou':{rarity:'SR',faction:'Zhao',name_jp:'趙荘'},
+  'Choutou':{rarity:'UR',faction:'Qin',name_jp:'張唐'},
+  'Chutetsu':{rarity:'SR',faction:'Qin',name_jp:'中鉄'},
+  'Danto':{rarity:'UR',faction:'Mountain Folk',name_jp:'ダント'},
+  'Denei':{rarity:'SR',faction:'Qin',name_jp:'田永'},
+  'Denrimi':{rarity:'UR',faction:'Qin',name_jp:'田里弥'},
+  'Denyuu':{rarity:'SR',faction:'Qin',name_jp:'田有'},
+  'Domon':{rarity:'SR',faction:'Zhao',name_jp:'土門'},
+  'Douken':{rarity:'SR',faction:'Zhao',name_jp:'道剣'},
+  'Doukin':{rarity:'SR',faction:'Qin',name_jp:'同金'},
+  'Duke Hyou':{rarity:'UR',faction:'Qin',name_jp:'麃公'},
+  'Duke Sei':{rarity:'UR',faction:'Zhao',name_jp:'青公'},
+  'Ei Sei':{rarity:'SR',faction:'Qin',name_jp:'嬴政'},
+  'Entei':{rarity:'SR',faction:'Qin',name_jp:'燕呈'},
+  'Fuchi':{rarity:'SR',faction:'Qin',name_jp:'渕'},
+  'Fuji':{rarity:'SR',faction:'Mountain Folk',name_jp:'フゥヂ'},
+  'Futei':{rarity:'SR',faction:'Zhao',name_jp:'傳抵'},
+  'Gaimou':{rarity:'UR',faction:'Wei',name_jp:'凱孟'},
+  'Gakuei':{rarity:'UR',faction:'Zhao',name_jp:'岳嬰'},
+  'Gakujou':{rarity:'SR',faction:'Zhao',name_jp:'楽乗'},
+  'Gakuki':{rarity:'UR',faction:'Yan',name_jp:'楽毅'},
+  'Gakurai':{rarity:'UR',faction:'Qin',name_jp:'岳雷'},
+  'Garo':{rarity:'UR',faction:'Qin',name_jp:'我呂'},
+  'Gekishin':{rarity:'UR',faction:'Yan',name_jp:'劇辛'},
+  'Genpo':{rarity:'SR',faction:'Wei',name_jp:'玄峰'},
+  'Gii':{rarity:'SR',faction:'Wei',name_jp:'魏興'},
+  'Gika':{rarity:'SR',faction:'Wei',name_jp:'魏加'},
+  'Gohoumei':{rarity:'UR',faction:'Wei',name_jp:'呉鳳明'},
+  'Gokei':{rarity:'UR',faction:'Wei',name_jp:'呉慶'},
+  'Gotan':{rarity:'SR',faction:'Mountain Folk',name_jp:'剛炭'},
+  'Goumasho':{rarity:'UR',faction:'Chu',name_jp:'剛摩諸'},
+  'Goutoku':{rarity:'SR',faction:'Chu',name_jp:'豪徳'},
+  'Hairou':{rarity:'SR',faction:'Qin',name_jp:'沛浪'},
+  'Hakuki':{rarity:'UR',faction:'Qin',name_jp:'白起'},
+  'Hakukisei':{rarity:'SR',faction:'Qin',name_jp:'白亀西'},
+  'Hakurei':{rarity:'SR',faction:'Chu',name_jp:'白麗'},
+  'Hakusui':{rarity:'UR',faction:'Chu',name_jp:'白翠'},
+  'Hamui':{rarity:'UR',faction:'Ai',name_jp:'ハムイ'},
+  'Hanoki':{rarity:'UR',faction:'Ai',name_jp:'樊於期'},
+  'Hanroki':{rarity:'UR',faction:'Ai',name_jp:'樊琉期'},
+  'Heki':{rarity:'R',faction:'Qin',name_jp:'壁'},
+  'Hokaku':{rarity:'SR',faction:'Qin',name_jp:'蒲鶮'},
+  'Hoki':{rarity:'SR',faction:'Wei',name_jp:'馮忌'},
+  'Houken':{rarity:'UR',faction:'Zhao',name_jp:'龐煖'},
+  'Hyou':{rarity:'SR',faction:'Qin',name_jp:'漂'},
+  'Hyouki':{rarity:'SR',faction:'Chu',name_jp:'氷鬼'},
+  'Hyoushiga':{rarity:'UR',faction:'Qin',name_jp:'豹司牙'},
+  'Jinou':{rarity:'UR',faction:'Chu',name_jp:'仁凹'},
+  'Jiou':{rarity:'SR',faction:'Zhao',name_jp:'江彰'},
+  'Jokan':{rarity:'SR',faction:'Zhao',name_jp:'徐完'},
+  'Junso':{rarity:'UR',faction:'Wei',name_jp:'荀早'},
+  'Ka':{rarity:'UR',faction:'Zhao',name_jp:'太子嘉'},
+  'Kaen':{rarity:'UR',faction:'Chu',name_jp:'媧偃'},
+  'Kaine':{rarity:'SR',faction:'Zhao',name_jp:'カイネ'},
+  'Kaioku':{rarity:'UR',faction:'Qin',name_jp:'介億'},
+  'Kaishibou':{rarity:'SR',faction:'Wei',name_jp:'介子坊'},
+  'Kakubi':{rarity:'SR',faction:'Qin',name_jp:'郭備'},
+  'Kakukai':{rarity:'UR',faction:'Zhao',name_jp:'郭開'},
+  'Kakuun':{rarity:'UR',faction:'Qin',name_jp:'角雲'},
+  'Kanjou':{rarity:'UR',faction:'Qin',name_jp:'関常'},
+  'Kanki':{rarity:'UR',faction:'Qin',name_jp:'桓騎'},
+  'Kanmei':{rarity:'UR',faction:'Chu',name_jp:'汗明'},
+  'Kanou':{rarity:'SR',faction:'Qin',name_jp:'干央'},
+  'Karin':{rarity:'UR',faction:'Chu',name_jp:'媧燐'},
+  'Karyoten':{rarity:'SR',faction:'Qin',name_jp:'河了貂'},
+  'Katari':{rarity:'UR',faction:'Mountain Folk',name_jp:'カタリ'},
+  'Kei':{rarity:'SR',faction:'Qin',name_jp:'慶'},
+  'Keibin':{rarity:'UR',faction:'Wei',name_jp:'景湣王'},
+  'Keisha':{rarity:'UR',faction:'Zhao',name_jp:'慶舎'},
+  'Kesshi':{rarity:'SR',faction:'Zhao',name_jp:'竭氏'},
+  'Kinmou':{rarity:'UR',faction:'Zhao',name_jp:'金毛'},
+  'Kishou':{rarity:'UR',faction:'Zhao',name_jp:'紀昌'},
+  'Kisui':{rarity:'UR',faction:'Zhao',name_jp:'紀彗'},
+  'Kitari':{rarity:'UR',faction:'Mountain Folk',name_jp:'キタリ'},
+  'Kokuou':{rarity:'SR',faction:'Qin',name_jp:'黒桜'},
+  'Koshou':{rarity:'UR',faction:'Qin',name_jp:'胡傷'},
+  'Kou':{rarity:'UR',faction:'Qin',name_jp:'向'},
+  'Kouretsu':{rarity:'UR',faction:'Chu',name_jp:'考烈王'},
+  'Kourigen':{rarity:'SR',faction:'Wei',name_jp:'黄離弦'},
+  'Kousonryu':{rarity:'SR',faction:'Zhao',name_jp:'公孫龍'},
+  'Kouyoku':{rarity:'SR',faction:'Chu',name_jp:'項翼'},
+  'Kuzen':{rarity:'SR',faction:'Qin',name_jp:'蒙恬のじぃ'},
+  'Kyomei':{rarity:'SR',faction:'Qin',name_jp:'羌明'},
+  'Kyou':{rarity:'UR',faction:'Qin',name_jp:'摎'},
+  'KyouEn':{rarity:'SR',faction:'Wei',name_jp:'姜燕'},
+  'Kyoubou':{rarity:'UR',faction:'Chu',name_jp:'巨暴'},
+  'Kyougai':{rarity:'SR',faction:'Qin',name_jp:'去亥'},
+  'Kyoukai':{rarity:'SR',faction:'Qin',name_jp:'羌瘣'},
+  'Kyourei':{rarity:'SR',faction:'Qin',name_jp:'京令'},
+  'Kyoushou':{rarity:'SR',faction:'Qin',name_jp:'羌象'},
+  'Kyuukou':{rarity:'SR',faction:'Qin',name_jp:'宮康'},
+  'Linhtama':{rarity:'SR',faction:'Qin',name_jp:'ランタマ'},
+  'Maki':{rarity:'SR',faction:'Mountain Folk',name_jp:'麻鬼'},
+  'Mangoku':{rarity:'SR',faction:'Zhao',name_jp:'万極'},
+  'Maron':{rarity:'SR',faction:'Qin',name_jp:'摩論'},
+  'Miyamoto':{rarity:'SR',faction:'Zhao',name_jp:'宮元'},
+  'Moubu':{rarity:'UR',faction:'Qin',name_jp:'蒙武'},
+  'Mougou':{rarity:'UR',faction:'Qin',name_jp:'蒙驁'},
+  'Mouki':{rarity:'SR',faction:'Qin',name_jp:'蒙毅'},
+  'Mouten':{rarity:'SR',faction:'Qin',name_jp:'蒙恬'},
+  'Muta':{rarity:'SR',faction:'Qin',name_jp:'ムタ'},
+  'Naki':{rarity:'UR',faction:'Qin',name_jp:'那貴'},
+  'Nakon':{rarity:'SR',faction:'Han',name_jp:'奈棍'},
+  'Ogiko':{rarity:'SR',faction:'Qin',name_jp:'オギコ'},
+  'Ordo':{rarity:'UR',faction:'Yan',name_jp:'オルド'},
+  'Otaji':{rarity:'SR',faction:'Yan',name_jp:'オタジ'},
+  'Ouhon':{rarity:'SR',faction:'Qin',name_jp:'王賁'},
+  'Ouken':{rarity:'UR',faction:'Qi',name_jp:'王建王'},
+  'Ouki':{rarity:'UR',faction:'Qin',name_jp:'王騎'},
+  'Oukotsu':{rarity:'UR',faction:'Qin',name_jp:'王齕'},
+  'Ousen':{rarity:'UR',faction:'Qin',name_jp:'王翦'},
+  'Pam':{rarity:'SR',faction:'Mountain Folk',name_jp:'パム'},
+  'Qingxiang':{rarity:'SR',faction:'Zhao',name_jp:'青翔'},
+  'Queen Biki':{rarity:'UR',faction:'Qin',name_jp:'太后'},
+  'Raido':{rarity:'R',faction:'Qin',name_jp:'雷土'},
+  'Ramauji':{rarity:'SR',faction:'Mountain Folk',name_jp:'ラマウジ'},
+  'Ranbihaku':{rarity:'UR',faction:'Wei',name_jp:'乱美迫'},
+  'Rankai':{rarity:'SR',faction:'Mountain Folk',name_jp:'ランカイ'},
+  'Reiou':{rarity:'UR',faction:'Wei',name_jp:'霊凰'},
+  'Renpa':{rarity:'UR',faction:'Wei',name_jp:'廉頗'},
+  'Riboku':{rarity:'UR',faction:'Zhao',name_jp:'李牧'},
+  'Rien':{rarity:'UR',faction:'Chu',name_jp:'李園'},
+  'Rihaku':{rarity:'SR',faction:'Zhao',name_jp:'李白'},
+  'Rikusen':{rarity:'UR',faction:'Qin',name_jp:'陸仙'},
+  'Rinbou':{rarity:'SR',faction:'Qin',name_jp:'鱗坊'},
+  'Rinbukun':{rarity:'UR',faction:'Chu',name_jp:'臨武君'},
+  'Ringyoku':{rarity:'UR',faction:'Qin',name_jp:'リン玉'},
+  'Rinko':{rarity:'UR',faction:'Wei',name_jp:'輪虎'},
+  'Rishi':{rarity:'R',faction:'Qin',name_jp:'李斯'},
+  'Robin':{rarity:'UR',faction:'Qin',name_jp:'呂敏'},
+  'Roen':{rarity:'SR',faction:'Qin',name_jp:'魯延'},
+  'Rokin':{rarity:'SR',faction:'Chu',name_jp:'魯近'},
+  'Rokuomi':{rarity:'SR',faction:'Qin',name_jp:'録嗚未'},
+  'Rouai':{rarity:'UR',faction:'Ai',name_jp:'嫪毐'},
+  'Rui':{rarity:'UR',faction:'Qin',name_jp:'瑠衣'},
+  'Ryofui':{rarity:'UR',faction:'Qin',name_jp:'呂不韋'},
+  'Ryuukoku':{rarity:'SR',faction:'Qin',name_jp:'隆国'},
+  'Ryuusen':{rarity:'SR',faction:'Qin',name_jp:'竜川'},
+  'Ryuuto':{rarity:'UR',faction:'Zhao',name_jp:'劉冬'},
+  'Ryuyu':{rarity:'SR',faction:'Qin',name_jp:'竜有'},
+  'Saizatsu':{rarity:'SR',faction:'Qin',name_jp:'蔡沢'},
+  'Saji':{rarity:'SR',faction:'Zhao',name_jp:'左慈'},
+  'Seikai':{rarity:'UR',faction:'Han',name_jp:'成恢'},
+  'Seikyou':{rarity:'SR',faction:'Qin',name_jp:'成蟜'},
+  'Seki':{rarity:'SR',faction:'Qin',name_jp:'石'},
+  'Shibasaku':{rarity:'UR',faction:'Qin',name_jp:'司馬錯'},
+  'Shihaku':{rarity:'UR',faction:'Wei',name_jp:'紫伯'},
+  'Shika':{rarity:'SR',faction:'Zhao',name_jp:'紫夏'},
+  'Shikika':{rarity:'UR',faction:'Wei',name_jp:'紫季歌'},
+  'Shin':{rarity:'SR',faction:'Qin',name_jp:'信'},
+  'Shinseijou':{rarity:'UR',faction:'Zhao',name_jp:'晋成常'},
+  'Shishi':{rarity:'SR',faction:'Qin',name_jp:'肆氏'},
+  'Shoka':{rarity:'SR',faction:'Zhao',name_jp:'尚鹿'},
+  'Shoou':{rarity:'SR',faction:'Qin',name_jp:'昭王'},
+  'Shouheikun':{rarity:'UR',faction:'Qin',name_jp:'昌平君'},
+  'Shoumou':{rarity:'SR',faction:'Zhao',name_jp:'渉孟'},
+  'Shoumounkun':{rarity:'UR',faction:'Qin',name_jp:'昌文君'},
+  'Shousa':{rarity:'SR',faction:'Qin',name_jp:'松佐'},
+  'Shoutaku':{rarity:'SR',faction:'Qin',name_jp:'松琢'},
+  'Shuki':{rarity:'SR',faction:'Mountain Folk',name_jp:'朱鬼'},
+  'Shunmen':{rarity:'SR',faction:'Mountain Folk',name_jp:'シュンメン'},
+  'Shunpeikun':{rarity:'UR',faction:'Zhao',name_jp:'春平君'},
+  'Shunshinkun':{rarity:'UR',faction:'Chu',name_jp:'春申君'},
+  'Shunsuiju':{rarity:'UR',faction:'Zhao',name_jp:'舜水樹'},
+  'Sosui':{rarity:'SR',faction:'Qin',name_jp:'楚水'},
+  'Sougen':{rarity:'UR',faction:'Qin',name_jp:'蒼源'},
+  'Suirou':{rarity:'SR',faction:'Qin',name_jp:'崇原'},
+  'Taijifu':{rarity:'SR',faction:'Mountain Folk',name_jp:'タジフ'},
+  'Tairoji':{rarity:'UR',faction:'Wei',name_jp:'太呂慈'},
+  'Takukei':{rarity:'SR',faction:'Qin',name_jp:'澤圭'},
+  'Toji':{rarity:'SR',faction:'Mountain Folk',name_jp:'トッヂ'},
+  'Tou':{rarity:'UR',faction:'Qin',name_jp:'騰'},
+  'Toumi':{rarity:'UR',faction:'Qin',name_jp:'東美'},
+  'Wategi':{rarity:'UR',faction:'Ai',name_jp:'戎翟公'},
+  'Yotanwa':{rarity:'SR',faction:'Mountain Folk',name_jp:'楊端和'},
+  'You':{rarity:'UR',faction:'Qin',name_jp:'陽'},
+  'Youka':{rarity:'UR',faction:'Qin',name_jp:'姚賈'},
+  'Yugi':{rarity:'SR',faction:'Qin',name_jp:'有義'},
+  'Yukii':{rarity:'UR',faction:'Yan',name_jp:'ユキイ'},
+  'Yuri':{rarity:'UR',faction:'Qin',name_jp:'友里'},
+  'Yuuren':{rarity:'SR',faction:'Wei',name_jp:'幽連'},
+  'Zenou':{rarity:'UR',faction:'Qin',name_jp:'ゼノウ'}
+}
+
+const PAGES=['Archive','Party Builder','Simulate','CW Buffs','Tier List','Team Cost']
 export default function App(){
   const[page,setPage]=useState('Archive')
   const[atk,setAtk]=useState([])
@@ -181,6 +388,7 @@ export default function App(){
         {page==='Simulate' && <SimPage atk={atk} def={def} goBuilder={()=>setPage('Party Builder')}/>}
         {page==='CW Buffs'         && <BuffsPage/>}
         {page==='Tier List'        && <TierPage/>}
+        {page==='Team Cost'        && <TeamCostPage/>}
       </div>
       <footer className="foot">{ALL.length} generals · Fan resource · Not affiliated with Cygames</footer>
     </div>
@@ -479,11 +687,7 @@ const BUFF_UNIT_CATS = ['Infantry','Cavalry','Archer','Shield']
 const BUFF_STAT_COLORS = {HP:'#1a8a72', Attack:'#c0392b', Defense:'#2471a3'}
 const CAT_COLOR = {Infantry:'#b8880a', Cavalry:'#c0392b', Archer:'#27ae60', Shield:'#6a4fc8'}
 
-function UnitCatIcon({cat,size=80}){
-  const imgs={'Infantry':'/icons/unit_infantry.png','Cavalry':'/icons/unit_cavalry.png','Archer':'/icons/unit_archer.png','Shield':'/icons/unit_shield.png'}
-  return <img src={imgs[cat]} alt={cat} style={{width:size,height:size,objectFit:'contain',flexShrink:0}}/>
-}
-function UnitCatIcon_UNUSED({cat, size=48}){
+function UnitCatIcon({cat, size=48}){
   if(cat==='Infantry') return(
     <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
       <defs>
@@ -588,148 +792,125 @@ function UnitCatIcon_UNUSED({cat, size=48}){
 
 function BuffsPage(){
   const[activeCat,setActiveCat]=useState(null)
-  const[activeStat,setActiveStat]=useState('HP')
+  const[openStats,setOpenStats]=useState({})
   const data=cwBuffsData
 
+  const toggleStat=(cat,stat)=>{
+    const k=`${cat}__${stat}`
+    setOpenStats(p=>({...p,[k]:!p[k]}))
+  }
   const handleCat=(cat)=>{
     if(activeCat===cat){setActiveCat(null)}
-    else{setActiveCat(cat);setActiveStat('HP')}
+    else{setActiveCat(cat);setOpenStats(p=>({...p,[`${cat}__HP`]:true}))}
   }
 
   return(
-    <div style={{maxWidth:'860px',margin:'0 auto',padding:'0 1rem'}}>
-      {/* Header */}
-      <div style={{textAlign:'center',marginBottom:'2rem',paddingTop:'1rem'}}>
-        <h2 style={{fontSize:'1.5rem',fontWeight:800,color:'var(--txt)',marginBottom:'.3rem'}}>CW Buffs</h2>
-        <p style={{fontSize:'.82rem',color:'var(--txt3)'}}>Administration skills active during Castle Wars — stackable buffs by unit type</p>
-      </div>
+    <div className="main-page">
+      <h2 className="pg-title">CW Buffs</h2>
+      <p className="pg-sub">Administration skills active during Castle Wars — stackable buffs by unit type.</p>
 
-      {/* Unit type selector — centered row */}
-      <div style={{display:'flex',justifyContent:'center',gap:'16px',marginBottom:'2.5rem',flexWrap:'wrap'}}>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(4,minmax(0,1fr))',gap:'10px',marginBottom:'1.5rem',maxWidth:'680px'}}>
         {BUFF_UNIT_CATS.map(cat=>{
           const isActive=activeCat===cat
           const col=CAT_COLOR[cat]
           const uniqueNames=new Set(Object.values(data[cat]||{}).flat().map(e=>e.name))
           return(
             <button key={cat} onClick={()=>handleCat(cat)} style={{
-              display:'flex',flexDirection:'column',alignItems:'center',gap:'10px',
-              padding:'20px 24px 16px',borderRadius:'20px',cursor:'pointer',width:'160px',
-              border:`2px solid ${isActive?col:'var(--bdr)'}`,
-              background:isActive?`linear-gradient(135deg,${col}18,${col}08)`:'var(--sur)',
-              boxShadow:isActive?`0 6px 24px ${col}35`:'0 2px 8px rgba(0,0,0,0.06)',
-              transform:isActive?'translateY(-4px) scale(1.03)':'scale(1)',
-              transition:'all .2s ease',
+              display:'flex',flexDirection:'column',alignItems:'center',gap:'7px',
+              padding:'14px 8px',borderRadius:'14px',cursor:'pointer',
+              border:`${isActive?'2px':'1.5px'} solid ${isActive?col:'var(--bdr)'}`,
+              background:isActive?col+'14':'var(--sur)',
+              boxShadow:isActive?`0 2px 14px ${col}30`:'none',
+              transform:isActive?'translateY(-2px)':'none',
+              transition:'all .18s',
             }}>
-              <UnitCatIcon cat={cat} size={80}/>
-              <div style={{textAlign:'center'}}>
-                <div style={{fontWeight:800,fontSize:'.95rem',color:isActive?col:'var(--txt)',marginBottom:'4px'}}>{cat}</div>
-                <div style={{fontSize:'.68rem',color:'var(--txt3)',background:'var(--bg2)',padding:'2px 10px',borderRadius:'20px',border:'1px solid var(--bdr)',display:'inline-block'}}>{uniqueNames.size} generals</div>
-              </div>
+              <UnitCatIcon cat={cat} size={44}/>
+              <span style={{fontWeight:700,fontSize:'.78rem',color:isActive?col:'var(--txt)'}}>{cat}</span>
+              <span style={{fontSize:'.62rem',color:'var(--txt3)',background:'var(--bg2)',padding:'1px 7px',borderRadius:'10px',border:'1px solid var(--bdr)'}}>{uniqueNames.size} chars</span>
             </button>
           )
         })}
       </div>
 
-      {/* Content area */}
-      {activeCat&&(()=>{
-        const col=CAT_COLOR[activeCat]
-        const stats=['HP','Attack','Defense']
-        const entries=(data[activeCat]||{})[activeStat]||[]
-        const total=entries.reduce((s,e)=>s+e.value,0)
-        const sc=BUFF_STAT_COLORS[activeStat]
-        return(
-          <div>
-            {/* Stat tabs */}
-            <div style={{display:'flex',justifyContent:'center',gap:'10px',marginBottom:'1.5rem'}}>
-              {stats.map(stat=>{
-                const isOn=activeStat===stat
-                const c=BUFF_STAT_COLORS[stat]
-                const ents=(data[activeCat]||{})[stat]||[]
-                const tot=ents.reduce((s,e)=>s+e.value,0)
-                return(
-                  <button key={stat} onClick={()=>setActiveStat(stat)} style={{
-                    display:'flex',flexDirection:'column',alignItems:'center',gap:'4px',
-                    padding:'10px 28px',borderRadius:'12px',cursor:'pointer',
-                    border:`2px solid ${isOn?c:'var(--bdr)'}`,
-                    background:isOn?c+'15':'var(--sur)',
-                    transition:'all .15s',
-                  }}>
-                    <span style={{fontWeight:700,fontSize:'.85rem',color:isOn?c:'var(--txt)'}}>{stat}</span>
-                    <span style={{fontSize:'.7rem',fontWeight:700,color:c}}>+{tot.toFixed(1)}%</span>
-                  </button>
-                )
-              })}
-            </div>
-
-            {/* Stack total banner */}
-            <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'12px 20px',borderRadius:'14px',marginBottom:'1rem',background:`linear-gradient(90deg,${sc}18,${sc}08)`,border:`1.5px solid ${sc}44`}}>
-              <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
-                <UnitCatIcon cat={activeCat} size={36}/>
-                <div>
-                  <div style={{fontWeight:700,fontSize:'.88rem',color:col}}>{activeCat} · {activeStat}</div>
-                  <div style={{fontSize:'.7rem',color:'var(--txt3)'}}>Total stackable buff from {entries.length} generals</div>
-                </div>
-              </div>
-              <div style={{fontWeight:900,fontSize:'1.5rem',color:sc}}>+{total.toFixed(1)}%</div>
-            </div>
-
-            {/* Character list */}
-            <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
-              {entries.map((e,i)=>{
-                const char=ALL.find(c=>c.name_en===e.name||c.name_en.toLowerCase()===e.name.toLowerCase())
-                const fc=CC[e.faction]||'#888'
-                const isTop=i<3
-                return(
-                  <div key={e.name+i} style={{
-                    display:'flex',alignItems:'center',gap:'14px',
-                    padding:'12px 16px',borderRadius:'14px',
-                    background:isTop?`linear-gradient(90deg,${sc}0a,var(--sur))`:'var(--sur)',
-                    border:`1px solid ${isTop?sc+'44':'var(--bdr)'}`,
-                    transition:'transform .12s, box-shadow .12s',
-                  }}
-                    onMouseEnter={ev=>{ev.currentTarget.style.transform='translateY(-1px)';ev.currentTarget.style.boxShadow=`0 4px 14px ${sc}20`}}
-                    onMouseLeave={ev=>{ev.currentTarget.style.transform='';ev.currentTarget.style.boxShadow=''}}>
-                    {/* Rank */}
-                    <div style={{minWidth:'32px',textAlign:'center'}}>
-                      {isTop
-                        ?<div style={{width:28,height:28,borderRadius:'50%',background:sc,color:'white',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:800,fontSize:'.75rem',margin:'0 auto'}}>{i+1}</div>
-                        :<span style={{fontSize:'.7rem',fontWeight:700,color:'var(--txt3)'}}>{i+1}</span>
-                      }
-                    </div>
-                    {/* Portrait */}
-                    <div style={{width:56,height:56,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2.5px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                      {char?.icon?<img src={char.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}} alt={e.name}/>
-                      :char?.image?<img src={char.image} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
-                      :<span style={{fontSize:'1.2rem',fontWeight:700,color:fc}}>{e.name[0]}</span>}
-                    </div>
-                    {/* Info */}
-                    <div style={{flex:1,minWidth:0}}>
-                      <div style={{display:'flex',alignItems:'center',gap:'6px',flexWrap:'wrap',marginBottom:'3px'}}>
-                        <span style={{fontWeight:700,fontSize:'.92rem',color:'var(--txt)'}}>{e.name}</span>
-                        <span style={{fontSize:'.65rem',color:'var(--txt3)'}}>{e.name_jp}</span>
-                        {e.star6&&<span style={{fontSize:'.65rem',color:'#c9902a',fontWeight:800}}>☆6</span>}
-                      </div>
-                      <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
-                        <span style={{fontSize:'.62rem',padding:'1px 7px',borderRadius:'4px',background:fc+'22',color:fc,border:`1px solid ${fc}44`,fontWeight:700}}>{e.type}</span>
-                        <span style={{fontSize:'.62rem',color:'var(--txt3)'}}>{FACTIONS.find(f=>f.id===e.faction)?.label||e.faction}</span>
-                      </div>
-                    </div>
-                    {/* Value */}
-                    <div style={{textAlign:'right',flexShrink:0}}>
-                      <div style={{fontWeight:900,fontSize:'1.1rem',color:sc}}>+{e.value.toFixed(1)}%</div>
-                    </div>
-                  </div>
-                )
-              })}
+      {activeCat&&(
+        <div style={{maxWidth:'720px'}}>
+          <div style={{display:'flex',alignItems:'center',gap:'10px',padding:'10px 14px',marginBottom:'12px',borderLeft:`4px solid ${CAT_COLOR[activeCat]}`,background:'var(--sur)',borderRadius:'0 8px 8px 0'}}>
+            <UnitCatIcon cat={activeCat} size={32}/>
+            <div>
+              <div style={{fontWeight:700,fontSize:'.9rem',color:CAT_COLOR[activeCat]}}>{activeCat} Buffs</div>
+              <div style={{fontSize:'.72rem',color:'var(--txt3)'}}>Click a stat to expand characters and stack total</div>
             </div>
           </div>
-        )
-      })()}
-
+          <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
+            {['HP','Attack','Defense'].map(stat=>{
+              const entries=(data[activeCat]||{})[stat]||[]
+              const total=entries.reduce((s,e)=>s+e.value,0)
+              const isOpen=!!openStats[`${activeCat}__${stat}`]
+              const sc=BUFF_STAT_COLORS[stat]
+              const catCol=CAT_COLOR[activeCat]
+              return(
+                <div key={stat} style={{border:`1px solid ${isOpen?catCol+'55':'var(--bdr)'}`,borderRadius:'12px',overflow:'hidden',background:'var(--sur2)',transition:'border-color .2s'}}>
+                  <button onClick={()=>toggleStat(activeCat,stat)} style={{
+                    width:'100%',display:'flex',alignItems:'center',gap:'8px',
+                    padding:'11px 14px',background:isOpen?catCol+'10':'transparent',
+                    border:'none',cursor:'pointer',
+                    borderBottom:isOpen?`1px solid ${catCol}33`:'1px solid transparent',
+                    transition:'background .15s',
+                  }}>
+                    <span style={{fontSize:'14px',color:sc}}>{stat==='HP'?'♥':stat==='Attack'?'⚔':'⛨'}</span>
+                    <span style={{fontWeight:700,fontSize:'.84rem',color:'var(--txt)',flex:1,textAlign:'left'}}>{stat}</span>
+                    <span style={{fontSize:'.7rem',fontWeight:700,color:sc,background:sc+'18',border:`1px solid ${sc}44`,padding:'2px 8px',borderRadius:'20px'}}>Stack: +{total.toFixed(1)}%</span>
+                    <span style={{fontSize:'.65rem',color:'var(--txt3)',background:'var(--bg2)',padding:'2px 7px',borderRadius:'20px',border:'1px solid var(--bdr)'}}>{entries.length}</span>
+                    <span style={{color:catCol,fontWeight:700,fontSize:'1rem',transform:isOpen?'rotate(90deg)':'rotate(0)',transition:'transform .2s'}}>›</span>
+                  </button>
+                  {isOpen&&(
+                    <div style={{padding:'10px',display:'flex',flexDirection:'column',gap:'5px'}}>
+                      <div style={{display:'flex',alignItems:'center',gap:'8px',padding:'7px 12px',borderRadius:'8px',marginBottom:'4px',background:sc+'10',border:`1px solid ${sc}30`}}>
+                        <span style={{fontSize:'13px',color:sc}}>{stat==='HP'?'♥':stat==='Attack'?'⚔':'⛨'}</span>
+                        <span style={{fontSize:'.76rem',color:'var(--txt2)',flex:1}}>Total stackable <b style={{color:sc}}>{stat}</b> buff</span>
+                        <span style={{fontWeight:800,fontSize:'.95rem',color:sc}}>+{total.toFixed(1)}%</span>
+                      </div>
+                      {entries.map((e,i)=>{
+                        const char=ALL.find(c=>c.name_en===e.name||c.name_en.toLowerCase()===e.name.toLowerCase())
+                        const fc=CC[e.faction]||'#888'
+                        const barW=Math.min(100,(e.value/25)*100).toFixed(1)
+                        return(
+                          <div key={e.name+i} style={{display:'flex',alignItems:'center',gap:'9px',padding:'7px 11px',borderRadius:'10px',background:'var(--sur)',border:'1px solid var(--bdr)',transition:'transform .12s'}}
+                            onMouseEnter={ev=>{ev.currentTarget.style.transform='translateY(-1px)'}}
+                            onMouseLeave={ev=>{ev.currentTarget.style.transform=''}}>
+                            <span style={{minWidth:'20px',textAlign:'center',fontSize:'.65rem',fontWeight:700,color:i<3?catCol:'var(--txt3)'}}># {i+1}</span>
+                            <div style={{width:34,height:34,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                              {char?.icon?<img src={char.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}} alt={e.name}/>
+                              :char?.image?<img src={char.image} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
+                              :<span style={{fontSize:'.85rem',fontWeight:700,color:fc}}>{e.name[0]}</span>}
+                            </div>
+                            <div style={{flex:1,minWidth:0}}>
+                              <div style={{display:'flex',alignItems:'baseline',gap:'5px',marginBottom:'3px'}}>
+                                <span style={{fontWeight:700,fontSize:'.78rem',color:'var(--txt)',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{e.name}</span>
+                                <span style={{fontSize:'.6rem',color:'var(--txt3)',flexShrink:0}}>{e.name_jp}</span>
+                                {e.star6&&<span style={{fontSize:'.58rem',color:'#c9902a',flexShrink:0}}>☆6</span>}
+                                <span style={{fontSize:'.55rem',padding:'1px 5px',borderRadius:'4px',background:fc+'22',color:fc,border:`1px solid ${fc}44`,fontWeight:700,flexShrink:0}}>{e.type}</span>
+                              </div>
+                              <div style={{height:'4px',borderRadius:'2px',background:'var(--bg3)',overflow:'hidden'}}>
+                                <div style={{height:'100%',borderRadius:'2px',width:barW+'%',background:sc,transition:'width .5s ease'}}/>
+                              </div>
+                            </div>
+                            <span style={{fontWeight:800,fontSize:'.85rem',color:sc,minWidth:'46px',textAlign:'right',flexShrink:0}}>+{e.value.toFixed(1)}%</span>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
       {!activeCat&&(
-        <div style={{textAlign:'center',padding:'4rem 1rem',color:'var(--txt3)'}}>
-          <div style={{fontSize:'3rem',opacity:.15,marginBottom:'1rem'}}>⚔</div>
-          <div style={{fontSize:'.9rem'}}>Select a unit type above to see CW buffs</div>
+        <div style={{textAlign:'center',padding:'3rem 1rem',color:'var(--txt3)',fontSize:'.82rem',maxWidth:'360px',margin:'0 auto'}}>
+          <div style={{fontSize:'2rem',opacity:.3,marginBottom:'.75rem'}}>⚔</div>
+          Select a unit type above to see CW administration buffs
         </div>
       )}
     </div>
@@ -795,6 +976,194 @@ function TierPage(){
         })}
       </div>
       <p className="tier-source">Source: Gold fights, X, YouTube and Community insights · Benchmark: Army Synergy, Unique Skills, Unit Stats and Training Cost</p>
+    </div>
+  )
+}
+
+// ── TEAM COST PAGE ────────────────────────────────────────────────────────────
+function TeamCostPage(){
+  const[slots,setSlots]=useState([null,null,null,null])
+  const[picker,setPicker]=useState(null)
+  const[search,setSearch]=useState('')
+
+  const COST={R:595,SR:800,UR:1750}
+  const RCOL={R:'#3d9970',SR:'#3d6eb5',UR:'#c0392b'}
+  const RBG={R:'#3d997018',SR:'#3d6eb518',UR:'#c0392b18'}
+
+  const allChars=ALL.map(c=>{
+    const rd=RARITY_DATA[c.name_en]
+    return{...c,rarity:rd?.rarity||c.rarity||'SR'}
+  }).filter(c=>RARITY_DATA[c.name_en]||c.image)
+
+  const filtered=allChars.filter(c=>
+    !search||(c.name_en.toLowerCase().includes(search.toLowerCase())||c.name_jp.includes(search))
+  ).sort((a,b)=>a.name_en.localeCompare(b.name_en))
+
+  const setSlot=(idx,char)=>{
+    setSlots(p=>{const n=[...p];n[idx]=char;return n})
+    setPicker(null);setSearch('')
+  }
+  const clearSlot=(idx)=>setSlots(p=>{const n=[...p];n[idx]=null;return n})
+  const clearAll=()=>setSlots([null,null,null,null])
+
+  const filled=slots.filter(Boolean)
+  const total=filled.reduce((s,c)=>s+COST[RARITY_DATA[c.name_en]?.rarity||'SR'],0)
+  const urCount=filled.filter(c=>RARITY_DATA[c.name_en]?.rarity==='UR').length
+  const srCount=filled.filter(c=>RARITY_DATA[c.name_en]?.rarity==='SR').length
+  const rCount=filled.filter(c=>RARITY_DATA[c.name_en]?.rarity==='R').length
+
+  return(
+    <div style={{maxWidth:'900px',margin:'0 auto',padding:'1rem 1rem 3rem'}}>
+
+      {/* Header */}
+      <div style={{textAlign:'center',marginBottom:'2.5rem'}}>
+        <h2 style={{fontSize:'1.6rem',fontWeight:900,color:'var(--txt)',marginBottom:'.3rem',letterSpacing:'-.5px'}}>Team Cost Calculator</h2>
+        <p style={{fontSize:'.82rem',color:'var(--txt3)'}}>Select up to 4 generals to calculate total Red Crystal cost</p>
+      </div>
+
+      {/* Crystal total banner */}
+      <div style={{
+        display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:'12px',
+        padding:'20px 28px',borderRadius:'20px',marginBottom:'2rem',
+        background:'linear-gradient(135deg,#1a0a2e,#2d1255)',
+        border:'1.5px solid #6a30c8',
+        boxShadow:'0 8px 32px rgba(106,48,200,0.25)',
+      }}>
+        <div style={{display:'flex',alignItems:'center',gap:'14px'}}>
+          <div style={{fontSize:'2.2rem'}}>💎</div>
+          <div>
+            <div style={{fontSize:'.72rem',color:'#b89fe0',fontWeight:600,textTransform:'uppercase',letterSpacing:'1px'}}>Total Red Crystals</div>
+            <div style={{fontSize:'2.4rem',fontWeight:900,color:'#e8c0ff',lineHeight:1}}>{total.toLocaleString()}</div>
+          </div>
+        </div>
+        <div style={{display:'flex',gap:'10px',flexWrap:'wrap'}}>
+          {urCount>0&&<div style={{textAlign:'center',padding:'8px 16px',borderRadius:'12px',background:'#c0392b22',border:'1px solid #c0392b55'}}>
+            <div style={{fontWeight:800,fontSize:'1.1rem',color:'#e05555'}}>{urCount}</div>
+            <div style={{fontSize:'.62rem',color:'#e05555aa',fontWeight:600}}>UR</div>
+          </div>}
+          {srCount>0&&<div style={{textAlign:'center',padding:'8px 16px',borderRadius:'12px',background:'#3d6eb522',border:'1px solid #3d6eb555'}}>
+            <div style={{fontWeight:800,fontSize:'1.1rem',color:'#6a9ee0'}}>{srCount}</div>
+            <div style={{fontSize:'.62rem',color:'#6a9ee0aa',fontWeight:600}}>SR</div>
+          </div>}
+          {rCount>0&&<div style={{textAlign:'center',padding:'8px 16px',borderRadius:'12px',background:'#3d997022',border:'1px solid #3d997055'}}>
+            <div style={{fontWeight:800,fontSize:'1.1rem',color:'#5dc090'}}>{rCount}</div>
+            <div style={{fontSize:'.62rem',color:'#5dc090aa',fontWeight:600}}>R</div>
+          </div>}
+          {filled.length===0&&<div style={{fontSize:'.78rem',color:'#b89fe0',opacity:.6}}>No generals selected</div>}
+        </div>
+        {filled.length>0&&<button onClick={clearAll} style={{padding:'6px 16px',borderRadius:'8px',border:'1px solid #6a30c855',background:'transparent',color:'#b89fe0',fontSize:'.72rem',cursor:'pointer'}}>Clear All</button>}
+      </div>
+
+      {/* 4 Slots */}
+      <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'12px',marginBottom:'2.5rem'}}>
+        {slots.map((char,idx)=>{
+          const rarity=char?RARITY_DATA[char.name_en]?.rarity||'SR':null
+          const cost=char?COST[rarity]:null
+          const fc=char?(CC[char.country]||'#888'):null
+          const rc=rarity?RCOL[rarity]:'#888'
+          return char?(
+            <div key={idx} style={{
+              borderRadius:'18px',overflow:'hidden',
+              border:`2px solid ${rc}66`,
+              background:`linear-gradient(160deg,${rc}12,var(--sur))`,
+              boxShadow:`0 4px 20px ${rc}20`,
+              display:'flex',flexDirection:'column',
+              transition:'transform .15s',
+            }}
+              onMouseEnter={e=>e.currentTarget.style.transform='translateY(-2px)'}
+              onMouseLeave={e=>e.currentTarget.style.transform=''}>
+              {/* Portrait */}
+              <div style={{position:'relative',height:'120px',background:fc+'18',overflow:'hidden'}}>
+                {char.icon?<img src={char.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={char.name_en}/>
+                :char.image?<img src={char.image} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={char.name_en}/>
+                :<div style={{width:'100%',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'3rem',fontWeight:800,color:fc+'66'}}>{char.name_en[0]}</div>}
+                {/* Rarity badge */}
+                <div style={{position:'absolute',top:'8px',left:'8px',padding:'2px 8px',borderRadius:'6px',background:rc,color:'white',fontSize:'.65rem',fontWeight:800}}>{rarity}</div>
+                {/* Remove btn */}
+                <button onClick={()=>clearSlot(idx)} style={{position:'absolute',top:'6px',right:'6px',width:24,height:24,borderRadius:'50%',border:'none',background:'rgba(0,0,0,0.5)',color:'white',cursor:'pointer',fontSize:'.7rem',display:'flex',alignItems:'center',justifyContent:'center'}}>✕</button>
+              </div>
+              {/* Info */}
+              <div style={{padding:'10px 12px',flex:1}}>
+                <div style={{fontWeight:700,fontSize:'.85rem',color:'var(--txt)',marginBottom:'2px'}}>{char.name_en}</div>
+                <div style={{fontSize:'.65rem',color:'var(--txt3)',marginBottom:'6px'}}>{char.name_jp} · {FACTIONS.find(f=>f.id===char.country)?.label||char.country}</div>
+                <div style={{display:'flex',alignItems:'center',gap:'4px'}}>
+                  <span style={{fontSize:'.65rem',color:'#b89fe0'}}>💎</span>
+                  <span style={{fontWeight:800,fontSize:'.95rem',color:rc}}>{cost?.toLocaleString()}</span>
+                </div>
+              </div>
+              {/* Replace btn */}
+              <button onClick={()=>{setPicker(idx);setSearch('')}} style={{margin:'0 10px 10px',padding:'6px',borderRadius:'8px',border:`1px solid ${rc}44`,background:'transparent',color:rc,fontSize:'.7rem',cursor:'pointer',fontWeight:600}}>Replace</button>
+            </div>
+          ):(
+            <button key={idx} onClick={()=>{setPicker(idx);setSearch('')}} style={{
+              borderRadius:'18px',border:'2px dashed var(--bdr)',
+              background:'var(--sur)',minHeight:'220px',
+              display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'8px',
+              cursor:'pointer',transition:'all .15s',color:'var(--txt3)',
+            }}
+              onMouseEnter={e=>{e.currentTarget.style.borderColor='#6a30c8';e.currentTarget.style.background='#6a30c808'}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--bdr)';e.currentTarget.style.background='var(--sur)'}}>
+              <div style={{fontSize:'2rem',opacity:.3}}>＋</div>
+              <div style={{fontSize:'.75rem',fontWeight:600}}>Slot {idx+1}</div>
+              <div style={{fontSize:'.65rem',opacity:.6}}>Click to add</div>
+            </button>
+          )
+        })}
+      </div>
+
+      {/* Rarity reference */}
+      <div style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
+        {[['R',595],['SR',800],['UR',1750]].map(([r,c])=>(
+          <div key={r} style={{display:'flex',alignItems:'center',gap:'8px',padding:'8px 18px',borderRadius:'10px',background:RBG[r],border:`1px solid ${RCOL[r]}44`}}>
+            <span style={{fontWeight:800,fontSize:'.85rem',color:RCOL[r]}}>{r}</span>
+            <span style={{fontSize:'.75rem',color:'var(--txt3)'}}>= 💎 {c.toLocaleString()}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Picker modal */}
+      {picker!==null&&(
+        <div className="overlay" onClick={()=>{setPicker(null);setSearch('')}}>
+          <div className="picker" onClick={e=>e.stopPropagation()} style={{maxWidth:'560px',maxHeight:'80vh'}}>
+            <div className="picker-head">
+              <span>Select General — Slot {picker+1}</span>
+              <button className="x-btn" onClick={()=>{setPicker(null);setSearch('')}}>✕</button>
+            </div>
+            <div className="picker-filters">
+              <input autoFocus className="picker-search" placeholder="Search…" value={search} onChange={e=>setSearch(e.target.value)}/>
+            </div>
+            <div style={{overflowY:'auto',maxHeight:'55vh',padding:'8px'}}>
+              <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(110px,1fr))',gap:'8px'}}>
+                {filtered.map(c=>{
+                  const rarity=RARITY_DATA[c.name_en]?.rarity||'SR'
+                  const rc=RCOL[rarity]
+                  const isSelected=slots.some(s=>s?.id===c.id)
+                  return(
+                    <button key={c.id} disabled={isSelected} onClick={()=>setSlot(picker,c)} style={{
+                      borderRadius:'12px',border:`1.5px solid ${isSelected?'var(--bdr)':rc+'55'}`,
+                      background:isSelected?'var(--bg2)':rc+'0a',
+                      padding:'8px',display:'flex',flexDirection:'column',alignItems:'center',gap:'5px',
+                      cursor:isSelected?'not-allowed':'pointer',opacity:isSelected?.5:1,
+                      transition:'all .12s',
+                    }}
+                      onMouseEnter={e=>{if(!isSelected)e.currentTarget.style.background=rc+'18'}}
+                      onMouseLeave={e=>{if(!isSelected)e.currentTarget.style.background=rc+'0a'}}>
+                      <div style={{width:52,height:52,borderRadius:'50%',overflow:'hidden',border:`2px solid ${rc}55`,background:rc+'18',flexShrink:0,display:'flex',alignItems:'center',justifyContent:'center'}}>
+                        {c.icon?<img src={c.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={c.name_en}/>
+                        :c.image?<img src={c.image} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={c.name_en}/>
+                        :<span style={{fontWeight:700,color:rc,fontSize:'1.1rem'}}>{c.name_en[0]}</span>}
+                      </div>
+                      <div style={{fontWeight:700,fontSize:'.68rem',color:'var(--txt)',textAlign:'center',lineHeight:1.2}}>{c.name_en}</div>
+                      <div style={{padding:'1px 7px',borderRadius:'5px',background:rc,color:'white',fontSize:'.6rem',fontWeight:800}}>{rarity}</div>
+                      <div style={{fontSize:'.62rem',color:rc,fontWeight:700}}>💎 {COST[rarity]}</div>
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
