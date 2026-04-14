@@ -24,7 +24,6 @@ const ALL = [
   ...aiYanMajor,...misc,...misc2,
 ].filter(c=>c.country!=='unknown')
 
-// ── Character icon overrides (webp files in public/icons/chars/) ──────────────
 const CHAR_ICONS={
   'Bakan':   '/icons/chars/Bakan.webp',
   'Bihei':   '/icons/chars/Bihei.webp',
@@ -491,114 +490,13 @@ const BUFF_STAT_COLORS = {HP:'#1a8a72', Attack:'#c0392b', Defense:'#2471a3'}
 const CAT_COLOR = {Infantry:'#b8880a', Cavalry:'#c0392b', Archer:'#27ae60', Shield:'#6a4fc8'}
 
 function UnitCatIcon({cat, size=48}){
-  const map={
-    'Infantry': '/icons/unit_infantry.webp',
-    'Cavalry':  '/icons/unit_cavalry.webp',
-    'Archer':   '/icons/unit_archer.webp',
-    'Shield':   '/icons/unit_shield.webp',
+  const imgs={
+    'Infantry': '/icons/unit_infantry.png',
+    'Cavalry':  '/icons/unit_cavalry.png',
+    'Archer':   '/icons/unit_archer.png',
+    'Shield':   '/icons/unit_shield.png',
   }
-  if(map[cat]) return <img src={map[cat]} alt={cat} style={{width:size,height:size,objectFit:'contain'}}/>
-  // fallback: keep old inline SVG only if no image mapped
-  if(cat==='Infantry_UNUSED') return(
-    <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
-      <defs>
-        <radialGradient id="ig1" cx="45%" cy="35%" r="65%">
-          <stop offset="0%" stopColor="#f5e070"/>
-          <stop offset="50%" stopColor="#d4a020"/>
-          <stop offset="100%" stopColor="#8a6000"/>
-        </radialGradient>
-        <radialGradient id="ig2" cx="45%" cy="30%" r="55%">
-          <stop offset="0%" stopColor="rgba(255,255,200,0.35)"/>
-          <stop offset="100%" stopColor="rgba(255,255,200,0)"/>
-        </radialGradient>
-      </defs>
-      <circle cx="50" cy="50" r="48" fill="url(#ig1)" stroke="#c8900a" strokeWidth="2"/>
-      <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,240,100,0.4)" strokeWidth="2"/>
-      <circle cx="50" cy="50" r="48" fill="url(#ig2)"/>
-      {/* Mace/hammer: handle diagonal, rectangular head */}
-      <g transform="rotate(-40, 50, 50)">
-        <rect x="46" y="20" width="8" height="38" rx="4" fill="white" opacity="0.95"/>
-        <rect x="32" y="15" width="36" height="20" rx="5" fill="white" opacity="0.95"/>
-        <rect x="35" y="12" width="30" height="6" rx="3" fill="white" opacity="0.7"/>
-      </g>
-    </svg>
-  )
-  if(cat==='Cavalry') return(
-    <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
-      <defs>
-        <linearGradient id="cg1" x1="20%" y1="0%" x2="80%" y2="100%">
-          <stop offset="0%" stopColor="#ff5555"/>
-          <stop offset="45%" stopColor="#d42020"/>
-          <stop offset="100%" stopColor="#7a0a0a"/>
-        </linearGradient>
-        <radialGradient id="cg2" cx="40%" cy="30%" r="55%">
-          <stop offset="0%" stopColor="rgba(255,200,200,0.4)"/>
-          <stop offset="100%" stopColor="rgba(255,200,200,0)"/>
-        </radialGradient>
-      </defs>
-      <path d="M50 4L96 50L50 96L4 50Z" fill="url(#cg1)" stroke="#ff8080" strokeWidth="2"/>
-      <path d="M50 12L88 50L50 88L12 50Z" fill="none" stroke="rgba(255,150,150,0.3)" strokeWidth="1.5"/>
-      <path d="M50 4L96 50L50 96L4 50Z" fill="url(#cg2)"/>
-      {/* Horse head silhouette facing left */}
-      <path d="M62 28 C68 28 74 32 76 38 C78 44 76 50 72 54 C70 56 67 57 65 58 L63 66 C62 68 60 69 58 68 L55 67 C53 66 52 64 53 62 L54 58 C50 57 46 55 43 51 C39 46 38 40 40 35 C42 30 47 27 52 27 C55 27 58 28 60 29 Z" fill="white" opacity="0.95"/>
-      <path d="M62 28 C65 24 68 22 70 23 C72 24 72 27 70 29 C68 30 65 30 63 30 Z" fill="white" opacity="0.95"/>
-      <circle cx="57" cy="36" r="2.5" fill="#d42020"/>
-    </svg>
-  )
-  if(cat==='Archer') return(
-    <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
-      <defs>
-        <linearGradient id="ag1" x1="30%" y1="0%" x2="70%" y2="100%">
-          <stop offset="0%" stopColor="#50d060"/>
-          <stop offset="45%" stopColor="#22a030"/>
-          <stop offset="100%" stopColor="#0a5018"/>
-        </linearGradient>
-        <radialGradient id="ag2" cx="40%" cy="25%" r="55%">
-          <stop offset="0%" stopColor="rgba(180,255,180,0.45)"/>
-          <stop offset="100%" stopColor="rgba(180,255,180,0)"/>
-        </radialGradient>
-      </defs>
-      {/* Pentagon flat-bottom */}
-      <path d="M50 5L95 36L78 92L22 92L5 36Z" fill="url(#ag1)" stroke="#50e870" strokeWidth="2"/>
-      <path d="M50 13L87 40L72 86L28 86L13 40Z" fill="none" stroke="rgba(150,255,150,0.3)" strokeWidth="1.5"/>
-      <path d="M50 5L95 36L78 92L22 92L5 36Z" fill="url(#ag2)"/>
-      {/* Bow */}
-      <path d="M28 65 Q50 30 72 65" stroke="white" strokeWidth="4" fill="none" strokeLinecap="round"/>
-      <line x1="28" y1="65" x2="72" y2="65" stroke="white" strokeWidth="1.8" strokeLinecap="round" opacity="0.7"/>
-      {/* Arrow pointing up */}
-      <line x1="50" y1="20" x2="50" y2="72" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-      {/* Arrowhead */}
-      <path d="M50 14 L44 26 L50 22 L56 26 Z" fill="white"/>
-      {/* Tail feathers */}
-      <path d="M50 72 L44 80 L50 76 L56 80 Z" fill="white" opacity="0.8"/>
-      {/* Bow tips curl */}
-      <circle cx="28" cy="65" r="3" fill="white" opacity="0.8"/>
-      <circle cx="72" cy="65" r="3" fill="white" opacity="0.8"/>
-    </svg>
-  )
-  // Shield — purple/blue rounded square with hourglass shield
-  return(
-    <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
-      <defs>
-        <linearGradient id="sg1" x1="20%" y1="0%" x2="80%" y2="100%">
-          <stop offset="0%" stopColor="#9070e8"/>
-          <stop offset="50%" stopColor="#5535b0"/>
-          <stop offset="100%" stopColor="#2a1870"/>
-        </linearGradient>
-        <radialGradient id="sg2" cx="40%" cy="25%" r="60%">
-          <stop offset="0%" stopColor="rgba(180,200,255,0.45)"/>
-          <stop offset="100%" stopColor="rgba(180,200,255,0)"/>
-        </radialGradient>
-      </defs>
-      {/* Outer rounded square with blue rim */}
-      <rect x="3" y="3" width="94" height="94" rx="18" fill="url(#sg1)" stroke="#88aaff" strokeWidth="3"/>
-      <rect x="3" y="3" width="94" height="94" rx="18" fill="url(#sg2)"/>
-      {/* Inner border */}
-      <rect x="10" y="10" width="80" height="80" rx="13" fill="none" stroke="rgba(180,180,255,0.3)" strokeWidth="2"/>
-      {/* Hourglass shield shape — wide top, narrow waist, wide bottom */}
-      <path d="M50 18 C50 18 70 18 72 22 C74 28 66 40 64 48 C66 56 74 68 72 76 C70 80 50 82 50 82 C50 82 30 80 28 76 C26 68 34 56 36 48 C34 40 26 28 28 22 C30 18 50 18 50 18 Z" fill="white" opacity="0.95"/>
-    </svg>
-  )
+  return <img src={imgs[cat]} alt={cat} style={{width:size,height:size,objectFit:'contain',flexShrink:0}}/>
 }
 
 function BuffsPage(){
@@ -684,29 +582,26 @@ function BuffsPage(){
                       {entries.map((e,i)=>{
                         const char=ALL.find(c=>c.name_en===e.name||c.name_en.toLowerCase()===e.name.toLowerCase())
                         const fc=CC[e.faction]||'#888'
-                        const barW=Math.min(100,(e.value/25)*100).toFixed(1)
                         return(
-                          <div key={e.name+i} style={{display:'flex',alignItems:'center',gap:'9px',padding:'7px 11px',borderRadius:'10px',background:'var(--sur)',border:'1px solid var(--bdr)',transition:'transform .12s'}}
+                          <div key={e.name+i} style={{display:'flex',alignItems:'center',gap:'12px',padding:'10px 14px',borderRadius:'12px',background:'var(--sur)',border:'1px solid var(--bdr)',transition:'transform .12s'}}
                             onMouseEnter={ev=>{ev.currentTarget.style.transform='translateY(-1px)'}}
                             onMouseLeave={ev=>{ev.currentTarget.style.transform=''}}>
-                            <span style={{minWidth:'20px',textAlign:'center',fontSize:'.65rem',fontWeight:700,color:i<3?catCol:'var(--txt3)'}}># {i+1}</span>
-                            <div style={{width:34,height:34,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                            <span style={{minWidth:'26px',textAlign:'center',fontSize:'.7rem',fontWeight:700,color:i<3?catCol:'var(--txt3)'}}># {i+1}</span>
+                            <div style={{width:52,height:52,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2.5px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
                               {char?.icon?<img src={char.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}} alt={e.name}/>
                               :char?.image?<img src={char.image} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
-                              :<span style={{fontSize:'.85rem',fontWeight:700,color:fc}}>{e.name[0]}</span>}
+                              :<span style={{fontSize:'1.1rem',fontWeight:700,color:fc}}>{e.name[0]}</span>}
                             </div>
                             <div style={{flex:1,minWidth:0}}>
-                              <div style={{display:'flex',alignItems:'baseline',gap:'5px',marginBottom:'3px'}}>
-                                <span style={{fontWeight:700,fontSize:'.78rem',color:'var(--txt)',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{e.name}</span>
-                                <span style={{fontSize:'.6rem',color:'var(--txt3)',flexShrink:0}}>{e.name_jp}</span>
-                                {e.star6&&<span style={{fontSize:'.58rem',color:'#c9902a',flexShrink:0}}>☆6</span>}
-                                <span style={{fontSize:'.55rem',padding:'1px 5px',borderRadius:'4px',background:fc+'22',color:fc,border:`1px solid ${fc}44`,fontWeight:700,flexShrink:0}}>{e.type}</span>
+                              <div style={{display:'flex',alignItems:'center',gap:'6px',flexWrap:'wrap'}}>
+                                <span style={{fontWeight:700,fontSize:'.88rem',color:'var(--txt)'}}>{e.name}</span>
+                                <span style={{fontSize:'.65rem',color:'var(--txt3)'}}>{e.name_jp}</span>
+                                {e.star6&&<span style={{fontSize:'.62rem',color:'#c9902a',fontWeight:700}}>☆6</span>}
+                                <span style={{fontSize:'.6rem',padding:'1px 6px',borderRadius:'4px',background:fc+'22',color:fc,border:`1px solid ${fc}44`,fontWeight:700}}>{e.type}</span>
                               </div>
-                              <div style={{height:'4px',borderRadius:'2px',background:'var(--bg3)',overflow:'hidden'}}>
-                                <div style={{height:'100%',borderRadius:'2px',width:barW+'%',background:sc,transition:'width .5s ease'}}/>
-                              </div>
+                              <div style={{fontSize:'.72rem',color:'var(--txt3)',marginTop:'2px'}}>{FACTIONS.find(f=>f.id===e.faction)?.label||e.faction}</div>
                             </div>
-                            <span style={{fontWeight:800,fontSize:'.85rem',color:sc,minWidth:'46px',textAlign:'right',flexShrink:0}}>+{e.value.toFixed(1)}%</span>
+                            <span style={{fontWeight:800,fontSize:'1rem',color:sc,minWidth:'54px',textAlign:'right',flexShrink:0}}>+{e.value.toFixed(1)}%</span>
                           </div>
                         )
                       })}
