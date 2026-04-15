@@ -189,15 +189,22 @@ function simulate(a,d){
 // ── BUFF ENGINE ───────────────────────────────────────────────────────────────
 const UNIT_TYPE_LIST=['Infantry','Cavalry','Archer','Shield']
 const FACTION_MAP={'qin':'qin','zhao':'zhao','chu':'chu','wei':'wei','yan':'yan','qi':'qi','han':'han','mountain folk':'mountain_folk','ai':'ai'}
+const STATUS_EFFECTS=['Confusion','Poison','Paralysis','Betrayal','Burn','Fear','Illusion','Reckless']
+const STATUS_RE=new RegExp('^('+STATUS_EFFECTS.join('|')+')','i')
 function parseBuffEffect(str){
   if(!str) return []
   const results=[];let deferred=[]
-  for(let part of str.split(/[,、]/)){
-    part=part.trim()
-    if(/\d+[%％]\s*Damage|Normal Attack|HP Drain|Provoke|Confusion Infliction|Stun Rate|Seal Rate/i.test(part)) continue
+  for(let part of str.split(/[,、\/]/)){
+    part=part.trim().replace(/\\/g,'')
+    if(!part) continue
     if(/^enemy/i.test(part)) continue
+    if(/\d+[%％]\s*Damage|HP Drain|Provoke|Stun Rate/i.test(part)) continue
+    if(/^Normal Attack(?!\s+Seal)/i.test(part)) continue
+    // strip embedded "Ally [X]" target prefix from effect strings
+    part=part.replace(/^Ally\s+\[[^\]]+\]\s*/i,'')
+    if(!part) continue
     let ownerType=null,antiEnemy=null,m
-    // "Ally [X] Anti-[Y] ..." — owner unit type + anti enemy type (from effect field)
+    // "Ally [X] Anti-[Y] ..." — owner unit type + anti enemy type
     m=part.match(/^(?:Ally\s+)\[([A-Za-z]+)\]\s+Anti-\[([^\]]+)\]\s+(.+)/i)
     if(m){ownerType=m[1];antiEnemy=m[2].trim();part=m[3]}
     // "[X] Anti-[Y] ..." — owner unit type + anti enemy type
@@ -205,12 +212,12 @@ function parseBuffEffect(str){
       m=part.match(/^\[([A-Za-z]+)\]\s+Anti-\[([^\]]+)\]\s+(.+)/i)
       if(m){ownerType=m[1];antiEnemy=m[2].trim();part=m[3]}
     }
-    // "Anti-[X] ..." — bracketed anti target (faction or unit type)
+    // "Anti-[X] ..." — bracketed anti target
     if(!antiEnemy){
       m=part.match(/^Anti-\[([^\]]+)\]\s+(.+)/i)
       if(m){antiEnemy=m[1].trim();part=m[2]}
     }
-    // "Anti-GroupName ..." — unbracketed known group
+    // "Anti-GroupName ..."
     if(!antiEnemy){
       for(const gn of Object.keys(GROUPS)){
         const re=new RegExp('^Anti-'+gn.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\s+(.+)','i')
@@ -218,25 +225,54 @@ function parseBuffEffect(str){
         if(m){antiEnemy=gn;part=m[1];break}
       }
     }
+    function flush(r){
+      results.push(r)
+      for(const d of deferred){
+        if(d.statusPrefix!==undefined){
+          const suffix=r.stat.replace(/^[A-Za-z]+\s*/,'')
+          if(suffix) results.push({stat:d.statusPrefix+' '+suffix,dir:r.dir,val:r.val,ownerType:d.ownerType,antiEnemy:d.antiEnemy})
+        } else if(d.dir===r.dir){
+          results.push({...d,val:r.val})
+        }
+      }
+      deferred=[]
+    }
     // "Stat Up/Down X%"
     m=part.match(/^(.+?)\s+(Up|Down)\s+(\d+(?:\.\d+)?)[%％]/)
-    if(m){
-      const r={stat:m[1].trim(),dir:m[2],val:parseFloat(m[3]),ownerType,antiEnemy}
-      results.push(r)
-      // flush any deferred "Stat Dir" entries that had no value (e.g. "ATK Down、DEF Down 20%")
-      for(const d of deferred) if(d.dir===r.dir) results.push({...d,val:r.val})
-      deferred=[]
-      continue
-    }
-    // "Stat Up/Down" with no value — defer until we see a value in the same direction
+    if(m){flush({stat:m[1].trim(),dir:m[2],val:parseFloat(m[3]),ownerType,antiEnemy});continue}
+    // "Stat Up/Down" (no value) — deferred
     m=part.match(/^(.+?)\s+(Up|Down)\s*$/)
     if(m){deferred.push({stat:m[1].trim(),dir:m[2],ownerType,antiEnemy});continue}
-    // "DEF Penetration X%" or "DEF Penetration Resistance X%" (no Up keyword)
+    // "DEF Penetration [Resistance] X%"
     m=part.match(/^(DEF Penetration(?:\s+Resistance)?)\s+(\d+(?:\.\d+)?)[%％]$/)
-    if(m){results.push({stat:m[1],dir:'Up',val:parseFloat(m[2]),ownerType,antiEnemy});continue}
+    if(m){flush({stat:m[1],dir:'Up',val:parseFloat(m[2]),ownerType,antiEnemy});continue}
+    // "StatusEffect Infliction X%" (e.g. "Confusion Infliction 30%")
+    m=part.match(new RegExp('^('+STATUS_EFFECTS.join('|')+')\\s+Infliction\\s+(\\d+(?:\\.\\d+)?)[%％]$','i'))
+    if(m){flush({stat:m[1]+' Infliction Rate',dir:'Up',val:parseFloat(m[2]),ownerType,antiEnemy});continue}
+    // "StatusEffect Infliction" (no value) — treat as 100%
+    m=part.match(new RegExp('^('+STATUS_EFFECTS.join('|')+')\\s+Infliction$','i'))
+    if(m){flush({stat:m[1]+' Infliction Rate',dir:'Up',val:100,ownerType,antiEnemy});continue}
+    // "StatusEffect Resistance X%"
+    m=part.match(new RegExp('^('+STATUS_EFFECTS.join('|')+')\\s+Resistance\\s+(\\d+(?:\\.\\d+)?)[%％]$','i'))
+    if(m){flush({stat:m[1]+' Resistance',dir:'Up',val:parseFloat(m[2]),ownerType,antiEnemy});continue}
+    // "StatusEffect Resistance" (no value) — deferred
+    m=part.match(new RegExp('^('+STATUS_EFFECTS.join('|')+')\\s+Resistance$','i'))
+    if(m){deferred.push({stat:m[1]+' Resistance',dir:'Up',ownerType,antiEnemy});continue}
+    // bare status name (e.g. "Confusion" from "Confusion / Poison / Paralysis Infliction Rate Up 40%")
+    m=part.match(STATUS_RE)
+    if(m&&part.trim()===m[1].trim()){deferred.push({statusPrefix:m[1],ownerType,antiEnemy});continue}
+    // "Normal Attack Seal X%" / "Skill Attack Seal X%"
+    m=part.match(/^(Normal|Skill)\s+Attack\s+Seal(?:\s+Infliction)?\s+(\d+(?:\.\d+)?)[%％]$/i)
+    if(m){flush({stat:m[1]+' Attack Seal',dir:'Up',val:parseFloat(m[2]),ownerType,antiEnemy});continue}
+    // "Attack Seal Infliction X%"
+    m=part.match(/^Attack\s+Seal\s+Infliction\s+(\d+(?:\.\d+)?)[%％]$/i)
+    if(m){flush({stat:'Attack Seal',dir:'Up',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
     // Simple rate buffs
     m=part.match(/^(Guard|Hit Rate|Critical Rate|HP Recovery)\s+(\d+(?:\.\d+)?)[%％]$/)
-    if(m){results.push({stat:m[1],dir:'Up',val:parseFloat(m[2]),ownerType,antiEnemy});continue}
+    if(m){flush({stat:m[1],dir:'Up',val:parseFloat(m[2]),ownerType,antiEnemy});continue}
+    // "Poison Damage Up X%"
+    m=part.match(/^(Poison Damage)\s+(Up|Down)\s+(\d+(?:\.\d+)?)[%％]$/i)
+    if(m){flush({stat:m[1],dir:m[2],val:parseFloat(m[3]),ownerType,antiEnemy});continue}
   }
   return results
 }
