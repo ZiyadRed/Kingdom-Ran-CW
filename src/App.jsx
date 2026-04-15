@@ -693,6 +693,8 @@ const RARITY_DATA={
 }
 
 const PAGES=['Archive','Party Builder','Simulate','CW Buffs','Tier List','Team Cost']
+const PAGE_ICONS={'Archive':'📜','Party Builder':'⚔️','Simulate':'⚡','CW Buffs':'🛡','Tier List':'🏆','Team Cost':'💎'}
+const PAGE_SHORT={'Archive':'Archive','Party Builder':'Builder','Simulate':'Sim','CW Buffs':'CW Buffs','Tier List':'Tiers','Team Cost':'Cost'}
 export default function App(){
   const[page,setPage]=useState('Archive')
   const[atk,setAtk]=useState([null,null,null,null])
@@ -714,7 +716,7 @@ export default function App(){
       <header className="hdr">
         <div className="hdr-in">
           <div className="logo">
-            <div className="logo-badge">⚔</div>
+            <img src="/ranhq-icon.png" alt="RanHQ" className="logo-icon"/>
             <div>
               <div className="logo-ja">キングダム乱</div>
               <div className="logo-en">RanHQ</div>
@@ -742,6 +744,14 @@ export default function App(){
         <div style={{marginTop:'.2rem'}}>Special thanks <strong>@WiperLuffy</strong> · <a href="https://touranko.vercel.app" target="_blank" rel="noopener noreferrer" style={{color:'var(--txt3)',textDecoration:'underline'}}>touranko.vercel.app</a></div>
         <div style={{marginTop:'.35rem',color:'var(--txt3)'}}>©Hara Yasuhisa/Shueisha・Kingdom Production Committee ©でらゲー</div>
       </footer>
+      <nav className="bottom-nav">
+        {PAGES.map(p=>(
+          <button key={p} className={`bntab${page===p?' bntab-on':''}`} onClick={()=>setPage(p)}>
+            <span className="bntab-icon">{PAGE_ICONS[p]}</span>
+            {PAGE_SHORT[p]}
+          </button>
+        ))}
+      </nav>
     </div>
   )
 }

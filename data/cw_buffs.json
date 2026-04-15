@@ -350,22 +350,6 @@
         "value": 5.0
       },
       {
-        "name": "Domon",
-        "name_jp": "土門",
-        "faction": "zhao",
-        "type": "SR",
-        "star6": false,
-        "value": 4.3
-      },
-      {
-        "name": "Amon",
-        "name_jp": "亜門",
-        "faction": "qin",
-        "type": "SR",
-        "star6": false,
-        "value": 3.8
-      },
-      {
         "name": "Toji",
         "name_jp": "トッヂ",
         "faction": "mountain_folk",
@@ -380,6 +364,22 @@
         "type": "SR",
         "star6": false,
         "value": 5.0
+      },
+      {
+        "name": "Domon",
+        "name_jp": "土門",
+        "faction": "zhao",
+        "type": "SR",
+        "star6": false,
+        "value": 4.3
+      },
+      {
+        "name": "Amon",
+        "name_jp": "亜門",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 3.8
       }
     ]
   },

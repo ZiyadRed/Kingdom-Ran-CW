@@ -58,11 +58,9 @@ img { display: block; max-width: 100% }
   display: flex; align-items: center; gap: 1rem;
 }
 .logo { display: flex; align-items: center; gap: .65rem; flex-shrink: 0; text-decoration: none }
-.logo-badge {
-  width: 36px; height: 36px; background: var(--terra);
-  border-radius: 8px; display: flex; align-items: center;
-  justify-content: center; font-size: 1rem; color: #fff; font-weight: 900;
-  flex-shrink: 0;
+.logo-icon {
+  width: 36px; height: 36px; object-fit: contain; flex-shrink: 0;
+  border-radius: 8px; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;
 }
 .logo-ja  { font-size: .54rem; color: rgba(255,255,255,.45); letter-spacing: .18em }
 .logo-en  { font-size: .88rem; font-weight: 700; color: #fff; letter-spacing: .05em }
@@ -467,10 +465,11 @@ img { display: block; max-width: 100% }
 
   /* Header */
   .hdr-in     { padding: 0 .75rem; gap: .6rem }
-  .logo-badge { width: 30px; height: 30px; font-size: .88rem; border-radius: 7px }
+  .logo-icon  { width: 30px; height: 30px; border-radius: 6px }
   .logo-en    { font-size: .78rem }
   .logo-ja    { display: none }
-  .nb         { padding: .24rem .5rem; font-size: .66rem; border-radius: 14px }
+  /* Hide header nav on mobile — replaced by bottom nav */
+  .nav        { display: none }
   .nb-dot     { display: none }
 
   /* Archive layout: stacked column, auto height */
@@ -605,3 +604,75 @@ img { display: block; max-width: 100% }
   .eff-tgt, .eff-val { font-size: .84rem }
   .slot-av         { width: 28px; height: 28px }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   BOTTOM NAV — Mobile only (≤768px)
+   ══════════════════════════════════════════════════════════════ */
+.bottom-nav {
+  display: none;
+}
+@media (max-width: 768px) {
+  .bottom-nav {
+    display: flex;
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--navy);
+    border-top: 1.5px solid rgba(255,255,255,.12);
+    z-index: 200;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-shadow: 0 -4px 20px rgba(0,0,0,.35);
+  }
+  .bntab {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 3px; padding: .45rem .2rem .4rem;
+    background: none; border: none; color: rgba(255,255,255,.45);
+    font-family: inherit; font-size: .58rem; font-weight: 600;
+    letter-spacing: .02em; cursor: pointer;
+    transition: color .15s, background .15s;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 52px;
+  }
+  .bntab:active { background: rgba(255,255,255,.06) }
+  .bntab.bntab-on { color: #fff }
+  .bntab-icon { font-size: 1.1rem; line-height: 1 }
+  .bntab.bntab-on .bntab-icon { filter: drop-shadow(0 0 4px var(--terra)) }
+  /* Pill indicator for active tab */
+  .bntab.bntab-on::after {
+    content: '';
+    display: block;
+    width: 20px; height: 2.5px;
+    background: var(--terra);
+    border-radius: 2px;
+    margin-top: 2px;
+  }
+  /* Push page content above bottom nav */
+  .app-body { padding-bottom: calc(52px + env(safe-area-inset-bottom, 0px)) }
+  /* Fix detail panel so it sits above bottom nav */
+  .detail-panel { bottom: calc(52px + env(safe-area-inset-bottom, 0px)) }
+  .has-selection .gallery-wrap { padding-bottom: calc(65vh + 52px) }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CROSS-BROWSER / DEVICE POLISH
+   ══════════════════════════════════════════════════════════════ */
+/* Prevent iOS auto-zoom on input focus */
+input, select, textarea { font-size: max(16px, 1em); }
+@media (max-width: 768px) {
+  input, select, textarea { font-size: 16px; }
+}
+/* Smooth scrolling everywhere */
+* { scroll-behavior: smooth; }
+/* Better font rendering */
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+/* Touch target minimum size */
+button { min-height: 36px; }
+@media (max-width: 768px) {
+  button { min-height: 44px; }
+  .bntab { min-height: 52px; }
+}
+/* Firefox scrollbar style */
+* { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.15) transparent; }
+/* Prevent pull-to-refresh interfering on iOS */
+html { overscroll-behavior-y: contain; }
+/* Samsung Internet / older Android button fix */
+button { -webkit-appearance: none; appearance: none; }
