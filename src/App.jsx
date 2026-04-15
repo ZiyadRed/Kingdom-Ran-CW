@@ -1048,6 +1048,8 @@ function BuffTable({atk,def}){
     </div>
   )
 }
+// Stats where "Down" is beneficial for the buff receiver (e.g. less morale cost = good)
+const INVERSE_STATS=new Set(['Morale Consumption','Skill Cooldown','Damage Received'])
 function BuffSideTable({label,entries,side,enemyDebuffs={}}){
   const ac=side==='attack'?'var(--red)':'var(--blue)'
   const hasAny=entries.some(({buffs})=>Object.keys(buffs).length>0)
@@ -1066,15 +1068,18 @@ function BuffSideTable({label,entries,side,enemyDebuffs={}}){
             </div>
             {!stats.length?<div className="buff-none-row">—</div>:(
               <div className="buff-stats">
-                {stats.map(([stat,{up,down}])=>(
-                  <div key={stat} className="buff-row">
-                    <span className="buff-stat-name">{stat}</span>
-                    <span className="buff-vals">
-                      {up>0&&<span className="buff-up">+{fmt(up)}%</span>}
-                      {down>0&&<span className="buff-down">−{fmt(down)}%</span>}
-                    </span>
-                  </div>
-                ))}
+                {stats.map(([stat,{up,down}])=>{
+                  const inv=INVERSE_STATS.has(stat)
+                  return(
+                    <div key={stat} className="buff-row">
+                      <span className="buff-stat-name">{stat}</span>
+                      <span className="buff-vals">
+                        {up>0&&<span className={inv?'buff-down':'buff-up'}>+{fmt(up)}%</span>}
+                        {down>0&&<span className={inv?'buff-up':'buff-down'}>−{fmt(down)}%</span>}
+                      </span>
+                    </div>
+                  )
+                })}
               </div>
             )}
           </div>
@@ -1097,8 +1102,8 @@ function BuffSideTable({label,entries,side,enemyDebuffs={}}){
                   <span className="buff-stat-name" style={{color:'#b05000',fontWeight:700,fontSize:'.75rem'}}>{target}</span>
                   <span className="buff-vals">
                     {allStats.map(({s,v,d})=>(
-                      <span key={s} className={d==='down'?'buff-down':'buff-up'}>
-                        {d==='down'?'−':'+' }{fmt(v)}% {s}
+                      <span key={s} className="buff-down">
+                        {d==='down'?'−':''}{fmt(v)}% {s}
                       </span>
                     ))}
                   </span>
@@ -1395,7 +1400,7 @@ function TeamCostPage(){
       </div>
 
       {/* 4 Slots */}
-      <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'12px',marginBottom:'2.5rem'}}>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:'16px',marginBottom:'2.5rem'}}>
         {slots.map((char,idx)=>{
           const rarity=char?RARITY_DATA[char.name_en]?.rarity||'SR':null
           const fc=char?(CC[char.country]||'#888'):null
@@ -1405,76 +1410,76 @@ function TeamCostPage(){
           const isMaxed=char&&remaining===0
           return char?(
             <div key={idx} style={{
-              borderRadius:'18px',overflow:'hidden',
+              borderRadius:'20px',overflow:'hidden',
               border:`2px solid ${rc}66`,
-              background:`linear-gradient(160deg,${rc}12,var(--sur))`,
-              boxShadow:`0 4px 20px ${rc}20`,
-              display:'flex',flexDirection:'column',
-              transition:'transform .15s',
+              background:`linear-gradient(135deg,${rc}10,var(--sur))`,
+              boxShadow:`0 4px 24px ${rc}18`,
+              display:'flex',flexDirection:'row',
+              transition:'transform .15s, box-shadow .15s',
             }}
-              onMouseEnter={e=>e.currentTarget.style.transform='translateY(-2px)'}
-              onMouseLeave={e=>e.currentTarget.style.transform=''}>
+              onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-2px)';e.currentTarget.style.boxShadow=`0 8px 32px ${rc}30`}}
+              onMouseLeave={e=>{e.currentTarget.style.transform='';e.currentTarget.style.boxShadow=`0 4px 24px ${rc}18`}}>
               {/* Portrait */}
-              <div style={{position:'relative',height:'120px',background:fc+'18',overflow:'hidden'}}>
+              <div style={{position:'relative',width:'110px',flexShrink:0,background:fc+'15',overflow:'hidden'}}>
                 {char.icon?<img src={char.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={char.name_en}/>
                 :char.image?<img src={char.image} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={char.name_en}/>
-                :<div style={{width:'100%',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'3rem',fontWeight:800,color:fc+'66'}}>{char.name_en[0]}</div>}
-                {/* Rarity badge */}
-                <div style={{position:'absolute',top:'8px',left:'8px',padding:'2px 8px',borderRadius:'6px',background:rc,color:'white',fontSize:'.65rem',fontWeight:800}}>{rarity}</div>
-                {/* Remove btn */}
-                <button onClick={()=>clearSlot(idx)} style={{position:'absolute',top:'6px',right:'6px',width:24,height:24,borderRadius:'50%',border:'none',background:'rgba(0,0,0,0.5)',color:'white',cursor:'pointer',fontSize:'.7rem',display:'flex',alignItems:'center',justifyContent:'center'}}>✕</button>
+                :<div style={{width:'100%',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'2.5rem',fontWeight:800,color:fc+'66'}}>{char.name_en[0]}</div>}
+                <div style={{position:'absolute',bottom:'6px',left:'6px',padding:'2px 8px',borderRadius:'6px',background:rc,color:'white',fontSize:'.65rem',fontWeight:800}}>{rarity}</div>
+                <button onClick={()=>clearSlot(idx)} style={{position:'absolute',top:'6px',right:'6px',width:22,height:22,borderRadius:'50%',border:'none',background:'rgba(0,0,0,0.55)',color:'white',cursor:'pointer',fontSize:'.65rem',display:'flex',alignItems:'center',justifyContent:'center',lineHeight:1}}>✕</button>
               </div>
-              {/* Info */}
-              <div style={{padding:'10px 12px 6px'}}>
-                <div style={{fontWeight:700,fontSize:'.85rem',color:'var(--txt)',marginBottom:'2px'}}>{char.name_en}</div>
-                <div style={{fontSize:'.65rem',color:'var(--txt3)',marginBottom:'8px'}}>{char.name_jp} · {FACTIONS.find(f=>f.id===char.country)?.label||char.country}</div>
+              {/* Right side */}
+              <div style={{flex:1,padding:'14px 16px',display:'flex',flexDirection:'column',gap:'10px',minWidth:0}}>
+                {/* Name */}
+                <div>
+                  <div style={{fontWeight:800,fontSize:'1rem',color:'var(--txt)',lineHeight:1.2}}>{char.name_en}</div>
+                  <div style={{fontSize:'.68rem',color:'var(--txt3)',marginTop:'2px'}}>{char.name_jp} · {FACTIONS.find(f=>f.id===char.country)?.label||char.country}</div>
+                </div>
                 {/* Skill progress toggles */}
-                <div style={{marginBottom:'8px'}}>
-                  <div style={{fontSize:'.6rem',color:'var(--txt3)',fontWeight:600,marginBottom:'4px',textTransform:'uppercase',letterSpacing:'.05em'}}>Skills unlocked</div>
-                  <div style={{display:'flex',gap:'4px'}}>
+                <div>
+                  <div style={{fontSize:'.62rem',color:'var(--txt3)',fontWeight:600,marginBottom:'5px',textTransform:'uppercase',letterSpacing:'.06em'}}>Skills Unlocked</div>
+                  <div style={{display:'flex',gap:'6px'}}>
                     {[1,2,3].map(n=>{
                       const active=done>=n
                       return(
                         <button key={n} onClick={e=>{e.stopPropagation();toggleSkill(idx,n)}} style={{
-                          flex:1,padding:'5px 0',borderRadius:'6px',
-                          border:`1.5px solid ${active?rc:rc+'55'}`,
+                          flex:1,padding:'7px 0',borderRadius:'8px',
+                          border:`2px solid ${active?rc:rc+'44'}`,
                           background:active?rc:'transparent',
-                          color:active?'white':rc+'aa',
-                          fontSize:'.72rem',fontWeight:800,cursor:'pointer',
+                          color:active?'white':rc+'99',
+                          fontSize:'.82rem',fontWeight:800,cursor:'pointer',
                           transition:'all .12s',
                         }}>{n}</button>
                       )
                     })}
                   </div>
                 </div>
-                {/* Cost remaining */}
-                <div style={{display:'flex',alignItems:'center',gap:'4px'}}>
+                {/* Cost + Replace */}
+                <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:'auto'}}>
                   {isMaxed?(
-                    <span style={{fontWeight:800,fontSize:'.82rem',color:'#3d9970',padding:'2px 8px',borderRadius:'6px',background:'#3d997022',border:'1px solid #3d997055'}}>✓ Maxed</span>
+                    <span style={{fontWeight:800,fontSize:'.82rem',color:'#3d9970',padding:'3px 10px',borderRadius:'7px',background:'#3d997020',border:'1px solid #3d997060'}}>✓ Maxed</span>
                   ):(
-                    <>
-                      <img src="/icons/Red_Crystal.png" alt="RC" style={{width:16,height:16,objectFit:"contain",verticalAlign:"middle"}}/>
-                      <span style={{fontWeight:800,fontSize:'.9rem',color:rc}}>{remaining?.toLocaleString()}</span>
-                      {done>0&&<span style={{fontSize:'.6rem',color:'var(--txt3)',marginLeft:'2px'}}>remaining</span>}
-                    </>
+                    <div style={{display:'flex',alignItems:'center',gap:'5px'}}>
+                      <img src="/icons/Red_Crystal.png" alt="RC" style={{width:18,height:18,objectFit:"contain"}}/>
+                      <span style={{fontWeight:900,fontSize:'1.05rem',color:rc}}>{remaining?.toLocaleString()}</span>
+                      {done>0&&<span style={{fontSize:'.62rem',color:'var(--txt3)'}}>left</span>}
+                    </div>
                   )}
+                  <button onClick={()=>{setPicker(idx);setSearch('')}} style={{padding:'5px 12px',borderRadius:'8px',border:`1.5px solid ${rc}55`,background:'transparent',color:rc,fontSize:'.7rem',cursor:'pointer',fontWeight:700}}>Replace</button>
                 </div>
               </div>
-              {/* Replace btn */}
-              <button onClick={()=>{setPicker(idx);setSearch('')}} style={{margin:'0 10px 10px',padding:'6px',borderRadius:'8px',border:`1px solid ${rc}44`,background:'transparent',color:rc,fontSize:'.7rem',cursor:'pointer',fontWeight:600}}>Replace</button>
             </div>
           ):(
             <button key={idx} onClick={()=>{setPicker(idx);setSearch('')}} style={{
               borderRadius:'18px',border:'2px dashed var(--bdr)',
               background:'var(--sur)',minHeight:'220px',
               display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'8px',
-              cursor:'pointer',transition:'all .15s',color:'var(--txt3)',
+              cursor:'pointer',transition:'all .15s',color:'var(--txt3)',minHeight:'120px',
             }}
               onMouseEnter={e=>{e.currentTarget.style.borderColor='#6a30c8';e.currentTarget.style.background='#6a30c808'}}
               onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--bdr)';e.currentTarget.style.background='var(--sur)'}}>
               <div style={{fontSize:'2rem',opacity:.3}}>＋</div>
-              <div style={{fontSize:'.75rem',fontWeight:600}}>Slot {idx+1}</div>
-              <div style={{fontSize:'.65rem',opacity:.6}}>Click to add</div>
+              <div style={{fontSize:'.8rem',fontWeight:700}}>Slot {idx+1}</div>
+              <div style={{fontSize:'.68rem',opacity:.6}}>Click to add general</div>
             </button>
           )
         })}
