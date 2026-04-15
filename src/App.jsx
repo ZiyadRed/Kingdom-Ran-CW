@@ -717,7 +717,7 @@ export default function App(){
             <div className="logo-badge">⚔</div>
             <div>
               <div className="logo-ja">キングダム乱</div>
-              <div className="logo-en">Kingdom Ran CW</div>
+              <div className="logo-en">RanHQ</div>
             </div>
           </div>
           <nav className="nav">
@@ -738,9 +738,9 @@ export default function App(){
         {page==='Team Cost'        && <TeamCostPage/>}
       </div>
       <footer className="foot">
-        <div>{ALL.length} generals · Fan resource · Not affiliated with Cygames</div>
         <div style={{marginTop:'.35rem'}}>Made by <strong>@ZiyadRed</strong> · Purgatory 復活</div>
         <div style={{marginTop:'.2rem'}}>Special thanks <strong>@WiperLuffy</strong> · <a href="https://touranko.vercel.app" target="_blank" rel="noopener noreferrer" style={{color:'var(--txt3)',textDecoration:'underline'}}>touranko.vercel.app</a></div>
+        <div style={{marginTop:'.35rem',color:'var(--txt3)'}}>©Hara Yasuhisa/Shueisha・Kingdom Production Committee ©でらゲー</div>
       </footer>
     </div>
   )
