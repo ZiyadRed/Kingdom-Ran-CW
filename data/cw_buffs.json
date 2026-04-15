@@ -364,6 +364,22 @@
         "type": "SR",
         "star6": false,
         "value": 3.8
+      },
+      {
+        "name": "Toji",
+        "name_jp": "トッヂ",
+        "faction": "mountain_folk",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0
+      },
+      {
+        "name": "Fuji",
+        "name_jp": "フゥヂ",
+        "faction": "mountain_folk",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0
       }
     ]
   },

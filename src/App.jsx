@@ -737,7 +737,11 @@ export default function App(){
         {page==='Tier List'        && <TierPage/>}
         {page==='Team Cost'        && <TeamCostPage/>}
       </div>
-      <footer className="foot">{ALL.length} generals · Fan resource · Not affiliated with Cygames</footer>
+      <footer className="foot">
+        <div>{ALL.length} generals · Fan resource · Not affiliated with Cygames</div>
+        <div style={{marginTop:'.35rem'}}>Made by <strong>@ZiyadRed</strong> · Purgatory 復活</div>
+        <div style={{marginTop:'.2rem'}}>Special thanks <strong>@WiperLuffy</strong> · <a href="https://touranko.vercel.app" target="_blank" rel="noopener noreferrer" style={{color:'var(--txt3)',textDecoration:'underline'}}>touranko.vercel.app</a></div>
+      </footer>
     </div>
   )
 }
@@ -1053,6 +1057,9 @@ function BuffTable({atk,def}){
 }
 // Stats where "Down" is beneficial for the buff receiver (e.g. less morale cost = good)
 const INVERSE_STATS=new Set(['Morale Consumption','Skill Cooldown','Damage Received'])
+// Canonical display order for buff stats
+const STAT_ORDER=['Max HP','ATK','DEF','DEF Penetration','DEF Penetration Resistance','Guard','Max Morale','Morale Consumption','Critical Rate','Critical Damage','Hit Rate','HP Recovery']
+function statSortKey(s){const i=STAT_ORDER.indexOf(s);return i===-1?STAT_ORDER.length:i}
 function BuffSideTable({label,entries,side,enemyDebuffs={}}){
   const ac=side==='attack'?'var(--red)':'var(--blue)'
   const hasAny=entries.some(({buffs})=>Object.keys(buffs).length>0)
@@ -1062,7 +1069,7 @@ function BuffSideTable({label,entries,side,enemyDebuffs={}}){
     <div className={`scol ${side==='attack'?'atk':'def'}`}>
       <div className="scol-lbl" style={{color:ac,borderBottomColor:ac+'44'}}>{label}</div>
       {!hasAny?<p className="scol-none">No relevant buffs</p>:entries.map(({general:g,buffs})=>{
-        const stats=Object.entries(buffs).filter(([,v])=>v.up>0||v.down>0)
+        const stats=Object.entries(buffs).filter(([,v])=>v.up>0||v.down>0).sort(([a],[b])=>statSortKey(a)-statSortKey(b))
         return(
           <div key={g.id} className="scol-gen">
             <div className="scol-gen-hdr" style={{color:ac}}>
