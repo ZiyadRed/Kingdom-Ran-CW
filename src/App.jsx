@@ -1292,6 +1292,7 @@ function TierPage(){
       <div className="tier-page-header">
         <h2 className="tier-main-title">⚔ CW Metawatch</h2>
         <p className="tier-main-sub">Commonly Seen Armies · Last updated: Apr 2026</p>
+        <p style={{fontSize:'.75rem',color:'var(--txt3)',marginTop:'.25rem'}}>Tier List done by <strong style={{color:'var(--txt2)'}}>Doge</strong></p>
       </div>
       <div className="tier-list">
         {['S','A','B','C'].map(tier=>{

@@ -59,8 +59,8 @@ img { display: block; max-width: 100% }
 }
 .logo { display: flex; align-items: center; gap: .65rem; flex-shrink: 0; text-decoration: none }
 .logo-icon {
-  width: 36px; height: 36px; object-fit: contain; flex-shrink: 0;
-  border-radius: 8px; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;
+  width: 40px; height: 40px; object-fit: contain; flex-shrink: 0;
+  mix-blend-mode: screen;
 }
 .logo-ja  { font-size: .54rem; color: rgba(255,255,255,.45); letter-spacing: .18em }
 .logo-en  { font-size: .88rem; font-weight: 700; color: #fff; letter-spacing: .05em }
@@ -465,7 +465,7 @@ img { display: block; max-width: 100% }
 
   /* Header */
   .hdr-in     { padding: 0 .75rem; gap: .6rem }
-  .logo-icon  { width: 30px; height: 30px; border-radius: 6px }
+  .logo-icon  { width: 32px; height: 32px }
   .logo-en    { font-size: .78rem }
   .logo-ja    { display: none }
   /* Hide header nav on mobile — replaced by bottom nav */
