@@ -695,6 +695,12 @@ const RARITY_DATA={
 const PAGES=['Archive','Party Builder','Simulate','CW Buffs','Tier List','Team Cost']
 const PAGE_ICONS={'Archive':'📜','Party Builder':'⚔️','Simulate':'⚡','CW Buffs':'🛡','Tier List':'🏆','Team Cost':'💎'}
 const PAGE_SHORT={'Archive':'Archive','Party Builder':'Builder','Simulate':'Sim','CW Buffs':'CW Buffs','Tier List':'Tiers','Team Cost':'Cost'}
+// Hidden search tags — searching these strings finds the listed characters
+const CHAR_GROUPS={
+  'Hi Shin Unit':['Shin','Garo','Gakurai','Kyoukai'],
+  'HiShin':['Shin','Garo','Gakurai','Kyoukai'],
+  'Gakuka':['Mouten','Rikusen'],
+}
 export default function App(){
   const[page,setPage]=useState('Archive')
   const[atk,setAtk]=useState([null,null,null,null])
@@ -725,7 +731,7 @@ export default function App(){
           <nav className="nav">
             {PAGES.map(p=>(
               <button key={p} className={`nb${page===p?' nb-on':''}`} onClick={()=>setPage(p)}>
-                {p}{p==='Party Builder'&&(atk.length+def.length)>0&&<span className="nb-dot">{atk.length+def.length}</span>}
+                {p}{p==='Party Builder'&&(atk.filter(Boolean).length+def.filter(Boolean).length)>0&&<span className="nb-dot">{atk.filter(Boolean).length+def.filter(Boolean).length}</span>}
               </button>
             ))}
           </nav>
@@ -763,7 +769,16 @@ function ArchivePage(){
   const[search,setSearch]=useState('')
   const facChars=ALL.filter(c=>c.country===activeFac&&c.image)
   const filtered=(search
-    ?ALL.filter(c=>{const q=search.toLowerCase();return c.name_en.toLowerCase().includes(q)||c.name_jp.includes(search)||(c.unit_type&&c.unit_type.toLowerCase().includes(q))||(c.groups&&c.groups.some(g=>g.toLowerCase().includes(q)))})
+    ?ALL.filter(c=>{
+      const q=search.toLowerCase()
+      if(c.name_en.toLowerCase().includes(q)||c.name_jp.includes(search)) return true
+      if(c.unit_type&&c.unit_type.toLowerCase().includes(q)) return true
+      if(c.groups&&c.groups.some(g=>g.toLowerCase().includes(q))) return true
+      // hidden group tags
+      const groupMatch=Object.entries(CHAR_GROUPS).find(([tag])=>tag.toLowerCase().includes(q)||q.includes(tag.toLowerCase()))
+      if(groupMatch&&groupMatch[1].includes(c.name_en)) return true
+      return false
+    })
     :facChars
   ).slice().sort((a,b)=>a.name_en.localeCompare(b.name_en))
   const handleFacClick=(fid)=>{setActiveFac(fid);setSelected(null);setSearch('')}
@@ -817,7 +832,7 @@ function ArchivePage(){
               <div className="banner-faction-tag" style={{background:CC[c.country]||'#666'}}>
                 {FACTIONS.find(f=>f.id===c.country)?.jp||c.country}
               </div>
-              {c.image?<img src={c.image} alt={c.name_en} className="banner-img"/>
+              {c.image?<img src={c.image} alt={c.name_en} className="banner-img" loading="lazy"/>
                 :<div className="banner-ph" style={{background:(CC[c.country]||'#555')+'33',color:CC[c.country]||'#888'}}>{c.name_en[0]}</div>}
               <div className="banner-footer"><span className="banner-name">{c.name_en}</span></div>
             </button>
