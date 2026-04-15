@@ -808,7 +808,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/bihei.webp",
-    "icon": "/icons/cg018_i02.webp"
+    "icon": "/icons/Bihei.webp"
   },
   {
     "id": "hyou",
@@ -1453,7 +1453,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/bitou.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/bitou.webp",
+    "icon": "/icons/Bikou.webp"
   },
   {
     "id": "kanou",
@@ -1779,7 +1780,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/ten.webp",
-    "icon": "/icons/Karyoten.webp"
+    "icon": "/icons/Karyouten.webp"
   },
   {
     "id": "fuchi",
@@ -1943,7 +1944,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/denyuu.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/denyuu.webp",
+    "icon": "/icons/Denyuu.webp"
   },
   {
     "id": "denei",
@@ -2216,7 +2218,8 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ryuusen.webp"
+    "image": "https://kingdom-ran-cw.vercel.app/persos/ryuusen.webp",
+    "icon": "/icons/Ryuusen.webp"
   },
   {
     "id": "bakukoshin",

@@ -277,7 +277,7 @@
       }
     ],
     "image": "https://kingdom-ran-cw.vercel.app/persos/kyourei.webp",
-    "icon": "/icons/Kyorei.webp"
+    "icon": "/icons/Kyourei.webp"
   },
   {
     "id": "romin",
@@ -1084,7 +1084,7 @@
         ]
       }
     ],
-    "icon": "/icons/cg001_i04.webp"
+    
   },
   {
     "id": "kyoukai",
@@ -1145,6 +1145,6 @@
         ]
       }
     ],
-    "icon": "/icons/cg002_i04.webp"
+    
   }
 ]
