@@ -318,16 +318,17 @@ img { display: block; max-width: 100% }
 .sec-combat  { background: rgba(224,127,72,.1); border: 1.5px solid rgba(224,127,72,.3); color: var(--terra2) }
 .sec-buff    { background: rgba(26,120,60,.07); border: 1.5px solid rgba(26,120,60,.22); color: #1a7840 }
 .strat-cols  { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid var(--bdr); border-top: none; border-radius: 0 0 8px 8px; overflow: hidden; gap: 0 }
-.scol        { padding: .75rem; background: var(--sur) }
-.scol.atk  { background: rgba(192,57,43,.04) }
-.scol.def  { background: rgba(26,95,168,.04) }
+.scol        { padding: .7rem .8rem; background: var(--sur) }
+.scol.atk  { background: rgba(192,57,43,.03) }
+.scol.def  { background: rgba(26,95,168,.03) }
 .scol:first-child { border-right: 1.5px solid var(--bdr) }
-.scol-lbl    { font-size: .73rem; font-weight: 700; letter-spacing: .04em; padding-bottom: .35rem; border-bottom: 1.5px solid; margin-bottom: .5rem }
+.scol-lbl    { font-size: .72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding-bottom: .38rem; border-bottom: 1.5px solid; margin-bottom: .6rem }
 .scol-none   { color: var(--txt3); font-style: italic; font-size: .78rem }
-.scol-gen    { margin-bottom: .65rem }
-.scol-gen-hdr { display: flex; align-items: center; gap: .35rem; font-size: .8rem; font-weight: 700; margin-bottom: .28rem }
+.scol-gen    { margin-bottom: .5rem; background: var(--bg2); border-radius: 9px; padding: .42rem .55rem; border: 1px solid var(--bdr) }
+.scol-gen-hdr { display: flex; align-items: center; gap: .38rem; font-size: .78rem; font-weight: 800; margin-bottom: .32rem; padding-bottom: .28rem; border-bottom: 1px solid var(--bdr) }
 .scol-av     { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; object-position: top; flex-shrink: 0 }
 .scol-jp     { font-size: .63rem; color: var(--txt3); font-weight: 400 }
+.scol-unit-badge { font-size: .58rem; font-weight: 700; padding: 1px 5px; border-radius: 4px; opacity: .75; margin-left: auto; flex-shrink: 0 }
 .turn        { margin-bottom: .85rem }
 .turn-lbl    { font-size: .76rem; font-weight: 700; color: var(--navy); letter-spacing: .08em; padding: .32rem .72rem; background: var(--bg2); border: 1.5px solid var(--bdr); border-radius: 8px 8px 0 0; border-bottom: none }
 .turn-entries { border: 1.5px solid var(--bdr); border-radius: 0 0 8px 8px; overflow: hidden }
@@ -367,13 +368,13 @@ img { display: block; max-width: 100% }
 .buff-grand  { font-size: .78rem; color: var(--salmon); background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 20px; padding: .18rem .65rem }
 .buff-grand b { font-size: .9rem }
 .buff-cards  { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .45rem; border: 1.5px solid var(--bdr); border-radius: 0 0 8px 8px; padding: .6rem; background: var(--bg2) }
-.buff-stats      { display: flex; flex-direction: column; gap: 4px; padding-left: .2rem }
-.buff-row        { display: flex; align-items: center; justify-content: space-between; font-size: .82rem; padding: 5px 8px; border-radius: 6px; background: var(--bg2); border: 1px solid var(--bdr) }
-.buff-stat-name  { color: var(--txt); font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
-.buff-vals       { display: flex; gap: 6px; flex-shrink: 0; margin-left: .6rem }
-.buff-up         { font-weight: 800; color: #fff; font-size: .8rem; background: #1a8a72; padding: 1px 7px; border-radius: 20px }
-.buff-down       { font-weight: 800; color: #fff; font-size: .8rem; background: #c0392b; padding: 1px 7px; border-radius: 20px }
-.buff-none-row   { color: var(--txt3); font-style: italic; font-size: .78rem; padding: 4px 6px }
+.buff-stats      { display: flex; flex-direction: column; gap: 3px }
+.buff-row        { display: flex; align-items: center; justify-content: space-between; font-size: .8rem; padding: 4px 7px; border-radius: 5px; background: var(--sur); border: 1px solid var(--bdr) }
+.buff-stat-name  { color: var(--txt2); font-weight: 500; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.buff-vals       { display: flex; gap: 5px; flex-shrink: 0; margin-left: .5rem }
+.buff-up         { font-weight: 800; color: #fff; font-size: .73rem; background: #1a8a5a; padding: 1px 8px; border-radius: 20px; white-space: nowrap }
+.buff-down       { font-weight: 800; color: #fff; font-size: .73rem; background: #c0392b; padding: 1px 8px; border-radius: 20px; white-space: nowrap }
+.buff-none-row   { color: var(--txt3); font-style: italic; font-size: .75rem; padding: 3px 5px }
 .bc          { background: var(--sur); border: 1.5px solid var(--bdr); border-top: 3px solid; border-radius: 8px; overflow: hidden; transition: transform .15s }
 .bc:hover    { transform: translateY(-1px) }
 .bc-top      { display: flex; align-items: center; gap: .45rem; padding: .4rem .55rem; border-bottom: 1px solid var(--bdr) }

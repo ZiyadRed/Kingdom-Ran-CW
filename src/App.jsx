@@ -1063,8 +1063,9 @@ function BuffSideTable({label,entries,side,enemyDebuffs={}}){
         return(
           <div key={g.id} className="scol-gen">
             <div className="scol-gen-hdr" style={{color:ac}}>
-              <CharIcon c={g} size={28} round={true}/>
+              <CharIcon c={g} size={26} round={true}/>
               <b>{g.name_en}</b>
+              {g.unit_type&&<span className="scol-unit-badge" style={{background:ac+'22',color:ac,border:`1px solid ${ac}44`}}>{g.unit_type}</span>}
             </div>
             {!stats.length?<div className="buff-none-row">—</div>:(
               <div className="buff-stats">
