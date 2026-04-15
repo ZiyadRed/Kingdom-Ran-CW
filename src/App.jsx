@@ -695,17 +695,18 @@ const RARITY_DATA={
 const PAGES=['Archive','Party Builder','Simulate','CW Buffs','Tier List','Team Cost']
 export default function App(){
   const[page,setPage]=useState('Archive')
-  const[atk,setAtk]=useState([])
-  const[def,setDef]=useState([])
-  const rm=(char,side)=>(side==='attack'?setAtk:setDef)(p=>p.filter(x=>x.id!==char.id))
+  const[atk,setAtk]=useState([null,null,null,null])
+  const[def,setDef]=useState([null,null,null,null])
+  const rm=(char,side)=>(side==='attack'?setAtk:setDef)(p=>p.map(x=>x?.id===char.id?null:x))
   const setSlot=(char,side,idx)=>{
     const set=side==='attack'?setAtk:setDef
-    set(p=>{const n=[...p];const e=n.findIndex(x=>x.id===char.id);if(e!==-1)n.splice(e,1);n[idx]=char;return n.filter(Boolean)})
+    set(p=>{const n=[...p];const e=n.findIndex(x=>x?.id===char.id);if(e!==-1)n[e]=null;n[idx]=char;return n})
   }
   const loadMetaTeam=(team,side)=>{
     const chars=team.members.map(n=>ALL.find(c=>c.name_en===n||c.name_en.toLowerCase()===n.toLowerCase())).filter(Boolean).slice(0,4)
-    if(side==='attack') setAtk(chars)
-    else setDef(chars)
+    const slots=[...chars,...Array(4-chars.length).fill(null)]
+    if(side==='attack') setAtk(slots)
+    else setDef(slots)
     setPage('Party Builder')
   }
   return(
@@ -896,7 +897,8 @@ function MetaTeamCard({team,onLoad}){
 // ── PARTY BUILDER ─────────────────────────────────────────────────────────────
 function BuilderPage({atk,def,setSlot,rm,goSim,loadMetaTeam}){
   const[picker,setPicker]=useState(null)
-  const excl=[...atk,...def].map(c=>c.id)
+  const atkF=atk.filter(Boolean),defF=def.filter(Boolean)
+  const excl=[...atkF,...defF].map(c=>c.id)
   return(
     <div className="main-page">
       {picker&&<Picker onSelect={c=>setSlot(c,picker.side,picker.idx)} onClose={()=>setPicker(null)} excl={excl}/>}
@@ -907,8 +909,8 @@ function BuilderPage({atk,def,setSlot,rm,goSim,loadMetaTeam}){
         <div className="vs-sep">VS</div>
         <SideSlots side="defense" label="🛡 Defending" party={def} onSlot={i=>setPicker({side:'defense',idx:i})} onRm={c=>rm(c,'defense')}/>
       </div>
-      {(atk.length||def.length)>0&&<div className="cta-row"><button className="cta-btn" onClick={goSim}>View Activation Order →</button></div>}
-      <BuffTable atk={atk} def={def}/>
+      {(atkF.length||defF.length)>0&&<div className="cta-row"><button className="cta-btn" onClick={goSim}>View Activation Order →</button></div>}
+      <BuffTable atk={atkF} def={defF}/>
 
       {/* Meta Teams */}
       <div className="meta-section">
@@ -949,17 +951,18 @@ function SideSlots({side,label,party,onSlot,onRm}){
 
 // ── ACTIVATION ORDER ──────────────────────────────────────────────────────────
 function SimPage({atk,def,goBuilder}){
-  if(!atk.length&&!def.length) return(
+  const atkF=atk.filter(Boolean),defF=def.filter(Boolean)
+  if(!atkF.length&&!defF.length) return(
     <div className="main-page empty-cta"><p>No formations set.</p><button className="cta-btn" onClick={goBuilder}>Go to Party Builder</button></div>
   )
-  const{st,turns}=simulate(atk,def)
+  const{st,turns}=simulate(atkF,defF)
   return(
     <div className="main-page">
       <h2 className="pg-title">Activation Order</h2>
       <div className="form-bars">
-        <FormBar generals={atk} side="attack" label="⚔ Attacking"/>
+        <FormBar generals={atkF} side="attack" label="⚔ Attacking"/>
         <div className="form-vs">VS</div>
-        <FormBar generals={def} side="defense" label="🛡 Defending"/>
+        <FormBar generals={defF} side="defense" label="🛡 Defending"/>
       </div>
       <div className="sim-sec">
         <div className="sec-hd sec-strat">⚑ Strategy Skills — Always Active</div>
@@ -1123,9 +1126,11 @@ const BUFF_UNIT_CATS = ['Infantry','Cavalry','Archer','Shield']
 const BUFF_STAT_COLORS = {HP:'#1a8a72', Attack:'#c0392b', Defense:'#2471a3'}
 const CAT_COLOR = {Infantry:'#b8880a', Cavalry:'#c0392b', Archer:'#27ae60', Shield:'#6a4fc8'}
 
+const UNIT_ICON_SCALE={Infantry:1.18,Cavalry:1.18,Archer:1,Shield:1}
 function UnitCatIcon({cat,size=80}){
   const imgs={'Infantry':'/icons/unit_infantry.png','Cavalry':'/icons/unit_cavalry.png','Archer':'/icons/unit_archer.png','Shield':'/icons/unit_shield.png'}
-  return <img src={imgs[cat]} alt={cat} style={{width:size,height:size,objectFit:'contain',flexShrink:0}}/>
+  const s=Math.round(size*( UNIT_ICON_SCALE[cat]||1))
+  return <img src={imgs[cat]} alt={cat} style={{width:s,height:s,objectFit:'contain',flexShrink:0}}/>
 }
 
 function BuffsPage(){
@@ -1401,7 +1406,7 @@ function TeamCostPage(){
       </div>
 
       {/* 4 Slots */}
-      <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:'16px',marginBottom:'2.5rem'}}>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'12px',marginBottom:'2rem'}}>
         {slots.map((char,idx)=>{
           const rarity=char?RARITY_DATA[char.name_en]?.rarity||'SR':null
           const fc=char?(CC[char.country]||'#888'):null
@@ -1411,61 +1416,56 @@ function TeamCostPage(){
           const isMaxed=char&&remaining===0
           return char?(
             <div key={idx} style={{
-              borderRadius:'20px',overflow:'hidden',
-              border:`2px solid ${rc}66`,
-              background:`linear-gradient(135deg,${rc}10,var(--sur))`,
-              boxShadow:`0 4px 24px ${rc}18`,
-              display:'flex',flexDirection:'row',
-              transition:'transform .15s, box-shadow .15s',
+              borderRadius:'16px',overflow:'hidden',
+              border:`2px solid ${rc}55`,
+              background:`linear-gradient(160deg,${rc}0d,var(--sur))`,
+              boxShadow:`0 3px 16px ${rc}18`,
+              display:'flex',flexDirection:'column',
+              transition:'transform .15s',
             }}
-              onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-2px)';e.currentTarget.style.boxShadow=`0 8px 32px ${rc}30`}}
-              onMouseLeave={e=>{e.currentTarget.style.transform='';e.currentTarget.style.boxShadow=`0 4px 24px ${rc}18`}}>
+              onMouseEnter={e=>e.currentTarget.style.transform='translateY(-2px)'}
+              onMouseLeave={e=>e.currentTarget.style.transform=''}>
               {/* Portrait */}
-              <div style={{position:'relative',width:'110px',flexShrink:0,background:fc+'15',overflow:'hidden'}}>
+              <div style={{position:'relative',height:'110px',background:fc+'15',overflow:'hidden'}}>
                 {char.icon?<img src={char.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={char.name_en}/>
                 :char.image?<img src={char.image} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={char.name_en}/>
-                :<div style={{width:'100%',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'2.5rem',fontWeight:800,color:fc+'66'}}>{char.name_en[0]}</div>}
-                <div style={{position:'absolute',bottom:'6px',left:'6px',padding:'2px 8px',borderRadius:'6px',background:rc,color:'white',fontSize:'.65rem',fontWeight:800}}>{rarity}</div>
-                <button onClick={()=>clearSlot(idx)} style={{position:'absolute',top:'6px',right:'6px',width:22,height:22,borderRadius:'50%',border:'none',background:'rgba(0,0,0,0.55)',color:'white',cursor:'pointer',fontSize:'.65rem',display:'flex',alignItems:'center',justifyContent:'center',lineHeight:1}}>✕</button>
+                :<div style={{width:'100%',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'2rem',fontWeight:800,color:fc+'66'}}>{char.name_en[0]}</div>}
+                <div style={{position:'absolute',top:'6px',left:'6px',padding:'1px 7px',borderRadius:'5px',background:rc,color:'white',fontSize:'.6rem',fontWeight:800}}>{rarity}</div>
+                <button onClick={()=>clearSlot(idx)} style={{position:'absolute',top:'5px',right:'5px',width:20,height:20,borderRadius:'50%',border:'none',background:'rgba(0,0,0,0.55)',color:'white',cursor:'pointer',fontSize:'.6rem',display:'flex',alignItems:'center',justifyContent:'center'}}>✕</button>
               </div>
-              {/* Right side */}
-              <div style={{flex:1,padding:'14px 16px',display:'flex',flexDirection:'column',gap:'10px',minWidth:0}}>
-                {/* Name */}
+              {/* Info */}
+              <div style={{padding:'8px 10px',display:'flex',flexDirection:'column',gap:'7px',flex:1}}>
                 <div>
-                  <div style={{fontWeight:800,fontSize:'1rem',color:'var(--txt)',lineHeight:1.2}}>{char.name_en}</div>
-                  <div style={{fontSize:'.68rem',color:'var(--txt3)',marginTop:'2px'}}>{char.name_jp} · {FACTIONS.find(f=>f.id===char.country)?.label||char.country}</div>
+                  <div style={{fontWeight:800,fontSize:'.82rem',color:'var(--txt)',lineHeight:1.2,whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{char.name_en}</div>
+                  <div style={{fontSize:'.6rem',color:'var(--txt3)',marginTop:'1px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{FACTIONS.find(f=>f.id===char.country)?.label||char.country}</div>
                 </div>
-                {/* Skill progress toggles */}
-                <div>
-                  <div style={{fontSize:'.62rem',color:'var(--txt3)',fontWeight:600,marginBottom:'5px',textTransform:'uppercase',letterSpacing:'.06em'}}>Skills Unlocked</div>
-                  <div style={{display:'flex',gap:'6px'}}>
-                    {[1,2,3].map(n=>{
-                      const active=done>=n
-                      return(
-                        <button key={n} onClick={e=>{e.stopPropagation();toggleSkill(idx,n)}} style={{
-                          flex:1,padding:'7px 0',borderRadius:'8px',
-                          border:`2px solid ${active?rc:rc+'44'}`,
-                          background:active?rc:'transparent',
-                          color:active?'white':rc+'99',
-                          fontSize:'.82rem',fontWeight:800,cursor:'pointer',
-                          transition:'all .12s',
-                        }}>{n}</button>
-                      )
-                    })}
-                  </div>
+                {/* Skill toggles */}
+                <div style={{display:'flex',gap:'4px'}}>
+                  {[1,2,3].map(n=>{
+                    const active=done>=n
+                    return(
+                      <button key={n} onClick={e=>{e.stopPropagation();toggleSkill(idx,n)}} style={{
+                        flex:1,padding:'5px 0',borderRadius:'6px',
+                        border:`1.5px solid ${active?rc:rc+'44'}`,
+                        background:active?rc:'transparent',
+                        color:active?'white':rc+'88',
+                        fontSize:'.75rem',fontWeight:800,cursor:'pointer',
+                        transition:'all .12s',
+                      }}>{n}</button>
+                    )
+                  })}
                 </div>
-                {/* Cost + Replace */}
+                {/* Cost row */}
                 <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginTop:'auto'}}>
                   {isMaxed?(
-                    <span style={{fontWeight:800,fontSize:'.82rem',color:'#3d9970',padding:'3px 10px',borderRadius:'7px',background:'#3d997020',border:'1px solid #3d997060'}}>✓ Maxed</span>
+                    <span style={{fontSize:'.72rem',fontWeight:800,color:'#3d9970'}}>✓ Maxed</span>
                   ):(
-                    <div style={{display:'flex',alignItems:'center',gap:'5px'}}>
-                      <img src="/icons/Red_Crystal.png" alt="RC" style={{width:18,height:18,objectFit:"contain"}}/>
-                      <span style={{fontWeight:900,fontSize:'1.05rem',color:rc}}>{remaining?.toLocaleString()}</span>
-                      {done>0&&<span style={{fontSize:'.62rem',color:'var(--txt3)'}}>left</span>}
+                    <div style={{display:'flex',alignItems:'center',gap:'3px'}}>
+                      <img src="/icons/Red_Crystal.png" alt="RC" style={{width:14,height:14,objectFit:'contain'}}/>
+                      <span style={{fontWeight:900,fontSize:'.88rem',color:rc}}>{remaining?.toLocaleString()}</span>
                     </div>
                   )}
-                  <button onClick={()=>{setPicker(idx);setSearch('')}} style={{padding:'5px 12px',borderRadius:'8px',border:`1.5px solid ${rc}55`,background:'transparent',color:rc,fontSize:'.7rem',cursor:'pointer',fontWeight:700}}>Replace</button>
+                  <button onClick={()=>{setPicker(idx);setSearch('')}} style={{padding:'3px 8px',borderRadius:'6px',border:`1px solid ${rc}44`,background:'transparent',color:rc,fontSize:'.62rem',cursor:'pointer',fontWeight:700}}>↺</button>
                 </div>
               </div>
             </div>
@@ -1487,17 +1487,25 @@ function TeamCostPage(){
       </div>
 
       {/* Rarity reference */}
-      <div style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
+      <div style={{display:'flex',justifyContent:'center',gap:'8px',marginBottom:'2rem',flexWrap:'wrap'}}>
         {(['R','SR','UR']).map(r=>{
           const[s1,s2,s3]=SKILL_COSTS[r]
+          const rc2=RCOL[r]
           return(
-            <div key={r} style={{padding:'10px 16px',borderRadius:'12px',background:RBG[r],border:`1px solid ${RCOL[r]}44`,minWidth:'130px'}}>
-              <div style={{fontWeight:800,fontSize:'.9rem',color:RCOL[r],marginBottom:'6px',textAlign:'center'}}>{r}</div>
-              <div style={{fontSize:'.68rem',color:'var(--txt3)',display:'flex',flexDirection:'column',gap:'2px'}}>
-                <span>① <img src="/icons/Red_Crystal.png" alt="RC" style={{width:12,height:12,objectFit:"contain",verticalAlign:"middle"}}/> {s1}</span>
-                <span>② <img src="/icons/Red_Crystal.png" alt="RC" style={{width:12,height:12,objectFit:"contain",verticalAlign:"middle"}}/> {s2}</span>
-                <span>③ <img src="/icons/Red_Crystal.png" alt="RC" style={{width:12,height:12,objectFit:"contain",verticalAlign:"middle"}}/> {s3}</span>
-                <div style={{borderTop:`1px solid ${RCOL[r]}33`,marginTop:'4px',paddingTop:'4px',fontWeight:700,color:RCOL[r]}}>Total: {COST[r]}</div>
+            <div key={r} style={{borderRadius:'12px',background:RBG[r],border:`1px solid ${rc2}44`,overflow:'hidden',minWidth:'180px'}}>
+              <div style={{padding:'5px 12px',background:rc2+'22',borderBottom:`1px solid ${rc2}33`,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+                <span style={{fontWeight:800,fontSize:'.82rem',color:rc2}}>{r}</span>
+                <span style={{fontSize:'.68rem',color:rc2,fontWeight:700,display:'flex',alignItems:'center',gap:'3px'}}>
+                  <img src="/icons/Red_Crystal.png" alt="RC" style={{width:12,height:12,objectFit:'contain'}}/>{COST[r].toLocaleString()} total
+                </span>
+              </div>
+              <div style={{padding:'6px 12px',display:'flex',gap:'10px',fontSize:'.68rem',color:'var(--txt3)'}}>
+                {[[1,s1],[2,s2],[3,s3]].map(([n,v])=>(
+                  <span key={n} style={{display:'flex',alignItems:'center',gap:'2px'}}>
+                    <span style={{fontWeight:700,color:rc2}}>{['①','②','③'][n-1]}</span>
+                    <img src="/icons/Red_Crystal.png" alt="RC" style={{width:11,height:11,objectFit:'contain'}}/>{v}
+                  </span>
+                ))}
               </div>
             </div>
           )
