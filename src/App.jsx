@@ -380,7 +380,12 @@ function calcTeamEnemyDebuffs(team,enemyTeam=[]){
       }
     }
     if(!byTarget[key]) byTarget[key]={up:{},down:{}}
-    for(const{stat,dir,val} of parsed){
+    for(const{stat,dir,val,antiEnemy} of parsed){
+      if(antiEnemy&&enemyTeam.length>0){
+        const isUT=UNIT_TYPE_LIST.includes(antiEnemy)
+        if(isUT&&!enemyTeam.some(g=>g.unit_type===antiEnemy)) continue
+        if(!isUT&&FACTION_MAP[antiEnemy.toLowerCase()]&&!enemyTeam.some(g=>g.country===FACTION_MAP[antiEnemy.toLowerCase()])) continue
+      }
       const d=dir==='Up'?'up':'down'
       byTarget[key][d][stat]=(byTarget[key][d][stat]||0)+val
     }
