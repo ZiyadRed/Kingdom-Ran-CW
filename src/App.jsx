@@ -1191,7 +1191,9 @@ function BuffsPage(){
               transform:isActive?'translateY(-4px) scale(1.03)':'scale(1)',
               transition:'all .2s ease',
             }}>
-              <UnitCatIcon cat={cat} size={80}/>
+              <div style={{width:96,height:96,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+                <UnitCatIcon cat={cat} size={80}/>
+              </div>
               <div style={{textAlign:'center'}}>
                 <div style={{fontWeight:800,fontSize:'.95rem',color:isActive?col:'var(--txt)',marginBottom:'4px'}}>{cat}</div>
                 <div style={{fontSize:'.68rem',color:'var(--txt3)',background:'var(--bg2)',padding:'2px 10px',borderRadius:'20px',border:'1px solid var(--bdr)',display:'inline-block'}}>{uniqueNames.size} generals</div>
