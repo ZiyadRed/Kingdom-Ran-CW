@@ -1507,9 +1507,9 @@ function TeamCostPage(){
           ):(
             <button key={idx} onClick={()=>{setPicker(idx);setSearch('')}} style={{
               borderRadius:'18px',border:'2px dashed var(--bdr)',
-              background:'var(--sur)',minHeight:'220px',
+              background:'var(--sur)',minHeight:'120px',
               display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'8px',
-              cursor:'pointer',transition:'all .15s',color:'var(--txt3)',minHeight:'120px',
+              cursor:'pointer',transition:'all .15s',color:'var(--txt3)',
             }}
               onMouseEnter={e=>{e.currentTarget.style.borderColor='#6a30c8';e.currentTarget.style.background='#6a30c808'}}
               onMouseLeave={e=>{e.currentTarget.style.borderColor='var(--bdr)';e.currentTarget.style.background='var(--sur)'}}>
