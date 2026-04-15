@@ -70,7 +70,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kyoubou.webp",
+    "image": "/persos/kyoubou.webp",
     "icon": "/icons/Kyoubou.webp"
   },
   {
@@ -145,7 +145,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/goutoku.webp",
+    "image": "/persos/goutoku.webp",
     "icon": "/icons/Goutoku.webp"
   },
   {
@@ -225,7 +225,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/rien.webp",
+    "image": "/persos/rien.webp",
     "icon": "/icons/Rien.webp"
   },
   {
@@ -294,7 +294,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/rokin.webp"
+    "image": "/persos/rokin.webp"
   },
   {
     "id": "chouin",
@@ -397,7 +397,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/chouin.webp",
+    "image": "/persos/chouin.webp",
     "icon": "/icons/Chouin.webp"
   },
   {
@@ -489,7 +489,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/nakon.webp",
+    "image": "/persos/nakon.webp",
     "icon": "/icons/Nakon.webp"
   },
   {
@@ -581,7 +581,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/bakan.webp",
+    "image": "/persos/bakan.webp",
     "icon": "/icons/Bakan.webp"
   },
   {
@@ -667,7 +667,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/budai.webp",
+    "image": "/persos/budai.webp",
     "icon": "/icons/Budai.webp"
   },
   {
@@ -753,7 +753,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/hamui.webp",
+    "image": "/persos/hamui.webp",
     "icon": "/icons/Hamui.webp"
   }
 ]

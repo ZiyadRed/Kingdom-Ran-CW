@@ -94,7 +94,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/riboku.webp",
+    "image": "/persos/riboku.webp",
     "icon": "/icons/Riboku.webp"
   },
   {
@@ -212,7 +212,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/houken.webp",
+    "image": "/persos/houken.webp",
     "icon": "/icons/Houken.webp"
   },
   {
@@ -287,7 +287,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kaine.webp",
+    "image": "/persos/kaine.webp",
     "icon": "/icons/Kaine.webp"
   },
   {
@@ -381,7 +381,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/mangoku.webp",
+    "image": "/persos/mangoku.webp",
     "icon": "/icons/Mangoku.webp"
   },
   {
@@ -431,7 +431,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/chousou.webp",
+    "image": "/persos/chousou.webp",
     "icon": "/icons/Chousou.webp"
   },
   {
@@ -628,7 +628,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/seikai.webp",
+    "image": "/persos/seikai.webp",
     "icon": "/icons/Seikai.webp"
   }
 ]

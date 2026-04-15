@@ -6,7 +6,7 @@
     "country": "qin",
     "rarity": "UR",
     "notes": "Core buff target referenced by Gakurai and other Hi Shin Unit / Hyoukou Forces members.",
-    "image": "https://kingdom-ran-cw.vercel.app/persos/dukehyou.webp",
+    "image": "/persos/dukehyou.webp",
     "skills": [
       {
         "name_en": "Master General Flash [Orange Turtle]",
@@ -127,7 +127,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/mougou.webp",
+    "image": "/persos/mougou.webp",
     "icon": "/icons/Mougou.webp"
   },
   {
@@ -183,7 +183,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/mouki.webp",
+    "image": "/persos/mouki.webp",
     "icon": "/icons/Mouki.webp"
   },
   {
@@ -239,7 +239,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kozen.webp"
+    "image": "/persos/kozen.webp"
   },
   {
     "id": "rishi",
@@ -300,7 +300,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/rishi.webp"
+    "image": "/persos/rishi.webp"
   },
   {
     "id": "douken",
@@ -517,7 +517,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/maron.webp",
+    "image": "/persos/maron.webp",
     "icon": "/icons/Maron.webp"
   },
   {
@@ -574,7 +574,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shunmen.webp",
+    "image": "/persos/shunmen.webp",
     "icon": "/icons/Shunmen.webp"
   },
   {
@@ -631,7 +631,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/rankai.webp",
+    "image": "/persos/rankai.webp",
     "icon": "/icons/Rankai.webp"
   },
   {
@@ -694,7 +694,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kyoumei.webp",
+    "image": "/persos/kyoumei.webp",
     "icon": "/icons/Kyomei.webp"
   },
   {
@@ -751,7 +751,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/suugen.webp"
+    "image": "/persos/suugen.webp"
   },
   {
     "id": "obira",
@@ -807,7 +807,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/bihei.webp",
+    "image": "/persos/bihei.webp",
     "icon": "/icons/Bihei.webp"
   },
   {
@@ -925,7 +925,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ogiko.webp",
+    "image": "/persos/ogiko.webp",
     "icon": "/icons/Ogiko.webp"
   },
   {
@@ -987,7 +987,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/muta.webp",
+    "image": "/persos/muta.webp",
     "icon": "/icons/Muta.webp"
   },
   {
@@ -1043,7 +1043,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kyogai.webp",
+    "image": "/persos/kyogai.webp",
     "icon": "/icons/Kyougai.webp"
   },
   {
@@ -1099,7 +1099,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/doukin.webp",
+    "image": "/persos/doukin.webp",
     "icon": "/icons/Doukin.webp"
   },
   {
@@ -1191,7 +1191,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ryofui.webp",
+    "image": "/persos/ryofui.webp",
     "icon": "/icons/Ryofui.webp"
   },
   {
@@ -1247,7 +1247,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/heki.webp",
+    "image": "/persos/heki.webp",
     "icon": "/icons/Heki.webp"
   },
   {
@@ -1341,7 +1341,7 @@
         "star6": true
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/biki.webp",
+    "image": "/persos/biki.webp",
     "icon": "/icons/Queen Biki.webp"
   },
   {
@@ -1397,7 +1397,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kyouen.webp",
+    "image": "/persos/kyouen.webp",
     "icon": "/icons/Kyouen.webp"
   },
   {
@@ -1453,7 +1453,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/bitou.webp",
+    "image": "/persos/bitou.webp",
     "icon": "/icons/Bikou.webp"
   },
   {
@@ -1509,7 +1509,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kanou.webp",
+    "image": "/persos/kanou.webp",
     "icon": "/icons/Kanou.webp"
   },
   {
@@ -1619,7 +1619,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shousa.webp"
+    "image": "/persos/shousa.webp"
   },
   {
     "id": "sosui",
@@ -1668,7 +1668,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/sosui.webp",
+    "image": "/persos/sosui.webp",
     "icon": "/icons/Sosui.webp"
   },
   {
@@ -1724,7 +1724,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/hairou.webp"
+    "image": "/persos/hairou.webp"
   },
   {
     "id": "karyoten",
@@ -1779,7 +1779,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ten.webp",
+    "image": "/persos/ten.webp",
     "icon": "/icons/Karyouten.webp"
   },
   {
@@ -1889,7 +1889,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/takukei.webp"
+    "image": "/persos/takukei.webp"
   },
   {
     "id": "denyu",
@@ -1944,7 +1944,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/denyuu.webp",
+    "image": "/persos/denyuu.webp",
     "icon": "/icons/Denyuu.webp"
   },
   {
@@ -2000,7 +2000,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/denei.webp"
+    "image": "/persos/denei.webp"
   },
   {
     "id": "banyou",
@@ -2055,7 +2055,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/banyou.webp"
+    "image": "/persos/banyou.webp"
   },
   {
     "id": "hakukisei",
@@ -2218,7 +2218,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ryuusen.webp",
+    "image": "/persos/ryuusen.webp",
     "icon": "/icons/Ryuusen.webp"
   },
   {
@@ -2274,7 +2274,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/bakukoshin.webp",
+    "image": "/persos/bakukoshin.webp",
     "icon": "/icons/Bakukoshin.webp"
   },
   {
@@ -2330,7 +2330,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kyoushou.webp",
+    "image": "/persos/kyoushou.webp",
     "icon": "/icons/Kyoushou.webp"
   },
   {
@@ -2386,7 +2386,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/rokuomi.webp",
+    "image": "/persos/rokuomi.webp",
     "icon": "/icons/Rokuomi.webp"
   },
   {
@@ -2442,7 +2442,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ryuukoku.webp",
+    "image": "/persos/ryuukoku.webp",
     "icon": "/icons/Ryuukoku.webp"
   },
   {
@@ -2552,7 +2552,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/rinbou.webp",
+    "image": "/persos/rinbou.webp",
     "icon": "/icons/Rinbou.webp"
   },
   {

@@ -115,7 +115,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ouhon.webp",
+    "image": "/persos/ouhon.webp",
     "icon": "/icons/Ouhon.webp"
   },
   {
@@ -234,7 +234,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ousen.webp",
+    "image": "/persos/ousen.webp",
     "icon": "/icons/Ousen.webp"
   },
   {
@@ -339,7 +339,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kanki.webp",
+    "image": "/persos/kanki.webp",
     "icon": "/icons/Kanki.webp"
   },
   {
@@ -414,7 +414,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/mouten.webp",
+    "image": "/persos/mouten.webp",
     "icon": "/icons/Mouten.webp"
   },
   {
@@ -494,7 +494,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/moubu.webp",
+    "image": "/persos/moubu.webp",
     "icon": "/icons/Moubo.webp"
   },
   {
@@ -562,7 +562,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shouheikun.webp",
+    "image": "/persos/shouheikun.webp",
     "icon": "/icons/Shuheikun.webp"
   },
   {
@@ -648,7 +648,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shoubunkun.webp",
+    "image": "/persos/shoubunkun.webp",
     "icon": "/icons/Shoumounkun.webp"
   },
   {
@@ -760,7 +760,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/sho.webp",
+    "image": "/persos/sho.webp",
     "icon": "/icons/Shoou.webp"
   },
   {
@@ -829,7 +829,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/sei.webp",
+    "image": "/persos/sei.webp",
     "icon": "/icons/Ei Sei.webp"
   },
   {
@@ -936,7 +936,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kyou.webp",
+    "image": "/persos/kyou.webp",
     "icon": "/icons/Kyou.webp"
   },
   {
@@ -1043,7 +1043,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/raido.webp",
+    "image": "/persos/raido.webp",
     "icon": "/icons/Raido.webp"
   },
   {
@@ -1111,7 +1111,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kou.webp",
+    "image": "/persos/kou.webp",
     "icon": "/icons/Kou.webp"
   },
   {
@@ -1174,7 +1174,7 @@
     "name_jp": "王騎",
     "country": "qin",
     "rarity": "UR",
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ouki.webp",
+    "image": "/persos/ouki.webp",
     "skills": [
       {
         "name_en": "Master General Flash [Red Sheep]",
@@ -1280,7 +1280,7 @@
     "name_jp": "騰",
     "country": "qin",
     "rarity": "UR",
-    "image": "https://kingdom-ran-cw.vercel.app/persos/tou.webp",
+    "image": "/persos/tou.webp",
     "skills": [
       {
         "name_en": "ATK Enhancement [Red Elephant]",
@@ -1442,7 +1442,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shoukaku.webp",
+    "image": "/persos/shoukaku.webp",
     "icon": "/icons/Shoukaku.webp"
   }
 ]

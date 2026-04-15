@@ -76,7 +76,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kakukai.webp",
+    "image": "/persos/kakukai.webp",
     "icon": "/icons/Kakukai.webp"
   },
   {
@@ -194,7 +194,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/keisha.webp",
+    "image": "/persos/keisha.webp",
     "icon": "/icons/Keisha.webp"
   },
   {
@@ -268,7 +268,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/gakujou.webp",
+    "image": "/persos/gakujou.webp",
     "icon": "/icons/Gakujou.webp"
   },
   {
@@ -380,7 +380,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shinseijou.webp",
+    "image": "/persos/shinseijou.webp",
     "icon": "/icons/Shinseijou.webp"
   },
   {
@@ -436,7 +436,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kousonryuu.webp",
+    "image": "/persos/kousonryuu.webp",
     "icon": "/icons/Kousonryu.webp"
   },
   {
@@ -708,7 +708,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/rihaku.webp",
+    "image": "/persos/rihaku.webp",
     "icon": "/icons/Rihaku.webp"
   },
   {
@@ -770,7 +770,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shoumou.webp",
+    "image": "/persos/shoumou.webp",
     "icon": "/icons/Shoumou.webp"
   },
   {
@@ -832,7 +832,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shika.webp",
+    "image": "/persos/shika.webp",
     "icon": "/icons/Shika.webp"
   },
   {
@@ -888,7 +888,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kokuou.webp",
+    "image": "/persos/kokuou.webp",
     "icon": "/icons/Kokuou.webp"
   }
 ]

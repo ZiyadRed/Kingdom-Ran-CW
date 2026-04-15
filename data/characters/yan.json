@@ -77,7 +77,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/otaji.webp",
+    "image": "/persos/otaji.webp",
     "icon": "/icons/Otaji.webp"
   },
   {
@@ -163,7 +163,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/yukii.webp",
+    "image": "/persos/yukii.webp",
     "icon": "/icons/Yukii.webp"
   },
   {
@@ -263,7 +263,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/gakuki.webp",
+    "image": "/persos/gakuki.webp",
     "icon": "/icons/Gakuki.webp"
   },
   {
@@ -349,7 +349,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/gekishin.webp",
+    "image": "/persos/gekishin.webp",
     "icon": "/icons/Gekishin.webp"
   }
 ]

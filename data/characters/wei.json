@@ -138,7 +138,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/tairoji.webp",
+    "image": "/persos/tairoji.webp",
     "icon": "/icons/Tairoji.webp"
   },
   {
@@ -281,7 +281,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ranbihaku.webp",
+    "image": "/persos/ranbihaku.webp",
     "icon": "/icons/Ranbihaku.webp"
   },
   {
@@ -374,7 +374,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shikika.webp",
+    "image": "/persos/shikika.webp",
     "icon": "/icons/Shikika.webp"
   },
   {
@@ -454,7 +454,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/keibin.webp",
+    "image": "/persos/keibin.webp",
     "icon": "/icons/Keibin.webp"
   },
   {
@@ -529,7 +529,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/gaimou.webp",
+    "image": "/persos/gaimou.webp",
     "icon": "/icons/Gaimou.webp"
   },
   {
@@ -610,7 +610,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/junsou.webp",
+    "image": "/persos/junsou.webp",
     "icon": "/icons/Junso.webp"
   },
   {
@@ -619,7 +619,7 @@
     "name_jp": "霊凰",
     "country": "wei",
     "rarity": "UR",
-    "image": "https://kingdom-ran-cw.vercel.app/persos/reiou.webp",
+    "image": "/persos/reiou.webp",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Yellow Tiger]",
@@ -778,7 +778,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/yuuren.webp",
+    "image": "/persos/yuuren.webp",
     "icon": "/icons/Yuuren.webp"
   },
   {
@@ -834,7 +834,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kourigen.webp",
+    "image": "/persos/kourigen.webp",
     "icon": "/icons/Kourigen.webp"
   },
   {
@@ -843,7 +843,7 @@
     "name_jp": "紫伯",
     "country": "wei",
     "rarity": "UR",
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shihaku.webp",
+    "image": "/persos/shihaku.webp",
     "skills": [
       {
         "name_en": "Master General Attack [Red Sheep]",

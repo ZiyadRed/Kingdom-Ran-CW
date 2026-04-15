@@ -6,7 +6,7 @@
     "country": "ai",
     "rarity": "UR",
     "notes": "Wategi King of Ai — core buff target for Ai generals.",
-    "image": "https://kingdom-ran-cw.vercel.app/persos/rouai.webp",
+    "image": "/persos/rouai.webp",
     "skills": [
       {
         "name_en": "Fierce General Double Strike [Red Sheep]",
@@ -157,7 +157,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/wategi.webp",
+    "image": "/persos/wategi.webp",
     "icon": "/icons/Wategi.webp"
   },
   {
@@ -243,7 +243,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/hanoki.webp",
+    "image": "/persos/hanoki.webp",
     "icon": "/icons/Hanoki.webp"
   },
   {
@@ -335,7 +335,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/hanroki.webp",
+    "image": "/persos/hanroki.webp",
     "icon": "/icons/Hanroki.webp"
   },
   {
@@ -416,7 +416,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ordo.webp",
+    "image": "/persos/ordo.webp",
     "icon": "/icons/Ordo.webp"
   },
   {
@@ -523,7 +523,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/futei.webp",
+    "image": "/persos/futei.webp",
     "icon": "/icons/Futei.webp"
   },
   {
@@ -592,7 +592,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kouyoku.webp",
+    "image": "/persos/kouyoku.webp",
     "icon": "/icons/Kouyoku.webp"
   }
 ]

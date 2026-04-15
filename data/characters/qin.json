@@ -77,7 +77,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/akou.webp",
+    "image": "/persos/akou.webp",
     "icon": "/icons/Akou.webp"
   },
   {
@@ -158,7 +158,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/denrimi.webp",
+    "image": "/persos/denrimi.webp",
     "icon": "/icons/Denrimi.webp"
   },
   {
@@ -220,7 +220,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/youka.webp",
+    "image": "/persos/youka.webp",
     "icon": "/icons/Youka.webp"
   },
   {
@@ -276,7 +276,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kyourei.webp",
+    "image": "/persos/kyourei.webp",
     "icon": "/icons/Kyourei.webp"
   },
   {
@@ -356,7 +356,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/robin.webp",
+    "image": "/persos/robin.webp",
     "icon": "/icons/Robin.webp"
   },
   {
@@ -437,7 +437,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kakuun.webp",
+    "image": "/persos/kakuun.webp",
     "icon": "/icons/Kakuun.webp"
   },
   {
@@ -518,7 +518,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/bain.webp",
+    "image": "/persos/bain.webp",
     "icon": "/icons/Bain.webp"
   },
   {
@@ -605,7 +605,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shoutaku.webp",
+    "image": "/persos/shoutaku.webp",
     "icon": "/icons/Shoutaku.webp"
   },
   {
@@ -692,7 +692,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kyuukou.webp",
+    "image": "/persos/kyuukou.webp",
     "icon": "/icons/Kyuukou.webp"
   },
   {
@@ -773,7 +773,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/naki.webp",
+    "image": "/persos/naki.webp",
     "icon": "/icons/Naki.webp"
   },
   {
@@ -860,7 +860,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/ringyoku.webp",
+    "image": "/persos/ringyoku.webp",
     "icon": "/icons/Ringyoku.webp"
   },
   {
@@ -935,7 +935,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/zenou.webp",
+    "image": "/persos/zenou.webp",
     "icon": "/icons/Zenou.webp"
   },
   {
@@ -1015,7 +1015,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/hokaku.webp",
+    "image": "/persos/hokaku.webp",
     "icon": "/icons/Hokaku.webp"
   },
   {
@@ -1024,7 +1024,7 @@
     "name_jp": "信",
     "country": "qin",
     "rarity": "UR",
-    "image": "https://kingdom-ran-cw.vercel.app/persos/shin.webp",
+    "image": "/persos/shin.webp",
     "skills": [
       {
         "name_en": "Fierce General Flash [Yellow Turtle]",
@@ -1091,7 +1091,7 @@
     "name_en": "Kyoukai",
     "name_jp": "羌瘣",
     "country": "qin",
-    "image": null,
+    "image": "/persos/kyoukai.webp",
     "skills": [
       {
         "name_en": "Corpse Dance [Purple Elephant]",

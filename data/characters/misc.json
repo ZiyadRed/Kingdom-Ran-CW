@@ -46,7 +46,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/yuri.webp",
+    "image": "/persos/yuri.webp",
     "icon": "/icons/Yuri.webp"
   },
   {
@@ -96,7 +96,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/toubi.webp",
+    "image": "/persos/toubi.webp",
     "icon": "/icons/Toumi.webp"
   },
   {
@@ -212,7 +212,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/entei.webp",
+    "image": "/persos/entei.webp",
     "icon": "/icons/Entei.webp"
   },
   {
@@ -268,7 +268,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/bamyu.webp",
+    "image": "/persos/bamyu.webp",
     "icon": "/icons/Bamyu.webp"
   },
   {
@@ -324,7 +324,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/kakubi.webp",
+    "image": "/persos/kakubi.webp",
     "icon": "/icons/Kakubi.webp"
   },
   {
@@ -440,7 +440,7 @@
         ]
       }
     ],
-    "image": "https://kingdom-ran-cw.vercel.app/persos/genpou.webp",
+    "image": "/persos/genpou.webp",
     "icon": "/icons/Genpo.webp"
   },
   {
