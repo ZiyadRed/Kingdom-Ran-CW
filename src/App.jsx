@@ -430,6 +430,11 @@ function calcTeamEnemyDebuffs(team,enemyTeam=[]){
     for(const sk of(owner.skills||[])){
       for(const eff of(sk.effects||[])){
         const t=(eff.target||'').trim()
+        // skip effects whose condition requires an enemy unit type not present
+        if(enemyTeam.length>0){
+          const cm=(eff.condition||'').match(/enemy\s+(infantry|cavalr\w*|archers?|shield)/i)
+          if(cm){const raw=cm[1].toLowerCase();const ut=raw.startsWith('arch')?'Archer':raw.startsWith('cav')?'Cavalry':raw.startsWith('inf')?'Infantry':'Shield';if(!enemyTeam.some(g=>g.unit_type===ut)) continue}
+        }
         if(/^enemy|^all\s+enemy/i.test(t)){
           addToTarget(normalizeEnemyTarget(t),parseBuffEffect(eff.effect))
         } else {
@@ -1309,12 +1314,16 @@ function TierPage(){
 // ── TEAM COST PAGE ────────────────────────────────────────────────────────────
 function TeamCostPage(){
   const[slots,setSlots]=useState([null,null,null,null])
+  const[skillsDone,setSkillsDone]=useState([0,0,0,0])
   const[picker,setPicker]=useState(null)
   const[search,setSearch]=useState('')
 
   const COST={R:595,SR:800,UR:1750}
+  const SKILL_COSTS={R:[70,175,350],SR:[80,240,480],UR:[100,550,1100]}
   const RCOL={R:'#3d9970',SR:'#3d6eb5',UR:'#c0392b'}
   const RBG={R:'#3d997018',SR:'#3d6eb518',UR:'#c0392b18'}
+
+  const remainingCost=(rarity,done)=>SKILL_COSTS[rarity||'SR'].slice(done).reduce((s,v)=>s+v,0)
 
   const allChars=ALL.map(c=>{
     const rd=RARITY_DATA[c.name_en]
@@ -1327,13 +1336,18 @@ function TeamCostPage(){
 
   const setSlot=(idx,char)=>{
     setSlots(p=>{const n=[...p];n[idx]=char;return n})
+    setSkillsDone(p=>{const n=[...p];n[idx]=0;return n})
     setPicker(null);setSearch('')
   }
-  const clearSlot=(idx)=>setSlots(p=>{const n=[...p];n[idx]=null;return n})
-  const clearAll=()=>setSlots([null,null,null,null])
+  const clearSlot=(idx)=>{
+    setSlots(p=>{const n=[...p];n[idx]=null;return n})
+    setSkillsDone(p=>{const n=[...p];n[idx]=0;return n})
+  }
+  const clearAll=()=>{setSlots([null,null,null,null]);setSkillsDone([0,0,0,0])}
+  const toggleSkill=(idx,n)=>setSkillsDone(p=>{const ns=[...p];ns[idx]=ns[idx]>=n?n-1:n;return ns})
 
   const filled=slots.filter(Boolean)
-  const total=filled.reduce((s,c)=>s+COST[RARITY_DATA[c.name_en]?.rarity||'SR'],0)
+  const total=slots.reduce((s,c,idx)=>{if(!c)return s;const r=RARITY_DATA[c.name_en]?.rarity||'SR';return s+remainingCost(r,skillsDone[idx])},0)
   const urCount=filled.filter(c=>RARITY_DATA[c.name_en]?.rarity==='UR').length
   const srCount=filled.filter(c=>RARITY_DATA[c.name_en]?.rarity==='SR').length
   const rCount=filled.filter(c=>RARITY_DATA[c.name_en]?.rarity==='R').length
@@ -1358,7 +1372,7 @@ function TeamCostPage(){
         <div style={{display:'flex',alignItems:'center',gap:'14px'}}>
           <img src="/icons/Red_Crystal.png" alt="Red Crystal" style={{width:56,height:56,objectFit:"contain",flexShrink:0}}/>
           <div>
-            <div style={{fontSize:'.72rem',color:'#b89fe0',fontWeight:600,textTransform:'uppercase',letterSpacing:'1px'}}>Total Red Crystals</div>
+            <div style={{fontSize:'.72rem',color:'#b89fe0',fontWeight:600,textTransform:'uppercase',letterSpacing:'1px'}}>Red Crystals Needed</div>
             <div style={{fontSize:'2.4rem',fontWeight:900,color:'#e8c0ff',lineHeight:1}}>{total.toLocaleString()}</div>
           </div>
         </div>
@@ -1384,9 +1398,11 @@ function TeamCostPage(){
       <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'12px',marginBottom:'2.5rem'}}>
         {slots.map((char,idx)=>{
           const rarity=char?RARITY_DATA[char.name_en]?.rarity||'SR':null
-          const cost=char?COST[rarity]:null
           const fc=char?(CC[char.country]||'#888'):null
           const rc=rarity?RCOL[rarity]:'#888'
+          const done=skillsDone[idx]
+          const remaining=char?remainingCost(rarity,done):null
+          const isMaxed=char&&remaining===0
           return char?(
             <div key={idx} style={{
               borderRadius:'18px',overflow:'hidden',
@@ -1409,12 +1425,39 @@ function TeamCostPage(){
                 <button onClick={()=>clearSlot(idx)} style={{position:'absolute',top:'6px',right:'6px',width:24,height:24,borderRadius:'50%',border:'none',background:'rgba(0,0,0,0.5)',color:'white',cursor:'pointer',fontSize:'.7rem',display:'flex',alignItems:'center',justifyContent:'center'}}>✕</button>
               </div>
               {/* Info */}
-              <div style={{padding:'10px 12px',flex:1}}>
+              <div style={{padding:'10px 12px 6px'}}>
                 <div style={{fontWeight:700,fontSize:'.85rem',color:'var(--txt)',marginBottom:'2px'}}>{char.name_en}</div>
-                <div style={{fontSize:'.65rem',color:'var(--txt3)',marginBottom:'6px'}}>{char.name_jp} · {FACTIONS.find(f=>f.id===char.country)?.label||char.country}</div>
+                <div style={{fontSize:'.65rem',color:'var(--txt3)',marginBottom:'8px'}}>{char.name_jp} · {FACTIONS.find(f=>f.id===char.country)?.label||char.country}</div>
+                {/* Skill progress toggles */}
+                <div style={{marginBottom:'8px'}}>
+                  <div style={{fontSize:'.6rem',color:'var(--txt3)',fontWeight:600,marginBottom:'4px',textTransform:'uppercase',letterSpacing:'.05em'}}>Skills unlocked</div>
+                  <div style={{display:'flex',gap:'4px'}}>
+                    {[1,2,3].map(n=>{
+                      const active=done>=n
+                      return(
+                        <button key={n} onClick={e=>{e.stopPropagation();toggleSkill(idx,n)}} style={{
+                          flex:1,padding:'5px 0',borderRadius:'6px',
+                          border:`1.5px solid ${active?rc:rc+'55'}`,
+                          background:active?rc:'transparent',
+                          color:active?'white':rc+'aa',
+                          fontSize:'.72rem',fontWeight:800,cursor:'pointer',
+                          transition:'all .12s',
+                        }}>{n}</button>
+                      )
+                    })}
+                  </div>
+                </div>
+                {/* Cost remaining */}
                 <div style={{display:'flex',alignItems:'center',gap:'4px'}}>
-                  <img src="/icons/Red_Crystal.png" alt="RC" style={{width:18,height:18,objectFit:"contain",verticalAlign:"middle"}}/>
-                  <span style={{fontWeight:800,fontSize:'.95rem',color:rc}}>{cost?.toLocaleString()}</span>
+                  {isMaxed?(
+                    <span style={{fontWeight:800,fontSize:'.82rem',color:'#3d9970',padding:'2px 8px',borderRadius:'6px',background:'#3d997022',border:'1px solid #3d997055'}}>✓ Maxed</span>
+                  ):(
+                    <>
+                      <img src="/icons/Red_Crystal.png" alt="RC" style={{width:16,height:16,objectFit:"contain",verticalAlign:"middle"}}/>
+                      <span style={{fontWeight:800,fontSize:'.9rem',color:rc}}>{remaining?.toLocaleString()}</span>
+                      {done>0&&<span style={{fontSize:'.6rem',color:'var(--txt3)',marginLeft:'2px'}}>remaining</span>}
+                    </>
+                  )}
                 </div>
               </div>
               {/* Replace btn */}
@@ -1439,12 +1482,20 @@ function TeamCostPage(){
 
       {/* Rarity reference */}
       <div style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
-        {[['R',595],['SR',800],['UR',1750]].map(([r,c])=>(
-          <div key={r} style={{display:'flex',alignItems:'center',gap:'8px',padding:'8px 18px',borderRadius:'10px',background:RBG[r],border:`1px solid ${RCOL[r]}44`}}>
-            <span style={{fontWeight:800,fontSize:'.85rem',color:RCOL[r]}}>{r}</span>
-            <span style={{fontSize:'.75rem',color:'var(--txt3)'}}><img src="/icons/Red_Crystal.png" alt="RC" style={{width:16,height:16,objectFit:"contain",verticalAlign:"middle",margin:"0 3px"}}/> {c.toLocaleString()}</span>
-          </div>
-        ))}
+        {(['R','SR','UR']).map(r=>{
+          const[s1,s2,s3]=SKILL_COSTS[r]
+          return(
+            <div key={r} style={{padding:'10px 16px',borderRadius:'12px',background:RBG[r],border:`1px solid ${RCOL[r]}44`,minWidth:'130px'}}>
+              <div style={{fontWeight:800,fontSize:'.9rem',color:RCOL[r],marginBottom:'6px',textAlign:'center'}}>{r}</div>
+              <div style={{fontSize:'.68rem',color:'var(--txt3)',display:'flex',flexDirection:'column',gap:'2px'}}>
+                <span>① <img src="/icons/Red_Crystal.png" alt="RC" style={{width:12,height:12,objectFit:"contain",verticalAlign:"middle"}}/> {s1}</span>
+                <span>② <img src="/icons/Red_Crystal.png" alt="RC" style={{width:12,height:12,objectFit:"contain",verticalAlign:"middle"}}/> {s2}</span>
+                <span>③ <img src="/icons/Red_Crystal.png" alt="RC" style={{width:12,height:12,objectFit:"contain",verticalAlign:"middle"}}/> {s3}</span>
+                <div style={{borderTop:`1px solid ${RCOL[r]}33`,marginTop:'4px',paddingTop:'4px',fontWeight:700,color:RCOL[r]}}>Total: {COST[r]}</div>
+              </div>
+            </div>
+          )
+        })}
       </div>
 
       {/* Picker modal */}
