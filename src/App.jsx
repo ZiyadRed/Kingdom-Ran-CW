@@ -693,7 +693,7 @@ const RARITY_DATA={
 }
 
 const PAGES=['Archive','Party Builder','Simulate','CW Buffs','Tier List','Team Cost']
-const PAGE_ICONS={'Archive':'📜','Party Builder':'⚔️','Simulate':'⚡','CW Buffs':'🛡','Tier List':'🏆','Team Cost':'💎'}
+const PAGE_ICONS={'Archive':'👤','Party Builder':'🗡','Simulate':'🎯','CW Buffs':'📊','Tier List':'🏆','Team Cost':'💎'}
 const PAGE_SHORT={'Archive':'Archive','Party Builder':'Builder','Simulate':'Sim','CW Buffs':'CW Buffs','Tier List':'Tiers','Team Cost':'Cost'}
 // Hidden search tags — searching these strings finds the listed characters
 const CHAR_GROUPS={

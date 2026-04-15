@@ -532,7 +532,6 @@ img { display: block; max-width: 100% }
   }
   .mobile-search-input:focus { outline: none; border-color: var(--terra) }
   .mobile-search-clear { background: none; border: none; color: var(--txt3); font-size: .8rem; padding: 4px 8px; position: absolute; right: .75rem }
-  .mobile-search-bar { position: relative }
 
   /* Gallery: scrollable, normal flow */
   .gallery-wrap   { height: auto; overflow: visible }
