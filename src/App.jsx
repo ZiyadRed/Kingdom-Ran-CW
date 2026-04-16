@@ -422,12 +422,18 @@ function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false){
             })
             if(!inEnemyTeam) continue
           }
-          if(!stats[stat]) stats[stat]={up:0,down:0}
+          if(!stats[stat]) stats[stat]={up:0,down:0,sources:[]}
           if(SPECIAL_STATS.has(stat)){
-            // use actual duration count instead of the placeholder val=1
             const times=(parseInt(eff.duration)||1)*mult
             stats[stat].up+=times
-          } else if(dir==='Up') stats[stat].up+=val*mult; else stats[stat].down+=val*mult
+            stats[stat].sources.push({owner,contribution:times,dir:'up'})
+          } else if(dir==='Up'){
+            stats[stat].up+=val*mult
+            stats[stat].sources.push({owner,contribution:val*mult,dir:'up'})
+          } else {
+            stats[stat].down+=val*mult
+            stats[stat].sources.push({owner,contribution:val*mult,dir:'down'})
+          }
         }
       }
     }
@@ -818,6 +824,7 @@ function ArchivePage(){
       // hidden group tags
       const groupMatch=Object.entries(CHAR_GROUPS).find(([tag])=>tag.toLowerCase().includes(q)||q.includes(tag.toLowerCase()))
       if(groupMatch&&groupMatch[1].includes(c.name_en)) return true
+      if(c.skills?.some(sk=>sk.effects?.some(e=>e.effect&&e.effect.toLowerCase().includes(q)))) return true
       return false
     })
     :facChars
@@ -865,7 +872,17 @@ function ArchivePage(){
           <span className="gallery-count">{filtered.length} generals</span>
         </div>
         <div className="gallery-grid">
-          {filtered.map(c=>(
+          {filtered.map(c=>{
+            const skillTag=search?(()=>{
+              const q=search.toLowerCase()
+              if(c.name_en.toLowerCase().includes(q)||c.name_jp.includes(search)) return null
+              if(c.unit_type&&c.unit_type.toLowerCase().includes(q)) return null
+              for(const sk of(c.skills||[]))
+                for(const e of(sk.effects||[]))
+                  if(e.effect&&e.effect.toLowerCase().includes(q)) return e.effect
+              return null
+            })():null
+            return(
             <button key={c.id}
               className={`banner-card${selected?.id===c.id?' banner-selected':''}`}
               onClick={()=>setSelected(selected?.id===c.id?null:c)}
@@ -875,9 +892,13 @@ function ArchivePage(){
               </div>
               {c.image?<img src={c.image} alt={c.name_en} className="banner-img" loading="lazy"/>
                 :<div className="banner-ph" style={{background:(CC[c.country]||'#555')+'33',color:CC[c.country]||'#888'}}>{c.name_en[0]}</div>}
-              <div className="banner-footer"><span className="banner-name">{c.name_en}</span></div>
+              <div className="banner-footer">
+                <span className="banner-name">{c.name_en}</span>
+                {skillTag&&<span className="banner-skill-tag" title={skillTag}>{skillTag.length>22?skillTag.slice(0,21)+'…':skillTag}</span>}
+              </div>
             </button>
-          ))}
+            )
+          })}
         </div>
       </div>
 
@@ -1128,6 +1149,7 @@ const SPECIAL_STATS=new Set(['Attack Nullification','Sure Hit','Status Effect Im
 const STAT_ORDER=['Max HP','ATK','DEF','DEF Penetration','DEF Penetration Resistance','Guard','Attack Nullification','Sure Hit','Status Effect Immunity','Less Likely to be Targeted','Rampage','Max Morale','Morale Consumption','Morale Recovery','Critical Rate','Critical Damage','Hit Rate','HP Recovery','HP Recovery Nullification','Evasion','Squad Damage Reduction']
 function statSortKey(s){const i=STAT_ORDER.indexOf(s);return i===-1?STAT_ORDER.length:i}
 function BuffSideTable({label,entries,side,enemyDebuffs={}}){
+  const[expanded,setExpanded]=useState(null)
   const ac=side==='attack'?'var(--red)':'var(--blue)'
   const hasAny=entries.some(({buffs})=>Object.keys(buffs).length>0)
   const hasEnemyDebuffs=Object.keys(enemyDebuffs).length>0
@@ -1146,19 +1168,38 @@ function BuffSideTable({label,entries,side,enemyDebuffs={}}){
             </div>
             {!stats.length?<div className="buff-none-row">—</div>:(
               <div className="buff-stats">
-                {stats.map(([stat,{up,down}])=>{
+                {stats.map(([stat,{up,down,sources=[]}])=>{
                   const inv=INVERSE_STATS.has(stat)
                   const isFlag=SPECIAL_STATS.has(stat)
+                  const key=`${g.id}|${stat}`
+                  const isOpen=expanded===key
                   return(
-                    <div key={stat} className="buff-row">
-                      <span className="buff-stat-name">{stat}</span>
-                      <span className="buff-vals">
-                        {isFlag
-                          ?<span className="buff-up" style={{fontSize:'.75rem',letterSpacing:'.02em'}}>● {up}×</span>
-                          :<>{up>0&&<span className={inv?'buff-down':'buff-up'}>+{fmt(up)}%</span>}
-                             {down>0&&<span className={inv?'buff-up':'buff-down'}>−{fmt(down)}%</span>}</>
-                        }
-                      </span>
+                    <div key={stat}>
+                      <div className={`buff-row buff-row-click${isOpen?' buff-row-open':''}`}
+                           onClick={()=>setExpanded(isOpen?null:key)}>
+                        <span className="buff-stat-name">{stat}</span>
+                        <span className="buff-vals">
+                          {isFlag
+                            ?<span className="buff-up" style={{fontSize:'.75rem',letterSpacing:'.02em'}}>● {up}×</span>
+                            :<>{up>0&&<span className={inv?'buff-down':'buff-up'}>+{fmt(up)}%</span>}
+                               {down>0&&<span className={inv?'buff-up':'buff-down'}>−{fmt(down)}%</span>}</>
+                          }
+                          <span className="buff-chevron">{isOpen?'▴':'▾'}</span>
+                        </span>
+                      </div>
+                      {isOpen&&sources.length>0&&(
+                        <div className="buff-sources">
+                          {sources.map((s,i)=>(
+                            <div key={i} className="buff-source-row">
+                              <CharIcon c={s.owner} size={16} round={true}/>
+                              <span className="buff-source-name">{s.owner.name_en}</span>
+                              <span className={s.dir==='up'?(inv?'buff-down':'buff-up'):(inv?'buff-up':'buff-down')}>
+                                {isFlag?`${s.contribution}×`:`${s.dir==='up'?'+':'−'}${fmt(s.contribution)}%`}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )
                 })}

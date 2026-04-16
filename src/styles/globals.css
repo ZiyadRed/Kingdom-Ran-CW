@@ -185,6 +185,7 @@ img { display: block; max-width: 100% }
 .banner-ph             { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; font-weight: 700 }
 .banner-footer         { background: linear-gradient(transparent, rgba(6,38,76,.88)); padding: .38rem .5rem .42rem; position: absolute; bottom: 0; left: 0; right: 0 }
 .banner-name           { display: block; font-size: .76rem; font-weight: 700; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,.5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.banner-skill-tag      { display: block; font-size: .62rem; color: rgba(255,220,100,.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; font-style: italic }
 .banner-unit-badge     { position: absolute; bottom: 30px; left: 6px; z-index: 3; width: 22px; height: 22px; border-radius: 4px; display: flex; align-items: center; justify-content: center; padding: 2px }
 .unit-badge-img        { width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1) }
 
@@ -368,11 +369,18 @@ img { display: block; max-width: 100% }
 .buff-cards  { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .45rem; border: 1.5px solid var(--bdr); border-radius: 0 0 8px 8px; padding: .6rem; background: var(--bg2) }
 .buff-stats      { display: flex; flex-direction: column; gap: 3px }
 .buff-row        { display: flex; align-items: center; justify-content: space-between; font-size: .8rem; padding: 4px 7px; border-radius: 5px; background: var(--sur); border: 1px solid var(--bdr) }
+.buff-row-click  { cursor: pointer; transition: background .12s }
+.buff-row-click:hover { background: rgba(255,255,255,.06) }
+.buff-row-open   { border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.05) }
+.buff-chevron    { font-size: .6rem; color: var(--txt3); margin-left: 4px; flex-shrink: 0 }
 .buff-stat-name  { color: var(--txt2); font-weight: 500; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
-.buff-vals       { display: flex; gap: 5px; flex-shrink: 0; margin-left: .5rem }
+.buff-vals       { display: flex; align-items: center; gap: 5px; flex-shrink: 0; margin-left: .5rem }
 .buff-up         { font-weight: 800; color: #fff; font-size: .73rem; background: #1a8a5a; padding: 1px 8px; border-radius: 20px; white-space: nowrap }
 .buff-down       { font-weight: 800; color: #fff; font-size: .73rem; background: #c0392b; padding: 1px 8px; border-radius: 20px; white-space: nowrap }
 .buff-none-row   { color: var(--txt3); font-style: italic; font-size: .75rem; padding: 3px 5px }
+.buff-sources    { display: flex; flex-direction: column; gap: 2px; padding: 4px 7px 5px 14px; background: rgba(255,255,255,.03); border-left: 2px solid rgba(255,255,255,.1); margin-top: 1px; border-radius: 0 0 5px 5px }
+.buff-source-row { display: flex; align-items: center; gap: 6px; font-size: .72rem }
+.buff-source-name { color: var(--txt2); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
 .bc          { background: var(--sur); border: 1.5px solid var(--bdr); border-top: 3px solid; border-radius: 8px; overflow: hidden; transition: transform .15s }
 .bc:hover    { transform: translateY(-1px) }
 .bc-top      { display: flex; align-items: center; gap: .45rem; padding: .4rem .55rem; border-bottom: 1px solid var(--bdr) }
