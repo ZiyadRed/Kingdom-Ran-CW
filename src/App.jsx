@@ -452,7 +452,7 @@ function normalizeEnemyTarget(t){
 }
 function calcTeamEnemyDebuffs(team,enemyTeam=[]){
   const byTarget={}
-  function addToTarget(key,parsed){
+  function addToTarget(key,parsed,owner){
     if(!parsed.length) return
     if(enemyTeam.length>0){
       const ut=UNIT_TYPE_LIST.find(u=>key===`Enemy ${u}`)
@@ -462,7 +462,7 @@ function calcTeamEnemyDebuffs(team,enemyTeam=[]){
         if(key===`Enemy ${cap}`&&!enemyTeam.some(g=>g.country===FACTION_MAP[label])) return
       }
     }
-    if(!byTarget[key]) byTarget[key]={up:{},down:{}}
+    if(!byTarget[key]) byTarget[key]={up:{},down:{},sources:{}}
     for(const{stat,dir,val,antiEnemy} of parsed){
       if(antiEnemy&&enemyTeam.length>0){
         const isUT=UNIT_TYPE_LIST.includes(antiEnemy)
@@ -471,6 +471,9 @@ function calcTeamEnemyDebuffs(team,enemyTeam=[]){
       }
       const d=dir==='Up'?'up':'down'
       byTarget[key][d][stat]=(byTarget[key][d][stat]||0)+val
+      const skey=`${d}|${stat}`
+      if(!byTarget[key].sources[skey]) byTarget[key].sources[skey]=[]
+      byTarget[key].sources[skey].push({owner,contribution:val,dir:d})
     }
   }
   for(const owner of team){
@@ -483,7 +486,7 @@ function calcTeamEnemyDebuffs(team,enemyTeam=[]){
           if(cm){const raw=cm[1].toLowerCase();const ut=raw.startsWith('arch')?'Archer':raw.startsWith('cav')?'Cavalry':raw.startsWith('inf')?'Infantry':'Shield';if(!enemyTeam.some(g=>g.unit_type===ut)) continue}
         }
         if(/^enemy|^all\s+enemy/i.test(t)){
-          addToTarget(normalizeEnemyTarget(t),parseBuffEffect(eff.effect))
+          addToTarget(normalizeEnemyTarget(t),parseBuffEffect(eff.effect),owner)
         } else {
           // collect embedded "Enemy [X] Stat Dir Val" parts from ally-target effects
           for(const part of (eff.effect||'').split(/[,、]/)){
@@ -493,7 +496,7 @@ function calcTeamEnemyDebuffs(team,enemyTeam=[]){
             if(!m) continue
             const targetType=m[1].trim()
             const key=UNIT_TYPE_LIST.includes(targetType)?`Enemy ${targetType}`:`Enemy ${targetType[0].toUpperCase()+targetType.slice(1)}`
-            addToTarget(key,[{stat:m[2].trim(),dir:m[3],val:parseFloat(m[4])}])
+            addToTarget(key,[{stat:m[2].trim(),dir:m[3],val:parseFloat(m[4])}],owner)
           }
         }
       }
@@ -740,8 +743,13 @@ const RARITY_DATA={
 }
 
 const PAGES=['Archive','Party Builder','Simulate','CW Buffs','Tier List','Team Cost']
-const PAGE_ICONS={'Archive':'👤','Party Builder':'🗡','Simulate':'🎯','CW Buffs':'📊','Tier List':'🏆','Team Cost':'💎'}
+const PAGE_ICONS={'Archive':'👤','Party Builder':'🗡','Simulate':'🎯','CW Buffs':'📊','Tier List':'🏆','Team Cost':{img:'/icons/Red_Crystal.png'}}
 const PAGE_SHORT={'Archive':'Archive','Party Builder':'Builder','Simulate':'Sim','CW Buffs':'CW Buffs','Tier List':'Tiers','Team Cost':'Cost'}
+function PageIcon({p}){
+  const v=PAGE_ICONS[p]
+  if(v&&typeof v==='object'&&v.img) return <img src={v.img} alt="" className="bntab-img"/>
+  return <span>{v}</span>
+}
 // Hidden search tags — searching these strings finds the listed characters
 const CHAR_GROUPS={
   'Hi Shin Unit':['Shin','Garo','Gakurai','Kyoukai'],
@@ -800,7 +808,7 @@ export default function App(){
       <nav className="bottom-nav">
         {PAGES.map(p=>(
           <button key={p} className={`bntab${page===p?' bntab-on':''}`} onClick={()=>setPage(p)}>
-            <span className="bntab-icon">{PAGE_ICONS[p]}</span>
+            <span className="bntab-icon"><PageIcon p={p}/></span>
             {PAGE_SHORT[p]}
           </button>
         ))}
@@ -1208,34 +1216,52 @@ function BuffSideTable({label,entries,side,enemyDebuffs={}}){
           </div>
         )
       })}
-      {hasEnemyDebuffs&&(
-        <div className="scol-gen" style={{marginTop:'.5rem'}}>
-          <div className="scol-gen-hdr" style={{color:'#b05000',fontSize:'.75rem',fontWeight:800,letterSpacing:'.03em'}}>
-            ↓ Debuffs Applied to Enemy
-          </div>
-          <div className="buff-stats">
-            {Object.entries(enemyDebuffs).map(([target,{up,down}])=>{
-              const allStats=[
-                ...Object.entries(down).map(([s,v])=>({s,v,d:'down'})),
-                ...Object.entries(up).map(([s,v])=>({s,v,d:'up'})),
-              ].filter(x=>x.v>0)
-              if(!allStats.length) return null
-              return(
-                <div key={target} className="buff-row" style={{background:'rgba(176,80,0,.07)',borderColor:'rgba(176,80,0,.2)'}}>
-                  <span className="buff-stat-name" style={{color:'#b05000',fontWeight:700,fontSize:'.75rem'}}>{target}</span>
-                  <span className="buff-vals">
-                    {allStats.map(({s,v,d})=>(
-                      <span key={s} className="buff-down">
-                        {d==='down'?'−':''}{fmt(v)}% {s}
+      {hasEnemyDebuffs&&Object.entries(enemyDebuffs).map(([target,{up,down,sources={}}])=>{
+        const allStats=[
+          ...Object.entries(down).map(([s,v])=>({s,v,d:'down'})),
+          ...Object.entries(up).map(([s,v])=>({s,v,d:'up'})),
+        ].filter(x=>x.v>0)
+        if(!allStats.length) return null
+        return(
+          <div key={target} className="scol-gen" style={{marginTop:'.5rem',borderColor:'rgba(176,80,0,.35)'}}>
+            <div className="scol-gen-hdr" style={{color:'#b05000',fontSize:'.78rem',fontWeight:800,letterSpacing:'.02em'}}>
+              <span style={{fontSize:'.85rem'}}>↓</span> {target}
+            </div>
+            <div className="buff-stats">
+              {allStats.map(({s,v,d})=>{
+                const skey=`${d}|${s}`
+                const srcs=sources[skey]||[]
+                const rowKey=`deb|${target}|${skey}`
+                const isOpen=expanded===rowKey
+                return(
+                  <div key={s}>
+                    <div className={`buff-row buff-row-click${isOpen?' buff-row-open':''}`}
+                         style={{background:'rgba(176,80,0,.07)',borderColor:'rgba(176,80,0,.22)'}}
+                         onClick={()=>setExpanded(isOpen?null:rowKey)}>
+                      <span className="buff-stat-name" style={{color:'#b05000',fontWeight:700,fontSize:'.75rem'}}>{s}</span>
+                      <span className="buff-vals">
+                        <span className="buff-down">{d==='down'?'−':'+'}{fmt(v)}%</span>
+                        <span className="buff-chevron">{isOpen?'▴':'▾'}</span>
                       </span>
-                    ))}
-                  </span>
-                </div>
-              )
-            })}
+                    </div>
+                    {isOpen&&srcs.length>0&&(
+                      <div className="buff-sources">
+                        {srcs.map((x,i)=>(
+                          <div key={i} className="buff-source-row">
+                            <CharIcon c={x.owner} size={16} round={true}/>
+                            <span className="buff-source-name">{x.owner.name_en}</span>
+                            <span className="buff-down">{x.dir==='down'?'−':'+'}{fmt(x.contribution)}%</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
           </div>
-        </div>
-      )}
+        )
+      })}
     </div>
   )
 }
