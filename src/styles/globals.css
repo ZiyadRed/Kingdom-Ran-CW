@@ -235,11 +235,11 @@ img { display: block; max-width: 100% }
 .eff        { display: flex; flex-direction: column; gap: .25rem; width: 100% }
 .eff-if     { display: flex; align-items: flex-start; gap: .38rem; font-size: .75rem; color: #7a3800; font-style: italic; padding: .28rem .55rem; background: #fff3e0; border-left: 3px solid #e07f48; border-radius: 0 5px 5px 0; line-height: 1.45 }
 .eff-if-lbl { font-style: normal; font-size: .6rem; font-weight: 900; font-family: monospace; background: #e07f48; color: #fff; padding: 1px 6px; border-radius: 3px; flex-shrink: 0; letter-spacing: .04em; margin-top: 1px }
-.eff-body   { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .4rem; padding: .42rem .62rem; background: #fff; border-radius: 6px; border: 1.5px solid #d0b898; box-shadow: 0 1px 3px rgba(6,38,76,.07); width: 100%; box-sizing: border-box; min-width: 0 }
-.eff-tgt    { color: #06264C; font-weight: 900; font-size: .88rem; white-space: normal; word-break: break-word; grid-column: 1 }
-.eff-sep    { color: #888; font-size: .82rem; white-space: nowrap; flex-shrink: 0 }
-.eff-val    { color: #c0392b; font-size: .88rem; font-weight: 700; line-height: 1.5; word-break: break-word; overflow-wrap: break-word; white-space: normal; min-width: 0; flex: 1 }
-.eff-dur    { font-size: .7rem; color: #555; font-weight: 600; font-family: monospace; background: #f0e8d8; border: 1px solid #c8b898; border-radius: 3px; padding: 1px 8px; white-space: nowrap; flex-basis: 100%; margin-top: .05rem }
+.eff-body   { display: grid; grid-template-columns: auto 1fr; gap: .15rem .4rem; align-items: baseline; padding: .42rem .62rem; background: #fff; border-radius: 6px; border: 1.5px solid #d0b898; box-shadow: 0 1px 3px rgba(6,38,76,.07); width: 100%; box-sizing: border-box }
+.eff-tgt    { grid-column: 1 / -1; color: #06264C; font-weight: 900; font-size: .88rem; word-break: break-word; overflow-wrap: break-word; line-height: 1.4 }
+.eff-sep    { color: #888; font-size: .82rem; white-space: nowrap; align-self: baseline }
+.eff-val    { color: #c0392b; font-size: .88rem; font-weight: 700; line-height: 1.5; word-break: break-word; overflow-wrap: break-word; min-width: 0 }
+.eff-dur    { grid-column: 1 / -1; font-size: .7rem; color: #555; font-weight: 600; font-family: monospace; background: #f0e8d8; border: 1px solid #c8b898; border-radius: 3px; padding: 1px 8px; white-space: nowrap; display: inline-block; margin-top: .05rem }
 
 /* ══════════════════════════════════════════════════════════════
    PARTY BUILDER
