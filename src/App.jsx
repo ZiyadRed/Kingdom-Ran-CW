@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { Routes, Route, Navigate, useNavigate, useLocation, useParams } from 'react-router-dom'
 import mountainFolk from '../data/characters/mountain_folk.json'
 import qin          from '../data/characters/qin.json'
 import qinBatch2    from '../data/characters/qin_batch2.json'
@@ -747,6 +748,17 @@ const RARITY_DATA={
 const PAGES=['Archive','Party Builder','Simulate','CW Buffs','Tier List','Team Cost']
 const PAGE_ICONS={'Archive':'👤','Party Builder':'🗡','Simulate':'🎯','CW Buffs':'📊','Tier List':'🏆','Team Cost':{img:'/icons/Red_Crystal.png'}}
 const PAGE_SHORT={'Archive':'Archive','Party Builder':'Builder','Simulate':'Sim','CW Buffs':'CW Buffs','Tier List':'Tiers','Team Cost':'Cost'}
+const PAGE_TO_ROUTE={'Archive':'/archive','Party Builder':'/builder','Simulate':'/sim','CW Buffs':'/buffs','Tier List':'/tiers','Team Cost':'/cost'}
+function routeMatches(pathname,page){
+  const r=PAGE_TO_ROUTE[page]
+  if(pathname===r||pathname===r+'/') return true
+  if(pathname.startsWith(r+'/')) return true
+  if(pathname==='/'&&page==='Archive') return true
+  return false
+}
+function currentPage(pathname){
+  return PAGES.find(p=>routeMatches(pathname,p))||'Archive'
+}
 function PageIcon({p}){
   const v=PAGE_ICONS[p]
   if(v&&typeof v==='object'&&v.img) return <img src={v.img} alt="" className="bntab-img"/>
@@ -759,7 +771,10 @@ const CHAR_GROUPS={
   'Gakuka':['Mouten','Rikusen'],
 }
 export default function App(){
-  const[page,setPage]=useState('Archive')
+  const location=useLocation()
+  const navigate=useNavigate()
+  const page=currentPage(location.pathname)
+  const go=p=>navigate(PAGE_TO_ROUTE[p])
   const[atk,setAtk]=useState([null,null,null,null])
   const[def,setDef]=useState([null,null,null,null])
   const rm=(char,side)=>(side==='attack'?setAtk:setDef)(p=>p.map(x=>x?.id===char.id?null:x))
@@ -772,22 +787,24 @@ export default function App(){
     const slots=[...chars,...Array(4-chars.length).fill(null)]
     if(side==='attack') setAtk(slots)
     else setDef(slots)
-    setPage('Party Builder')
+    navigate('/builder')
   }
+  // Scroll to top when switching top-level tab (not on character deep-link changes within Archive)
+  useEffect(()=>{window.scrollTo(0,0)},[page])
   return(
     <div className="app">
       <header className="hdr">
         <div className="hdr-in">
-          <div className="logo">
+          <button className="logo" onClick={()=>navigate('/archive')} style={{background:'none',border:'none',padding:0,cursor:'pointer',color:'inherit'}}>
             <img src="/ranhq-icon.png" alt="RanHQ" className="logo-icon"/>
             <div>
               <div className="logo-ja">キングダム乱</div>
               <div className="logo-en">RanHQ</div>
             </div>
-          </div>
+          </button>
           <nav className="nav">
             {PAGES.map(p=>(
-              <button key={p} className={`nb${page===p?' nb-on':''}`} onClick={()=>setPage(p)}>
+              <button key={p} className={`nb${page===p?' nb-on':''}`} onClick={()=>go(p)}>
                 {p}{p==='Party Builder'&&(atk.filter(Boolean).length+def.filter(Boolean).length)>0&&<span className="nb-dot">{atk.filter(Boolean).length+def.filter(Boolean).length}</span>}
               </button>
             ))}
@@ -795,12 +812,17 @@ export default function App(){
         </div>
       </header>
       <div className="app-body">
-        {page==='Archive'          && <ArchivePage/>}
-        {page==='Party Builder'    && <BuilderPage atk={atk} def={def} setSlot={setSlot} rm={rm} goSim={()=>setPage('Simulate')} loadMetaTeam={loadMetaTeam}/>}
-        {page==='Simulate' && <SimPage atk={atk} def={def} goBuilder={()=>setPage('Party Builder')}/>}
-        {page==='CW Buffs'         && <BuffsPage/>}
-        {page==='Tier List'        && <TierPage/>}
-        {page==='Team Cost'        && <TeamCostPage/>}
+        <Routes>
+          <Route path="/" element={<Navigate to="/archive" replace/>}/>
+          <Route path="/archive" element={<ArchivePage/>}/>
+          <Route path="/archive/:charId" element={<ArchivePage/>}/>
+          <Route path="/builder" element={<BuilderPage atk={atk} def={def} setSlot={setSlot} rm={rm} goSim={()=>navigate('/sim')} loadMetaTeam={loadMetaTeam}/>}/>
+          <Route path="/sim" element={<SimPage atk={atk} def={def} goBuilder={()=>navigate('/builder')}/>}/>
+          <Route path="/buffs" element={<BuffsPage/>}/>
+          <Route path="/tiers" element={<TierPage/>}/>
+          <Route path="/cost" element={<TeamCostPage/>}/>
+          <Route path="*" element={<Navigate to="/archive" replace/>}/>
+        </Routes>
       </div>
       <footer className="foot">
         <div style={{marginTop:'.35rem'}}>Made by <strong>@ZiyadRed</strong> · Purgatory 復活</div>
@@ -809,7 +831,7 @@ export default function App(){
       </footer>
       <nav className="bottom-nav">
         {PAGES.map(p=>(
-          <button key={p} className={`bntab${page===p?' bntab-on':''}`} onClick={()=>setPage(p)}>
+          <button key={p} className={`bntab${page===p?' bntab-on':''}`} onClick={()=>go(p)}>
             <span className="bntab-icon"><PageIcon p={p}/></span>
             {PAGE_SHORT[p]}
           </button>
@@ -821,9 +843,22 @@ export default function App(){
 
 // ── ARCHIVE ───────────────────────────────────────────────────────────────────
 function ArchivePage(){
+  const{charId}=useParams()
+  const navigate=useNavigate()
   const[activeFac,setActiveFac]=useState('qin')
   const[selected,setSelected]=useState(null)
   const[search,setSearch]=useState('')
+  // Sync selection from URL param
+  useEffect(()=>{
+    if(!charId){setSelected(null);return}
+    const c=ALL.find(x=>x.id===charId)
+    if(c){setSelected(c);if(c.country)setActiveFac(c.country)}
+  },[charId])
+  const pickChar=c=>{
+    if(selected?.id===c.id){navigate('/archive');return}
+    navigate(`/archive/${c.id}`)
+  }
+  const clearSelection=()=>navigate('/archive')
   const facChars=ALL.filter(c=>c.country===activeFac&&c.image)
   const filtered=(search
     ?ALL.filter(c=>{
@@ -839,14 +874,14 @@ function ArchivePage(){
     })
     :facChars
   ).slice().sort((a,b)=>a.name_en.localeCompare(b.name_en))
-  const handleFacClick=(fid)=>{setActiveFac(fid);setSelected(null);setSearch('')}
+  const handleFacClick=(fid)=>{setActiveFac(fid);if(selected)navigate('/archive');setSearch('')}
 
   return(
     <div className={`archive-layout${selected?' has-selection':''}`}>
       {/* Sidebar */}
       <aside className="fac-sidebar">
         <div className="fac-search-wrap">
-          <input className="fac-search" placeholder="Search generals…" value={search} onChange={e=>{setSearch(e.target.value);setSelected(null)}}/>
+          <input className="fac-search" placeholder="Search generals…" value={search} onChange={e=>{setSearch(e.target.value);if(selected)navigate('/archive')}}/>
         </div>
         <div className="fac-nav">
           {FACTIONS.map(f=>{
@@ -874,7 +909,7 @@ function ArchivePage(){
             className="mobile-search-input"
             placeholder="Search generals…"
             value={search}
-            onChange={e=>{setSearch(e.target.value);setSelected(null)}}/>
+            onChange={e=>{setSearch(e.target.value);if(selected)navigate('/archive')}}/>
           {search&&<button className="mobile-search-clear" onClick={()=>setSearch('')}>✕</button>}
         </div>
         <div className="gallery-header">
@@ -895,7 +930,7 @@ function ArchivePage(){
             return(
             <button key={c.id}
               className={`banner-card${selected?.id===c.id?' banner-selected':''}`}
-              onClick={()=>setSelected(selected?.id===c.id?null:c)}
+              onClick={()=>pickChar(c)}
               style={selected?.id===c.id?{outline:`3px solid ${CC[c.country]||'#999'}`}:{}}>
               <div className="banner-faction-tag" style={{background:CC[c.country]||'#666'}}>
                 {FACTIONS.find(f=>f.id===c.country)?.jp||c.country}
@@ -924,7 +959,7 @@ function ArchivePage(){
                 {FACTIONS.find(f=>f.id===selected.country)?.label}
               </div>
             </div>
-            <button className="detail-close" onClick={()=>setSelected(null)}>✕</button>
+            <button className="detail-close" onClick={clearSelection}>✕</button>
           </div>
           <div className="detail-skills">
             {(selected.skills||[]).length===0
