@@ -195,10 +195,12 @@ function parseBuffEffect(str){
   if(!str) return []
   const results=[];let deferred=[]
   for(let part of str.split(/[,、\/]/)){
-    part=part.trim().replace(/\\/g,'')
+    part=part.trim().replace(/\\/g,'').replace(/"/g,'').trim()
+    part=part.replace(/^and\s+/i,'').replace(/\s*\(Dodge Chance\)/gi,'').replace(/\s+additional\b/gi,'').trim()
     if(!part) continue
     if(/^enemy/i.test(part)) continue
-    if(/\d+[%％]\s*Damage|HP Drain|Provoke|Stun Rate/i.test(part)) continue
+    if(/\d+[%％]\s*Damage|^%\s*(?:of\s+|Damage)|HP Drain|Stun Rate/i.test(part)) continue
+    if(/^Provoke$/i.test(part)) continue
     if(/^Normal Attack(?!\s+Seal)/i.test(part)) continue
     // strip embedded "Ally [X]" target prefix from effect strings
     part=part.replace(/^Ally\s+\[[^\]]+\]\s*/i,'')
@@ -237,6 +239,17 @@ function parseBuffEffect(str){
       }
       deferred=[]
     }
+    // "Provoke Infliction"
+    if(/^Provoke Infliction$/i.test(part)){flush({stat:'Provoke Infliction Rate',dir:'Up',val:100,ownerType,antiEnemy});continue}
+    // boolean flag buffs (non-numeric — encoded as val=1 for display purposes)
+    if(/^Attack Nullification$/i.test(part)){flush({stat:'Attack Nullification',dir:'Up',val:1,ownerType,antiEnemy});continue}
+    if(/^Status(?:\s+Effect|\s+Abnormality)\s+(?:Immunity|Nullification)/i.test(part)){flush({stat:'Status Effect Immunity',dir:'Up',val:1,ownerType,antiEnemy});continue}
+    if(/^Sure Hit$/i.test(part)){flush({stat:'Sure Hit',dir:'Up',val:1,ownerType,antiEnemy});continue}
+    if(/^Less Likely to be Targeted$/i.test(part)){flush({stat:'Less Likely to be Targeted',dir:'Up',val:1,ownerType,antiEnemy});continue}
+    if(/^Rampage$/i.test(part)){flush({stat:'Rampage',dir:'Up',val:1,ownerType,antiEnemy});continue}
+    // "ATK Up (max X%)" — stacking buff with cap, no per-stack value given
+    m=part.match(/^(.+?)\s+(Up|Down)\s+\(max\s+(\d+(?:\.\d+)?)[%％]\)$/i)
+    if(m){flush({stat:m[1].trim(),dir:m[2],val:parseFloat(m[3]),ownerType,antiEnemy});continue}
     // "Stat Up/Down X%"
     m=part.match(/^(.+?)\s+(Up|Down)\s+(\d+(?:\.\d+)?)[%％]/)
     if(m){flush({stat:m[1].trim(),dir:m[2],val:parseFloat(m[3]),ownerType,antiEnemy});continue}
@@ -273,6 +286,30 @@ function parseBuffEffect(str){
     // "Poison Damage Up X%"
     m=part.match(/^(Poison Damage)\s+(Up|Down)\s+(\d+(?:\.\d+)?)[%％]$/i)
     if(m){flush({stat:m[1],dir:m[2],val:parseFloat(m[3]),ownerType,antiEnemy});continue}
+    // "Morale Recovery X%" / "Continuous Morale Recovery X%"
+    m=part.match(/^(?:Continuous\s+)?Morale Recovery\s+(\d+(?:\.\d+)?)[%％]$/i)
+    if(m){flush({stat:'Morale Recovery',dir:'Up',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
+    // "Continuous HP Recovery X%"
+    m=part.match(/^Continuous HP Recovery\s+(\d+(?:\.\d+)?)[%％]$/i)
+    if(m){flush({stat:'HP Recovery',dir:'Up',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
+    // "HP Recovery Nullification X%"
+    m=part.match(/^HP Recovery Nullification\s+(\d+(?:\.\d+)?)[%％]$/i)
+    if(m){flush({stat:'HP Recovery Nullification',dir:'Up',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
+    // "Morale Cost Reduction / Morale Consumption Down X%"
+    m=part.match(/^(?:Morale Cost(?:\s+Reduction)?|Morale Consumption(?:\s+Reduction)?|Morale Cost Down)\s+(\d+(?:\.\d+)?)[%％]$/i)
+    if(m){flush({stat:'Morale Consumption',dir:'Down',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
+    // Evasion/Dodge Chance X% (bare number, no Up/Down)
+    m=part.match(/^(?:Evasion(?:\s*\([^)]*\))?|Dodge Chance)\s+(\d+(?:\.\d+)?)[%％]$/i)
+    if(m){flush({stat:'Evasion',dir:'Up',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
+    // "Squad Damage Reduction X%"
+    m=part.match(/^Squad Damage Reduction\s+(\d+(?:\.\d+)?)[%％]$/i)
+    if(m){flush({stat:'Squad Damage Reduction',dir:'Up',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
+    // "ATK Down Resistance / DEF Down Resistance X%"
+    m=part.match(/^((?:ATK|DEF)\s+(?:Up|Down)\s+Resistance)\s+(\d+(?:\.\d+)?)[%％]$/i)
+    if(m){flush({stat:m[1],dir:'Up',val:parseFloat(m[2]),ownerType,antiEnemy});continue}
+    // "Damage Taken/Dealt/Reduction Resistance X%"
+    m=part.match(/^(Damage\s+(?:Taken Increase|Dealt Reduction|Reduction Effect)\s+Resistance)\s+(\d+(?:\.\d+)?)[%％]$/i)
+    if(m){flush({stat:m[1].replace(/\s+/g,' '),dir:'Up',val:parseFloat(m[2]),ownerType,antiEnemy});continue}
   }
   return results
 }
@@ -1082,8 +1119,9 @@ function BuffTable({atk,def}){
 }
 // Stats where "Down" is beneficial for the buff receiver (e.g. less morale cost = good)
 const INVERSE_STATS=new Set(['Morale Consumption','Skill Cooldown','Damage Received'])
+const SPECIAL_STATS=new Set(['Attack Nullification','Sure Hit','Status Effect Immunity','Rampage','Less Likely to be Targeted'])
 // Canonical display order for buff stats
-const STAT_ORDER=['Max HP','ATK','DEF','DEF Penetration','DEF Penetration Resistance','Guard','Max Morale','Morale Consumption','Critical Rate','Critical Damage','Hit Rate','HP Recovery']
+const STAT_ORDER=['Max HP','ATK','DEF','DEF Penetration','DEF Penetration Resistance','Guard','Attack Nullification','Sure Hit','Status Effect Immunity','Less Likely to be Targeted','Rampage','Max Morale','Morale Consumption','Morale Recovery','Critical Rate','Critical Damage','Hit Rate','HP Recovery','HP Recovery Nullification','Evasion','Squad Damage Reduction']
 function statSortKey(s){const i=STAT_ORDER.indexOf(s);return i===-1?STAT_ORDER.length:i}
 function BuffSideTable({label,entries,side,enemyDebuffs={}}){
   const ac=side==='attack'?'var(--red)':'var(--blue)'
@@ -1106,12 +1144,16 @@ function BuffSideTable({label,entries,side,enemyDebuffs={}}){
               <div className="buff-stats">
                 {stats.map(([stat,{up,down}])=>{
                   const inv=INVERSE_STATS.has(stat)
+                  const isFlag=SPECIAL_STATS.has(stat)
                   return(
                     <div key={stat} className="buff-row">
                       <span className="buff-stat-name">{stat}</span>
                       <span className="buff-vals">
-                        {up>0&&<span className={inv?'buff-down':'buff-up'}>+{fmt(up)}%</span>}
-                        {down>0&&<span className={inv?'buff-up':'buff-down'}>−{fmt(down)}%</span>}
+                        {isFlag
+                          ?<span className="buff-up" style={{fontSize:'.75rem',letterSpacing:'.02em'}}>● Active</span>
+                          :<>{up>0&&<span className={inv?'buff-down':'buff-up'}>+{fmt(up)}%</span>}
+                             {down>0&&<span className={inv?'buff-up':'buff-down'}>−{fmt(down)}%</span>}</>
+                        }
                       </span>
                     </div>
                   )
