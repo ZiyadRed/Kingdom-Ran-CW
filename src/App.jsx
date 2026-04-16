@@ -1104,13 +1104,11 @@ function SideSlots({side,label,party,skMask,onSlot,onRm,onSkChange}){
         const m=party[i]
         return m?(
           <div key={i} className="slot-filled" style={{borderLeftColor:CC[m.country]||'#999'}}>
-            <div className="slot-main">
-              <span className="sn" style={{color:ac}}>{i+1}</span>
-              <CharIcon c={m} size={36} round={true}/>
-              <div className="slot-info"><span className="slot-en">{m.name_en}</span><span className="slot-jp">{m.name_jp}</span></div>
-              <button className="slot-rm" onClick={()=>onRm(m)} aria-label="Remove">✕</button>
-            </div>
+            <span className="sn" style={{color:ac}}>{i+1}</span>
+            <CharIcon c={m} size={36} round={true}/>
+            <div className="slot-info"><span className="slot-en">{m.name_en}</span><span className="slot-jp">{m.name_jp}</span></div>
             <SkillToggles char={m} mask={skMask?.[i]||DEFAULT_SK} onChange={nm=>onSkChange(i,nm)}/>
+            <button className="slot-rm" onClick={()=>onRm(m)} aria-label="Remove">✕</button>
           </div>
         ):(
           <button key={i} className="slot-empty" style={{borderColor:ac+'44'}} onClick={()=>onSlot(i)}>
@@ -1148,6 +1146,7 @@ function SkillToggles({char,mask,onChange}){
         <button className={`stog stog-s6${s6on?' stog-on':''}`}
                 onClick={e=>{e.stopPropagation();toggleS6()}}
                 aria-label={`Star 6 skill ${s6on?'enabled':'disabled'}`}
+                title="6★ Skill"
                 aria-pressed={s6on}>
           <img src="/icons/star6-banner.webp" alt="" aria-hidden="true" loading="lazy"/>
           <span>6★</span>
