@@ -770,6 +770,21 @@ const CHAR_GROUPS={
   'HiShin':['Shin','Garo','Gakurai','Kyoukai'],
   'Gakuka':['Mouten','Rikusen'],
 }
+
+// Per-slot skill mask for the Party Builder.
+// n: 0-3 skill-unlock level (cascading — n=2 means S1+S2 enabled, S3 off).
+// s6: independent boolean for the 6★ skill (only matters if character has one).
+const DEFAULT_SK = {n:3, s6:true}
+const defaultSks = () => Array.from({length:4}, () => ({...DEFAULT_SK}))
+function hasStar6(char){ return !!(char?.skills||[]).some(s=>s.star6) }
+function applyMask(char, mask){
+  if(!char) return null
+  const m = mask || DEFAULT_SK
+  const base = (char.skills||[]).filter(s=>!s.star6).slice(0, m.n|0)
+  const s6 = (char.skills||[]).find(s=>s.star6)
+  return {...char, skills: (m.s6 && s6) ? [...base, s6] : base}
+}
+
 export default function App(){
   const location=useLocation()
   const navigate=useNavigate()
@@ -777,16 +792,29 @@ export default function App(){
   const go=p=>navigate(PAGE_TO_ROUTE[p])
   const[atk,setAtk]=useState([null,null,null,null])
   const[def,setDef]=useState([null,null,null,null])
-  const rm=(char,side)=>(side==='attack'?setAtk:setDef)(p=>p.map(x=>x?.id===char.id?null:x))
+  const[atkSk,setAtkSk]=useState(defaultSks())
+  const[defSk,setDefSk]=useState(defaultSks())
+  const rm=(char,side)=>{
+    const isAtk=side==='attack'
+    const team=isAtk?atk:def
+    const idx=team.findIndex(x=>x?.id===char.id)
+    const setTeam=isAtk?setAtk:setDef
+    const setSk=isAtk?setAtkSk:setDefSk
+    setTeam(p=>p.map(x=>x?.id===char.id?null:x))
+    if(idx>=0) setSk(p=>p.map((m,i)=>i===idx?{...DEFAULT_SK}:m))
+  }
   const setSlot=(char,side,idx)=>{
-    const set=side==='attack'?setAtk:setDef
-    set(p=>{const n=[...p];const e=n.findIndex(x=>x?.id===char.id);if(e!==-1)n[e]=null;n[idx]=char;return n})
+    const isAtk=side==='attack'
+    const setTeam=isAtk?setAtk:setDef
+    const setSk=isAtk?setAtkSk:setDefSk
+    setTeam(p=>{const n=[...p];const e=n.findIndex(x=>x?.id===char.id);if(e!==-1)n[e]=null;n[idx]=char;return n})
+    setSk(p=>{const n=[...p];n[idx]={...DEFAULT_SK};return n})
   }
   const loadMetaTeam=(team,side)=>{
     const chars=team.members.map(n=>ALL.find(c=>c.name_en===n||c.name_en.toLowerCase()===n.toLowerCase())).filter(Boolean).slice(0,4)
     const slots=[...chars,...Array(4-chars.length).fill(null)]
-    if(side==='attack') setAtk(slots)
-    else setDef(slots)
+    if(side==='attack'){ setAtk(slots); setAtkSk(defaultSks()) }
+    else { setDef(slots); setDefSk(defaultSks()) }
     navigate('/builder')
   }
   // Scroll to top when switching top-level tab (not on character deep-link changes within Archive)
@@ -816,8 +844,8 @@ export default function App(){
           <Route path="/" element={<Navigate to="/archive" replace/>}/>
           <Route path="/archive" element={<ArchivePage/>}/>
           <Route path="/archive/:charId" element={<ArchivePage/>}/>
-          <Route path="/builder" element={<BuilderPage atk={atk} def={def} setSlot={setSlot} rm={rm} goSim={()=>navigate('/sim')} loadMetaTeam={loadMetaTeam}/>}/>
-          <Route path="/sim" element={<SimPage atk={atk} def={def} goBuilder={()=>navigate('/builder')}/>}/>
+          <Route path="/builder" element={<BuilderPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} setAtkSk={setAtkSk} setDefSk={setDefSk} setSlot={setSlot} rm={rm} goSim={()=>navigate('/sim')} loadMetaTeam={loadMetaTeam}/>}/>
+          <Route path="/sim" element={<SimPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} goBuilder={()=>navigate('/builder')}/>}/>
           <Route path="/buffs" element={<BuffsPage/>}/>
           <Route path="/tiers" element={<TierPage/>}/>
           <Route path="/cost" element={<TeamCostPage/>}/>
@@ -1031,22 +1059,29 @@ function MetaTeamCard({team,onLoad}){
 }
 
 // ── PARTY BUILDER ─────────────────────────────────────────────────────────────
-function BuilderPage({atk,def,setSlot,rm,goSim,loadMetaTeam}){
+function BuilderPage({atk,def,atkSk,defSk,setAtkSk,setDefSk,setSlot,rm,goSim,loadMetaTeam}){
   const[picker,setPicker]=useState(null)
   const atkF=atk.filter(Boolean),defF=def.filter(Boolean)
+  const atkM=atk.map((c,i)=>applyMask(c,atkSk[i])).filter(Boolean)
+  const defM=def.map((c,i)=>applyMask(c,defSk[i])).filter(Boolean)
   const excl=[...atkF,...defF].map(c=>c.id)
+  const updateSk=(side,idx,mask)=>(side==='attack'?setAtkSk:setDefSk)(p=>{const n=[...p];n[idx]=mask;return n})
   return(
     <div className="main-page">
       {picker&&<Picker onSelect={c=>setSlot(c,picker.side,picker.idx)} onClose={()=>setPicker(null)} excl={excl}/>}
       <h2 className="pg-title">Party Builder</h2>
       <p className="pg-sub">Click slots to add generals. Last slot fires first.</p>
       <div className="two-sides">
-        <SideSlots side="attack"  label="⚔ Attacking" party={atk} onSlot={i=>setPicker({side:'attack',idx:i})}  onRm={c=>rm(c,'attack')}/>
+        <SideSlots side="attack"  label="⚔ Attacking" party={atk} skMask={atkSk}
+                   onSlot={i=>setPicker({side:'attack',idx:i})}  onRm={c=>rm(c,'attack')}
+                   onSkChange={(i,mk)=>updateSk('attack',i,mk)}/>
         <div className="vs-sep">VS</div>
-        <SideSlots side="defense" label="🛡 Defending" party={def} onSlot={i=>setPicker({side:'defense',idx:i})} onRm={c=>rm(c,'defense')}/>
+        <SideSlots side="defense" label="🛡 Defending" party={def} skMask={defSk}
+                   onSlot={i=>setPicker({side:'defense',idx:i})} onRm={c=>rm(c,'defense')}
+                   onSkChange={(i,mk)=>updateSk('defense',i,mk)}/>
       </div>
       {(atkF.length||defF.length)>0&&<div className="cta-row"><button className="cta-btn" onClick={goSim}>View Activation Order →</button></div>}
-      <BuffTable atk={atkF} def={defF}/>
+      <BuffTable atk={atkM} def={defM}/>
 
       {/* Meta Teams */}
       <div className="meta-section">
@@ -1060,7 +1095,7 @@ function BuilderPage({atk,def,setSlot,rm,goSim,loadMetaTeam}){
   )
 }
 
-function SideSlots({side,label,party,onSlot,onRm}){
+function SideSlots({side,label,party,skMask,onSlot,onRm,onSkChange}){
   const ac=side==='attack'?'var(--red)':'var(--blue)'
   return(
     <div className="side">
@@ -1069,10 +1104,13 @@ function SideSlots({side,label,party,onSlot,onRm}){
         const m=party[i]
         return m?(
           <div key={i} className="slot-filled" style={{borderLeftColor:CC[m.country]||'#999'}}>
-            <span className="sn" style={{color:ac}}>{i+1}</span>
-            <CharIcon c={m} size={36} round={true}/>
-            <div className="slot-info"><span className="slot-en">{m.name_en}</span><span className="slot-jp">{m.name_jp}</span></div>
-            <button className="slot-rm" onClick={()=>onRm(m)}>✕</button>
+            <div className="slot-main">
+              <span className="sn" style={{color:ac}}>{i+1}</span>
+              <CharIcon c={m} size={36} round={true}/>
+              <div className="slot-info"><span className="slot-en">{m.name_en}</span><span className="slot-jp">{m.name_jp}</span></div>
+              <button className="slot-rm" onClick={()=>onRm(m)} aria-label="Remove">✕</button>
+            </div>
+            <SkillToggles char={m} mask={skMask?.[i]||DEFAULT_SK} onChange={nm=>onSkChange(i,nm)}/>
           </div>
         ):(
           <button key={i} className="slot-empty" style={{borderColor:ac+'44'}} onClick={()=>onSlot(i)}>
@@ -1085,9 +1123,44 @@ function SideSlots({side,label,party,onSlot,onRm}){
   )
 }
 
+function SkillToggles({char,mask,onChange}){
+  const s6Exists=hasStar6(char)
+  const n=mask?.n??3
+  const s6on=mask?.s6!==false
+  const clickNum=k=>{
+    // Cascade: clicking k while n>=k => dim down to k-1; else unlock up to k.
+    const nextN=n>=k?k-1:k
+    onChange({...mask, n:nextN, s6:s6on})
+  }
+  const toggleS6=()=>onChange({...mask, n, s6:!s6on})
+  return(
+    <div className="skill-toggles" onClick={e=>e.stopPropagation()}>
+      {[1,2,3].map(k=>(
+        <button key={k}
+                className={`stog${n>=k?' stog-on':''}`}
+                onClick={e=>{e.stopPropagation();clickNum(k)}}
+                aria-label={`Skill ${k} ${n>=k?'enabled':'disabled'}`}
+                aria-pressed={n>=k}>
+          {k}
+        </button>
+      ))}
+      {s6Exists && (
+        <button className={`stog stog-s6${s6on?' stog-on':''}`}
+                onClick={e=>{e.stopPropagation();toggleS6()}}
+                aria-label={`Star 6 skill ${s6on?'enabled':'disabled'}`}
+                aria-pressed={s6on}>
+          <img src="/icons/star6-banner.webp" alt="" aria-hidden="true" loading="lazy"/>
+          <span>6★</span>
+        </button>
+      )}
+    </div>
+  )
+}
+
 // ── ACTIVATION ORDER ──────────────────────────────────────────────────────────
-function SimPage({atk,def,goBuilder}){
-  const atkF=atk.filter(Boolean),defF=def.filter(Boolean)
+function SimPage({atk,def,atkSk,defSk,goBuilder}){
+  const atkF=atk.map((c,i)=>applyMask(c,atkSk?.[i])).filter(Boolean)
+  const defF=def.map((c,i)=>applyMask(c,defSk?.[i])).filter(Boolean)
   if(!atkF.length&&!defF.length) return(
     <div className="main-page empty-cta"><p>No formations set.</p><button className="cta-btn" onClick={goBuilder}>Go to Party Builder</button></div>
   )

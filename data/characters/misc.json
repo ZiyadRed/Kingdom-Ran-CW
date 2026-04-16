@@ -151,7 +151,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Yugi.webp"
   },
   {
     "id": "encho",
