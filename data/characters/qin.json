@@ -1083,7 +1083,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Shin.webp"
   },
   {
     "id": "kyoukai",
@@ -1143,6 +1144,7 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Kyoukai.webp"
   }
 ]

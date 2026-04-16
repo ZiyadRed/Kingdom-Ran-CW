@@ -294,7 +294,8 @@
         ]
       }
     ],
-    "image": "/persos/rokin.webp"
+    "image": "/persos/rokin.webp",
+    "icon": "/icons/Rokin.webp"
   },
   {
     "id": "chouin",

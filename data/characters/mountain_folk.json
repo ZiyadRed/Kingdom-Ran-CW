@@ -896,7 +896,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Gotan.webp"
   },
   {
     "id": "shuki",
@@ -950,7 +951,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Shuki.webp"
   },
   {
     "id": "maki",
@@ -1004,6 +1006,7 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Maki.webp"
   }
 ]

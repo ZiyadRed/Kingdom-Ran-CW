@@ -239,7 +239,8 @@
         ]
       }
     ],
-    "image": "/persos/kozen.webp"
+    "image": "/persos/kozen.webp",
+    "icon": "/icons/Kuzen.webp"
   },
   {
     "id": "rishi",
@@ -300,7 +301,8 @@
         ]
       }
     ],
-    "image": "/persos/rishi.webp"
+    "image": "/persos/rishi.webp",
+    "icon": "/icons/Rishi.webp"
   },
   {
     "id": "douken",
@@ -354,7 +356,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Douken.webp"
   },
   {
     "id": "shishi",
@@ -408,7 +411,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Shishi.webp"
   },
   {
     "id": "gii",
@@ -462,7 +466,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Gii.webp"
   },
   {
     "id": "maron",
@@ -751,7 +756,8 @@
         ]
       }
     ],
-    "image": "/persos/suugen.webp"
+    "image": "/persos/suugen.webp",
+    "icon": "/icons/Suirou.webp"
   },
   {
     "id": "obira",
@@ -1619,7 +1625,8 @@
         ]
       }
     ],
-    "image": "/persos/shousa.webp"
+    "image": "/persos/shousa.webp",
+    "icon": "/icons/Shousa.webp"
   },
   {
     "id": "sosui",
@@ -1724,7 +1731,8 @@
         ]
       }
     ],
-    "image": "/persos/hairou.webp"
+    "image": "/persos/hairou.webp",
+    "icon": "/icons/Hairou.webp"
   },
   {
     "id": "karyoten",
@@ -1889,7 +1897,8 @@
         ]
       }
     ],
-    "image": "/persos/takukei.webp"
+    "image": "/persos/takukei.webp",
+    "icon": "/icons/Takukei.webp"
   },
   {
     "id": "denyu",
@@ -2000,7 +2009,8 @@
         ]
       }
     ],
-    "image": "/persos/denei.webp"
+    "image": "/persos/denei.webp",
+    "icon": "/icons/Denei.webp"
   },
   {
     "id": "banyou",
@@ -2055,7 +2065,8 @@
         ]
       }
     ],
-    "image": "/persos/banyou.webp"
+    "image": "/persos/banyou.webp",
+    "icon": "/icons/Banyou.webp"
   },
   {
     "id": "hakukisei",
@@ -2109,7 +2120,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Hakukisei.webp"
   },
   {
     "id": "seki",
@@ -2163,7 +2175,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Seki.webp"
   },
   {
     "id": "ryusen",
@@ -2497,7 +2510,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Roen.webp"
   },
   {
     "id": "rinbo",

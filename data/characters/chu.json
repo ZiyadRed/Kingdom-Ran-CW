@@ -257,7 +257,8 @@
         ]
       }
     ],
-    "image": "/persos/beiman.webp"
+    "image": "/persos/beiman.webp",
+    "icon": "/icons/Beiman.webp"
   },
   {
     "id": "kaen",

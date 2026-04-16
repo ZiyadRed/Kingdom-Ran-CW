@@ -491,7 +491,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Domon.webp"
   },
   {
     "id": "miyamoto",
@@ -545,7 +546,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Miyamoto.webp"
   },
   {
     "id": "saji",
@@ -653,7 +655,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Jokan.webp"
   },
   {
     "id": "rihaku2",

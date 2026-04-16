@@ -1248,7 +1248,8 @@
         ]
       }
     ],
-    "image": "/persos/ryuuyuu.webp"
+    "image": "/persos/ryuuyuu.webp",
+    "icon": "/icons/Ryuyu.webp"
   },
   {
     "id": "chutetsu",
@@ -1304,6 +1305,7 @@
         ]
       }
     ],
-    "image": "/persos/choutetsu.webp"
+    "image": "/persos/choutetsu.webp",
+    "icon": "/icons/Chutetsu.webp"
   }
 ]

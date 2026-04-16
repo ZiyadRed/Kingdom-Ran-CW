@@ -487,7 +487,8 @@
         ]
       }
     ],
-    "image": null
+    "image": null,
+    "icon": "/icons/Chouko.webp"
   },
   {
     "id": "seika",

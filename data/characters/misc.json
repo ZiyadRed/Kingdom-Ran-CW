@@ -385,7 +385,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Kesshi.webp"
   },
   {
     "id": "genho",
@@ -501,7 +502,8 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Amon.webp"
   },
   {
     "id": "kosho2",
@@ -562,6 +564,7 @@
         ]
       }
     ],
-    "image": null
+    "image": null,
+    "icon": "/icons/Jiou.webp"
   }
 ]
