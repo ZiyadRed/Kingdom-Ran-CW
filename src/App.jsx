@@ -423,7 +423,11 @@ function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false){
             if(!inEnemyTeam) continue
           }
           if(!stats[stat]) stats[stat]={up:0,down:0}
-          if(dir==='Up') stats[stat].up+=val*mult; else stats[stat].down+=val*mult
+          if(SPECIAL_STATS.has(stat)){
+            // use actual duration count instead of the placeholder val=1
+            const times=(parseInt(eff.duration)||1)*mult
+            stats[stat].up+=times
+          } else if(dir==='Up') stats[stat].up+=val*mult; else stats[stat].down+=val*mult
         }
       }
     }
@@ -1150,7 +1154,7 @@ function BuffSideTable({label,entries,side,enemyDebuffs={}}){
                       <span className="buff-stat-name">{stat}</span>
                       <span className="buff-vals">
                         {isFlag
-                          ?<span className="buff-up" style={{fontSize:'.75rem',letterSpacing:'.02em'}}>● Active</span>
+                          ?<span className="buff-up" style={{fontSize:'.75rem',letterSpacing:'.02em'}}>● {up}×</span>
                           :<>{up>0&&<span className={inv?'buff-down':'buff-up'}>+{fmt(up)}%</span>}
                              {down>0&&<span className={inv?'buff-up':'buff-down'}>−{fmt(down)}%</span>}</>
                         }
