@@ -567,7 +567,7 @@
   },
   {
     "id": "shoumounkun",
-    "name_en": "Shoumounkun",
+    "name_en": "Shoubunkun",
     "name_jp": "昌文君",
     "country": "qin",
     "rarity": "SR",
@@ -649,11 +649,11 @@
       }
     ],
     "image": "/persos/shoubunkun.webp",
-    "icon": "/icons/Shoumounkun.webp"
+    "icon": "/icons/Shoubunkun.webp"
   },
   {
     "id": "shoou",
-    "name_en": "Shoou",
+    "name_en": "Sho",
     "name_jp": "昭王",
     "country": "qin",
     "rarity": "UR",
@@ -761,7 +761,7 @@
       }
     ],
     "image": "/persos/sho.webp",
-    "icon": "/icons/Shoou.webp"
+    "icon": "/icons/Sho.webp"
   },
   {
     "id": "ei_sei",
@@ -1227,7 +1227,7 @@
           },
           {
             "condition": null,
-            "target": "Ally \"Shoou\" and Six Great Generals",
+            "target": "Ally \"Sho\" and Six Great Generals",
             "effect": "DEF Up 10%",
             "duration": "3 turns"
           },

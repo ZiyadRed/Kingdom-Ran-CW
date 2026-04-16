@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Buff Summary — Layout Ideas</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#f0ebe0;font-family:'Segoe UI',Arial,sans-serif;color:#2c2a24;padding:24px}
+  h1{text-align:center;font-size:1.1rem;color:#5a4a2a;margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase}
+  .subtitle{text-align:center;font-size:.75rem;color:#8a7a5a;margin-bottom:28px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1100px;margin:0 auto}
+  .card{background:#e8e0ce;border-radius:16px;padding:18px;border:1.5px solid #d0c8b0;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+  .card-label{font-size:.65rem;font-weight:800;color:#8a7a5a;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid #d0c8b0}
+  .option-title{font-size:.95rem;font-weight:800;color:#3a2a0a;margin-bottom:4px}
+  .option-desc{font-size:.7rem;color:#7a6a4a;margin-bottom:14px;line-height:1.5}
+  /* shared badge styles */
+  .up{background:#1a8a5a;color:#fff;border-radius:20px;padding:2px 10px;font-size:.75rem;font-weight:800;display:inline-block}
+  .down{background:#c0392b;color:#fff;border-radius:20px;padding:2px 10px;font-size:.75rem;font-weight:800;display:inline-block}
+  .neutral{background:#6a5a3a;color:#fff;border-radius:20px;padding:2px 10px;font-size:.75rem;font-weight:800;display:inline-block}
+  .char-name{font-weight:700;font-size:.82rem;color:#c0392b}
+  .char-dot{width:28px;height:28px;border-radius:50%;background:#c0392b22;border:2px solid #c0392b44;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:800;color:#c0392b;flex-shrink:0}
+  .char-dot-b{width:28px;height:28px;border-radius:50%;background:#1a5fa822;border:2px solid #1a5fa844;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:800;color:#1a5fa8;flex-shrink:0}
+  .row{display:flex;align-items:center;justify-content:space-between;padding:5px 8px;border-radius:7px;border:1px solid #d0c8b0;background:#ede5d0;margin-bottom:4px;font-size:.78rem}
+  .row-name{color:#3a2a0a;font-size:.78rem}
+  .section-hd{font-size:.7rem;font-weight:800;color:#c0392b;text-transform:uppercase;letter-spacing:.06em;margin:10px 0 6px;padding-left:2px}
+  .section-hd-b{font-size:.7rem;font-weight:800;color:#1a5fa8;text-transform:uppercase;letter-spacing:.06em;margin:10px 0 6px;padding-left:2px}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+  /* OPTION A — Aggregated totals */
+  .team-row{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-radius:8px;border:1px solid #d0c8b0;background:#ede5d0;margin-bottom:5px}
+  .stat-label{font-size:.8rem;color:#3a2a0a;font-weight:500}
+  .badges{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+
+  /* OPTION B — Comparison table */
+  table{width:100%;border-collapse:collapse;font-size:.75rem}
+  th{padding:6px 8px;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#8a7a5a;border-bottom:2px solid #d0c8b0;text-align:left}
+  th.right,td.right{text-align:right}
+  td{padding:5px 8px;border-bottom:1px solid #d8d0bc;color:#3a2a0a}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#e8e0ce}
+  .atk-col{color:#c0392b;font-weight:700}
+  .def-col{color:#1a5fa8;font-weight:700}
+  .stat-col{color:#3a2a0a}
+
+  /* OPTION C — Categories */
+  .cat-block{background:#ede5d0;border-radius:10px;padding:10px 12px;margin-bottom:8px;border:1px solid #d0c8b0}
+  .cat-title{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:#7a6a4a;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .cat-icon{font-size:.85rem}
+  .cat-stat-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+  .cat-stat-name{font-size:.75rem;color:#3a2a0a}
+  .cat-both{display:flex;gap:8px}
+
+  /* OPTION D — Compact chips */
+  .char-row{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #d8d0bc}
+  .char-row:last-child{border-bottom:none}
+  .char-id{display:flex;align-items:center;gap:6px;min-width:90px;flex-shrink:0}
+  .chips{display:flex;flex-wrap:wrap;gap:4px;align-items:center;padding-top:2px}
+  .chip{padding:2px 8px;border-radius:12px;font-size:.68rem;font-weight:700;display:inline-flex;align-items:center;gap:2px}
+  .chip-up{background:#1a8a5a22;color:#1a7a4a;border:1px solid #1a8a5a44}
+  .chip-down{background:#c0392b22;color:#b03020;border:1px solid #c0392b44}
+  .chip-inv{background:#1a8a5a22;color:#1a7a4a;border:1px solid #1a8a5a44}
+  .enemy-chip{background:#b0500022;color:#904000;border:1px solid #b0500044}
+</style>
+</head>
+<body>
+<h1>Team Buff Summary — Layout Concepts</h1>
+<p class="subtitle">Same data, 4 different presentations</p>
+
+<div class="grid">
+
+  <!-- OPTION A: Aggregated Totals -->
+  <div class="card">
+    <div class="card-label">Option A — Team Totals (collapsed)</div>
+    <div class="option-title">Aggregated per stat, no per-char detail</div>
+    <div class="option-desc">Shows what the whole team contributes to each stat. Clean, instant overview. Could add "▸ expand" to drill into per-character.</div>
+    <div class="two-col">
+      <div>
+        <div class="section-hd">⚔ Attacking</div>
+        <div class="team-row"><span class="stat-label">ATK</span><span class="up">+110%</span></div>
+        <div class="team-row"><span class="stat-label">DEF Penetration</span><span class="up">+70%</span></div>
+        <div class="team-row"><span class="stat-label">Critical Rate</span><span class="up">+40%</span></div>
+        <div class="team-row"><span class="stat-label">Guard</span><span class="up">+120%</span></div>
+        <div class="team-row"><span class="stat-label">Max HP</span><span class="up">+160%</span></div>
+        <div class="team-row"><span class="stat-label">Morale Consumption</span><span class="up" style="background:#1a8a5a">−30%</span></div>
+        <div style="margin-top:8px;padding:6px 8px;border-radius:8px;background:#b0500015;border:1px solid #b0500030">
+          <div style="font-size:.62rem;font-weight:800;color:#904000;margin-bottom:4px">↓ TO ENEMY</div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-size:.72rem;color:#904000">All enemies</span><span class="down">−20% ATK</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="font-size:.72rem;color:#904000">Enemy Cavalry</span><span class="down">−40% Crit</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-hd-b">🛡 Defending</div>
+        <div class="team-row"><span class="stat-label">Guard</span><span class="up">+200%</span></div>
+        <div class="team-row"><span class="stat-label">Max HP</span><span class="up">+250%</span></div>
+        <div class="team-row"><span class="stat-label">DEF</span><span class="up">+140%</span></div>
+        <div class="team-row"><span class="stat-label">DEF Pen Resistance</span><span class="up">+60%</span></div>
+        <div class="team-row"><span class="stat-label">ATK</span><span class="up">+78%</span></div>
+        <div class="team-row"><span class="stat-label">Morale Consumption</span><span class="up" style="background:#1a8a5a">−30%</span></div>
+        <div style="margin-top:8px;padding:6px 8px;border-radius:8px;background:#b0500015;border:1px solid #b0500030">
+          <div style="font-size:.62rem;font-weight:800;color:#904000;margin-bottom:4px">↓ TO ENEMY</div>
+          <div style="display:flex;justify-content:space-between"><span style="font-size:.72rem;color:#904000">All enemies</span><span class="down">−60% ATK</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPTION B: Side-by-side comparison table -->
+  <div class="card">
+    <div class="card-label">Option B — Head-to-Head Comparison Table</div>
+    <div class="option-title">Stat rows, ATK vs DEF columns</div>
+    <div class="option-desc">One table — see what each side contributes to the same stat side by side. Best for spotting mismatches (e.g. ATK has +110% ATK vs DEF has only +78%).</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Stat</th>
+          <th class="right" style="color:#c0392b">⚔ ATK Team</th>
+          <th class="right" style="color:#1a5fa8">🛡 DEF Team</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="stat-col">ATK</td><td class="right"><span class="up">+110%</span></td><td class="right"><span class="up">+78%</span></td></tr>
+        <tr><td class="stat-col">DEF Penetration</td><td class="right"><span class="up">+70%</span></td><td class="right"><span class="up">+30%</span></td></tr>
+        <tr><td class="stat-col">Critical Rate</td><td class="right"><span class="up">+40%</span></td><td class="right"><span class="up">+30%</span></td></tr>
+        <tr><td class="stat-col">Guard</td><td class="right"><span class="up">+120%</span></td><td class="right"><span class="up">+200%</span></td></tr>
+        <tr><td class="stat-col">DEF</td><td class="right">—</td><td class="right"><span class="up">+140%</span></td></tr>
+        <tr><td class="stat-col">Max HP</td><td class="right"><span class="up">+160%</span></td><td class="right"><span class="up">+250%</span></td></tr>
+        <tr><td class="stat-col">DEF Pen Resistance</td><td class="right">—</td><td class="right"><span class="up">+60%</span></td></tr>
+        <tr><td class="stat-col">Morale Consumption</td><td class="right"><span class="up" style="background:#1a8a5a">−30%</span></td><td class="right"><span class="up" style="background:#1a8a5a">−30%</span></td></tr>
+        <tr style="background:#b0500010">
+          <td class="stat-col" style="color:#904000;font-weight:700">→ Enemy ATK</td>
+          <td class="right"><span class="down">−20%</span></td>
+          <td class="right"><span class="down">−60%</span></td>
+        </tr>
+        <tr style="background:#b0500010">
+          <td class="stat-col" style="color:#904000;font-weight:700">→ Enemy Cav Crit</td>
+          <td class="right"><span class="down">−40%</span></td>
+          <td class="right">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- OPTION C: Categories + accordion -->
+  <div class="card">
+    <div class="card-label">Option C — Grouped by Category</div>
+    <div class="option-title">Offense / Defense / Special sections</div>
+    <div class="option-desc">Stats grouped into logical categories. Each category shows team totals for both sides. Cleaner mental model for planning.</div>
+    <div class="two-col">
+      <div>
+        <div class="section-hd">⚔ Attacking</div>
+        <div class="cat-block">
+          <div class="cat-title"><span class="cat-icon">⚔</span> Offense</div>
+          <div class="cat-stat-row"><span class="cat-stat-name">ATK</span><span class="up">+110%</span></div>
+          <div class="cat-stat-row"><span class="cat-stat-name">DEF Penetration</span><span class="up">+70%</span></div>
+          <div class="cat-stat-row"><span class="cat-stat-name">Critical Rate</span><span class="up">+40%</span></div>
+          <div class="cat-stat-row"><span class="cat-stat-name">Critical Damage</span><span class="up">+30%</span></div>
+        </div>
+        <div class="cat-block">
+          <div class="cat-title"><span class="cat-icon">🛡</span> Defense</div>
+          <div class="cat-stat-row"><span class="cat-stat-name">Guard</span><span class="up">+120%</span></div>
+          <div class="cat-stat-row"><span class="cat-stat-name">Max HP</span><span class="up">+160%</span></div>
+          <div class="cat-stat-row"><span class="cat-stat-name">Morale Consump.</span><span class="up" style="background:#1a8a5a">−30%</span></div>
+        </div>
+        <div class="cat-block" style="background:#b0500012;border-color:#b0500030">
+          <div class="cat-title" style="color:#904000"><span class="cat-icon">↓</span> To Enemy</div>
+          <div class="cat-stat-row"><span class="cat-stat-name" style="color:#904000">ATK (all)</span><span class="down">−20%</span></div>
+          <div class="cat-stat-row"><span class="cat-stat-name" style="color:#904000">Crit (cavalry)</span><span class="down">−40%</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-hd-b">🛡 Defending</div>
+        <div class="cat-block">
+          <div class="cat-title"><span class="cat-icon">⚔</span> Offense</div>
+          <div class="cat-stat-row"><span class="cat-stat-name">ATK</span><span class="up">+78%</span></div>
+          <div class="cat-stat-row"><span class="cat-stat-name">DEF Penetration</span><span class="up">+30%</span></div>
+          <div class="cat-stat-row"><span class="cat-stat-name">Critical Rate</span><span class="up">+30%</span></div>
+        </div>
+        <div class="cat-block">
+          <div class="cat-title"><span class="cat-icon">🛡</span> Defense</div>
+          <div class="cat-stat-row"><span class="cat-stat-name">Guard</span><span class="up">+200%</span></div>
+          <div class="cat-stat-row"><span class="cat-stat-name">DEF</span><span class="up">+140%</span></div>
+          <div class="cat-stat-row"><span class="cat-stat-name">Max HP</span><span class="up">+250%</span></div>
+          <div class="cat-stat-row"><span class="cat-stat-name">DEF Pen Resist.</span><span class="up">+60%</span></div>
+          <div class="cat-stat-row"><span class="cat-stat-name">Morale Consump.</span><span class="up" style="background:#1a8a5a">−30%</span></div>
+        </div>
+        <div class="cat-block" style="background:#b0500012;border-color:#b0500030">
+          <div class="cat-title" style="color:#904000"><span class="cat-icon">↓</span> To Enemy</div>
+          <div class="cat-stat-row"><span class="cat-stat-name" style="color:#904000">ATK (all)</span><span class="down">−60%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPTION D: Compact inline chips -->
+  <div class="card">
+    <div class="card-label">Option D — Compact Inline Chips</div>
+    <div class="option-title">One row per character, stats as chips</div>
+    <div class="option-desc">Most compact. Character icon + name, then all their stat contributions as small inline badges on the same line. Enemy debuffs in orange chips at the bottom.</div>
+    <div class="two-col">
+      <div>
+        <div class="section-hd">⚔ Attacking</div>
+        <div class="char-row">
+          <div class="char-id"><div class="char-dot">Re</div><span style="font-size:.75rem;font-weight:700;color:#c0392b">Renpa</span></div>
+          <div class="chips">
+            <span class="chip chip-up">ATK +110%</span>
+            <span class="chip chip-up">DEF Pen +70%</span>
+            <span class="chip chip-up">Crit +40%</span>
+            <span class="chip chip-inv">Morale −30%</span>
+          </div>
+        </div>
+        <div class="char-row">
+          <div class="char-id"><div class="char-dot">Ko</div><span style="font-size:.75rem;font-weight:700;color:#c0392b">Kouretsu</span></div>
+          <div class="chips">
+            <span class="chip chip-up">Guard +60%</span>
+            <span class="chip chip-up">Max HP +50%</span>
+            <span class="chip chip-up">ATK +30%</span>
+            <span class="chip chip-inv">Morale −30%</span>
+          </div>
+        </div>
+        <div class="char-row">
+          <div class="char-id"><div class="char-dot">Ou</div><span style="font-size:.75rem;font-weight:700;color:#c0392b">Ouhon</span></div>
+          <div class="chips">
+            <span class="chip chip-up">Max HP +250%</span>
+            <span class="chip chip-up">DEF Pen +40%</span>
+            <span class="chip chip-up">Guard +170%</span>
+          </div>
+        </div>
+        <div class="char-row" style="border-bottom:none">
+          <div class="char-id"><div class="char-dot">Ka</div><span style="font-size:.75rem;font-weight:700;color:#c0392b">Kanjou</span></div>
+          <div class="chips">
+            <span class="chip chip-up">Max HP +200%</span>
+            <span class="chip chip-up">Guard +100%</span>
+          </div>
+        </div>
+        <div style="margin-top:8px;padding:5px 8px;border-radius:8px;background:#b0500015;border:1px solid #b0500030;display:flex;flex-wrap:wrap;gap:4px;align-items:center">
+          <span style="font-size:.62rem;font-weight:800;color:#904000;margin-right:2px">↓ ENEMY:</span>
+          <span class="chip enemy-chip">All −20% ATK</span>
+          <span class="chip enemy-chip">Cav −40% Crit</span>
+          <span class="chip enemy-chip">Cav 100% Fear</span>
+        </div>
+      </div>
+      <div>
+        <div class="section-hd-b">🛡 Defending</div>
+        <div class="char-row">
+          <div class="char-id"><div class="char-dot-b">Yo</div><span style="font-size:.75rem;font-weight:700;color:#1a5fa8">Yotanwa</span></div>
+          <div class="chips">
+            <span class="chip chip-up">Guard +80%</span>
+            <span class="chip chip-up">Max HP +100%</span>
+            <span class="chip chip-up">ATK +30%</span>
+          </div>
+        </div>
+        <div class="char-row">
+          <div class="char-id"><div class="char-dot-b">Ki</div><span style="font-size:.75rem;font-weight:700;color:#1a5fa8">Kitari</span></div>
+          <div class="chips">
+            <span class="chip chip-up">DEF Pen +20%</span>
+            <span class="chip chip-up">ATK +50%</span>
+            <span class="chip chip-up">Guard +80%</span>
+          </div>
+        </div>
+        <div class="char-row">
+          <div class="char-id"><div class="char-dot-b">Ra</div><span style="font-size:.75rem;font-weight:700;color:#1a5fa8">Ramauji</span></div>
+          <div class="chips">
+            <span class="chip chip-up">Guard +80%</span>
+            <span class="chip chip-up">Max HP +100%</span>
+            <span class="chip chip-up">ATK +30%</span>
+          </div>
+        </div>
+        <div class="char-row" style="border-bottom:none">
+          <div class="char-id"><div class="char-dot-b">Ri</div><span style="font-size:.75rem;font-weight:700;color:#1a5fa8">Rien</span></div>
+          <div class="chips">
+            <span class="chip chip-up">DEF Pen +10%</span>
+            <span class="chip chip-up">ATK +20%</span>
+          </div>
+        </div>
+        <div style="margin-top:8px;padding:5px 8px;border-radius:8px;background:#b0500015;border:1px solid #b0500030;display:flex;flex-wrap:wrap;gap:4px;align-items:center">
+          <span style="font-size:.62rem;font-weight:800;color:#904000;margin-right:2px">↓ ENEMY:</span>
+          <span class="chip enemy-chip">All −60% ATK</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

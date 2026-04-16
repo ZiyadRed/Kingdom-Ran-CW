@@ -910,5 +910,61 @@
       }
     ],
     "icon": "/icons/Shihaku.webp"
+  },
+  {
+    "id": "hyouki",
+    "name_en": "Hyouki",
+    "name_jp": "氷鬼",
+    "country": "wei",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Status Resistance [Orange Sheep]",
+        "name_jp": "状態耐性【橙羊】",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Cavalry]",
+            "effect": "Ally [Archer] \"Confusion\" Resistance 40％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Cavalry]",
+            "effect": "Ally [Archer] Anti-[Infantry] DEF Up 20％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "HP Enhancement – Large [Archer]",
+        "name_jp": "体力強化・大【弓兵】",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally [Archer]",
+            "effect": "Max HP Up 7.9％",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Repair Material Reduction – Large Improved",
+        "name_jp": "修理資材減少・大改",
+        "type": "Administration",
+        "effects": [
+          {
+            "condition": "When repairing CW war machines",
+            "target": "Self",
+            "effect": "War machine repair Material Consumption Down 6.2％",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "/persos/hyouki.webp",
+    "icon": "/icons/Hyouki.webp"
   }
 ]

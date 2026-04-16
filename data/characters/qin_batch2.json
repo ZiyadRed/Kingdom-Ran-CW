@@ -509,7 +509,7 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Ally \"Shoou\" and Six Great Generals DEF Up 、Hit Rate Up 20％",
+            "effect": "Ally \"Sho\" and Six Great Generals DEF Up 、Hit Rate Up 20％",
             "duration": null
           },
           {
@@ -568,7 +568,7 @@
         "type": "Strategy",
         "effects": [
           {
-            "condition": "Per ally Shoou / per other ally Six Great General",
+            "condition": "Per ally Sho / per other ally Six Great General",
             "target": "Self",
             "effect": "ATK Up / DEF Up 5%",
             "duration": null
