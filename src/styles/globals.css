@@ -36,7 +36,9 @@ body {
   min-height: 100vh; line-height: 1.5; overflow-x: hidden;
 }
 button { font-family: inherit; cursor: pointer; transition: all .15s }
-img { display: block; max-width: 100% }
+img { display: block; max-width: 100%; height: auto }
+/* Defensive: keep avatars inside their circular wrappers on every device */
+.p-card img, .p-ico-wrap img { max-width: 100%; max-height: 100% }
 ::-webkit-scrollbar { width: 4px; height: 4px }
 ::-webkit-scrollbar-track { background: var(--bg2) }
 ::-webkit-scrollbar-thumb { background: var(--bdr2); border-radius: 2px }
@@ -293,13 +295,15 @@ img { display: block; max-width: 100% }
 .picker-filters { padding: .6rem .85rem; border-bottom: 1px solid var(--bdr); flex-shrink: 0 }
 .picker-search { width: 100%; background: var(--bg2); border: 1.5px solid var(--bdr); color: var(--txt); padding: .48rem .7rem; border-radius: 6px; font-family: inherit; font-size: .9rem }
 .picker-search:focus { outline: none; border-color: var(--terra) }
-.picker-grid   { flex: 1 1 auto; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: .6rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: .45rem; align-content: start }
-.p-card        { background: var(--bg2); border: 1.5px solid var(--bdr); border-top: 3px solid transparent; border-radius: 10px; padding: .5rem .35rem .45rem; display: flex; flex-direction: column; align-items: center; gap: .3rem; text-align: center; cursor: pointer; min-width: 0 }
+.picker-grid   { flex: 1 1 auto; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: .6rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: .5rem; align-content: start }
+.p-card        { background: var(--bg2); border: 1.5px solid var(--bdr); border-top: 3px solid transparent; border-radius: 10px; padding: .55rem .35rem .5rem; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: .35rem; text-align: center; cursor: pointer; min-width: 0; min-height: 104px; box-sizing: border-box; font-family: inherit }
 .p-card:hover  { background: var(--bg3); transform: translateY(-1px) }
 .p-card:active { transform: translateY(0); background: var(--bg3) }
+.p-ico-wrap    { width: 52px; height: 52px; flex: 0 0 52px; border-radius: 50%; overflow: hidden; border: 2px solid var(--bdr); background: var(--bg3); display: flex; align-items: center; justify-content: center }
+.p-ico-wrap > img, .p-ico-wrap > div { width: 100% !important; height: 100% !important; max-width: 100% !important; max-height: 100% !important; border: none !important; border-radius: 50% !important; object-fit: cover; object-position: center top }
 .p-img         { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; object-position: top; border: 2px solid var(--bdr); flex-shrink: 0 }
 .p-ph          { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--bdr); display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; flex-shrink: 0 }
-.p-name        { font-size: .72rem; font-weight: 700; color: var(--navy); line-height: 1.2; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.p-name        { font-size: .72rem; font-weight: 700; color: var(--navy); line-height: 1.2; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 0 }
 
 /* ══════════════════════════════════════════════════════════════
    ACTIVATION ORDER / SIMULATE
@@ -457,11 +461,20 @@ img { display: block; max-width: 100% }
 /* ══════════════════════════════════════════════════════════════
    RESPONSIVE — Tablet (≤1024px)
    ══════════════════════════════════════════════════════════════ */
+/* Wide desktop polish (≥1600px): roomier panel + larger banners */
+@media (min-width: 1600px) {
+  :root { --panel: 520px }
+  .gallery-grid   { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: .8rem }
+  .main-page      { padding: 1.8rem 2rem }
+  .meta-grid      { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem }
+}
+
 @media (max-width: 1024px) {
   :root { --panel: 300px }
   .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) }
   .tier-team-name { min-width: 75px }
   .meta-grid { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)) }
+  .main-page { padding: 1.25rem 1rem }
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -579,7 +592,8 @@ img { display: block; max-width: 100% }
   .picker-filters { padding: .55rem .75rem; position: sticky; top: 44px; background: var(--sur); z-index: 2 }
   .picker-search  { font-size: 16px; padding: .55rem .75rem }
   .picker-grid    { grid-template-columns: repeat(3, 1fr); gap: .55rem; padding: .75rem .75rem calc(1rem + env(safe-area-inset-bottom, 0px)) }
-  .p-card         { padding: .55rem .35rem .5rem; gap: .35rem }
+  .p-card         { padding: .6rem .35rem .55rem; gap: .4rem; min-height: 112px }
+  .p-ico-wrap     { width: 58px; height: 58px; flex-basis: 58px }
   .p-img, .p-ph   { width: 56px; height: 56px }
   .p-name         { font-size: .76rem }
   .x-btn          { width: 32px; height: 32px; font-size: .85rem }
@@ -618,8 +632,10 @@ img { display: block; max-width: 100% }
   .meta-members    { padding: .45rem .4rem .35rem; gap: .3rem }
   .meta-member-name { font-size: .56rem; letter-spacing: -.02em }
   .meta-btn        { font-size: .62rem; padding: .38rem .2rem }
-  .picker-grid     { grid-template-columns: repeat(2, 1fr); gap: .5rem }
-  .p-img, .p-ph    { width: 58px; height: 58px }
+  .picker-grid     { grid-template-columns: repeat(2, 1fr); gap: .55rem }
+  .p-card          { min-height: 118px }
+  .p-ico-wrap      { width: 64px; height: 64px; flex-basis: 64px }
+  .p-img, .p-ph    { width: 60px; height: 60px }
   .p-name          { font-size: .8rem }
   .side-lbl        { font-size: .82rem }
   .slot-filled     { padding: .5rem .55rem; gap: .45rem }

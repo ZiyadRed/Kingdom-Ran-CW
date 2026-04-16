@@ -527,7 +527,9 @@ function Picker({onSelect,onClose,excl=[]}){
         <div className="picker-grid">
           {chars.map(c=>(
             <button key={c.id} className="p-card" style={{borderTopColor:CC[c.country]||'#999'}} onClick={()=>{onSelect(c);onClose()}}>
-              <CharIcon c={c} size={46} round={true}/>
+              <div className="p-ico-wrap">
+                <CharIcon c={c} size={52} round={true} className="p-ico"/>
+              </div>
               <span className="p-name">{c.name_en}</span>
             </button>
           ))}
