@@ -255,10 +255,12 @@ img { display: block; max-width: 100%; height: auto }
 .stog:hover  { border-color: var(--gold); background: var(--gold)22 }
 .stog:active { transform: scale(.92) }
 .stog.stog-on { background: var(--gold); border-color: var(--gold); color: #fff; box-shadow: 0 1px 3px rgba(204,151,45,.35) }
-.stog.stog-s6 { width: auto; padding: 0 5px; border-radius: 6px; font-size: .6rem; font-weight: 800; gap: 3px; border-color: var(--gold)44 }
-.stog.stog-s6 img { height: 14px; width: auto; max-width: 32px; object-fit: contain; opacity: .45; display: block; flex-shrink: 0 }
-.stog.stog-s6.stog-on { background: var(--gold); border-color: var(--gold); color: #fff }
-.stog.stog-s6.stog-on img { opacity: 1 }
+.stog-s6-btn { position: relative; height: 28px; width: 52px; padding: 0; border-radius: 6px; border: 1.5px solid var(--bdr); overflow: hidden; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; transition: border-color .12s, box-shadow .12s, filter .12s; -webkit-tap-highlight-color: transparent; user-select: none; background: none; filter: grayscale(.6) brightness(.7); opacity: .7 }
+.stog-s6-btn img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none }
+.stog-s6-badge { position: absolute; top: -2px; right: -2px; background: var(--gold); color: var(--navy); font-size: .48rem; font-weight: 800; padding: 1px 3px; border-radius: 3px; line-height: 1.4; pointer-events: none }
+.stog-s6-btn.stog-s6-on { border-color: var(--gold); filter: none; opacity: 1; box-shadow: 0 0 6px rgba(204,151,45,.45) }
+.stog-s6-btn:hover { opacity: .9; border-color: var(--gold) }
+.stog-s6-btn:active { transform: scale(.93) }
 .slot-empty  { width: 100%; display: flex; align-items: center; justify-content: center; gap: .45rem; background: var(--sur); border: 1.5px dashed var(--bdr); border-radius: 8px; padding: .5rem; margin-bottom: .38rem; min-height: 52px }
 .slot-empty:hover { background: var(--sur2); border-color: var(--terra) }
 .sn       { font-size: .68rem; font-weight: 700; width: 15px; flex-shrink: 0; font-family: monospace; color: var(--txt3) }
@@ -652,8 +654,7 @@ img { display: block; max-width: 100%; height: auto }
   .slot-en         { font-size: .82rem }
   .skill-toggles   { gap: 3px }
   .stog            { width: 24px; height: 22px; font-size: .7rem }
-  .stog.stog-s6    { width: auto; padding: 0 5px; font-size: .6rem }
-  .stog.stog-s6 img{ height: 14px }
+  .stog-s6-btn     { height: 30px; width: 56px }
   .pg-title        { font-size: 1rem }
   .pg-sub          { font-size: .72rem; margin-bottom: .85rem }
   .meta-section-title { font-size: .95rem }

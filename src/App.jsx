@@ -1143,13 +1143,12 @@ function SkillToggles({char,mask,onChange}){
         </button>
       ))}
       {s6Exists && (
-        <button className={`stog stog-s6${s6on?' stog-on':''}`}
+        <button className={`stog-s6-btn${s6on?' stog-s6-on':''}`}
                 onClick={e=>{e.stopPropagation();toggleS6()}}
                 aria-label={`Star 6 skill ${s6on?'enabled':'disabled'}`}
-                title="6★ Skill"
                 aria-pressed={s6on}>
-          <img src="/icons/star6-banner.webp" alt="" aria-hidden="true" loading="lazy"/>
-          <span>6★</span>
+          <img src="/icons/star6-banner.webp" alt="6★ skill" loading="lazy"/>
+          <span className="stog-s6-badge">6★</span>
         </button>
       )}
     </div>
