@@ -187,6 +187,210 @@ function simulate(a,d){
   return{st,turns}
 }
 
+// ── CW SIMULATION ENGINE ─────────────────────────────────────────────────────
+// Base stats from mstUnitGenerals (initHp/initAtk/initDef) + CW maxMp
+// Source: general_id_map.html (extracted 2026-04-20, 274 generals)
+const CW_STATS={
+  'amon':{hp:1285,atk:203,def:253,maxMp:2880},
+  'bajio':{hp:1677,atk:574,def:388,maxMp:2160},
+  'bakukoshin':{hp:2460,atk:453,def:364,maxMp:2160},
+  'bamyuu':{hp:1919,atk:453,def:469,maxMp:2400},
+  'bananci':{hp:2136,atk:686,def:438,maxMp:2160},
+  'choso':{hp:2134,atk:417,def:474,maxMp:2160},
+  'chutetsu':{hp:1414,atk:474,def:434,maxMp:2400},
+  'danto':{hp:2114,atk:610,def:610,maxMp:2160},
+  'denrimi':{hp:2319,atk:562,def:453,maxMp:2880},
+  'denti':{hp:1800,atk:478,def:478,maxMp:2160},
+  'dokin':{hp:2123,atk:425,def:438,maxMp:2160},
+  'domon':{hp:2043,atk:354,def:389,maxMp:2880},
+  'douken':{hp:875,atk:230,def:219,maxMp:2880},
+  'fuchi':{hp:2010,atk:342,def:375,maxMp:1920},
+  'fuji':{hp:2349,atk:538,def:457,maxMp:2880},
+  'garo':{hp:1980,atk:438,def:487,maxMp:2160},
+  'gekishin':{hp:1702,atk:544,def:462,maxMp:2160},
+  'gika':{hp:2285,atk:474,def:394,maxMp:2880},
+  'gofuumei':{hp:2532,atk:724,def:524,maxMp:2880},
+  'gokei':{hp:2133,atk:406,def:607,maxMp:1920},
+  'hakurei':{hp:1777,atk:477,def:455,maxMp:2880},
+  'hamui':{hp:1924,atk:674,def:794,maxMp:2160},
+  'hanoki':{hp:1864,atk:644,def:489,maxMp:2160},
+  'houken':{hp:1588,atk:611,def:400,maxMp:2400},
+  'hyoukou':{hp:1869,atk:534,def:404,maxMp:2160},
+  'kaine':{hp:1728,atk:498,def:488,maxMp:2160},
+  'kaishi_renmei':{hp:1672,atk:552,def:415,maxMp:2160},
+  'kanjo':{hp:2886,atk:562,def:568,maxMp:2160},
+  'kanki':{hp:1701,atk:506,def:504,maxMp:2160},
+  'kanmei':{hp:1900,atk:900,def:456,maxMp:2160},
+  'kanou':{hp:1936,atk:452,def:436,maxMp:2160},
+  'karin':{hp:1999,atk:777,def:555,maxMp:2400},
+  'karyoten':{hp:1719,atk:411,def:434,maxMp:2880},
+  'katari':{hp:2281,atk:654,def:383,maxMp:2160},
+  'kei':{hp:1200,atk:250,def:250,maxMp:2400},
+  'keisha':{hp:2400,atk:570,def:570,maxMp:2880},
+  'kisei':{hp:1882,atk:588,def:714,maxMp:2160},
+  'kitari':{hp:2292,atk:627,def:398,maxMp:2160},
+  'kokuou':{hp:2365,atk:432,def:456,maxMp:2880},
+  'kosho':{hp:3535,atk:513,def:505,maxMp:2880},
+  'kouyoku':{hp:1760,atk:496,def:472,maxMp:2160},
+  'kyouen':{hp:1915,atk:513,def:411,maxMp:2880},
+  'kyoukai':{hp:1421,atk:542,def:487,maxMp:2160},
+  'maki':{hp:2087,atk:438,def:443,maxMp:2400},
+  'mangoku':{hp:2289,atk:466,def:406,maxMp:2160},
+  'maron':{hp:1730,atk:501,def:499,maxMp:2400},
+  'miyamoto':{hp:2068,atk:424,def:474,maxMp:1920},
+  'mou':{hp:1544,atk:622,def:402,maxMp:2160},
+  'moubu':{hp:1641,atk:582,def:402,maxMp:2160},
+  'mougo':{hp:2066,atk:402,def:636,maxMp:1920},
+  'mouki':{hp:1525,atk:398,def:385,maxMp:1920},
+  'muta':{hp:1935,atk:365,def:369,maxMp:2400},
+  'muten':{hp:1721,atk:463,def:541,maxMp:2160},
+  'naki':{hp:1847,atk:672,def:453,maxMp:2160},
+  'obira':{hp:1830,atk:289,def:341,maxMp:2400},
+  'ogiko':{hp:2222,atk:511,def:522,maxMp:2880},
+  'ohkotsu':{hp:2678,atk:700,def:636,maxMp:2400},
+  'ordo':{hp:1953,atk:850,def:513,maxMp:2160},
+  'otaji':{hp:2187,atk:547,def:491,maxMp:2880},
+  'ouhon':{hp:1560,atk:522,def:471,maxMp:2160},
+  'ouki':{hp:1800,atk:520,def:510,maxMp:2160},
+  'ousen':{hp:1703,atk:503,def:503,maxMp:1920},
+  'pamu':{hp:2261,atk:491,def:504,maxMp:2400},
+  'rakki':{hp:2728,atk:664,def:633,maxMp:2160},
+  'ramaoji':{hp:2217,atk:551,def:449,maxMp:2880},
+  'ranbishaku':{hp:1824,atk:602,def:406,maxMp:1920},
+  'reiou':{hp:3003,atk:680,def:660,maxMp:2880},
+  'renpa':{hp:1700,atk:600,def:410,maxMp:2160},
+  'riboku':{hp:2888,atk:666,def:666,maxMp:1920},
+  'rikusen':{hp:1888,atk:466,def:448,maxMp:2160},
+  'rinbo':{hp:1843,atk:452,def:452,maxMp:2160},
+  'rinbujun':{hp:2120,atk:740,def:560,maxMp:2160},
+  'rinka':{hp:1634,atk:562,def:411,maxMp:2160},
+  'rokuomi':{hp:1926,atk:476,def:401,maxMp:2160},
+  'ryukoku':{hp:2000,atk:432,def:465,maxMp:1920},
+  'seika':{hp:2729,atk:694,def:501,maxMp:2880},
+  'shihaku':{hp:1800,atk:750,def:490,maxMp:2160},
+  'shika2':{hp:1688,atk:288,def:323,maxMp:2880},
+  'shimasaku':{hp:2876,atk:736,def:598,maxMp:2880},
+  'shin':{hp:1820,atk:504,def:428,maxMp:2160},
+  'shinseicho':{hp:2998,atk:589,def:615,maxMp:2160},
+  'shotaku':{hp:1923,atk:472,def:343,maxMp:2400},
+  'shouheikun':{hp:1900,atk:510,def:450,maxMp:2160},
+  'shoumounkun':{hp:2322,atk:453,def:441,maxMp:2880},
+  'shunmen':{hp:2383,atk:462,def:398,maxMp:2400},
+  'shunshinkun':{hp:3686,atk:488,def:512,maxMp:1920},
+  'sosui':{hp:2153,atk:425,def:410,maxMp:2160},
+  'tairoji':{hp:3636,atk:688,def:688,maxMp:1920},
+  'tou':{hp:1882,atk:527,def:407,maxMp:2160},
+  'yotanwa':{hp:1655,atk:566,def:400,maxMp:2160},
+  'yukii':{hp:1886,atk:656,def:515,maxMp:2880},
+  'yuren':{hp:1494,atk:549,def:444,maxMp:2400},
+  'zenou':{hp:2204,atk:700,def:424,maxMp:2400},
+  'gakurai':{hp:1980,atk:540,def:420,maxMp:2160},
+  'hakuki':{hp:2100,atk:480,def:560,maxMp:1920},
+}
+// Rarity-based defaults for unmatched characters
+// Source: averages from mstUnionConquestGenerals data
+const CW_DEF={
+  N:{hp:900,atk:200,def:180,maxMp:1920},
+  R:{hp:1200,atk:260,def:230,maxMp:2160},
+  SR:{hp:1600,atk:430,def:380,maxMp:2400},
+  SSR:{hp:1900,atk:550,def:470,maxMp:2400},
+  UR:{hp:2000,atk:580,def:480,maxMp:2160},
+}
+// Weapon parameterRate scaling table (mstUnionConquestWeaponGrowths)
+const WSCALE=[1.00,1.10,1.20,1.35,1.50,1.65,1.80,1.95,2.20,2.50,2.55,2.60,2.65,2.70,2.75,2.80,3.50,4.20]
+const RARITY_B={N:0,R:0,SR:0.10,SSR:0.20,UR:0.60}
+
+// Calculate final CW stats for a character with given config
+// Formula from mstUnionConquestConsts + mstUnionConquestGeneralGrowths
+function calcCwStats(char,star=6,rank=6,role='Offense',wLv=10){
+  const base=CW_STATS[char.id]||CW_DEF[char.rarity||'SR']||CW_DEF.SR
+  const rarB=RARITY_B[char.rarity]||0
+  const s=Math.max(0,Math.min(6,star|0))
+  // Growth group 1 approximation (linear per star, ☆6 = +10% HP, +8% ATK/DEF)
+  const starHp=s*10/60, starAtk=s*8/60, starDef=s*8/60
+  const rankB=[0,0,0,0,0.10,0.20,0.30][Math.min(rank|0,6)]||0
+  let hp =base.hp *(1+rarB)*(1+starHp)*(1+rankB)
+  let atk=base.atk*(1+rarB)*(1+starAtk)*(1+rankB)
+  let def=base.def*(1+rarB)*(1+starDef)*(1+rankB)
+  // Weapon contribution (weaponPowerAtkRate=100%, weaponPowerHpRate=6.25%)
+  const wl=Math.max(1,Math.min(18,wLv|0))
+  const ws=WSCALE[wl-1]
+  const isAS=(char.unit_type==='Archer'||char.unit_type==='Shield')
+  // Base weapon ATK: type1(Archer/Shield)=1800, type2(Infantry/Cavalry)=2200
+  atk+=(isAS?1800:2200)*ws
+  def+=(isAS?1600:1000)*ws
+  hp +=36600*ws*0.0625
+  // Role bonus (mstUnionConquestConsts ids 141-146)
+  if(role==='Offense') atk*=1.10
+  else if(role==='Defense') def*=1.10
+  const maxMp=Math.round(base.maxMp*(role==='Cheer'?1.15:1))
+  return{hp:Math.round(hp),atk:Math.round(atk),def:Math.round(def),maxMp}
+}
+
+// 30-turn Castle Wars combat simulation
+// Based on mstUnionConquestConsts damage formula and turn structure
+function simulateBattle(atkTeam,defTeam,atkCfg,defCfg){
+  // Constants from mstUnionConquestConsts
+  const AD=1.25       // typical adAttributeSlay (12500/10000) — mid of 11000-13000 range
+  const DA=0.80       // typical daAttributeSlay (8000/10000) — mid of 7000-9000 range
+  const MP_REC=0.10   // ~10% maxMp recovered per turn
+  const SKILL_COST_RATE=0.20  // active skill costs ~20% of maxMp
+  const mk=(g,cfg)=>{
+    const s=calcCwStats(g,cfg.star,cfg.rank,cfg.role,cfg.weaponLv)
+    const combatSks=[...(g.skills||[]).filter(sk=>sk.type==='Combat')].reverse()
+    return{g,...s,curHp:s.hp,mp:0,alive:true,skIdx:0,combatSks,totalDmgDone:0,totalDmgTaken:0}
+  }
+  const aS=atkTeam.map(g=>mk(g,atkCfg))
+  const dS=defTeam.map(g=>mk(g,defCfg))
+  const log=[]
+  let winner=null,finalTurn=30
+  for(let t=1;t<=30;t++){
+    const tev=[]
+    // Action order: slots 0→3, each slot: ATK actor then DEF actor
+    for(let i=0;i<4;i++){
+      for(const{actor,enemies,side}of[{actor:aS[i],enemies:dS,side:'attack'},{actor:dS[i],enemies:aS,side:'defense'}]){
+        if(!actor||!actor.alive) continue
+        // MP recovery per turn
+        actor.mp=Math.min(actor.maxMp,actor.mp+actor.maxMp*MP_REC)
+        const alive=enemies.filter(e=>e.alive)
+        if(!alive.length) continue
+        // Target: lowest current HP (focus fire)
+        const target=alive.reduce((a,b)=>a.curHp<b.curHp?a:b)
+        // Active skill check
+        let skill=null
+        const cost=actor.maxMp*SKILL_COST_RATE
+        if(actor.combatSks.length&&actor.mp>=cost){
+          skill=actor.combatSks[actor.skIdx%actor.combatSks.length]
+          actor.skIdx++; actor.mp-=cost
+        }
+        // Damage: ATK × rand(0.95–1.60) × AD × (1–DA) × skillMult × critMult
+        // formula: rawDamage = ATK × atkRandom × (adSlay/10000) × (1 − daSlayEffective/10000)
+        const rand=0.95+Math.random()*0.65
+        const isCrit=Math.random()<0.05        // 5% base crit rate
+        const dmg=Math.max(
+          Math.round(actor.atk*0.20),  // power competition floor: 20% ATK minimum
+          Math.round(actor.atk*rand*AD*(1-DA)*(skill?1.5:1.0)*(isCrit?1.5:1.0))
+        )
+        target.curHp=Math.max(0,target.curHp-dmg)
+        actor.totalDmgDone+=dmg; target.totalDmgTaken+=dmg
+        const died=target.curHp===0&&target.alive
+        if(died) target.alive=false
+        tev.push({side,actor,target,dmg,skill,isCrit,died,turn:t})
+      }
+    }
+    log.push({turn:t,events:tev})
+    const aA=aS.filter(s=>s.alive).length,dA=dS.filter(s=>s.alive).length
+    if(!dA){winner='attack';finalTurn=t;break}
+    if(!aA){winner='defense';finalTurn=t;break}
+  }
+  if(!winner){
+    const aHp=aS.reduce((s,g)=>s+g.curHp,0)/Math.max(1,aS.reduce((s,g)=>s+g.hp,0))
+    const dHp=dS.reduce((s,g)=>s+g.curHp,0)/Math.max(1,dS.reduce((s,g)=>s+g.hp,0))
+    winner=aHp>dHp?'atk_pts':'def_pts'
+  }
+  return{aS,dS,log,winner,finalTurn}
+}
+
 // ── BUFF ENGINE ───────────────────────────────────────────────────────────────
 const UNIT_TYPE_LIST=['Infantry','Cavalry','Archer','Shield']
 const FACTION_MAP={'qin':'qin','zhao':'zhao','chu':'chu','wei':'wei','yan':'yan','qi':'qi','han':'han','mountain folk':'mountain_folk','ai':'ai'}
@@ -196,8 +400,8 @@ function parseBuffEffect(str){
   if(!str) return []
   const results=[];let deferred=[]
   for(let part of str.split(/[,、\/]/)){
-    part=part.trim().replace(/\\/g,'').replace(/"/g,'').trim()
-    part=part.replace(/^and\s+/i,'').replace(/\s*\(Dodge Chance\)/gi,'').replace(/\s+additional\b/gi,'').trim()
+    part=part.trim().replace(/\\/g,'').replace(/["\u201C\u201D\u300C\u300D]/g,'').trim()
+    part=part.replace(/^and\s+/i,'').replace(/\s*\(Dodge Chance\)/gi,'').replace(/\s+additional\b/gi,'').replace(/\s+vs\s+\S+/gi,'').trim()
     if(!part) continue
     if(/^enemy/i.test(part)) continue
     if(/\d+[%％]\s*Damage|^%\s*(?:of\s+|Damage)|HP Drain|Stun Rate/i.test(part)) continue
@@ -794,6 +998,7 @@ export default function App(){
   const[def,setDef]=useState([null,null,null,null])
   const[atkSk,setAtkSk]=useState(defaultSks())
   const[defSk,setDefSk]=useState(defaultSks())
+  const[simCfg,setSimCfg]=useState({atkStar:6,atkRank:6,atkRole:'Offense',defStar:6,defRank:6,defRole:'Defense',weaponLv:10})
   const rm=(char,side)=>{
     const isAtk=side==='attack'
     const team=isAtk?atk:def
@@ -845,7 +1050,7 @@ export default function App(){
           <Route path="/archive" element={<ArchivePage/>}/>
           <Route path="/archive/:charId" element={<ArchivePage/>}/>
           <Route path="/builder" element={<BuilderPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} setAtkSk={setAtkSk} setDefSk={setDefSk} setSlot={setSlot} rm={rm} goSim={()=>navigate('/sim')} loadMetaTeam={loadMetaTeam}/>}/>
-          <Route path="/sim" element={<SimPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} goBuilder={()=>navigate('/builder')}/>}/>
+          <Route path="/sim" element={<SimPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} simCfg={simCfg} setSimCfg={setSimCfg} goBuilder={()=>navigate('/builder')}/>}/>
           <Route path="/buffs" element={<BuffsPage/>}/>
           <Route path="/tiers" element={<TierPage/>}/>
           <Route path="/cost" element={<TeamCostPage/>}/>
@@ -1156,16 +1361,65 @@ function SkillToggles({char,mask,onChange}){
 }
 
 // ── ACTIVATION ORDER ──────────────────────────────────────────────────────────
-function SimPage({atk,def,atkSk,defSk,goBuilder}){
+function SimPage({atk,def,atkSk,defSk,simCfg,setSimCfg,goBuilder}){
   const atkF=atk.map((c,i)=>applyMask(c,atkSk?.[i])).filter(Boolean)
   const defF=def.map((c,i)=>applyMask(c,defSk?.[i])).filter(Boolean)
   if(!atkF.length&&!defF.length) return(
     <div className="main-page empty-cta"><p>No formations set.</p><button className="cta-btn" onClick={goBuilder}>Go to Party Builder</button></div>
   )
   const{st,turns}=simulate(atkF,defF)
+  const upd=(k,v)=>setSimCfg(p=>({...p,[k]:v}))
+  const atkCfg={star:simCfg.atkStar,rank:simCfg.atkRank,role:simCfg.atkRole,weaponLv:simCfg.weaponLv}
+  const defCfg={star:simCfg.defStar,rank:simCfg.defRank,role:simCfg.defRole,weaponLv:simCfg.weaponLv}
+  const battle=simulateBattle(atkF,defF,atkCfg,defCfg)
+  const ROLES=['Offense','Defense','Cheer']
+  const STARS=[0,1,2,3,4,5,6]
+  const RANKS=[1,2,3,4,5,6]
+  const WLV=Array.from({length:18},(_,i)=>i+1)
   return(
     <div className="main-page">
-      <h2 className="pg-title">Activation Order</h2>
+      {/* ── Sim Config ─────────────────────────────────────── */}
+      <div className="sim-cfg-wrap">
+        <div className="sim-cfg-side">
+          <div className="sim-cfg-label" style={{color:'var(--red)'}}>⚔ Attacking</div>
+          <div className="sim-cfg-row">
+            <select className="sim-sel" value={simCfg.atkRole} onChange={e=>upd('atkRole',e.target.value)}>
+              {ROLES.map(r=><option key={r}>{r}</option>)}
+            </select>
+            <select className="sim-sel" value={simCfg.atkStar} onChange={e=>upd('atkStar',+e.target.value)}>
+              {STARS.map(s=><option key={s} value={s}>☆{s}</option>)}
+            </select>
+            <select className="sim-sel" value={simCfg.atkRank} onChange={e=>upd('atkRank',+e.target.value)}>
+              {RANKS.map(r=><option key={r} value={r}>Rank {r}</option>)}
+            </select>
+          </div>
+        </div>
+        <div className="sim-cfg-mid">
+          <div className="sim-cfg-label" style={{color:'var(--txt3)'}}>Weapon</div>
+          <select className="sim-sel" value={simCfg.weaponLv} onChange={e=>upd('weaponLv',+e.target.value)}>
+            {WLV.map(l=><option key={l} value={l}>Lv {l}</option>)}
+          </select>
+        </div>
+        <div className="sim-cfg-side sim-cfg-right">
+          <div className="sim-cfg-label" style={{color:'var(--blue)'}}>🛡 Defending</div>
+          <div className="sim-cfg-row">
+            <select className="sim-sel" value={simCfg.defRole} onChange={e=>upd('defRole',e.target.value)}>
+              {ROLES.map(r=><option key={r}>{r}</option>)}
+            </select>
+            <select className="sim-sel" value={simCfg.defStar} onChange={e=>upd('defStar',+e.target.value)}>
+              {STARS.map(s=><option key={s} value={s}>☆{s}</option>)}
+            </select>
+            <select className="sim-sel" value={simCfg.defRank} onChange={e=>upd('defRank',+e.target.value)}>
+              {RANKS.map(r=><option key={r} value={r}>Rank {r}</option>)}
+            </select>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Battle Result ──────────────────────────────────── */}
+      <BattleResult battle={battle} atkTeam={atkF} defTeam={defF}/>
+
+      {/* ── Formation bars ─────────────────────────────────── */}
       <div className="form-bars">
         <FormBar generals={atkF} side="attack" label="⚔ Attacking"/>
         <div className="form-vs">VS</div>
@@ -1179,7 +1433,7 @@ function SimPage({atk,def,atkSk,defSk,goBuilder}){
         </div>
       </div>
       <div className="sim-sec">
-        <div className="sec-hd sec-combat">⚔ Turn-by-Turn Combat</div>
+        <div className="sec-hd sec-combat">⚔ Skill Activation Order</div>
         {turns.map(({turn,entries})=>(
           <div key={turn} className="turn">
             <div className="turn-lbl">Turn {turn}</div>
@@ -1200,6 +1454,82 @@ function SimPage({atk,def,atkSk,defSk,goBuilder}){
             </div>
           </div>
         ))}
+      </div>
+    </div>
+  )
+}
+
+function BattleResult({battle,atkTeam,defTeam}){
+  const{aS,dS,winner,finalTurn,log}=battle
+  const isAtkWin=winner==='attack'||winner==='atk_pts'
+  const isPoints=winner==='atk_pts'||winner==='def_pts'
+  const winSide=isAtkWin?'attack':'defense'
+  const winColor=isAtkWin?'var(--red)':'var(--blue)'
+  const loseColor=isAtkWin?'var(--blue)':'var(--red)'
+  const kills=log.flatMap(({turn,events})=>events.filter(e=>e.died).map(e=>({...e,turn})))
+  const fmtK=(n)=>n>=1000?`${(n/1000).toFixed(1)}k`:String(n)
+  const HpBar=({state,side})=>{
+    const pct=Math.round(state.curHp/state.hp*100)
+    const col=side==='attack'?'var(--red)':'var(--blue)'
+    const died=!state.alive
+    return(
+      <div className="br-gen-row">
+        <CharIcon c={state.g} size={32} round={true}/>
+        <div className="br-gen-info">
+          <div className="br-gen-name">{state.g.name_en}{died&&<span className="br-dead">☠</span>}</div>
+          <div className="br-hp-bar">
+            <div className="br-hp-fill" style={{width:`${pct}%`,background:died?'#555':col}}/>
+          </div>
+          <div className="br-hp-nums">
+            <span style={{color:died?'var(--txt3)':col}}>{fmtK(state.curHp)}</span>
+            <span style={{color:'var(--txt3)'}}> / {fmtK(state.hp)}</span>
+            <span style={{color:'var(--txt3)',marginLeft:'auto',fontSize:'.65rem'}}>{died?'☠ KO':`${pct}%`}</span>
+          </div>
+        </div>
+      </div>
+    )
+  }
+  return(
+    <div className="sim-sec">
+      <div className="sec-hd" style={{background:winColor+'22',borderColor:winColor+'66',color:winColor}}>
+        {isAtkWin?'⚔':'🛡'} {isAtkWin?'Attacking':'Defending'} Team Wins
+        {isPoints?' (Points)':''} — Turn {finalTurn}
+      </div>
+      <div className="br-body">
+        <div className="br-cols">
+          {/* Attacking team HP */}
+          <div className="br-side">
+            <div className="br-side-lbl" style={{color:'var(--red)'}}>⚔ Attacking</div>
+            {aS.map((s,i)=><HpBar key={i} state={s} side="attack"/>)}
+            <div className="br-dmg-total">
+              Total dmg dealt: <strong>{fmtK(aS.reduce((t,s)=>t+s.totalDmgDone,0))}</strong>
+            </div>
+          </div>
+          {/* Kill log */}
+          {kills.length>0&&(
+            <div className="br-kills">
+              <div className="br-kills-lbl">Kill Log</div>
+              {kills.map((k,i)=>(
+                <div key={i} className="br-kill-row">
+                  <span className="br-kill-t">T{k.turn}</span>
+                  <CharIcon c={k.actor.g} size={16} round/>
+                  <span className="br-kill-arrow" style={{color:k.side==='attack'?'var(--red)':'var(--blue)'}}>→☠</span>
+                  <CharIcon c={k.target.g} size={16} round/>
+                  <span className="br-kill-name">{k.target.g.name_en}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          {/* Defending team HP */}
+          <div className="br-side">
+            <div className="br-side-lbl" style={{color:'var(--blue)'}}>🛡 Defending</div>
+            {dS.map((s,i)=><HpBar key={i} state={s} side="defense"/>)}
+            <div className="br-dmg-total">
+              Total dmg dealt: <strong>{fmtK(dS.reduce((t,s)=>t+s.totalDmgDone,0))}</strong>
+            </div>
+          </div>
+        </div>
+        <div className="br-note">Stats based on configured ☆/Rank/Weapon · adSlay 1.25 · daSlay 0.80 · min-dmg 20% floor · results vary each run</div>
       </div>
     </div>
   )
