@@ -1386,8 +1386,8 @@ function SimPage({atk,def,atkSk,defSk,goBuilder}){
   const battle=useMemo(()=>simulateBattle(atkF,defF),[tick,atkF.map(g=>g.id).join(),defF.map(g=>g.id).join()])
   return(
     <div className="main-page">
-      {/* ── Battle Result ──────────────────────────────────── */}
-      <BattleResult battle={battle} atkTeam={atkF} defTeam={defF} rerun={()=>setTick(t=>t+1)}/>
+      {/* ── Battle Result (hidden for now) ──────────────── */}
+      {/* <BattleResult battle={battle} atkTeam={atkF} defTeam={defF} rerun={()=>setTick(t=>t+1)}/> */}
 
       {/* ── Formation bars ─────────────────────────────────── */}
       <div className="form-bars">
