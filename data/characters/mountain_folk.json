@@ -785,7 +785,7 @@
           {
             "condition": "Enemy general with highest DEF",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -816,7 +816,7 @@
           {
             "condition": "Enemy general with highest max morale",
             "target": "1 enemy general",
-            "effect": "% Damage130％",
+            "effect": "130% Damage",
             "duration": null
           }
         ]
@@ -859,13 +859,13 @@
           {
             "condition": "Enemy general with highest ATK",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
             "condition": "Enemy war machine with highest ATK",
             "target": "1 enemy war machine",
-            "effect": "% Damage100％",
+            "effect": "100% Damage",
             "duration": null
           }
         ]
@@ -969,13 +969,13 @@
           {
             "condition": "Enemy general with highest ATK",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
             "condition": "Enemy war machine with highest ATK",
             "target": "1 enemy war machine",
-            "effect": "% Damage100％",
+            "effect": "100% Damage",
             "duration": null
           }
         ]

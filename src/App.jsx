@@ -17,6 +17,7 @@ import misc         from '../data/characters/misc.json'
 import misc2        from '../data/characters/misc2.json'
 import aiYanMajor   from '../data/characters/ai_yan_major.json'
 import cwBuffsData  from '../data/cw_buffs.json'
+import cwMaxStats   from '../data/cw_max_stats.json'
 
 const ALL = [
   ...mountainFolk,...qin,...qinBatch2,...qinMajor,
@@ -188,8 +189,16 @@ function simulate(a,d){
 }
 
 // ── CW SIMULATION ENGINE ─────────────────────────────────────────────────────
-// Base stats from mstUnitGenerals (initHp/initAtk/initDef) + CW maxMp
-// Source: general_id_map.html (extracted 2026-04-20, 274 generals)
+// Pre-computed MAXED stats (Lv 85 + max LG rank + max upgradeLv + max star +
+// rank 6 enhancement "+3" + max weapon Lv18). Extracted from decrypted
+// masters_*.bin tables: mstUnitGenerals, mstUnitGeneralLevels,
+// mstUnionConquestGenerals, mstUnionConquestGeneralGrowths,
+// mstUnitGeneralUpgradeSeconds, mstUnitGeneralLgTypes, mstUnionConquestConsts.
+// See C:\Users\Admin\Desktop\CW_MAX_STATS_FINDINGS.md for the full formula.
+// Battle-time buffs (union boost, elixirs, role, admin, skills) are applied
+// on top by simulateBattle() — NOT baked into these stats.
+const CW_MAX = cwMaxStats
+// Legacy init-stat fallback (used only if a char has no pre-computed entry)
 const CW_STATS={
   'amon':{hp:1285,atk:203,def:253,maxMp:2880},
   'bajio':{hp:1677,atk:574,def:388,maxMp:2160},
@@ -287,52 +296,45 @@ const CW_STATS={
   'gakurai':{hp:1980,atk:540,def:420,maxMp:2160},
   'hakuki':{hp:2100,atk:480,def:560,maxMp:1920},
 }
-// Rarity-based defaults for unmatched characters
-// Source: averages from mstUnionConquestGenerals data
-const CW_DEF={
-  N:{hp:900,atk:200,def:180,maxMp:1920},
-  R:{hp:1200,atk:260,def:230,maxMp:2160},
-  SR:{hp:1600,atk:430,def:380,maxMp:2400},
-  SSR:{hp:1900,atk:550,def:470,maxMp:2400},
-  UR:{hp:2000,atk:580,def:480,maxMp:2160},
+// Rarity-based maxed defaults for chars without a pre-computed entry
+// (scaled approximations for the 7 unmatched site chars: denti, kakubi,
+//  muten_grandpa, shosa, linhtama, qingxiang, ringyoku)
+const CW_DEF_MAX={
+  N:{hp:15000,atk:5000,def:4500,maxMp:6000,critRate:500,critDmgRate:150,hitRate:11250,dodgeRate:1500,adSlay:7000,daSlay:9500,defPen:0},
+  R:{hp:22000,atk:8000,def:7000,maxMp:7000,critRate:750,critDmgRate:150,hitRate:11500,dodgeRate:1750,adSlay:8500,daSlay:9300,defPen:300},
+  SR:{hp:40000,atk:11000,def:8500,maxMp:8500,critRate:1000,critDmgRate:150,hitRate:11750,dodgeRate:1875,adSlay:10000,daSlay:8800,defPen:500},
+  SSR:{hp:55000,atk:13000,def:9500,maxMp:9500,critRate:1250,critDmgRate:150,hitRate:11875,dodgeRate:1875,adSlay:11375,daSlay:9075,defPen:600},
+  UR:{hp:75000,atk:15000,def:10000,maxMp:10500,critRate:1625,critDmgRate:150,hitRate:12000,dodgeRate:2000,adSlay:11750,daSlay:9150,defPen:750},
 }
-// Weapon parameterRate scaling table (mstUnionConquestWeaponGrowths)
-const WSCALE=[1.00,1.10,1.20,1.35,1.50,1.65,1.80,1.95,2.20,2.50,2.55,2.60,2.65,2.70,2.75,2.80,3.50,4.20]
-const RARITY_B={N:0,R:0,SR:0.10,SSR:0.20,UR:0.60}
 
-// Calculate final CW stats for a character with given config
-// Formula from mstUnionConquestConsts + mstUnionConquestGeneralGrowths
-function calcCwStats(char,star=6,rank=6,role='Offense',wLv=10){
-  const base=CW_STATS[char.id]||CW_DEF[char.rarity||'SR']||CW_DEF.SR
-  const rarB=RARITY_B[char.rarity]||0
-  const s=Math.max(0,Math.min(6,star|0))
-  // Growth group 1 approximation (linear per star, ☆6 = +10% HP, +8% ATK/DEF)
-  const starHp=s*10/60, starAtk=s*8/60, starDef=s*8/60
-  const rankB=[0,0,0,0,0.10,0.20,0.30][Math.min(rank|0,6)]||0
-  let hp =base.hp *(1+rarB)*(1+starHp)*(1+rankB)
-  let atk=base.atk*(1+rarB)*(1+starAtk)*(1+rankB)
-  let def=base.def*(1+rarB)*(1+starDef)*(1+rankB)
-  // Weapon contribution (weaponPowerAtkRate=100%, weaponPowerHpRate=6.25%)
-  const wl=Math.max(1,Math.min(18,wLv|0))
-  const ws=WSCALE[wl-1]
-  const isAS=(char.unit_type==='Archer'||char.unit_type==='Shield')
-  // Base weapon ATK: type1(Archer/Shield)=1800, type2(Infantry/Cavalry)=2200
-  atk+=(isAS?1800:2200)*ws
-  def+=(isAS?1600:1000)*ws
-  hp +=36600*ws*0.0625
-  // Role bonus (mstUnionConquestConsts ids 141-146)
+// Return the maxed CW stats for a character, optionally modified by role /
+// battle buffs (union boost, elixirs). Maxed growth is already baked in —
+// this function just layers on the configurable battle-time bonuses.
+function calcCwStats(char,_star=6,_rank=6,role='Offense',_wLv=18,opts={}){
+  const M=CW_MAX[char.id]||CW_DEF_MAX[char.rarity||'SR']||CW_DEF_MAX.SR
+  let hp=M.hp, atk=M.atk, def=M.def, maxMp=M.maxMp
+  // Role (mstUnionConquestConsts 143-145)
   if(role==='Offense') atk*=1.10
   else if(role==='Defense') def*=1.10
-  const maxMp=Math.round(base.maxMp*(role==='Cheer'?1.15:1))
-  return{hp:Math.round(hp),atk:Math.round(atk),def:Math.round(def),maxMp}
+  else if(role==='Cheer') maxMp*=1.15
+  // Union boost (+50% ATK/DEF) — default on
+  if(opts.unionBoost!==false){ atk*=1.50; def*=1.50 }
+  // Elixir (+2% ATK/DEF per use, up to 10/day = +20%)
+  const elix=Math.max(0,Math.min(10,opts.elixirUses??10))
+  atk*=1+0.02*elix; def*=1+0.02*elix
+  return{
+    hp:Math.round(hp), atk:Math.round(atk), def:Math.round(def),
+    maxMp:Math.round(maxMp),
+    critRate:M.critRate, critDmgRate:M.critDmgRate,
+    hitRate:M.hitRate, dodgeRate:M.dodgeRate,
+    adSlay:M.adSlay, daSlay:M.daSlay, defPen:M.defPen,
+  }
 }
 
 // 30-turn Castle Wars combat simulation
 // Based on mstUnionConquestConsts damage formula and turn structure
 function simulateBattle(atkTeam,defTeam,atkCfg,defCfg){
   // Constants from mstUnionConquestConsts
-  const AD=1.25       // typical adAttributeSlay (12500/10000) — mid of 11000-13000 range
-  const DA=0.80       // typical daAttributeSlay (8000/10000) — mid of 7000-9000 range
   const MP_REC=0.10   // ~10% maxMp recovered per turn
   const SKILL_COST_RATE=0.20  // active skill costs ~20% of maxMp
   const mk=(g,cfg)=>{
@@ -363,13 +365,16 @@ function simulateBattle(atkTeam,defTeam,atkCfg,defCfg){
           skill=actor.combatSks[actor.skIdx%actor.combatSks.length]
           actor.skIdx++; actor.mp-=cost
         }
-        // Damage: ATK × rand(0.95–1.60) × AD × (1–DA) × skillMult × critMult
-        // formula: rawDamage = ATK × atkRandom × (adSlay/10000) × (1 − daSlayEffective/10000)
+        // Damage: ATK × rand(0.95–1.60) × (adSlay/10000) × (1 − daSlay/10000) × skillMult × critMult
+        // Per-character adSlay/daSlay from mstUnionConquestGeneralGrowths (10000-basis)
         const rand=0.95+Math.random()*0.65
-        const isCrit=Math.random()<0.05        // 5% base crit rate
+        const isCrit=Math.random()<(actor.critRate/10000)
+        const adFactor=actor.adSlay/10000
+        const daFactor=1-(target.daSlay/10000)
+        const critMult=isCrit?(1+(actor.critDmgRate||150)/100):1.0
         const dmg=Math.max(
           Math.round(actor.atk*0.20),  // power competition floor: 20% ATK minimum
-          Math.round(actor.atk*rand*AD*(1-DA)*(skill?1.5:1.0)*(isCrit?1.5:1.0))
+          Math.round(actor.atk*rand*adFactor*daFactor*(skill?1.5:1.0)*critMult)
         )
         target.curHp=Math.max(0,target.curHp-dmg)
         actor.totalDmgDone+=dmg; target.totalDmgTaken+=dmg
@@ -1529,7 +1534,7 @@ function BattleResult({battle,atkTeam,defTeam}){
             </div>
           </div>
         </div>
-        <div className="br-note">Stats based on configured ☆/Rank/Weapon · adSlay 1.25 · daSlay 0.80 · min-dmg 20% floor · results vary each run</div>
+        <div className="br-note">Max CW stats (Lv85+max upgrade+Lv18 weapon) · union boost +50% · elixir ×10 · per-character adSlay/daSlay · min-dmg 20% floor · results vary each run</div>
       </div>
     </div>
   )

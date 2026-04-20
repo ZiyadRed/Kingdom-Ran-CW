@@ -1094,40 +1094,77 @@
     "image": "/persos/kyoukai.webp",
     "skills": [
       {
-        "name_en": "Corpse Dance [Purple Elephant]",
-        "name_jp": "屍舞【紫象】",
+        "name_en": "Fierce General Flash [Blue Sheep]",
+        "name_jp": "猛将一閃【青羊】",
         "type": "Combat",
         "effects": [
           {
             "condition": "Enemy general with highest ATK",
             "target": "1 enemy general",
-            "effect": "160% Damage",
+            "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": null,
+            "condition": "Per other ally infantry general",
             "target": "Self",
-            "effect": "ATK Up 20%",
-            "duration": "2 turns"
+            "effect": "ATK Up 10%",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Place to Return",
+        "name_jp": "帰る場所",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "When ally Hi Shin Unit member is alive",
+            "target": "Self",
+            "effect": "HP Recovery 30%",
+            "duration": null
+          },
+          {
+            "condition": "When ally \"Shin\" is alive",
+            "target": "Self",
+            "effect": "DEF Penetration Up 30%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "160% Damage",
+            "duration": null
           }
         ]
       },
       {
         "name_en": "Shaman Dance",
         "name_jp": "巫舞",
-        "type": "Strategy",
+        "type": "Combat",
         "effects": [
           {
             "condition": null,
-            "target": "Ally [Qin]",
-            "effect": "ATK Up 20%",
+            "target": "Self",
+            "effect": "Dodge 60%",
+            "duration": "2 turns"
+          },
+          {
+            "condition": "3 enemy generals with lowest ATK",
+            "target": "3 enemy generals",
+            "effect": "80% Damage each",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Evasion (Dodge Chance) Up 30%",
+            "effect": "ATK Down, DEF Down, Evasion Down 30%",
             "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "ATK Up 40%",
+            "duration": "2 turns"
           }
         ]
       },

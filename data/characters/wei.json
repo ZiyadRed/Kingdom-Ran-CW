@@ -672,15 +672,27 @@
           },
           {
             "condition": "Own HP > 90%",
-            "target": "Enemy [Qin] war machines",
-            "effect": "ATK Down 20%, Guard 60%",
-            "duration": "2 turns"
+            "target": "Enemy [Qin] / enemy war machines",
+            "effect": "ATK Down 20%",
+            "duration": "3 turns"
           },
           {
             "condition": "Own HP < 90%",
-            "target": "1 enemy general",
-            "effect": "70% Damage + HP Drain 60%",
+            "target": "All enemy generals",
+            "effect": "70% Damage",
             "duration": null
+          },
+          {
+            "condition": "Own HP < 90%, from 70% Damage above",
+            "target": "Self",
+            "effect": "HP Drain 60%",
+            "duration": null
+          },
+          {
+            "condition": "Own HP < 90%",
+            "target": "Self / Ally [Wei]",
+            "effect": "Guard 60%",
+            "duration": "2 times"
           }
         ]
       },
@@ -740,7 +752,7 @@
           {
             "condition": "Enemy general with highest ATK",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -796,7 +808,7 @@
           {
             "condition": "Enemy general with highest ATK",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {

@@ -838,7 +838,7 @@
           {
             "condition": "The enemy with the lowest remaining strength",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -894,7 +894,7 @@
           {
             "condition": "Enemy general with highest ATK",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {

@@ -887,7 +887,7 @@
           {
             "condition": "Enemy general with highest DEF",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -949,7 +949,7 @@
           {
             "condition": "The enemy with the lowest remaining strength",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -1067,7 +1067,7 @@
           {
             "condition": "Enemy with highest max HP",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -1123,7 +1123,7 @@
           {
             "condition": "Enemy general with highest remaining HP",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -1191,7 +1191,7 @@
           {
             "condition": "Enemy general with highest DEF",
             "target": "1 enemy general",
-            "effect": "% Damage180％",
+            "effect": "180% Damage",
             "duration": null
           }
         ]
@@ -1215,7 +1215,7 @@
           {
             "condition": "Enemy general with highest ATK",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -1271,21 +1271,51 @@
           {
             "condition": "Enemy general with highest DEF",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
+          },
+          {
+            "condition": "Enemy general with highest DEF",
+            "target": "2 enemy generals",
+            "effect": "Poison Infliction 80%",
+            "duration": "4 turns"
           }
         ]
       },
       {
         "name_en": "Endless Ambition",
-        "name_jp": "Endless Ambition",
+        "name_jp": "果てない野望",
         "type": "Combat",
         "effects": [
           {
-            "condition": "Own remaining HP ≥ 90%、Enemy general with highest DEF",
+            "condition": "Own remaining HP ≥ 90%, enemy general with highest DEF",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
+          },
+          {
+            "condition": "Own remaining HP ≥ 90%, enemy general with highest DEF",
+            "target": "1 enemy general",
+            "effect": "Betrayal Infliction 40%",
+            "duration": "2 turns"
+          },
+          {
+            "condition": "Own remaining HP < 90%, enemy general with highest remaining HP",
+            "target": "1 enemy general",
+            "effect": "170% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Own remaining HP < 90%, from 170% Damage above",
+            "target": "Self",
+            "effect": "HP Drain 60%",
+            "duration": null
+          },
+          {
+            "condition": "Own remaining HP < 90%, enemy general with highest ATK",
+            "target": "2 enemy generals",
+            "effect": "Betrayal Infliction 40%",
+            "duration": "2 turns"
           }
         ]
       },
@@ -1365,7 +1395,7 @@
           {
             "condition": "The enemy with the lowest remaining strength",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -1533,13 +1563,13 @@
           {
             "condition": "The enemy with the lowest defense.",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
             "condition": "Enemy war machine with lowest remaining HP",
             "target": "1 enemy war machine",
-            "effect": "% Damage100％",
+            "effect": "100% Damage",
             "duration": null
           }
         ]
@@ -1587,13 +1617,13 @@
           {
             "condition": "Enemy general with highest DEF",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
             "condition": "Enemy war machine with lowest remaining HP",
             "target": "1 enemy war machine",
-            "effect": "% Damage100％",
+            "effect": "100% Damage",
             "duration": null
           }
         ]
@@ -1693,13 +1723,13 @@
           {
             "condition": "Enemy general with highest ATK",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
             "condition": "Enemy war machine with highest ATK",
             "target": "1 enemy war machine",
-            "effect": "% Damage100％",
+            "effect": "100% Damage",
             "duration": null
           }
         ]
@@ -1915,7 +1945,7 @@
           {
             "condition": "Enemy general with lowest remaining HP",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -1971,7 +2001,7 @@
           {
             "condition": "The enemy with the lowest remaining strength",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -2138,7 +2168,7 @@
           {
             "condition": "Enemy general with lowest DEF",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -2249,7 +2279,7 @@
           {
             "condition": "Enemy general with highest max morale",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -2305,7 +2335,7 @@
           {
             "condition": "Enemy general with highest ATK",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -2361,7 +2391,7 @@
           {
             "condition": "Enemy with highest max HP",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -2417,7 +2447,7 @@
           {
             "condition": "Enemy with highest max HP",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -2473,7 +2503,7 @@
           {
             "condition": "The enemy with the lowest defense.",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {
@@ -2528,7 +2558,7 @@
           {
             "condition": "The enemy with the lowest attack power",
             "target": "1 enemy general",
-            "effect": "% Damage150％",
+            "effect": "150% Damage",
             "duration": null
           },
           {

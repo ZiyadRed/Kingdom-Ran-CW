@@ -815,15 +815,26 @@
         ]
       },
       {
-        "name_en": "Unification of China",
-        "name_jp": "天下統一",
+        "name_en": "Unbreakable Spirit",
+        "name_jp": "不屈の精神",
         "type": "Combat",
-        "notes": "Skill data partially captured — effects pending confirmation",
         "effects": [
           {
             "condition": "Enemy general with highest ATK",
             "target": "1 enemy general",
-            "effect": "170% Damage",
+            "effect": "160% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Attack Negation (3 hits)",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Enemy general with highest ATK",
+            "effect": "150% Damage to equipment",
             "duration": null
           }
         ]
@@ -1203,7 +1214,7 @@
           {
             "condition": null,
             "target": "Ally [Cavalry] other than self",
-            "effect": "Anti-[Archer] ATK Up 15%",
+            "effect": "Anti-[Archer] ATK Up 20%",
             "duration": null
           },
           {
