@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import { Routes, Route, Navigate, useNavigate, useLocation, useParams } from 'react-router-dom'
 import mountainFolk from '../data/characters/mountain_folk.json'
 import qin          from '../data/characters/qin.json'
@@ -307,43 +307,52 @@ const CW_DEF_MAX={
   UR:{hp:75000,atk:15000,def:10000,maxMp:10500,critRate:1625,critDmgRate:150,hitRate:12000,dodgeRate:2000,adSlay:11750,daSlay:9150,defPen:750},
 }
 
-// Return the maxed CW stats for a character, optionally modified by role /
-// battle buffs (union boost, elixirs). Maxed growth is already baked in —
-// this function just layers on the configurable battle-time bonuses.
-function calcCwStats(char,_star=6,_rank=6,role='Offense',_wLv=18,opts={}){
+// CW type buffs: armyType 1 = ground (Infantry+Shield), 2 = mounted (Cavalry+Archer)
+// Sum all contributor % values from cw_buffs.json per category
+const _st=(type,cat)=>(cwBuffsData[type]?.[cat]||[]).reduce((s,e)=>s+e.value,0)
+const CW_TYPE_BUFFS={
+  1:{hp:_st('Infantry','HP')+_st('Shield','HP'),
+     atk:_st('Infantry','Attack')+_st('Shield','Attack'),
+     def:_st('Infantry','Defense')+_st('Shield','Defense')},
+  2:{hp:_st('Cavalry','HP')+_st('Archer','HP'),
+     atk:_st('Cavalry','Attack')+_st('Archer','Attack'),
+     def:_st('Cavalry','Defense')+_st('Archer','Defense')},
+}
+// Scene card global bonuses (flat, applied to all CW characters)
+const SCENE_CARD={hp:12000,atk:2000,def:3000,maxMp:2300,critRate:2000,dodgeRate:1500}
+
+// Return fully-buffed CW stats for a character at max enhancement.
+// Applies unit-type % buffs from the CW Buffs page + scene card flat bonuses.
+function calcCwStats(char){
   const M=CW_MAX[char.id]||CW_DEF_MAX[char.rarity||'SR']||CW_DEF_MAX.SR
-  let hp=M.hp, atk=M.atk, def=M.def, maxMp=M.maxMp
-  // Role (mstUnionConquestConsts 143-145)
-  if(role==='Offense') atk*=1.10
-  else if(role==='Defense') def*=1.10
-  else if(role==='Cheer') maxMp*=1.15
-  // Union boost (+50% ATK/DEF) — default on
-  if(opts.unionBoost!==false){ atk*=1.50; def*=1.50 }
-  // Elixir (+2% ATK/DEF per use, up to 10/day = +20%)
-  const elix=Math.max(0,Math.min(10,opts.elixirUses??10))
-  atk*=1+0.02*elix; def*=1+0.02*elix
+  const tb=CW_TYPE_BUFFS[M.armyType||1]||CW_TYPE_BUFFS[1]
+  const hp =Math.round(M.hp *(1+tb.hp /100)+SCENE_CARD.hp)
+  const atk=Math.round(M.atk*(1+tb.atk/100)+SCENE_CARD.atk)
+  const def=Math.round(M.def*(1+tb.def/100)+SCENE_CARD.def)
+  const maxMp=Math.round(M.maxMp+SCENE_CARD.maxMp)
   return{
-    hp:Math.round(hp), atk:Math.round(atk), def:Math.round(def),
-    maxMp:Math.round(maxMp),
-    critRate:M.critRate, critDmgRate:M.critDmgRate,
-    hitRate:M.hitRate, dodgeRate:M.dodgeRate,
-    adSlay:M.adSlay, daSlay:M.daSlay, defPen:M.defPen,
+    hp,atk,def,maxMp,
+    critRate:Math.min(10000,(M.critRate||1250)+SCENE_CARD.critRate),
+    critDmgRate:M.critDmgRate||150,
+    hitRate:M.hitRate||11875,
+    dodgeRate:Math.min(10000,(M.dodgeRate||1875)+SCENE_CARD.dodgeRate),
+    adSlay:M.adSlay||11375, daSlay:M.daSlay||9075, defPen:M.defPen||0,
   }
 }
 
 // 30-turn Castle Wars combat simulation
 // Based on mstUnionConquestConsts damage formula and turn structure
-function simulateBattle(atkTeam,defTeam,atkCfg,defCfg){
+function simulateBattle(atkTeam,defTeam){
   // Constants from mstUnionConquestConsts
   const MP_REC=0.10   // ~10% maxMp recovered per turn
   const SKILL_COST_RATE=0.20  // active skill costs ~20% of maxMp
-  const mk=(g,cfg)=>{
-    const s=calcCwStats(g,cfg.star,cfg.rank,cfg.role,cfg.weaponLv)
+  const mk=g=>{
+    const s=calcCwStats(g)
     const combatSks=[...(g.skills||[]).filter(sk=>sk.type==='Combat')].reverse()
     return{g,...s,curHp:s.hp,mp:0,alive:true,skIdx:0,combatSks,totalDmgDone:0,totalDmgTaken:0}
   }
-  const aS=atkTeam.map(g=>mk(g,atkCfg))
-  const dS=defTeam.map(g=>mk(g,defCfg))
+  const aS=atkTeam.map(mk)
+  const dS=defTeam.map(mk)
   const log=[]
   let winner=null,finalTurn=30
   for(let t=1;t<=30;t++){
@@ -1003,7 +1012,6 @@ export default function App(){
   const[def,setDef]=useState([null,null,null,null])
   const[atkSk,setAtkSk]=useState(defaultSks())
   const[defSk,setDefSk]=useState(defaultSks())
-  const[simCfg,setSimCfg]=useState({atkStar:6,atkRank:6,atkRole:'Offense',defStar:6,defRank:6,defRole:'Defense',weaponLv:10})
   const rm=(char,side)=>{
     const isAtk=side==='attack'
     const team=isAtk?atk:def
@@ -1055,7 +1063,7 @@ export default function App(){
           <Route path="/archive" element={<ArchivePage/>}/>
           <Route path="/archive/:charId" element={<ArchivePage/>}/>
           <Route path="/builder" element={<BuilderPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} setAtkSk={setAtkSk} setDefSk={setDefSk} setSlot={setSlot} rm={rm} goSim={()=>navigate('/sim')} loadMetaTeam={loadMetaTeam}/>}/>
-          <Route path="/sim" element={<SimPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} simCfg={simCfg} setSimCfg={setSimCfg} goBuilder={()=>navigate('/builder')}/>}/>
+          <Route path="/sim" element={<SimPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} goBuilder={()=>navigate('/builder')}/>}/>
           <Route path="/buffs" element={<BuffsPage/>}/>
           <Route path="/tiers" element={<TierPage/>}/>
           <Route path="/cost" element={<TeamCostPage/>}/>
@@ -1366,63 +1374,20 @@ function SkillToggles({char,mask,onChange}){
 }
 
 // ── ACTIVATION ORDER ──────────────────────────────────────────────────────────
-function SimPage({atk,def,atkSk,defSk,simCfg,setSimCfg,goBuilder}){
+function SimPage({atk,def,atkSk,defSk,goBuilder}){
+  const[tick,setTick]=useState(0)
   const atkF=atk.map((c,i)=>applyMask(c,atkSk?.[i])).filter(Boolean)
   const defF=def.map((c,i)=>applyMask(c,defSk?.[i])).filter(Boolean)
   if(!atkF.length&&!defF.length) return(
     <div className="main-page empty-cta"><p>No formations set.</p><button className="cta-btn" onClick={goBuilder}>Go to Party Builder</button></div>
   )
   const{st,turns}=simulate(atkF,defF)
-  const upd=(k,v)=>setSimCfg(p=>({...p,[k]:v}))
-  const atkCfg={star:simCfg.atkStar,rank:simCfg.atkRank,role:simCfg.atkRole,weaponLv:simCfg.weaponLv}
-  const defCfg={star:simCfg.defStar,rank:simCfg.defRank,role:simCfg.defRole,weaponLv:simCfg.weaponLv}
-  const battle=simulateBattle(atkF,defF,atkCfg,defCfg)
-  const ROLES=['Offense','Defense','Cheer']
-  const STARS=[0,1,2,3,4,5,6]
-  const RANKS=[1,2,3,4,5,6]
-  const WLV=Array.from({length:18},(_,i)=>i+1)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const battle=useMemo(()=>simulateBattle(atkF,defF),[tick,atkF.map(g=>g.id).join(),defF.map(g=>g.id).join()])
   return(
     <div className="main-page">
-      {/* ── Sim Config ─────────────────────────────────────── */}
-      <div className="sim-cfg-wrap">
-        <div className="sim-cfg-side">
-          <div className="sim-cfg-label" style={{color:'var(--red)'}}>⚔ Attacking</div>
-          <div className="sim-cfg-row">
-            <select className="sim-sel" value={simCfg.atkRole} onChange={e=>upd('atkRole',e.target.value)}>
-              {ROLES.map(r=><option key={r}>{r}</option>)}
-            </select>
-            <select className="sim-sel" value={simCfg.atkStar} onChange={e=>upd('atkStar',+e.target.value)}>
-              {STARS.map(s=><option key={s} value={s}>☆{s}</option>)}
-            </select>
-            <select className="sim-sel" value={simCfg.atkRank} onChange={e=>upd('atkRank',+e.target.value)}>
-              {RANKS.map(r=><option key={r} value={r}>Rank {r}</option>)}
-            </select>
-          </div>
-        </div>
-        <div className="sim-cfg-mid">
-          <div className="sim-cfg-label" style={{color:'var(--txt3)'}}>Weapon</div>
-          <select className="sim-sel" value={simCfg.weaponLv} onChange={e=>upd('weaponLv',+e.target.value)}>
-            {WLV.map(l=><option key={l} value={l}>Lv {l}</option>)}
-          </select>
-        </div>
-        <div className="sim-cfg-side sim-cfg-right">
-          <div className="sim-cfg-label" style={{color:'var(--blue)'}}>🛡 Defending</div>
-          <div className="sim-cfg-row">
-            <select className="sim-sel" value={simCfg.defRole} onChange={e=>upd('defRole',e.target.value)}>
-              {ROLES.map(r=><option key={r}>{r}</option>)}
-            </select>
-            <select className="sim-sel" value={simCfg.defStar} onChange={e=>upd('defStar',+e.target.value)}>
-              {STARS.map(s=><option key={s} value={s}>☆{s}</option>)}
-            </select>
-            <select className="sim-sel" value={simCfg.defRank} onChange={e=>upd('defRank',+e.target.value)}>
-              {RANKS.map(r=><option key={r} value={r}>Rank {r}</option>)}
-            </select>
-          </div>
-        </div>
-      </div>
-
       {/* ── Battle Result ──────────────────────────────────── */}
-      <BattleResult battle={battle} atkTeam={atkF} defTeam={defF}/>
+      <BattleResult battle={battle} atkTeam={atkF} defTeam={defF} rerun={()=>setTick(t=>t+1)}/>
 
       {/* ── Formation bars ─────────────────────────────────── */}
       <div className="form-bars">
@@ -1464,7 +1429,7 @@ function SimPage({atk,def,atkSk,defSk,simCfg,setSimCfg,goBuilder}){
   )
 }
 
-function BattleResult({battle,atkTeam,defTeam}){
+function BattleResult({battle,atkTeam,defTeam,rerun}){
   const{aS,dS,winner,finalTurn,log}=battle
   const isAtkWin=winner==='attack'||winner==='atk_pts'
   const isPoints=winner==='atk_pts'||winner==='def_pts'
@@ -1534,7 +1499,10 @@ function BattleResult({battle,atkTeam,defTeam}){
             </div>
           </div>
         </div>
-        <div className="br-note">Max CW stats (Lv85+max upgrade+Lv18 weapon) · union boost +50% · elixir ×10 · per-character adSlay/daSlay · min-dmg 20% floor · results vary each run</div>
+        <div className="br-note">
+          <button className="resim-btn" onClick={rerun}>🎲 Re-Simulate</button>
+          <span className="br-note-txt">Results may vary each run</span>
+        </div>
       </div>
     </div>
   )

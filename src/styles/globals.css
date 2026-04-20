@@ -823,9 +823,18 @@ button { -webkit-appearance: none; appearance: none; }
   font-size: .65rem; color: var(--txt3); margin-top: .25rem; text-align: center;
 }
 .br-note {
-  font-size: .6rem; color: var(--txt3); text-align: center;
+  display: flex; align-items: center; justify-content: center; gap: .6rem;
   margin-top: .75rem; padding-top: .5rem; border-top: 1px solid var(--bdr);
-  font-style: italic;
+}
+.resim-btn {
+  background: var(--gold); color: #1a1106; border: none; border-radius: 6px;
+  padding: .3rem .75rem; font-size: .72rem; font-weight: 700; cursor: pointer;
+  transition: opacity .15s, transform .1s;
+}
+.resim-btn:hover { opacity: .88; }
+.resim-btn:active { transform: scale(.96); }
+.br-note-txt {
+  font-size: .6rem; color: var(--txt3); font-style: italic;
 }
 
 @media (max-width: 600px) {
