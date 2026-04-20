@@ -19,7 +19,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "shunmen": {
   "cid": 3,
@@ -41,7 +42,8 @@
   "dodgeRate": 1875,
   "adSlay": 15375,
   "daSlay": 5075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Infantry"
  },
  "taijifu": {
   "cid": 4,
@@ -63,7 +65,8 @@
   "dodgeRate": 1875,
   "adSlay": 12375,
   "daSlay": 8075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Shield"
  },
  "bajio": {
   "cid": 5,
@@ -85,7 +88,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "muta": {
   "cid": 6,
@@ -107,7 +111,8 @@
   "dodgeRate": 1875,
   "adSlay": 15375,
   "daSlay": 5075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Infantry"
  },
  "rankai": {
   "cid": 7,
@@ -129,7 +134,8 @@
   "dodgeRate": 1875,
   "adSlay": 15375,
   "daSlay": 5075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Infantry"
  },
  "amon": {
   "cid": 8,
@@ -151,7 +157,8 @@
   "dodgeRate": 1709,
   "adSlay": 13342,
   "daSlay": 7069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Archer"
  },
  "ouki": {
   "cid": 9,
@@ -173,7 +180,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "ousen": {
   "cid": 10,
@@ -195,7 +203,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "ouhon": {
   "cid": 11,
@@ -217,7 +226,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "korgen": {
   "cid": 12,
@@ -239,7 +249,8 @@
   "dodgeRate": 1875,
   "adSlay": 13375,
   "daSlay": 7075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Archer"
  },
  "karyoten": {
   "cid": 13,
@@ -261,7 +272,8 @@
   "dodgeRate": 1875,
   "adSlay": 13375,
   "daSlay": 7075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Archer"
  },
  "kaishi_renmei": {
   "cid": 14,
@@ -283,7 +295,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "kanou": {
   "cid": 15,
@@ -305,7 +318,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "kanki": {
   "cid": 16,
@@ -327,7 +341,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "miyamoto": {
   "cid": 17,
@@ -349,7 +364,8 @@
   "dodgeRate": 1709,
   "adSlay": 12342,
   "daSlay": 8069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Shield"
  },
  "kyokai": {
   "cid": 18,
@@ -371,7 +387,8 @@
   "dodgeRate": 1875,
   "adSlay": 13375,
   "daSlay": 7075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Archer"
  },
  "kei": {
   "cid": 19,
@@ -393,7 +410,8 @@
   "dodgeRate": 1709,
   "adSlay": 15342,
   "daSlay": 5069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Infantry"
  },
  "genho": {
   "cid": 20,
@@ -415,7 +433,8 @@
   "dodgeRate": 1875,
   "adSlay": 13375,
   "daSlay": 7075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Archer"
  },
  "gokei": {
   "cid": 21,
@@ -437,7 +456,8 @@
   "dodgeRate": 1875,
   "adSlay": 12375,
   "daSlay": 8075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Shield"
  },
  "kousonryu": {
   "cid": 22,
@@ -459,7 +479,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "kosho2": {
   "cid": 24,
@@ -481,7 +502,8 @@
   "dodgeRate": 1709,
   "adSlay": 13342,
   "daSlay": 7069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Archer"
  },
  "gotan": {
   "cid": 25,
@@ -503,7 +525,8 @@
   "dodgeRate": 1709,
   "adSlay": 15342,
   "daSlay": 5069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Infantry"
  },
  "kokuou": {
   "cid": 26,
@@ -525,7 +548,8 @@
   "dodgeRate": 1875,
   "adSlay": 13375,
   "daSlay": 7075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Archer"
  },
  "saji": {
   "cid": 27,
@@ -547,7 +571,8 @@
   "dodgeRate": 1709,
   "adSlay": 15342,
   "daSlay": 5069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Infantry"
  },
  "shika2": {
   "cid": 29,
@@ -569,7 +594,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "shuki": {
   "cid": 30,
@@ -591,7 +617,8 @@
   "dodgeRate": 1709,
   "adSlay": 15342,
   "daSlay": 5069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Infantry"
  },
  "jokan": {
   "cid": 31,
@@ -613,7 +640,8 @@
   "dodgeRate": 1709,
   "adSlay": 15342,
   "daSlay": 5069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Infantry"
  },
  "shoukaku": {
   "cid": 32,
@@ -635,7 +663,8 @@
   "dodgeRate": 1875,
   "adSlay": 12375,
   "daSlay": 8075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Shield"
  },
  "shoumounkun": {
   "cid": 33,
@@ -657,7 +686,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "shouheikun": {
   "cid": 34,
@@ -679,7 +709,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "shoou": {
   "cid": 35,
@@ -701,7 +732,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "shomou": {
   "cid": 37,
@@ -723,7 +755,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "shin": {
   "cid": 38,
@@ -745,7 +778,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "suirou": {
   "cid": 39,
@@ -767,7 +801,8 @@
   "dodgeRate": 1875,
   "adSlay": 15375,
   "daSlay": 5075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Infantry"
  },
  "seikyo": {
   "cid": 40,
@@ -789,7 +824,8 @@
   "dodgeRate": 1709,
   "adSlay": 13342,
   "daSlay": 7069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Archer"
  },
  "seki": {
   "cid": 41,
@@ -811,7 +847,8 @@
   "dodgeRate": 1709,
   "adSlay": 13342,
   "daSlay": 7069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Archer"
  },
  "sosui": {
   "cid": 42,
@@ -833,7 +870,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "chutetsu": {
   "cid": 43,
@@ -855,7 +893,8 @@
   "dodgeRate": 1709,
   "adSlay": 15342,
   "daSlay": 5069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Infantry"
  },
  "denei": {
   "cid": 44,
@@ -877,7 +916,8 @@
   "dodgeRate": 1875,
   "adSlay": 12375,
   "daSlay": 8075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Shield"
  },
  "denyu": {
   "cid": 45,
@@ -899,7 +939,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "tou": {
   "cid": 46,
@@ -921,7 +962,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "dokin": {
   "cid": 47,
@@ -943,7 +985,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "douken": {
   "cid": 48,
@@ -965,7 +1008,8 @@
   "dodgeRate": 1709,
   "adSlay": 13342,
   "daSlay": 7069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Cavalry"
  },
  "hakukisei": {
   "cid": 49,
@@ -987,7 +1031,8 @@
   "dodgeRate": 1709,
   "adSlay": 12342,
   "daSlay": 8069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Archer"
  },
  "bakukoshin": {
   "cid": 50,
@@ -1009,7 +1054,8 @@
   "dodgeRate": 1709,
   "adSlay": 11342,
   "daSlay": 9069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Cavalry"
  },
  "banyou": {
   "cid": 52,
@@ -1031,7 +1077,8 @@
   "dodgeRate": 1709,
   "adSlay": 12342,
   "daSlay": 8069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Shield"
  },
  "bikou": {
   "cid": 53,
@@ -1053,7 +1100,8 @@
   "dodgeRate": 1875,
   "adSlay": 12375,
   "daSlay": 8075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Shield"
  },
  "obira": {
   "cid": 54,
@@ -1075,7 +1123,8 @@
   "dodgeRate": 1875,
   "adSlay": 15375,
   "daSlay": 5075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Infantry"
  },
  "hyou": {
   "cid": 55,
@@ -1097,7 +1146,8 @@
   "dodgeRate": 1709,
   "adSlay": 11342,
   "daSlay": 9069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Cavalry"
  },
  "heki": {
   "cid": 57,
@@ -1119,7 +1169,8 @@
   "dodgeRate": 1875,
   "adSlay": 12375,
   "daSlay": 8075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Shield"
  },
  "maki": {
   "cid": 59,
@@ -1141,7 +1192,8 @@
   "dodgeRate": 1709,
   "adSlay": 15342,
   "daSlay": 5069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Archer"
  },
  "mangoku": {
   "cid": 60,
@@ -1163,7 +1215,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "mouki": {
   "cid": 61,
@@ -1185,7 +1238,8 @@
   "dodgeRate": 1875,
   "adSlay": 12375,
   "daSlay": 8075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Shield"
  },
  "moubu": {
   "cid": 62,
@@ -1207,7 +1261,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "muten": {
   "cid": 63,
@@ -1229,7 +1284,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Shield"
  },
  "mougo": {
   "cid": 65,
@@ -1251,7 +1307,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "yuren": {
   "cid": 66,
@@ -1273,7 +1330,8 @@
   "dodgeRate": 2250,
   "adSlay": 15750,
   "daSlay": 5150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Infantry"
  },
  "yotanwa": {
   "cid": 68,
@@ -1295,7 +1353,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "raido": {
   "cid": 69,
@@ -1317,7 +1376,8 @@
   "dodgeRate": 1875,
   "adSlay": 12375,
   "daSlay": 8075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Shield"
  },
  "rishi": {
   "cid": 70,
@@ -1339,7 +1399,8 @@
   "dodgeRate": 1875,
   "adSlay": 13375,
   "daSlay": 7075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Archer"
  },
  "rihaku2": {
   "cid": 71,
@@ -1361,7 +1422,8 @@
   "dodgeRate": 1875,
   "adSlay": 12375,
   "daSlay": 8075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Shield"
  },
  "riboku": {
   "cid": 72,
@@ -1383,7 +1445,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "ryukoku": {
   "cid": 73,
@@ -1405,7 +1468,8 @@
   "dodgeRate": 1875,
   "adSlay": 12375,
   "daSlay": 8075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Shield"
  },
  "ryusen": {
   "cid": 74,
@@ -1427,7 +1491,8 @@
   "dodgeRate": 1875,
   "adSlay": 15375,
   "daSlay": 5075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Infantry"
  },
  "ryuyu": {
   "cid": 75,
@@ -1449,7 +1514,8 @@
   "dodgeRate": 1709,
   "adSlay": 15342,
   "daSlay": 5069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Infantry"
  },
  "rinka": {
   "cid": 76,
@@ -1471,7 +1537,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "rinbo": {
   "cid": 77,
@@ -1493,7 +1560,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "renpa": {
   "cid": 78,
@@ -1515,7 +1583,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "ryofui": {
   "cid": 79,
@@ -1537,7 +1606,8 @@
   "dodgeRate": 1875,
   "adSlay": 13375,
   "daSlay": 7075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Archer"
  },
  "roen": {
   "cid": 80,
@@ -1559,7 +1629,8 @@
   "dodgeRate": 1709,
   "adSlay": 12342,
   "daSlay": 8069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Archer"
  },
  "rokuomi": {
   "cid": 81,
@@ -1581,7 +1652,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "kyouen": {
   "cid": 83,
@@ -1603,7 +1675,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "mou": {
   "cid": 84,
@@ -1625,7 +1698,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "hairou": {
   "cid": 85,
@@ -1647,7 +1721,8 @@
   "dodgeRate": 1875,
   "adSlay": 15375,
   "daSlay": 5075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Infantry"
  },
  "fuchi": {
   "cid": 86,
@@ -1669,7 +1744,8 @@
   "dodgeRate": 1709,
   "adSlay": 12342,
   "daSlay": 8069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Infantry"
  },
  "takukei": {
   "cid": 87,
@@ -1691,7 +1767,8 @@
   "dodgeRate": 1875,
   "adSlay": 13375,
   "daSlay": 7075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Archer"
  },
  "kesshi": {
   "cid": 88,
@@ -1713,7 +1790,8 @@
   "dodgeRate": 1709,
   "adSlay": 13342,
   "daSlay": 7069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Archer"
  },
  "kyoushou": {
   "cid": 89,
@@ -1735,7 +1813,8 @@
   "dodgeRate": 1875,
   "adSlay": 15375,
   "daSlay": 5075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Infantry"
  },
  "kyoukai": {
   "cid": 90,
@@ -1757,7 +1836,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "shishi": {
   "cid": 91,
@@ -1779,7 +1859,8 @@
   "dodgeRate": 1709,
   "adSlay": 13342,
   "daSlay": 7069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Archer"
  },
  "saizatsu": {
   "cid": 92,
@@ -1801,7 +1882,8 @@
   "dodgeRate": 1709,
   "adSlay": 13342,
   "daSlay": 7069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Archer"
  },
  "chouko": {
   "cid": 93,
@@ -1823,7 +1905,8 @@
   "dodgeRate": 1709,
   "adSlay": 13342,
   "daSlay": 7069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Cavalry"
  },
  "choso": {
   "cid": 94,
@@ -1845,7 +1928,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "hoki": {
   "cid": 95,
@@ -1867,7 +1951,8 @@
   "dodgeRate": 1875,
   "adSlay": 13375,
   "daSlay": 7075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Archer"
  },
  "gika": {
   "cid": 96,
@@ -1889,7 +1974,8 @@
   "dodgeRate": 1875,
   "adSlay": 13375,
   "daSlay": 7075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Archer"
  },
  "gii": {
   "cid": 97,
@@ -1911,7 +1997,8 @@
   "dodgeRate": 1709,
   "adSlay": 13342,
   "daSlay": 7069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Archer"
  },
  "ei_sei": {
   "cid": 98,
@@ -1933,7 +2020,8 @@
   "dodgeRate": 1875,
   "adSlay": 12375,
   "daSlay": 8075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Shield"
  },
  "hyoukou": {
   "cid": 99,
@@ -1955,7 +2043,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "houken": {
   "cid": 100,
@@ -1977,7 +2066,8 @@
   "dodgeRate": 2250,
   "adSlay": 15750,
   "daSlay": 5150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Infantry"
  },
  "gekishin": {
   "cid": 113,
@@ -1999,7 +2089,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "hakuki": {
   "cid": 114,
@@ -2021,7 +2112,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "ohkotsu": {
   "cid": 115,
@@ -2043,7 +2135,8 @@
   "dodgeRate": 2250,
   "adSlay": 15750,
   "daSlay": 5150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Infantry"
  },
  "kosho": {
   "cid": 116,
@@ -2065,7 +2158,8 @@
   "dodgeRate": 1875,
   "adSlay": 13375,
   "daSlay": 7075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Archer"
  },
  "shimasaku": {
   "cid": 117,
@@ -2087,7 +2181,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "rakki": {
   "cid": 118,
@@ -2109,7 +2204,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "rikusen": {
   "cid": 119,
@@ -2131,7 +2227,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "maron": {
   "cid": 120,
@@ -2153,7 +2250,8 @@
   "dodgeRate": 1875,
   "adSlay": 15375,
   "daSlay": 5075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Infantry"
  },
  "shunshinkun": {
   "cid": 121,
@@ -2175,7 +2273,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "taiko": {
   "cid": 122,
@@ -2197,7 +2296,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "rakujo": {
   "cid": 124,
@@ -2219,7 +2319,8 @@
   "dodgeRate": 1875,
   "adSlay": 13375,
   "daSlay": 7075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Archer"
  },
  "keiminoo": {
   "cid": 125,
@@ -2241,7 +2342,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "yugi": {
   "cid": 129,
@@ -2263,7 +2365,8 @@
   "dodgeRate": 1709,
   "adSlay": 12342,
   "daSlay": 8069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Shield"
  },
  "domon": {
   "cid": 130,
@@ -2285,7 +2388,8 @@
   "dodgeRate": 1709,
   "adSlay": 13342,
   "daSlay": 7069,
-  "defPen": 547
+  "defPen": 547,
+  "unitType": "Archer"
  },
  "yo": {
   "cid": 131,
@@ -2307,7 +2411,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "ko": {
   "cid": 132,
@@ -2329,7 +2434,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "encho": {
   "cid": 135,
@@ -2351,7 +2457,8 @@
   "dodgeRate": 2250,
   "adSlay": 15750,
   "daSlay": 5150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Infantry"
  },
  "shinseicho": {
   "cid": 136,
@@ -2373,7 +2480,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "kanmei": {
   "cid": 137,
@@ -2395,7 +2503,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "rinbujun": {
   "cid": 138,
@@ -2417,7 +2526,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "keisha": {
   "cid": 139,
@@ -2439,7 +2549,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "ordo": {
   "cid": 140,
@@ -2461,7 +2572,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "choto": {
   "cid": 141,
@@ -2483,7 +2595,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "todji": {
   "cid": 142,
@@ -2505,7 +2618,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "fuji": {
   "cid": 143,
@@ -2527,7 +2641,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "ramaoji": {
   "cid": 144,
@@ -2549,7 +2664,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "hyouki": {
   "cid": 145,
@@ -2571,7 +2687,8 @@
   "dodgeRate": 1875,
   "adSlay": 13375,
   "daSlay": 7075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Archer"
  },
  "oukenwang": {
   "cid": 146,
@@ -2593,7 +2710,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "seika": {
   "cid": 147,
@@ -2615,7 +2733,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "karin": {
   "cid": 148,
@@ -2637,7 +2756,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "gofuumei": {
   "cid": 149,
@@ -2659,7 +2779,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "kouyoku": {
   "cid": 158,
@@ -2681,7 +2802,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "hakurei": {
   "cid": 159,
@@ -2703,7 +2825,8 @@
   "dodgeRate": 1875,
   "adSlay": 13375,
   "daSlay": 7075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Archer"
  },
  "chouin": {
   "cid": 161,
@@ -2725,7 +2848,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "ogiko": {
   "cid": 171,
@@ -2747,7 +2871,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "bamyuu": {
   "cid": 172,
@@ -2769,7 +2894,8 @@
   "dodgeRate": 1875,
   "adSlay": 15375,
   "daSlay": 5075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Infantry"
  },
  "kaen": {
   "cid": 173,
@@ -2791,7 +2917,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "yukii": {
   "cid": 174,
@@ -2813,7 +2940,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "kaioku": {
   "cid": 175,
@@ -2835,7 +2963,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "kyomei": {
   "cid": 176,
@@ -2857,7 +2986,8 @@
   "dodgeRate": 1875,
   "adSlay": 15375,
   "daSlay": 5075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Infantry"
  },
  "garo": {
   "cid": 178,
@@ -2879,7 +3009,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "rui": {
   "cid": 179,
@@ -2901,7 +3032,8 @@
   "dodgeRate": 2250,
   "adSlay": 15750,
   "daSlay": 5150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Infantry"
  },
  "gaimo": {
   "cid": 180,
@@ -2923,7 +3055,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "reiou": {
   "cid": 181,
@@ -2945,7 +3078,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "shihaku": {
   "cid": 182,
@@ -2967,7 +3101,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "ranbishaku": {
   "cid": 183,
@@ -2989,7 +3124,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "kanjo": {
   "cid": 184,
@@ -3011,7 +3147,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "junso": {
   "cid": 185,
@@ -3033,7 +3170,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "shikika": {
   "cid": 186,
@@ -3055,7 +3193,8 @@
   "dodgeRate": 2250,
   "adSlay": 15750,
   "daSlay": 5150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Infantry"
  },
  "hyoshiga": {
   "cid": 187,
@@ -3077,7 +3216,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "hakusui": {
   "cid": 188,
@@ -3099,7 +3239,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "jino": {
   "cid": 189,
@@ -3121,7 +3262,8 @@
   "dodgeRate": 1875,
   "adSlay": 13375,
   "daSlay": 7075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Archer"
  },
  "juutekkoo": {
   "cid": 190,
@@ -3143,7 +3285,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "baiman": {
   "cid": 191,
@@ -3165,7 +3308,8 @@
   "dodgeRate": 1875,
   "adSlay": 11375,
   "daSlay": 9075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Cavalry"
  },
  "gomosho": {
   "cid": 192,
@@ -3187,7 +3331,8 @@
   "dodgeRate": 1875,
   "adSlay": 12375,
   "daSlay": 8075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Shield"
  },
  "hanoki": {
   "cid": 197,
@@ -3209,7 +3354,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "rien": {
   "cid": 198,
@@ -3231,7 +3377,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "koretsuo": {
   "cid": 199,
@@ -3253,7 +3400,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "raoai": {
   "cid": 200,
@@ -3275,7 +3423,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "hanryuki": {
   "cid": 201,
@@ -3297,7 +3446,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "gakurai": {
   "cid": 202,
@@ -3319,7 +3469,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "kakukai": {
   "cid": 203,
@@ -3341,7 +3492,8 @@
   "dodgeRate": 1875,
   "adSlay": 15375,
   "daSlay": 5075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Infantry"
  },
  "naki": {
   "cid": 204,
@@ -3363,7 +3515,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "tairoji": {
   "cid": 205,
@@ -3385,7 +3538,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "zenou": {
   "cid": 206,
@@ -3407,7 +3561,8 @@
   "dodgeRate": 2250,
   "adSlay": 15750,
   "daSlay": 5150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Infantry"
  },
  "kisei": {
   "cid": 207,
@@ -3429,7 +3584,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "gakuei": {
   "cid": 210,
@@ -3451,7 +3607,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "kinmo": {
   "cid": 211,
@@ -3473,7 +3630,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "shunsuiki": {
   "cid": 212,
@@ -3495,7 +3653,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "ryuto": {
   "cid": 213,
@@ -3517,7 +3676,8 @@
   "dodgeRate": 2250,
   "adSlay": 15750,
   "daSlay": 5150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Infantry"
  },
  "batei": {
   "cid": 214,
@@ -3539,7 +3699,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "bananci": {
   "cid": 215,
@@ -3561,7 +3722,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "toumi": {
   "cid": 217,
@@ -3583,7 +3745,8 @@
   "dodgeRate": 1875,
   "adSlay": 15375,
   "daSlay": 5075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Infantry"
  },
  "kishou": {
   "cid": 218,
@@ -3605,7 +3768,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "kyukou": {
   "cid": 219,
@@ -3627,7 +3791,8 @@
   "dodgeRate": 1875,
   "adSlay": 12375,
   "daSlay": 8075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Infantry"
  },
  "shotaku": {
   "cid": 220,
@@ -3649,7 +3814,8 @@
   "dodgeRate": 1875,
   "adSlay": 15375,
   "daSlay": 5075,
-  "defPen": 600
+  "defPen": 600,
+  "unitType": "Infantry"
  },
  "seikou": {
   "cid": 221,
@@ -3671,7 +3837,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "shunpeikun": {
   "cid": 222,
@@ -3693,7 +3860,8 @@
   "dodgeRate": 2250,
   "adSlay": 15750,
   "daSlay": 5150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Infantry"
  },
  "bain": {
   "cid": 225,
@@ -3715,7 +3883,8 @@
   "dodgeRate": 2250,
   "adSlay": 15750,
   "daSlay": 5150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Infantry"
  },
  "kakuun": {
   "cid": 226,
@@ -3737,7 +3906,8 @@
   "dodgeRate": 2250,
   "adSlay": 12750,
   "daSlay": 8150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Shield"
  },
  "romin": {
   "cid": 227,
@@ -3759,7 +3929,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "yuri": {
   "cid": 228,
@@ -3781,7 +3952,8 @@
   "dodgeRate": 2250,
   "adSlay": 15750,
   "daSlay": 5150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Infantry"
  },
  "nako": {
   "cid": 229,
@@ -3803,7 +3975,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "bakan": {
   "cid": 230,
@@ -3825,7 +3998,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "otaji": {
   "cid": 231,
@@ -3847,7 +4021,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "keirei": {
   "cid": 233,
@@ -3869,7 +4044,8 @@
   "dodgeRate": 2250,
   "adSlay": 15750,
   "daSlay": 5150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Infantry"
  },
  "hokaku": {
   "cid": 234,
@@ -3891,7 +4067,8 @@
   "dodgeRate": 2250,
   "adSlay": 15750,
   "daSlay": 5150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Infantry"
  },
  "hamui": {
   "cid": 235,
@@ -3913,7 +4090,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "budai": {
   "cid": 236,
@@ -3935,7 +4113,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "kitari": {
   "cid": 237,
@@ -3957,7 +4136,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "youka": {
   "cid": 238,
@@ -3979,7 +4159,8 @@
   "dodgeRate": 2250,
   "adSlay": 15750,
   "daSlay": 5150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Infantry"
  },
  "danto": {
   "cid": 239,
@@ -4001,7 +4182,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "taishi_ka": {
   "cid": 240,
@@ -4023,7 +4205,8 @@
   "dodgeRate": 2250,
   "adSlay": 15750,
   "daSlay": 5150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Infantry"
  },
  "pamu": {
   "cid": 241,
@@ -4045,7 +4228,8 @@
   "dodgeRate": 2050,
   "adSlay": 15684,
   "daSlay": 5137,
-  "defPen": 684
+  "defPen": 684,
+  "unitType": "Infantry"
  },
  "katari": {
   "cid": 245,
@@ -4067,7 +4251,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "rokin": {
   "cid": 248,
@@ -4089,7 +4274,8 @@
   "dodgeRate": 2050,
   "adSlay": 13684,
   "daSlay": 7137,
-  "defPen": 684
+  "defPen": 684,
+  "unitType": "Archer"
  },
  "gotoku": {
   "cid": 249,
@@ -4111,7 +4297,8 @@
   "dodgeRate": 2050,
   "adSlay": 13684,
   "daSlay": 7137,
-  "defPen": 684
+  "defPen": 684,
+  "unitType": "Archer"
  },
  "denrimi": {
   "cid": 250,
@@ -4133,7 +4320,8 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  },
  "kyobou": {
   "cid": 251,
@@ -4155,7 +4343,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "akou": {
   "cid": 253,
@@ -4177,7 +4366,8 @@
   "dodgeRate": 2250,
   "adSlay": 11750,
   "daSlay": 9150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Cavalry"
  },
  "sougen": {
   "cid": 264,
@@ -4199,6 +4389,7 @@
   "dodgeRate": 2250,
   "adSlay": 13750,
   "daSlay": 7150,
-  "defPen": 750
+  "defPen": 750,
+  "unitType": "Archer"
  }
 }

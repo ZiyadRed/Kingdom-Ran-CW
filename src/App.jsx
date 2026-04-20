@@ -307,16 +307,15 @@ const CW_DEF_MAX={
   UR:{hp:75000,atk:15000,def:10000,maxMp:10500,critRate:1625,critDmgRate:150,hitRate:12000,dodgeRate:2000,adSlay:11750,daSlay:9150,defPen:750},
 }
 
-// CW type buffs: armyType 1 = ground (Infantry+Shield), 2 = mounted (Cavalry+Archer)
-// Sum all contributor % values from cw_buffs.json per category
+// CW type buffs: each unit type gets its own type's buffs only.
+// unitType field is set per-character in cw_max_stats.json (from Excel data).
+// Sum all contributor % values from cw_buffs.json per type.
 const _st=(type,cat)=>(cwBuffsData[type]?.[cat]||[]).reduce((s,e)=>s+e.value,0)
 const CW_TYPE_BUFFS={
-  1:{hp:_st('Infantry','HP')+_st('Shield','HP'),
-     atk:_st('Infantry','Attack')+_st('Shield','Attack'),
-     def:_st('Infantry','Defense')+_st('Shield','Defense')},
-  2:{hp:_st('Cavalry','HP')+_st('Archer','HP'),
-     atk:_st('Cavalry','Attack')+_st('Archer','Attack'),
-     def:_st('Cavalry','Defense')+_st('Archer','Defense')},
+  Infantry:{hp:_st('Infantry','HP'), atk:_st('Infantry','Attack'), def:_st('Infantry','Defense')},
+  Cavalry: {hp:_st('Cavalry','HP'),  atk:_st('Cavalry','Attack'),  def:_st('Cavalry','Defense')},
+  Archer:  {hp:_st('Archer','HP'),   atk:_st('Archer','Attack'),   def:_st('Archer','Defense')},
+  Shield:  {hp:_st('Shield','HP'),   atk:_st('Shield','Attack'),   def:_st('Shield','Defense')},
 }
 // Scene card global bonuses (flat, applied to all CW characters)
 const SCENE_CARD={hp:12000,atk:2000,def:3000,maxMp:2300,critRate:2000,dodgeRate:1500}
@@ -325,7 +324,8 @@ const SCENE_CARD={hp:12000,atk:2000,def:3000,maxMp:2300,critRate:2000,dodgeRate:
 // Applies unit-type % buffs from the CW Buffs page + scene card flat bonuses.
 function calcCwStats(char){
   const M=CW_MAX[char.id]||CW_DEF_MAX[char.rarity||'SR']||CW_DEF_MAX.SR
-  const tb=CW_TYPE_BUFFS[M.armyType||1]||CW_TYPE_BUFFS[1]
+  const unitType=M.unitType||'Cavalry'   // unitType set per-char in cw_max_stats.json
+  const tb=CW_TYPE_BUFFS[unitType]||CW_TYPE_BUFFS.Cavalry
   const hp =Math.round(M.hp *(1+tb.hp /100)+SCENE_CARD.hp)
   const atk=Math.round(M.atk*(1+tb.atk/100)+SCENE_CARD.atk)
   const def=Math.round(M.def*(1+tb.def/100)+SCENE_CARD.def)
