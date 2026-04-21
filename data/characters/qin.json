@@ -1167,19 +1167,6 @@
             "duration": "2 turns"
           }
         ]
-      },
-      {
-        "name_en": "ATK Enhancement – Medium [Archer]",
-        "name_jp": "攻撃力強化・中【弓兵】",
-        "type": "Administration",
-        "effects": [
-          {
-            "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally [Archer]",
-            "effect": "ATK Up 3.8%",
-            "duration": null
-          }
-        ]
       }
     ],
     "icon": "/icons/Kyoukai.webp"
