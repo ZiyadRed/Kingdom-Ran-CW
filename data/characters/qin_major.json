@@ -828,7 +828,7 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Attack Negation (3 hits)",
+            "effect": "Attack Immunity x3",
             "duration": null
           },
           {
