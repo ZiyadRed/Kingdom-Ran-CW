@@ -38,7 +38,7 @@ const GROUPS={
   'Kanki Forces':       ['kanki','naki','romin','zenou','raido','ogiko','maron','kokuou','bain','kakuun'],
   'Kisui Forces':       ['kisei','batei','ryuto','seikou','kishou'],
   'Kisei Forces':       ['kisei','batei','ryuto','seikou','kishou'],
-  'Ousen Forces':       ['akou','denrimi','kanjo','shotaku','kyukou'],
+  'Ousen Forces':       ['akou','denrimi','kanjo','shotaku','kyukou','makou'],
   'Coalition Forces':   ['karin','kanmei','riboku','houken','seika','rinbujun','gofuumei','mangoku'],
 }
 const UNIT_TYPES={
@@ -56,7 +56,7 @@ const UNIT_TYPES={
   rinbo:'Cavalry',rinbujun:'Cavalry',ringyoku:'Cavalry',rinka:'Cavalry',shin:'Cavalry',
   shinseicho:'Cavalry',shihaku:'Cavalry',shoou:'Cavalry',shouheikun:'Cavalry',shomou:'Cavalry',
   shunsuiki:'Cavalry',sosui:'Cavalry',tou:'Cavalry',juutekkoo:'Cavalry',yotanwa:'Cavalry',
-  rokuomi:'Cavalry',
+  rokuomi:'Cavalry',makou:'Cavalry',
   // Archer
   amon:'Archer',budai:'Archer',denrimi:'Archer',domon:'Archer',seikou:'Archer',
   fuji:'Archer',rakujo:'Archer',genho:'Archer',gii:'Archer',gika:'Archer',
@@ -759,8 +759,8 @@ function Picker({onSelect,onClose,excl=[]}){
 }
 
 // ── TEAM COST ─────────────────────────────────────────────────────────────────
-const RARITY_COST={R:595,SR:800,UR:1750}
-const RARITY_COLOR={R:'#3d9970',SR:'#3d6eb5',UR:'#c0392b'}
+const RARITY_COST={R:595,SR:800,UR:1750,LG:1750}
+const RARITY_COLOR={R:'#3d9970',SR:'#3d6eb5',UR:'#c0392b',LG:'#d4af37'}
 
 const RARITY_DATA={
   'Akou':{rarity:'UR',faction:'Qin',name_jp:'亜光'},
@@ -872,6 +872,7 @@ const RARITY_DATA={
   'Kyuukou':{rarity:'SR',faction:'Qin',name_jp:'宮康'},
   'Linhtama':{rarity:'SR',faction:'Qin',name_jp:'ランタマ'},
   'Maki':{rarity:'SR',faction:'Mountain Folk',name_jp:'麻鬼'},
+  'Makou':{rarity:'UR',faction:'Qin',name_jp:'麻礦'},
   'Mangoku':{rarity:'SR',faction:'Zhao',name_jp:'万極'},
   'Maron':{rarity:'SR',faction:'Qin',name_jp:'摩論'},
   'Miyamoto':{rarity:'SR',faction:'Zhao',name_jp:'宮元'},

@@ -1,5 +1,92 @@
 [
   {
+    "id": "makou",
+    "name_en": "Makou",
+    "name_jp": "麻礦",
+    "country": "qin",
+    "unit": "Ousen Forces",
+    "rarity": "UR",
+    "skills": [
+      {
+        "name_en": "Pursuit [Red Sheep]",
+        "name_jp": "追撃【赤羊】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy archer general with lowest remaining HP",
+            "target": "1 enemy archer general",
+            "effect": "120% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "120% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy archer general with highest remaining HP",
+            "target": "1 enemy archer general",
+            "effect": "Normal Attack Seal Infliction 70%",
+            "duration": "2 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Second General of Ousen's Forces",
+        "name_jp": "王翦軍第二将",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Dodge 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Qin",
+            "effect": "ATK Down Resistance 30%",
+            "duration": null
+          },
+          {
+            "condition": "When enemy archer general is alive",
+            "target": "Ally Qin",
+            "effect": "Hit Rate Up 30%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Aggressive Assault",
+        "name_jp": "強攻策",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy archer general with lowest remaining HP",
+            "target": "1 enemy archer general",
+            "effect": "160% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "160% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy archer general with highest remaining HP",
+            "target": "1 enemy archer general",
+            "effect": "Skill Attack Seal Infliction 70%",
+            "duration": "2 turns"
+          }
+        ]
+      }
+    ],
+    "image": "/persos/makou.webp",
+    "icon": "/icons/Makou.webp"
+  },
+  {
     "id": "akou",
     "name_en": "Akou",
     "name_jp": "亜光",
