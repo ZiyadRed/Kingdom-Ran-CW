@@ -647,6 +647,12 @@ function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false){
             const times=(parseInt(eff.duration)||1)*mult
             stats[stat].up+=times
             stats[stat].sources.push({owner,contribution:times,dir:'up'})
+          } else if(stat==='Guard'&&dir==='Up'){
+            // Guard doesn't stack — only the highest is active. Track instances separately.
+            if(!stats[stat].instances) stats[stat].instances=[]
+            stats[stat].instances.push({val:val*mult,duration:eff.duration||null,owner})
+            stats[stat].up=Math.max(stats[stat].up,val*mult)
+            stats[stat].sources.push({owner,contribution:val*mult,dir:'up',duration:eff.duration||null})
           } else if(dir==='Up'){
             stats[stat].up+=val*mult
             stats[stat].sources.push({owner,contribution:val*mult,dir:'up'})
@@ -1589,9 +1595,44 @@ function BuffSideTable({label,entries,side,enemyDebuffs={}}){
             </div>
             {!stats.length?<div className="buff-none-row">—</div>:(
               <div className="buff-stats">
-                {stats.map(([stat,{up,down,sources=[]}])=>{
+                {stats.map(([stat,buff])=>{
+                  const{up,down,sources=[],instances}=buff
                   const inv=INVERSE_STATS.has(stat)
                   const isFlag=SPECIAL_STATS.has(stat)
+                  // Guard doesn't stack — render each instance as its own row, sorted desc.
+                  if(stat==='Guard'&&instances&&instances.length){
+                    const sorted=[...instances].sort((a,b)=>b.val-a.val)
+                    return(
+                      <div key={stat}>
+                        {sorted.map((inst,idx)=>{
+                          const key=`${g.id}|Guard|${idx}`
+                          const isOpen=expanded===key
+                          return(
+                            <div key={idx}>
+                              <div className={`buff-row buff-row-click${isOpen?' buff-row-open':''}`}
+                                   onClick={()=>setExpanded(isOpen?null:key)}>
+                                <span className="buff-stat-name">Guard</span>
+                                <span className="buff-vals">
+                                  <span className="buff-up">+{fmt(inst.val)}%</span>
+                                  {inst.duration&&<span className="buff-dur" style={{fontSize:'.65rem',color:'var(--txt3)',marginLeft:'.3rem'}}>{inst.duration}</span>}
+                                  <span className="buff-chevron">{isOpen?'▴':'▾'}</span>
+                                </span>
+                              </div>
+                              {isOpen&&(
+                                <div className="buff-sources">
+                                  <div className="buff-source-row">
+                                    <CharIcon c={inst.owner} size={16} round={true}/>
+                                    <span className="buff-source-name">{inst.owner.name_en}</span>
+                                    <span className="buff-up">+{fmt(inst.val)}%{inst.duration?` · ${inst.duration}`:''}</span>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          )
+                        })}
+                      </div>
+                    )
+                  }
                   const key=`${g.id}|${stat}`
                   const isOpen=expanded===key
                   return(
