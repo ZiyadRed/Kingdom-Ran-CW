@@ -1975,21 +1975,20 @@ function TeamCostPage(){
       </div>
 
       {/* Crystal total banner */}
-      <div style={{
-        display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:'12px',
+      <div className="tc-banner" style={{
         padding:'20px 28px',borderRadius:'20px',marginBottom:'2rem',
         background:'linear-gradient(135deg,#1a0a2e,#2d1255)',
         border:'1.5px solid #6a30c8',
         boxShadow:'0 8px 32px rgba(106,48,200,0.25)',
       }}>
-        <div style={{display:'flex',alignItems:'center',gap:'14px'}}>
+        <div className="tc-banner-left">
           <img src="/icons/Red_Crystal.png" alt="Red Crystal" style={{width:56,height:56,objectFit:"contain",flexShrink:0}}/>
-          <div>
+          <div className="tc-banner-total">
             <div style={{fontSize:'.72rem',color:'#b89fe0',fontWeight:600,textTransform:'uppercase',letterSpacing:'1px'}}>Red Crystals Needed</div>
-            <div style={{fontSize:'2.4rem',fontWeight:900,color:'#e8c0ff',lineHeight:1}}>{total.toLocaleString()}</div>
+            <div className="tc-total-num">{total.toLocaleString()}</div>
           </div>
         </div>
-        <div style={{display:'flex',gap:'10px',flexWrap:'wrap'}}>
+        <div className="tc-banner-right">
           {urCount>0&&<div style={{textAlign:'center',padding:'8px 16px',borderRadius:'12px',background:'#c0392b22',border:'1px solid #c0392b55'}}>
             <div style={{fontWeight:800,fontSize:'1.1rem',color:'#e05555'}}>{urCount}</div>
             <div style={{fontSize:'.62rem',color:'#e05555aa',fontWeight:600}}>UR</div>
@@ -2008,7 +2007,7 @@ function TeamCostPage(){
       </div>
 
       {/* 4 Slots */}
-      <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'12px',marginBottom:'2rem'}}>
+      <div className="tc-slots">
         {slots.map((char,idx)=>{
           const rarity=char?RARITY_DATA[char.name_en]?.rarity||'SR':null
           const fc=char?(CC[char.country]||'#888'):null

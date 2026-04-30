@@ -849,3 +849,26 @@ button { -webkit-appearance: none; appearance: none; }
   .sim-cfg-wrap { flex-direction: column; }
   .sim-cfg-right { align-items: flex-start; }
 }
+
+/* Team Cost page — responsive */
+.tc-banner {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.tc-banner-left { display: flex; align-items: center; gap: 14px; min-width: 0; flex: 1 1 auto; }
+.tc-banner-total { min-width: 0; }
+.tc-total-num { font-size: 2.4rem; font-weight: 900; color: #e8c0ff; line-height: 1; word-break: break-all; }
+.tc-banner-right { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.tc-slots {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 2rem;
+}
+@media (max-width: 720px) {
+  .tc-banner { flex-direction: column; align-items: stretch; gap: 14px; padding: 16px 18px !important; }
+  .tc-banner-right { justify-content: flex-start; }
+  .tc-total-num { font-size: 2rem; }
+  .tc-slots { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+}
+@media (max-width: 380px) {
+  .tc-total-num { font-size: 1.7rem; }
+  .tc-slots { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+}
