@@ -656,6 +656,12 @@
             "target": "All ally [Wei] other than self",
             "effect": "ATK Up 10%, DEF Up 10%",
             "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All ally Wei Fire Dragon other than self",
+            "effect": "ATK Up 20%",
+            "duration": null
           }
         ]
       },
@@ -704,8 +710,14 @@
         "effects": [
           {
             "condition": null,
-            "target": "Reiou",
-            "effect": "DEF Penetration Up 30%, Hit Rate Up 30%",
+            "target": "Self",
+            "effect": "DEF Penetration Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Wei]",
+            "effect": "Hit Rate Up 30%",
             "duration": null
           },
           {

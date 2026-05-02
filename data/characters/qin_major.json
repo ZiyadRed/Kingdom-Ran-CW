@@ -913,38 +913,6 @@
             "duration": null
           }
         ]
-      },
-      {
-        "name_en": "Oath",
-        "name_jp": "誓い☆6",
-        "type": "Strategy",
-        "star6": true,
-        "effects": [
-          {
-            "condition": null,
-            "target": "Self and ally \"Ouki\"",
-            "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Self and ally \"Ouki\"",
-            "effect": "Evasion (Dodge Chance) 40%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally [Cavalry]",
-            "effect": "\"Poison\" Resistance 60%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Enemy [Archer]",
-            "effect": "Critical Damage Down 30%",
-            "duration": null
-          }
-        ]
       }
     ],
     "image": "/persos/kyou.webp",
@@ -1009,9 +977,9 @@
         ]
       },
       {
-        "name_en": "ATK Enhancement – Large Improved [Shield]",
-        "name_jp": "攻撃力強化・中【歩兵】",
-        "type": "Administration",
+        "name_en": "ATK Enhancement – Medium [Shield]",
+        "name_jp": "攻撃力強化・中【盾兵】",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
