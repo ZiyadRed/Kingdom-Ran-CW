@@ -1380,7 +1380,7 @@
     "skills": [
       {
         "name_en": "DEF Enhancement [Red Elephant]",
-        "name_jp": "軍略:防御強化【赤象】",
+        "name_jp": "防御強化【赤象】",
         "type": "Strategy",
         "star6": false,
         "effects": [
@@ -1394,7 +1394,7 @@
       },
       {
         "name_en": "DEF Enhancement – Large [Defense War Machines]",
-        "name_jp": "内政:防御力強化・大【防衛兵器】",
+        "name_jp": "防御力強化・大【防衛兵器】",
         "type": "Internal Affairs",
         "star6": false,
         "effects": [
@@ -1408,7 +1408,7 @@
       },
       {
         "name_en": "Repair Currency Reduction – Large Improved",
-        "name_jp": "内政:修理貨幣減少・大改",
+        "name_jp": "修理貨幣減少・大改",
         "type": "Internal Affairs",
         "star6": false,
         "effects": [
