@@ -127,7 +127,7 @@ function CharIcon({c,size=40,round=false,className=''}){
 }
 
 
-const TYPE_COLOR={Combat:'#c0392b',Strategy:'#3d6eb5',Administration:'#1a8a72'}
+const TYPE_COLOR={Combat:'#c0392b',Strategy:'#3d6eb5','Internal Affairs':'#1a8a72'}
 
 const BUFF_CATS=[
   {id:'Cavalry',            label:'Cavalry',      svgColor:'#c0392b',svgShape:'diamond', svgIcon:'♞'},
@@ -1244,7 +1244,7 @@ function SkillCard({skill}){
         <div className="sk-tags">
           {skill.star6&&<span className="tag t-star">☆6</span>}
           <span className="tag" style={{background:col+'22',color:col,border:`1px solid ${col}55`}}>{skill.type}</span>
-          {skill.type==='Administration'&&<span className="tag t-map">Map</span>}
+          {skill.type==='Internal Affairs'&&<span className="tag t-map">Map</span>}
         </div>
       </div>
       <div className="sk-effects">
@@ -1746,7 +1746,7 @@ function BuffsPage(){
     <div style={{maxWidth:'860px',margin:'0 auto',padding:'0 1rem'}}>
       <div style={{textAlign:'center',marginBottom:'2rem',paddingTop:'1rem'}}>
         <h2 style={{fontSize:'1.5rem',fontWeight:800,color:'var(--txt)',marginBottom:'.3rem'}}>CW Buffs</h2>
-        <p style={{fontSize:'.82rem',color:'var(--txt3)'}}>Administration skills active during Castle Wars — stackable buffs by unit type</p>
+        <p style={{fontSize:'.82rem',color:'var(--txt3)'}}>Internal Affairs skills active during Castle Wars — stackable buffs by unit type</p>
       </div>
       <div style={{display:'flex',justifyContent:'center',gap:'16px',marginBottom:'2.5rem',flexWrap:'wrap'}}>
         {BUFF_UNIT_CATS.map(cat=>{
@@ -2168,6 +2168,7 @@ function TeamCostPage(){
 // ── CW GUIDE ──────────────────────────────────────────────────────────────────
 const GUIDE_SECTIONS=[
   {id:'effects',  label:'Status Effects'},
+  {id:'stats',    label:'How to Read Stats'},
   {id:'matchups', label:'Unit Matchups'},
   {id:'types',    label:'Skill Types'},
 ]
@@ -2199,8 +2200,131 @@ function CWGuidePage(){
         })}
       </div>
       {active==='effects' && <StatusEffectsSection/>}
+      {active==='stats' && <StatsReadingSection/>}
       {active==='matchups' && <UnitMatchupsSection/>}
       {active==='types' && <SkillTypesSection/>}
+    </div>
+  )
+}
+
+function StatRow({icon,label,jp,value,bonus,desc,iconColor}){
+  return(
+    <div style={{
+      display:'grid',gridTemplateColumns:'1.4rem 1fr auto',gap:'.55rem',alignItems:'center',
+      padding:'.5rem .65rem',borderBottom:'1px solid rgba(212,175,90,.15)',
+    }}>
+      <span style={{color:iconColor||'#c9a84c',fontSize:'1rem',lineHeight:1,textAlign:'center'}}>{icon}</span>
+      <div style={{minWidth:0}}>
+        <div style={{fontSize:'.82rem',fontWeight:700,color:'#f3e6c4',lineHeight:1.2}}>{label}</div>
+        <div style={{fontSize:'.66rem',color:'#a89770',marginTop:'.1rem'}} title={desc}>{jp} · {desc}</div>
+      </div>
+      <div style={{textAlign:'right',whiteSpace:'nowrap'}}>
+        <span style={{fontSize:'.95rem',fontWeight:800,color:'#7af0c8',fontFamily:'monospace'}}>{value}</span>
+        {bonus && <span style={{fontSize:'.7rem',color:'#7adf6e',marginLeft:'.35rem'}}>({bonus})</span>}
+      </div>
+    </div>
+  )
+}
+
+function StatsReadingSection(){
+  const stats=[
+    {icon:'❤',  label:'HP Limit',                 jp:'体力上限',         value:'415,979', bonus:'792.2%', desc:'Maximum HP', iconColor:'#e74c3c'},
+    {icon:'🔥', label:'Morale Limit',             jp:'士気上限',         value:'19,575',  bonus:'400.0%', desc:'Maximum morale (used to cast skills)', iconColor:'#f39c12'},
+    {icon:'⚔',  label:'Max ATK',                  jp:'最大攻撃力',       value:'44,738',  bonus:'276.0%', desc:'Highest attack value rolled per hit'},
+    {icon:'⚔',  label:'Min ATK',                  jp:'最小攻撃力',       value:'42,501',  bonus:null,     desc:'Lowest attack value rolled per hit'},
+    {icon:'⚔',  label:'Bonus DMG (Favorable)',    jp:'特攻 有利属性',    value:'126.0%',  bonus:'6.0%',   desc:'Damage multiplier vs unit types you counter'},
+    {icon:'⚔',  label:'Bonus DMG (Unfavorable)',  jp:'特攻 不利属性',    value:'81.1%',   bonus:'1.1%',   desc:'Damage multiplier vs unit types that counter you'},
+    {icon:'⚔',  label:'Hit Rate',                 jp:'命中率',           value:'118.0%',  bonus:'18.0%',  desc:'Chance to land an attack'},
+    {icon:'⚔',  label:'Critical Rate',            jp:'クリティカル率',   value:'22.2%',   bonus:null,     desc:'Chance to land a critical hit'},
+    {icon:'⚔',  label:'Critical Damage',          jp:'クリティカルダメージ',value:'156.0%',bonus:'6.0%',  desc:'Damage multiplier on critical hits'},
+    {icon:'⚔',  label:'DEF Penetration',          jp:'防御力貫通',       value:'6.0%',    bonus:'6.0%',   desc:'Ignores this % of enemy defense'},
+    {icon:'🛡', label:'DEF',                      jp:'防御力',           value:'54,046',  bonus:'318.1%', desc:'Reduces incoming damage', iconColor:'#3498db'},
+    {icon:'🛡', label:'Evasion Rate',             jp:'回避率',           value:'31.9%',   bonus:'18.0%',  desc:'Chance to dodge incoming attacks', iconColor:'#3498db'},
+  ]
+  const items=[
+    {amount:'28K', exp:'+300 EXP'},
+    {amount:'6,512', exp:'+500 EXP'},
+    {amount:'18K', exp:'+1,000 EXP'},
+    {amount:'33K', exp:'+3,000 EXP'},
+  ]
+  return(
+    <div>
+      <p style={{fontSize:'.82rem',color:'var(--txt3)',textAlign:'center',marginBottom:'1.5rem'}}>
+        How to read a general's CW stats screen. Green numbers in parentheses show the bonus gained from training.
+      </p>
+      <div style={{
+        background:'linear-gradient(180deg,#2b1f10,#1c130a)',
+        border:'2px solid #c9a84c',borderRadius:'14px',padding:'.75rem',
+        boxShadow:'0 8px 24px rgba(0,0,0,.3)',
+      }}>
+        <div style={{display:'flex',gap:'.4rem',marginBottom:'.6rem'}}>
+          <div style={{padding:'.4rem 1rem',background:'#3a2c14',color:'#f3e6c4',fontWeight:700,fontSize:'.78rem',borderRadius:'8px 8px 0 0',border:'1px solid #c9a84c',borderBottom:'none'}}>CW Enhancement</div>
+          <div style={{padding:'.4rem 1rem',background:'rgba(58,44,20,.4)',color:'#a89770',fontSize:'.78rem',borderRadius:'8px 8px 0 0',border:'1px solid rgba(201,168,76,.4)',borderBottom:'none'}}>CW Skills</div>
+        </div>
+        <div style={{
+          display:'flex',justifyContent:'space-between',alignItems:'center',
+          padding:'.55rem .8rem',background:'rgba(58,44,20,.6)',
+          border:'1px solid rgba(201,168,76,.4)',borderRadius:'8px',marginBottom:'.6rem',flexWrap:'wrap',gap:'.5rem',
+        }}>
+          <div>
+            <div style={{fontSize:'.62rem',color:'#a89770',marginBottom:'.15rem'}}>shinbouenryo kyogan ousen</div>
+            <div style={{fontSize:'.95rem',fontWeight:800,color:'#f3e6c4'}}>Deep Strategy Eye · Ousen +3</div>
+          </div>
+          <div style={{
+            background:'#5a3d6c',color:'#f3e6c4',padding:'.35rem .8rem',borderRadius:'999px',
+            border:'1px solid #c9a84c',fontSize:'.78rem',fontWeight:700,
+          }}>
+            <span style={{color:'#ffb84a'}}>🔥 </span>CW Power: 165,202
+          </div>
+        </div>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',gap:'.6rem'}}>
+          <div style={{background:'rgba(28,19,10,.6)',border:'1px solid rgba(201,168,76,.3)',borderRadius:'8px',overflow:'hidden'}}>
+            {stats.map((s,i)=><StatRow key={i} {...s}/>)}
+          </div>
+          <div style={{display:'flex',flexDirection:'column',gap:'.5rem'}}>
+            <div style={{
+              background:'rgba(28,19,10,.6)',border:'1px solid rgba(201,168,76,.3)',
+              borderRadius:'8px',padding:'.7rem',textAlign:'center',
+            }}>
+              <div style={{fontSize:'.85rem',color:'#f0c040',fontWeight:800,marginBottom:'.3rem'}}>★ 10/10</div>
+              <div style={{fontSize:'.7rem',color:'#a89770',marginBottom:'.4rem'}}>EXP 3,951,500 / 3,951,500</div>
+              <div style={{
+                fontSize:'1.4rem',fontWeight:900,color:'#a89770',letterSpacing:'.1em',
+                textShadow:'0 0 12px rgba(201,168,76,.4)',padding:'.6rem 0',
+              }}>MAX</div>
+            </div>
+            <div style={{
+              background:'rgba(58,44,20,.6)',border:'1px solid rgba(201,168,76,.4)',
+              borderRadius:'8px',padding:'.55rem',
+            }}>
+              <div style={{fontSize:'.7rem',color:'#f3e6c4',fontWeight:700,marginBottom:'.4rem',textAlign:'center'}}>CW Enhancement Items</div>
+              <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:'.3rem'}}>
+                {items.map((it,i)=>(
+                  <div key={i} style={{textAlign:'center'}}>
+                    <div style={{
+                      aspectRatio:'1',background:'rgba(28,19,10,.7)',border:'1px solid rgba(201,168,76,.3)',
+                      borderRadius:'6px',display:'flex',alignItems:'center',justifyContent:'center',
+                      fontSize:'.7rem',color:'#f3e6c4',fontWeight:700,
+                    }}>{it.amount}</div>
+                    <div style={{fontSize:'.58rem',color:'#7adf6e',marginTop:'.2rem',fontWeight:700}}>{it.exp}</div>
+                  </div>
+                ))}
+              </div>
+              <div style={{fontSize:'.6rem',color:'#a89770',textAlign:'center',marginTop:'.4rem',lineHeight:1.4}}>
+                Hold to use continuously. Using items gives a chance for 3× or 15× training value.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style={{
+        marginTop:'1.25rem',padding:'.85rem 1rem',borderRadius:'10px',
+        background:'var(--sur)',border:'1px solid var(--bdr)',
+      }}>
+        <div style={{fontSize:'.78rem',color:'var(--txt2)',lineHeight:1.55}}>
+          <strong style={{color:'var(--txt)'}}>How to read this:</strong> The big number is the <strong>current value</strong> at this character's training level. The small green percentage in parentheses is the <strong>bonus from training</strong> on top of the base value. Train via CW Enhancement Items (bottom right) — higher tier items give more EXP and have a chance to grant 3×/15× bonus training points.
+        </div>
+      </div>
     </div>
   )
 }
@@ -2262,7 +2386,7 @@ function UnitMatchupsSection(){
         Damage between unit types follows a rock-paper-scissors relationship.
       </p>
       <div style={{textAlign:'center',marginBottom:'1.75rem'}}>
-        <img src={unitMatchups.chart_image} alt="Unit matchup chart" style={{maxWidth:'100%',height:'auto',borderRadius:'12px',background:'var(--sur)',padding:'1rem',border:'1px solid var(--bdr)'}}/>
+        <img src={unitMatchups.chart_image} alt="Unit matchup chart" style={{display:'block',margin:'0 auto',maxWidth:'min(100%,520px)',height:'auto',borderRadius:'12px',background:'var(--sur)',padding:'1rem',border:'1px solid var(--bdr)',boxSizing:'border-box'}}/>
       </div>
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))',gap:'.75rem',marginBottom:'1.5rem'}}>
         {unitMatchups.rules.map((r,i)=>(
@@ -2271,10 +2395,10 @@ function UnitMatchupsSection(){
             background:'var(--sur)',border:'1px solid var(--bdr)',
             display:'flex',alignItems:'center',justifyContent:'center',gap:'.5rem',
           }}>
-            <img src={r.icon_strong} alt={r.strong} style={{width:32,height:32}}/>
+            <img src={r.icon_strong} alt={r.strong} style={{width:32,height:32,objectFit:'contain',flexShrink:0}}/>
             <span style={{fontWeight:700,fontSize:'.85rem',color:'var(--txt)'}}>{r.strong}</span>
             <span style={{fontSize:'.75rem',color:'#27ae60',fontWeight:700,margin:'0 .25rem'}}>strong vs</span>
-            <img src={r.icon_weak} alt={r.weak} style={{width:32,height:32,opacity:.6}}/>
+            <img src={r.icon_weak} alt={r.weak} style={{width:32,height:32,objectFit:'contain',flexShrink:0,opacity:.6}}/>
             <span style={{fontSize:'.85rem',color:'var(--txt2)'}}>{r.weak}</span>
           </div>
         ))}
@@ -2284,7 +2408,7 @@ function UnitMatchupsSection(){
         background:'var(--sur)',border:'1px solid var(--bdr)',
         display:'flex',alignItems:'center',gap:'.6rem',justifyContent:'center',flexWrap:'wrap',
       }}>
-        <img src={unitMatchups.mutual.icon_left} alt="Infantry" style={{width:32,height:32}}/>
+        <img src={unitMatchups.mutual.icon_left} alt="Infantry" style={{width:32,height:32,objectFit:'contain',flexShrink:0}}/>
         <span style={{fontWeight:700,fontSize:'.85rem',color:'var(--txt)'}}>{unitMatchups.mutual.left}</span>
         <span style={{fontSize:'.85rem',color:'var(--txt3)'}}>↔</span>
         <span style={{fontWeight:700,fontSize:'.85rem',color:'var(--txt)'}}>{unitMatchups.mutual.right}</span>
