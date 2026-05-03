@@ -14,8 +14,8 @@
     "color": "#3498DB"
   },
   "内政": {
-    "en": "Administration",
-    "short": "Admin",
+    "en": "Internal Affairs",
+    "short": "Internal Affairs",
     "description": "Non-combat skills that provide alliance-wide stat bonuses. Active even when the unit is not deployed.",
     "color": "#27AE60"
   },

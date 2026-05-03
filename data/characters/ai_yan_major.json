@@ -567,7 +567,7 @@
           {
             "condition": null,
             "target": "Enemy generals",
-            "effect": "HP Recovery Nullification 50%",
+            "effect": "HP Seal 50%",
             "duration": "4 turns"
           }
         ]

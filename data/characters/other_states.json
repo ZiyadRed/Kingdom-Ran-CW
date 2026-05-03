@@ -213,7 +213,7 @@
           {
             "condition": null,
             "target": "Enemy cavalry",
-            "effect": "HP Recovery Nullification 100%",
+            "effect": "HP Seal 100%",
             "duration": "4 turns"
           },
           {
@@ -368,7 +368,7 @@
           {
             "condition": "Poisoned enemies present",
             "target": "All poisoned enemy generals",
-            "effect": "HP Recovery Nullification 70%",
+            "effect": "HP Seal 70%",
             "duration": "3 turns"
           },
           {

@@ -18,6 +18,9 @@ import misc2        from '../data/characters/misc2.json'
 import aiYanMajor   from '../data/characters/ai_yan_major.json'
 import cwBuffsData  from '../data/cw_buffs.json'
 import cwMaxStats   from '../data/cw_max_stats.json'
+import statusEffects from '../data/glossary/status_effects.json'
+import unitMatchups  from '../data/glossary/unit_matchups.json'
+import skillTypesGlossary from '../data/glossary/skill_types.json'
 
 const ALL = [
   ...mountainFolk,...qin,...qinBatch2,...qinMajor,
@@ -971,10 +974,10 @@ const RARITY_DATA={
   'Zenou':{rarity:'UR',faction:'Qin',name_jp:'ゼノウ'}
 }
 
-const PAGES=['Archive','Party Builder','Simulate','CW Buffs','Tier List','Team Cost']
-const PAGE_ICONS={'Archive':'👤','Party Builder':'🗡','Simulate':'🎯','CW Buffs':'📊','Tier List':'🏆','Team Cost':{img:'/icons/Red_Crystal.png'}}
-const PAGE_SHORT={'Archive':'Archive','Party Builder':'Builder','Simulate':'Sim','CW Buffs':'CW Buffs','Tier List':'Tiers','Team Cost':'Cost'}
-const PAGE_TO_ROUTE={'Archive':'/archive','Party Builder':'/builder','Simulate':'/sim','CW Buffs':'/buffs','Tier List':'/tiers','Team Cost':'/cost'}
+const PAGES=['Archive','Party Builder','Simulate','CW Buffs','Tier List','Team Cost','CW Guide']
+const PAGE_ICONS={'Archive':'👤','Party Builder':'🗡','Simulate':'🎯','CW Buffs':'📊','Tier List':'🏆','Team Cost':{img:'/icons/Red_Crystal.png'},'CW Guide':'📖'}
+const PAGE_SHORT={'Archive':'Archive','Party Builder':'Builder','Simulate':'Sim','CW Buffs':'CW Buffs','Tier List':'Tiers','Team Cost':'Cost','CW Guide':'Guide'}
+const PAGE_TO_ROUTE={'Archive':'/archive','Party Builder':'/builder','Simulate':'/sim','CW Buffs':'/buffs','Tier List':'/tiers','Team Cost':'/cost','CW Guide':'/guide'}
 function routeMatches(pathname,page){
   const r=PAGE_TO_ROUTE[page]
   if(pathname===r||pathname===r+'/') return true
@@ -1075,6 +1078,8 @@ export default function App(){
           <Route path="/buffs" element={<BuffsPage/>}/>
           <Route path="/tiers" element={<TierPage/>}/>
           <Route path="/cost" element={<TeamCostPage/>}/>
+          <Route path="/guide" element={<CWGuidePage/>}/>
+          <Route path="/guide/:section" element={<CWGuidePage/>}/>
           <Route path="*" element={<Navigate to="/archive" replace/>}/>
         </Routes>
       </div>
@@ -2156,6 +2161,165 @@ function TeamCostPage(){
           </div>
         </div>
       )}
+    </div>
+  )
+}
+
+// ── CW GUIDE ──────────────────────────────────────────────────────────────────
+const GUIDE_SECTIONS=[
+  {id:'effects',  label:'Status Effects'},
+  {id:'matchups', label:'Unit Matchups'},
+  {id:'types',    label:'Skill Types'},
+]
+
+function CWGuidePage(){
+  const navigate=useNavigate()
+  const {section}=useParams()
+  const active=GUIDE_SECTIONS.find(s=>s.id===section)?.id || 'effects'
+  const go=id=>navigate(`/guide/${id}`)
+  return(
+    <div style={{maxWidth:'960px',width:'100%',margin:'0 auto',padding:'0 1rem',boxSizing:'border-box'}}>
+      <div style={{textAlign:'center',marginBottom:'1.5rem',paddingTop:'1rem'}}>
+        <h2 style={{fontSize:'1.5rem',fontWeight:800,color:'var(--txt)',marginBottom:'.3rem'}}>CW Guide</h2>
+        <p style={{fontSize:'.82rem',color:'var(--txt3)'}}>Tips, mechanics, and reference info for Castle Wars</p>
+      </div>
+      <div style={{display:'flex',justifyContent:'center',gap:'8px',marginBottom:'1.75rem',flexWrap:'wrap'}}>
+        {GUIDE_SECTIONS.map(s=>{
+          const on=active===s.id
+          return(
+            <button key={s.id} onClick={()=>go(s.id)} style={{
+              padding:'.55rem 1.1rem',borderRadius:'999px',cursor:'pointer',
+              fontSize:'.85rem',fontWeight:on?700:500,
+              background:on?'var(--txt)':'var(--sur)',
+              color:on?'var(--bg2)':'var(--txt2)',
+              border:`1px solid ${on?'var(--txt)':'var(--bdr)'}`,
+              transition:'all .15s ease',
+            }}>{s.label}</button>
+          )
+        })}
+      </div>
+      {active==='effects' && <StatusEffectsSection/>}
+      {active==='matchups' && <UnitMatchupsSection/>}
+      {active==='types' && <SkillTypesSection/>}
+    </div>
+  )
+}
+
+function EffectCard({entry,accent}){
+  return(
+    <div style={{
+      display:'flex',gap:'.75rem',alignItems:'flex-start',
+      padding:'.75rem',borderRadius:'12px',
+      background:'var(--sur)',border:'1px solid var(--bdr)',
+      borderLeft:`3px solid ${accent}`,
+    }}>
+      <img src={entry.icon} alt="" style={{width:36,height:36,flexShrink:0,imageRendering:'auto'}}/>
+      <div style={{minWidth:0,flex:1}}>
+        <div style={{display:'flex',alignItems:'baseline',gap:'.5rem',flexWrap:'wrap',marginBottom:'.2rem'}}>
+          <div style={{fontWeight:700,fontSize:'.92rem',color:'var(--txt)'}}>{entry.name_en}</div>
+          <div style={{fontSize:'.72rem',color:'var(--txt3)'}}>{entry.name_jp}</div>
+        </div>
+        <div style={{fontSize:'.78rem',color:'var(--txt2)',lineHeight:1.45}}>{entry.description}</div>
+      </div>
+    </div>
+  )
+}
+
+function StatusEffectsSection(){
+  return(
+    <div>
+      <p style={{fontSize:'.82rem',color:'var(--txt3)',textAlign:'center',marginBottom:'1.5rem'}}>
+        Buffs and debuffs that can be applied during Castle Wars battles.
+      </p>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',gap:'1.25rem'}}>
+        <div>
+          <h3 style={{fontSize:'1rem',fontWeight:800,color:'#27ae60',marginBottom:'.75rem',display:'flex',alignItems:'center',gap:'.5rem'}}>
+            <span style={{display:'inline-block',width:8,height:8,borderRadius:'50%',background:'#27ae60'}}/>
+            Buffs ({statusEffects.buffs.length})
+          </h3>
+          <div style={{display:'flex',flexDirection:'column',gap:'.5rem'}}>
+            {statusEffects.buffs.map(e=><EffectCard key={e.name_en} entry={e} accent="#27ae60"/>)}
+          </div>
+        </div>
+        <div>
+          <h3 style={{fontSize:'1rem',fontWeight:800,color:'#c0392b',marginBottom:'.75rem',display:'flex',alignItems:'center',gap:'.5rem'}}>
+            <span style={{display:'inline-block',width:8,height:8,borderRadius:'50%',background:'#c0392b'}}/>
+            Debuffs ({statusEffects.debuffs.length})
+          </h3>
+          <div style={{display:'flex',flexDirection:'column',gap:'.5rem'}}>
+            {statusEffects.debuffs.map(e=><EffectCard key={e.name_en} entry={e} accent="#c0392b"/>)}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function UnitMatchupsSection(){
+  return(
+    <div>
+      <p style={{fontSize:'.82rem',color:'var(--txt3)',textAlign:'center',marginBottom:'1.5rem'}}>
+        Damage between unit types follows a rock-paper-scissors relationship.
+      </p>
+      <div style={{textAlign:'center',marginBottom:'1.75rem'}}>
+        <img src={unitMatchups.chart_image} alt="Unit matchup chart" style={{maxWidth:'100%',height:'auto',borderRadius:'12px',background:'var(--sur)',padding:'1rem',border:'1px solid var(--bdr)'}}/>
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))',gap:'.75rem',marginBottom:'1.5rem'}}>
+        {unitMatchups.rules.map((r,i)=>(
+          <div key={i} style={{
+            padding:'.75rem',borderRadius:'12px',
+            background:'var(--sur)',border:'1px solid var(--bdr)',
+            display:'flex',alignItems:'center',justifyContent:'center',gap:'.5rem',
+          }}>
+            <img src={r.icon_strong} alt={r.strong} style={{width:32,height:32}}/>
+            <span style={{fontWeight:700,fontSize:'.85rem',color:'var(--txt)'}}>{r.strong}</span>
+            <span style={{fontSize:'.75rem',color:'#27ae60',fontWeight:700,margin:'0 .25rem'}}>strong vs</span>
+            <img src={r.icon_weak} alt={r.weak} style={{width:32,height:32,opacity:.6}}/>
+            <span style={{fontSize:'.85rem',color:'var(--txt2)'}}>{r.weak}</span>
+          </div>
+        ))}
+      </div>
+      <div style={{
+        padding:'.85rem 1rem',borderRadius:'12px',
+        background:'var(--sur)',border:'1px solid var(--bdr)',
+        display:'flex',alignItems:'center',gap:'.6rem',justifyContent:'center',flexWrap:'wrap',
+      }}>
+        <img src={unitMatchups.mutual.icon_left} alt="Infantry" style={{width:32,height:32}}/>
+        <span style={{fontWeight:700,fontSize:'.85rem',color:'var(--txt)'}}>{unitMatchups.mutual.left}</span>
+        <span style={{fontSize:'.85rem',color:'var(--txt3)'}}>↔</span>
+        <span style={{fontWeight:700,fontSize:'.85rem',color:'var(--txt)'}}>{unitMatchups.mutual.right}</span>
+        <span style={{fontSize:'.78rem',color:'var(--txt2)',width:'100%',textAlign:'center',marginTop:'.25rem'}}>{unitMatchups.mutual.note}</span>
+      </div>
+    </div>
+  )
+}
+
+function SkillTypesSection(){
+  const types=[
+    {jp:'戦技', data:skillTypesGlossary['戦技']},
+    {jp:'軍略', data:skillTypesGlossary['軍略']},
+    {jp:'内政', data:skillTypesGlossary['内政']},
+  ]
+  return(
+    <div>
+      <p style={{fontSize:'.82rem',color:'var(--txt3)',textAlign:'center',marginBottom:'1.5rem'}}>
+        Every general's skill belongs to one of three categories.
+      </p>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))',gap:'1rem'}}>
+        {types.map(t=>(
+          <div key={t.jp} style={{
+            padding:'1rem',borderRadius:'12px',
+            background:'var(--sur)',border:'1px solid var(--bdr)',
+            borderTop:`4px solid ${t.data.color}`,
+          }}>
+            <div style={{display:'flex',alignItems:'baseline',gap:'.5rem',marginBottom:'.5rem'}}>
+              <div style={{fontWeight:800,fontSize:'1.05rem',color:t.data.color}}>{t.data.en}</div>
+              <div style={{fontSize:'.78rem',color:'var(--txt3)'}}>{t.jp}</div>
+            </div>
+            <div style={{fontSize:'.82rem',color:'var(--txt2)',lineHeight:1.5}}>{t.data.description}</div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

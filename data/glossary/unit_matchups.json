@@ -1,0 +1,14 @@
+{
+  "chart_image": "/icons/cw/sukumi.png",
+  "rules": [
+    { "strong": "Cavalry", "weak": "Archer", "icon_strong": "/icons/unit_cavalry.png", "icon_weak": "/icons/unit_archer.png" },
+    { "strong": "Archer",  "weak": "Shield", "icon_strong": "/icons/unit_archer.png",  "icon_weak": "/icons/unit_shield.png" },
+    { "strong": "Shield",  "weak": "Cavalry","icon_strong": "/icons/unit_shield.png",  "icon_weak": "/icons/unit_cavalry.png" }
+  ],
+  "mutual": {
+    "note": "Infantry and War Machines / Gates deal increased damage to each other.",
+    "left": "Infantry",
+    "right": "War Machine / Gate",
+    "icon_left": "/icons/unit_infantry.png"
+  }
+}

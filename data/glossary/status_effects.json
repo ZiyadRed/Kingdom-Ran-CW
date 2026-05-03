@@ -1,0 +1,120 @@
+{
+  "buffs": [
+    {
+      "name_en": "Less Likely to be Targeted",
+      "name_jp": "敵武将から狙われにくい",
+      "icon": "/icons/status/less_targeted.png",
+      "description": "Excluded from enemy normal-attack and skill-attack targeting."
+    },
+    {
+      "name_en": "Reckless",
+      "name_jp": "捨て身",
+      "icon": "/icons/status/reckless.png",
+      "description": "Greatly increases attack power, but damage taken is also increased."
+    },
+    {
+      "name_en": "Evasion (Dodge Chance)",
+      "name_jp": "見切り",
+      "icon": "/icons/status/evasion.png",
+      "description": "Chance to evade incoming attacks."
+    },
+    {
+      "name_en": "Guard",
+      "name_jp": "ガード効果",
+      "icon": "/icons/status/guard.png",
+      "description": "Reduces damage from a specified attack. Consumed after a set number of activations."
+    },
+    {
+      "name_en": "Attack Nullification",
+      "name_jp": "無効効果",
+      "icon": "/icons/status/nullify.png",
+      "description": "Reduces damage from a specified attack to 0. Consumed after a set number of activations."
+    },
+    {
+      "name_en": "Sure Hit",
+      "name_jp": "必中",
+      "icon": "/icons/status/surehit.png",
+      "description": "Attacks always land regardless of hit rate or evasion."
+    },
+    {
+      "name_en": "Status Effect Immunity",
+      "name_jp": "状態異常無効",
+      "icon": "/icons/status/status_immunity.png",
+      "description": "Blocks debuff applications (except Provoke). Consumed after a set number of activations."
+    }
+  ],
+  "debuffs": [
+    {
+      "name_en": "Provoke",
+      "name_jp": "挑発",
+      "icon": "/icons/status/provoke.png",
+      "description": "Concentrates enemy damage attacks onto self."
+    },
+    {
+      "name_en": "Poison",
+      "name_jp": "毒",
+      "icon": "/icons/status/poison.png",
+      "description": "Takes a percentage of max HP as damage at the start of each turn."
+    },
+    {
+      "name_en": "Severe Poison",
+      "name_jp": "猛毒",
+      "icon": "/icons/status/poison.png",
+      "description": "Takes a percentage of max HP as damage at the start of each turn (greater than Poison)."
+    },
+    {
+      "name_en": "Burn",
+      "name_jp": "火傷",
+      "icon": "/icons/status/burn.png",
+      "description": "Takes a percentage of max HP as damage at the start of each turn."
+    },
+    {
+      "name_en": "Illusion",
+      "name_jp": "幻影",
+      "icon": "/icons/status/illusion.png",
+      "description": "Reduces hit rate."
+    },
+    {
+      "name_en": "Paralysis",
+      "name_jp": "麻痺",
+      "icon": "/icons/status/paralysis.png",
+      "description": "Has a chance each turn to prevent action (normal attack and skill attack)."
+    },
+    {
+      "name_en": "Confusion",
+      "name_jp": "錯乱",
+      "icon": "/icons/status/confusion.png",
+      "description": "Attacks both allies and enemies indiscriminately."
+    },
+    {
+      "name_en": "Betrayal",
+      "name_jp": "裏切り",
+      "icon": "/icons/status/betrayal.png",
+      "description": "Attacks allied generals while the effect is active."
+    },
+    {
+      "name_en": "Rampage",
+      "name_jp": "暴走",
+      "icon": "/icons/status/berserk.png",
+      "description": "Attack power is increased, but there is a chance to attack allied generals."
+    },
+    {
+      "name_en": "Fear",
+      "name_jp": "恐怖",
+      "icon": "/icons/status/fear.png",
+      "description": "Morale recovery is disabled."
+    },
+    {
+      "name_en": "Attack Seal",
+      "name_jp": "封印",
+      "icon": "/icons/status/seal.png",
+      "description": "Disables the specified action. Variants: Normal Attack Seal, Skill Attack Seal, Attack Seal (both)."
+    },
+    {
+      "name_en": "HP Seal",
+      "name_jp": "体力回復無効",
+      "icon": "/icons/status/hp_recovery_block.png",
+      "description": "HP recovery is disabled."
+    }
+  ]
+}
