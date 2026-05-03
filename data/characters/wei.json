@@ -363,7 +363,7 @@
       {
         "name_en": "HP Enhancement – Special Large Improved [Infantry]",
         "name_jp": "体力強化・特大改【歩兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
@@ -443,7 +443,7 @@
       {
         "name_en": "HP Enhancement – Special Large Improved [Shield Soldiers]",
         "name_jp": "体力強化・特大改【盾兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
@@ -778,7 +778,7 @@
       {
         "name_en": "Marsh Terrain Aptitude – Large",
         "name_jp": "泥濘適性・大",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When passing Marsh terrain (effective even if not deployed)",
@@ -791,7 +791,7 @@
       {
         "name_en": "ATK Enhancement – Large Improved [Infantry]",
         "name_jp": "攻撃力強化・大改【歩兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
@@ -834,7 +834,7 @@
       {
         "name_en": "Slope Terrain Aptitude – Large",
         "name_jp": "坂路適正・大",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When passing Slope terrain (effective even if not deployed)",
@@ -847,7 +847,7 @@
       {
         "name_en": "Repair Ore Reduction – Large Improved",
         "name_jp": "修理鉱石減少・大改",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When repairing CW war machines",
@@ -964,7 +964,7 @@
       {
         "name_en": "HP Enhancement – Large [Archer]",
         "name_jp": "体力強化・大【弓兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
@@ -977,7 +977,7 @@
       {
         "name_en": "Repair Material Reduction – Large Improved",
         "name_jp": "修理資材減少・大改",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When repairing CW war machines",

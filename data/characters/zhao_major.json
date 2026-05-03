@@ -319,7 +319,7 @@
       {
         "name_en": "HP Enhancement – Large [Attack War Machines]",
         "name_jp": "体力強化・大【攻撃兵器】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
@@ -332,7 +332,7 @@
       {
         "name_en": "Marsh Terrain Aptitude – Large Improved",
         "name_jp": "泥濘適性・大改",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When passing terrain [Marsh] (active even when not deployed)",
@@ -407,7 +407,7 @@
       {
         "name_en": "Squad Protection – Large",
         "name_jp": "部隊保護・大",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When passing terrain [Ambush] (active even when not deployed)",
@@ -420,7 +420,7 @@
       {
         "name_en": "HP Enhancement – Large Improved [Cavalry]",
         "name_jp": "体力強化・大改【騎兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
@@ -463,7 +463,7 @@
       {
         "name_en": "Repair Ore Reduction – Small",
         "name_jp": "修理鉱石減少・小",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When repairing CW war machines",
@@ -476,7 +476,7 @@
       {
         "name_en": "Repair Material Reduction – Small Improved",
         "name_jp": "修理資材減少・小改",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When repairing CW war machines",

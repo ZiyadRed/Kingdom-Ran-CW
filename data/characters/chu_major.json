@@ -603,7 +603,7 @@
       {
         "name_en": "HP Enhancement – Large [Cavalry]",
         "name_jp": "体力強化・大【騎兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
@@ -616,7 +616,7 @@
       {
         "name_en": "Squad Protection – Large Improved",
         "name_jp": "部隊保護・大改",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When passing terrain [Ambush] (active even when not deployed)",

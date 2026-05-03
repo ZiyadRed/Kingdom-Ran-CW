@@ -482,7 +482,7 @@
       {
         "name_en": "ATK Enhancement – Special Large Improved [Archers]",
         "name_jp": "攻撃力強化・特大改【弓兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",

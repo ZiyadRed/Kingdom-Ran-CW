@@ -743,7 +743,7 @@
       {
         "name_en": "Repair Ore Reduction – Large",
         "name_jp": "修理鉱石減少・大",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When repairing CW war machines",
@@ -756,7 +756,7 @@
       {
         "name_en": "ATK Enhancement – Large Improved [Shield]",
         "name_jp": "攻撃力強化・大改【盾兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even if not deployed)",
@@ -873,7 +873,7 @@
       {
         "name_en": "HP Enhancement – Medium [Infantry]",
         "name_jp": "体力強化・中【歩兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
@@ -886,7 +886,7 @@
       {
         "name_en": "Repair Material Reduction – Medium Improved",
         "name_jp": "修理資材減少・中改",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When repairing CW war machines",
@@ -928,7 +928,7 @@
       {
         "name_en": "Scouting – Small",
         "name_jp": "斥候・小",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When passing Checkpoint terrain (effective even if not deployed)",
@@ -941,7 +941,7 @@
       {
         "name_en": "ATK Enhancement – Small Improved [Attack War Machines]",
         "name_jp": "攻撃力強化・小改【攻撃兵器】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
@@ -983,7 +983,7 @@
       {
         "name_en": "Slope Terrain Aptitude – Small",
         "name_jp": "坂路適性・小",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When passing Slope terrain (effective even if not deployed)",
@@ -996,7 +996,7 @@
       {
         "name_en": "ATK Enhancement – Small Improved [Defense War Machines]",
         "name_jp": "攻撃力強化・小改【防衛兵器】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",

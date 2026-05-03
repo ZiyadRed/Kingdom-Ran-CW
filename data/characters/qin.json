@@ -296,7 +296,7 @@
       {
         "name_en": "ATK Enhancement – Special Large Improved [Infantry]",
         "name_jp": "攻撃力強化・特大改【歩兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
@@ -352,7 +352,7 @@
       {
         "name_en": "DEF Enhancement – Large Improved [Infantry]",
         "name_jp": "防御力強化・大改【歩兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
@@ -1091,7 +1091,7 @@
       {
         "name_en": "ATK Enhancement – Large Improved [Infantry]",
         "name_jp": "攻撃力強化・大改【歩兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",

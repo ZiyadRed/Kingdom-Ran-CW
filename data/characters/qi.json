@@ -59,7 +59,7 @@
       {
         "name_en": "HP Enhancement – Special Large Improved [Shield Soldiers]",
         "name_jp": "体力強化・特大改【盾兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",

@@ -47,7 +47,7 @@
       {
         "name_en": "Squad Protection – Special Large Improved",
         "name_jp": "部隊保護・特大改",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When passing terrain [Ambush] (active even when not deployed)",
@@ -208,7 +208,7 @@
       {
         "name_en": "DEF Enhancement – Special Large Improved [Infantry]",
         "name_jp": "防御力強化・特大改【歩兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
@@ -852,7 +852,7 @@
       {
         "name_en": "Repair Currency Reduction – Large",
         "name_jp": "修理貨幣減少・大",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When repairing CW war machines",
@@ -865,7 +865,7 @@
       {
         "name_en": "ATK Enhancement – Large Improved [Archer]",
         "name_jp": "攻撃力強化・大改【弓兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
@@ -908,7 +908,7 @@
       {
         "name_en": "HP Enhancement – Large [Attack War Machines]",
         "name_jp": "体力強化・大【攻撃兵器】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
@@ -921,7 +921,7 @@
       {
         "name_en": "HP Enhancement – Large Improved [Defense War Machines]",
         "name_jp": "体力強化・大改【防衛兵器】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even if not deployed)",

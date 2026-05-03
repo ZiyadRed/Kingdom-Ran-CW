@@ -1013,7 +1013,7 @@
       {
         "name_en": "Repair Material Reduction – Medium",
         "name_jp": "修理資材減少・中",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When repairing CW war machines",
@@ -1026,7 +1026,7 @@
       {
         "name_en": "HP Enhancement – Medium-Large Improved [Archers]",
         "name_jp": "体力強化・中改【弓兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
@@ -1112,7 +1112,7 @@
       {
         "name_en": "HP Enhancement – Special Large Improved [Infantry]",
         "name_jp": "体力強化・特大改【歩兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
@@ -1180,7 +1180,7 @@
       {
         "name_en": "HP Enhancement – Special Large Improved [Archers]",
         "name_jp": "体力強化・特大改【弓兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
@@ -1224,7 +1224,7 @@
       {
         "name_en": "DEF Enhancement – Large Improved [Attack War Machines]",
         "name_jp": "防御力強化・大【攻撃兵器】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
@@ -1237,7 +1237,7 @@
       {
         "name_en": "DEF Enhancement – Large Improved [Infantry]",
         "name_jp": "防御力強化・大改【歩兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
@@ -1281,7 +1281,7 @@
       {
         "name_en": "ATK Enhancement – Large [Defense War Machines]",
         "name_jp": "攻撃力強化・大【防衛兵器】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
@@ -1294,7 +1294,7 @@
       {
         "name_en": "ATK Enhancement – Large Improved [Infantry]",
         "name_jp": "攻撃力強化・大改【歩兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",

@@ -1079,7 +1079,7 @@
       {
         "name_en": "ATK Enhancement – Special Large Improved [Archers]",
         "name_jp": "攻撃力強化・特大改【弓兵】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
@@ -1122,7 +1122,7 @@
       {
         "name_en": "Repair Currency Reduction – Medium",
         "name_jp": "修理貨幣減少・中",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When repairing CW war machines",
@@ -1135,7 +1135,7 @@
       {
         "name_en": "Repair Material Reduction – Medium Improved",
         "name_jp": "修理資材減少・中改",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "effects": [
           {
             "condition": "When repairing CW war machines",
@@ -1395,7 +1395,7 @@
       {
         "name_en": "DEF Enhancement – Large [Defense War Machines]",
         "name_jp": "内政:防御力強化・大【防衛兵器】",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "star6": false,
         "effects": [
           {
@@ -1409,7 +1409,7 @@
       {
         "name_en": "Repair Currency Reduction – Large Improved",
         "name_jp": "内政:修理貨幣減少・大改",
-        "type": "Administration",
+        "type": "Internal Affairs",
         "star6": false,
         "effects": [
           {
