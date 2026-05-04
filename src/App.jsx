@@ -2233,12 +2233,26 @@ const EFFECT_INTERACTIONS=[
   {
     type:'stack',
     label:'Stack with Priority Order',
-    note:'Both can be active at the same time. Attack Nullification is checked first — if it blocks the hit, Guard does not consume a charge.',
+    note:'Both can be active at the same time. Attack Nullification triggers first and reduces damage to 0 — but both effects still consume a charge.',
     groups:[
       {
         effects:[
           {name_en:'Attack Nullification', icon:'/icons/status/nullify.png'},
           {name_en:'Guard',                icon:'/icons/status/guard.png'},
+        ],
+      },
+    ],
+  },
+  {
+    type:'guard_overwrite',
+    label:'Guard Overwrites by Judgment Value',
+    note:'Applying Guard to a character who already has Guard active does not always overwrite it. The system compares a judgment value for each: Reduction % × Remaining Charges. The higher value wins. If the new effect loses, the existing Guard is kept unchanged.',
+    formula:'Judgment Value = Reduction % × Remaining Charges',
+    example:'30% × 2 charges = 60  vs  70% × 1 charge = 70  →  70% overwrites',
+    groups:[
+      {
+        effects:[
+          {name_en:'Guard', icon:'/icons/status/guard.png'},
         ],
       },
     ],
@@ -2254,7 +2268,8 @@ function EffectInteractionsSection(){
       <div style={{display:'flex',flexDirection:'column',gap:'1rem'}}>
         {EFFECT_INTERACTIONS.map(rule=>{
           const isOverwrite=rule.type==='overwrite'
-          const accent=isOverwrite?'#e67e22':'#2980b9'
+          const isGuard=rule.type==='guard_overwrite'
+          const accent=isOverwrite?'#e67e22':isGuard?'#8e44ad':'#2980b9'
           return(
             <div key={rule.type} style={{
               borderRadius:'12px',background:'var(--sur)',
@@ -2267,7 +2282,17 @@ function EffectInteractionsSection(){
                   color:accent,background:`${accent}22`,padding:'.15rem .55rem',borderRadius:'999px',
                 }}>{rule.label}</span>
               </div>
-              <p style={{fontSize:'.8rem',color:'var(--txt2)',margin:'0 0 .85rem',lineHeight:1.5}}>{rule.note}</p>
+              <p style={{fontSize:'.8rem',color:'var(--txt2)',margin:'0 0 .75rem',lineHeight:1.5}}>{rule.note}</p>
+              {rule.formula &&(
+                <div style={{
+                  display:'flex',flexDirection:'column',gap:'.4rem',
+                  padding:'.65rem .85rem',borderRadius:'8px',background:'var(--bg2)',
+                  marginBottom:'.75rem',
+                }}>
+                  <div style={{fontSize:'.78rem',fontWeight:700,color:accent,fontFamily:'monospace'}}>{rule.formula}</div>
+                  <div style={{fontSize:'.75rem',color:'var(--txt3)'}}>{rule.example}</div>
+                </div>
+              )}
               <div style={{display:'flex',flexDirection:'column',gap:'.6rem'}}>
                 {rule.groups.map((g,gi)=>(
                   <div key={gi} style={{
