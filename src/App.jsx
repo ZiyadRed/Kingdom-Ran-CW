@@ -2168,9 +2168,10 @@ function TeamCostPage(){
 
 // ── CW GUIDE ──────────────────────────────────────────────────────────────────
 const GUIDE_SECTIONS=[
-  {id:'effects',  label:'Status Effects'},
-  {id:'matchups', label:'Unit Matchups'},
-  {id:'types',    label:'Skill Types'},
+  {id:'effects',      label:'Status Effects'},
+  {id:'matchups',     label:'Unit Matchups'},
+  {id:'types',        label:'Skill Types'},
+  {id:'interactions', label:'Effect Interactions'},
 ]
 
 function CWGuidePage(){
@@ -2202,10 +2203,98 @@ function CWGuidePage(){
       {active==='effects' && <StatusEffectsSection/>}
       {active==='matchups' && <UnitMatchupsSection/>}
       {active==='types' && <SkillTypesSection/>}
+      {active==='interactions' && <EffectInteractionsSection/>}
     </div>
   )
 }
 
+
+const EFFECT_INTERACTIONS=[
+  {
+    type:'overwrite',
+    label:'Overwrite Each Other',
+    note:'Only the most recently applied effect stays active. Applying one removes the other.',
+    groups:[
+      {
+        effects:[
+          {name_en:'Provoke',       icon:'/icons/status/provoke.png'},
+          {name_en:'Less Likely to be Targeted', icon:'/icons/status/less_targeted.png'},
+        ],
+      },
+      {
+        effects:[
+          {name_en:'Confusion', icon:'/icons/status/confusion.png'},
+          {name_en:'Betrayal',  icon:'/icons/status/betrayal.png'},
+          {name_en:'Rampage',   icon:'/icons/status/berserk.png'},
+        ],
+      },
+    ],
+  },
+  {
+    type:'stack',
+    label:'Stack with Priority Order',
+    note:'Both can be active at the same time. Attack Nullification is checked first — if it blocks the hit, Guard does not consume a charge.',
+    groups:[
+      {
+        effects:[
+          {name_en:'Attack Nullification', icon:'/icons/status/nullify.png'},
+          {name_en:'Guard',                icon:'/icons/status/guard.png'},
+        ],
+      },
+    ],
+  },
+]
+
+function EffectInteractionsSection(){
+  return(
+    <div>
+      <p style={{fontSize:'.82rem',color:'var(--txt3)',textAlign:'center',marginBottom:'1.5rem'}}>
+        When two effects conflict, this determines which one takes precedence or whether both remain active.
+      </p>
+      <div style={{display:'flex',flexDirection:'column',gap:'1rem'}}>
+        {EFFECT_INTERACTIONS.map(rule=>{
+          const isOverwrite=rule.type==='overwrite'
+          const accent=isOverwrite?'#e67e22':'#2980b9'
+          return(
+            <div key={rule.type} style={{
+              borderRadius:'12px',background:'var(--sur)',
+              border:'1px solid var(--bdr)',borderLeft:`3px solid ${accent}`,
+              padding:'1rem',
+            }}>
+              <div style={{display:'flex',alignItems:'center',gap:'.5rem',marginBottom:'.35rem'}}>
+                <span style={{
+                  fontSize:'.7rem',fontWeight:700,letterSpacing:'.04em',textTransform:'uppercase',
+                  color:accent,background:`${accent}22`,padding:'.15rem .55rem',borderRadius:'999px',
+                }}>{rule.label}</span>
+              </div>
+              <p style={{fontSize:'.8rem',color:'var(--txt2)',margin:'0 0 .85rem',lineHeight:1.5}}>{rule.note}</p>
+              <div style={{display:'flex',flexDirection:'column',gap:'.6rem'}}>
+                {rule.groups.map((g,gi)=>(
+                  <div key={gi} style={{
+                    display:'flex',alignItems:'center',flexWrap:'wrap',gap:'.5rem',
+                    padding:'.6rem .75rem',borderRadius:'8px',background:'var(--bg2)',
+                  }}>
+                    {g.effects.map((e,ei)=>(
+                      <span key={e.name_en} style={{display:'flex',alignItems:'center',gap:'.35rem'}}>
+                        <img src={e.icon} alt={e.name_en} style={{width:26,height:26,flexShrink:0,imageRendering:'auto'}}/>
+                        <span style={{fontSize:'.82rem',fontWeight:600,color:'var(--txt)'}}>{e.name_en}</span>
+                        {ei<g.effects.length-1 &&
+                          <span style={{fontSize:'.75rem',color:'var(--txt3)',margin:'0 .1rem'}}>
+                            {isOverwrite?'↔':'→'}
+                          </span>
+                        }
+                      </span>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
 
 function EffectCard({entry,accent}){
   return(
