@@ -1431,6 +1431,32 @@
             "duration": null
           }
         ]
+      },
+      {
+        "name_en": "On Target",
+        "name_jp": "正鵠を射る☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self vs [Shield]",
+            "effect": "ATK Up 40%, DEF Up 40%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self and ally \"Renpa\"",
+            "effect": "Critical Damage Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "Ally \"Renpa\" alive",
+            "target": "Ally generals",
+            "effect": "HP Recovery 20%",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "/persos/kyouen.webp",
