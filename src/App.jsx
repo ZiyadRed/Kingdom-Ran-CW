@@ -2172,6 +2172,7 @@ const GUIDE_SECTIONS=[
   {id:'matchups',     label:'Unit Matchups'},
   {id:'types',        label:'Skill Types'},
   {id:'interactions', label:'Effect Interactions'},
+  {id:'stats',        label:'Character Stats'},
 ]
 
 function CWGuidePage(){
@@ -2204,6 +2205,7 @@ function CWGuidePage(){
       {active==='matchups' && <UnitMatchupsSection/>}
       {active==='types' && <SkillTypesSection/>}
       {active==='interactions' && <EffectInteractionsSection/>}
+      {active==='stats' && <CharacterStatsSection/>}
     </div>
   )
 }
@@ -2316,6 +2318,48 @@ function EffectInteractionsSection(){
             </div>
           )
         })}
+      </div>
+    </div>
+  )
+}
+
+const CHARACTER_STATS=[
+  {name:'HP Limit',         desc:'Max health. When it reaches 0 the unit is defeated and retreats.'},
+  {name:'Morale Limit',     desc:'Resource consumed when using Combat skills. Cost varies per skill.'},
+  {name:'Max / Min Attack', desc:'Damage rolls in a range each turn. Higher max raises both average and peak damage output.'},
+  {name:'Bonus DMG (Adv/Disadv)', desc:'Damage multiplier vs favored / unfavored unit types in the rock-paper-scissors matchup.'},
+  {name:'Hit Rate',         desc:'Accuracy of attacks against the target.'},
+  {name:'Crit Rate',        desc:'Chance for an attack to crit.'},
+  {name:'Crit Damage',      desc:'Damage multiplier applied when an attack crits.'},
+  {name:'Def Penetration',  desc:'Temporarily reduces the target’s defense during the attack.'},
+  {name:'Defense',          desc:'Reduces incoming damage. Higher = more mitigation.'},
+  {name:'Evasion Rate',     desc:'Chance to dodge an incoming attack and take 0 damage.'},
+]
+
+function CharacterStatsSection(){
+  return(
+    <div>
+      <p style={{fontSize:'.82rem',color:'var(--txt3)',textAlign:'center',marginBottom:'1.25rem'}}>
+        Each general has a parameter sheet that determines combat performance. The image below
+        is the in-game stat panel — translated to English without changing the layout.
+      </p>
+      <div style={{textAlign:'center',marginBottom:'1.5rem'}}>
+        <img src="/icons/stats_example_en.webp" alt="Character stats panel"
+             style={{display:'block',margin:'0 auto',maxWidth:'min(100%,820px)',height:'auto',borderRadius:'12px',border:'1px solid var(--bdr)',boxSizing:'border-box'}}/>
+        <div style={{fontSize:'.72rem',color:'var(--txt3)',marginTop:'.4rem'}}>
+          In-game stat sheet · King Sen +3
+        </div>
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',gap:'.6rem'}}>
+        {CHARACTER_STATS.map(s=>(
+          <div key={s.name} style={{
+            padding:'.75rem .85rem',borderRadius:'10px',
+            background:'var(--sur)',border:'1px solid var(--bdr)',
+          }}>
+            <div style={{fontWeight:700,fontSize:'.88rem',color:'var(--txt)',marginBottom:'.2rem'}}>{s.name}</div>
+            <div style={{fontSize:'.78rem',color:'var(--txt2)',lineHeight:1.45}}>{s.desc}</div>
+          </div>
+        ))}
       </div>
     </div>
   )
