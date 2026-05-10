@@ -624,6 +624,7 @@ function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false){
   const stats={}
   for(const owner of team){
     for(const skill of(owner.skills||[])){
+      if(skill.type!=='Strategy') continue
       for(const eff of(skill.effects||[])){
         if(!isTargetedBy(eff.target,G,owner,team)) continue
         if(!showAll&&!isCondActive(eff.condition,isDefense)) continue
@@ -707,6 +708,7 @@ function calcTeamEnemyDebuffs(team,enemyTeam=[]){
   }
   for(const owner of team){
     for(const sk of(owner.skills||[])){
+      if(sk.type!=='Strategy') continue
       for(const eff of(sk.effects||[])){
         const t=(eff.target||'').trim()
         // skip effects whose condition requires an enemy unit type not present
@@ -2033,8 +2035,8 @@ function TeamCostPage(){
               onMouseEnter={e=>e.currentTarget.style.transform='translateY(-2px)'}
               onMouseLeave={e=>e.currentTarget.style.transform=''}>
               {/* Portrait */}
-              <div style={{position:'relative',height:'110px',background:fc+'15',overflow:'hidden'}}>
-                {char.icon?<img src={char.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={char.name_en}/>
+              <div style={{position:'relative',aspectRatio:'1 / 1',background:fc+'15',overflow:'hidden'}}>
+                {char.icon?<img src={char.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center'}} alt={char.name_en}/>
                 :char.image?<img src={char.image} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={char.name_en}/>
                 :<div style={{width:'100%',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'2rem',fontWeight:800,color:fc+'66'}}>{char.name_en[0]}</div>}
                 <div style={{position:'absolute',top:'6px',left:'6px',padding:'1px 7px',borderRadius:'5px',background:rc,color:'white',fontSize:'.6rem',fontWeight:800}}>{rarity}</div>
