@@ -78,7 +78,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Karin",
+            "target": "Self",
             "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%, Evasion (Dodge Chance) Up 60%",
             "duration": null
           },
@@ -503,7 +503,7 @@
     "name_en": "Hakurei",
     "name_jp": "白麗",
     "country": "chu",
-    "unit": "Rinbujun Forces",
+    "unit": "Rinbukun Forces",
     "rarity": "SR",
     "skills": [
       {

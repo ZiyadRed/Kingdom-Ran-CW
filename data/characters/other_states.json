@@ -233,7 +233,7 @@
     "name_en": "Rokin",
     "name_jp": "魯近",
     "country": "chu",
-    "unit": "Rinbujun Forces (Coalition)",
+    "unit": "Rinbukun Forces (Coalition)",
     "rarity": "SR",
     "skills": [
       {
@@ -262,13 +262,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Rinbujun",
+            "target": "Ally Rinbukun",
             "effect": "Status Effect Immunity (excl. Provoke)",
             "duration": "3 times"
           },
           {
             "condition": null,
-            "target": "Ally Rinbujun",
+            "target": "Ally Rinbukun",
             "effect": "Sure Hit",
             "duration": null
           }
@@ -281,13 +281,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Rinbujun",
+            "target": "Ally Rinbukun",
             "effect": "DEF Up 30%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Rinbujun",
+            "target": "Ally Rinbukun",
             "effect": "Guard 100%",
             "duration": "2 times"
           }

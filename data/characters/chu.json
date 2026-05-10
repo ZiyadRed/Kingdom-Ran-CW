@@ -426,7 +426,7 @@
     "name_en": "Hakusui",
     "name_jp": "白翠",
     "country": "chu",
-    "unit": "Rinbujun Forces",
+    "unit": "Rinbukun Forces",
     "rarity": "SR",
     "skills": [
       {
@@ -448,7 +448,7 @@
           },
           {
             "condition": null,
-            "target": "Self / ally Rinbujun / ally Hakurei",
+            "target": "Self / ally Rinbukun / ally Hakurei",
             "effect": "Continuous HP Recovery 10%",
             "duration": "3 turns"
           }
@@ -467,7 +467,7 @@
           },
           {
             "condition": null,
-            "target": "Self / ally Rinbujun / ally Hakurei",
+            "target": "Self / ally Rinbukun / ally Hakurei",
             "effect": "Status Effect Immunity (excl. Provoke)",
             "duration": "1 time"
           },
