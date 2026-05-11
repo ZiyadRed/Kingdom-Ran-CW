@@ -168,6 +168,87 @@
     "icon": "/icons/Akou.webp"
   },
   {
+    "id": "eiki",
+    "name_en": "Eiki",
+    "name_jp": "英紀",
+    "country": "qin",
+    "unit": "Ousen Forces",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Blue Elephant]",
+        "name_jp": "重追撃【青象】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy war machine with lowest remaining HP",
+            "target": "1 enemy war machine",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Qin",
+            "effect": "DEF Up 20%",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Trust Received",
+        "name_jp": "受けし信",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": "Per ally Ousen Forces general besides self",
+            "target": "Ally Qin",
+            "effect": "DEF Up 10%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Akou is alive",
+            "target": "All enemy generals",
+            "effect": "DEF Down 20%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Rescue Skirmish",
+        "name_jp": "救護遊撃",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with lowest remaining HP",
+            "target": "1 enemy general",
+            "effect": "170% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy war machine with lowest remaining HP",
+            "target": "1 enemy war machine",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "When ally Akou is alive",
+            "target": "1 enemy general with highest ATK",
+            "effect": "Confusion Infliction 100%",
+            "duration": "3 turns"
+          }
+        ]
+      }
+    ],
+    "image": "/persos/eiki.webp",
+    "icon": "/icons/Eiki.webp"
+  },
+  {
     "id": "denrimi",
     "name_en": "Denrimi",
     "name_jp": "田里弥",

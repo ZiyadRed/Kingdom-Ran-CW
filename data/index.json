@@ -1,8 +1,8 @@
 {
   "_meta": {
     "total_characters_in_game": 197,
-    "characters_translated": 47,
-    "last_updated": "2026-04-10",
+    "characters_translated": 48,
+    "last_updated": "2026-05-11",
     "source": "https://pirock55.work/souha-skill-archive/",
     "note": "Characters with only a name entry (no skills array) are placeholders — their skill data is pending translation."
   },
@@ -29,6 +29,7 @@
     { "id": "karyoutou",   "name_en": "He Liao Diao",  "name_jp": "河了貂",  "country": "qin",           "file": "qin.json",            "status": "pending" },
     { "id": "tou",         "name_en": "Tou",            "name_jp": "騰",      "country": "qin",           "file": "qin.json",            "status": "pending" },
     { "id": "akou",        "name_en": "Akou",          "name_jp": "亜光",    "country": "qin",           "file": "qin.json",            "status": "done" },
+    { "id": "eiki",        "name_en": "Eiki",          "name_jp": "英紀",    "country": "qin",           "file": "qin.json",            "status": "done" },
     { "id": "denrimi",     "name_en": "Denrimi",       "name_jp": "田里弥",  "country": "qin",           "file": "qin.json",            "status": "done" },
     { "id": "youka",       "name_en": "Youka",         "name_jp": "姚賈",    "country": "qin",           "file": "qin.json",            "status": "done" },
     { "id": "keirei",      "name_en": "Kyourei",        "name_jp": "京令",    "country": "qin",           "file": "qin.json",            "status": "done" },
