@@ -33,8 +33,8 @@
   "対弓兵防御力↓":     { "en": "DEF Down vs Archers",         "type": "debuff" },
   "対盾兵攻撃力↑":     { "en": "ATK Up vs Shield Soldiers",   "type": "buff" },
   "対盾兵防御力↑":     { "en": "DEF Up vs Shield Soldiers",   "type": "buff" },
-  "対兵器攻撃力↑":     { "en": "ATK Up vs War Machines",      "type": "buff" },
-  "対敵兵器攻撃力↑":   { "en": "ATK Up vs Enemy War Machines","type": "buff" },
+  "対兵器攻撃力↑":     { "en": "ATK Up vs Siege Weapons",      "type": "buff" },
+  "対敵兵器攻撃力↑":   { "en": "ATK Up vs Enemy Siege Weapons","type": "buff" },
   "対秦国攻撃力↑":     { "en": "ATK Up vs Qin",               "type": "buff" },
   "対秦国防御力↑":     { "en": "DEF Up vs Qin",               "type": "buff" },
   "対秦国防御力↓":     { "en": "DEF Down vs Qin",             "type": "debuff" },
@@ -43,7 +43,7 @@
   "対楚国防御力↓":     { "en": "DEF Down vs Chu",             "type": "debuff" },
   "対魏国攻撃力↑":     { "en": "ATK Up vs Wei",               "type": "buff" },
   "対六大将軍攻撃力↑": { "en": "ATK Up vs Six Great Generals", "type": "buff" },
-  "対廉頗軍防御力↓":   { "en": "DEF Down for Renpa Forces",   "type": "debuff" },
+  "対廉頗軍防御力↓":   { "en": "DEF Down for Renpa Army",   "type": "debuff" },
   "対玉鳳隊防御力↓":   { "en": "DEF Down for Gyokuhou Squad", "type": "debuff" },
   "対魏火龍防御力↓":   { "en": "DEF Down for Wei Fire Dragon","type": "debuff" },
 
@@ -119,7 +119,7 @@
   "恐怖付与率↑":        { "en": "Fear Infliction Rate Up",     "type": "buff" },
   "裏切り付与率↑":      { "en": "Betrayal Infliction Rate Up", "type": "buff" },
 
-  "_war_machine": "War machine effects",
+  "_war_machine": "Siege weapon effects",
   "修理速度↑":         { "en": "Repair Speed Up",              "type": "buff" },
 
   "_admin": "Administration skill exclusive effects",

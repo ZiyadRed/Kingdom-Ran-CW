@@ -343,7 +343,7 @@
     "name_en": "Ordo",
     "name_jp": "オルド",
     "country": "yan",
-    "unit": "Ordo Forces",
+    "unit": "Ordo Army",
     "rarity": "UR",
     "skills": [
       {
@@ -424,7 +424,7 @@
     "name_en": "Futei",
     "name_jp": "傳抵",
     "country": "zhao",
-    "unit": "Riboku Forces",
+    "unit": "Riboku Army",
     "rarity": "UR",
     "skills": [
       {

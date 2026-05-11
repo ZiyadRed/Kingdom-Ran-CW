@@ -173,8 +173,8 @@
             "duration": null
           },
           {
-            "condition": "When Garrisoning, enemy war machine with lowest remaining HP",
-            "target": "1 enemy war machine",
+            "condition": "When Garrisoning, enemy siege weapon with lowest remaining HP",
+            "target": "1 enemy siege weapon",
             "effect": "130% Damage",
             "duration": null
           }
@@ -193,7 +193,7 @@
           },
           {
             "condition": "When ally Reihō is alive",
-            "target": "Self vs war machines",
+            "target": "Self vs siege weapons",
             "effect": "ATK Up 30%",
             "duration": null
           }
@@ -229,8 +229,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "When Garrisoning, enemy infantry / enemy war machine with highest ATK",
-            "target": "1 enemy infantry / 1 enemy war machine",
+            "condition": "When Garrisoning, enemy infantry / enemy siege weapon with highest ATK",
+            "target": "1 enemy infantry / 1 enemy siege weapon",
             "effect": "130% Damage",
             "duration": null
           }
@@ -602,8 +602,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "When Garrisoning, enemy war machine with lowest DEF",
-            "target": "1 enemy war machine",
+            "condition": "When Garrisoning, enemy siege weapon with lowest DEF",
+            "target": "1 enemy siege weapon",
             "effect": "120% Damage",
             "duration": null
           }
@@ -678,7 +678,7 @@
           },
           {
             "condition": "Own HP > 90%",
-            "target": "Enemy [Qin] / enemy war machines",
+            "target": "Enemy [Qin] / enemy siege weapons",
             "effect": "ATK Down 20%",
             "duration": "3 turns"
           },
@@ -850,9 +850,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Ore Consumption Down 6.2％",
+            "effect": "Siege weapon repair Ore Consumption Down 6.2％",
             "duration": null
           }
         ]
@@ -980,9 +980,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Material Consumption Down 6.2％",
+            "effect": "Siege weapon repair Material Consumption Down 6.2％",
             "duration": null
           }
         ]

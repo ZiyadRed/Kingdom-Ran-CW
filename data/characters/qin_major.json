@@ -123,7 +123,7 @@
     "name_en": "Ousen",
     "name_jp": "王翦",
     "country": "qin",
-    "unit": "Ousen Forces",
+    "unit": "Ousen Army",
     "rarity": "UR",
     "skills": [
       {
@@ -242,7 +242,7 @@
     "name_en": "Kanki",
     "name_jp": "桓騎",
     "country": "qin",
-    "unit": "Kanki Forces",
+    "unit": "Kanki Army",
     "rarity": "UR",
     "skills": [
       {
@@ -289,7 +289,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Kanki Forces",
+            "target": "Ally Kanki Army",
             "effect": "Evasion Rate Up 40%",
             "duration": null
           },
@@ -331,8 +331,8 @@
             "duration": null
           },
           {
-            "condition": "Enemy war machine with highest ATK",
-            "target": "1 enemy war machine",
+            "condition": "Enemy siege weapon with highest ATK",
+            "target": "1 enemy siege weapon",
             "effect": "180% Damage",
             "duration": null
           }
@@ -610,7 +610,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Ally war machines",
+            "target": "Ally siege weapons",
             "effect": "DEF Up 30%",
             "duration": null
           }
@@ -848,7 +848,7 @@
     "name_en": "Kyou",
     "name_jp": "摎",
     "country": "qin",
-    "unit": "Ouki Forces",
+    "unit": "Ouki Army",
     "rarity": "UR",
     "skills": [
       {
@@ -923,7 +923,7 @@
     "name_en": "Raido",
     "name_jp": "雷土",
     "country": "qin",
-    "unit": "Kanki Forces",
+    "unit": "Kanki Army",
     "rarity": "UR",
     "skills": [
       {
@@ -1009,7 +1009,7 @@
           },
           {
             "condition": "When Attacking",
-            "target": "Ally Kanki Forces",
+            "target": "Ally Kanki Army",
             "effect": "Hit Rate Up 25％",
             "duration": null
           },
@@ -1125,8 +1125,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
-            "target": "War machine repair",
+            "condition": "When repairing CW siege weapons",
+            "target": "Siege weapon repair",
             "effect": "Currency Cost Down 2.8%",
             "duration": null
           }
@@ -1138,8 +1138,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
-            "target": "War machine repair",
+            "condition": "When repairing CW siege weapons",
+            "target": "Siege weapon repair",
             "effect": "Material Cost Down 5.5%",
             "duration": null
           }
@@ -1187,7 +1187,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Ouki Forces other than self",
+            "target": "Ally Ouki Army other than self",
             "effect": "ATK Up 15%",
             "duration": null
           }
@@ -1293,7 +1293,7 @@
           },
           {
             "condition": null,
-            "target": "Ally \"Ouki\" and Ouki Forces",
+            "target": "Ally \"Ouki\" and Ouki Army",
             "effect": "ATK Up 30%, DEF Up 30%",
             "duration": "4 turns"
           },
@@ -1324,7 +1324,7 @@
           },
           {
             "condition": "Alive",
-            "target": "Surviving ally \"Ouki\" and Ouki Forces other than self",
+            "target": "Surviving ally \"Ouki\" and Ouki Army other than self",
             "effect": "HP Recovery 10%, Morale Recovery 5%",
             "duration": null
           }
@@ -1393,14 +1393,14 @@
         ]
       },
       {
-        "name_en": "DEF Enhancement – Large [Defense War Machines]",
+        "name_en": "DEF Enhancement – Large [Defense Siege Weapons]",
         "name_jp": "防御力強化・大【防衛兵器】",
         "type": "Internal Affairs",
         "star6": false,
         "effects": [
           {
             "condition": "CW battle (effective even if not deployed)",
-            "target": "Ally Defense War Machines",
+            "target": "Ally Defense Siege Weapons",
             "effect": "DEF Up 2.8%",
             "duration": null
           }
@@ -1413,9 +1413,9 @@
         "star6": false,
         "effects": [
           {
-            "condition": "When repairing CW war machines",
-            "target": "War machine repair",
-            "effect": "War machine repair Coin Consumption Down 7.4％",
+            "condition": "When repairing CW siege weapons",
+            "target": "Siege weapon repair",
+            "effect": "Siege weapon repair Coin Consumption Down 7.4％",
             "duration": null
           }
         ]

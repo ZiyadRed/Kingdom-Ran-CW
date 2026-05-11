@@ -66,7 +66,7 @@
     "name_en": "Shunsuiju",
     "name_jp": "舜水樹",
     "country": "zhao",
-    "unit": "Riboku Forces",
+    "unit": "Riboku Army",
     "rarity": "SR",
     "skills": [
       {
@@ -227,7 +227,7 @@
     "name_en": "Duke Sei",
     "name_jp": "青公",
     "country": "zhao",
-    "unit": "Kisei Forces",
+    "unit": "Kisei Army",
     "rarity": "SR",
     "skills": [
       {
@@ -237,7 +237,7 @@
         "effects": [
           {
             "condition": "Per attack by other ally general",
-            "target": "Ally Kisei Forces",
+            "target": "Ally Kisei Army",
             "effect": "ATK Up 2% (max 30%)",
             "duration": "3 turns"
           },
@@ -275,24 +275,24 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Kisei Forces",
+            "target": "Ally Kisei Army",
             "effect": "Status Effect Immunity (excl. Provoke)",
             "duration": "2 times"
           },
           {
             "condition": "When ally Kisei is alive",
-            "target": "Ally Kisei Forces",
+            "target": "Ally Kisei Army",
             "effect": "Critical Rate Up 10%",
             "duration": null
           },
           {
             "condition": "When ally Kishou is alive",
-            "target": "Ally Kisei Forces",
+            "target": "Ally Kisei Army",
             "effect": "Critical Damage Up 10%",
             "duration": null
           },
           {
-            "condition": "When enemy Kanki Forces are alive",
+            "condition": "When enemy Kanki Army are alive",
             "target": "All enemy generals",
             "effect": "Evasion Rate Down 50%",
             "duration": null
@@ -660,7 +660,7 @@
     "name_en": "Kisui",
     "name_jp": "紀彗",
     "country": "zhao",
-    "unit": "Kisei Forces / Rigan",
+    "unit": "Kisei Army / Rigan",
     "rarity": "UR",
     "skills": [
       {
@@ -855,9 +855,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Coin Consumption Down 3.2％",
+            "effect": "Siege weapon repair Coin Consumption Down 3.2％",
             "duration": null
           }
         ]
@@ -906,26 +906,26 @@
         ]
       },
       {
-        "name_en": "HP Enhancement – Large [Attack War Machines]",
+        "name_en": "HP Enhancement – Large [Attack Siege Weapons]",
         "name_jp": "体力強化・大【攻撃兵器】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally attack war machines",
+            "target": "Ally attack siege weapons",
             "effect": "Max HP Up 12.3％",
             "duration": null
           }
         ]
       },
       {
-        "name_en": "HP Enhancement – Large Improved [Defense War Machines]",
+        "name_en": "HP Enhancement – Large Improved [Defense Siege Weapons]",
         "name_jp": "体力強化・大改【防衛兵器】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even if not deployed)",
-            "target": "Ally defense war machines",
+            "target": "Ally defense siege weapons",
             "effect": "Max HP Up 28.3％",
             "duration": null
           }

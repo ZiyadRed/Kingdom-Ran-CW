@@ -5,7 +5,7 @@
     "name_jp": "麃公",
     "country": "qin",
     "rarity": "UR",
-    "notes": "Core buff target referenced by Gakurai and other Hi Shin Unit / Hyoukou Forces members.",
+    "notes": "Core buff target referenced by Gakurai and other Hi Shin Unit / Hyoukou Army members.",
     "image": "/persos/dukehyou.webp",
     "skills": [
       {
@@ -162,8 +162,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
-            "target": "War machine repair",
+            "condition": "When repairing CW siege weapons",
+            "target": "Siege weapon repair",
             "effect": "Material Cost Down 2.7%",
             "duration": null
           }
@@ -218,8 +218,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
-            "target": "War machine repair",
+            "condition": "When repairing CW siege weapons",
+            "target": "Siege weapon repair",
             "effect": "Material Cost Down 2.7%",
             "duration": null
           }
@@ -280,21 +280,21 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
-            "target": "War machine repair",
+            "condition": "When repairing CW siege weapons",
+            "target": "Siege weapon repair",
             "effect": "Ore Cost Down 2.4%",
             "duration": null
           }
         ]
       },
       {
-        "name_en": "ATK Enhancement – Medium Improved [Defense War Machines]",
+        "name_en": "ATK Enhancement – Medium Improved [Defense Siege Weapons]",
         "name_jp": "攻撃力強化・中改【防衛兵器】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally defense war machines",
+            "target": "Ally defense siege weapons",
             "effect": "ATK Up 5.8%",
             "duration": null
           }
@@ -391,21 +391,21 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
-            "target": "War machine repair",
+            "condition": "When repairing CW siege weapons",
+            "target": "Siege weapon repair",
             "effect": "Repair Speed Up 2%",
             "duration": null
           }
         ]
       },
       {
-        "name_en": "HP Enhancement – Medium Improved [Defense War Machines]",
+        "name_en": "HP Enhancement – Medium Improved [Defense Siege Weapons]",
         "name_jp": "体力強化・中改【防衛兵器】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally defense war machines",
+            "target": "Ally defense siege weapons",
             "effect": "Max HP Up 24.8%",
             "duration": null
           }
@@ -488,21 +488,21 @@
             "duration": null
           },
           {
-            "condition": "Enemy war machine with lowest DEF",
-            "target": "1 enemy war machine",
+            "condition": "Enemy siege weapon with lowest DEF",
+            "target": "1 enemy siege weapon",
             "effect": "100% Damage",
             "duration": null
           }
         ]
       },
       {
-        "name_en": "HP Enhancement – Large [Defense War Machines]",
+        "name_en": "HP Enhancement – Large [Defense Siege Weapons]",
         "name_jp": "体力強化・大【防衛兵器】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally defense war machines",
+            "target": "Ally defense siege weapons",
             "effect": "Max HP Up 12.3%",
             "duration": null
           }
@@ -514,8 +514,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
-            "target": "War machine repair",
+            "condition": "When repairing CW siege weapons",
+            "target": "Siege weapon repair",
             "effect": "Material Cost Down 6.2%",
             "duration": null
           }
@@ -545,8 +545,8 @@
             "duration": null
           },
           {
-            "condition": "Enemy war machine with highest ATK",
-            "target": "1 enemy war machine",
+            "condition": "Enemy siege weapon with highest ATK",
+            "target": "1 enemy siege weapon",
             "effect": "100% Damage",
             "duration": null
           }
@@ -722,8 +722,8 @@
             "duration": null
           },
           {
-            "condition": "Enemy war machine with highest DEF",
-            "target": "1 enemy war machine",
+            "condition": "Enemy siege weapon with highest DEF",
+            "target": "1 enemy siege weapon",
             "effect": "100% Damage",
             "duration": null
           }
@@ -748,8 +748,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
-            "target": "War machine repair",
+            "condition": "When repairing CW siege weapons",
+            "target": "Siege weapon repair",
             "effect": "Ore Cost Down 5.5%",
             "duration": null
           }
@@ -779,8 +779,8 @@
             "duration": null
           },
           {
-            "condition": "Enemy war machine with lowest remaining HP",
-            "target": "1 enemy war machine",
+            "condition": "Enemy siege weapon with lowest remaining HP",
+            "target": "1 enemy siege weapon",
             "effect": "100% Damage",
             "duration": null
           }
@@ -910,9 +910,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Material Consumption Down 2.7％",
+            "effect": "Siege weapon repair Material Consumption Down 2.7％",
             "duration": null
           }
         ]
@@ -972,21 +972,21 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Ore Consumption Down 2.7％",
+            "effect": "Siege weapon repair Ore Consumption Down 2.7％",
             "duration": null
           }
         ]
       },
       {
-        "name_en": "ATK Enhancement – Large Improved [Attack War Machines]",
+        "name_en": "ATK Enhancement – Large Improved [Attack Siege Weapons]",
         "name_jp": "攻撃力強化・大改【攻撃兵器】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally attack war machines",
+            "target": "Ally attack siege weapons",
             "effect": "ATK Up 6.4％",
             "duration": null
           }
@@ -1425,9 +1425,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Coin Consumption Down 7.4％",
+            "effect": "Siege weapon repair Coin Consumption Down 7.4％",
             "duration": null
           }
         ]
@@ -1563,9 +1563,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Repair Speed Up 4.6％",
+            "effect": "Siege weapon repair Repair Speed Up 4.6％",
             "duration": null
           }
         ]
@@ -1593,8 +1593,8 @@
             "duration": null
           },
           {
-            "condition": "Enemy war machine with lowest remaining HP",
-            "target": "1 enemy war machine",
+            "condition": "Enemy siege weapon with lowest remaining HP",
+            "target": "1 enemy siege weapon",
             "effect": "100% Damage",
             "duration": null
           }
@@ -1614,13 +1614,13 @@
         ]
       },
       {
-        "name_en": "DEF Enhancement – Small Improved [Attack War Machines]",
+        "name_en": "DEF Enhancement – Small Improved [Attack Siege Weapons]",
         "name_jp": "防御力強化・小改【攻撃兵器】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally attack war machines",
+            "target": "Ally attack siege weapons",
             "effect": "DEF Up 4.8％",
             "duration": null
           }
@@ -1647,21 +1647,21 @@
             "duration": null
           },
           {
-            "condition": "Enemy war machine with lowest remaining HP",
-            "target": "1 enemy war machine",
+            "condition": "Enemy siege weapon with lowest remaining HP",
+            "target": "1 enemy siege weapon",
             "effect": "100% Damage",
             "duration": null
           }
         ]
       },
       {
-        "name_en": "ATK Enhancement – Large [Defense War Machines]",
+        "name_en": "ATK Enhancement – Large [Defense Siege Weapons]",
         "name_jp": "攻撃力強化・大【防衛兵器】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally defense war machines",
+            "target": "Ally defense siege weapons",
             "effect": "ATK Up 2.8％",
             "duration": null
           }
@@ -1673,9 +1673,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Ore Consumption Down 6.2％",
+            "effect": "Siege weapon repair Ore Consumption Down 6.2％",
             "duration": null
           }
         ]
@@ -1723,9 +1723,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Material Consumption Down 6.2％",
+            "effect": "Siege weapon repair Material Consumption Down 6.2％",
             "duration": null
           }
         ]
@@ -1753,8 +1753,8 @@
             "duration": null
           },
           {
-            "condition": "Enemy war machine with highest ATK",
-            "target": "1 enemy war machine",
+            "condition": "Enemy siege weapon with highest ATK",
+            "target": "1 enemy siege weapon",
             "effect": "100% Damage",
             "duration": null
           }
@@ -1779,9 +1779,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Coin Consumption Down 7.4％",
+            "effect": "Siege weapon repair Coin Consumption Down 7.4％",
             "duration": null
           }
         ]
@@ -1822,9 +1822,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Repair Speed Up 2.3％",
+            "effect": "Siege weapon repair Repair Speed Up 2.3％",
             "duration": null
           }
         ]
@@ -1886,13 +1886,13 @@
         ]
       },
       {
-        "name_en": "DEF Enhancement – Medium Improved [Attack War Machines]",
+        "name_en": "DEF Enhancement – Medium Improved [Attack Siege Weapons]",
         "name_jp": "防御力強化・中改【攻撃兵器】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally attack war machines",
+            "target": "Ally attack siege weapons",
             "effect": "DEF Up 5.8％",
             "duration": null
           }
@@ -1932,9 +1932,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Material Consumption Down 2.4％",
+            "effect": "Siege weapon repair Material Consumption Down 2.4％",
             "duration": null
           }
         ]
@@ -1945,9 +1945,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Ore Consumption Down 5.5％",
+            "effect": "Siege weapon repair Ore Consumption Down 5.5％",
             "duration": null
           }
         ]
@@ -1983,13 +1983,13 @@
         ]
       },
       {
-        "name_en": "HP Enhancement – Large [Defense War Machines]",
+        "name_en": "HP Enhancement – Large [Defense Siege Weapons]",
         "name_jp": "体力強化・大【防衛兵器】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally defense war machines",
+            "target": "Ally defense siege weapons",
             "effect": "Max HP Up 12.3％",
             "duration": null
           }
@@ -2044,21 +2044,21 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Ore Consumption Down 2.7％",
+            "effect": "Siege weapon repair Ore Consumption Down 2.7％",
             "duration": null
           }
         ]
       },
       {
-        "name_en": "HP Enhancement – Large Improved [Attack War Machines]",
+        "name_en": "HP Enhancement – Large Improved [Attack Siege Weapons]",
         "name_jp": "体力強化・大改【攻撃兵器】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even if not deployed)",
-            "target": "Ally attack war machines",
+            "target": "Ally attack siege weapons",
             "effect": "Max HP Up 28.3％",
             "duration": null
           }
@@ -2156,9 +2156,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Material Consumption Down 2％",
+            "effect": "Siege weapon repair Material Consumption Down 2％",
             "duration": null
           }
         ]
@@ -2169,9 +2169,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Ore Consumption Down 4.6％",
+            "effect": "Siege weapon repair Ore Consumption Down 4.6％",
             "duration": null
           }
         ]
@@ -2219,13 +2219,13 @@
         ]
       },
       {
-        "name_en": "DEF Enhancement – Medium Improved [Defense War Machines]",
+        "name_en": "DEF Enhancement – Medium Improved [Defense Siege Weapons]",
         "name_jp": "防御力強化・中改【防衛兵器】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally defense war machines",
+            "target": "Ally defense siege weapons",
             "effect": "DEF Up 5.8％",
             "duration": null
           }
@@ -2447,9 +2447,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Repair Speed Up 5.3％",
+            "effect": "Siege weapon repair Repair Speed Up 5.3％",
             "duration": null
           }
         ]
@@ -2546,21 +2546,21 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
+            "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "War machine repair Ore Consumption Down 2.4％",
+            "effect": "Siege weapon repair Ore Consumption Down 2.4％",
             "duration": null
           }
         ]
       },
       {
-        "name_en": "HP Enhancement – Medium Improved [Attack War Machines]",
+        "name_en": "HP Enhancement – Medium Improved [Attack Siege Weapons]",
         "name_jp": "体力強化・中改【攻撃兵器】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally attack war machines",
+            "target": "Ally attack siege weapons",
             "effect": "Max HP Up 24.8％",
             "duration": null
           }
@@ -2665,7 +2665,7 @@
           },
           {
             "condition": "When Attacking",
-            "target": "Ally Kanki Forces",
+            "target": "Ally Kanki Army",
             "effect": "Morale Consumption Reduction 30%",
             "duration": null
           }
@@ -2696,7 +2696,7 @@
           },
           {
             "condition": "When Attacking",
-            "target": "Ally Kanki Forces",
+            "target": "Ally Kanki Army",
             "effect": "Evasion (Dodge Chance) Up 20%",
             "duration": null
           },
@@ -2724,8 +2724,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Per other ally Kisui Forces",
-            "target": "Ally Kisui Forces",
+            "condition": "Per other ally Kisui Army",
+            "target": "Ally Kisui Army",
             "effect": "ATK Up 2% (max 30%)",
             "duration": null
           },
@@ -2763,24 +2763,24 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Kisui Forces",
+            "target": "Ally Kisui Army",
             "effect": "Status Abnormality Nullification (except Provoke)",
             "duration": null
           },
           {
             "condition": "Ally \"Kisui\" alive",
-            "target": "Ally Kisui Forces",
+            "target": "Ally Kisui Army",
             "effect": "Critical Rate Up 10%",
             "duration": null
           },
           {
             "condition": "Ally \"Kishou\" alive",
-            "target": "Ally Kisui Forces",
+            "target": "Ally Kisui Army",
             "effect": "Critical Damage Up 10%",
             "duration": null
           },
           {
-            "condition": "Enemy Kanki Forces alive",
+            "condition": "Enemy Kanki Army alive",
             "target": "All enemy generals",
             "effect": "Evasion (Dodge Chance) Down 50%",
             "duration": null

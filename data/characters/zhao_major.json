@@ -86,8 +86,8 @@
             "duration": null
           },
           {
-            "condition": "When Garrisoning, enemy war machine with lowest remaining HP",
-            "target": "1 enemy war machine",
+            "condition": "When Garrisoning, enemy siege weapon with lowest remaining HP",
+            "target": "1 enemy siege weapon",
             "effect": "180% Damage",
             "duration": null
           }
@@ -220,7 +220,7 @@
     "name_en": "Kaine",
     "name_jp": "カイネ",
     "country": "zhao",
-    "unit": "Riboku Forces",
+    "unit": "Riboku Army",
     "rarity": "SR",
     "skills": [
       {
@@ -317,13 +317,13 @@
         ]
       },
       {
-        "name_en": "HP Enhancement – Large [Attack War Machines]",
+        "name_en": "HP Enhancement – Large [Attack Siege Weapons]",
         "name_jp": "体力強化・大【攻撃兵器】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally attack war machines",
+            "target": "Ally attack siege weapons",
             "effect": "Max HP Up 12.3%",
             "duration": null
           }
@@ -466,8 +466,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
-            "target": "War machine repair",
+            "condition": "When repairing CW siege weapons",
+            "target": "Siege weapon repair",
             "effect": "Ore Cost Down 2%",
             "duration": null
           }
@@ -479,8 +479,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
-            "target": "War machine repair",
+            "condition": "When repairing CW siege weapons",
+            "target": "Siege weapon repair",
             "effect": "Material Cost Down 4.6%",
             "duration": null
           }

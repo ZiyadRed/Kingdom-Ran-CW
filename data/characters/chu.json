@@ -4,7 +4,7 @@
     "name_en": "Jinou",
     "name_jp": "仁凹",
     "country": "chu",
-    "unit": "Kanmei Forces",
+    "unit": "Kanmei Army",
     "rarity": "SR",
     "skills": [
       {
@@ -85,7 +85,7 @@
     "name_en": "Goumasho",
     "name_jp": "剛摩諸",
     "country": "chu",
-    "unit": "Kanmei Forces",
+    "unit": "Kanmei Army",
     "rarity": "SR",
     "skills": [
       {
@@ -100,8 +100,8 @@
             "duration": null
           },
           {
-            "condition": "When Garrisoning, enemy war machine with lowest remaining HP",
-            "target": "1 enemy war machine",
+            "condition": "When Garrisoning, enemy siege weapon with lowest remaining HP",
+            "target": "1 enemy siege weapon",
             "effect": "150% Damage",
             "duration": null
           }
@@ -168,8 +168,8 @@
             "duration": null
           },
           {
-            "condition": "When Garrisoning, enemy war machine with lowest remaining HP",
-            "target": "1 enemy war machine",
+            "condition": "When Garrisoning, enemy siege weapon with lowest remaining HP",
+            "target": "1 enemy siege weapon",
             "effect": "150% Damage",
             "duration": null
           }
@@ -184,7 +184,7 @@
     "name_en": "Beiman",
     "name_jp": "貝満",
     "country": "chu",
-    "unit": "Kanmei Forces",
+    "unit": "Kanmei Army",
     "rarity": "SR",
     "skills": [
       {
@@ -265,7 +265,7 @@
     "name_en": "Kaen",
     "name_jp": "媧偃",
     "country": "chu",
-    "unit": "Karin Forces",
+    "unit": "Karin Army",
     "rarity": "SR",
     "skills": [
       {
@@ -426,7 +426,7 @@
     "name_en": "Hakusui",
     "name_jp": "白翠",
     "country": "chu",
-    "unit": "Rinbukun Forces",
+    "unit": "Rinbukun Army",
     "rarity": "SR",
     "skills": [
       {
@@ -595,7 +595,7 @@
     "name_en": "Bananji",
     "name_jp": "馬南慈",
     "country": "zhao",
-    "unit": "Coalition Forces",
+    "unit": "Coalition Army",
     "rarity": "SR",
     "skills": [
       {

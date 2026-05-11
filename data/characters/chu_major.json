@@ -4,7 +4,7 @@
     "name_en": "Karin",
     "name_jp": "媧燐",
     "country": "chu",
-    "unit": "Karin Forces",
+    "unit": "Karin Army",
     "rarity": "UR",
     "skills": [
       {
@@ -105,7 +105,7 @@
     "name_en": "Kanmei",
     "name_jp": "汗明",
     "country": "chu",
-    "unit": "Kanmei Forces",
+    "unit": "Kanmei Army",
     "rarity": "UR",
     "skills": [
       {
@@ -173,19 +173,19 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Kanmei Forces",
+            "target": "Ally Kanmei Army",
             "effect": "Max HP Up 100％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Kanmei Forces",
+            "target": "Ally Kanmei Army",
             "effect": "ATK Up, DEF Up 30％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Kanmei Forces",
+            "target": "Ally Kanmei Army",
             "effect": "ATK Down Resistance 50％",
             "duration": null
           },
@@ -206,7 +206,7 @@
     "name_en": "Rinbukun",
     "name_jp": "臨武君",
     "country": "chu",
-    "unit": "Coalition Forces",
+    "unit": "Coalition Army",
     "rarity": "UR",
     "skills": [
       {
@@ -307,7 +307,7 @@
     "name_en": "Renpa",
     "name_jp": "廉頗",
     "country": "wei",
-    "unit": "Renpa Forces",
+    "unit": "Renpa Army",
     "rarity": "UR",
     "skills": [
       {
@@ -375,24 +375,24 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Renpa Forces",
+            "target": "Ally Renpa Army",
             "effect": "Max HP Up 100%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Renpa Forces",
+            "target": "Ally Renpa Army",
             "effect": "ATK Up 30%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Renpa Forces",
+            "target": "Ally Renpa Army",
             "effect": "DEF Up 30%",
             "duration": null
           },
           {
-            "condition": "Ally Renpa Forces (other than self) alive",
+            "condition": "Ally Renpa Army (other than self) alive",
             "target": "All ally generals",
             "effect": "Guard 60%",
             "duration": "2 times"
@@ -408,7 +408,7 @@
     "name_en": "Rinko",
     "name_jp": "輪虎",
     "country": "wei",
-    "unit": "Renpa Forces",
+    "unit": "Renpa Army",
     "rarity": "SR",
     "skills": [
       {
@@ -476,13 +476,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Renpa Forces",
+            "target": "Ally Renpa Army",
             "effect": "Evasion (Dodge Chance) 20%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Self and ally Renpa Forces",
+            "target": "Self and ally Renpa Army",
             "effect": "Critical Rate Up 20%",
             "duration": null
           },
@@ -503,7 +503,7 @@
     "name_en": "Hakurei",
     "name_jp": "白麗",
     "country": "chu",
-    "unit": "Rinbukun Forces",
+    "unit": "Rinbukun Army",
     "rarity": "SR",
     "skills": [
       {
@@ -578,7 +578,7 @@
     "name_en": "Kaishibou",
     "name_jp": "介子坊",
     "country": "wei",
-    "unit": "Renpa Forces",
+    "unit": "Renpa Army",
     "rarity": "SR",
     "skills": [
       {
@@ -633,26 +633,26 @@
         "star6": true,
         "effects": [
           {
-            "condition": "Per other ally Renpa Forces",
-            "target": "Ally Renpa Forces",
+            "condition": "Per other ally Renpa Army",
+            "target": "Ally Renpa Army",
             "effect": "ATK Up 10％",
             "duration": null
           },
           {
-            "condition": "Per other ally Renpa Forces",
-            "target": "Ally Renpa Forces",
+            "condition": "Per other ally Renpa Army",
+            "target": "Ally Renpa Army",
             "effect": "DEF Up 10％",
             "duration": null
           },
           {
             "condition": null,
             "target": "All enemy generals",
-            "effect": "Anti-Renpa Forces DEF Down 30％",
+            "effect": "Anti-Renpa Army DEF Down 30％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Renpa Forces",
+            "target": "Ally Renpa Army",
             "effect": "Betrayal Resistance 60％",
             "duration": null
           }
@@ -689,13 +689,13 @@
         ]
       },
       {
-        "name_en": "War Machine Development Talent",
+        "name_en": "Siege Weapon Development Talent",
         "name_jp": "兵器開発の才",
         "type": "Strategy",
         "effects": [
           {
             "condition": "Per ally infantry / per other ally archer general",
-            "target": "Self / ally attack war machines",
+            "target": "Self / ally attack siege weapons",
             "effect": "ATK Up 10%",
             "duration": null
           }
@@ -769,13 +769,13 @@
         "effects": [
           {
             "condition": "Per ally infantry general",
-            "target": "Ally war machines",
+            "target": "Ally siege weapons",
             "effect": "ATK Up 10%",
             "duration": null
           },
           {
             "condition": "When Garrisoning",
-            "target": "Ally war machines vs infantry",
+            "target": "Ally siege weapons vs infantry",
             "effect": "DEF Up 30%",
             "duration": null
           }
@@ -794,7 +794,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy cavalry / enemy war machines",
+            "target": "Enemy cavalry / enemy siege weapons",
             "effect": "ATK Down 20%",
             "duration": "3 turns"
           },

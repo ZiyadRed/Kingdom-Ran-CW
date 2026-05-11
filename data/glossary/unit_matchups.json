@@ -6,9 +6,9 @@
     { "strong": "Shield",  "weak": "Cavalry","icon_strong": "/icons/unit_shield.png",  "icon_weak": "/icons/unit_cavalry.png" }
   ],
   "mutual": {
-    "note": "Infantry and War Machines / Gates deal increased damage to each other.",
+    "note": "Infantry and Siege Weapons / Gates deal increased damage to each other.",
     "left": "Infantry",
-    "right": "War Machine / Gate",
+    "right": "Siege Weapon / Gate",
     "icon_left": "/icons/unit_infantry.png"
   }
 }

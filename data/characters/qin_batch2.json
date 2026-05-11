@@ -96,7 +96,7 @@
     "name_en": "Gakurai",
     "name_jp": "岳雷",
     "country": "qin",
-    "unit": "Hyoukou Forces / Hi Shin Unit",
+    "unit": "Hyoukou Army / Hi Shin Unit",
     "rarity": "SR",
     "skills": [
       {
@@ -444,8 +444,8 @@
             "duration": "2 times"
           },
           {
-            "condition": "When Garrisoning, enemy war machine with highest ATK",
-            "target": "1 enemy war machine",
+            "condition": "When Garrisoning, enemy siege weapon with highest ATK",
+            "target": "1 enemy siege weapon",
             "effect": "150% Damage",
             "duration": null
           },
@@ -457,7 +457,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Ally war machines vs enemy war machines",
+            "target": "Ally siege weapons vs enemy siege weapons",
             "effect": "ATK Up 40%",
             "duration": "3 turns"
           }
@@ -488,7 +488,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Ally war machines",
+            "target": "Ally siege weapons",
             "effect": "Guard 60%",
             "duration": "3 times"
           }
@@ -520,7 +520,7 @@
           },
           {
             "condition": "At the time of garrison",
-            "target": "Ally war machines",
+            "target": "Ally siege weapons",
             "effect": "ATK Up, DEF Up 50％",
             "duration": null
           },
@@ -549,8 +549,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy war machine with highest DEF",
-            "target": "2 enemy war machines",
+            "condition": "Enemy siege weapon with highest DEF",
+            "target": "2 enemy siege weapons",
             "effect": "100% Damage",
             "duration": null
           },
@@ -582,13 +582,13 @@
         "effects": [
           {
             "condition": "When Attacking",
-            "target": "Ally war machines",
+            "target": "Ally siege weapons",
             "effect": "ATK Up 15%",
             "duration": null
           },
           {
             "condition": "When Attacking, per other ally Qin general",
-            "target": "Ally war machines",
+            "target": "Ally siege weapons",
             "effect": "ATK Up 5%",
             "duration": null
           }
@@ -603,7 +603,7 @@
     "name_en": "Kaioku",
     "name_jp": "介億",
     "country": "qin",
-    "unit": "Shouheikun Forces",
+    "unit": "Shouheikun Army",
     "rarity": "SR",
     "skills": [
       {
@@ -749,7 +749,7 @@
           },
           {
             "condition": "When Attacking, per ally Six Great General",
-            "target": "Enemy war machines",
+            "target": "Enemy siege weapons",
             "effect": "DEF Down 10%",
             "duration": "3 turns"
           }
@@ -1016,8 +1016,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW war machines",
-            "target": "War machine repair",
+            "condition": "When repairing CW siege weapons",
+            "target": "Siege weapon repair",
             "effect": "Material Cost Down 2.4%",
             "duration": null
           }
@@ -1103,7 +1103,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Ally war machines",
+            "target": "Ally siege weapons",
             "effect": "ATK Up 30%",
             "duration": null
           }
@@ -1214,21 +1214,21 @@
             "duration": null
           },
           {
-            "condition": "Enemy war machine with lowest remaining HP",
-            "target": "1 enemy war machine",
+            "condition": "Enemy siege weapon with lowest remaining HP",
+            "target": "1 enemy siege weapon",
             "effect": "100% Damage",
             "duration": null
           }
         ]
       },
       {
-        "name_en": "DEF Enhancement – Large Improved [Attack War Machines]",
+        "name_en": "DEF Enhancement – Large Improved [Attack Siege Weapons]",
         "name_jp": "防御力強化・大【攻撃兵器】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally attack war machines",
+            "target": "Ally attack siege weapons",
             "effect": "DEF Up 2.8%",
             "duration": null
           }
@@ -1271,21 +1271,21 @@
             "duration": null
           },
           {
-            "condition": "Enemy war machine with lowest DEF",
-            "target": "1 enemy war machine",
+            "condition": "Enemy siege weapon with lowest DEF",
+            "target": "1 enemy siege weapon",
             "effect": "100% Damage",
             "duration": null
           }
         ]
       },
       {
-        "name_en": "ATK Enhancement – Large [Defense War Machines]",
+        "name_en": "ATK Enhancement – Large [Defense Siege Weapons]",
         "name_jp": "攻撃力強化・大【防衛兵器】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally defense war machines",
+            "target": "Ally defense siege weapons",
             "effect": "ATK Up 2.8%",
             "duration": null
           }

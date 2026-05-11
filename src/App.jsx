@@ -33,16 +33,16 @@ const GROUPS={
   'Gyokuhou':           ['ouhon','kanjo','shotaku','kyukou'],
   'Six Great Generals': ['hakuki','ouki','mou','shimasaku','kosho','ohkotsu'],
   'Wei Fire Dragon':    ['ranbishaku','tairoji','reiou','gokei','gaimo','gofuumei','shihaku'],
-  'Renpa Forces':       ['renpa','rinka','genho','kyouen','kaishi_renmei'],
-  'Kanmei Forces':      ['kanmei','baiman','gomosho','jino','kyobou'],
-  'Karin Forces':       ['karin','kaen','gotoku','bamyuu','kouyoku','hakurei'],
-  'Ouki Forces':        ['ouki','tou'],
+  'Renpa Army':       ['renpa','rinka','genho','kyouen','kaishi_renmei'],
+  'Kanmei Army':      ['kanmei','baiman','gomosho','jino','kyobou'],
+  'Karin Army':       ['karin','kaen','gotoku','bamyuu','kouyoku','hakurei'],
+  'Ouki Army':        ['ouki','tou'],
   'Hi Shin Unit':       ['shin','naki','romin','garo','gakurai'],
-  'Kanki Forces':       ['kanki','naki','romin','zenou','raido','ogiko','maron','kokuou','bain','kakuun'],
-  'Kisui Forces':       ['kisei','batei','ryuto','seikou','kishou'],
-  'Kisei Forces':       ['kisei','batei','ryuto','seikou','kishou'],
-  'Ousen Forces':       ['akou','denrimi','kanjo','shotaku','kyukou','makou'],
-  'Coalition Forces':   ['karin','kanmei','riboku','houken','seika','rinbujun','gofuumei','mangoku'],
+  'Kanki Army':       ['kanki','naki','romin','zenou','raido','ogiko','maron','kokuou','bain','kakuun'],
+  'Kisui Army':       ['kisei','batei','ryuto','seikou','kishou'],
+  'Kisei Army':       ['kisei','batei','ryuto','seikou','kishou'],
+  'Ousen Army':       ['akou','denrimi','kanjo','shotaku','kyukou','makou'],
+  'Coalition Army':   ['karin','kanmei','riboku','houken','seika','rinbujun','gofuumei','mangoku'],
 }
 const UNIT_TYPES={
   // Cavalry
@@ -95,6 +95,18 @@ const UNIT_TYPES={
 const UNIT_COLOR={Infantry:'#7a7020',Cavalry:'#c0392b',Archer:'#27ae60',Shield:'#2471a3'}
 const UNIT_ICON_SRC={Infantry:'/icons/unit_infantry.png',Cavalry:'/icons/unit_cavalry.png',Archer:'/icons/unit_archer.png',Shield:'/icons/unit_shield.png'}
 
+// Extend GROUPS from each character's `unit` field so JSON data is the source of truth.
+// Any char with `"unit": "X Army"` is auto-added to GROUPS['X Army'] (creating it if absent).
+ALL.forEach(c=>{
+  if(!c.unit) return
+  const u=c.unit.trim()
+  if(!u) return
+  // Skip pure unit-type values (Infantry / Cavalry / etc.) — those aren't army groups
+  if(['Infantry','Cavalry','Archer','Shield'].includes(u)) return
+  if(!GROUPS[u]) GROUPS[u]=[]
+  if(!GROUPS[u].includes(c.id)) GROUPS[u].push(c.id)
+})
+
 // Fix .png icon refs → .webp, rename Shoka → Shouheikun, patch unit_type + groups
 ALL.forEach(c=>{
   if(c.icon) c.icon=c.icon.replace('.png','.webp')
@@ -134,9 +146,9 @@ const BUFF_CATS=[
   {id:'Infantry',           label:'Infantry',     svgColor:'#c9a84c',svgShape:'circle',  svgIcon:'⚔'},
   {id:'Archer',             label:'Archer',       svgColor:'#27ae60',svgShape:'pentagon',svgIcon:'🏹'},
   {id:'Shield',             label:'Shield',       svgColor:'#2471a3',svgShape:'shield',  svgIcon:'🛡'},
-  {id:'War Machine',        label:'War Machine',  svgColor:'#666',   svgShape:'none',    svgIcon:'⚙'},
-  {id:'Attack War Machine', label:'Atk W.M.',     svgColor:'#666',   svgShape:'none',    svgIcon:'💥'},
-  {id:'Defense War Machine',label:'Def W.M.',     svgColor:'#666',   svgShape:'none',    svgIcon:'🔩'},
+  {id:'Siege Weapon',        label:'Siege Weapon',  svgColor:'#666',   svgShape:'none',    svgIcon:'⚙'},
+  {id:'Attack Siege Weapon', label:'Atk S.W.',     svgColor:'#666',   svgShape:'none',    svgIcon:'💥'},
+  {id:'Defense Siege Weapon',label:'Def S.W.',     svgColor:'#666',   svgShape:'none',    svgIcon:'🔩'},
   {id:'Terrain',            label:'Terrain',      svgColor:'#666',   svgShape:'none',    svgIcon:'🗺'},
   {id:'CW Repair',          label:'Repair',       svgColor:'#666',   svgShape:'none',    svgIcon:'🔧'},
 ]
@@ -543,7 +555,7 @@ function inGroup(c,groupName){
 function isTargetedBy(target,G,owner,team){
   if(!target) return false
   const t=target.trim()
-  if(/^enemy|^1\s*enemy|^other\s+enemy|^war\s+machine|^ally\s+war|^gate|^\d+\s+enemy|^Enemy\s*\[/i.test(t)) return false
+  if(/^enemy|^1\s*enemy|^other\s+enemy|^siege\s+weapon|^ally\s+siege|^gate|^\d+\s+enemy|^Enemy\s*\[/i.test(t)) return false
   // "Self and/or ally X"
   const selfAnd=/^self(?:\s+and|\s*[\/,])\s*ally\s+(.+)/i.exec(t)
   if(selfAnd){if(G.id===owner.id) return true; return isTargetedBy('Ally '+selfAnd[1],G,owner,team)}
@@ -599,11 +611,15 @@ function isTargetedBy(target,G,owner,team){
 }
 function getMultiplier(cond,owner,team){
   if(!cond) return 1
-  const perM=/per\s+(?:other\s+)?ally\s+(.+?)\s+(?:member|general)/i.exec(cond)
+  // "Per (other) ally <Group> [member|general] [besides self]" — strip filler & match group
+  const perM=/per\s+(?:other\s+)?ally\s+(.+?)(?:\s+(?:member|general)s?)?(?:\s+besides\s+self)?$/i.exec(cond.trim())
   if(perM){
-    const gName=perM[1].trim()
+    let gName=perM[1].trim().replace(/\s+(?:member|general)s?$/i,'').trim()
+    // Match against GROUPS keys (army names like "Ousen Army", "Kanki Army", etc.)
     for(const [gn,ids] of Object.entries(GROUPS)){
-      if(gn.toLowerCase().includes(gName.toLowerCase())||gName.toLowerCase().includes(gn.toLowerCase().split(' ')[0])){
+      const gnLower=gn.toLowerCase()
+      const gNameLower=gName.toLowerCase()
+      if(gnLower===gNameLower||gnLower.includes(gNameLower)||gNameLower.includes(gnLower.split(' ')[0])){
         return team.filter(m=>ids.includes(m.id)&&m.id!==owner.id).length
       }
     }
