@@ -1873,6 +1873,9 @@ function BuffsPage(){
             const char=ALL.find(c=>c.name_en===e.name||c.name_en.toLowerCase()===e.name.toLowerCase())
             const fc=CC[e.faction]||'#888'
             const isTop=i<3
+            const unlockIcon=e.special_icon|| (e.value===5?'/icons/Shard.png':'/icons/Red_Crystal.png')
+            const unlockLabel=e.special_label|| (e.value===5?'Shard upgrade':'Red Crystal upgrade')
+            const unlockTitle=e.special_label|| (e.value===5?'Unlocked with Shards':'Unlocked with Red Crystals')
             return(
               <div key={e.name+i} style={{
                 display:'flex',alignItems:'center',gap:'14px',padding:'12px 16px',borderRadius:'14px',
@@ -1895,7 +1898,6 @@ function BuffsPage(){
                   <div style={{display:'flex',alignItems:'center',gap:'6px',flexWrap:'wrap',marginBottom:'3px'}}>
                     <span style={{fontWeight:700,fontSize:'.92rem',color:'var(--txt)'}}>{e.name}</span>
                     <span style={{fontSize:'.65rem',color:'var(--txt3)'}}>{e.name_jp}</span>
-                    {e.special_icon&&<img src={e.special_icon} alt={e.special_label||'Special condition'} title={e.special_label||'Special condition'} style={{width:20,height:20,objectFit:'contain'}}/>}
                     {e.star6&&<span style={{fontSize:'.65rem',color:'#c9902a',fontWeight:800}}>☆6</span>}
                   </div>
                   <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
@@ -1904,9 +1906,9 @@ function BuffsPage(){
                   </div>
                 </div>
                 <div style={{display:'flex',alignItems:'center',gap:'8px',flexShrink:0}}>
-                  <img src={e.value===5?'/icons/Shard.png':'/icons/Red_Crystal.png'}
-                    alt={e.value===5?'Shard upgrade':'Red Crystal upgrade'}
-                    title={e.value===5?'Unlocked with Shards':'Unlocked with Red Crystals'}
+                  <img src={unlockIcon}
+                    alt={unlockLabel}
+                    title={unlockTitle}
                     style={{width:20,height:20,objectFit:'contain'}}/>
                   <div style={{fontWeight:900,fontSize:'1.1rem',color:sc,minWidth:'52px',textAlign:'right'}}>+{e.value.toFixed(1)}%</div>
                 </div>
