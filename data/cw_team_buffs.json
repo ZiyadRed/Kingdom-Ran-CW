@@ -421,135 +421,9 @@
     "Gyokuhou Squad": {
       "HP": [
         {
-          "name": "Fuchi",
-          "name_jp": "渕",
-          "faction": "qin",
-          "type": "SR",
-          "value": 5.0
-        },
-        {
-          "name": "Roen",
-          "name_jp": "魯延",
-          "faction": "qin",
-          "type": "SR",
-          "value": 5.0
-        },
-        {
           "name": "Shoutaku",
           "name_jp": "松琢",
           "faction": "qin",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "ゴバ",
-          "name_jp": "ゴバ",
-          "faction": "qin",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "丁陽",
-          "name_jp": "丁陽",
-          "faction": "han",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "岳白公",
-          "name_jp": "岳白公",
-          "faction": "qin",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "干斗",
-          "name_jp": "干斗",
-          "faction": "han",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "平来",
-          "name_jp": "平来",
-          "faction": "han",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "惇告",
-          "name_jp": "惇告",
-          "faction": "han",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "惇角",
-          "name_jp": "惇角",
-          "faction": "han",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "昧広",
-          "name_jp": "昧広",
-          "faction": "han",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "来輝",
-          "name_jp": "来輝",
-          "faction": "qin",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "満羽",
-          "name_jp": "満羽",
-          "faction": "qin",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "羌礼",
-          "name_jp": "羌礼",
-          "faction": "han",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "羌識",
-          "name_jp": "羌識",
-          "faction": "qin",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "胡周",
-          "name_jp": "胡周",
-          "faction": "han",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "虎歴",
-          "name_jp": "虎歴",
-          "faction": "han",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "趙括",
-          "name_jp": "趙括",
-          "faction": "han",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "高順",
-          "name_jp": "高順",
-          "faction": "han",
           "type": "UR",
           "value": 5.0
         }
@@ -559,13 +433,6 @@
         {
           "name": "Kyuukou",
           "name_jp": "宮康",
-          "faction": "qin",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "郭隗",
-          "name_jp": "郭隗",
           "faction": "qin",
           "type": "UR",
           "value": 5.0
