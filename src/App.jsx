@@ -2190,6 +2190,7 @@ const GUIDE_SECTIONS=[
   {id:'matchups',     label:'Unit Matchups'},
   {id:'types',        label:'Skill Types'},
   {id:'interactions', label:'Effect Interactions'},
+  {id:'targeting',    label:'Targeting Rules'},
 ]
 
 function CWGuidePage(){
@@ -2222,6 +2223,7 @@ function CWGuidePage(){
       {active==='matchups' && <UnitMatchupsSection/>}
       {active==='types' && <SkillTypesSection/>}
       {active==='interactions' && <EffectInteractionsSection/>}
+      {active==='targeting' && <TargetingRulesSection/>}
     </div>
   )
 }
@@ -2334,6 +2336,80 @@ function EffectInteractionsSection(){
             </div>
           )
         })}
+      </div>
+    </div>
+  )
+}
+
+const TARGETING_RULES=[
+  {
+    title:'Skill Target Selection Priority',
+    body:'When a target has a special status effect, target selection follows this order:',
+    list:[
+      <>Status effect presence (e.g. <span style={{display:'inline-flex',alignItems:'center',gap:'.2rem',whiteSpace:'nowrap'}}><img src="/icons/status/provoke.png" alt="Provoke" style={{width:18,height:18}}/><b>Provocation</b></span>, <span style={{display:'inline-flex',alignItems:'center',gap:'.2rem',whiteSpace:'nowrap'}}><img src="/icons/status/confusion.png" alt="Confusion" style={{width:18,height:18}}/><b>Confusion</b></span>)</>,
+      <>The skill's specified priority (e.g. highest attack, lowest defense)</>,
+    ],
+  },
+  {
+    title:'Unmet Target Conditions',
+    body:'If a skill specifies a target that does not exist on the field (e.g. "enemy Qin general" when no Qin general is present), the effect simply fails to activate.',
+  },
+  {
+    title:'Random Targeting',
+    body:'Skills that target a "random enemy general" pick randomly with no restrictions, and ignore Provocation.',
+  },
+  {
+    title:'Provocation',
+    icon:'/icons/status/provoke.png',
+    bullets:[
+      'Concentrates incoming enemy damage attacks on the provoked unit.',
+      'Does not affect targeting of non-damage skills.',
+      'Does not stack — reapplying overwrites the existing state.',
+    ],
+  },
+  {
+    title:'Confusion',
+    icon:'/icons/status/confusion.png',
+    bullets:[
+      'The affected unit attacks both allies and enemies indiscriminately.',
+      'Uses skills if available, otherwise normal attacks.',
+      'If no allies remain alive, attacks enemies normally.',
+      'Does not stack — reapplying refreshes to the longer duration.',
+      'Cannot be applied to units already under Betrayal or Rampage (those take priority); however, Betrayal or Rampage applied to a Confused unit overwrites Confusion.',
+    ],
+  },
+]
+
+function TargetingRulesSection(){
+  return(
+    <div>
+      <p style={{fontSize:'.82rem',color:'var(--txt3)',textAlign:'center',marginBottom:'1.5rem'}}>
+        How skills choose their targets, and how status effects influence targeting.
+      </p>
+      <div style={{display:'flex',flexDirection:'column',gap:'1rem'}}>
+        {TARGETING_RULES.map((r,i)=>(
+          <div key={i} style={{
+            borderRadius:'12px',background:'var(--sur)',
+            border:'1px solid var(--bdr)',borderLeft:'3px solid #2980b9',
+            padding:'1rem',
+          }}>
+            <div style={{display:'flex',alignItems:'center',gap:'.5rem',marginBottom:'.4rem'}}>
+              {r.icon && <img src={r.icon} alt={r.title} style={{width:24,height:24}}/>}
+              <h3 style={{fontSize:'.95rem',fontWeight:800,color:'var(--txt)',margin:0}}>{r.title}</h3>
+            </div>
+            {r.body && <p style={{fontSize:'.82rem',color:'var(--txt2)',margin:'0 0 .5rem',lineHeight:1.5}}>{r.body}</p>}
+            {r.list &&(
+              <ol style={{margin:'.25rem 0 0 1.1rem',padding:0,fontSize:'.82rem',color:'var(--txt2)',lineHeight:1.6}}>
+                {r.list.map((item,j)=><li key={j} style={{marginBottom:'.2rem'}}>{item}</li>)}
+              </ol>
+            )}
+            {r.bullets &&(
+              <ul style={{margin:'.25rem 0 0 1.1rem',padding:0,fontSize:'.82rem',color:'var(--txt2)',lineHeight:1.6}}>
+                {r.bullets.map((b,j)=><li key={j} style={{marginBottom:'.2rem'}}>{b}</li>)}
+              </ul>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   )
