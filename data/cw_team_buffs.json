@@ -353,6 +353,15 @@
           "faction": "qin",
           "type": "UR",
           "value": 5.0
+        },
+        {
+          "name": "Toumi",
+          "name_jp": "東美",
+          "faction": "qin",
+          "type": "UR",
+          "value": 8.0,
+          "special_icon": "/icons/Toumi_Qin_HP.webp",
+          "special_label": "Special Qin HP condition"
         }
       ],
       "Attack": [

@@ -1895,6 +1895,7 @@ function BuffsPage(){
                   <div style={{display:'flex',alignItems:'center',gap:'6px',flexWrap:'wrap',marginBottom:'3px'}}>
                     <span style={{fontWeight:700,fontSize:'.92rem',color:'var(--txt)'}}>{e.name}</span>
                     <span style={{fontSize:'.65rem',color:'var(--txt3)'}}>{e.name_jp}</span>
+                    {e.special_icon&&<img src={e.special_icon} alt={e.special_label||'Special condition'} title={e.special_label||'Special condition'} style={{width:20,height:20,objectFit:'contain'}}/>}
                     {e.star6&&<span style={{fontSize:'.65rem',color:'#c9902a',fontWeight:800}}>☆6</span>}
                   </div>
                   <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
