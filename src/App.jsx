@@ -165,8 +165,8 @@ function UnitBadge({cat,size=28}){
   return <span>{bc.svgIcon}</span>
 }
 
-// ── Meta Teams data ───────────────────────────────────────────────────────────
-const META_TEAMS=[
+// ── Tier List data ────────────────────────────────────────────────────────────
+const TIER_TEAMS=[
   {tier:'S',color:'#c0392b',name:'Ouhon',     members:['Shoutaku','Ouhon','Kanjou','Gakuki']},
   {tier:'S',color:'#c0392b',name:'Archers',   members:['Keisha','Seikai','Hakurei','Queen Biki']},
   {tier:'S',color:'#c0392b',name:'Zhao',      members:['Shunsuiju','Houken','Shinseijou','Riboku']},
@@ -184,6 +184,30 @@ const META_TEAMS=[
   {tier:'C',color:'#3d6eb5',name:'Archer Garrison',members:['Rouai','Queen Biki','Seikai','Keisha']},
   {tier:'C',color:'#3d6eb5',name:'Rigan',     members:['Kisui','Kishou','Batei','Duke Sei']},
   {tier:'C',color:'#3d6eb5',name:'Kanki',     members:['Zenou','Raido','Kanki','Naki']},
+]
+
+// ── Builder preset teams ──────────────────────────────────────────────────────
+const META_TEAMS=[
+  {name:'Ouhon',          members:['Shoutaku','Ouhon','Kanjou','Gakuki']},
+  {name:'Archers',        members:['Keisha','Seikai','Hakurei','Queen Biki']},
+  {name:'Zhao',           members:['Shunsuiju','Houken','Shinseijou','Riboku']},
+  {name:'YTW',            members:['Katari','Yotanwa','Kitari','Ramauji']},
+  {name:'Renpa',          members:['Rinko','Tairoji','Renpa','Kouretsu']},
+  {name:'Ousen Army',     members:['Eiki','Makou','Akou','Ousen']},
+  {name:'Qin Shields',    members:['Hakuki','Akou','Ousen','Ei Sei']},
+  {name:'Hi Shin',        members:['Garo','Gakurai','Naki','Robin']},
+  {name:'Wei',            members:['Ranbihaku','Tairoji','Reiou','Gokei']},
+  {name:'Ai',             members:['Wategi','Budai','Hanoki','Hamui']},
+  {name:'6GG',            members:['Sho','Ouki','Tou','Kyou']},
+  {name:'Karin',          members:['Rien','Karin','Kaen','Goutoku']},
+  {name:'Chu',            members:['Kyoubou','Rinbukun','Kanmei','Shunshinkun']},
+  {name:'Han',            members:['Seikai','Chouin','Bakan','Nakon']},
+  {name:'Archer Garrison',members:['Rouai','Queen Biki','Seikai','Keisha']},
+  {name:'Rigan',          members:['Kisui','Kishou','Batei','Duke Sei']},
+  {name:'Kanki',          members:['Zenou','Raido','Kanki','Naki']},
+  {name:'YTW + Triplets', members:['Yotanwa','Toji','Fuji','Ramauji']},
+  {name:'Karin + Kanmei', members:['Kyoubou','Karin','Kanmei','Shunshinkun']},
+  {name:'Gyokuhou',       members:['Shoutaku','Ouhon','Kyuukou','Kanjou']},
 ]
 
 // Simulate
@@ -1286,10 +1310,10 @@ function SkillCard({skill}){
 // ── META TEAM CARD ────────────────────────────────────────────────────────────
 function MetaTeamCard({team,onLoad}){
   const chars=team.members.map(n=>ALL.find(c=>c.name_en===n||c.name_en.toLowerCase()===n.toLowerCase())).filter(Boolean)
+  const accent=team.color||CC[chars[0]?.country]||'var(--terra)'
   return(
-    <div className="meta-card" style={{borderTopColor:team.color}}>
+    <div className="meta-card" style={{borderTopColor:accent}}>
       <div className="meta-card-head">
-        <span className="meta-tier-badge" style={{background:team.color}}>{team.tier}</span>
         <span className="meta-name">{team.name}</span>
       </div>
       <div className="meta-members">
@@ -2019,7 +2043,7 @@ function TierPage(){
       <div className="tier-list">
         {['S','A','B','C'].map(tier=>{
           const {color,def}=TIER_DEFS[tier]
-          const teams=META_TEAMS.filter(t=>t.tier===tier)
+          const teams=TIER_TEAMS.filter(t=>t.tier===tier)
           return(
             <div key={tier} className="tier-section">
               <div className="tier-section-head">
