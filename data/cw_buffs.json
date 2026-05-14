@@ -540,6 +540,14 @@
         "value": 5.0
       },
       {
+        "name": "Eiki",
+        "name_jp": "英紀",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0
+      },
+      {
         "name": "Rankai",
         "name_jp": "ランカイ",
         "faction": "mountain_folk",
@@ -618,6 +626,14 @@
         "name_jp": "春平君",
         "faction": "zhao",
         "type": "UR",
+        "star6": false,
+        "value": 5.0
+      },
+      {
+        "name": "Eiki",
+        "name_jp": "英紀",
+        "faction": "qin",
+        "type": "SR",
         "star6": false,
         "value": 5.0
       },
