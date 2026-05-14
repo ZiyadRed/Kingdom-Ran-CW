@@ -1947,11 +1947,35 @@ function BuffsPage(){
         })}
       </div>
 
-      {renderDetails()}
-      {!activeKey&&(
-        <div style={{textAlign:'center',padding:'3rem 1rem',color:'var(--txt3)'}}>
-          <div style={{fontSize:'3rem',opacity:.15,marginBottom:'1rem'}}>⚔</div>
-          <div style={{fontSize:'.9rem'}}>Select a category above to see CW buffs</div>
+      <div style={{textAlign:'center',padding:'2.5rem 1rem',color:'var(--txt3)'}}>
+        <div style={{fontSize:'2rem',opacity:.15,marginBottom:'.6rem'}}>⚔</div>
+        <div style={{fontSize:'.85rem'}}>Tap any category above to see its CW buffs</div>
+      </div>
+      {activeKey&&(
+        <div className="overlay" onClick={()=>{setActiveKind(null);setActiveKey(null)}}>
+          <div onClick={e=>e.stopPropagation()} style={{
+            background:'var(--sur)',borderRadius:'18px',width:'min(720px,94vw)',maxHeight:'88vh',
+            display:'flex',flexDirection:'column',overflow:'hidden',
+            boxShadow:'0 24px 70px rgba(0,0,0,.35)',border:'1px solid var(--bdr)'
+          }}>
+            <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'14px 18px',borderBottom:'1px solid var(--bdr)',background:'var(--bg2)'}}>
+              <div style={{display:'flex',alignItems:'center',gap:'12px'}}>
+                {activeKind==='unit'
+                  ?<UnitCatIcon cat={activeKey} size={32}/>
+                  :activeKind==='state'
+                    ?<StateBadge id={STATE_FACTION_ID[activeKey]} size={32}/>
+                    :<ArmyBadge name={activeKey} size={32}/>}
+                <div>
+                  <div style={{fontWeight:800,fontSize:'.95rem',color:'var(--txt)'}}>{activeKey}</div>
+                  <div style={{fontSize:'.66rem',color:'var(--txt3)',textTransform:'uppercase',letterSpacing:'.05em'}}>{activeKind==='unit'?'Unit Type':activeKind==='state'?'State':'Special Unit'}</div>
+                </div>
+              </div>
+              <button className="x-btn" onClick={()=>{setActiveKind(null);setActiveKey(null)}}>✕</button>
+            </div>
+            <div style={{padding:'18px',overflowY:'auto'}}>
+              {renderDetails()}
+            </div>
+          </div>
         </div>
       )}
     </div>
