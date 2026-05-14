@@ -1,75 +1,5 @@
 {
   "states": {
-    "Chu": {
-      "HP": [],
-      "Attack": [
-        {
-          "name": "Bamyu",
-          "name_jp": "バミュウ",
-          "faction": "chu",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "Goumasho",
-          "name_jp": "剛摩諸",
-          "faction": "chu",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "Goutoku",
-          "name_jp": "豪徳",
-          "faction": "chu",
-          "type": "SSR",
-          "value": 5.0
-        },
-        {
-          "name": "Jinou",
-          "name_jp": "仁凹",
-          "faction": "chu",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "Kaen",
-          "name_jp": "媧偃",
-          "faction": "chu",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "Kyoubou",
-          "name_jp": "巨暴",
-          "faction": "chu",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "Rinbukun",
-          "name_jp": "臨武君",
-          "faction": "chu",
-          "type": "UR",
-          "value": 5.0
-        },
-        {
-          "name": "Shunshinkun",
-          "name_jp": "春申君",
-          "faction": "chu",
-          "type": "UR",
-          "value": 5.0
-        }
-      ],
-      "Defense": [
-        {
-          "name": "Rokin",
-          "name_jp": "魯近",
-          "faction": "chu",
-          "type": "SSR",
-          "value": 5.0
-        }
-      ]
-    },
     "Zhao": {
       "HP": [
         {
@@ -115,27 +45,6 @@
           "name": "Shunpeikun",
           "name_jp": "春平君",
           "faction": "zhao",
-          "type": "UR",
-          "value": 5.0
-        }
-      ]
-    },
-    "Han": {
-      "HP": [],
-      "Attack": [
-        {
-          "name": "Chouin",
-          "name_jp": "張印",
-          "faction": "han",
-          "type": "UR",
-          "value": 5.0
-        }
-      ],
-      "Defense": [
-        {
-          "name": "Chouin",
-          "name_jp": "張印",
-          "faction": "han",
           "type": "UR",
           "value": 5.0
         }
@@ -227,6 +136,97 @@
           "name": "Budai",
           "name_jp": "ブダイ",
           "faction": "ai",
+          "type": "UR",
+          "value": 5.0
+        }
+      ]
+    },
+    "Chu": {
+      "HP": [],
+      "Attack": [
+        {
+          "name": "Bamyu",
+          "name_jp": "バミュウ",
+          "faction": "chu",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Goumasho",
+          "name_jp": "剛摩諸",
+          "faction": "chu",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Goutoku",
+          "name_jp": "豪徳",
+          "faction": "chu",
+          "type": "SSR",
+          "value": 5.0
+        },
+        {
+          "name": "Jinou",
+          "name_jp": "仁凹",
+          "faction": "chu",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Kaen",
+          "name_jp": "媧偃",
+          "faction": "chu",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Kyoubou",
+          "name_jp": "巨暴",
+          "faction": "chu",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Rinbukun",
+          "name_jp": "臨武君",
+          "faction": "chu",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Shunshinkun",
+          "name_jp": "春申君",
+          "faction": "chu",
+          "type": "UR",
+          "value": 5.0
+        }
+      ],
+      "Defense": [
+        {
+          "name": "Rokin",
+          "name_jp": "魯近",
+          "faction": "chu",
+          "type": "SSR",
+          "value": 5.0
+        }
+      ]
+    },
+    "Han": {
+      "HP": [],
+      "Attack": [
+        {
+          "name": "Chouin",
+          "name_jp": "張印",
+          "faction": "han",
+          "type": "UR",
+          "value": 5.0
+        }
+      ],
+      "Defense": [
+        {
+          "name": "Chouin",
+          "name_jp": "張印",
+          "faction": "han",
           "type": "UR",
           "value": 5.0
         }
@@ -443,6 +443,26 @@
           "value": 5.0
         }
       ]
+    },
+    "Ouki Army": {
+      "HP": [],
+      "Attack": [
+        {
+          "name": "Doukin",
+          "name_jp": "同金",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Ouki",
+          "name_jp": "王騎",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        }
+      ],
+      "Defense": []
     },
     "Gakuka Unit": {
       "HP": [],
