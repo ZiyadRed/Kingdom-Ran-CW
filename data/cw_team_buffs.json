@@ -80,6 +80,13 @@
           "faction": "mountain_folk",
           "type": "UR",
           "value": 5.0
+        },
+        {
+          "name": "Yotanwa",
+          "name_jp": "楊端和",
+          "faction": "mountain_folk",
+          "type": "UR",
+          "value": 5.0
         }
       ],
       "Defense": [
@@ -117,16 +124,16 @@
           "value": 5.0
         },
         {
-          "name": "Wategi",
-          "name_jp": "戎翟公",
-          "faction": "ai",
+          "name": "Queen Biki",
+          "name_jp": "太后",
+          "faction": "qin",
           "type": "UR",
           "value": 5.0
         },
         {
-          "name": "Queen Biki",
-          "name_jp": "太后",
-          "faction": "qin",
+          "name": "Wategi",
+          "name_jp": "戎翟公",
+          "faction": "ai",
           "type": "UR",
           "value": 5.0
         }
@@ -137,6 +144,13 @@
           "name_jp": "ブダイ",
           "faction": "ai",
           "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Hanoki",
+          "name_jp": "樊於期",
+          "faction": "ai",
+          "type": "SR",
           "value": 5.0
         }
       ]
@@ -180,6 +194,13 @@
           "value": 5.0
         },
         {
+          "name": "Kouretsu",
+          "name_jp": "考烈王",
+          "faction": "chu",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
           "name": "Kyoubou",
           "name_jp": "巨暴",
           "faction": "chu",
@@ -203,10 +224,38 @@
       ],
       "Defense": [
         {
+          "name": "Beiman",
+          "name_jp": "貝満",
+          "faction": "chu",
+          "type": "SR",
+          "value": 5.0
+        },
+        {
+          "name": "Hakusui",
+          "name_jp": "白翠",
+          "faction": "chu",
+          "type": "SR",
+          "value": 5.0
+        },
+        {
+          "name": "Rien",
+          "name_jp": "李園",
+          "faction": "chu",
+          "type": "SR",
+          "value": 5.0
+        },
+        {
           "name": "Rokin",
           "name_jp": "魯近",
           "faction": "chu",
           "type": "SSR",
+          "value": 5.0
+        },
+        {
+          "name": "Shunshinkun",
+          "name_jp": "春申君",
+          "faction": "chu",
+          "type": "UR",
           "value": 5.0
         }
       ]
@@ -217,6 +266,13 @@
         {
           "name": "Chouin",
           "name_jp": "張印",
+          "faction": "han",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Seikai",
+          "name_jp": "成恢",
           "faction": "han",
           "type": "UR",
           "value": 5.0
@@ -240,12 +296,33 @@
           "faction": "wei",
           "type": "UR",
           "value": 5.0
+        },
+        {
+          "name": "Ranbihaku",
+          "name_jp": "乱美迫",
+          "faction": "wei",
+          "type": "UR",
+          "value": 5.0
         }
       ],
       "Attack": [
         {
           "name": "Keibin",
           "name_jp": "景湣王",
+          "faction": "wei",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Reiou",
+          "name_jp": "霊凰",
+          "faction": "wei",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Tairoji",
+          "name_jp": "太呂慈",
           "faction": "wei",
           "type": "UR",
           "value": 5.0
@@ -278,7 +355,29 @@
           "value": 5.0
         }
       ],
-      "Attack": [],
+      "Attack": [
+        {
+          "name": "Gakurai",
+          "name_jp": "岳雷",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Oukotsu",
+          "name_jp": "王齕",
+          "faction": "qin",
+          "type": "SR",
+          "value": 5.0
+        },
+        {
+          "name": "Rikusen",
+          "name_jp": "陸仙",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        }
+      ],
       "Defense": [
         {
           "name": "Kakuun",
@@ -322,9 +421,135 @@
     "Gyokuhou Squad": {
       "HP": [
         {
+          "name": "Fuchi",
+          "name_jp": "渕",
+          "faction": "qin",
+          "type": "SR",
+          "value": 5.0
+        },
+        {
+          "name": "Roen",
+          "name_jp": "魯延",
+          "faction": "qin",
+          "type": "SR",
+          "value": 5.0
+        },
+        {
           "name": "Shoutaku",
           "name_jp": "松琢",
           "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "ゴバ",
+          "name_jp": "ゴバ",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "丁陽",
+          "name_jp": "丁陽",
+          "faction": "han",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "岳白公",
+          "name_jp": "岳白公",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "干斗",
+          "name_jp": "干斗",
+          "faction": "han",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "平来",
+          "name_jp": "平来",
+          "faction": "han",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "惇告",
+          "name_jp": "惇告",
+          "faction": "han",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "惇角",
+          "name_jp": "惇角",
+          "faction": "han",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "昧広",
+          "name_jp": "昧広",
+          "faction": "han",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "来輝",
+          "name_jp": "来輝",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "満羽",
+          "name_jp": "満羽",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "羌礼",
+          "name_jp": "羌礼",
+          "faction": "han",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "羌識",
+          "name_jp": "羌識",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "胡周",
+          "name_jp": "胡周",
+          "faction": "han",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "虎歴",
+          "name_jp": "虎歴",
+          "faction": "han",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "趙括",
+          "name_jp": "趙括",
+          "faction": "han",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "高順",
+          "name_jp": "高順",
+          "faction": "han",
           "type": "UR",
           "value": 5.0
         }
@@ -334,6 +559,13 @@
         {
           "name": "Kyuukou",
           "name_jp": "宮康",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "郭隗",
+          "name_jp": "郭隗",
           "faction": "qin",
           "type": "UR",
           "value": 5.0
@@ -348,10 +580,60 @@
           "faction": "qin",
           "type": "UR",
           "value": 5.0
+        },
+        {
+          "name": "Toumi",
+          "name_jp": "東美",
+          "faction": "qin",
+          "type": "NR",
+          "value": 5.0
         }
       ],
-      "Attack": [],
+      "Attack": [
+        {
+          "name": "Gakurai",
+          "name_jp": "岳雷",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Garo",
+          "name_jp": "我呂",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Ryuusen",
+          "name_jp": "竜川",
+          "faction": "qin",
+          "type": "SR",
+          "value": 5.0
+        },
+        {
+          "name": "Seki",
+          "name_jp": "石",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Suirou",
+          "name_jp": "崇原",
+          "faction": "qin",
+          "type": "NR",
+          "value": 5.0
+        }
+      ],
       "Defense": [
+        {
+          "name": "Denei",
+          "name_jp": "田永",
+          "faction": "qin",
+          "type": "SR",
+          "value": 5.0
+        },
         {
           "name": "Gakurai",
           "name_jp": "岳雷",
@@ -383,6 +665,13 @@
           "name_jp": "馬印",
           "faction": "qin",
           "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Naki",
+          "name_jp": "那貴",
+          "faction": "qin",
+          "type": "SR",
           "value": 5.0
         }
       ],
@@ -441,11 +730,26 @@
           "faction": "qin",
           "type": "SSR",
           "value": 5.0
+        },
+        {
+          "name": "Ousen",
+          "name_jp": "王翦",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
         }
       ]
     },
     "Ouki Army": {
-      "HP": [],
+      "HP": [
+        {
+          "name": "Kanou",
+          "name_jp": "干央",
+          "faction": "qin",
+          "type": "SR",
+          "value": 5.0
+        }
+      ],
       "Attack": [
         {
           "name": "Doukin",
@@ -460,13 +764,28 @@
           "faction": "qin",
           "type": "UR",
           "value": 5.0
+        },
+        {
+          "name": "Tou",
+          "name_jp": "騰",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
         }
       ],
       "Defense": []
     },
     "Gakuka Unit": {
       "HP": [],
-      "Attack": [],
+      "Attack": [
+        {
+          "name": "Rikusen",
+          "name_jp": "陸仙",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        }
+      ],
       "Defense": [
         {
           "name": "Rikusen",
@@ -488,8 +807,22 @@
           "value": 5.0
         },
         {
+          "name": "Kyou",
+          "name_jp": "摎",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
           "name": "Shibasaku",
           "name_jp": "司馬錯",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Sho",
+          "name_jp": "昭王",
           "faction": "qin",
           "type": "UR",
           "value": 5.0
