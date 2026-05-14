@@ -704,7 +704,7 @@
   },
   {
     "id": "suirou",
-    "name_en": "Suirou",
+    "name_en": "Suugen",
     "name_jp": "崇原",
     "country": "qin",
     "unit": "Hi Shin Unit",
@@ -757,7 +757,7 @@
       }
     ],
     "image": "/persos/suugen.webp",
-    "icon": "/icons/Suirou.webp"
+    "icon": "/icons/Suugen.webp"
   },
   {
     "id": "obira",

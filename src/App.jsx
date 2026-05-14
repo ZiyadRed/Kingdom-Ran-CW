@@ -975,7 +975,7 @@ const RARITY_DATA={
   'Shunsuiju':{rarity:'UR',faction:'Zhao',name_jp:'舜水樹'},
   'Sosui':{rarity:'SR',faction:'Qin',name_jp:'楚水'},
   'Sougen':{rarity:'UR',faction:'Qin',name_jp:'蒼源'},
-  'Suirou':{rarity:'SR',faction:'Qin',name_jp:'崇原'},
+  'Suugen':{rarity:'SR',faction:'Qin',name_jp:'崇原'},
   'Taijifu':{rarity:'SR',faction:'Mountain Folk',name_jp:'タジフ'},
   'Tairoji':{rarity:'UR',faction:'Wei',name_jp:'太呂慈'},
   'Takukei':{rarity:'SR',faction:'Qin',name_jp:'澤圭'},
