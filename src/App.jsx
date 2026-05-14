@@ -1754,6 +1754,7 @@ const BUFF_STATES = ['Qin','Zhao','Wei','Chu','Han','Ai','Mountain Folk']
 const STATE_FACTION_ID = {Qin:'qin',Zhao:'zhao',Wei:'wei',Chu:'chu',Han:'han',Ai:'ai','Mountain Folk':'mountain_folk'}
 const BUFF_ARMIES = ['Gyokuhou Squad','Hishin Unit','Kanki Army','Karin Army','Ousen Army','Ouki Army','Gakuka Unit','Six Great Generals']
 const ARMY_PARENT_STATE = {'Gyokuhou Squad':'qin','Hishin Unit':'qin','Kanki Army':'qin','Karin Army':'chu','Ousen Army':'qin','Ouki Army':'qin','Gakuka Unit':'qin','Six Great Generals':'qin'}
+const ARMY_ICON_CHAR = {'Gyokuhou Squad':'Ouhon','Hishin Unit':'Shin','Kanki Army':'Kanki','Karin Army':'Karin','Ousen Army':'Ousen','Ouki Army':'Ouki','Gakuka Unit':'Mouten','Six Great Generals':'Sho'}
 
 const UNIT_ICON_SCALE={Infantry:1.18,Cavalry:1.18,Archer:1,Shield:1}
 function UnitCatIcon({cat,size=80}){
@@ -1809,6 +1810,10 @@ function BuffsPage(){
   }
   const ArmyBadge=({name,size=72})=>{
     const c=CC[ARMY_PARENT_STATE[name]]||'#888'
+    const leaderName=ARMY_ICON_CHAR[name]
+    const leader=leaderName&&ALL.find(ch=>ch.name_en===leaderName)
+    if(leader)
+      return <div style={{width:size,height:size,borderRadius:'50%',overflow:'hidden',border:`2.5px solid ${c}`,background:c+'18',flexShrink:0}}><CharIcon c={leader} size={size} round={true}/></div>
     return(
       <div style={{width:size,height:size,borderRadius:'14px',background:`linear-gradient(135deg,${c}30,${c}10)`,border:`2px solid ${c}`,display:'flex',alignItems:'center',justifyContent:'center',color:c,fontWeight:900,fontSize:size*.28+'px',textAlign:'center',lineHeight:'1.05',padding:'4px'}}>{name.split(' ').map(w=>w[0]).join('')}</div>
     )
@@ -1897,8 +1902,12 @@ function BuffsPage(){
                     <span style={{fontSize:'.62rem',color:'var(--txt3)'}}>{FACTIONS.find(f=>f.id===e.faction)?.label||e.faction}</span>
                   </div>
                 </div>
-                <div style={{textAlign:'right',flexShrink:0}}>
-                  <div style={{fontWeight:900,fontSize:'1.1rem',color:sc}}>+{e.value.toFixed(1)}%</div>
+                <div style={{display:'flex',alignItems:'center',gap:'8px',flexShrink:0}}>
+                  <img src={e.value===5?'/icons/Shard.png':'/icons/Red_Crystal.png'}
+                    alt={e.value===5?'Shard upgrade':'Red Crystal upgrade'}
+                    title={e.value===5?'Unlocked with Shards':'Unlocked with Red Crystals'}
+                    style={{width:20,height:20,objectFit:'contain'}}/>
+                  <div style={{fontWeight:900,fontSize:'1.1rem',color:sc,minWidth:'52px',textAlign:'right'}}>+{e.value.toFixed(1)}%</div>
                 </div>
               </div>
             )
@@ -1918,7 +1927,11 @@ function BuffsPage(){
     <div style={{maxWidth:'960px',margin:'0 auto',padding:'0 1rem'}}>
       <div style={{textAlign:'center',marginBottom:'1.5rem',paddingTop:'1rem'}}>
         <h2 style={{fontSize:'1.5rem',fontWeight:800,color:'var(--txt)',marginBottom:'.3rem'}}>CW Buffs</h2>
-        <p style={{fontSize:'.82rem',color:'var(--txt3)'}}>Stackable buffs active during Castle Wars — internal affairs by unit type, plus passive Alliance Conquest team buffs (+5%)</p>
+        <p style={{fontSize:'.82rem',color:'var(--txt3)',maxWidth:'620px',margin:'0 auto'}}>Passive buffs that stay active for the whole Castle War, even when the general isn't on the field. You unlock them by upgrading characters — Red Crystals raise the skill-level buffs, Shards grant the flat +5%.</p>
+        <div style={{display:'flex',justifyContent:'center',gap:'18px',marginTop:'.6rem',fontSize:'.7rem',color:'var(--txt3)'}}>
+          <span style={{display:'inline-flex',alignItems:'center',gap:'5px'}}><img src="/icons/Red_Crystal.png" alt="" style={{width:15,height:15,objectFit:'contain'}}/>Red Crystal upgrade</span>
+          <span style={{display:'inline-flex',alignItems:'center',gap:'5px'}}><img src="/icons/Shard.png" alt="" style={{width:15,height:15,objectFit:'contain'}}/>Shard upgrade (+5%)</span>
+        </div>
       </div>
 
       <SectionLabel>Unit Types</SectionLabel>
