@@ -94,7 +94,7 @@ const UNIT_TYPES={
   tairoji:'Shield',yugi:'Shield',
 }
 const UNIT_COLOR={Infantry:'#7a7020',Cavalry:'#c0392b',Archer:'#27ae60',Shield:'#2471a3'}
-const UNIT_ICON_SRC={Infantry:'/icons/unit_infantry.png',Cavalry:'/icons/unit_cavalry.png',Archer:'/icons/unit_archer.png',Shield:'/icons/unit_shield.png'}
+const UNIT_ICON_SRC={Infantry:'/icons/unit_infantry.webp',Cavalry:'/icons/unit_cavalry.webp',Archer:'/icons/unit_archer.webp',Shield:'/icons/unit_shield.webp'}
 
 // Extend GROUPS from each character's `unit` field so JSON data is the source of truth.
 // Any char with `"unit": "X Army"` is auto-added to GROUPS['X Army'] (creating it if absent).
@@ -133,8 +133,8 @@ const CC=Object.fromEntries(FACTIONS.map(f=>[f.id,f.color]))
 function CharIcon({c,size=40,round=false,className=''}){
   const r=round?'50%':'8px'
   const s={width:size,height:size,borderRadius:r,objectFit:'cover',objectPosition:'center top',flexShrink:0,display:'block'}
-  if(c?.icon) return <img src={c.icon} style={s} className={className} alt={c.name_en}/>
-  if(c?.image) return <img src={c.image} style={{...s,objectPosition:'top center'}} className={className} alt={c.name_en}/>
+  if(c?.icon) return <img src={c.icon} style={s} className={className} alt={c.name_en} loading="lazy" decoding="async"/>
+  if(c?.image) return <img src={c.image} style={{...s,objectPosition:'top center'}} className={className} alt={c.name_en} loading="lazy" decoding="async"/>
   const col=(CC[c?.country]||'#888')
   return <div style={{...s,background:col+'33',color:col,display:'flex',alignItems:'center',justifyContent:'center',fontWeight:700,fontSize:size*.38+'px'}} className={className}>{c?.name_en?.[0]||'?'}</div>
 }
@@ -1018,7 +1018,7 @@ const RARITY_DATA={
 }
 
 const PAGES=['Archive','Party Builder','Simulate','CW Buffs','Tier List','Team Cost','CW Guide']
-const PAGE_ICONS={'Archive':'👤','Party Builder':'🗡','Simulate':'🎯','CW Buffs':'📊','Tier List':'🏆','Team Cost':{img:'/icons/Red_Crystal.png'},'CW Guide':'📖'}
+const PAGE_ICONS={'Archive':'👤','Party Builder':'🗡','Simulate':'🎯','CW Buffs':'📊','Tier List':'🏆','Team Cost':{img:'/icons/Red_Crystal.webp'},'CW Guide':'📖'}
 const PAGE_SHORT={'Archive':'Archive','Party Builder':'Builder','Simulate':'Sim','CW Buffs':'CW Buffs','Tier List':'Tiers','Team Cost':'Cost','CW Guide':'Guide'}
 const PAGE_TO_ROUTE={'Archive':'/archive','Party Builder':'/builder','Simulate':'/sim','CW Buffs':'/buffs','Tier List':'/tiers','Team Cost':'/cost','CW Guide':'/guide'}
 function routeMatches(pathname,page){
@@ -1782,9 +1782,9 @@ const ARMY_ICON_CHAR = {'Gyokuhou Squad':'Ouhon','Hishin Unit':'Shin','Kanki Arm
 
 const UNIT_ICON_SCALE={Infantry:1.18,Cavalry:1.18,Archer:1,Shield:1}
 function UnitCatIcon({cat,size=80}){
-  const imgs={'Infantry':'/icons/unit_infantry.png','Cavalry':'/icons/unit_cavalry.png','Archer':'/icons/unit_archer.png','Shield':'/icons/unit_shield.png'}
+  const imgs={'Infantry':'/icons/unit_infantry.webp','Cavalry':'/icons/unit_cavalry.webp','Archer':'/icons/unit_archer.webp','Shield':'/icons/unit_shield.webp'}
   const s=Math.round(size*( UNIT_ICON_SCALE[cat]||1))
-  return <img src={imgs[cat]} alt={cat} style={{width:s,height:s,objectFit:'contain',flexShrink:0}}/>
+  return <img src={imgs[cat]} alt={cat} loading="lazy" decoding="async" style={{width:s,height:s,objectFit:'contain',flexShrink:0}}/>
 }
 
 function BuffsPage(){
@@ -1897,7 +1897,7 @@ function BuffsPage(){
             const char=ALL.find(c=>c.name_en===e.name||c.name_en.toLowerCase()===e.name.toLowerCase())
             const fc=CC[e.faction]||'#888'
             const isTop=i<3
-            const unlockIcon=e.special_icon|| (e.value===5?'/icons/Shard.png':'/icons/Red_Crystal.png')
+            const unlockIcon=e.special_icon|| (e.value===5?'/icons/Shard.webp':'/icons/Red_Crystal.webp')
             const unlockLabel=e.special_label|| (e.value===5?'Shard upgrade':'Red Crystal upgrade')
             const unlockTitle=e.special_label|| (e.value===5?'Unlocked with Shards':'Unlocked with Red Crystals')
             return(
@@ -1914,8 +1914,8 @@ function BuffsPage(){
                     :<span style={{fontSize:'.7rem',fontWeight:700,color:'var(--txt3)'}}>{i+1}</span>}
                 </div>
                 <div style={{width:56,height:56,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2.5px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                  {char?.icon?<img src={char.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}} alt={e.name}/>
-                  :char?.image?<img src={char.image} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
+                  {char?.icon?<img src={char.icon} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}} alt={e.name}/>
+                  :char?.image?<img src={char.image} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
                   :<span style={{fontSize:'1.2rem',fontWeight:700,color:fc}}>{e.name[0]}</span>}
                 </div>
                 <div style={{flex:1,minWidth:0}}>
@@ -1933,6 +1933,8 @@ function BuffsPage(){
                   <img src={unlockIcon}
                     alt={unlockLabel}
                     title={unlockTitle}
+                    loading="lazy"
+                    decoding="async"
                     style={{width:20,height:20,objectFit:'contain'}}/>
                   <div style={{fontWeight:900,fontSize:'1.1rem',color:sc,minWidth:'52px',textAlign:'right'}}>+{e.value.toFixed(1)}%</div>
                 </div>
@@ -1956,8 +1958,8 @@ function BuffsPage(){
         <h2 style={{fontSize:'1.5rem',fontWeight:800,color:'var(--txt)',marginBottom:'.3rem'}}>CW Buffs</h2>
         <p style={{fontSize:'.82rem',color:'var(--txt3)',maxWidth:'620px',margin:'0 auto'}}>Passive buffs that stay active for the whole Castle War, even when the general isn't on the field. You unlock them by upgrading characters — Red Crystals raise the skill-level buffs, Shards grant the flat +5%.</p>
         <div style={{display:'flex',justifyContent:'center',gap:'18px',marginTop:'.6rem',fontSize:'.7rem',color:'var(--txt3)'}}>
-          <span style={{display:'inline-flex',alignItems:'center',gap:'5px'}}><img src="/icons/Red_Crystal.png" alt="" style={{width:15,height:15,objectFit:'contain'}}/>Red Crystal upgrade</span>
-          <span style={{display:'inline-flex',alignItems:'center',gap:'5px'}}><img src="/icons/Shard.png" alt="" style={{width:15,height:15,objectFit:'contain'}}/>Shard upgrade (+5%)</span>
+          <span style={{display:'inline-flex',alignItems:'center',gap:'5px'}}><img src="/icons/Red_Crystal.webp" alt="" style={{width:15,height:15,objectFit:'contain'}}/>Red Crystal upgrade</span>
+          <span style={{display:'inline-flex',alignItems:'center',gap:'5px'}}><img src="/icons/Shard.webp" alt="" style={{width:15,height:15,objectFit:'contain'}}/>Shard upgrade (+5%)</span>
         </div>
       </div>
 
@@ -2144,7 +2146,7 @@ function TeamCostPage(){
         boxShadow:'0 8px 32px rgba(106,48,200,0.25)',
       }}>
         <div className="tc-banner-left">
-          <img src="/icons/Red_Crystal.png" alt="Red Crystal" style={{width:56,height:56,objectFit:"contain",flexShrink:0}}/>
+          <img src="/icons/Red_Crystal.webp" alt="Red Crystal" style={{width:56,height:56,objectFit:"contain",flexShrink:0}}/>
           <div className="tc-banner-total">
             <div style={{fontSize:'.72rem',color:'#b89fe0',fontWeight:600,textTransform:'uppercase',letterSpacing:'1px'}}>Red Crystals Needed</div>
             <div className="tc-total-num">{total.toLocaleString()}</div>
@@ -2190,8 +2192,8 @@ function TeamCostPage(){
               onMouseLeave={e=>e.currentTarget.style.transform=''}>
               {/* Portrait */}
               <div style={{position:'relative',aspectRatio:'1 / 1',background:fc+'15',overflow:'hidden'}}>
-                {char.icon?<img src={char.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center'}} alt={char.name_en}/>
-                :char.image?<img src={char.image} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={char.name_en}/>
+                {char.icon?<img src={char.icon} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center'}} alt={char.name_en}/>
+                :char.image?<img src={char.image} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={char.name_en}/>
                 :<div style={{width:'100%',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'2rem',fontWeight:800,color:fc+'66'}}>{char.name_en[0]}</div>}
                 <div style={{position:'absolute',top:'6px',left:'6px',padding:'1px 7px',borderRadius:'5px',background:rc,color:'white',fontSize:'.6rem',fontWeight:800}}>{rarity}</div>
                 <button onClick={()=>clearSlot(idx)} style={{position:'absolute',top:'5px',right:'5px',width:20,height:20,borderRadius:'50%',border:'none',background:'rgba(0,0,0,0.55)',color:'white',cursor:'pointer',fontSize:'.6rem',display:'flex',alignItems:'center',justifyContent:'center'}}>✕</button>
@@ -2224,7 +2226,7 @@ function TeamCostPage(){
                     <span style={{fontSize:'.72rem',fontWeight:800,color:'#3d9970'}}>✓ Maxed</span>
                   ):(
                     <div style={{display:'flex',alignItems:'center',gap:'3px'}}>
-                      <img src="/icons/Red_Crystal.png" alt="RC" style={{width:14,height:14,objectFit:'contain'}}/>
+                      <img src="/icons/Red_Crystal.webp" alt="RC" style={{width:14,height:14,objectFit:'contain'}}/>
                       <span style={{fontWeight:900,fontSize:'.88rem',color:rc}}>{remaining?.toLocaleString()}</span>
                     </div>
                   )}
@@ -2259,14 +2261,14 @@ function TeamCostPage(){
               <div style={{padding:'5px 12px',background:rc2+'22',borderBottom:`1px solid ${rc2}33`,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
                 <span style={{fontWeight:800,fontSize:'.82rem',color:rc2}}>{r}</span>
                 <span style={{fontSize:'.68rem',color:rc2,fontWeight:700,display:'flex',alignItems:'center',gap:'3px'}}>
-                  <img src="/icons/Red_Crystal.png" alt="RC" style={{width:12,height:12,objectFit:'contain'}}/>{COST[r].toLocaleString()} total
+                  <img src="/icons/Red_Crystal.webp" alt="RC" style={{width:12,height:12,objectFit:'contain'}}/>{COST[r].toLocaleString()} total
                 </span>
               </div>
               <div style={{padding:'6px 12px',display:'flex',gap:'10px',fontSize:'.68rem',color:'var(--txt3)'}}>
                 {[[1,s1],[2,s2],[3,s3]].map(([n,v])=>(
                   <span key={n} style={{display:'flex',alignItems:'center',gap:'2px'}}>
                     <span style={{fontWeight:700,color:rc2}}>{['①','②','③'][n-1]}</span>
-                    <img src="/icons/Red_Crystal.png" alt="RC" style={{width:11,height:11,objectFit:'contain'}}/>{v}
+                    <img src="/icons/Red_Crystal.webp" alt="RC" style={{width:11,height:11,objectFit:'contain'}}/>{v}
                   </span>
                 ))}
               </div>
@@ -2303,13 +2305,13 @@ function TeamCostPage(){
                       onMouseEnter={e=>{if(!isSelected)e.currentTarget.style.background=rc+'18'}}
                       onMouseLeave={e=>{if(!isSelected)e.currentTarget.style.background=rc+'0a'}}>
                       <div style={{width:52,height:52,borderRadius:'50%',overflow:'hidden',border:`2px solid ${rc}55`,background:rc+'18',flexShrink:0,display:'flex',alignItems:'center',justifyContent:'center'}}>
-                        {c.icon?<img src={c.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={c.name_en}/>
-                        :c.image?<img src={c.image} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={c.name_en}/>
+                        {c.icon?<img src={c.icon} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={c.name_en}/>
+                        :c.image?<img src={c.image} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={c.name_en}/>
                         :<span style={{fontWeight:700,color:rc,fontSize:'1.1rem'}}>{c.name_en[0]}</span>}
                       </div>
                       <div style={{fontWeight:700,fontSize:'.68rem',color:'var(--txt)',textAlign:'center',lineHeight:1.2}}>{c.name_en}</div>
                       <div style={{padding:'1px 7px',borderRadius:'5px',background:rc,color:'white',fontSize:'.6rem',fontWeight:800}}>{rarity}</div>
-                      <div style={{fontSize:'.62rem',color:rc,fontWeight:700}}><img src="/icons/Red_Crystal.png" alt="RC" style={{width:14,height:14,objectFit:"contain",verticalAlign:"middle",marginRight:2}}/>{COST[rarity]}</div>
+                      <div style={{fontSize:'.62rem',color:rc,fontWeight:700}}><img src="/icons/Red_Crystal.webp" alt="RC" style={{width:14,height:14,objectFit:"contain",verticalAlign:"middle",marginRight:2}}/>{COST[rarity]}</div>
                     </button>
                   )
                 })}
@@ -2610,7 +2612,7 @@ function UnitMatchupsSection(){
         Damage between unit types follows a rock-paper-scissors relationship.
       </p>
       <div style={{textAlign:'center',marginBottom:'1.75rem'}}>
-        <img src={unitMatchups.chart_image} alt="Unit matchup chart" style={{display:'block',margin:'0 auto',maxWidth:'min(100%,520px)',height:'auto',borderRadius:'12px',background:'var(--sur)',padding:'1rem',border:'1px solid var(--bdr)',boxSizing:'border-box'}}/>
+        <img src={unitMatchups.chart_image} alt="Unit matchup chart" loading="lazy" decoding="async" style={{display:'block',margin:'0 auto',maxWidth:'min(100%,520px)',height:'auto',borderRadius:'12px',background:'var(--sur)',padding:'1rem',border:'1px solid var(--bdr)',boxSizing:'border-box'}}/>
       </div>
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))',gap:'.75rem',marginBottom:'1.5rem'}}>
         {unitMatchups.rules.map((r,i)=>(
@@ -2619,10 +2621,10 @@ function UnitMatchupsSection(){
             background:'var(--sur)',border:'1px solid var(--bdr)',
             display:'flex',alignItems:'center',justifyContent:'center',gap:'.5rem',
           }}>
-            <img src={r.icon_strong} alt={r.strong} style={{width:32,height:32,objectFit:'contain',flexShrink:0}}/>
+            <img src={r.icon_strong} alt={r.strong} loading="lazy" decoding="async" style={{width:32,height:32,objectFit:'contain',flexShrink:0}}/>
             <span style={{fontWeight:700,fontSize:'.85rem',color:'var(--txt)'}}>{r.strong}</span>
             <span style={{fontSize:'.75rem',color:'#27ae60',fontWeight:700,margin:'0 .25rem'}}>strong vs</span>
-            <img src={r.icon_weak} alt={r.weak} style={{width:32,height:32,objectFit:'contain',flexShrink:0,opacity:.6}}/>
+            <img src={r.icon_weak} alt={r.weak} loading="lazy" decoding="async" style={{width:32,height:32,objectFit:'contain',flexShrink:0,opacity:.6}}/>
             <span style={{fontSize:'.85rem',color:'var(--txt2)'}}>{r.weak}</span>
           </div>
         ))}
@@ -2632,7 +2634,7 @@ function UnitMatchupsSection(){
         background:'var(--sur)',border:'1px solid var(--bdr)',
         display:'flex',alignItems:'center',gap:'.6rem',justifyContent:'center',flexWrap:'wrap',
       }}>
-        <img src={unitMatchups.mutual.icon_left} alt="Infantry" style={{width:32,height:32,objectFit:'contain',flexShrink:0}}/>
+        <img src={unitMatchups.mutual.icon_left} alt="Infantry" loading="lazy" decoding="async" style={{width:32,height:32,objectFit:'contain',flexShrink:0}}/>
         <span style={{fontWeight:700,fontSize:'.85rem',color:'var(--txt)'}}>{unitMatchups.mutual.left}</span>
         <span style={{fontSize:'.85rem',color:'var(--txt3)'}}>↔</span>
         <span style={{fontWeight:700,fontSize:'.85rem',color:'var(--txt)'}}>{unitMatchups.mutual.right}</span>
