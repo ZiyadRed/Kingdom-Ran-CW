@@ -17,6 +17,7 @@ import misc         from '../data/characters/misc.json'
 import misc2        from '../data/characters/misc2.json'
 import aiYanMajor   from '../data/characters/ai_yan_major.json'
 import cwBuffsData  from '../data/cw_buffs.json'
+import cwTeamBuffs  from '../data/cw_team_buffs.json'
 import cwMaxStats   from '../data/cw_max_stats.json'
 import statusEffects from '../data/glossary/status_effects.json'
 import unitMatchups  from '../data/glossary/unit_matchups.json'
@@ -1749,6 +1750,11 @@ const BUFF_UNIT_CATS = ['Infantry','Cavalry','Archer','Shield']
 const BUFF_STAT_COLORS = {HP:'#1a8a72', Attack:'#c0392b', Defense:'#2471a3'}
 const CAT_COLOR = {Infantry:'#b8880a', Cavalry:'#c0392b', Archer:'#27ae60', Shield:'#6a4fc8'}
 
+const BUFF_STATES = ['Qin','Zhao','Wei','Chu','Han','Ai','Mountain Folk']
+const STATE_FACTION_ID = {Qin:'qin',Zhao:'zhao',Wei:'wei',Chu:'chu',Han:'han',Ai:'ai','Mountain Folk':'mountain_folk'}
+const BUFF_ARMIES = ['Gyokuhou Squad','Hishin Unit','Kanki Army','Karin Army','Ousen Army','Gakuka Unit','Six Great Generals']
+const ARMY_PARENT_STATE = {'Gyokuhou Squad':'qin','Hishin Unit':'qin','Kanki Army':'qin','Karin Army':'chu','Ousen Army':'qin','Gakuka Unit':'qin','Six Great Generals':'qin'}
+
 const UNIT_ICON_SCALE={Infantry:1.18,Cavalry:1.18,Archer:1,Shield:1}
 function UnitCatIcon({cat,size=80}){
   const imgs={'Infantry':'/icons/unit_infantry.png','Cavalry':'/icons/unit_cavalry.png','Archer':'/icons/unit_archer.png','Shield':'/icons/unit_shield.png'}
@@ -1757,127 +1763,195 @@ function UnitCatIcon({cat,size=80}){
 }
 
 function BuffsPage(){
-  const[activeCat,setActiveCat]=useState(null)
+  const[activeKind,setActiveKind]=useState(null) // 'unit'|'state'|'army'
+  const[activeKey,setActiveKey]=useState(null)
   const[activeStat,setActiveStat]=useState('HP')
-  const data=cwBuffsData
-  const handleCat=(cat)=>{if(activeCat===cat){setActiveCat(null)}else{setActiveCat(cat);setActiveStat('HP')}}
-  return(
-    <div style={{maxWidth:'860px',margin:'0 auto',padding:'0 1rem'}}>
-      <div style={{textAlign:'center',marginBottom:'2rem',paddingTop:'1rem'}}>
-        <h2 style={{fontSize:'1.5rem',fontWeight:800,color:'var(--txt)',marginBottom:'.3rem'}}>CW Buffs</h2>
-        <p style={{fontSize:'.82rem',color:'var(--txt3)'}}>Internal Affairs skills active during Castle Wars — stackable buffs by unit type</p>
-      </div>
-      <div style={{display:'flex',justifyContent:'center',gap:'16px',marginBottom:'2.5rem',flexWrap:'wrap'}}>
-        {BUFF_UNIT_CATS.map(cat=>{
-          const isActive=activeCat===cat
-          const col=CAT_COLOR[cat]
-          const uniqueNames=new Set(Object.values(data[cat]||{}).flat().map(e=>e.name))
-          return(
-            <button key={cat} onClick={()=>handleCat(cat)} style={{
-              display:'flex',flexDirection:'column',alignItems:'center',gap:'10px',
-              padding:'20px 24px 16px',borderRadius:'20px',cursor:'pointer',width:'160px',
-              border:`2px solid ${isActive?col:'var(--bdr)'}`,
-              background:isActive?`linear-gradient(135deg,${col}18,${col}08)`:'var(--sur)',
-              boxShadow:isActive?`0 6px 24px ${col}35`:'0 2px 8px rgba(0,0,0,0.06)',
-              transform:isActive?'translateY(-4px) scale(1.03)':'scale(1)',
-              transition:'all .2s ease',
-            }}>
-              <div style={{width:96,height:96,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
-                <UnitCatIcon cat={cat} size={80}/>
-              </div>
-              <div style={{textAlign:'center'}}>
-                <div style={{fontWeight:800,fontSize:'.95rem',color:isActive?col:'var(--txt)',marginBottom:'4px'}}>{cat}</div>
-                <div style={{fontSize:'.68rem',color:'var(--txt3)',background:'var(--bg2)',padding:'2px 10px',borderRadius:'20px',border:'1px solid var(--bdr)',display:'inline-block'}}>{uniqueNames.size} generals</div>
-              </div>
-            </button>
-          )
-        })}
-      </div>
-      {activeCat&&(()=>{
-        const col=CAT_COLOR[activeCat]
-        const entries=(data[activeCat]||{})[activeStat]||[]
-        const total=entries.reduce((s,e)=>s+e.value,0)
-        const sc=BUFF_STAT_COLORS[activeStat]
-        return(
-          <div>
-            <div style={{display:'flex',justifyContent:'center',gap:'10px',marginBottom:'1.5rem'}}>
-              {['HP','Attack','Defense'].map(stat=>{
-                const isOn=activeStat===stat
-                const c=BUFF_STAT_COLORS[stat]
-                const tot=(Object.values((data[activeCat]||{})[stat]||[]).reduce((s,e)=>s+(e.value||0),0)||entries.reduce((s,e)=>s+e.value,0))
-                const ents=(data[activeCat]||{})[stat]||[]
-                const t=ents.reduce((s,e)=>s+e.value,0)
-                return(
-                  <button key={stat} onClick={()=>setActiveStat(stat)} style={{
-                    display:'flex',flexDirection:'column',alignItems:'center',gap:'4px',
-                    padding:'10px 28px',borderRadius:'12px',cursor:'pointer',
-                    border:`2px solid ${isOn?c:'var(--bdr)'}`,
-                    background:isOn?c+'15':'var(--sur)',transition:'all .15s',
-                  }}>
-                    <span style={{fontWeight:700,fontSize:'.85rem',color:isOn?c:'var(--txt)'}}>{stat}</span>
-                    <span style={{fontSize:'.7rem',fontWeight:700,color:c}}>+{t.toFixed(1)}%</span>
-                  </button>
-                )
-              })}
-            </div>
-            <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'12px 20px',borderRadius:'14px',marginBottom:'1rem',background:`linear-gradient(90deg,${sc}18,${sc}08)`,border:`1.5px solid ${sc}44`}}>
-              <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
-                <UnitCatIcon cat={activeCat} size={36}/>
-                <div>
-                  <div style={{fontWeight:700,fontSize:'.88rem',color:col}}>{activeCat} · {activeStat}</div>
-                  <div style={{fontSize:'.7rem',color:'var(--txt3)'}}>Total stackable buff from {entries.length} generals</div>
-                </div>
-              </div>
-              <div style={{fontWeight:900,fontSize:'1.5rem',color:sc}}>+{total.toFixed(1)}%</div>
-            </div>
-            <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
-              {entries.map((e,i)=>{
-                const char=ALL.find(c=>c.name_en===e.name||c.name_en.toLowerCase()===e.name.toLowerCase())
-                const fc=CC[e.faction]||'#888'
-                const isTop=i<3
-                return(
-                  <div key={e.name+i} style={{
-                    display:'flex',alignItems:'center',gap:'14px',padding:'12px 16px',borderRadius:'14px',
-                    background:isTop?`linear-gradient(90deg,${sc}0a,var(--sur))`:'var(--sur)',
-                    border:`1px solid ${isTop?sc+'44':'var(--bdr)'}`,transition:'transform .12s,box-shadow .12s',
-                  }}
-                    onMouseEnter={ev=>{ev.currentTarget.style.transform='translateY(-1px)';ev.currentTarget.style.boxShadow=`0 4px 14px ${sc}20`}}
-                    onMouseLeave={ev=>{ev.currentTarget.style.transform='';ev.currentTarget.style.boxShadow=''}}>
-                    <div style={{minWidth:'32px',textAlign:'center'}}>
-                      {isTop
-                        ?<div style={{width:28,height:28,borderRadius:'50%',background:sc,color:'white',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:800,fontSize:'.75rem',margin:'0 auto'}}>{i+1}</div>
-                        :<span style={{fontSize:'.7rem',fontWeight:700,color:'var(--txt3)'}}>{i+1}</span>}
-                    </div>
-                    <div style={{width:56,height:56,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2.5px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                      {char?.icon?<img src={char.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}} alt={e.name}/>
-                      :char?.image?<img src={char.image} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
-                      :<span style={{fontSize:'1.2rem',fontWeight:700,color:fc}}>{e.name[0]}</span>}
-                    </div>
-                    <div style={{flex:1,minWidth:0}}>
-                      <div style={{display:'flex',alignItems:'center',gap:'6px',flexWrap:'wrap',marginBottom:'3px'}}>
-                        <span style={{fontWeight:700,fontSize:'.92rem',color:'var(--txt)'}}>{e.name}</span>
-                        <span style={{fontSize:'.65rem',color:'var(--txt3)'}}>{e.name_jp}</span>
-                        {e.star6&&<span style={{fontSize:'.65rem',color:'#c9902a',fontWeight:800}}>☆6</span>}
-                      </div>
-                      <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
-                        <span style={{fontSize:'.62rem',padding:'1px 7px',borderRadius:'4px',background:fc+'22',color:fc,border:`1px solid ${fc}44`,fontWeight:700}}>{e.type}</span>
-                        <span style={{fontSize:'.62rem',color:'var(--txt3)'}}>{FACTIONS.find(f=>f.id===e.faction)?.label||e.faction}</span>
-                      </div>
-                    </div>
-                    <div style={{textAlign:'right',flexShrink:0}}>
-                      <div style={{fontWeight:900,fontSize:'1.1rem',color:sc}}>+{e.value.toFixed(1)}%</div>
-                    </div>
-                  </div>
-                )
-              })}
+  const lookupEntries=(kind,key,stat)=>{
+    if(kind==='unit') return (cwBuffsData[key]||{})[stat]||[]
+    if(kind==='state') return ((cwTeamBuffs.states||{})[key]||{})[stat]||[]
+    if(kind==='army')  return ((cwTeamBuffs.armies||{})[key]||{})[stat]||[]
+    return []
+  }
+  const handlePick=(kind,key)=>{
+    if(activeKind===kind&&activeKey===key){setActiveKind(null);setActiveKey(null)}
+    else{setActiveKind(kind);setActiveKey(key);setActiveStat('HP')}
+  }
+  const renderCard=(kind,key,col,iconNode,countLabel)=>{
+    const isActive=activeKind===kind&&activeKey===key
+    return(
+      <button key={kind+':'+key} onClick={()=>handlePick(kind,key)} style={{
+        display:'flex',flexDirection:'column',alignItems:'center',gap:'10px',
+        padding:'16px 18px 12px',borderRadius:'18px',cursor:'pointer',width:'138px',
+        border:`2px solid ${isActive?col:'var(--bdr)'}`,
+        background:isActive?`linear-gradient(135deg,${col}18,${col}08)`:'var(--sur)',
+        boxShadow:isActive?`0 6px 24px ${col}35`:'0 2px 8px rgba(0,0,0,0.06)',
+        transform:isActive?'translateY(-4px) scale(1.03)':'scale(1)',
+        transition:'all .2s ease',
+      }}>
+        <div style={{width:72,height:72,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{iconNode}</div>
+        <div style={{textAlign:'center'}}>
+          <div style={{fontWeight:800,fontSize:'.88rem',color:isActive?col:'var(--txt)',marginBottom:'4px',lineHeight:'1.15'}}>{key}</div>
+          <div style={{fontSize:'.64rem',color:'var(--txt3)',background:'var(--bg2)',padding:'2px 9px',borderRadius:'20px',border:'1px solid var(--bdr)',display:'inline-block'}}>{countLabel}</div>
+        </div>
+      </button>
+    )
+  }
+  const stateCount=(key)=>new Set(Object.values((cwTeamBuffs.states||{})[key]||{}).flat().map(e=>e.name)).size
+  const armyCount=(key)=>new Set(Object.values((cwTeamBuffs.armies||{})[key]||{}).flat().map(e=>e.name)).size
+  const StateBadge=({id,size=72})=>{
+    const f=FACTIONS.find(x=>x.id===id)
+    const c=f?.color||'#888'
+    const jp=f?.jp||'?'
+    const fs=jp.length>=3?size*.32:jp.length===2?size*.42:size*.5
+    return(
+      <div style={{width:size,height:size,borderRadius:'50%',background:`linear-gradient(135deg,${c},${c}cc)`,display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontWeight:900,fontSize:fs+'px',boxShadow:`0 4px 14px ${c}55`,border:`2px solid ${c}`,fontFamily:'serif',lineHeight:'1',letterSpacing:jp.length>=3?'-1px':0}}>{jp}</div>
+    )
+  }
+  const ArmyBadge=({name,size=72})=>{
+    const c=CC[ARMY_PARENT_STATE[name]]||'#888'
+    return(
+      <div style={{width:size,height:size,borderRadius:'14px',background:`linear-gradient(135deg,${c}30,${c}10)`,border:`2px solid ${c}`,display:'flex',alignItems:'center',justifyContent:'center',color:c,fontWeight:900,fontSize:size*.28+'px',textAlign:'center',lineHeight:'1.05',padding:'4px'}}>{name.split(' ').map(w=>w[0]).join('')}</div>
+    )
+  }
+  // ── details panel ──
+  const renderDetails=()=>{
+    if(!activeKey) return null
+    const col = activeKind==='unit'?CAT_COLOR[activeKey]
+              : activeKind==='state'?(CC[STATE_FACTION_ID[activeKey]]||'#888')
+              : (CC[ARMY_PARENT_STATE[activeKey]]||'#888')
+    const entries=lookupEntries(activeKind,activeKey,activeStat)
+    const total=entries.reduce((s,e)=>s+(e.value||0),0)
+    const sc=BUFF_STAT_COLORS[activeStat]
+    const HeaderIcon = activeKind==='unit'
+      ? <UnitCatIcon cat={activeKey} size={36}/>
+      : activeKind==='state'
+        ? <StateBadge id={STATE_FACTION_ID[activeKey]} size={36}/>
+        : <ArmyBadge name={activeKey} size={36}/>
+    return(
+      <div>
+        <div style={{display:'flex',justifyContent:'center',gap:'10px',marginBottom:'1.5rem'}}>
+          {['HP','Attack','Defense'].map(stat=>{
+            const isOn=activeStat===stat
+            const c=BUFF_STAT_COLORS[stat]
+            const ents=lookupEntries(activeKind,activeKey,stat)
+            const t=ents.reduce((s,e)=>s+(e.value||0),0)
+            return(
+              <button key={stat} onClick={()=>setActiveStat(stat)} style={{
+                display:'flex',flexDirection:'column',alignItems:'center',gap:'4px',
+                padding:'10px 28px',borderRadius:'12px',cursor:'pointer',
+                border:`2px solid ${isOn?c:'var(--bdr)'}`,
+                background:isOn?c+'15':'var(--sur)',transition:'all .15s',
+              }}>
+                <span style={{fontWeight:700,fontSize:'.85rem',color:isOn?c:'var(--txt)'}}>{stat}</span>
+                <span style={{fontSize:'.7rem',fontWeight:700,color:c}}>+{t.toFixed(1)}%</span>
+              </button>
+            )
+          })}
+        </div>
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'12px 20px',borderRadius:'14px',marginBottom:'1rem',background:`linear-gradient(90deg,${sc}18,${sc}08)`,border:`1.5px solid ${sc}44`}}>
+          <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
+            {activeKind==='unit'
+              ?<UnitCatIcon cat={activeKey} size={36}/>
+              :activeKind==='state'
+                ?<StateBadge id={STATE_FACTION_ID[activeKey]} size={36}/>
+                :<ArmyBadge name={activeKey} size={36}/>}
+            <div>
+              <div style={{fontWeight:700,fontSize:'.88rem',color:col}}>{activeKey} · {activeStat}</div>
+              <div style={{fontSize:'.7rem',color:'var(--txt3)'}}>Total stackable buff from {entries.length} generals</div>
             </div>
           </div>
-        )
-      })()}
-      {!activeCat&&(
-        <div style={{textAlign:'center',padding:'4rem 1rem',color:'var(--txt3)'}}>
+          <div style={{fontWeight:900,fontSize:'1.5rem',color:sc}}>+{total.toFixed(1)}%</div>
+        </div>
+        <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
+          {entries.length===0&&<div style={{textAlign:'center',padding:'2rem 1rem',color:'var(--txt3)',fontSize:'.85rem'}}>No {activeStat} buff for {activeKey}</div>}
+          {entries.map((e,i)=>{
+            const char=ALL.find(c=>c.name_en===e.name||c.name_en.toLowerCase()===e.name.toLowerCase())
+            const fc=CC[e.faction]||'#888'
+            const isTop=i<3
+            return(
+              <div key={e.name+i} style={{
+                display:'flex',alignItems:'center',gap:'14px',padding:'12px 16px',borderRadius:'14px',
+                background:isTop?`linear-gradient(90deg,${sc}0a,var(--sur))`:'var(--sur)',
+                border:`1px solid ${isTop?sc+'44':'var(--bdr)'}`,transition:'transform .12s,box-shadow .12s',
+              }}
+                onMouseEnter={ev=>{ev.currentTarget.style.transform='translateY(-1px)';ev.currentTarget.style.boxShadow=`0 4px 14px ${sc}20`}}
+                onMouseLeave={ev=>{ev.currentTarget.style.transform='';ev.currentTarget.style.boxShadow=''}}>
+                <div style={{minWidth:'32px',textAlign:'center'}}>
+                  {isTop
+                    ?<div style={{width:28,height:28,borderRadius:'50%',background:sc,color:'white',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:800,fontSize:'.75rem',margin:'0 auto'}}>{i+1}</div>
+                    :<span style={{fontSize:'.7rem',fontWeight:700,color:'var(--txt3)'}}>{i+1}</span>}
+                </div>
+                <div style={{width:56,height:56,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2.5px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                  {char?.icon?<img src={char.icon} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}} alt={e.name}/>
+                  :char?.image?<img src={char.image} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
+                  :<span style={{fontSize:'1.2rem',fontWeight:700,color:fc}}>{e.name[0]}</span>}
+                </div>
+                <div style={{flex:1,minWidth:0}}>
+                  <div style={{display:'flex',alignItems:'center',gap:'6px',flexWrap:'wrap',marginBottom:'3px'}}>
+                    <span style={{fontWeight:700,fontSize:'.92rem',color:'var(--txt)'}}>{e.name}</span>
+                    <span style={{fontSize:'.65rem',color:'var(--txt3)'}}>{e.name_jp}</span>
+                    {e.star6&&<span style={{fontSize:'.65rem',color:'#c9902a',fontWeight:800}}>☆6</span>}
+                  </div>
+                  <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
+                    <span style={{fontSize:'.62rem',padding:'1px 7px',borderRadius:'4px',background:fc+'22',color:fc,border:`1px solid ${fc}44`,fontWeight:700}}>{e.type}</span>
+                    <span style={{fontSize:'.62rem',color:'var(--txt3)'}}>{FACTIONS.find(f=>f.id===e.faction)?.label||e.faction}</span>
+                  </div>
+                </div>
+                <div style={{textAlign:'right',flexShrink:0}}>
+                  <div style={{fontWeight:900,fontSize:'1.1rem',color:sc}}>+{e.value.toFixed(1)}%</div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    )
+  }
+  const SectionLabel=({children})=>(
+    <div style={{display:'flex',alignItems:'center',gap:'10px',margin:'0 0 1rem'}}>
+      <div style={{flex:1,height:1,background:'var(--bdr)'}}/>
+      <span style={{fontSize:'.72rem',fontWeight:800,color:'var(--txt3)',letterSpacing:'.08em',textTransform:'uppercase'}}>{children}</span>
+      <div style={{flex:1,height:1,background:'var(--bdr)'}}/>
+    </div>
+  )
+  return(
+    <div style={{maxWidth:'960px',margin:'0 auto',padding:'0 1rem'}}>
+      <div style={{textAlign:'center',marginBottom:'1.5rem',paddingTop:'1rem'}}>
+        <h2 style={{fontSize:'1.5rem',fontWeight:800,color:'var(--txt)',marginBottom:'.3rem'}}>CW Buffs</h2>
+        <p style={{fontSize:'.82rem',color:'var(--txt3)'}}>Stackable buffs active during Castle Wars — internal affairs by unit type, plus passive Alliance Conquest team buffs (+5%)</p>
+      </div>
+
+      <SectionLabel>Unit Types</SectionLabel>
+      <div style={{display:'flex',justifyContent:'center',gap:'14px',marginBottom:'2rem',flexWrap:'wrap'}}>
+        {BUFF_UNIT_CATS.map(cat=>{
+          const uniqueNames=new Set(Object.values(cwBuffsData[cat]||{}).flat().map(e=>e.name))
+          return renderCard('unit',cat,CAT_COLOR[cat],<UnitCatIcon cat={cat} size={64}/>,`${uniqueNames.size} generals`)
+        })}
+      </div>
+
+      <SectionLabel>States</SectionLabel>
+      <div style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
+        {BUFF_STATES.map(s=>{
+          const col=CC[STATE_FACTION_ID[s]]||'#888'
+          const n=stateCount(s)
+          return renderCard('state',s,col,<StateBadge id={STATE_FACTION_ID[s]}/>,`${n} ${n===1?'general':'generals'}`)
+        })}
+      </div>
+
+      <SectionLabel>Special Units</SectionLabel>
+      <div style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
+        {BUFF_ARMIES.map(a=>{
+          const col=CC[ARMY_PARENT_STATE[a]]||'#888'
+          const n=armyCount(a)
+          return renderCard('army',a,col,<ArmyBadge name={a}/>,`${n} ${n===1?'general':'generals'}`)
+        })}
+      </div>
+
+      {renderDetails()}
+      {!activeKey&&(
+        <div style={{textAlign:'center',padding:'3rem 1rem',color:'var(--txt3)'}}>
           <div style={{fontSize:'3rem',opacity:.15,marginBottom:'1rem'}}>⚔</div>
-          <div style={{fontSize:'.9rem'}}>Select a unit type above to see CW buffs</div>
+          <div style={{fontSize:'.9rem'}}>Select a category above to see CW buffs</div>
         </div>
       )}
     </div>

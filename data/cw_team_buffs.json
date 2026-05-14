@@ -1,0 +1,351 @@
+{
+  "states": {
+    "Mountain Folk": {
+      "HP": [],
+      "Attack": [
+        {
+          "name": "Fuji",
+          "name_jp": "フゥヂ",
+          "faction": "mountain_folk",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Toji",
+          "name_jp": "トッヂ",
+          "faction": "mountain_folk",
+          "type": "UR",
+          "value": 5.0
+        }
+      ],
+      "Defense": [
+        {
+          "name": "Ramauji",
+          "name_jp": "ラマウジ",
+          "faction": "mountain_folk",
+          "type": "UR",
+          "value": 5.0
+        }
+      ]
+    },
+    "Wei": {
+      "HP": [
+        {
+          "name": "Junso",
+          "name_jp": "荀早",
+          "faction": "wei",
+          "type": "UR",
+          "value": 5.0
+        }
+      ],
+      "Attack": [],
+      "Defense": [
+        {
+          "name": "Tairoji",
+          "name_jp": "太呂慈",
+          "faction": "wei",
+          "type": "UR",
+          "value": 5.0
+        }
+      ]
+    },
+    "Qin": {
+      "HP": [
+        {
+          "name": "Kyourei",
+          "name_jp": "京令",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Yuri",
+          "name_jp": "友里",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        }
+      ],
+      "Attack": [],
+      "Defense": [
+        {
+          "name": "Rikusen",
+          "name_jp": "陸仙",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Youka",
+          "name_jp": "姚賈",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        }
+      ]
+    },
+    "Ai": {
+      "HP": [],
+      "Attack": [
+        {
+          "name": "Hamui",
+          "name_jp": "ハムイ",
+          "faction": "ai",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Queen Biki",
+          "name_jp": "太后",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        }
+      ],
+      "Defense": [
+        {
+          "name": "Budai",
+          "name_jp": "ブダイ",
+          "faction": "ai",
+          "type": "UR",
+          "value": 5.0
+        }
+      ]
+    },
+    "Han": {
+      "HP": [],
+      "Attack": [
+        {
+          "name": "Chouin",
+          "name_jp": "張印",
+          "faction": "han",
+          "type": "UR",
+          "value": 5.0
+        }
+      ],
+      "Defense": []
+    },
+    "Chu": {
+      "HP": [],
+      "Attack": [
+        {
+          "name": "Goutoku",
+          "name_jp": "豪徳",
+          "faction": "chu",
+          "type": "SSR",
+          "value": 5.0
+        },
+        {
+          "name": "Kaen",
+          "name_jp": "媧偃",
+          "faction": "chu",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Kyoubou",
+          "name_jp": "巨暴",
+          "faction": "chu",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Rinbukun",
+          "name_jp": "臨武君",
+          "faction": "chu",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Shunshinkun",
+          "name_jp": "春申君",
+          "faction": "chu",
+          "type": "UR",
+          "value": 5.0
+        }
+      ],
+      "Defense": [
+        {
+          "name": "Rokin",
+          "name_jp": "魯近",
+          "faction": "chu",
+          "type": "SSR",
+          "value": 5.0
+        }
+      ]
+    },
+    "Zhao": {
+      "HP": [
+        {
+          "name": "Shunpeikun",
+          "name_jp": "春平君",
+          "faction": "zhao",
+          "type": "UR",
+          "value": 5.0
+        }
+      ],
+      "Attack": [
+        {
+          "name": "Ka",
+          "name_jp": "太子嘉",
+          "faction": "zhao",
+          "type": "UR",
+          "value": 5.0
+        }
+      ],
+      "Defense": [
+        {
+          "name": "Duke Sei",
+          "name_jp": "青公",
+          "faction": "zhao",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Ka",
+          "name_jp": "太子嘉",
+          "faction": "zhao",
+          "type": "UR",
+          "value": 5.0
+        }
+      ]
+    }
+  },
+  "armies": {
+    "Gyokuhou Squad": {
+      "HP": [
+        {
+          "name": "Shoutaku",
+          "name_jp": "松琢",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        }
+      ],
+      "Attack": [],
+      "Defense": [
+        {
+          "name": "Kyuukou",
+          "name_jp": "宮康",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        }
+      ]
+    },
+    "Hishin Unit": {
+      "HP": [
+        {
+          "name": "Robin",
+          "name_jp": "呂敏",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        }
+      ],
+      "Attack": [],
+      "Defense": [
+        {
+          "name": "Gakurai",
+          "name_jp": "岳雷",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Garo",
+          "name_jp": "我呂",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Seki",
+          "name_jp": "石",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        }
+      ]
+    },
+    "Kanki Army": {
+      "HP": [],
+      "Attack": [],
+      "Defense": [
+        {
+          "name": "Bain",
+          "name_jp": "馬印",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Kakuun",
+          "name_jp": "角雲",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        }
+      ]
+    },
+    "Karin Army": {
+      "HP": [],
+      "Attack": [],
+      "Defense": [
+        {
+          "name": "Bamyu",
+          "name_jp": "バミュウ",
+          "faction": "chu",
+          "type": "UR",
+          "value": 5.0
+        }
+      ]
+    },
+    "Ousen Army": {
+      "HP": [],
+      "Attack": [],
+      "Defense": [
+        {
+          "name": "Eiki",
+          "name_jp": "英紀",
+          "faction": "qin",
+          "type": "SSR",
+          "value": 5.0
+        }
+      ]
+    },
+    "Gakuka Unit": {
+      "HP": [],
+      "Attack": [],
+      "Defense": [
+        {
+          "name": "Rikusen",
+          "name_jp": "陸仙",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        }
+      ]
+    },
+    "Six Great Generals": {
+      "HP": [],
+      "Attack": [
+        {
+          "name": "Hakuki",
+          "name_jp": "白起",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
+          "name": "Shibasaku",
+          "name_jp": "司馬錯",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
+        }
+      ],
+      "Defense": []
+    }
+  }
+}
