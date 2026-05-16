@@ -1017,19 +1017,18 @@ const RARITY_DATA={
   'Zenou':{rarity:'UR',faction:'Qin',name_jp:'ゼノウ'}
 }
 
-const PAGES=['Archive','Party Builder','Simulate','CW Buffs','Tier List','Team Cost','CW Guide']
-const PAGE_ICONS={'Archive':'👤','Party Builder':'🗡','Simulate':'🎯','CW Buffs':'📊','Tier List':'🏆','Team Cost':{img:'/icons/Red_Crystal.webp'},'CW Guide':'📖'}
-const PAGE_SHORT={'Archive':'Archive','Party Builder':'Builder','Simulate':'Sim','CW Buffs':'CW Buffs','Tier List':'Tiers','Team Cost':'Cost','CW Guide':'Guide'}
-const PAGE_TO_ROUTE={'Archive':'/archive','Party Builder':'/builder','Simulate':'/sim','CW Buffs':'/buffs','Tier List':'/tiers','Team Cost':'/cost','CW Guide':'/guide'}
+const PAGES=['Home','Skill Archive','CW Guide','Party Builder','CW Buffs','Tier List','Team Cost']
+const PAGE_ICONS={'Home':'H','Skill Archive':'A','CW Guide':'G','Party Builder':'B','CW Buffs':'C','Tier List':'T','Team Cost':{img:'/icons/Red_Crystal.webp'}}
+const PAGE_SHORT={'Home':'Home','Skill Archive':'Archive','CW Guide':'Guide','Party Builder':'Builder','CW Buffs':'Buffs','Tier List':'Tiers','Team Cost':'Cost'}
+const PAGE_TO_ROUTE={'Home':'/','Skill Archive':'/archive','CW Guide':'/guide','Party Builder':'/builder','CW Buffs':'/buffs','Tier List':'/tiers','Team Cost':'/cost'}
 function routeMatches(pathname,page){
   const r=PAGE_TO_ROUTE[page]
   if(pathname===r||pathname===r+'/') return true
   if(pathname.startsWith(r+'/')) return true
-  if(pathname==='/'&&page==='Archive') return true
   return false
 }
 function currentPage(pathname){
-  return PAGES.find(p=>routeMatches(pathname,p))||'Archive'
+  return PAGES.find(p=>routeMatches(pathname,p))||(pathname.startsWith('/sim')?'':'Home')
 }
 function PageIcon({p}){
   const v=PAGE_ICONS[p]
@@ -1095,7 +1094,7 @@ export default function App(){
     <div className="app">
       <header className="hdr">
         <div className="hdr-in">
-          <button className="logo" onClick={()=>navigate('/archive')} style={{background:'none',border:'none',padding:0,cursor:'pointer',color:'inherit'}}>
+          <button className="logo" onClick={()=>navigate('/')} style={{background:'none',border:'none',padding:0,cursor:'pointer',color:'inherit'}}>
             <img src="/ranhq-icon.png" alt="RanHQ" className="logo-icon"/>
             <div>
               <div className="logo-ja">キングダム乱</div>
@@ -1113,7 +1112,7 @@ export default function App(){
       </header>
       <div className="app-body">
         <Routes>
-          <Route path="/" element={<Navigate to="/archive" replace/>}/>
+          <Route path="/" element={<HomePage go={go}/>}/>
           <Route path="/archive" element={<ArchivePage/>}/>
           <Route path="/archive/:charId" element={<ArchivePage/>}/>
           <Route path="/builder" element={<BuilderPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} setAtkSk={setAtkSk} setDefSk={setDefSk} setSlot={setSlot} rm={rm} goSim={()=>navigate('/sim')} loadMetaTeam={loadMetaTeam}/>}/>
@@ -1144,6 +1143,52 @@ export default function App(){
 }
 
 // ── ARCHIVE ───────────────────────────────────────────────────────────────────
+function HomePage({go}){
+  const tools=[
+    {page:'Skill Archive',title:'Skill Archive',desc:'Browse translated generals, skill effects, countries, unit types, and hidden search tags.'},
+    {page:'CW Guide',title:'Guide',desc:'Learn mechanics, status effects, terrain rules, targeting behavior, and matchups.'},
+    {page:'Party Builder',title:'Party Builder',desc:'Build attacking and defending formations, adjust unlocked skills, then open the battle order view.'},
+    {page:'CW Buffs',title:'Buffs',desc:'Review buffs by unit type, source, and stat impact.'},
+    {page:'Tier List',title:'Metawatch',desc:'See current team ideas and matchup notes for planning.'},
+    {page:'Team Cost',title:'Team Cost',desc:'Calculate team cost with rarity, faction, and slot choices before committing resources.'},
+  ]
+  return(
+    <main className="home-page">
+      <section className="home-hero">
+        <img src="/ranhq-home-banner.png" alt="" className="home-hero-img"/>
+        <div className="home-hero-shade"/>
+        <div className="home-hero-content">
+          <div className="home-kicker">Kingdom Ran Castle War companion</div>
+          <h1>RanHQ</h1>
+          <p>
+            RanHQ is a fan-made English project for Kingdom Ran's Castle War mode,
+            built to help players learn the mode, understand skills and buffs, and plan stronger strategies.
+          </p>
+          <div className="home-actions">
+            <button className="home-primary" onClick={()=>go('Skill Archive')}>Open Skill Archive</button>
+            <button className="home-secondary" onClick={()=>go('CW Guide')}>Read Guide</button>
+          </div>
+        </div>
+      </section>
+
+      <section className="home-tools">
+        <div className="home-section-head">
+          <h2>Start Here</h2>
+        </div>
+        <div className="home-tool-grid">
+          {tools.map((tool,i)=>(
+            <button key={tool.page} className={`home-tool-card${i<2?' home-tool-card-main':''}`} onClick={()=>go(tool.page)}>
+              <span className="home-tool-index">{String(i+1).padStart(2,'0')}</span>
+              <strong>{tool.title}</strong>
+              <span>{tool.desc}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
+  )
+}
+
 function ArchivePage(){
   const{charId}=useParams()
   const navigate=useNavigate()
@@ -1355,7 +1400,7 @@ function BuilderPage({atk,def,atkSk,defSk,setAtkSk,setDefSk,setSlot,rm,goSim,loa
                    onSlot={i=>setPicker({side:'defense',idx:i})} onRm={c=>rm(c,'defense')}
                    onSkChange={(i,mk)=>updateSk('defense',i,mk)}/>
       </div>
-      {(atkF.length||defF.length)>0&&<div className="cta-row"><button className="cta-btn" onClick={goSim}>View Activation Order →</button></div>}
+      {(atkF.length&&defF.length)>0&&<div className="cta-row"><button className="cta-btn" onClick={goSim}>Simulate Battle Order</button></div>}
       <BuffTable atk={atkM} def={defM}/>
 
       {/* Meta Teams */}
@@ -1435,8 +1480,8 @@ function SimPage({atk,def,atkSk,defSk,goBuilder}){
   const[tick,setTick]=useState(0)
   const atkF=atk.map((c,i)=>applyMask(c,atkSk?.[i])).filter(Boolean)
   const defF=def.map((c,i)=>applyMask(c,defSk?.[i])).filter(Boolean)
-  if(!atkF.length&&!defF.length) return(
-    <div className="main-page empty-cta"><p>No formations set.</p><button className="cta-btn" onClick={goBuilder}>Go to Party Builder</button></div>
+  if(!atkF.length||!defF.length) return(
+    <div className="main-page empty-cta"><p>Choose both attacking and defending teams first.</p><button className="cta-btn" onClick={goBuilder}>Go to Party Builder</button></div>
   )
   const{st,turns}=simulate(atkF,defF)
   // eslint-disable-next-line react-hooks/exhaustive-deps
