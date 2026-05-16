@@ -1773,6 +1773,122 @@ function BuffSideTable({label,entries,side,enemyDebuffs={}}){
 const BUFF_UNIT_CATS = ['Infantry','Cavalry','Archer','Shield']
 const BUFF_STAT_COLORS = {HP:'#1a8a72', Attack:'#c0392b', Defense:'#2471a3'}
 const CAT_COLOR = {Infantry:'#b8880a', Cavalry:'#c0392b', Archer:'#27ae60', Shield:'#6a4fc8'}
+const TERRAIN_EFFECTS = [
+  {
+    id:'slope', name:'Slope', jp:'坂', icon:'/icons/terrain_effect/slope.png', color:'#c79b26',
+    effect:'Damage dealt -50%',
+    detail:'Your attacking unit deals 50% less damage when it invades through a Slope route.',
+    mitigatedBy:'Slope Aptitude reduces this damage dealt penalty.',
+  },
+  {
+    id:'forest', name:'Forest', jp:'森', icon:'/icons/terrain_effect/forest.png', color:'#2f8f4e',
+    effect:'Damage dealt -50%',
+    detail:'Your attacking unit deals 50% less damage when it invades through a Forest route.',
+    mitigatedBy:'Forest Aptitude reduces this damage dealt penalty.',
+  },
+  {
+    id:'river', name:'River', jp:'川', icon:'/icons/terrain_effect/river.png', color:'#2b80c9',
+    effect:'Damage taken +50%',
+    detail:'Your attacking unit takes 50% more damage when it invades through a River route.',
+    mitigatedBy:'Waterway Aptitude reduces this damage taken increase.',
+  },
+  {
+    id:'swamp', name:'Swamp', jp:'湿地', icon:'/icons/terrain_effect/swamp.png', color:'#9a7b26',
+    effect:'Damage taken +50%',
+    detail:'Your attacking unit takes 50% more damage when it invades through a Swamp route.',
+    mitigatedBy:'Mud Aptitude reduces this damage taken increase.',
+  },
+  {
+    id:'checkpoint', name:'Checkpoint', jp:'関所', icon:'/icons/terrain_effect/checkpoint.png', color:'#b98b35',
+    effect:'Starting HP -30%',
+    detail:'Your attacking unit starts the battle with 30% less HP when it invades through a Checkpoint route.',
+    mitigatedBy:'Scout reduces this starting HP loss.',
+  },
+  {
+    id:'ambush', name:'Ambush', jp:'伏兵', icon:'/icons/terrain_effect/ambush.png', color:'#8a5a3a',
+    effect:'Starting HP -30%',
+    detail:'Your attacking unit starts the battle with 30% less HP when it invades through an Ambush route.',
+    mitigatedBy:'Unit Protection reduces this starting HP loss.',
+  },
+]
+const TERRAIN_BUFFS = [
+  {
+    id:'slope', name:'Slope', jp:'坂', icon:'/icons/terrain/slope.png', color:'#c79b26',
+    typeLabel:'Damage Dealt Reduction',
+    description:'Increases resistance to damage dealt reduction from Slope terrain.',
+    entries:[
+      {name:'Maki', name_jp:'麻鬼', faction:'mountain_folk', type:'SR', value:5.4},
+      {name:'Bihei', name_jp:'尾平', faction:'qin', type:'R', value:6.3},
+      {name:'Kourigen', name_jp:'黄離弦', faction:'wei', type:'SR', value:7.2},
+      {name:'Rinbou', name_jp:'鱗坊', faction:'qin', type:'SR', value:14.5},
+      {name:'Domon', name_jp:'土門', faction:'zhao', type:'SR', value:16.6},
+    ],
+  },
+  {
+    id:'forest', name:'Forest', jp:'森', icon:'/icons/terrain/forest.png', color:'#2f8f4e',
+    typeLabel:'Damage Dealt Reduction',
+    description:'Increases resistance to damage dealt reduction from Forest terrain.',
+    entries:[
+      {name:'Douken', name_jp:'道剣', faction:'zhao', type:'R', value:5.4},
+      {name:'Bikou', name_jp:'尾到', faction:'qin', type:'SR', value:6.3},
+      {name:'Kyomei', name_jp:'羌明', faction:'qin', type:'SR', value:7.2},
+      {name:'Heki', name_jp:'壁', faction:'qin', type:'SR', value:14.5},
+      {name:'Kokuou', name_jp:'黒桜', faction:'qin', type:'SR', value:16.6},
+    ],
+  },
+  {
+    id:'river', name:'River', jp:'川', icon:'/icons/terrain/river.png', color:'#2b80c9',
+    typeLabel:'Damage Taken Increase',
+    description:'Increases resistance to damage taken increase from River terrain.',
+    entries:[
+      {name:'Kei', name_jp:'慶', faction:'qin', type:'SR', value:5.4},
+      {name:'Fuchi', name_jp:'渕', faction:'qin', type:'SR', value:6.3},
+      {name:'Kyoushou', name_jp:'羌象', faction:'qin', type:'SR', value:7.2},
+      {name:'Doukin', name_jp:'同金', faction:'qin', type:'SR', value:14.5},
+      {name:'Ryuusen', name_jp:'竜川', faction:'qin', type:'SR', value:16.6},
+    ],
+  },
+  {
+    id:'wetland', name:'Swamp', jp:'湿地', icon:'/icons/terrain/wetland.png', color:'#9a7b26',
+    typeLabel:'Damage Taken Increase',
+    description:'Increases resistance to damage taken increase from Swamp terrain.',
+    entries:[
+      {name:'Kou', name_jp:'昂', faction:'qin', type:'SR', value:5.4},
+      {name:'Jokan', name_jp:'徐完', faction:'zhao', type:'SR', value:6.3},
+      {name:'Yuuren', name_jp:'幽連', faction:'wei', type:'SR', value:7.2},
+      {name:'Saji', name_jp:'左慈', faction:'zhao', type:'SR', value:14.5},
+      {name:'Mangoku', name_jp:'万極', faction:'zhao', type:'UR', value:16.6},
+    ],
+  },
+  {
+    id:'ambush', name:'Ambush', jp:'伏兵', icon:'/icons/terrain/ambush.png', color:'#8a5a3a',
+    typeLabel:'Starting Troop HP Loss',
+    description:'Reduces the unit damage effect from Ambush terrain.',
+    entries:[
+      {name:'Gii', name_jp:'魏興', faction:'wei', type:'R', value:2.0},
+      {name:'Seki', name_jp:'石', faction:'qin', type:'SR', value:2.4},
+      {name:'Chousou', name_jp:'趙荘', faction:'zhao', type:'R', value:2.7},
+      {name:'Douken', name_jp:'道剣', faction:'zhao', type:'R', value:4.6},
+      {name:'Ryuukoku', name_jp:'隆国', faction:'qin', type:'SR', value:5.5},
+      {name:'Kaishibou', name_jp:'介子坊', faction:'wei', type:'SR', value:6.2},
+      {name:'Ka', name_jp:'太子嘉', faction:'zhao', type:'SR', value:7.8},
+    ],
+  },
+  {
+    id:'checkpoint', name:'Checkpoint', jp:'関所', icon:'/icons/terrain/checkpoint.png', color:'#b98b35',
+    typeLabel:'Starting Troop HP Loss',
+    description:'Reduces the unit damage effect from Checkpoint terrain.',
+    entries:[
+      {name:'Shuki', name_jp:'朱鬼', faction:'mountain_folk', type:'SR', value:2.0},
+      {name:'Hyou', name_jp:'漂', faction:'qin', type:'R', value:2.4},
+      {name:'Bakukoshin', name_jp:'縛虎申', faction:'qin', type:'SR', value:2.7},
+      {name:'Gii', name_jp:'魏興', faction:'wei', type:'R', value:4.6},
+      {name:'Kyougai', name_jp:'去亥', faction:'qin', type:'SR', value:5.5},
+      {name:'Jiou', name_jp:'江彰', faction:'zhao', type:'R', value:5.5},
+      {name:'Rankai', name_jp:'ランカイ', faction:'mountain_folk', type:'R', value:6.2},
+    ],
+  },
+]
 
 const BUFF_STATES = ['Qin','Zhao','Wei','Chu','Han','Ai','Mountain Folk']
 const STATE_FACTION_ID = {Qin:'qin',Zhao:'zhao',Wei:'wei',Chu:'chu',Han:'han',Ai:'ai','Mountain Folk':'mountain_folk'}
@@ -1787,8 +1903,18 @@ function UnitCatIcon({cat,size=80}){
   return <img src={imgs[cat]} alt={cat} loading="lazy" decoding="async" style={{width:s,height:s,objectFit:'contain',flexShrink:0}}/>
 }
 
+function TerrainIcon({terrain,size=72}){
+  if(!terrain) return null
+  return <img src={terrain.icon} alt={terrain.name} loading="lazy" decoding="async" style={{width:size,height:size,objectFit:'contain',flexShrink:0}}/>
+}
+
+function TerrainEffectIcon({terrain,size=64}){
+  if(!terrain) return null
+  return <img src={terrain.icon} alt={terrain.name} loading="lazy" decoding="async" style={{width:size,height:size,objectFit:'contain',flexShrink:0}}/>
+}
+
 function BuffsPage(){
-  const[activeKind,setActiveKind]=useState(null) // 'unit'|'state'|'army'
+  const[activeKind,setActiveKind]=useState(null) // 'unit'|'state'|'army'|'terrain'
   const[activeKey,setActiveKey]=useState(null)
   const[activeStat,setActiveStat]=useState('HP')
   const lookupEntries=(kind,key,stat)=>{
@@ -1843,19 +1969,74 @@ function BuffsPage(){
     )
   }
   // ── details panel ──
+  const renderTerrainDetails=(terrain)=>{
+    const entries=terrain.entries||[]
+    return(
+      <div>
+        <div style={{
+          display:'flex',gap:'14px',alignItems:'center',
+          padding:'14px 16px',borderRadius:'14px',marginBottom:'1rem',
+          background:`linear-gradient(90deg,${terrain.color}18,${terrain.color}08)`,
+          border:`1.5px solid ${terrain.color}44`,
+        }}>
+          <TerrainIcon terrain={terrain} size={54}/>
+          <div style={{minWidth:0}}>
+            <div style={{display:'flex',alignItems:'baseline',gap:'8px',flexWrap:'wrap',marginBottom:'4px'}}>
+              <div style={{fontWeight:900,fontSize:'1.05rem',color:'var(--txt)'}}>{terrain.name}</div>
+              <div style={{fontSize:'.78rem',color:'var(--txt3)'}}>{terrain.jp}</div>
+            </div>
+            <div style={{fontSize:'.82rem',lineHeight:1.45,color:'var(--txt2)'}}>{terrain.description}</div>
+            <div style={{fontSize:'.68rem',color:terrain.color,fontWeight:800,marginTop:'5px',letterSpacing:'.03em',textTransform:'uppercase'}}>{terrain.typeLabel}</div>
+          </div>
+        </div>
+        <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
+          {entries.map((e,i)=>{
+            const char=ALL.find(c=>c.name_en===e.name||c.name_en?.toLowerCase()===e.name.toLowerCase()||c.name_jp===e.name_jp)
+            const fc=CC[e.faction]||'#888'
+            return(
+              <div key={e.name+i} style={{
+                display:'flex',alignItems:'center',gap:'14px',padding:'12px 16px',borderRadius:'14px',
+                background:'var(--sur)',border:'1px solid var(--bdr)',
+              }}>
+                <div style={{minWidth:'28px',textAlign:'center',fontSize:'.72rem',fontWeight:800,color:'var(--txt3)'}}>{i+1}</div>
+                <div style={{width:52,height:52,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2.5px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                  {char?.icon?<img src={char.icon} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}} alt={e.name}/>
+                  :char?.image?<img src={char.image} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
+                  :<span style={{fontSize:'1.15rem',fontWeight:800,color:fc}}>{e.name[0]}</span>}
+                </div>
+                <div style={{flex:1,minWidth:0}}>
+                  <div style={{display:'flex',alignItems:'center',gap:'6px',flexWrap:'wrap',marginBottom:'3px'}}>
+                    <span style={{fontWeight:800,fontSize:'.92rem',color:'var(--txt)'}}>{e.name}</span>
+                    <span style={{fontSize:'.65rem',color:'var(--txt3)'}}>{e.name_jp}</span>
+                  </div>
+                  <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
+                    <span style={{fontSize:'.62rem',padding:'1px 7px',borderRadius:'4px',background:fc+'22',color:fc,border:`1px solid ${fc}44`,fontWeight:700}}>{e.type}</span>
+                    <span style={{fontSize:'.62rem',color:'var(--txt3)'}}>{FACTIONS.find(f=>f.id===e.faction)?.label||e.faction}</span>
+                  </div>
+                </div>
+                <div style={{display:'flex',alignItems:'center',gap:'8px',flexShrink:0}}>
+                  <img src="/icons/Red_Crystal.webp" alt="Red Crystal" title="Red Crystal upgrade" loading="lazy" decoding="async" style={{width:20,height:20,objectFit:'contain'}}/>
+                  <div style={{fontWeight:900,fontSize:'1.05rem',color:terrain.color,minWidth:'52px',textAlign:'right'}}>{e.value.toFixed(1)}%</div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    )
+  }
   const renderDetails=()=>{
     if(!activeKey) return null
+    if(activeKind==='terrain'){
+      const terrain=TERRAIN_BUFFS.find(t=>t.name===activeKey)
+      return terrain?renderTerrainDetails(terrain):null
+    }
     const col = activeKind==='unit'?CAT_COLOR[activeKey]
               : activeKind==='state'?(CC[STATE_FACTION_ID[activeKey]]||'#888')
               : (CC[ARMY_PARENT_STATE[activeKey]]||'#888')
     const entries=lookupEntries(activeKind,activeKey,activeStat)
     const total=entries.reduce((s,e)=>s+(e.value||0),0)
     const sc=BUFF_STAT_COLORS[activeStat]
-    const HeaderIcon = activeKind==='unit'
-      ? <UnitCatIcon cat={activeKey} size={36}/>
-      : activeKind==='state'
-        ? <StateBadge id={STATE_FACTION_ID[activeKey]} size={36}/>
-        : <ArmyBadge name={activeKey} size={36}/>
     return(
       <div>
         <div style={{display:'flex',justifyContent:'center',gap:'10px',marginBottom:'1.5rem'}}>
@@ -1952,6 +2133,40 @@ function BuffsPage(){
       <div style={{flex:1,height:1,background:'var(--bdr)'}}/>
     </div>
   )
+  const renderTerrainEffects=()=>(
+    <div style={{marginBottom:'2rem'}}>
+      <SectionLabel>Terrain Effects</SectionLabel>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))',gap:'12px'}}>
+        {TERRAIN_EFFECTS.map(t=>(
+          <div key={t.id} style={{
+            display:'flex',gap:'13px',alignItems:'center',padding:'14px 15px',borderRadius:'16px',
+            background:`linear-gradient(135deg,${t.color}12,var(--sur))`,
+            border:`1.5px solid ${t.color}36`,boxShadow:'0 2px 10px rgba(0,0,0,.04)',
+          }}>
+            <div style={{width:66,height:66,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+              <TerrainEffectIcon terrain={t} size={62}/>
+            </div>
+            <div style={{minWidth:0}}>
+              <div style={{display:'flex',alignItems:'baseline',gap:'7px',flexWrap:'wrap',marginBottom:'4px'}}>
+                <span style={{fontWeight:900,fontSize:'.95rem',color:'var(--txt)'}}>{t.name}</span>
+                <span style={{fontSize:'.7rem',color:'var(--txt3)'}}>{t.jp}</span>
+                <span style={{fontSize:'.68rem',fontWeight:900,color:t.color,background:t.color+'18',border:`1px solid ${t.color}40`,borderRadius:'999px',padding:'2px 8px'}}>{t.effect}</span>
+              </div>
+              <div style={{fontSize:'.78rem',lineHeight:1.42,color:'var(--txt2)',marginBottom:'5px'}}>{t.detail}</div>
+              <div style={{fontSize:'.68rem',lineHeight:1.35,color:'var(--txt3)'}}>{t.mitigatedBy}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{
+        marginTop:'12px',padding:'12px 14px',borderRadius:'14px',
+        background:'var(--bg2)',border:'1px solid var(--bdr)',fontSize:'.74rem',
+        lineHeight:1.55,color:'var(--txt3)',
+      }}>
+        Terrain effects are route obstacles in Castle War. If there is a route with no terrain effect, the game chooses that first. If every available route has terrain, it chooses the route with the lowest remaining penalty after mitigation. When penalties are tied, the priority order is Slope, Forest, River, Swamp, Checkpoint, Ambush, then no terrain. Terrain positions can change each event.
+      </div>
+    </div>
+  )
   return(
     <div style={{maxWidth:'960px',margin:'0 auto',padding:'0 1rem'}}>
       <div style={{textAlign:'center',marginBottom:'1.5rem',paddingTop:'1rem'}}>
@@ -1989,6 +2204,13 @@ function BuffsPage(){
         })}
       </div>
 
+      <SectionLabel>Terrain</SectionLabel>
+      <div style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
+        {TERRAIN_BUFFS.map(t=>renderCard('terrain',t.name,t.color,<TerrainIcon terrain={t}/>,`${t.entries.length} generals`))}
+      </div>
+
+      {renderTerrainEffects()}
+
       <div style={{textAlign:'center',padding:'2.5rem 1rem',color:'var(--txt3)'}}>
         <div style={{fontSize:'2rem',opacity:.15,marginBottom:'.6rem'}}>⚔</div>
         <div style={{fontSize:'.85rem'}}>Tap any category above to see its CW buffs</div>
@@ -2006,10 +2228,12 @@ function BuffsPage(){
                   ?<UnitCatIcon cat={activeKey} size={32}/>
                   :activeKind==='state'
                     ?<StateBadge id={STATE_FACTION_ID[activeKey]} size={32}/>
-                    :<ArmyBadge name={activeKey} size={32}/>}
+                    :activeKind==='terrain'
+                      ?<TerrainIcon terrain={TERRAIN_BUFFS.find(t=>t.name===activeKey)} size={34}/>
+                      :<ArmyBadge name={activeKey} size={32}/>}
                 <div>
                   <div style={{fontWeight:800,fontSize:'.95rem',color:'var(--txt)'}}>{activeKey}</div>
-                  <div style={{fontSize:'.66rem',color:'var(--txt3)',textTransform:'uppercase',letterSpacing:'.05em'}}>{activeKind==='unit'?'Unit Type':activeKind==='state'?'State':'Special Unit'}</div>
+                  <div style={{fontSize:'.66rem',color:'var(--txt3)',textTransform:'uppercase',letterSpacing:'.05em'}}>{activeKind==='unit'?'Unit Type':activeKind==='state'?'State':activeKind==='terrain'?'Terrain':'Special Unit'}</div>
                 </div>
               </div>
               <button className="x-btn" onClick={()=>{setActiveKind(null);setActiveKey(null)}}>✕</button>
