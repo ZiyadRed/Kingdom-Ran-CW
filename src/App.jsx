@@ -2133,40 +2133,6 @@ function BuffsPage(){
       <div style={{flex:1,height:1,background:'var(--bdr)'}}/>
     </div>
   )
-  const renderTerrainEffects=()=>(
-    <div style={{marginBottom:'2rem'}}>
-      <SectionLabel>Terrain Effects</SectionLabel>
-      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))',gap:'12px'}}>
-        {TERRAIN_EFFECTS.map(t=>(
-          <div key={t.id} style={{
-            display:'flex',gap:'13px',alignItems:'center',padding:'14px 15px',borderRadius:'16px',
-            background:`linear-gradient(135deg,${t.color}12,var(--sur))`,
-            border:`1.5px solid ${t.color}36`,boxShadow:'0 2px 10px rgba(0,0,0,.04)',
-          }}>
-            <div style={{width:66,height:66,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
-              <TerrainEffectIcon terrain={t} size={62}/>
-            </div>
-            <div style={{minWidth:0}}>
-              <div style={{display:'flex',alignItems:'baseline',gap:'7px',flexWrap:'wrap',marginBottom:'4px'}}>
-                <span style={{fontWeight:900,fontSize:'.95rem',color:'var(--txt)'}}>{t.name}</span>
-                <span style={{fontSize:'.7rem',color:'var(--txt3)'}}>{t.jp}</span>
-                <span style={{fontSize:'.68rem',fontWeight:900,color:t.color,background:t.color+'18',border:`1px solid ${t.color}40`,borderRadius:'999px',padding:'2px 8px'}}>{t.effect}</span>
-              </div>
-              <div style={{fontSize:'.78rem',lineHeight:1.42,color:'var(--txt2)',marginBottom:'5px'}}>{t.detail}</div>
-              <div style={{fontSize:'.68rem',lineHeight:1.35,color:'var(--txt3)'}}>{t.mitigatedBy}</div>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div style={{
-        marginTop:'12px',padding:'12px 14px',borderRadius:'14px',
-        background:'var(--bg2)',border:'1px solid var(--bdr)',fontSize:'.74rem',
-        lineHeight:1.55,color:'var(--txt3)',
-      }}>
-        Terrain effects are route obstacles in Castle War. If there is a route with no terrain effect, the game chooses that first. If every available route has terrain, it chooses the route with the lowest remaining penalty after mitigation. When penalties are tied, the priority order is Slope, Forest, River, Swamp, Checkpoint, Ambush, then no terrain. Terrain positions can change each event.
-      </div>
-    </div>
-  )
   return(
     <div style={{maxWidth:'960px',margin:'0 auto',padding:'0 1rem'}}>
       <div style={{textAlign:'center',marginBottom:'1.5rem',paddingTop:'1rem'}}>
@@ -2208,8 +2174,6 @@ function BuffsPage(){
       <div style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
         {TERRAIN_BUFFS.map(t=>renderCard('terrain',t.name,t.color,<TerrainIcon terrain={t}/>,`${t.entries.length} generals`))}
       </div>
-
-      {renderTerrainEffects()}
 
       <div style={{textAlign:'center',padding:'2.5rem 1rem',color:'var(--txt3)'}}>
         <div style={{fontSize:'2rem',opacity:.15,marginBottom:'.6rem'}}>⚔</div>
@@ -2552,10 +2516,51 @@ function TeamCostPage(){
 const GUIDE_SECTIONS=[
   {id:'effects',      label:'Status Effects'},
   {id:'matchups',     label:'Unit Matchups'},
+  {id:'terrain',      label:'Terrain Effects'},
   {id:'types',        label:'Skill Types'},
   {id:'interactions', label:'Effect Interactions'},
   {id:'targeting',    label:'Targeting Rules'},
 ]
+
+function TerrainEffectsSection(){
+  const priorityText='Slope > Forest > River > Swamp > Checkpoint > Ambush > No terrain'
+  return(
+    <div>
+      <p style={{fontSize:'.82rem',lineHeight:1.65,color:'var(--txt3)',textAlign:'center',maxWidth:'760px',margin:'0 auto 1.4rem'}}>
+        Terrain effects are Castle War map debuffs attached to invasion routes between castles. They can lower your damage, make you take more damage, or make your unit start the fight with less HP.
+      </p>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))',gap:'12px',marginBottom:'1rem'}}>
+        {TERRAIN_EFFECTS.map(t=>(
+          <div key={t.id} style={{
+            display:'flex',gap:'13px',alignItems:'center',padding:'14px 15px',borderRadius:'14px',
+            background:`linear-gradient(135deg,${t.color}12,var(--sur))`,
+            border:`1.5px solid ${t.color}36`,boxShadow:'0 2px 10px rgba(0,0,0,.04)',
+          }}>
+            <div style={{width:66,height:66,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+              <TerrainEffectIcon terrain={t} size={62}/>
+            </div>
+            <div style={{minWidth:0}}>
+              <div style={{display:'flex',alignItems:'baseline',gap:'7px',flexWrap:'wrap',marginBottom:'4px'}}>
+                <span style={{fontWeight:900,fontSize:'.95rem',color:'var(--txt)'}}>{t.name}</span>
+                <span style={{fontSize:'.7rem',color:'var(--txt3)'}}>{t.jp}</span>
+                <span style={{fontSize:'.68rem',fontWeight:900,color:t.color,background:t.color+'18',border:`1px solid ${t.color}40`,borderRadius:'999px',padding:'2px 8px'}}>{t.effect}</span>
+              </div>
+              <div style={{fontSize:'.78rem',lineHeight:1.42,color:'var(--txt2)',marginBottom:'5px'}}>{t.detail}</div>
+              <div style={{fontSize:'.68rem',lineHeight:1.35,color:'var(--txt3)'}}>{t.mitigatedBy}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{
+        padding:'13px 15px',borderRadius:'14px',
+        background:'var(--bg2)',border:'1px solid var(--bdr)',fontSize:'.76rem',
+        lineHeight:1.6,color:'var(--txt3)',
+      }}>
+        When multiple routes can reach the same castle, the game prefers a route with no terrain debuff. If every route has a debuff, it picks the route with the smallest remaining penalty after your terrain-resistance buffs are applied. If the remaining penalty is tied, the route priority is <strong style={{color:'var(--txt2)'}}>{priorityText}</strong>. Terrain placements can change each Castle War event.
+      </div>
+    </div>
+  )
+}
 
 function CWGuidePage(){
   const navigate=useNavigate()
@@ -2585,6 +2590,7 @@ function CWGuidePage(){
       </div>
       {active==='effects' && <StatusEffectsSection/>}
       {active==='matchups' && <UnitMatchupsSection/>}
+      {active==='terrain' && <TerrainEffectsSection/>}
       {active==='types' && <SkillTypesSection/>}
       {active==='interactions' && <EffectInteractionsSection/>}
       {active==='targeting' && <TargetingRulesSection/>}
