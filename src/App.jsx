@@ -2567,13 +2567,242 @@ function TeamCostPage(){
 
 // ── CW GUIDE ──────────────────────────────────────────────────────────────────
 const GUIDE_SECTIONS=[
-  {id:'effects',      label:'Status Effects'},
-  {id:'matchups',     label:'Unit Matchups'},
-  {id:'terrain',      label:'Terrain Effects'},
-  {id:'types',        label:'Skill Types'},
-  {id:'interactions', label:'Effect Interactions'},
-  {id:'targeting',    label:'Targeting Rules'},
+  {id:'basics',       label:'Basics',              category:'Beginner'},
+  {id:'roles',        label:'Roles',               category:'Beginner'},
+  {id:'bandits',      label:'Bandit Hunt',         category:'Beginner'},
+  {id:'matchups',     label:'Unit Matchups',       category:'Beginner'},
+  {id:'types',        label:'Skill Types',         category:'Beginner'},
+  {id:'debuffs',      label:'Debuff Resist',       category:'Advanced'},
+  {id:'effects',      label:'Status Effects',      category:'Advanced'},
+  {id:'terrain',      label:'Terrain Effects',     category:'Advanced'},
+  {id:'interactions', label:'Effect Interactions', category:'Advanced'},
+  {id:'targeting',    label:'Targeting Rules',     category:'Advanced'},
 ]
+const GUIDE_GROUPS=['Beginner','Advanced']
+
+function GuideCard({title,children,accent='var(--terra)'}) {
+  return (
+    <div style={{
+      borderRadius:'12px',background:'var(--sur)',border:'1px solid var(--bdr)',
+      borderTop:`4px solid ${accent}`,padding:'1rem',boxShadow:'0 2px 8px rgba(6,38,76,.05)',
+    }}>
+      <h3 style={{fontSize:'.96rem',fontWeight:900,color:'var(--txt)',margin:'0 0 .5rem'}}>{title}</h3>
+      <div style={{fontSize:'.82rem',lineHeight:1.58,color:'var(--txt2)'}}>{children}</div>
+    </div>
+  )
+}
+
+function GuideList({items}) {
+  return (
+    <ul style={{margin:'.25rem 0 0 1.05rem',padding:0}}>
+      {items.map((item,i)=><li key={i} style={{marginBottom:'.32rem'}}>{item}</li>)}
+    </ul>
+  )
+}
+
+function GuideFormula({formula,children}) {
+  return (
+    <div style={{
+      marginTop:'.7rem',padding:'.8rem .9rem',borderRadius:'10px',
+      background:'var(--bg2)',border:'1px solid var(--bdr)',fontSize:'.8rem',
+    }}>
+      <div style={{fontFamily:'monospace',fontWeight:900,color:'var(--navy)',marginBottom:'.45rem'}}>{formula}</div>
+      <div style={{color:'var(--txt3)',lineHeight:1.55}}>{children}</div>
+    </div>
+  )
+}
+
+const FAQ_IMAGES={
+  basics:[
+    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/gvg_s_01_2-1.png',label:'Castle War map overview'},
+    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/gai_002-1.png',label:'Castle War flow screen'},
+  ],
+  roles:[
+    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/image-146-1.png',label:'Role selection screen'},
+    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/image-153-1.png',label:'Role button on battle map'},
+    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/image-150-1-1.png',label:'Role effect view'},
+  ],
+  bandits:[
+    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/image-154-1.png',label:'Bandit Hunt button'},
+    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/image-152-1.png',label:'Bandit Hunt start screen'},
+    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/2-1-1-1.png',label:'Bandit Hunt team setup'},
+    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/1-1-1-3.png',label:'Bandit Hunt results'},
+  ],
+}
+
+function OfficialFaqImages({images}) {
+  return (
+    <div style={{margin:'0 auto 1.25rem',maxWidth:'900px'}}>
+      <div style={{fontSize:'.68rem',fontWeight:800,color:'var(--txt3)',textAlign:'center',marginBottom:'.45rem',letterSpacing:'.04em',textTransform:'uppercase'}}>
+        Official FAQ screenshots
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(160px,1fr))',gap:'10px'}}>
+        {images.map(img=>(
+          <a key={img.src} href={img.src} target="_blank" rel="noopener noreferrer" style={{
+            display:'block',borderRadius:'10px',overflow:'hidden',background:'var(--sur)',
+            border:'1px solid var(--bdr)',boxShadow:'0 2px 8px rgba(6,38,76,.06)',textDecoration:'none',
+          }}>
+            <img src={img.src} alt={img.label} loading="lazy" decoding="async" style={{width:'100%',aspectRatio:'16/10',objectFit:'cover',objectPosition:'top center',background:'var(--bg2)'}}/>
+            <div style={{fontSize:'.7rem',fontWeight:700,color:'var(--txt2)',padding:'.45rem .55rem',lineHeight:1.3}}>{img.label}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function CastleWarBasicsSection(){
+  return(
+    <div>
+      <p style={{fontSize:'.82rem',lineHeight:1.65,color:'var(--txt3)',textAlign:'center',maxWidth:'760px',margin:'0 auto 1.4rem'}}>
+        Castle War is alliance territory combat. The goal is not only to win single fights, but to choose the right castles, place defenses, and spend limited actions well.
+      </p>
+      <OfficialFaqImages images={FAQ_IMAGES.basics}/>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(250px,1fr))',gap:'12px'}}>
+        <GuideCard title="Core Loop" accent="var(--terra)">
+          <GuideList items={[
+            'A group contains 7 alliances fighting over castles.',
+            'Your alliance declares which castles to attack, then members place attacking or defending teams.',
+            'Defenders protect owned castles. Attackers try to break declared targets during invasion time.',
+            'Winning the map is a team planning problem, not only a character power check.',
+          ]}/>
+        </GuideCard>
+        <GuideCard title="Daily Timing" accent="var(--gold)">
+          <GuideList items={[
+            'Garrison placement is available from declaration start until invasion ends.',
+            'Attack reservations can be placed before invasion time, then start automatically when invasion opens.',
+            'Direct invasion placement happens during the invasion window.',
+            'Participation status and role planning should be handled before the active window if possible.',
+          ]}/>
+        </GuideCard>
+        <GuideCard title="Actions and Sorties" accent="#3d6eb5">
+          <GuideList items={[
+            'Each general used in a team consumes action count or sortie resources depending on the activity.',
+            'A 4-general team is usually more expensive than a partial team, but is much safer in real fights.',
+            'Sortie resources recover daily, and some recovery options cost jewels.',
+            'Do not spend strong teams early unless the castle or timing is worth it.',
+          ]}/>
+        </GuideCard>
+      </div>
+      <GuideFormula formula="Simple priority: defend key castles -> attack declared targets -> spend leftovers efficiently">
+        If a player is new, the best first step is to understand where the alliance needs bodies before trying to optimize every individual matchup.
+      </GuideFormula>
+    </div>
+  )
+}
+
+function RolesGuideSection(){
+  const roles=[
+    {name:'Assault Captain',trigger:'When invading',effect:'Raises attack for your own generals.',accent:'#c0392b'},
+    {name:'Defense Captain',trigger:'When garrisoning',effect:'Raises defense for your own generals.',accent:'#2471a3'},
+    {name:'Support Captain',trigger:'When invading or garrisoning',effect:'Raises morale cap for your own generals.',accent:'#8e44ad'},
+    {name:'Bandit Hunt Captain',trigger:'When doing Bandit Hunt',effect:'Raises attack and defense for your own generals.',accent:'#1a8a72'},
+  ]
+  return(
+    <div>
+      <p style={{fontSize:'.82rem',lineHeight:1.65,color:'var(--txt3)',textAlign:'center',maxWidth:'760px',margin:'0 auto 1.4rem'}}>
+        Roles are personal Castle War assignments. They only buff the player who set the role, so choose the role that matches what you are actually going to do that day.
+      </p>
+      <OfficialFaqImages images={FAQ_IMAGES.roles}/>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))',gap:'12px',marginBottom:'1rem'}}>
+        {roles.map(r=>(
+          <GuideCard key={r.name} title={r.name} accent={r.accent}>
+            <div style={{fontSize:'.74rem',fontWeight:900,color:r.accent,marginBottom:'.35rem'}}>{r.trigger}</div>
+            <div>{r.effect}</div>
+          </GuideCard>
+        ))}
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))',gap:'12px'}}>
+        <GuideCard title="Cost Rules" accent="var(--gold)">
+          <GuideList items={[
+            'Two roles are free and two roles cost jewels each day.',
+            'The free/paid role combination changes daily and is shared across alliances.',
+            'The first day starts with all roles free.',
+            'Changing away from a paid role does not refund the jewels.',
+          ]}/>
+        </GuideCard>
+        <GuideCard title="Lock Timing" accent="var(--terra)">
+          <GuideList items={[
+            'You can change role freely before invasion time starts.',
+            'If you forgot to set a role, you can still set one during invasion time.',
+            'After invasion time starts, an already selected role cannot be changed.',
+            'Free role availability updates at 8:00 each day.',
+          ]}/>
+        </GuideCard>
+      </div>
+    </div>
+  )
+}
+
+function BanditHuntGuideSection(){
+  return(
+    <div>
+      <p style={{fontSize:'.82rem',lineHeight:1.65,color:'var(--txt3)',textAlign:'center',maxWidth:'760px',margin:'0 auto 1.4rem'}}>
+        Bandit Hunt is a Castle War side objective where the alliance fights NPC bandit teams for ranking rewards. It competes with castle attacks for your limited actions.
+      </p>
+      <OfficialFaqImages images={FAQ_IMAGES.bandits}/>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(250px,1fr))',gap:'12px'}}>
+        <GuideCard title="What It Is" accent="#1a8a72">
+          <GuideList items={[
+            'Available during Normal Castle War invasion time.',
+            'The alliance competes on total Bandit Hunt count across the season.',
+            'It can give alliance ranking rewards and personal ranking points.',
+            'Selected War weapons cannot be used for Bandit Hunt.',
+          ]}/>
+        </GuideCard>
+        <GuideCard title="How It Runs" accent="var(--terra)">
+          <GuideList items={[
+            'Choose the Bandit Hunt option, select a team, then start the run.',
+            'The team keeps fighting in sequence while it wins.',
+            'If multiple players start hunts, they queue in order.',
+            'A team that is fighting or queued cannot be used for invasion or garrison until it returns.',
+          ]}/>
+        </GuideCard>
+        <GuideCard title="When To Use It" accent="var(--gold)">
+          <GuideList items={[
+            'Use it when the alliance wants Bandit ranking or has spare action resources.',
+            'Avoid locking important generals if a castle fight still needs them.',
+            'The Bandit Hunt Captain role is best for players assigned to this job.',
+            'If invasion time ends mid-run, only the completed chain up to that point counts.',
+          ]}/>
+        </GuideCard>
+      </div>
+    </div>
+  )
+}
+
+function DebuffResistanceGuideSection(){
+  return(
+    <div>
+      <p style={{fontSize:'.82rem',lineHeight:1.65,color:'var(--txt3)',textAlign:'center',maxWidth:'760px',margin:'0 auto 1.4rem'}}>
+        Debuff resistance reduces certain negative effects before they apply. This matters a lot when judging whether attack down, defense down, or defense penetration actually lands.
+      </p>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))',gap:'12px'}}>
+        <GuideCard title="What Resistance Covers" accent="#8e44ad">
+          <GuideList items={[
+            'Attack Down Resistance reduces attack lowering effects.',
+            'Defense Down Resistance reduces defense lowering effects.',
+            'Defense Penetration Resistance reduces defense penetration effects.',
+            'It works against both Combat skills and Strategy skills.',
+          ]}/>
+        </GuideCard>
+        <GuideCard title="Important Notes" accent="var(--terra)">
+          <GuideList items={[
+            'Defense penetration is treated like a debuff for this resistance calculation.',
+            'If resistance is higher than the debuff, the final debuff becomes 0%.',
+            'Attack down effects still apply to critical attacks.',
+            'Multiple debuffs are added together before resistance is subtracted.',
+          ]}/>
+        </GuideCard>
+      </div>
+      <GuideFormula formula="Final debuff % = max(0, total debuff % - total resistance %)">
+        Example 1: 40% Attack Down against 50% Attack Down Resistance becomes 0%.
+        <br/>
+        Example 2: 40% Attack Down + 30% Attack Down against 50% resistance becomes 20%.
+      </GuideFormula>
+    </div>
+  )
+}
 
 function TerrainEffectsSection(){
   const priorityText='Slope > Forest > River > Swamp > Checkpoint > Ambush > No terrain'
@@ -2618,7 +2847,7 @@ function TerrainEffectsSection(){
 function CWGuidePage(){
   const navigate=useNavigate()
   const {section}=useParams()
-  const active=GUIDE_SECTIONS.find(s=>s.id===section)?.id || 'effects'
+  const active=GUIDE_SECTIONS.find(s=>s.id===section)?.id || 'basics'
   const go=id=>navigate(`/guide/${id}`)
   return(
     <div style={{maxWidth:'960px',width:'100%',margin:'0 auto',padding:'0 1rem',boxSizing:'border-box'}}>
@@ -2626,21 +2855,34 @@ function CWGuidePage(){
         <h2 style={{fontSize:'1.5rem',fontWeight:800,color:'var(--txt)',marginBottom:'.3rem'}}>CW Guide</h2>
         <p style={{fontSize:'.82rem',color:'var(--txt3)'}}>Tips, mechanics, and reference info for Castle Wars</p>
       </div>
-      <div style={{display:'flex',justifyContent:'center',gap:'8px',marginBottom:'1.75rem',flexWrap:'wrap'}}>
-        {GUIDE_SECTIONS.map(s=>{
-          const on=active===s.id
-          return(
-            <button key={s.id} onClick={()=>go(s.id)} style={{
-              padding:'.55rem 1.1rem',borderRadius:'999px',cursor:'pointer',
-              fontSize:'.85rem',fontWeight:on?700:500,
-              background:on?'var(--txt)':'var(--sur)',
-              color:on?'var(--bg2)':'var(--txt2)',
-              border:`1px solid ${on?'var(--txt)':'var(--bdr)'}`,
-              transition:'all .15s ease',
-            }}>{s.label}</button>
-          )
-        })}
+      <div style={{display:'flex',flexDirection:'column',gap:'1rem',marginBottom:'1.75rem'}}>
+        {GUIDE_GROUPS.map(group=>(
+          <div key={group}>
+            <div style={{fontSize:'.68rem',fontWeight:900,letterSpacing:'.08em',textTransform:'uppercase',color:'var(--txt3)',textAlign:'center',marginBottom:'.45rem'}}>
+              {group}
+            </div>
+            <div style={{display:'flex',justifyContent:'center',gap:'8px',flexWrap:'wrap'}}>
+              {GUIDE_SECTIONS.filter(s=>s.category===group).map(s=>{
+                const on=active===s.id
+                return(
+                  <button key={s.id} onClick={()=>go(s.id)} style={{
+                    padding:'.55rem 1.1rem',borderRadius:'999px',cursor:'pointer',
+                    fontSize:'.85rem',fontWeight:on?700:500,
+                    background:on?'var(--txt)':'var(--sur)',
+                    color:on?'var(--bg2)':'var(--txt2)',
+                    border:`1px solid ${on?'var(--txt)':'var(--bdr)'}`,
+                    transition:'all .15s ease',
+                  }}>{s.label}</button>
+                )
+              })}
+            </div>
+          </div>
+        ))}
       </div>
+      {active==='basics' && <CastleWarBasicsSection/>}
+      {active==='roles' && <RolesGuideSection/>}
+      {active==='bandits' && <BanditHuntGuideSection/>}
+      {active==='debuffs' && <DebuffResistanceGuideSection/>}
       {active==='effects' && <StatusEffectsSection/>}
       {active==='matchups' && <UnitMatchupsSection/>}
       {active==='terrain' && <TerrainEffectsSection/>}
