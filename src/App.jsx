@@ -1112,7 +1112,6 @@ export default function App(){
           <nav className="nav">
             {PAGES.map(p=>(
               <button key={p} className={`nb${page===p?' nb-on':''}`} onClick={()=>go(p)}>
-                <span className="nb-icon"><PageIcon p={p}/></span>
                 {p}{p==='Party Builder'&&(atk.filter(Boolean).length+def.filter(Boolean).length)>0&&<span className="nb-dot">{atk.filter(Boolean).length+def.filter(Boolean).length}</span>}
               </button>
             ))}
