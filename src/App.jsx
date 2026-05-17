@@ -1017,10 +1017,18 @@ const RARITY_DATA={
   'Zenou':{rarity:'UR',faction:'Qin',name_jp:'ゼノウ'}
 }
 
-const PAGES=['Home','Skill Archive','CW Guide','Party Builder','CW Buffs','Tier List','Team Cost']
-const PAGE_ICONS={'Home':'H','Skill Archive':'A','CW Guide':'G','Party Builder':'B','CW Buffs':'C','Tier List':'T','Team Cost':{img:'/icons/Red_Crystal.webp'}}
-const PAGE_SHORT={'Home':'Home','Skill Archive':'Archive','CW Guide':'Guide','Party Builder':'Builder','CW Buffs':'Buffs','Tier List':'Tiers','Team Cost':'Cost'}
-const PAGE_TO_ROUTE={'Home':'/','Skill Archive':'/archive','CW Guide':'/guide','Party Builder':'/builder','CW Buffs':'/buffs','Tier List':'/tiers','Team Cost':'/cost'}
+const PAGES=['Home','Skill Archive','Guide','Party Builder','Buffs','Tier List','Team Cost']
+const PAGE_ICONS={
+  'Home':'\u2302',
+  'Skill Archive':'\uD83D\uDC64',
+  'Guide':'\uD83D\uDCD6',
+  'Party Builder':'\u2694\uFE0F',
+  'Buffs':'\uD83D\uDCCA',
+  'Tier List':'\uD83C\uDFC6',
+  'Team Cost':{img:'/icons/Red_Crystal.webp'},
+}
+const PAGE_SHORT={'Home':'Home','Skill Archive':'Archive','Guide':'Guide','Party Builder':'Builder','Buffs':'Buffs','Tier List':'Tiers','Team Cost':'Cost'}
+const PAGE_TO_ROUTE={'Home':'/','Skill Archive':'/archive','Guide':'/guide','Party Builder':'/builder','Buffs':'/buffs','Tier List':'/tiers','Team Cost':'/cost'}
 function routeMatches(pathname,page){
   const r=PAGE_TO_ROUTE[page]
   if(pathname===r||pathname===r+'/') return true
@@ -1104,6 +1112,7 @@ export default function App(){
           <nav className="nav">
             {PAGES.map(p=>(
               <button key={p} className={`nb${page===p?' nb-on':''}`} onClick={()=>go(p)}>
+                <span className="nb-icon"><PageIcon p={p}/></span>
                 {p}{p==='Party Builder'&&(atk.filter(Boolean).length+def.filter(Boolean).length)>0&&<span className="nb-dot">{atk.filter(Boolean).length+def.filter(Boolean).length}</span>}
               </button>
             ))}
@@ -1146,9 +1155,9 @@ export default function App(){
 function HomePage({go}){
   const tools=[
     {page:'Skill Archive',title:'Skill Archive',desc:'Browse translated generals, skill effects, countries, unit types, and hidden search tags.'},
-    {page:'CW Guide',title:'Guide',desc:'Learn mechanics, status effects, terrain rules, targeting behavior, and matchups.'},
+    {page:'Guide',title:'Guide',desc:'Learn mechanics, status effects, terrain rules, targeting behavior, and matchups.'},
     {page:'Party Builder',title:'Party Builder',desc:'Build attacking and defending formations, adjust unlocked skills, then open the battle order view.'},
-    {page:'CW Buffs',title:'Buffs',desc:'Review buffs by unit type, source, and stat impact.'},
+    {page:'Buffs',title:'Buffs',desc:'Review buffs by unit type, source, and stat impact.'},
     {page:'Tier List',title:'Metawatch',desc:'See current team ideas and matchup notes for planning.'},
     {page:'Team Cost',title:'Team Cost',desc:'Calculate team cost with rarity, faction, and slot choices before committing resources.'},
   ]
@@ -1166,7 +1175,7 @@ function HomePage({go}){
           </p>
           <div className="home-actions">
             <button className="home-primary" onClick={()=>go('Skill Archive')}>Open Skill Archive</button>
-            <button className="home-secondary" onClick={()=>go('CW Guide')}>Read Guide</button>
+            <button className="home-secondary" onClick={()=>go('Guide')}>Read Guide</button>
           </div>
         </div>
       </section>

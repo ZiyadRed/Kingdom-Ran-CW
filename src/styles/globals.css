@@ -81,9 +81,15 @@ img { display: block; max-width: 100%; height: auto }
   color: rgba(255,255,255,.7); padding: .28rem .7rem;
   border-radius: 20px; font-size: .74rem; font-weight: 600;
   white-space: nowrap; flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: .34rem;
 }
 .nb:hover  { color: #fff; border-color: rgba(255,255,255,.5) }
 .nb.nb-on  { background: var(--terra); border-color: var(--terra); color: #fff }
+.nb-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 15px; height: 15px; font-size: .78rem; line-height: 1;
+}
+.nb-icon .bntab-img { width: 15px; height: 15px }
 .nb-dot {
   display: inline-flex; align-items: center; justify-content: center;
   background: #fff; color: var(--terra);
