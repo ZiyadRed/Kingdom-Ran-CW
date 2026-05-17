@@ -714,6 +714,7 @@ function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false){
 
 function normalizeEnemyTarget(t){
   const tl=t.toLowerCase()
+  if(/^enemy\s+generals?\s+vs\b/i.test(t)) return 'Enemy generals'
   if(/all\s+enemy|all\s+generals/i.test(tl)) return 'All enemies'
   const ut=UNIT_TYPE_LIST.find(u=>tl.includes(u.toLowerCase()))
   if(ut) return `Enemy ${ut}`
