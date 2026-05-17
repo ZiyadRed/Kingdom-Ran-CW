@@ -2615,8 +2615,8 @@ function GuideFormula({formula,children}) {
 
 const FAQ_IMAGES={
   basics:[
-    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/gvg_s_01_2-1.png',label:'Castle War map overview'},
-    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/gai_002-1.png',label:'Castle War flow screen'},
+    {src:'/guide/basics-map-en.png',label:'Castle War map overview'},
+    {src:'/guide/basics-flow-en.png',label:'Castle War flow screen'},
   ],
   roles:[
     {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/image-146-1.png',label:'Role selection screen'},
