@@ -1153,12 +1153,12 @@ export default function App(){
 // ── ARCHIVE ───────────────────────────────────────────────────────────────────
 function HomePage({go}){
   const tools=[
-    {page:'Skill Archive',title:'Skill Archive',desc:'Browse translated generals, skill effects, countries, unit types, and hidden search tags.'},
+    {page:'Skill Archive',title:'Skill Archive',desc:'Browse character skills, effects, unit types, countries, and search by name.'},
     {page:'Guide',title:'Guide',desc:'Learn mechanics, status effects, terrain rules, targeting behavior, and matchups.'},
     {page:'Party Builder',title:'Party Builder',desc:'Build attacking and defending formations, adjust unlocked skills, then open the battle order view.'},
     {page:'Buffs',title:'Buffs',desc:'Review buffs by unit type, source, and stat impact.'},
-    {page:'Tier List',title:'Metawatch',desc:'See current team ideas and matchup notes for planning.'},
-    {page:'Team Cost',title:'Team Cost',desc:'Calculate team cost with rarity, faction, and slot choices before committing resources.'},
+    {page:'Tier List',title:'Metawatch',desc:'See current team tiers and strong Castle War formations.'},
+    {page:'Team Cost',title:'Team Cost',desc:'Calculate the red crystals needed for characters and teams.'},
   ]
   return(
     <main className="home-page">
