@@ -1153,7 +1153,7 @@ export default function App(){
 // ── ARCHIVE ───────────────────────────────────────────────────────────────────
 function HomePage({go}){
   const tools=[
-    {page:'Skill Archive',title:'Skill Archive',desc:'Browse character skills, effects, unit types, countries, and search by name.'},
+    {page:'Skill Archive',title:'Skill Archive',desc:'Browse character skills and effects.'},
     {page:'Guide',title:'Guide',desc:'Learn mechanics, status effects, terrain rules, targeting behavior, and matchups.'},
     {page:'Party Builder',title:'Party Builder',desc:'Build attacking and defending formations, adjust unlocked skills, then open the battle order view.'},
     {page:'Buffs',title:'Buffs',desc:'Review buffs by unit type, source, and stat impact.'},
