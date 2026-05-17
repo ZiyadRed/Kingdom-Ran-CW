@@ -979,6 +979,32 @@
             "duration": "1 time"
           }
         ]
+      },
+      {
+        "name_en": "Devoted Retainer",
+        "name_jp": "\u4f8d\u5f93\u61f8\u547d\u26066",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Squad generals",
+            "effect": "Evasion Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Squad generals",
+            "effect": "Attack Down Resistance Up 40%",
+            "duration": null
+          },
+          {
+            "condition": "While alive",
+            "target": "Ally Gyokuhou Squad generals",
+            "effect": "HP Recovery Amount Up 30%, HP Recovery 30%",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "/persos/kanjou.webp",
