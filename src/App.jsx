@@ -2634,13 +2634,15 @@ const FAQ_IMAGES={
 function GuideImages({images}) {
   return (
     <div style={{margin:'0 auto 1.25rem',maxWidth:'900px'}}>
-      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(160px,1fr))',gap:'10px'}}>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(160px,1fr))',gap:'10px',alignItems:'start'}}>
         {images.map(img=>(
           <a key={img.src} href={img.src} target="_blank" rel="noopener noreferrer" style={{
             display:'block',borderRadius:'10px',overflow:'hidden',background:'var(--sur)',
             border:'1px solid var(--bdr)',boxShadow:'0 2px 8px rgba(6,38,76,.06)',textDecoration:'none',
           }}>
-            <img src={img.src} alt={img.label} loading="lazy" decoding="async" style={{display:'block',width:'100%',height:'auto',background:'var(--bg2)'}}/>
+            <div style={{aspectRatio:'16 / 10',background:'var(--bg2)',display:'flex',alignItems:'center',justifyContent:'center',overflow:'hidden'}}>
+              <img src={img.src} alt={img.label} loading="lazy" decoding="async" style={{display:'block',width:'100%',height:'100%',objectFit:'contain'}}/>
+            </div>
             <div style={{fontSize:'.7rem',fontWeight:700,color:'var(--txt2)',padding:'.45rem .55rem',lineHeight:1.3}}>{img.label}</div>
           </a>
         ))}
