@@ -133,6 +133,7 @@ img { display: block; max-width: 100%; height: auto }
   width: min(100%, 1560px);
   z-index: 1;
   background:
+    radial-gradient(ellipse at 35% 46%, rgba(4,16,32,.64) 0%, rgba(4,16,32,.44) 28%, rgba(4,16,32,0) 56%),
     linear-gradient(90deg, rgba(6,20,38,.74) 0%, rgba(6,20,38,.42) 34%, rgba(6,20,38,.05) 68%, rgba(6,20,38,.16) 100%),
     linear-gradient(0deg, var(--bg) 0%, rgba(239,227,211,.72) 5%, rgba(239,227,211,0) 24%),
     linear-gradient(180deg, rgba(6,38,76,.28) 0%, rgba(6,38,76,0) 24%);
@@ -159,10 +160,11 @@ img { display: block; max-width: 100%; height: auto }
   text-transform: uppercase;
   color: #f0c76b;
   margin-bottom: .45rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,.7);
 }
 .home-hero h1 {
   font-size: 3rem;
-  line-height: 1;
+  line-height: 1.16;
   font-weight: 900;
   margin: 0 0 .75rem;
   color: #fff;
@@ -170,10 +172,11 @@ img { display: block; max-width: 100%; height: auto }
 }
 .home-hero p {
   max-width: 520px;
-  color: rgba(255,255,255,.86);
+  color: rgba(255,255,255,.94);
   font-size: .98rem;
   line-height: 1.65;
   margin-bottom: 1.2rem;
+  text-shadow: 0 2px 9px rgba(0,0,0,.78);
 }
 .home-actions {
   display: flex;
