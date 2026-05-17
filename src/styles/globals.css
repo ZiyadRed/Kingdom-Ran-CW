@@ -109,39 +109,46 @@ img { display: block; max-width: 100%; height: auto }
 }
 .home-hero {
   position: relative;
-  min-height: 430px;
-  overflow: hidden;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  overflow: visible;
   border-radius: 0;
-  background: var(--navy);
+  background: linear-gradient(180deg, var(--navy) 0%, var(--bg) 100%);
   border-bottom: 1px solid rgba(200,184,152,.75);
 }
 .home-hero-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  grid-area: 1 / 1;
+  position: relative;
+  width: min(100%, 1560px);
+  height: auto;
+  aspect-ratio: 1881 / 836;
+  object-fit: contain;
   object-position: center;
   opacity: .98;
 }
 .home-hero-shade {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
+  align-self: stretch;
+  width: min(100%, 1560px);
+  z-index: 1;
   background:
-    linear-gradient(90deg, rgba(6,20,38,.72) 0%, rgba(6,20,38,.42) 34%, rgba(6,20,38,.05) 68%, rgba(6,20,38,.16) 100%),
-    linear-gradient(0deg, var(--bg) 0%, rgba(239,227,211,.72) 4%, rgba(239,227,211,0) 22%),
+    linear-gradient(90deg, rgba(6,20,38,.74) 0%, rgba(6,20,38,.42) 34%, rgba(6,20,38,.05) 68%, rgba(6,20,38,.16) 100%),
+    linear-gradient(0deg, var(--bg) 0%, rgba(239,227,211,.72) 5%, rgba(239,227,211,0) 24%),
     linear-gradient(180deg, rgba(6,38,76,.28) 0%, rgba(6,38,76,0) 24%);
 }
 .home-hero-content {
+  grid-area: 1 / 1;
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: min(100%, 1180px);
   max-width: 560px;
-  min-height: 430px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  justify-self: center;
+  transform: translateX(-22%);
   padding: 2.6rem 1.25rem 4.5rem;
   color: #fff;
 }
@@ -795,6 +802,7 @@ img { display: block; max-width: 100%; height: auto }
     max-width: none;
     min-height: 0;
     justify-content: flex-start;
+    transform: none;
     padding: 1.05rem .95rem 1.25rem;
     background: linear-gradient(180deg, var(--bg), var(--sur));
     color: var(--txt);
