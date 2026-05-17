@@ -2631,19 +2631,16 @@ const FAQ_IMAGES={
   ],
 }
 
-function OfficialFaqImages({images}) {
+function GuideImages({images}) {
   return (
     <div style={{margin:'0 auto 1.25rem',maxWidth:'900px'}}>
-      <div style={{fontSize:'.68rem',fontWeight:800,color:'var(--txt3)',textAlign:'center',marginBottom:'.45rem',letterSpacing:'.04em',textTransform:'uppercase'}}>
-        Official FAQ screenshots
-      </div>
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(160px,1fr))',gap:'10px'}}>
         {images.map(img=>(
           <a key={img.src} href={img.src} target="_blank" rel="noopener noreferrer" style={{
             display:'block',borderRadius:'10px',overflow:'hidden',background:'var(--sur)',
             border:'1px solid var(--bdr)',boxShadow:'0 2px 8px rgba(6,38,76,.06)',textDecoration:'none',
           }}>
-            <img src={img.src} alt={img.label} loading="lazy" decoding="async" style={{width:'100%',aspectRatio:'16/10',objectFit:'cover',objectPosition:'top center',background:'var(--bg2)'}}/>
+            <img src={img.src} alt={img.label} loading="lazy" decoding="async" style={{display:'block',width:'100%',height:'auto',background:'var(--bg2)'}}/>
             <div style={{fontSize:'.7rem',fontWeight:700,color:'var(--txt2)',padding:'.45rem .55rem',lineHeight:1.3}}>{img.label}</div>
           </a>
         ))}
@@ -2658,7 +2655,7 @@ function CastleWarBasicsSection(){
       <p style={{fontSize:'.82rem',lineHeight:1.65,color:'var(--txt3)',textAlign:'center',maxWidth:'760px',margin:'0 auto 1.4rem'}}>
         Castle War is alliance territory combat. The goal is not only to win single fights, but to choose the right castles, place defenses, and spend limited actions well.
       </p>
-      <OfficialFaqImages images={FAQ_IMAGES.basics}/>
+      <GuideImages images={FAQ_IMAGES.basics}/>
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(250px,1fr))',gap:'12px'}}>
         <GuideCard title="Core Loop" accent="var(--terra)">
           <GuideList items={[
@@ -2704,7 +2701,7 @@ function RolesGuideSection(){
       <p style={{fontSize:'.82rem',lineHeight:1.65,color:'var(--txt3)',textAlign:'center',maxWidth:'760px',margin:'0 auto 1.4rem'}}>
         Roles are personal Castle War assignments. They only buff the player who set the role, so choose the role that matches what you are actually going to do that day.
       </p>
-      <OfficialFaqImages images={FAQ_IMAGES.roles}/>
+      <GuideImages images={FAQ_IMAGES.roles}/>
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))',gap:'12px',marginBottom:'1rem'}}>
         {roles.map(r=>(
           <GuideCard key={r.name} title={r.name} accent={r.accent}>
@@ -2741,7 +2738,7 @@ function BanditHuntGuideSection(){
       <p style={{fontSize:'.82rem',lineHeight:1.65,color:'var(--txt3)',textAlign:'center',maxWidth:'760px',margin:'0 auto 1.4rem'}}>
         Bandit Hunt is a Castle War side objective where the alliance fights NPC bandit teams for ranking rewards. It competes with castle attacks for your limited actions.
       </p>
-      <OfficialFaqImages images={FAQ_IMAGES.bandits}/>
+      <GuideImages images={FAQ_IMAGES.bandits}/>
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(250px,1fr))',gap:'12px'}}>
         <GuideCard title="What It Is" accent="#1a8a72">
           <GuideList items={[

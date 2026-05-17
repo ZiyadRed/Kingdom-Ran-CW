@@ -1001,7 +1001,7 @@
           {
             "condition": "While alive",
             "target": "Ally Gyokuhou Squad generals",
-            "effect": "HP Recovery Amount Up 30%, HP Recovery 30%",
+            "effect": "HP Recovery Rate Up 30%, HP Recovery 30%",
             "duration": null
           }
         ]
