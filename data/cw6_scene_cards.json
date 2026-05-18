@@ -8,7 +8,7 @@
       "name_jp": "火兎の笛",
       "skill_en": "Bandit's Confidant",
       "skill_jp": "野盗の腹心",
-      "image": "/scene_cards/sc10172_c.png",
+      "image": "/scene_cards/webp/sc10172_c.webp",
       "owner_id": "raido",
       "ownerName": "Raido",
       "ownerNameJp": "雷土",
@@ -45,7 +45,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10172_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10172_thumb.webp"
     },
     {
       "id": 40186,
@@ -53,7 +53,7 @@
       "name_jp": "行路の途中",
       "skill_en": "Flash",
       "skill_jp": "閃光",
-      "image": "/scene_cards/sc10186_c.png",
+      "image": "/scene_cards/webp/sc10186_c.webp",
       "owner_id": "denti",
       "ownerName": "Futei",
       "ownerNameJp": "傳抵",
@@ -90,7 +90,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10186_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10186_thumb.webp"
     },
     {
       "id": 40187,
@@ -98,7 +98,7 @@
       "name_jp": "不穏",
       "skill_en": "Grudge",
       "skill_jp": "怨讐",
-      "image": "/scene_cards/sc10187_c.png",
+      "image": "/scene_cards/webp/sc10187_c.webp",
       "owner_id": "mangoku",
       "ownerName": "Mangoku",
       "ownerNameJp": "万極",
@@ -141,7 +141,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10187_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10187_thumb.webp"
     },
     {
       "id": 40188,
@@ -149,7 +149,7 @@
       "name_jp": "憤怒",
       "skill_en": "The General's Pride",
       "skill_jp": "殿の意地",
-      "image": "/scene_cards/sc10188_c.png",
+      "image": "/scene_cards/webp/sc10188_c.webp",
       "owner_id": "shinseicho",
       "ownerName": "Shinseijou",
       "ownerNameJp": "晋成常",
@@ -180,7 +180,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10188_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10188_thumb.webp"
     },
     {
       "id": 40189,
@@ -188,7 +188,7 @@
       "name_jp": "静かで熱い刃",
       "skill_en": "Hunter's Instinct",
       "skill_jp": "狩人の嗅覚",
-      "image": "/scene_cards/sc10189_c.png",
+      "image": "/scene_cards/webp/sc10189_c.webp",
       "owner_id": "keisha",
       "ownerName": "Keisha",
       "ownerNameJp": "慶舎",
@@ -225,7 +225,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10189_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10189_thumb.webp"
     },
     {
       "id": 40190,
@@ -233,7 +233,7 @@
       "name_jp": "苛立ち",
       "skill_en": "End of the Path",
       "skill_jp": "求道の果て",
-      "image": "/scene_cards/sc10190_c.png",
+      "image": "/scene_cards/webp/sc10190_c.webp",
       "owner_id": "houken",
       "ownerName": "Houken",
       "ownerNameJp": "龐煖",
@@ -276,7 +276,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10190_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10190_thumb.webp"
     },
     {
       "id": 40191,
@@ -284,7 +284,7 @@
       "name_jp": "宣戦布告",
       "skill_en": "Warm Embrace",
       "skill_jp": "熱き抱擁",
-      "image": "/scene_cards/sc10191_c.png",
+      "image": "/scene_cards/webp/sc10191_c.webp",
       "owner_id": "renpa",
       "ownerName": "Renpa",
       "ownerNameJp": "廉頗",
@@ -321,7 +321,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10191_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10191_thumb.webp"
     },
     {
       "id": 40192,
@@ -329,7 +329,7 @@
       "name_jp": "戦の基本",
       "skill_en": "On Target",
       "skill_jp": "正鵠を射る",
-      "image": "/scene_cards/sc10192_c.png",
+      "image": "/scene_cards/webp/sc10192_c.webp",
       "owner_id": "kyouen",
       "ownerName": "KyouEn",
       "ownerNameJp": "姜燕",
@@ -360,7 +360,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10192_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10192_thumb.webp"
     },
     {
       "id": 40193,
@@ -368,7 +368,7 @@
       "name_jp": "兵の力",
       "skill_en": "Heaven's Guidance",
       "skill_jp": "天の導き",
-      "image": "/scene_cards/sc10193_c.png",
+      "image": "/scene_cards/webp/sc10193_c.webp",
       "owner_id": "rinka",
       "ownerName": "Rinko",
       "ownerNameJp": "輪虎",
@@ -394,7 +394,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10193_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10193_thumb.webp"
     },
     {
       "id": 40194,
@@ -402,7 +402,7 @@
       "name_jp": "怒りの特攻",
       "skill_en": "Loyalty to the Great General",
       "skill_jp": "大将軍への忠心",
-      "image": "/scene_cards/sc10194_c.png",
+      "image": "/scene_cards/webp/sc10194_c.webp",
       "owner_id": "kaishi_renmei",
       "ownerName": "Kaishibou",
       "ownerNameJp": "介子坊",
@@ -439,7 +439,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10194_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10194_thumb.webp"
     },
     {
       "id": 40195,
@@ -447,7 +447,7 @@
       "name_jp": "大軍現る",
       "skill_en": "Passion for Conquest",
       "skill_jp": "侵略への激情",
-      "image": "/scene_cards/sc10195_c.png",
+      "image": "/scene_cards/webp/sc10195_c.webp",
       "owner_id": "gokei",
       "ownerName": "Gokei",
       "ownerNameJp": "呉慶",
@@ -490,7 +490,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10195_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10195_thumb.webp"
     },
     {
       "id": 40196,
@@ -498,7 +498,7 @@
       "name_jp": "強者に見る弱点",
       "skill_en": "Together",
       "skill_jp": "共にある",
-      "image": "/scene_cards/sc10196_c.png",
+      "image": "/scene_cards/webp/sc10196_c.webp",
       "owner_id": "ouhon",
       "ownerName": "Ouhon",
       "ownerNameJp": "王賁",
@@ -547,7 +547,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10196_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10196_thumb.webp"
     },
     {
       "id": 40206,
@@ -555,7 +555,7 @@
       "name_jp": "霊凰の鉞",
       "skill_en": "Axe of Overwhelming Force",
       "skill_jp": "暴威の鉞",
-      "image": "/scene_cards/sc10206_c.png",
+      "image": "/scene_cards/webp/sc10206_c.webp",
       "owner_id": "ranbishaku",
       "ownerName": "Ranbihaku",
       "ownerNameJp": "乱美迫",
@@ -604,7 +604,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10206_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10206_thumb.webp"
     },
     {
       "id": 40207,
@@ -612,7 +612,7 @@
       "name_jp": "新旧分岐の刹那",
       "skill_en": "Cold-Blooded Strategy",
       "skill_jp": "冷酷な軍略",
-      "image": "/scene_cards/sc10207_c.png",
+      "image": "/scene_cards/webp/sc10207_c.webp",
       "owner_id": "reiou",
       "ownerName": "Reiou",
       "ownerNameJp": "霊凰",
@@ -661,7 +661,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10207_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10207_thumb.webp"
     },
     {
       "id": 40208,
@@ -669,7 +669,7 @@
       "name_jp": "歴とした武器",
       "skill_en": "Poison Domination",
       "skill_jp": "毒の支配",
-      "image": "/scene_cards/sc10208_c.png",
+      "image": "/scene_cards/webp/sc10208_c.webp",
       "owner_id": "seika",
       "ownerName": "Seikai",
       "ownerNameJp": "成恢",
@@ -706,7 +706,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10208_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10208_thumb.webp"
     },
     {
       "id": 40209,
@@ -714,7 +714,7 @@
       "name_jp": "先従隗始",
       "skill_en": "The Conqueror Who Moves the World",
       "skill_jp": "天下を動かす傑物",
-      "image": "/scene_cards/sc10209_c.png",
+      "image": "/scene_cards/webp/sc10209_c.webp",
       "owner_id": "rakki",
       "ownerName": "Gakuki",
       "ownerNameJp": "楽毅",
@@ -739,7 +739,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10209_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10209_thumb.webp"
     },
     {
       "id": 40210,
@@ -747,7 +747,7 @@
       "name_jp": "一刻を争う状況",
       "skill_en": "Born Strong",
       "skill_jp": "生来強者",
-      "image": "/scene_cards/sc10210_c.png",
+      "image": "/scene_cards/webp/sc10210_c.webp",
       "owner_id": "tou",
       "ownerName": "Tou",
       "ownerNameJp": "騰",
@@ -790,7 +790,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10210_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10210_thumb.webp"
     },
     {
       "id": 40211,
@@ -798,7 +798,7 @@
       "name_jp": "死地を活路へ",
       "skill_en": "Oath",
       "skill_jp": "誓い",
-      "image": "/scene_cards/sc10211_c.png",
+      "image": "/scene_cards/webp/sc10211_c.webp",
       "owner_id": "ouki",
       "ownerName": "Ouki",
       "ownerNameJp": "王騎",
@@ -835,7 +835,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10211_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10211_thumb.webp"
     },
     {
       "id": 40212,
@@ -843,7 +843,7 @@
       "name_jp": "六人目の大将軍",
       "skill_en": "Loyalty",
       "skill_jp": "忠義",
-      "image": "/scene_cards/sc10212_c.png",
+      "image": "/scene_cards/webp/sc10212_c.webp",
       "owner_id": "shoou",
       "ownerName": "Sho",
       "ownerNameJp": "昭王",
@@ -886,7 +886,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10212_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10212_thumb.webp"
     },
     {
       "id": 40213,
@@ -894,7 +894,7 @@
       "name_jp": "常勝に導く引き際",
       "skill_en": "Undefeated",
       "skill_jp": "不敗",
-      "image": "/scene_cards/sc10213_c.png",
+      "image": "/scene_cards/webp/sc10213_c.webp",
       "owner_id": "hakuki",
       "ownerName": "Hakuki",
       "ownerNameJp": "白起",
@@ -937,7 +937,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10213_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10213_thumb.webp"
     },
     {
       "id": 40225,
@@ -945,7 +945,7 @@
       "name_jp": "最後の懇願",
       "skill_en": "Journey's End",
       "skill_jp": "旅の終着",
-      "image": "/scene_cards/sc10225_c.png",
+      "image": "/scene_cards/webp/sc10225_c.webp",
       "owner_id": "taiko",
       "ownerName": "Queen Biki",
       "ownerNameJp": "太后",
@@ -988,7 +988,7 @@
         ],
         "star6": true
       },
-      "thumb": "/scene_cards/thumbs/sc10225_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10225_thumb.webp"
     },
     {
       "id": 40230,
@@ -996,7 +996,7 @@
       "name_jp": "逆上",
       "skill_en": "Ruler of a Superpower",
       "skill_jp": "超大国の執政者",
-      "image": "/scene_cards/sc10230_c.png",
+      "image": "/scene_cards/webp/sc10230_c.webp",
       "owner_id": "shunshinkun",
       "ownerName": "Shunshinkun",
       "ownerNameJp": "春申君",
@@ -1033,7 +1033,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10230_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10230_thumb.webp"
     },
     {
       "id": 40232,
@@ -1041,7 +1041,7 @@
       "name_jp": "女王率いる山界の軍",
       "skill_en": "Unification of the Mountain World",
       "skill_jp": "山界ノ統一",
-      "image": "/scene_cards/sc10232_c.png",
+      "image": "/scene_cards/webp/sc10232_c.webp",
       "owner_id": "yotanwa",
       "ownerName": "Yotanwa",
       "ownerNameJp": "楊端和",
@@ -1084,7 +1084,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10232_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10232_thumb.webp"
     },
     {
       "id": 40233,
@@ -1092,7 +1092,7 @@
       "name_jp": "叩きあげられた力",
       "skill_en": "Vanguard Smasher",
       "skill_jp": "先陣割砕",
-      "image": "/scene_cards/sc10233_c.png",
+      "image": "/scene_cards/webp/sc10233_c.webp",
       "owner_id": "rinbujun",
       "ownerName": "Rinbukun",
       "ownerNameJp": "臨武君",
@@ -1123,7 +1123,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10233_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10233_thumb.webp"
     },
     {
       "id": 40234,
@@ -1131,7 +1131,7 @@
       "name_jp": "天下最強漢の中の漢",
       "skill_en": "Supreme Wisdom",
       "skill_jp": "至強の知",
-      "image": "/scene_cards/sc10234_c.png",
+      "image": "/scene_cards/webp/sc10234_c.webp",
       "owner_id": "kanmei",
       "ownerName": "Kanmei",
       "ownerNameJp": "汗明",
@@ -1168,7 +1168,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10234_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10234_thumb.webp"
     },
     {
       "id": 40235,
@@ -1176,7 +1176,7 @@
       "name_jp": "永劫の王翦軍",
       "skill_en": "Absolute Defense",
       "skill_jp": "絶対防御",
-      "image": "/scene_cards/sc10235_c.png",
+      "image": "/scene_cards/webp/sc10235_c.webp",
       "owner_id": "ousen",
       "ownerName": "Ousen",
       "ownerNameJp": "王翦",
@@ -1202,7 +1202,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10235_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10235_thumb.webp"
     },
     {
       "id": 40236,
@@ -1210,7 +1210,7 @@
       "name_jp": "速さ重視",
       "skill_en": "Devoted Retainer",
       "skill_jp": "侍従懸命",
-      "image": "/scene_cards/sc10236_c.png",
+      "image": "/scene_cards/webp/sc10236_c.webp",
       "owner_id": "kanjo",
       "ownerName": "Kanjou",
       "ownerNameJp": "関常",
@@ -1241,7 +1241,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10236_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10236_thumb.webp"
     },
     {
       "id": 40249,
@@ -1249,7 +1249,7 @@
       "name_jp": "全部まやかし",
       "skill_en": "Genius Strategy",
       "skill_jp": "天才の策略",
-      "image": "/scene_cards/sc10249_c.png",
+      "image": "/scene_cards/webp/sc10249_c.webp",
       "owner_id": "karin",
       "ownerName": "Karin",
       "ownerNameJp": "媧燐",
@@ -1271,7 +1271,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc10249_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc10249_thumb.webp"
     },
     {
       "id": 42001,
@@ -1279,7 +1279,7 @@
       "name_jp": "喪失",
       "skill_en": "Determined Interception",
       "skill_jp": "覚悟の邀撃",
-      "image": "/scene_cards/sc12001_c.png",
+      "image": "/scene_cards/webp/sc12001_c.webp",
       "owner_id": "tairoji",
       "ownerName": "Tairoji",
       "ownerNameJp": "太呂慈",
@@ -1306,7 +1306,7 @@
           }
         ]
       },
-      "thumb": "/scene_cards/thumbs/sc12001_thumb.jpg"
+      "thumb": "/scene_cards/thumbs/sc12001_thumb.webp"
     }
   ]
 }

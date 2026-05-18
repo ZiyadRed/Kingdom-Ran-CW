@@ -1287,7 +1287,7 @@ function CW6SceneCardsPage(){
               display:'flex',flexDirection:'column',
             }}>
               <div style={{aspectRatio:'1 / 1',background:'var(--bg2)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                <img src={card.thumb||card.image} alt={card.skill_en} loading={i<14?'eager':'lazy'} decoding="async" fetchPriority={i<7?'high':'auto'} style={{width:'100%',height:'100%',objectFit:'contain'}}/>
+                <img src={card.thumb||card.image} alt={card.skill_en} loading="eager" decoding="async" fetchPriority={i<7?'high':'auto'} style={{width:'100%',height:'100%',objectFit:'contain'}}/>
               </div>
               <div style={{padding:'10px 11px 11px',display:'flex',flexDirection:'column',gap:'6px'}}>
                 <div>
@@ -1308,7 +1308,7 @@ function CW6SceneCardsPage(){
       {selected&&(
         <aside className="detail-panel">
           <div className="detail-header">
-            <img src={selected.image} alt={selected.skill_en} className="detail-portrait" loading="lazy" decoding="async" style={{objectFit:'contain',background:'rgba(255,255,255,.08)',objectPosition:'center'}}/>
+            <img src={selected.image} alt={selected.skill_en} className="detail-portrait" loading="eager" decoding="async" fetchPriority="high" style={{objectFit:'contain',background:'rgba(255,255,255,.08)',objectPosition:'center'}}/>
             <div className="detail-info">
               <div className="detail-name">{selected.skill_en}</div>
               <div className="detail-jp">{selected.skill_jp}</div>
@@ -2157,7 +2157,7 @@ function BuffsPage(){
   }
   // ── details panel ──
   const renderTerrainDetails=(terrain)=>{
-    const entries=terrain.entries||[]
+    const entries=[...(terrain.entries||[])].sort((a,b)=>b.value-a.value||a.name.localeCompare(b.name))
     return(
       <div>
         <div style={{
@@ -2345,13 +2345,13 @@ function BuffsPage(){
                 </span>
               </summary>
               <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,116px)',justifyContent:'center',gap:'12px',padding:'12px'}}>
-                {cards.map(card=>(
+                {cards.map((card,i)=>(
                   <div key={card.id} style={{
                     border:'1px solid var(--bdr)',borderRadius:'8px',overflow:'hidden',
                     background:'var(--sur)',boxShadow:'0 2px 10px rgba(0,0,0,.06)',
                   }}>
                     <div style={{position:'relative',aspectRatio:'1 / 1',background:'var(--bg2)',overflow:'hidden'}}>
-                      <img src={card.image} alt={card.name_en} title={card.name_en} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'contain',display:'block'}}/>
+                      <img src={card.thumb||card.image} alt={card.name_en} title={card.name_en} loading="eager" decoding="async" fetchPriority={i<4?'high':'auto'} style={{width:'100%',height:'100%',objectFit:'contain',display:'block'}}/>
                       <div style={{
                         position:'absolute',left:7,bottom:7,padding:'3px 7px',borderRadius:'6px',
                         background:'rgba(0,0,0,.66)',color:'#fff',fontSize:'.68rem',fontWeight:900,

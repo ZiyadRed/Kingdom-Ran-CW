@@ -17,9 +17,10 @@
       "statLabel": "Evasion",
       "value": 7.5,
       "valueMode": "percent",
-      "image": "/scene_cards/sc10109_c.png",
+      "image": "/scene_cards/webp/sc10109_c.webp",
       "ownerName": "Hakusui",
-      "ownerIcon": "/icons/Hakusui.webp"
+      "ownerIcon": "/icons/Hakusui.webp",
+      "thumb": "/scene_cards/thumbs/sc10109_thumb.webp"
     },
     {
       "id": 40141,
@@ -30,9 +31,10 @@
       "statLabel": "Attack",
       "value": 500,
       "valueMode": "flat",
-      "image": "/scene_cards/sc10141_c.png",
+      "image": "/scene_cards/webp/sc10141_c.webp",
       "ownerName": "Hanoki",
-      "ownerIcon": "/icons/Hanoki.webp"
+      "ownerIcon": "/icons/Hanoki.webp",
+      "thumb": "/scene_cards/thumbs/sc10141_thumb.webp"
     },
     {
       "id": 40142,
@@ -43,9 +45,10 @@
       "statLabel": "Defense",
       "value": 500,
       "valueMode": "flat",
-      "image": "/scene_cards/sc10142_c.png",
+      "image": "/scene_cards/webp/sc10142_c.webp",
       "ownerName": "Rien",
-      "ownerIcon": "/icons/Rien.webp"
+      "ownerIcon": "/icons/Rien.webp",
+      "thumb": "/scene_cards/thumbs/sc10142_thumb.webp"
     },
     {
       "id": 40143,
@@ -56,9 +59,10 @@
       "statLabel": "Critical Rate",
       "value": 10,
       "valueMode": "percent",
-      "image": "/scene_cards/sc10143_c.png",
+      "image": "/scene_cards/webp/sc10143_c.webp",
       "ownerName": "Kouretsu",
-      "ownerIcon": "/icons/Kouretsu.webp"
+      "ownerIcon": "/icons/Kouretsu.webp",
+      "thumb": "/scene_cards/thumbs/sc10143_thumb.webp"
     },
     {
       "id": 40144,
@@ -69,9 +73,10 @@
       "statLabel": "Max Morale",
       "value": 750,
       "valueMode": "flat",
-      "image": "/scene_cards/sc10144_c.png",
+      "image": "/scene_cards/webp/sc10144_c.webp",
       "ownerName": "Rouai",
-      "ownerIcon": "/icons/Rouai.webp"
+      "ownerIcon": "/icons/Rouai.webp",
+      "thumb": "/scene_cards/thumbs/sc10144_thumb.webp"
     },
     {
       "id": 40145,
@@ -82,9 +87,10 @@
       "statLabel": "Evasion",
       "value": 7.5,
       "valueMode": "percent",
-      "image": "/scene_cards/sc10145_c.png",
+      "image": "/scene_cards/webp/sc10145_c.webp",
       "ownerName": "Hanroki",
-      "ownerIcon": "/icons/Hanroki.webp"
+      "ownerIcon": "/icons/Hanroki.webp",
+      "thumb": "/scene_cards/thumbs/sc10145_thumb.webp"
     },
     {
       "id": 40146,
@@ -95,9 +101,10 @@
       "statLabel": "Defense",
       "value": 500,
       "valueMode": "flat",
-      "image": "/scene_cards/sc10146_c.png",
+      "image": "/scene_cards/webp/sc10146_c.webp",
       "ownerName": "Gakurai",
-      "ownerIcon": "/icons/Gakurai.webp"
+      "ownerIcon": "/icons/Gakurai.webp",
+      "thumb": "/scene_cards/thumbs/sc10146_thumb.webp"
     },
     {
       "id": 40148,
@@ -108,9 +115,10 @@
       "statLabel": "HP",
       "value": 3000,
       "valueMode": "flat",
-      "image": "/scene_cards/sc10148_c.png",
+      "image": "/scene_cards/webp/sc10148_c.webp",
       "ownerName": "Karin",
-      "ownerIcon": "/icons/Karin.webp"
+      "ownerIcon": "/icons/Karin.webp",
+      "thumb": "/scene_cards/thumbs/sc10148_thumb.webp"
     },
     {
       "id": 40149,
@@ -121,9 +129,10 @@
       "statLabel": "Max Morale",
       "value": 750,
       "valueMode": "flat",
-      "image": "/scene_cards/sc10149_c.png",
+      "image": "/scene_cards/webp/sc10149_c.webp",
       "ownerName": "Ei Sei",
-      "ownerIcon": "/icons/Ei Sei.webp"
+      "ownerIcon": "/icons/Ei Sei.webp",
+      "thumb": "/scene_cards/thumbs/sc10149_thumb.webp"
     },
     {
       "id": 40184,
@@ -134,9 +143,10 @@
       "statLabel": "Defense",
       "value": 500,
       "valueMode": "flat",
-      "image": "/scene_cards/sc10184_c.png",
+      "image": "/scene_cards/webp/sc10184_c.webp",
       "ownerName": "Ei Sei",
-      "ownerIcon": "/icons/Ei Sei.webp"
+      "ownerIcon": "/icons/Ei Sei.webp",
+      "thumb": "/scene_cards/thumbs/sc10184_thumb.webp"
     },
     {
       "id": 40185,
@@ -147,9 +157,10 @@
       "statLabel": "Attack",
       "value": 500,
       "valueMode": "flat",
-      "image": "/scene_cards/sc10185_c.png",
+      "image": "/scene_cards/webp/sc10185_c.webp",
       "ownerName": "Kanki",
-      "ownerIcon": "/icons/Kanki.webp"
+      "ownerIcon": "/icons/Kanki.webp",
+      "thumb": "/scene_cards/thumbs/sc10185_thumb.webp"
     },
     {
       "id": 40199,
@@ -160,9 +171,10 @@
       "statLabel": "HP",
       "value": 3000,
       "valueMode": "flat",
-      "image": "/scene_cards/sc10199_c.png",
+      "image": "/scene_cards/webp/sc10199_c.webp",
       "ownerName": "Kokuou",
-      "ownerIcon": "/icons/Kokuou.webp"
+      "ownerIcon": "/icons/Kokuou.webp",
+      "thumb": "/scene_cards/thumbs/sc10199_thumb.webp"
     },
     {
       "id": 40202,
@@ -173,9 +185,10 @@
       "statLabel": "Critical Rate",
       "value": 10,
       "valueMode": "percent",
-      "image": "/scene_cards/sc10202_c.png",
+      "image": "/scene_cards/webp/sc10202_c.webp",
       "ownerName": "Duke Sei",
-      "ownerIcon": "/icons/Duke Sei.webp"
+      "ownerIcon": "/icons/Duke Sei.webp",
+      "thumb": "/scene_cards/thumbs/sc10202_thumb.webp"
     },
     {
       "id": 40203,
@@ -186,9 +199,10 @@
       "statLabel": "Max Morale",
       "value": 750,
       "valueMode": "flat",
-      "image": "/scene_cards/sc10203_c.png",
+      "image": "/scene_cards/webp/sc10203_c.webp",
       "ownerName": "Shunpeikun",
-      "ownerIcon": "/icons/Shunpeikun.webp"
+      "ownerIcon": "/icons/Shunpeikun.webp",
+      "thumb": "/scene_cards/thumbs/sc10203_thumb.webp"
     },
     {
       "id": 40204,
@@ -199,9 +213,10 @@
       "statLabel": "Attack",
       "value": 500,
       "valueMode": "flat",
-      "image": "/scene_cards/sc10204_c.png",
+      "image": "/scene_cards/webp/sc10204_c.webp",
       "ownerName": "Kanki",
-      "ownerIcon": "/icons/Kanki.webp"
+      "ownerIcon": "/icons/Kanki.webp",
+      "thumb": "/scene_cards/thumbs/sc10204_thumb.webp"
     },
     {
       "id": 40218,
@@ -212,9 +227,10 @@
       "statLabel": "HP",
       "value": 3000,
       "valueMode": "flat",
-      "image": "/scene_cards/sc10218_c.png",
+      "image": "/scene_cards/webp/sc10218_c.webp",
       "ownerName": "Yuri",
-      "ownerIcon": "/icons/Yuri.webp"
+      "ownerIcon": "/icons/Yuri.webp",
+      "thumb": "/scene_cards/thumbs/sc10218_thumb.webp"
     },
     {
       "id": 40219,
@@ -225,9 +241,10 @@
       "statLabel": "Defense",
       "value": 500,
       "valueMode": "flat",
-      "image": "/scene_cards/sc10219_c.png",
+      "image": "/scene_cards/webp/sc10219_c.webp",
       "ownerName": "Toumi",
-      "ownerIcon": "/icons/Toumi.webp"
+      "ownerIcon": "/icons/Toumi.webp",
+      "thumb": "/scene_cards/thumbs/sc10219_thumb.webp"
     },
     {
       "id": 40226,
@@ -238,9 +255,10 @@
       "statLabel": "Attack",
       "value": 500,
       "valueMode": "flat",
-      "image": "/scene_cards/sc10226_c.png",
+      "image": "/scene_cards/webp/sc10226_c.webp",
       "ownerName": "Kyou",
-      "ownerIcon": "/icons/Kyou.webp"
+      "ownerIcon": "/icons/Kyou.webp",
+      "thumb": "/scene_cards/thumbs/sc10226_thumb.webp"
     },
     {
       "id": 40247,
@@ -251,9 +269,10 @@
       "statLabel": "HP",
       "value": 3000,
       "valueMode": "flat",
-      "image": "/scene_cards/sc10247_c.png",
+      "image": "/scene_cards/webp/sc10247_c.webp",
       "ownerName": "Ousen",
-      "ownerIcon": "/icons/Ousen.webp"
+      "ownerIcon": "/icons/Ousen.webp",
+      "thumb": "/scene_cards/thumbs/sc10247_thumb.webp"
     },
     {
       "id": 40273,
@@ -264,9 +283,10 @@
       "statLabel": "Defense",
       "value": 500,
       "valueMode": "flat",
-      "image": "/scene_cards/sc10273_c.png",
+      "image": "/scene_cards/webp/sc10273_c.webp",
       "ownerName": "Karin",
-      "ownerIcon": "/icons/Karin.webp"
+      "ownerIcon": "/icons/Karin.webp",
+      "thumb": "/scene_cards/thumbs/sc10273_thumb.webp"
     }
   ]
 }
