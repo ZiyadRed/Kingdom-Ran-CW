@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useMemo } from 'react'
-import { Routes, Route, Navigate, useNavigate, useLocation, useParams } from 'react-router-dom'
+import { Routes, Route, Navigate, Link, useNavigate, useLocation, useParams } from 'react-router-dom'
 import mountainFolk from '../data/characters/mountain_folk.json'
 import qin          from '../data/characters/qin.json'
 import qinBatch2    from '../data/characters/qin_batch2.json'
@@ -2755,6 +2755,7 @@ function TeamCostPage(){
 // ── CW GUIDE ──────────────────────────────────────────────────────────────────
 const GUIDE_SECTIONS=[
   {id:'basics',       label:'Basics',              category:'Beginner'},
+  {id:'stats',        label:'CW Stats',            category:'Beginner'},
   {id:'roles',        label:'Roles',               category:'Beginner'},
   {id:'bandits',      label:'Bandit Hunt',         category:'Beginner'},
   {id:'matchups',     label:'Unit Matchups',       category:'Beginner'},
@@ -2872,6 +2873,39 @@ function CastleWarBasicsSection(){
       </div>
       <GuideFormula formula="Simple priority: defend key castles -> attack declared targets -> spend leftovers efficiently">
         If a player is new, the best first step is to understand where the alliance needs bodies before trying to optimize every individual matchup.
+      </GuideFormula>
+    </div>
+  )
+}
+
+function CWStatsGuideSection(){
+  return(
+    <div>
+      <p style={{fontSize:'.82rem',lineHeight:1.65,color:'var(--txt3)',textAlign:'center',maxWidth:'760px',margin:'0 auto 1.4rem'}}>
+        CW stats are affected by several progression systems besides the{' '}
+        (<Link to="/buffs" style={{fontWeight:900,color:'var(--terra)',textDecoration:'underline',textUnderlineOffset:'3px'}}>Buffs</Link>) page. Buffs are an important layer, but the final number also depends on the character, troops, weapons, and small scene-card bonuses.
+      </p>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))',gap:'12px'}}>
+        <GuideCard title="What Affects CW Stats" accent="#3d6eb5">
+          <GuideList items={[
+            'Character level. Level 85 is the maximum.',
+            'Character star progress. Maxing the first page gives the maximum stat buff; maxing the second page does not add more CW stat gain.',
+            'LG level.',
+            'Troop level.',
+            'Weapon level and weapon rarity.',
+            'Character scene cards, which provide a small stat boost for min-maxers.',
+          ]}/>
+        </GuideCard>
+        <GuideCard title="Upgrade Priority" accent="var(--gold)">
+          <GuideList items={[
+            'For serious CW use, treat character level 85 as the baseline.',
+            'Weapons should be upgraded for both level and rarity. Aim for level 85 and S rarity on the weapons you actually use.',
+            'When comparing two builds, check progression and equipment before judging the difference from buffs alone.',
+          ]}/>
+        </GuideCard>
+      </div>
+      <GuideFormula formula="Final CW stats = character progress + LG + troops + weapons + buffs + scene-card bonuses">
+        Use this as a checklist when a character's CW stats look lower than expected. One missing layer can make the final result look very different.
       </GuideFormula>
     </div>
   )
@@ -3066,6 +3100,7 @@ function CWGuidePage(){
         ))}
       </div>
       {active==='basics' && <CastleWarBasicsSection/>}
+      {active==='stats' && <CWStatsGuideSection/>}
       {active==='roles' && <RolesGuideSection/>}
       {active==='bandits' && <BanditHuntGuideSection/>}
       {active==='debuffs' && <DebuffResistanceGuideSection/>}
