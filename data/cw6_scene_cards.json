@@ -22,25 +22,25 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP +100%",
+            "effect": "Max HP Up 100％",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK and DEF +30%",
+            "effect": "ATK Up, DEF Up 30％",
             "duration": null
           },
           {
-            "condition": "When attacking",
+            "condition": "When Attacking",
             "target": "Ally Kanki Army",
-            "effect": "Hit rate +25%",
+            "effect": "Hit Rate Up 25％",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "100% Guard",
+            "effect": "Guard 100％",
             "duration": "2 times"
           }
         ]
@@ -67,25 +67,25 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP +100%",
+            "effect": "Max HP Up 100％",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK and DEF +30%",
+            "effect": "ATK Up, DEF Up 30％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Enemy infantry and cavalry generals",
-            "effect": "Evasion -25%",
+            "target": "Enemy infantry and cavalry",
+            "effect": "Evasion (Dodge Chance) Down 25％",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Gain Foresight (25%)",
+            "effect": "Evasion (Dodge Chance) 25％",
             "duration": null
           }
         ]
@@ -112,31 +112,31 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP +100%",
+            "effect": "Max HP Up 100％",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK and DEF +30%",
+            "effect": "ATK Up, DEF Up 30％",
             "duration": null
           },
           {
-            "condition": "If an enemy Qin general is alive",
-            "target": "Ally Zhao generals",
-            "effect": "Fear chance -100%",
+            "condition": "Enemy [Qin] present",
+            "target": "Ally Zhao",
+            "effect": "Fear Resistance 100％",
             "duration": null
           },
           {
-            "condition": "If an enemy Qin general is alive",
+            "condition": "Enemy [Qin] present",
             "target": "All enemy generals",
-            "effect": "DEF and evasion -30%",
+            "effect": "DEF Down 、Evasion (Dodge Chance) Down 30％",
             "duration": null
           },
           {
-            "condition": "If an enemy Qin general is alive",
+            "condition": "Enemy [Qin] present",
             "target": "Self",
-            "effect": "ATK +40%",
+            "effect": "ATK Up 40％",
             "duration": null
           }
         ]
@@ -162,20 +162,20 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Zhao generals",
-            "effect": "DEF +20%",
+            "target": "Ally Zhao",
+            "effect": "DEF Up 20％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Zhao generals",
-            "effect": "DEF against Qin generals +30%",
+            "target": "Ally Zhao",
+            "effect": "Anti-[Qin] DEF Up 30%",
             "duration": null
           },
           {
-            "condition": "If an enemy Qin or Mountain Folk general is alive",
+            "condition": "Enemy [Qin] or [Mountain Folk] alive",
             "target": "Self",
-            "effect": "Recover 20% HP",
+            "effect": "HP Recovery 20％",
             "duration": null
           }
         ]
@@ -202,25 +202,25 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP +100%",
+            "effect": "Max HP Up 100%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally archer generals",
-            "effect": "Critical rate +25%",
+            "target": "Ally archers",
+            "effect": "Critical Rate Up 25%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally archer generals",
-            "effect": "Confusion infliction chance +30%",
+            "target": "Ally archers",
+            "effect": "Confusion Infliction Rate Up 30%",
             "duration": null
           },
           {
-            "condition": "If an enemy shield general is alive",
-            "target": "Ally archer generals",
-            "effect": "60% Guard",
+            "condition": "Enemy [Shield] alive",
+            "target": "Ally archers",
+            "effect": "Guard 60%",
             "duration": "3 times"
           }
         ]
@@ -247,13 +247,31 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK, critical rate, and defense penetration +30%",
+            "effect": "ATK Up 30％",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Hit rate and evasion +20%",
+            "effect": "Critical Rate Up 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "DEF Penetration 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Hit Rate Up 20％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Evasion (Dodge Chance) Up 20％",
             "duration": null
           }
         ]
@@ -279,20 +297,26 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Renpa Army generals",
-            "effect": "Max HP +100%",
+            "target": "Ally Renpa Army",
+            "effect": "Max HP Up 100%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Renpa Army generals",
-            "effect": "ATK and DEF +30%",
+            "target": "Ally Renpa Army",
+            "effect": "ATK Up 30%",
             "duration": null
           },
           {
-            "condition": "If another ally Renpa Army general is alive",
+            "condition": null,
+            "target": "Ally Renpa Army",
+            "effect": "DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "Ally Renpa Army (other than self) alive",
             "target": "All ally generals",
-            "effect": "60% Guard",
+            "effect": "Guard 60%",
             "duration": "2 times"
           }
         ]
@@ -318,20 +342,20 @@
         "effects": [
           {
             "condition": null,
-            "target": "Self",
-            "effect": "ATK and DEF against shield generals +40%",
+            "target": "Self vs [Shield]",
+            "effect": "ATK Up 40%, DEF Up 40%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Self and ally Kyou En",
-            "effect": "Critical damage +20%",
+            "target": "Self and ally \"Renpa\"",
+            "effect": "Critical Damage Up 20%",
             "duration": null
           },
           {
-            "condition": "If ally Kyou En is alive",
-            "target": "All ally generals",
-            "effect": "Recover 20% HP",
+            "condition": "Ally \"Renpa\" alive",
+            "target": "Ally generals",
+            "effect": "HP Recovery 20%",
             "duration": null
           }
         ]
@@ -350,27 +374,27 @@
       "ownerNameJp": "輪虎",
       "ownerIcon": "/icons/Rinko.webp",
       "skill": {
-        "name_en": "Heaven's Guidance",
-        "name_jp": "天の導き☆6",
+        "name_en": "Renpa's Flying Spear (☆6)",
+        "name_jp": "廉頗の飛槍☆6",
         "type": "Strategy",
         "star6": true,
         "effects": [
           {
             "condition": null,
-            "target": "Ally Renpa Army generals",
-            "effect": "Gain Foresight (20%)",
+            "target": "Ally Renpa Army",
+            "effect": "Evasion (Dodge Chance) 20%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Self and ally Kyou En",
-            "effect": "Critical rate +20%",
+            "target": "Self and ally Renpa Army",
+            "effect": "Critical Rate Up 20%",
             "duration": null
           },
           {
-            "condition": "If ally Kyou En is alive",
+            "condition": "Ally \"Renpa\" alive in same formation",
             "target": "All ally generals",
-            "effect": "Morale cost -30%",
+            "effect": "Morale Consumption Down 30%",
             "duration": null
           }
         ]
@@ -395,21 +419,27 @@
         "star6": true,
         "effects": [
           {
-            "condition": null,
-            "target": "Ally Renpa Army generals",
-            "effect": "ATK and DEF +10% per other ally Renpa Army general",
+            "condition": "Per other ally Renpa Army",
+            "target": "Ally Renpa Army",
+            "effect": "ATK Up 10％",
+            "duration": null
+          },
+          {
+            "condition": "Per other ally Renpa Army",
+            "target": "Ally Renpa Army",
+            "effect": "DEF Up 10％",
             "duration": null
           },
           {
             "condition": null,
             "target": "All enemy generals",
-            "effect": "DEF against Renpa Army generals -30%",
+            "effect": "Anti-Renpa Army DEF Down 30％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Renpa Army generals",
-            "effect": "Betrayal chance -60%",
+            "target": "Ally Renpa Army",
+            "effect": "Betrayal Resistance 60％",
             "duration": null
           }
         ]
@@ -436,25 +466,31 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK and DEF against cavalry generals +30%",
+            "effect": "Anti-[Cavalry] ATK Up 30％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally shield generals",
-            "effect": "Hit rate +30%",
+            "target": "Self",
+            "effect": "Anti-[Cavalry] DEF Up 30％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Wei generals",
-            "effect": "Burn chance -100%",
+            "target": "Ally shield infantry",
+            "effect": "Hit Rate Up 30％",
             "duration": null
           },
           {
-            "condition": "When defending",
-            "target": "Enemy cavalry generals",
-            "effect": "ATK -40%",
+            "condition": null,
+            "target": "Self",
+            "effect": "Ally [Wei] Burn Resistance 100％",
+            "duration": null
+          },
+          {
+            "condition": "At the time of garrison",
+            "target": "Enemy cavalry",
+            "effect": "ATK Down 40％",
             "duration": null
           }
         ]
@@ -480,32 +516,38 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Gyokuhou Squad generals",
-            "effect": "Max HP +100%",
+            "target": "Ally Gyokuhou Unit",
+            "effect": "Max HP Up 100％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Gyokuhou Squad generals",
-            "effect": "ATK and DEF +30%",
+            "target": "Ally Gyokuhou Unit",
+            "effect": "ATK Up 30％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Gyokuhou Squad generals",
-            "effect": "100% Guard",
-            "duration": "1 time"
+            "target": "Ally Gyokuhou Unit",
+            "effect": "DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Unit",
+            "effect": "Guard 100％",
+            "duration": "1 times"
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Critical rate +30%",
+            "effect": "Critical Rate Up 30％",
             "duration": null
           },
           {
-            "condition": "If another ally Gyokuhou Squad general is alive",
-            "target": "Enemy generals",
-            "effect": "ATK -40%",
+            "condition": "Other ally [Gyokuhou] Unit alive",
+            "target": "Self",
+            "effect": "Enemy generals ATK Down 40%",
             "duration": null
           }
         ]
@@ -532,31 +574,37 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP +100%",
+            "effect": "Max HP Up 100％",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK and DEF against cavalry generals +30%",
+            "effect": "Anti-[Cavalry] ATK Up 30％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Self and ally Wei Fire Dragon generals",
-            "effect": "HP recovery amount +50%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Enemy cavalry generals",
-            "effect": "ATK -10% per ally Wei Fire Dragon general",
-            "duration": null
-          },
-          {
-            "condition": "When defending, if an enemy cavalry general is alive",
             "target": "Self",
-            "effect": "Recover 20% HP",
+            "effect": "Anti-[Cavalry] DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Ally Wei Fire Dragon HP Recovery Up 50％",
+            "duration": null
+          },
+          {
+            "condition": "Per ally Wei Fire Dragon",
+            "target": "Enemy cavalry",
+            "effect": "ATK Down 10％",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning, enemy [Cavalry] alive",
+            "target": "Self",
+            "effect": "HP Recovery 20％",
             "duration": null
           }
         ]
@@ -583,37 +631,37 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Defense penetration +30%",
+            "effect": "DEF Penetration Up 30%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Wei generals",
-            "effect": "Hit rate +30%",
+            "target": "Ally [Wei]",
+            "effect": "Hit Rate Up 30%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "All enemy generals",
-            "effect": "DEF against archer generals -10%",
+            "target": "Ally [Archer] and Wei Fire Dragon",
+            "effect": "DEF Down 10% against enemy",
             "duration": null
           },
           {
             "condition": null,
-            "target": "All enemy generals",
-            "effect": "DEF against Wei Fire Dragon generals -10%",
+            "target": "All ally generals fighting vs [Archer] and Wei Fire Dragon",
+            "effect": "DEF Down additional 10%",
             "duration": null
           },
           {
-            "condition": "When defending",
-            "target": "Enemy shield generals",
-            "effect": "ATK -20%",
+            "condition": "When Garrisoning",
+            "target": "Enemy [Shield]",
+            "effect": "ATK Down 20%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Surviving ally Reiou, Sogen, and Wei Fire Dragon generals",
-            "effect": "Recover 10% morale",
+            "target": "Surviving ally \"Ranbihaku\", \"GHM\", and Wei Fire Dragon generals",
+            "effect": "Morale Recovery 10%",
             "duration": null
           }
         ]
@@ -640,25 +688,25 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Defense penetration and evasion +30%",
+            "effect": "DEF Penetration Up 30%, Evasion (Dodge Chance) Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Poison infliction chance +60%",
+            "effect": "Poison Infliction Rate Up 60%",
             "duration": null
           },
           {
             "condition": null,
             "target": "All enemy generals",
-            "effect": "Damage taken from poison +100%",
+            "effect": "Poison Damage Up 100%",
             "duration": null
           },
           {
-            "condition": "When attacking",
-            "target": "Enemy shield generals",
-            "effect": "ATK -20%",
+            "condition": "When Attacking",
+            "target": "Enemy shield infantry",
+            "effect": "ATK Down 20%",
             "duration": null
           }
         ]
@@ -684,14 +732,14 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Qin, Zhao, Wei, Chu, Han, and Yan generals",
-            "effect": "Max HP +100%",
+            "target": "Ally Qin, Zhao, Wei, Chu, Han, and Yan",
+            "effect": "Max HP Up 100%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Qin, Zhao, Wei, Chu, Han, and Yan generals",
-            "effect": "DEF +30%",
+            "target": "Ally Qin, Zhao, Wei, Chu, Han, and Yan",
+            "effect": "DEF Up 30%",
             "duration": null
           }
         ]
@@ -718,31 +766,31 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP +100%",
+            "effect": "Max HP Up 100%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Qin generals",
-            "effect": "HP recovery amount +50%",
+            "target": "Ally [Qin]",
+            "effect": "HP Recovery Rate Up 50%",
             "duration": null
           },
           {
-            "condition": "If an enemy Wei general is alive",
-            "target": "All enemy generals",
-            "effect": "ATK -20%",
+            "condition": null,
+            "target": "Enemy [Wei] generals",
+            "effect": "ATK Down 20%",
             "duration": null
           },
           {
-            "condition": "If an enemy Chu general is alive",
-            "target": "All enemy generals",
-            "effect": "Critical damage -20%",
+            "condition": null,
+            "target": "Enemy [Chu] generals",
+            "effect": "Critical Damage Down 20%",
             "duration": null
           },
           {
-            "condition": "If an enemy Han general is alive",
-            "target": "All enemy generals",
-            "effect": "HP recovery amount -20%",
+            "condition": null,
+            "target": "Enemy [Han] generals",
+            "effect": "Current HP Down 20%",
             "duration": null
           }
         ]
@@ -768,32 +816,26 @@
         "effects": [
           {
             "condition": null,
-            "target": "Self and ally Ouki",
-            "effect": "Max HP +100%",
+            "target": "Self and ally \"Kyou\"",
+            "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Self and ally Ouki",
-            "effect": "ATK and DEF +30%",
+            "target": "Self and ally \"Kyou\"",
+            "effect": "Evasion (Dodge Chance) 40%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Self and ally Ouki",
-            "effect": "Gain Foresight (40%)",
+            "target": "Ally [Cavalry]",
+            "effect": "\"Poison\" Resistance 60%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally cavalry generals",
-            "effect": "Poison chance -60%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Enemy archer generals",
-            "effect": "Critical damage -30%",
+            "target": "Enemy [Archer]",
+            "effect": "Critical Damage Down 30%",
             "duration": null
           }
         ]
@@ -820,31 +862,31 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP +100%",
+            "effect": "Max HP Up 100%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK and DEF +30%",
+            "effect": "ATK Up, DEF Up 30%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Self and ally Qin Six Great Generals",
-            "effect": "ATK against archer generals +20%",
+            "target": "Self and ally Six Great Generals of Qin",
+            "effect": "Anti-[Archer] ATK Up 20%",
             "duration": null
           },
           {
-            "condition": null,
-            "target": "Self and surviving ally Qin Six Great Generals",
-            "effect": "Recover 20% morale",
+            "condition": "Alive",
+            "target": "Self and ally Six Great Generals of Qin",
+            "effect": "Morale Recovery 20%",
             "duration": null
           },
           {
-            "condition": "If an enemy archer general is alive",
-            "target": "Self and ally Qin Six Great Generals",
-            "effect": "Confusion and betrayal chance -100%",
+            "condition": "Enemy [Archer] alive",
+            "target": "Self and ally Six Great Generals of Qin",
+            "effect": "Confusion Resistance 、Betrayal Resistance 100%",
             "duration": null
           }
         ]
@@ -871,31 +913,31 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK against cavalry generals +20%",
+            "effect": "Anti-[Cavalry] ATK Up 20％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Heki and Qin Six Great Generals",
-            "effect": "DEF and hit rate +20%",
+            "target": "Self",
+            "effect": "Ally \"Sho\" and Six Great Generals DEF Up 、Hit Rate Up 20％",
             "duration": null
           },
           {
-            "condition": "When defending",
+            "condition": "When Garrisoning",
             "target": "Enemy cavalry generals",
-            "effect": "ATK and critical damage -20%",
+            "effect": "ATK Down 、Critical Damage Down 20％",
             "duration": null
           },
           {
-            "condition": "When defending",
-            "target": "Ally war machines",
-            "effect": "ATK and DEF +50%",
+            "condition": "At the time of garrison",
+            "target": "Ally siege weapons",
+            "effect": "ATK Up, DEF Up 50％",
             "duration": null
           },
           {
-            "condition": "When defending and the castle gate still has HP",
-            "target": "Castle gate",
-            "effect": "Recover 50,000 HP",
+            "condition": "When Garrisoning、While gate has HP remaining",
+            "target": "Gate",
+            "effect": "HP Recovery 50,000",
             "duration": null
           }
         ]
@@ -920,26 +962,32 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Moubu and Bakukoshin",
-            "effect": "Max HP +100%",
+            "target": "Ally \"Ei Sei\" and ally \"Rouai\"",
+            "effect": "Max HP Up 100％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Moubu and Bakukoshin",
-            "effect": "ATK and DEF against cavalry generals +30%",
+            "target": "Ally \"Ei Sei\" and ally \"Rouai\"",
+            "effect": "Anti-[Cavalry] ATK Up 30％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Surviving ally Moubu and Bakukoshin",
-            "effect": "Recover 20% HP",
+            "target": "Ally \"Ei Sei\" and ally \"Rouai\"",
+            "effect": "Anti-[Cavalry] DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "Alive",
+            "target": "Ally \"Ei Sei\" and ally \"Rouai\"",
+            "effect": "HP Recovery 20％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Enemy shield generals",
-            "effect": "Critical damage -30%",
+            "target": "Enemy [Shield]",
+            "effect": "Critical Damage Down 30％",
             "duration": null
           }
         ],
@@ -966,26 +1014,26 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Chu generals",
-            "effect": "Max HP +200%",
+            "target": "Ally Chu",
+            "effect": "Max HP Up 200％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Chu generals",
-            "effect": "Max morale +100%",
+            "target": "Ally Chu",
+            "effect": "Max Morale Up 100%",
             "duration": null
           },
           {
-            "condition": "If an enemy general is alive",
-            "target": "Surviving ally Chu generals",
-            "effect": "Recover 30% HP",
+            "condition": "Enemy alive, surviving ally [Chu]",
+            "target": "Ally Chu",
+            "effect": "HP Recovery 30%",
             "duration": null
           },
           {
-            "condition": "If an enemy general is alive",
-            "target": "Surviving ally Chu generals",
-            "effect": "Recover 20% morale",
+            "condition": "Enemy alive, surviving ally [Chu]",
+            "target": "Ally Chu",
+            "effect": "Morale Recovery 20%",
             "duration": null
           }
         ]
@@ -1012,31 +1060,31 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK against Zhao and Wei generals +20%",
+            "effect": "Anti-[Zhao] ATK Up, Anti-[Wei] ATK Up 20%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Mountain Folk generals",
-            "effect": "Max HP +100%",
+            "target": "Ally [Mountain Folk]",
+            "effect": "Max HP Up 100%",
             "duration": null
           },
           {
-            "condition": null,
-            "target": "Surviving ally Mountain Folk generals",
-            "effect": "Recover 20% morale",
+            "condition": "Alive",
+            "target": "Ally [Mountain Folk]",
+            "effect": "Morale Recovery 20%",
             "duration": null
           },
           {
-            "condition": "When attacking",
-            "target": "Ally Mountain Folk generals",
-            "effect": "Betrayal and fear chance -60%",
+            "condition": "When Attacking",
+            "target": "Ally [Mountain Folk]",
+            "effect": "\"Betrayal\" Resistance, \"Fear\" Resistance 60%",
             "duration": null
           },
           {
-            "condition": "When attacking",
-            "target": "Ally Mountain Folk generals",
-            "effect": "ATK +30%",
+            "condition": "When Attacking",
+            "target": "Ally [Mountain Folk]",
+            "effect": "ATK Up 30%",
             "duration": null
           }
         ]
@@ -1063,25 +1111,19 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP +100%",
+            "effect": "Max HP Up 100%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK +40%",
+            "effect": "Critical Rate Up 、Critical Damage Up 30%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Self",
-            "effect": "Critical rate and critical damage +30%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Chu generals",
-            "effect": "ATK Down resistance +60%",
+            "target": "Ally Chu",
+            "effect": "ATK Down Resistance 60%",
             "duration": null
           }
         ]
@@ -1107,26 +1149,26 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Kanmei Army generals",
-            "effect": "Max HP +100%",
+            "target": "Ally Kanmei Army",
+            "effect": "Max HP Up 100％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Kanmei Army generals",
-            "effect": "ATK and DEF +30%",
+            "target": "Ally Kanmei Army",
+            "effect": "ATK Up, DEF Up 30％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Kanmei Army generals",
-            "effect": "ATK Down resistance +50%",
+            "target": "Ally Kanmei Army",
+            "effect": "ATK Down Resistance 50％",
             "duration": null
           },
           {
-            "condition": "If another ally Chu general is alive",
+            "condition": "Other ally [Chu] alive",
             "target": "All enemy generals",
-            "effect": "DEF -30%",
+            "effect": "DEF Down 30％",
             "duration": null
           }
         ]
@@ -1145,33 +1187,27 @@
       "ownerNameJp": "王翦",
       "ownerIcon": "/icons/Ousen.webp",
       "skill": {
-        "name_en": "Absolute Defense",
-        "name_jp": "絶対防御☆6",
+        "name_en": "Supreme Siege Commander",
+        "name_jp": "必勝の籠城☆6",
         "type": "Strategy",
         "star6": true,
         "effects": [
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP +100%",
+            "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Self",
-            "effect": "ATK and DEF +30%",
+            "target": "Ally [Qin] [Cavalry]",
+            "effect": "DEF Up 20%, DEF Penetration Resistance Up 40%",
             "duration": null
           },
           {
-            "condition": null,
-            "target": "Ally Qin generals",
-            "effect": "Defense penetration resistance +40% and DEF against cavalry generals +20%",
-            "duration": null
-          },
-          {
-            "condition": "When defending",
-            "target": "Enemy cavalry generals",
-            "effect": "ATK -20% and critical damage -40%",
+            "condition": "When Garrisoning",
+            "target": "Enemy [Cavalry]",
+            "effect": "ATK Down 20%, Critical Damage Down 40%",
             "duration": null
           }
         ]
@@ -1198,19 +1234,19 @@
           {
             "condition": null,
             "target": "Ally Gyokuhou Squad generals",
-            "effect": "Evasion +30%",
+            "effect": "Evasion Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally Gyokuhou Squad generals",
-            "effect": "ATK Down resistance +40%",
+            "effect": "Attack Down Resistance Up 40%",
             "duration": null
           },
           {
-            "condition": null,
-            "target": "Surviving ally Gyokuhou Squad generals",
-            "effect": "HP recovery amount +30% and recover 30% HP",
+            "condition": "While alive",
+            "target": "Ally Gyokuhou Squad generals",
+            "effect": "HP Recovery Rate Up 30%, HP Recovery 30%",
             "duration": null
           }
         ]
@@ -1229,39 +1265,27 @@
       "ownerNameJp": "媧燐",
       "ownerIcon": "/icons/Karin.webp",
       "skill": {
-        "name_en": "Genius Strategy",
-        "name_jp": "天才の策略☆6",
+        "name_en": "Karin's Supremacy",
+        "name_jp": "女傑の覇道☆6",
         "type": "Strategy",
         "star6": true,
         "effects": [
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP +100%",
+            "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%, Evasion (Dodge Chance) Up 60%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Self",
-            "effect": "ATK and DEF +30%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Self",
-            "effect": "Evasion +60%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Chu generals",
-            "effect": "Defense penetration +20%",
+            "target": "All ally [Chu]",
+            "effect": "DEF Penetration Up 20%",
             "duration": null
           },
           {
             "condition": null,
             "target": "All enemy generals",
-            "effect": "Critical rate -40%",
+            "effect": "Critical Rate Down 40%",
             "duration": null
           }
         ]
@@ -1280,39 +1304,27 @@
       "ownerNameJp": "太呂慈",
       "ownerIcon": "/icons/Tairoji.webp",
       "skill": {
-        "name_en": "Determined Interception",
-        "name_jp": "覚悟の邀撃☆6",
+        "name_en": "Wei Great General",
+        "name_jp": "魏国大将軍☆6",
         "type": "Strategy",
         "star6": true,
         "effects": [
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP +100%",
+            "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%",
             "duration": null
           },
           {
-            "condition": null,
-            "target": "Self",
-            "effect": "DEF +30%",
+            "condition": "When Attacking",
+            "target": "Ally [Wei]",
+            "effect": "ATK Up 20%, DEF Penetration Resistance Up 30%",
             "duration": null
           },
           {
-            "condition": "When attacking",
-            "target": "Ally Wei generals",
-            "effect": "ATK +20% and ATK Down resistance +30%",
-            "duration": null
-          },
-          {
-            "condition": "When defending",
-            "target": "Ally Wei generals",
-            "effect": "Defense penetration resistance +30%",
-            "duration": null
-          },
-          {
-            "condition": "When defending",
-            "target": "Enemy cavalry generals",
-            "effect": "Critical rate -40%",
+            "condition": "When Garrisoning",
+            "target": "Ally [Wei]",
+            "effect": "DEF Penetration Up 30%, Enemy [Cavalry] Critical Rate Down 40%",
             "duration": null
           }
         ]
