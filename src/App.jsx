@@ -19,6 +19,7 @@ import aiYanMajor   from '../data/characters/ai_yan_major.json'
 import cwBuffsData  from '../data/cw_buffs.json'
 import cwTeamBuffs  from '../data/cw_team_buffs.json'
 import cwMaxStats   from '../data/cw_max_stats.json'
+import sceneCardBuffs from '../data/scene_card_cw_buffs.json'
 import statusEffects from '../data/glossary/status_effects.json'
 import unitMatchups  from '../data/glossary/unit_matchups.json'
 import skillTypesGlossary from '../data/glossary/skill_types.json'
@@ -358,8 +359,8 @@ const CW_TYPE_BUFFS={
   Archer:  {hp:_st('Archer','HP'),   atk:_st('Archer','Attack'),   def:_st('Archer','Defense')},
   Shield:  {hp:_st('Shield','HP'),   atk:_st('Shield','Attack'),   def:_st('Shield','Defense')},
 }
-// Scene card global bonuses (flat, applied to all CW characters)
-const SCENE_CARD={hp:12000,atk:2000,def:3000,maxMp:2300,critRate:2000,dodgeRate:1500}
+// Scene card global bonuses (flat or internal rate points, applied to all CW characters)
+const SCENE_CARD=sceneCardBuffs.totals
 
 // Return fully-buffed CW stats for a character at max enhancement.
 // Applies unit-type % buffs from the CW Buffs page + scene card flat bonuses.
@@ -2181,6 +2182,64 @@ function BuffsPage(){
       </div>
     )
   }
+  const sceneStatMeta={
+    hp:{label:'HP',color:BUFF_STAT_COLORS.HP,total:SCENE_CARD.hp,unit:''},
+    atk:{label:'Attack',color:BUFF_STAT_COLORS.Attack,total:SCENE_CARD.atk,unit:''},
+    def:{label:'Defense',color:BUFF_STAT_COLORS.Defense,total:SCENE_CARD.def,unit:''},
+    morale:{label:'Max Morale',color:'#5a8fcb',total:SCENE_CARD.maxMp,unit:''},
+    crit_rate:{label:'Critical Rate',color:'#b85b28',total:SCENE_CARD.critRate/100,unit:'%'},
+    evasion:{label:'Evasion',color:'#7a65c7',total:SCENE_CARD.dodgeRate/100,unit:'%'},
+  }
+  const sceneStatOrder=['hp','atk','def','morale','crit_rate','evasion']
+  const sceneValueText=e=>e.valueMode==='percent'?`+${e.value.toFixed(1)}%`:`+${e.value.toLocaleString()}`
+  const sceneTotalText=m=>m.unit==='%'?`+${m.total.toFixed(1)}%`:`+${m.total.toLocaleString()}`
+  const renderSceneCardsSection=()=>(
+    <div style={{marginBottom:'2rem',display:'flex',flexDirection:'column',gap:'10px'}}>
+        {sceneStatOrder.map(stat=>{
+          const m=sceneStatMeta[stat]
+          const cards=(sceneCardBuffs.cards||[]).filter(c=>c.stat===stat)
+          return(
+            <details key={stat} open={stat==='hp'} style={{
+              border:`1px solid ${m.color}44`,borderRadius:'8px',background:'var(--sur)',overflow:'hidden',
+              boxShadow:'0 2px 10px rgba(0,0,0,.05)',
+            }}>
+              <summary style={{
+                cursor:'pointer',listStyle:'revert',padding:'12px 14px',
+                background:`linear-gradient(135deg,${m.color}18,var(--sur))`,
+              }}>
+                <span style={{display:'inline-flex',alignItems:'center',gap:'10px',flexWrap:'wrap'}}>
+                  <span style={{fontSize:'.86rem',fontWeight:900,color:m.color}}>{m.label}</span>
+                  <span style={{fontSize:'.95rem',fontWeight:900,color:'var(--txt)'}}>{sceneTotalText(m)}</span>
+                  <span style={{fontSize:'.66rem',color:'var(--txt3)',padding:'2px 8px',borderRadius:'999px',background:'var(--bg2)',border:'1px solid var(--bdr)'}}>{cards.length} cards</span>
+                </span>
+              </summary>
+              <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,116px)',justifyContent:'center',gap:'12px',padding:'12px'}}>
+                {cards.map(card=>(
+                  <div key={card.id} style={{
+                    border:'1px solid var(--bdr)',borderRadius:'8px',overflow:'hidden',
+                    background:'var(--sur)',boxShadow:'0 2px 10px rgba(0,0,0,.06)',
+                  }}>
+                    <div style={{position:'relative',aspectRatio:'1 / 1',background:'var(--bg2)',overflow:'hidden'}}>
+                      <img src={card.image} alt={card.name_en} title={card.name_en} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'contain',display:'block'}}/>
+                      <div style={{
+                        position:'absolute',left:7,bottom:7,padding:'3px 7px',borderRadius:'6px',
+                        background:'rgba(0,0,0,.66)',color:'#fff',fontSize:'.68rem',fontWeight:900,
+                      }}>{sceneValueText(card)}</div>
+                    </div>
+                    <div style={{height:44,padding:'7px 9px',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                      <img src={card.ownerIcon} alt={card.ownerName} title={card.ownerName} loading="lazy" decoding="async" style={{
+                        width:30,height:30,borderRadius:'50%',objectFit:'cover',objectPosition:'center top',
+                        border:`2px solid ${m.color}`,background:m.color+'18',
+                      }}/>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </details>
+          )
+        })}
+    </div>
+  )
   const SectionLabel=({children})=>(
     <div style={{display:'flex',alignItems:'center',gap:'10px',margin:'0 0 1rem'}}>
       <div style={{flex:1,height:1,background:'var(--bdr)'}}/>
@@ -2229,6 +2288,12 @@ function BuffsPage(){
       <div style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
         {TERRAIN_BUFFS.map(t=>renderCard('terrain',t.name,t.color,<TerrainIcon terrain={t}/>,`${t.entries.length} generals`))}
       </div>
+
+      <SectionLabel>Scene Cards</SectionLabel>
+      <p style={{fontSize:'.78rem',color:'var(--txt3)',textAlign:'center',margin:'-.35rem auto 1rem',maxWidth:'520px'}}>
+        Scene card buffs apply to all characters.
+      </p>
+      {renderSceneCardsSection()}
 
       <div style={{textAlign:'center',padding:'2.5rem 1rem',color:'var(--txt3)'}}>
         <div style={{fontSize:'2rem',opacity:.15,marginBottom:'.6rem'}}>⚔</div>
