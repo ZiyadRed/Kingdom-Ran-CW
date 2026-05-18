@@ -1170,7 +1170,7 @@ function HomePage({go}){
   return(
     <main className="home-page">
       <section className="home-hero">
-        <img src="/ranhq-home-banner.png" alt="" className="home-hero-img"/>
+        <img src="/ranhq-home-banner.jpg" alt="" className="home-hero-img" width="1881" height="836" decoding="async" fetchPriority="high"/>
         <div className="home-hero-shade"/>
         <div className="home-hero-content">
           <div className="home-kicker">Kingdom Ran Castle War companion</div>
@@ -1277,7 +1277,7 @@ function CW6SceneCardsPage(){
           </div>
         </div>
         <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(180px,1fr))',gap:'14px',padding:'14px',alignContent:'start'}}>
-          {cards.map(card=>(
+          {cards.map((card,i)=>(
             <button key={card.id} type="button" onClick={()=>pickCard(card)} style={{
               background:'var(--sur)',border:'2px solid ' + (selected?.id===card.id?'var(--terra)':'var(--bdr)'),
               borderRadius:8,overflow:'hidden',cursor:'pointer',textAlign:'left',
@@ -1287,7 +1287,7 @@ function CW6SceneCardsPage(){
               display:'flex',flexDirection:'column',
             }}>
               <div style={{aspectRatio:'1 / 1',background:'var(--bg2)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                <img src={card.image} alt={card.skill_en} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'contain'}}/>
+                <img src={card.thumb||card.image} alt={card.skill_en} loading={i<14?'eager':'lazy'} decoding="async" fetchPriority={i<7?'high':'auto'} style={{width:'100%',height:'100%',objectFit:'contain'}}/>
               </div>
               <div style={{padding:'10px 11px 11px',display:'flex',flexDirection:'column',gap:'6px'}}>
                 <div>
