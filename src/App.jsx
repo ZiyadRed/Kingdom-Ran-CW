@@ -1106,7 +1106,7 @@ export default function App(){
       <header className="hdr">
         <div className="hdr-in">
           <button className="logo" onClick={()=>navigate('/')} style={{background:'none',border:'none',padding:0,cursor:'pointer',color:'inherit'}}>
-            <img src="/ranhq-icon.png" alt="RanHQ" className="logo-icon"/>
+            <img src="/ranhq-icon.webp" alt="RanHQ" className="logo-icon"/>
             <div>
               <div className="logo-ja">キングダム乱</div>
               <div className="logo-en">RanHQ</div>
@@ -1170,7 +1170,7 @@ function HomePage({go}){
   return(
     <main className="home-page">
       <section className="home-hero">
-        <img src="/ranhq-home-banner.jpg" alt="" className="home-hero-img" width="1881" height="836" decoding="async" fetchPriority="high"/>
+        <img src="/ranhq-home-banner.webp" alt="" className="home-hero-img" width="1881" height="836" decoding="async" fetchPriority="high"/>
         <div className="home-hero-shade"/>
         <div className="home-hero-content">
           <div className="home-kicker">Kingdom Ran Castle War companion</div>
@@ -1251,6 +1251,7 @@ function CW6SceneCardsPage(){
   const cards=cw6SceneCards.cards||[]
   const pickCard=card=>setSelected(selected?.id===card.id?null:card)
   const clearSelection=()=>setSelected(null)
+  const sceneCardTitle=card=>card.name_en||`${card.ownerName||'Scene'} CW6 star`
   return(
     <>
     <ArchiveTabs active="cw6"/>
@@ -1276,12 +1277,12 @@ function CW6SceneCardsPage(){
               display:'flex',flexDirection:'column',
             }}>
               <div style={{aspectRatio:'1 / 1',background:'var(--bg2)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                <img src={card.thumb||card.image} alt={card.skill_en} loading="eager" decoding="async" fetchPriority={i<7?'high':'auto'} style={{width:'100%',height:'100%',objectFit:'contain'}}/>
+                <img src={card.thumb||card.image} alt={sceneCardTitle(card)} title={sceneCardTitle(card)} loading="eager" decoding="async" fetchPriority={i<7?'high':'auto'} style={{width:'100%',height:'100%',objectFit:'contain'}}/>
               </div>
               <div style={{padding:'10px 11px 11px',display:'flex',flexDirection:'column',gap:'6px'}}>
                 <div>
-                  <strong style={{display:'block',fontSize:'.84rem',color:'var(--txt)',lineHeight:1.25}}>{card.skill_en}</strong>
-                  <span style={{display:'block',fontSize:'.68rem',color:'var(--txt3)',lineHeight:1.25,marginTop:'2px'}}>{card.skill_jp}</span>
+                  <strong style={{display:'block',fontSize:'.84rem',color:'var(--txt)',lineHeight:1.25}}>{sceneCardTitle(card)}</strong>
+                  <span style={{display:'block',fontSize:'.68rem',color:'var(--txt3)',lineHeight:1.25,marginTop:'2px'}}>{card.skill_en} / {card.skill_jp}</span>
                 </div>
                 {card.ownerName&&(
                   <div style={{display:'flex',alignItems:'center',gap:'6px',fontSize:'.68rem',fontWeight:800,color:'var(--navy)',minWidth:0}}>
@@ -1297,10 +1298,10 @@ function CW6SceneCardsPage(){
       {selected&&(
         <aside className="detail-panel">
           <div className="detail-header">
-            <img src={selected.image} alt={selected.skill_en} className="detail-portrait" loading="eager" decoding="async" fetchPriority="high" style={{objectFit:'contain',background:'rgba(255,255,255,.08)',objectPosition:'center'}}/>
+            <img src={selected.image} alt={sceneCardTitle(selected)} className="detail-portrait" loading="eager" decoding="async" fetchPriority="high" style={{objectFit:'contain',background:'rgba(255,255,255,.08)',objectPosition:'center'}}/>
             <div className="detail-info">
-              <div className="detail-name">{selected.skill_en}</div>
-              <div className="detail-jp">{selected.skill_jp}</div>
+              <div className="detail-name">{sceneCardTitle(selected)}</div>
+              <div className="detail-jp">{selected.skill_en} / {selected.skill_jp}</div>
               {selected.ownerName&&(
                 <div className="detail-faction" style={{display:'flex',alignItems:'center',gap:'6px',color:'rgba(255,255,255,.82)'}}>
                   {selected.ownerIcon&&<img src={selected.ownerIcon} alt="" loading="lazy" decoding="async" style={{width:18,height:18,borderRadius:'50%',objectFit:'cover',objectPosition:'center top',border:'1px solid rgba(255,255,255,.22)'}}/>}
@@ -1951,37 +1952,37 @@ const BUFF_STAT_COLORS = {HP:'#1a8a72', Attack:'#c0392b', Defense:'#2471a3'}
 const CAT_COLOR = {Infantry:'#b8880a', Cavalry:'#c0392b', Archer:'#27ae60', Shield:'#6a4fc8'}
 const TERRAIN_EFFECTS = [
   {
-    id:'slope', name:'Slope', jp:'坂', icon:'/icons/terrain_effect/slope.png', color:'#c79b26',
+    id:'slope', name:'Slope', jp:'坂', icon:'/icons/terrain_effect/slope.webp', color:'#c79b26',
     effect:'Damage dealt -50%',
     detail:'Your attacking unit deals 50% less damage when it invades through a Slope route.',
     mitigatedBy:'Slope Aptitude reduces this damage dealt penalty.',
   },
   {
-    id:'forest', name:'Forest', jp:'森', icon:'/icons/terrain_effect/forest.png', color:'#2f8f4e',
+    id:'forest', name:'Forest', jp:'森', icon:'/icons/terrain_effect/forest.webp', color:'#2f8f4e',
     effect:'Damage dealt -50%',
     detail:'Your attacking unit deals 50% less damage when it invades through a Forest route.',
     mitigatedBy:'Forest Aptitude reduces this damage dealt penalty.',
   },
   {
-    id:'river', name:'River', jp:'川', icon:'/icons/terrain_effect/river.png', color:'#2b80c9',
+    id:'river', name:'River', jp:'川', icon:'/icons/terrain_effect/river.webp', color:'#2b80c9',
     effect:'Damage taken +50%',
     detail:'Your attacking unit takes 50% more damage when it invades through a River route.',
     mitigatedBy:'Waterway Aptitude reduces this damage taken increase.',
   },
   {
-    id:'swamp', name:'Swamp', jp:'湿地', icon:'/icons/terrain_effect/swamp.png', color:'#9a7b26',
+    id:'swamp', name:'Swamp', jp:'湿地', icon:'/icons/terrain_effect/swamp.webp', color:'#9a7b26',
     effect:'Damage taken +50%',
     detail:'Your attacking unit takes 50% more damage when it invades through a Swamp route.',
     mitigatedBy:'Mud Aptitude reduces this damage taken increase.',
   },
   {
-    id:'checkpoint', name:'Checkpoint', jp:'関所', icon:'/icons/terrain_effect/checkpoint.png', color:'#b98b35',
+    id:'checkpoint', name:'Checkpoint', jp:'関所', icon:'/icons/terrain_effect/checkpoint.webp', color:'#b98b35',
     effect:'Starting HP -30%',
     detail:'Your attacking unit starts the battle with 30% less HP when it invades through a Checkpoint route.',
     mitigatedBy:'Scout reduces this starting HP loss.',
   },
   {
-    id:'ambush', name:'Ambush', jp:'伏兵', icon:'/icons/terrain_effect/ambush.png', color:'#8a5a3a',
+    id:'ambush', name:'Ambush', jp:'伏兵', icon:'/icons/terrain_effect/ambush.webp', color:'#8a5a3a',
     effect:'Starting HP -30%',
     detail:'Your attacking unit starts the battle with 30% less HP when it invades through an Ambush route.',
     mitigatedBy:'Unit Protection reduces this starting HP loss.',
@@ -1989,7 +1990,7 @@ const TERRAIN_EFFECTS = [
 ]
 const TERRAIN_BUFFS = [
   {
-    id:'slope', name:'Slope', jp:'坂', icon:'/icons/terrain/slope.png', color:'#c79b26',
+    id:'slope', name:'Slope', jp:'坂', icon:'/icons/terrain/slope.webp', color:'#c79b26',
     typeLabel:'Damage Dealt Reduction',
     description:'Increases resistance to damage dealt reduction from Slope terrain.',
     entries:[
@@ -2001,7 +2002,7 @@ const TERRAIN_BUFFS = [
     ],
   },
   {
-    id:'forest', name:'Forest', jp:'森', icon:'/icons/terrain/forest.png', color:'#2f8f4e',
+    id:'forest', name:'Forest', jp:'森', icon:'/icons/terrain/forest.webp', color:'#2f8f4e',
     typeLabel:'Damage Dealt Reduction',
     description:'Increases resistance to damage dealt reduction from Forest terrain.',
     entries:[
@@ -2013,7 +2014,7 @@ const TERRAIN_BUFFS = [
     ],
   },
   {
-    id:'river', name:'River', jp:'川', icon:'/icons/terrain/river.png', color:'#2b80c9',
+    id:'river', name:'River', jp:'川', icon:'/icons/terrain/river.webp', color:'#2b80c9',
     typeLabel:'Damage Taken Increase',
     description:'Increases resistance to damage taken increase from River terrain.',
     entries:[
@@ -2025,7 +2026,7 @@ const TERRAIN_BUFFS = [
     ],
   },
   {
-    id:'wetland', name:'Swamp', jp:'湿地', icon:'/icons/terrain/wetland.png', color:'#9a7b26',
+    id:'wetland', name:'Swamp', jp:'湿地', icon:'/icons/terrain/wetland.webp', color:'#9a7b26',
     typeLabel:'Damage Taken Increase',
     description:'Increases resistance to damage taken increase from Swamp terrain.',
     entries:[
@@ -2037,7 +2038,7 @@ const TERRAIN_BUFFS = [
     ],
   },
   {
-    id:'ambush', name:'Ambush', jp:'伏兵', icon:'/icons/terrain/ambush.png', color:'#8a5a3a',
+    id:'ambush', name:'Ambush', jp:'伏兵', icon:'/icons/terrain/ambush.webp', color:'#8a5a3a',
     typeLabel:'Starting Troop HP Loss',
     description:'Reduces the unit damage effect from Ambush terrain.',
     entries:[
@@ -2051,7 +2052,7 @@ const TERRAIN_BUFFS = [
     ],
   },
   {
-    id:'checkpoint', name:'Checkpoint', jp:'関所', icon:'/icons/terrain/checkpoint.png', color:'#b98b35',
+    id:'checkpoint', name:'Checkpoint', jp:'関所', icon:'/icons/terrain/checkpoint.webp', color:'#b98b35',
     typeLabel:'Starting Troop HP Loss',
     description:'Reduces the unit damage effect from Checkpoint terrain.',
     entries:[
@@ -2755,11 +2756,12 @@ function TeamCostPage(){
 // ── CW GUIDE ──────────────────────────────────────────────────────────────────
 const GUIDE_SECTIONS=[
   {id:'basics',       label:'Basics',              category:'Beginner'},
-  {id:'stats',        label:'CW Stats',            category:'Beginner'},
+  {id:'stats-screen', label:'CW Stats Screen',     category:'Beginner'},
   {id:'roles',        label:'Roles',               category:'Beginner'},
   {id:'bandits',      label:'Bandit Hunt',         category:'Beginner'},
   {id:'matchups',     label:'Unit Matchups',       category:'Beginner'},
   {id:'types',        label:'Skill Types',         category:'Beginner'},
+  {id:'stats',        label:'How To Raise CW Stats',category:'Advanced'},
   {id:'debuffs',      label:'Debuff Resist',       category:'Advanced'},
   {id:'effects',      label:'Status Effects',      category:'Advanced'},
   {id:'terrain',      label:'Terrain Effects',     category:'Advanced'},
@@ -2800,21 +2802,48 @@ function GuideFormula({formula,children}) {
   )
 }
 
+function GuideMarkedImage({src,alt,markers,aspectRatio}) {
+  return (
+    <div style={{
+      position:'relative',maxWidth:'920px',margin:'0 auto 1rem',borderRadius:'12px',
+      overflow:'hidden',background:'var(--bg2)',border:'1px solid var(--bdr)',
+      boxShadow:'0 3px 14px rgba(6,38,76,.08)',
+    }}>
+      <img src={src} alt={alt} loading="lazy" decoding="async" style={{
+        display:'block',width:'100%',aspectRatio,objectFit:'contain',background:'var(--bg2)',
+      }}/>
+      {markers.map(marker=>(
+        <div key={marker.id} title={marker.title} style={{
+          position:'absolute',left:`${marker.x}%`,top:`${marker.y}%`,transform:'translate(-50%,-50%)',
+          width:marker.size||18,height:marker.size||18,borderRadius:'999px',display:'flex',alignItems:'center',justifyContent:'center',
+          background:marker.ring?'rgba(229,57,53,.08)':marker.color||'var(--terra)',
+          color:marker.ring?'#e53935':'#fff',
+          border:marker.ring?'4px solid #e53935':'2px solid #fff',
+          boxShadow:marker.ring?'0 0 0 3px rgba(255,255,255,.85),0 2px 10px rgba(0,0,0,.4)':'0 2px 8px rgba(0,0,0,.35)',
+          fontSize:marker.ring?'0':'.56rem',fontWeight:900,
+        }}>
+          {marker.label ?? marker.id}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 const FAQ_IMAGES={
   basics:[
-    {src:'/guide/basics-map-en.png',label:'Castle War map overview'},
-    {src:'/guide/basics-flow-en.png',label:'Castle War flow screen'},
+    {src:'/guide/basics-map-en.webp',label:'Castle War map overview'},
+    {src:'/guide/basics-flow-en.webp',label:'Castle War flow screen'},
   ],
   roles:[
-    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/image-146-1.png',label:'Role selection screen'},
-    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/image-153-1.png',label:'Role button on battle map'},
-    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/image-150-1-1.png',label:'Role effect view'},
+    {src:'/guide/roles-selection.webp',label:'Role selection screen'},
+    {src:'/guide/roles-button.webp',label:'Role button on battle map'},
+    {src:'/guide/roles-effect.webp',label:'Role effect view'},
   ],
   bandits:[
-    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/image-154-1.png',label:'Bandit Hunt button'},
-    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/image-152-1.png',label:'Bandit Hunt start screen'},
-    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/2-1-1-1.png',label:'Bandit Hunt team setup'},
-    {src:'https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/1-1-1-3.png',label:'Bandit Hunt results'},
+    {src:'/guide/bandit-button.webp',label:'Bandit Hunt button'},
+    {src:'/guide/bandit-start.webp',label:'Bandit Hunt start screen'},
+    {src:'/guide/bandit-team.webp',label:'Bandit Hunt team setup'},
+    {src:'/guide/bandit-results.webp',label:'Bandit Hunt results'},
   ],
 }
 
@@ -2878,6 +2907,60 @@ function CastleWarBasicsSection(){
   )
 }
 
+const CW_STATS_SCREEN_MARKERS=[
+  {id:'1',title:'HP',x:5.4,y:30.4,color:'#d8472f',body:'Maximum HP for Castle War.'},
+  {id:'2',title:'Morale',x:5.4,y:35.9,color:'#1a9f75',body:'Maximum Morale. Morale skills draw from this cap.'},
+  {id:'3',title:'Max Attack',x:5.4,y:41.4,color:'#c0392b',body:'The upper attack value used when damage is calculated.'},
+  {id:'4',title:'Min Attack',x:5.4,y:47.0,color:'#c0392b',body:'The lower attack value used when damage is calculated.'},
+  {id:'5',title:'Type Advantage Damage',x:5.4,y:52.6,color:'#a85bb6',body:'Bonus special attack effect when the unit has the favorable matchup.'},
+  {id:'6',title:'Type Disadvantage Damage',x:5.4,y:58.1,color:'#8b6fbd',body:'Special attack effect shown for unfavorable matchups.'},
+  {id:'7',title:'Hit Rate',x:5.4,y:63.8,color:'#a65a7a',body:'Helps attacks connect instead of missing.'},
+  {id:'8',title:'Critical Rate',x:5.4,y:69.6,color:'#7a65c7',body:'Chance for an attack to become a critical hit.'},
+  {id:'9',title:'Critical Damage',x:5.4,y:75.3,color:'#9a6b1c',body:'Bonus damage applied when a critical hit happens.'},
+  {id:'10',title:'Defense Penetration',x:5.4,y:80.9,color:'#5869a8',body:'Helps bypass part of the enemy Defense. It is not the same thing as Attack.'},
+  {id:'11',title:'Defense',x:5.4,y:86.6,color:'#2471a3',body:'Reduces incoming damage.'},
+  {id:'12',title:'Evasion (Dodge chance)',x:5.4,y:92.2,color:'#1a8a72',body:'Chance to dodge incoming attacks.'},
+]
+
+function CWStatsScreenGuideSection(){
+  return(
+    <div>
+      <p style={{fontSize:'.82rem',lineHeight:1.65,color:'var(--txt3)',textAlign:'center',maxWidth:'760px',margin:'0 auto 1.4rem'}}>
+        The CW Stats screen shows a character's Castle War-specific stats. These values are separate from the normal character detail stats and are used for Castle War.
+      </p>
+      <GuideCard title="How To Open It" accent="var(--terra)">
+        <p style={{margin:'0 0 .8rem'}}>
+          Open a character page, then tap the castle icon on the right side of the screen.
+        </p>
+        <GuideMarkedImage src="/guide/cw-stats-access.webp" alt="Character page showing the Castle War stats icon" markers={[]} aspectRatio="2014 / 1218"/>
+      </GuideCard>
+      <div style={{height:'12px'}}/>
+      <GuideMarkedImage src="/guide/cw-stats-screen.webp" alt="Castle War stats screen with numbered stat rows" markers={CW_STATS_SCREEN_MARKERS} aspectRatio="1855 / 1194"/>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(230px,1fr))',gap:'12px'}}>
+        {CW_STATS_SCREEN_MARKERS.map(stat=>(
+          <GuideCard key={stat.id} title={`${stat.id}. ${stat.title}`} accent={stat.color}>
+            {stat.body}
+          </GuideCard>
+        ))}
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))',gap:'12px',marginTop:'12px'}}>
+        <GuideCard title="Screen Notes" accent="var(--gold)">
+          <GuideList items={[
+            'Green values in parentheses show the bonus portion currently added to that stat or effect.',
+            'Max Attack and Min Attack both matter because damage can roll between them.',
+            <>Type advantage follows unit matchups. Check the <Link to="/guide/matchups" style={{fontWeight:900,color:'var(--terra)',textDecoration:'underline',textUnderlineOffset:'3px'}}>Unit Matchups</Link> guide for the matchup chart.</>,
+          ]}/>
+        </GuideCard>
+        <GuideCard title="Related Pages" accent="#3d6eb5">
+          <div>
+            Use <Link to="/guide/stats" style={{fontWeight:900,color:'var(--terra)',textDecoration:'underline',textUnderlineOffset:'3px'}}>How To Raise CW Stats</Link> for progression sources, and <Link to="/buffs" style={{fontWeight:900,color:'var(--terra)',textDecoration:'underline',textUnderlineOffset:'3px'}}>Buffs</Link> for Castle War buff references.
+          </div>
+        </GuideCard>
+      </div>
+    </div>
+  )
+}
+
 function CWStatsGuideSection(){
   return(
     <div>
@@ -2896,17 +2979,7 @@ function CWStatsGuideSection(){
             'Character scene cards, which provide a small stat boost for min-maxers.',
           ]}/>
         </GuideCard>
-        <GuideCard title="Upgrade Priority" accent="var(--gold)">
-          <GuideList items={[
-            'For serious CW use, treat character level 85 as the baseline.',
-            'Weapons should be upgraded for both level and rarity. Aim for level 85 and S rarity on the weapons you actually use.',
-            'When comparing two builds, check progression and equipment before judging the difference from buffs alone.',
-          ]}/>
-        </GuideCard>
       </div>
-      <GuideFormula formula="Final CW stats = character progress + LG + troops + weapons + buffs + scene-card bonuses">
-        Use this as a checklist when a character's CW stats look lower than expected. One missing layer can make the final result look very different.
-      </GuideFormula>
     </div>
   )
 }
@@ -3100,6 +3173,7 @@ function CWGuidePage(){
         ))}
       </div>
       {active==='basics' && <CastleWarBasicsSection/>}
+      {active==='stats-screen' && <CWStatsScreenGuideSection/>}
       {active==='stats' && <CWStatsGuideSection/>}
       {active==='roles' && <RolesGuideSection/>}
       {active==='bandits' && <BanditHuntGuideSection/>}
@@ -3123,15 +3197,15 @@ const EFFECT_INTERACTIONS=[
     groups:[
       {
         effects:[
-          {name_en:'Provoke',       icon:'/icons/status/provoke.png'},
-          {name_en:'Less Likely to be Targeted', icon:'/icons/status/less_targeted.png'},
+          {name_en:'Provoke',       icon:'/icons/status/provoke.webp'},
+          {name_en:'Less Likely to be Targeted', icon:'/icons/status/less_targeted.webp'},
         ],
       },
       {
         effects:[
-          {name_en:'Confusion', icon:'/icons/status/confusion.png'},
-          {name_en:'Betrayal',  icon:'/icons/status/betrayal.png'},
-          {name_en:'Rampage',   icon:'/icons/status/berserk.png'},
+          {name_en:'Confusion', icon:'/icons/status/confusion.webp'},
+          {name_en:'Betrayal',  icon:'/icons/status/betrayal.webp'},
+          {name_en:'Rampage',   icon:'/icons/status/berserk.webp'},
         ],
       },
     ],
@@ -3143,8 +3217,8 @@ const EFFECT_INTERACTIONS=[
     groups:[
       {
         effects:[
-          {name_en:'Attack Nullification', icon:'/icons/status/nullify.png'},
-          {name_en:'Guard',                icon:'/icons/status/guard.png'},
+          {name_en:'Attack Nullification', icon:'/icons/status/nullify.webp'},
+          {name_en:'Guard',                icon:'/icons/status/guard.webp'},
         ],
       },
     ],
@@ -3158,7 +3232,7 @@ const EFFECT_INTERACTIONS=[
     groups:[
       {
         effects:[
-          {name_en:'Guard', icon:'/icons/status/guard.png'},
+          {name_en:'Guard', icon:'/icons/status/guard.webp'},
         ],
       },
     ],
@@ -3232,7 +3306,7 @@ const TARGETING_RULES=[
     title:'Skill Target Selection Priority',
     body:'When a target has a special status effect, target selection follows this order:',
     list:[
-      <>Status effect presence (e.g. <span style={{display:'inline-flex',alignItems:'center',gap:'.2rem',whiteSpace:'nowrap'}}><img src="/icons/status/provoke.png" alt="Provoke" style={{width:18,height:18}}/><b>Provocation</b></span>, <span style={{display:'inline-flex',alignItems:'center',gap:'.2rem',whiteSpace:'nowrap'}}><img src="/icons/status/confusion.png" alt="Confusion" style={{width:18,height:18}}/><b>Confusion</b></span>)</>,
+      <>Status effect presence (e.g. <span style={{display:'inline-flex',alignItems:'center',gap:'.2rem',whiteSpace:'nowrap'}}><img src="/icons/status/provoke.webp" alt="Provoke" style={{width:18,height:18}}/><b>Provocation</b></span>, <span style={{display:'inline-flex',alignItems:'center',gap:'.2rem',whiteSpace:'nowrap'}}><img src="/icons/status/confusion.webp" alt="Confusion" style={{width:18,height:18}}/><b>Confusion</b></span>)</>,
       <>The skill's specified priority (e.g. highest attack, lowest defense)</>,
     ],
   },
@@ -3246,7 +3320,7 @@ const TARGETING_RULES=[
   },
   {
     title:'Provocation',
-    icon:'/icons/status/provoke.png',
+    icon:'/icons/status/provoke.webp',
     bullets:[
       'Concentrates incoming enemy damage attacks on the provoked unit.',
       'Does not affect targeting of non-damage skills.',
@@ -3255,7 +3329,7 @@ const TARGETING_RULES=[
   },
   {
     title:'Confusion',
-    icon:'/icons/status/confusion.png',
+    icon:'/icons/status/confusion.webp',
     bullets:[
       'The affected unit attacks both allies and enemies indiscriminately.',
       'Uses skills if available, otherwise normal attacks.',

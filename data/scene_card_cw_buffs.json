@@ -11,7 +11,7 @@
     {
       "id": 40109,
       "imageId": 10109,
-      "name_en": "Paired Wings",
+      "name_en": "Hakusui Evasion buff",
       "name_jp": "比翼連理",
       "stat": "evasion",
       "statLabel": "Evasion",
@@ -25,7 +25,7 @@
     {
       "id": 40141,
       "imageId": 10141,
-      "name_en": "Crossing Hangu Pass: Han O Ki",
+      "name_en": "Hanoki Attack buff",
       "name_jp": "函谷関通過 樊於期",
       "stat": "atk",
       "statLabel": "Attack",
@@ -39,7 +39,7 @@
     {
       "id": 40142,
       "imageId": 10142,
-      "name_en": "Chu Summit Meeting",
+      "name_en": "Rien Defense buff",
       "name_jp": "楚国頂上会談",
       "stat": "def",
       "statLabel": "Defense",
@@ -53,7 +53,7 @@
     {
       "id": 40143,
       "imageId": 10143,
-      "name_en": "Wrath of the King of Chu",
+      "name_en": "Kouretsu Critical Rate buff",
       "name_jp": "楚王の怒り",
       "stat": "crit_rate",
       "statLabel": "Critical Rate",
@@ -67,7 +67,7 @@
     {
       "id": 40144,
       "imageId": 10144,
-      "name_en": "A Place to Call Home",
+      "name_en": "Rouai Max Morale buff",
       "name_jp": "安住の地",
       "stat": "morale",
       "statLabel": "Max Morale",
@@ -81,7 +81,7 @@
     {
       "id": 40145,
       "imageId": 10145,
-      "name_en": "Crossing Hangu Pass: Han Ryu Ki",
+      "name_en": "Hanroki Evasion buff",
       "name_jp": "函谷関通過 樊琉期",
       "stat": "evasion",
       "statLabel": "Evasion",
@@ -95,7 +95,7 @@
     {
       "id": 40146,
       "imageId": 10146,
-      "name_en": "Former Duke Hyou Soldiers",
+      "name_en": "Gakurai Defense buff",
       "name_jp": "元麃公兵",
       "stat": "def",
       "statLabel": "Defense",
@@ -109,7 +109,7 @@
     {
       "id": 40148,
       "imageId": 10148,
-      "name_en": "Shoot Into the Blue Sky",
+      "name_en": "Karin HP buff",
       "name_jp": "蒼天に撃つ",
       "stat": "hp",
       "statLabel": "HP",
@@ -123,7 +123,7 @@
     {
       "id": 40149,
       "imageId": 10149,
-      "name_en": "Connecting Light",
+      "name_en": "Ei Sei Max Morale buff",
       "name_jp": "繋ぐ光",
       "stat": "morale",
       "statLabel": "Max Morale",
@@ -137,7 +137,7 @@
     {
       "id": 40184,
       "imageId": 10184,
-      "name_en": "Coming-of-Age Ceremony",
+      "name_en": "Ei Sei Defense buff",
       "name_jp": "加冠の儀",
       "stat": "def",
       "statLabel": "Defense",
@@ -151,7 +151,7 @@
     {
       "id": 40185,
       "imageId": 10185,
-      "name_en": "Anger",
+      "name_en": "Kanki Attack buff",
       "name_jp": "怒り",
       "stat": "atk",
       "statLabel": "Attack",
@@ -165,7 +165,7 @@
     {
       "id": 40199,
       "imageId": 10199,
-      "name_en": "Appraising Treasure",
+      "name_en": "Kokuou HP buff",
       "name_jp": "お宝の吟味",
       "stat": "hp",
       "statLabel": "HP",
@@ -179,7 +179,7 @@
     {
       "id": 40202,
       "imageId": 10202,
-      "name_en": "Elephant of Bones",
+      "name_en": "Duke Sei Critical Rate buff",
       "name_jp": "骸の巨象",
       "stat": "crit_rate",
       "statLabel": "Critical Rate",
@@ -193,7 +193,7 @@
     {
       "id": 40203,
       "imageId": 10203,
-      "name_en": "Pure Devotion to the King",
+      "name_en": "Shunpeikun Max Morale buff",
       "name_jp": "王への純真",
       "stat": "morale",
       "statLabel": "Max Morale",
@@ -207,7 +207,7 @@
     {
       "id": 40204,
       "imageId": 10204,
-      "name_en": "An Ocean of Enemies",
+      "name_en": "Kanki Attack buff",
       "name_jp": "敵の大海原",
       "stat": "atk",
       "statLabel": "Attack",
@@ -221,7 +221,7 @@
     {
       "id": 40218,
       "imageId": 10218,
-      "name_en": "Guardian Stone",
+      "name_en": "Yuri HP buff",
       "name_jp": "守り石様",
       "stat": "hp",
       "statLabel": "HP",
@@ -235,7 +235,7 @@
     {
       "id": 40219,
       "imageId": 10219,
-      "name_en": "Prayers Reach...",
+      "name_en": "Toumi Defense buff",
       "name_jp": "祈り届く…",
       "stat": "def",
       "statLabel": "Defense",
@@ -249,7 +249,7 @@
     {
       "id": 40226,
       "imageId": 10226,
-      "name_en": "Bond Forged by Battle",
+      "name_en": "Kyou Attack buff",
       "name_jp": "百戦錬磨の絆",
       "stat": "atk",
       "statLabel": "Attack",
@@ -263,7 +263,7 @@
     {
       "id": 40247,
       "imageId": 10247,
-      "name_en": "Commander-in-Chief Ousen",
+      "name_en": "Ousen HP buff",
       "name_jp": "総大将王翦",
       "stat": "hp",
       "statLabel": "HP",
@@ -277,7 +277,7 @@
     {
       "id": 40273,
       "imageId": 10273,
-      "name_en": "Chancellor of Chu",
+      "name_en": "Karin Defense buff",
       "name_jp": "楚国丞相",
       "stat": "def",
       "statLabel": "Defense",

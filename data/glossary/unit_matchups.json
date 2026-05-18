@@ -1,5 +1,5 @@
 {
-  "chart_image": "/icons/cw/sukumi.png",
+  "chart_image": "/icons/cw/sukumi.webp",
   "rules": [
     { "strong": "Cavalry", "weak": "Archer", "icon_strong": "/icons/unit_cavalry.webp", "icon_weak": "/icons/unit_archer.webp" },
     { "strong": "Archer",  "weak": "Shield", "icon_strong": "/icons/unit_archer.webp",  "icon_weak": "/icons/unit_shield.webp" },
