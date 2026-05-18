@@ -95,6 +95,8 @@ img { display: block; max-width: 100%; height: auto }
 .app  { display: flex; flex-direction: column; min-height: 100vh }
 .app-body { flex: 1; display: flex; flex-direction: column }
 .foot { text-align: center; padding: 1rem; border-top: 1px solid var(--bdr); color: var(--txt3); font-size: .7rem }
+.foot a { color: var(--txt3); text-decoration: underline; text-underline-offset: 2px }
+.foot a:hover { color: var(--terra2) }
 .main-page { max-width: 1400px; margin: 0 auto; padding: 1.5rem; width: 100% }
 .pg-title  { font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: .25rem }
 .pg-sub    { color: var(--txt2); font-size: .8rem; margin-bottom: 1.1rem }
@@ -935,6 +937,7 @@ img { display: block; max-width: 100%; height: auto }
   }
   /* Push page content above bottom nav */
   .app-body { padding-bottom: calc(52px + env(safe-area-inset-bottom, 0px)) }
+  .foot { padding-bottom: calc(1rem + 52px + env(safe-area-inset-bottom, 0px)) }
   /* Fix detail panel so it sits above bottom nav */
   .detail-panel { bottom: calc(52px + env(safe-area-inset-bottom, 0px)) }
   .has-selection .gallery-wrap { padding-bottom: calc(65vh + 52px) }

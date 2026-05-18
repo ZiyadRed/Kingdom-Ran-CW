@@ -847,7 +847,7 @@ const RARITY_DATA={
   'Duke Sei':{rarity:'UR',faction:'Zhao',name_jp:'青公'},
   'Ei Sei':{rarity:'SR',faction:'Qin',name_jp:'嬴政'},
   'Entei':{rarity:'SR',faction:'Qin',name_jp:'燕呈'},
-  'Fuchi':{rarity:'SR',faction:'Qin',name_jp:'渕'},
+  'En':{rarity:'SR',faction:'Qin',name_jp:'渕'},
   'Fuji':{rarity:'SR',faction:'Mountain Folk',name_jp:'フゥヂ'},
   'Futei':{rarity:'SR',faction:'Zhao',name_jp:'傳抵'},
   'Gaimou':{rarity:'UR',faction:'Wei',name_jp:'凱孟'},
@@ -1138,6 +1138,7 @@ export default function App(){
         <div style={{marginTop:'.35rem'}}>Made by <strong>@ZiyadRed</strong> · Purgatory 復活</div>
         <div style={{marginTop:'.2rem'}}>Special thanks <strong>@WiperLuffy</strong> · <a href="https://touranko.vercel.app" target="_blank" rel="noopener noreferrer" style={{color:'var(--txt3)',textDecoration:'underline'}}>touranko.vercel.app</a></div>
         <div style={{marginTop:'.35rem',color:'var(--txt3)'}}>©Hara Yasuhisa/Shueisha・Kingdom Production Committee ©でらゲー</div>
+        <div style={{marginTop:'.2rem'}}><a href="https://discord.gg/8fJvWtgR" target="_blank" rel="noopener noreferrer" style={{color:'var(--txt3)',textDecoration:'underline'}}>Join the Discord</a></div>
       </footer>
       <nav className="bottom-nav">
         {PAGES.map(p=>(
@@ -1896,7 +1897,7 @@ const TERRAIN_BUFFS = [
     description:'Increases resistance to damage taken increase from River terrain.',
     entries:[
       {name:'Kei', name_jp:'慶', faction:'qin', type:'SR', value:5.4},
-      {name:'Fuchi', name_jp:'渕', faction:'qin', type:'SR', value:6.3},
+      {name:'En', name_jp:'渕', faction:'qin', type:'SR', value:6.3},
       {name:'Kyoushou', name_jp:'羌象', faction:'qin', type:'SR', value:7.2},
       {name:'Doukin', name_jp:'同金', faction:'qin', type:'SR', value:14.5},
       {name:'Ryuusen', name_jp:'竜川', faction:'qin', type:'SR', value:16.6},
