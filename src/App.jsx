@@ -1247,8 +1247,30 @@ function ArchiveHubPage(){
 }
 
 function CW6SceneCardsPage(){
+  const[activeFilter,setActiveFilter]=useState('all')
   const[selected,setSelected]=useState(null)
-  const cards=cw6SceneCards.cards||[]
+  const allCards=cw6SceneCards.cards||[]
+  const filters=[
+    {id:'all',label:'All'},
+    {id:'guard',label:'Guard',terms:['guard']},
+    {id:'foresight',label:'Foresight',terms:['foresight']},
+    {id:'recovery',label:'Recovery',terms:['recover','recovery']},
+    {id:'morale',label:'Morale',terms:['morale']},
+    {id:'critical',label:'Critical',terms:['critical']},
+    {id:'evasion',label:'Evasion',terms:['evasion']},
+    {id:'debuffs',label:'Debuffs',terms:[' -','chance -','amount -']},
+    {id:'resist',label:'Resistance',terms:['resistance']},
+    {id:'defpen',label:'Def Pen',terms:['defense penetration']},
+  ]
+  const matchFilter=(card,filter)=>{
+    if(filter.id==='all') return true
+    const text=(card.skill?.effects||[])
+      .map(e=>[e.condition,e.target,e.effect,e.duration].filter(Boolean).join(' '))
+      .join(' ')
+      .toLowerCase()
+    return filter.terms.some(term=>text.includes(term))
+  }
+  const cards=allCards.filter(card=>matchFilter(card,filters.find(f=>f.id===activeFilter)||filters[0]))
   const pickCard=card=>setSelected(selected?.id===card.id?null:card)
   const clearSelection=()=>setSelected(null)
   return(
@@ -1263,6 +1285,18 @@ function CW6SceneCardsPage(){
           </div>
           <div style={{display:'flex',alignItems:'center',gap:'9px',flexWrap:'wrap',marginLeft:'auto'}}>
             <span className="gallery-count">{cards.length} cards</span>
+          </div>
+          <div className="cw6-filter-row">
+            {filters.map(filter=>{
+              const on=activeFilter===filter.id
+              const count=allCards.filter(card=>matchFilter(card,filter)).length
+              return(
+                <button key={filter.id} type="button" className={'cw6-filter-chip' + (on?' cw6-filter-chip-on':'')} onClick={()=>setActiveFilter(filter.id)}>
+                  <span>{filter.label}</span>
+                  <span>{count}</span>
+                </button>
+              )
+            })}
           </div>
         </div>
         <div className="cw6-scene-grid" style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(180px,1fr))',gap:'14px',padding:'14px',alignContent:'start'}}>

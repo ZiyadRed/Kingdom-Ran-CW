@@ -332,12 +332,52 @@ img { display: block; max-width: 100%; height: auto }
   background: var(--sur);
   position: sticky; top: 0; z-index: 10; flex-shrink: 0;
 }
+.cw6-scene-page .gallery-header { position: static; top: auto; z-index: auto }
 .gallery-title { font-size: .95rem; font-weight: 800; color: var(--navy) }
 .gallery-count { font-size: .72rem; color: var(--txt3); background: var(--bg2); border: 1px solid var(--bdr); border-radius: 20px; padding: 2px 9px }
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
   gap: .7rem; padding: .85rem; align-content: start;
+}
+.cw6-filter-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  overflow-x: auto;
+  padding-top: .15rem;
+  scrollbar-width: thin;
+}
+.cw6-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  flex: 0 0 auto;
+  min-height: 30px;
+  padding: .28rem .55rem;
+  border-radius: 999px;
+  border: 1px solid var(--bdr);
+  background: var(--bg2);
+  color: var(--txt2);
+  font-size: .72rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.cw6-filter-chip span:last-child {
+  font-size: .62rem;
+  color: var(--txt3);
+  background: var(--sur);
+  border-radius: 999px;
+  padding: 0 .35rem;
+}
+.cw6-filter-chip-on {
+  border-color: var(--terra);
+  background: rgba(192, 91, 43, .12);
+  color: var(--terra);
+}
+.cw6-filter-chip-on span:last-child {
+  color: var(--terra);
 }
 .banner-card {
   position: relative; border-radius: 10px; overflow: hidden;
@@ -744,6 +784,8 @@ img { display: block; max-width: 100%; height: auto }
   .gallery-header { position: sticky; top: calc(var(--hdr-h) + 54px + 46px); }
   .gallery-grid   { grid-template-columns: repeat(3, 1fr); gap: .5rem; padding: .6rem }
   .cw6-scene-page .gallery-header { position: static; top: auto; z-index: auto }
+  .cw6-scene-page .cw6-filter-row { margin: .15rem -.35rem 0; padding: 0 .35rem .1rem }
+  .cw6-scene-page .cw6-filter-chip { min-height: 32px; font-size: .72rem }
   .cw6-scene-page .cw6-scene-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: .6rem !important; padding: .75rem .65rem !important }
 
   /* Skills panel: fixed bottom sheet */
