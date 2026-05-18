@@ -1249,7 +1249,6 @@ function ArchiveHubPage(){
 function CW6SceneCardsPage(){
   const[query,setQuery]=useState('')
   const[selected,setSelected]=useState(null)
-  const[sceneImagesReady,setSceneImagesReady]=useState(false)
   const q=query.trim().toLowerCase()
   const cards=(cw6SceneCards.cards||[]).filter(card=>{
     if(!q) return true
@@ -1257,20 +1256,6 @@ function CW6SceneCardsPage(){
       .filter(Boolean)
       .some(v=>String(v).toLowerCase().includes(q))
   })
-  useEffect(()=>{
-    if(typeof window==='undefined'||!window.Image){setSceneImagesReady(true);return}
-    let alive=true
-    const urls=[...new Set((cw6SceneCards.cards||[]).flatMap(card=>[card.thumb||card.image,card.ownerIcon]).filter(Boolean))]
-    if(!urls.length){setSceneImagesReady(true);return}
-    Promise.all(urls.map(src=>new Promise(resolve=>{
-      const img=new window.Image()
-      img.decoding='async'
-      img.onload=()=>{img.decode?.().catch(()=>{}).finally(resolve) || resolve()}
-      img.onerror=resolve
-      img.src=src
-    }))).then(()=>{if(alive)setSceneImagesReady(true)})
-    return()=>{alive=false}
-  },[])
   const pickCard=card=>setSelected(selected?.id===card.id?null:card)
   const clearSelection=()=>setSelected(null)
   return(
@@ -1292,13 +1277,7 @@ function CW6SceneCardsPage(){
           </div>
         </div>
         <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(180px,1fr))',gap:'14px',padding:'14px',alignContent:'start'}}>
-          {!sceneImagesReady&&[...Array(8)].map((_,i)=>(
-            <div key={i} aria-hidden="true" style={{
-              height:258,borderRadius:8,background:'linear-gradient(135deg,var(--sur),var(--bg2))',
-              border:'1px solid var(--bdr)',boxShadow:'0 3px 14px rgba(6,38,76,.05)',
-            }}/>
-          ))}
-          {sceneImagesReady&&cards.map((card,i)=>(
+          {cards.map((card,i)=>(
             <button key={card.id} type="button" onClick={()=>pickCard(card)} style={{
               background:'var(--sur)',border:'2px solid ' + (selected?.id===card.id?'var(--terra)':'var(--bdr)'),
               borderRadius:8,overflow:'hidden',cursor:'pointer',textAlign:'left',
