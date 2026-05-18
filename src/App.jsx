@@ -175,7 +175,7 @@ const TIER_TEAMS=[
   {tier:'S',color:'#c0392b',name:'YTW',       members:['Katari','Yotanwa','Kitari','Ramauji']},
   {tier:'A',color:'#e07f48',name:'Renpa',     members:['Rinko','Tairoji','Renpa','Kouretsu']},
   {tier:'A',color:'#e07f48',name:'Ousen Army', members:['Hakuki','Makou','Ousen','Akou']},
-  {tier:'A',color:'#e07f48',name:'Qin Shields',members:['Hakuki','Akou','Ousen','Ei Sei']},
+  {tier:'A',color:'#e07f48',name:'Karin + Kanmei', members:['Kyoubou','Karin','Kanmei','Shunshinkun']},
   {tier:'A',color:'#e07f48',name:'Hi Shin',   members:['Garo','Gakurai','Naki','Robin']},
   {tier:'A',color:'#e07f48',name:'Wei',       members:['Ranbihaku','Tairoji','Reiou','Gokei']},
   {tier:'B',color:'#cc972d',name:'Ai',        members:['Wategi','Budai','Hanoki','Hamui']},
@@ -1247,21 +1247,14 @@ function ArchiveHubPage(){
 }
 
 function CW6SceneCardsPage(){
-  const[query,setQuery]=useState('')
   const[selected,setSelected]=useState(null)
-  const q=query.trim().toLowerCase()
-  const cards=(cw6SceneCards.cards||[]).filter(card=>{
-    if(!q) return true
-    return [card.name_jp,card.skill_en,card.skill_jp,card.ownerName,card.ownerNameJp,String(card.id)]
-      .filter(Boolean)
-      .some(v=>String(v).toLowerCase().includes(q))
-  })
+  const cards=cw6SceneCards.cards||[]
   const pickCard=card=>setSelected(selected?.id===card.id?null:card)
   const clearSelection=()=>setSelected(null)
   return(
     <>
     <ArchiveTabs active="cw6"/>
-    <div className={'archive-layout' + (selected?' has-selection':'')}>
+    <div className={'archive-layout cw6-scene-page' + (selected?' has-selection':'')}>
       <div className="gallery-wrap">
         <div className="gallery-header" style={{alignItems:'flex-start',gap:'12px',flexWrap:'wrap'}}>
           <div>
@@ -1270,13 +1263,9 @@ function CW6SceneCardsPage(){
           </div>
           <div style={{display:'flex',alignItems:'center',gap:'9px',flexWrap:'wrap',marginLeft:'auto'}}>
             <span className="gallery-count">{cards.length} cards</span>
-            <input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search cards or skills..." style={{
-              width:260,maxWidth:'60vw',border:'1px solid var(--bdr)',borderRadius:8,background:'var(--sur)',
-              color:'var(--txt)',padding:'.52rem .65rem',fontSize:'.8rem',outline:'none',
-            }}/>
           </div>
         </div>
-        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(180px,1fr))',gap:'14px',padding:'14px',alignContent:'start'}}>
+        <div className="cw6-scene-grid" style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(180px,1fr))',gap:'14px',padding:'14px',alignContent:'start'}}>
           {cards.map((card,i)=>(
             <button key={card.id} type="button" onClick={()=>pickCard(card)} style={{
               background:'var(--sur)',border:'2px solid ' + (selected?.id===card.id?'var(--terra)':'var(--bdr)'),
