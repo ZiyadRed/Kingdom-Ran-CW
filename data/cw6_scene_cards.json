@@ -1,0 +1,1283 @@
+{
+  "title": "CW6★ Scene Cards",
+  "description": "Scene cards that grant a CW skill at 6★.",
+  "cards": [
+    {
+      "id": 40172,
+      "imageId": 10172,
+      "name_jp": "火兎の笛",
+      "skill_en": "Bandit's Confidant",
+      "skill_jp": "野盗の腹心",
+      "image": "/scene_cards/sc10172_c.png",
+      "owner_id": "raido",
+      "ownerName": "Raido",
+      "ownerNameJp": "雷土",
+      "ownerIcon": "/icons/Raido.webp",
+      "skill": {
+        "name_en": "Bandit's Confidant",
+        "name_jp": "野盗の腹心☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Max HP Up 100％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "ATK Up, DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Ally Kanki Army",
+            "effect": "Hit Rate Up 25％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Guard 100％",
+            "duration": "2 times"
+          }
+        ]
+      }
+    },
+    {
+      "id": 40186,
+      "imageId": 10186,
+      "name_jp": "行路の途中",
+      "skill_en": "Flash",
+      "skill_jp": "閃光",
+      "image": "/scene_cards/sc10186_c.png",
+      "owner_id": "denti",
+      "ownerName": "Futei",
+      "ownerNameJp": "傳抵",
+      "ownerIcon": "/icons/Futei.webp",
+      "skill": {
+        "name_en": "Flash",
+        "name_jp": "閃光☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Max HP Up 100％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "ATK Up, DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy infantry and cavalry",
+            "effect": "Evasion (Dodge Chance) Down 25％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Evasion (Dodge Chance) 25％",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40187,
+      "imageId": 10187,
+      "name_jp": "不穏",
+      "skill_en": "Grudge",
+      "skill_jp": "怨讐",
+      "image": "/scene_cards/sc10187_c.png",
+      "owner_id": "mangoku",
+      "ownerName": "Mangoku",
+      "ownerNameJp": "万極",
+      "ownerIcon": "/icons/Mangoku.webp",
+      "skill": {
+        "name_en": "Grudge",
+        "name_jp": "怨讐☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Max HP Up 100％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "ATK Up, DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "Enemy [Qin] present",
+            "target": "Ally Zhao",
+            "effect": "Fear Resistance 100％",
+            "duration": null
+          },
+          {
+            "condition": "Enemy [Qin] present",
+            "target": "All enemy generals",
+            "effect": "DEF Down 、Evasion (Dodge Chance) Down 30％",
+            "duration": null
+          },
+          {
+            "condition": "Enemy [Qin] present",
+            "target": "Self",
+            "effect": "ATK Up 40％",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40188,
+      "imageId": 10188,
+      "name_jp": "憤怒",
+      "skill_en": "The General's Pride",
+      "skill_jp": "殿の意地",
+      "image": "/scene_cards/sc10188_c.png",
+      "owner_id": "shinseicho",
+      "ownerName": "Shinseijou",
+      "ownerNameJp": "晋成常",
+      "ownerIcon": "/icons/Shinseijou.webp",
+      "skill": {
+        "name_en": "The General's Pride",
+        "name_jp": "殿の意地☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Zhao",
+            "effect": "DEF Up 20％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Zhao",
+            "effect": "Anti-[Qin] DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "Enemy [Qin] or [Mountain Folk] alive",
+            "target": "Self",
+            "effect": "HP Recovery 20％",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40189,
+      "imageId": 10189,
+      "name_jp": "静かで熱い刃",
+      "skill_en": "Hunter's Instinct",
+      "skill_jp": "狩人の嗅覚",
+      "image": "/scene_cards/sc10189_c.png",
+      "owner_id": "keisha",
+      "ownerName": "Keisha",
+      "ownerNameJp": "慶舎",
+      "ownerIcon": "/icons/Keisha.webp",
+      "skill": {
+        "name_en": "Hunter's Instinct",
+        "name_jp": "狩人の嗅覚☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally archers",
+            "effect": "Critical Rate Up 25%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally archers",
+            "effect": "Confusion Infliction Rate Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "Enemy [Shield] alive",
+            "target": "Ally archers",
+            "effect": "Guard 60%",
+            "duration": "3 times"
+          }
+        ]
+      }
+    },
+    {
+      "id": 40190,
+      "imageId": 10190,
+      "name_jp": "苛立ち",
+      "skill_en": "End of the Path",
+      "skill_jp": "求道の果て",
+      "image": "/scene_cards/sc10190_c.png",
+      "owner_id": "houken",
+      "ownerName": "Houken",
+      "ownerNameJp": "龐煖",
+      "ownerIcon": "/icons/Houken.webp",
+      "skill": {
+        "name_en": "End of the Path",
+        "name_jp": "求道の果て☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "ATK Up 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Critical Rate Up 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "DEF Penetration 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Hit Rate Up 20％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Evasion (Dodge Chance) Up 20％",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40191,
+      "imageId": 10191,
+      "name_jp": "宣戦布告",
+      "skill_en": "Warm Embrace",
+      "skill_jp": "熱き抱擁",
+      "image": "/scene_cards/sc10191_c.png",
+      "owner_id": "renpa",
+      "ownerName": "Renpa",
+      "ownerNameJp": "廉頗",
+      "ownerIcon": "/icons/Renpa.webp",
+      "skill": {
+        "name_en": "Warm Embrace",
+        "name_jp": "熱き抱擁",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Renpa Army",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Renpa Army",
+            "effect": "ATK Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Renpa Army",
+            "effect": "DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "Ally Renpa Army (other than self) alive",
+            "target": "All ally generals",
+            "effect": "Guard 60%",
+            "duration": "2 times"
+          }
+        ]
+      }
+    },
+    {
+      "id": 40192,
+      "imageId": 10192,
+      "name_jp": "戦の基本",
+      "skill_en": "On Target",
+      "skill_jp": "正鵠を射る",
+      "image": "/scene_cards/sc10192_c.png",
+      "owner_id": "kyouen",
+      "ownerName": "KyouEn",
+      "ownerNameJp": "姜燕",
+      "ownerIcon": "/icons/Kyouen.webp",
+      "skill": {
+        "name_en": "On Target",
+        "name_jp": "正鵠を射る☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self vs [Shield]",
+            "effect": "ATK Up 40%, DEF Up 40%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self and ally \"Renpa\"",
+            "effect": "Critical Damage Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "Ally \"Renpa\" alive",
+            "target": "Ally generals",
+            "effect": "HP Recovery 20%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40193,
+      "imageId": 10193,
+      "name_jp": "兵の力",
+      "skill_en": "Heaven's Guidance",
+      "skill_jp": "天の導き",
+      "image": "/scene_cards/sc10193_c.png",
+      "owner_id": "rinka",
+      "ownerName": "Rinko",
+      "ownerNameJp": "輪虎",
+      "ownerIcon": "/icons/Rinko.webp",
+      "skill": {
+        "name_en": "Heaven's Guidance",
+        "name_jp": "天の導き☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "target": "Allied Renpa Army generals",
+            "effect": "Gain Foresight, scaling up with scene-card rank."
+          },
+          {
+            "target": "Self / ally Renpa",
+            "effect": "Critical rate increases, scaling up with scene-card rank."
+          },
+          {
+            "condition": "If ally Renpa is alive",
+            "target": "All allied generals",
+            "effect": "Morale consumption is reduced."
+          }
+        ]
+      }
+    },
+    {
+      "id": 40194,
+      "imageId": 10194,
+      "name_jp": "怒りの特攻",
+      "skill_en": "Loyalty to the Great General",
+      "skill_jp": "大将軍への忠心",
+      "image": "/scene_cards/sc10194_c.png",
+      "owner_id": "kaishi_renmei",
+      "ownerName": "Kaishibou",
+      "ownerNameJp": "介子坊",
+      "ownerIcon": "/icons/Kaishibou.webp",
+      "skill": {
+        "name_en": "Loyalty to the Great General",
+        "name_jp": "大将軍への忠心☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": "Per other ally Renpa Army",
+            "target": "Ally Renpa Army",
+            "effect": "ATK Up 10％",
+            "duration": null
+          },
+          {
+            "condition": "Per other ally Renpa Army",
+            "target": "Ally Renpa Army",
+            "effect": "DEF Up 10％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy generals",
+            "effect": "Anti-Renpa Army DEF Down 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Renpa Army",
+            "effect": "Betrayal Resistance 60％",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40195,
+      "imageId": 10195,
+      "name_jp": "大軍現る",
+      "skill_en": "Passion for Conquest",
+      "skill_jp": "侵略への激情",
+      "image": "/scene_cards/sc10195_c.png",
+      "owner_id": "gokei",
+      "ownerName": "Gokei",
+      "ownerNameJp": "呉慶",
+      "ownerIcon": "/icons/Gokei.webp",
+      "skill": {
+        "name_en": "Passion for Conquest",
+        "name_jp": "侵略への激情☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Anti-[Cavalry] ATK Up 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Anti-[Cavalry] DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally shield infantry",
+            "effect": "Hit Rate Up 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Ally [Wei] Burn Resistance 100％",
+            "duration": null
+          },
+          {
+            "condition": "At the time of garrison",
+            "target": "Enemy cavalry",
+            "effect": "ATK Down 40％",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40196,
+      "imageId": 10196,
+      "name_jp": "強者に見る弱点",
+      "skill_en": "Together",
+      "skill_jp": "共にある",
+      "image": "/scene_cards/sc10196_c.png",
+      "owner_id": "ouhon",
+      "ownerName": "Ouhon",
+      "ownerNameJp": "王賁",
+      "ownerIcon": "/icons/Ouhon.webp",
+      "skill": {
+        "name_en": "Together",
+        "name_jp": "共にある☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Unit",
+            "effect": "Max HP Up 100％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Unit",
+            "effect": "ATK Up 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Unit",
+            "effect": "DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Unit",
+            "effect": "Guard 100％",
+            "duration": "1 times"
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Critical Rate Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "Other ally [Gyokuhou] Unit alive",
+            "target": "Self",
+            "effect": "Enemy generals ATK Down 40%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40206,
+      "imageId": 10206,
+      "name_jp": "霊凰の鉞",
+      "skill_en": "Axe of Overwhelming Force",
+      "skill_jp": "暴威の鉞",
+      "image": "/scene_cards/sc10206_c.png",
+      "owner_id": "ranbishaku",
+      "ownerName": "Ranbihaku",
+      "ownerNameJp": "乱美迫",
+      "ownerIcon": "/icons/Ranbihaku.webp",
+      "skill": {
+        "name_en": "Axe of Overwhelming Force",
+        "name_jp": "暴威の鉞☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Max HP Up 100％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Anti-[Cavalry] ATK Up 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Anti-[Cavalry] DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Ally Wei Fire Dragon HP Recovery Up 50％",
+            "duration": null
+          },
+          {
+            "condition": "Per ally Wei Fire Dragon",
+            "target": "Enemy cavalry",
+            "effect": "ATK Down 10％",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning, enemy [Cavalry] alive",
+            "target": "Self",
+            "effect": "HP Recovery 20％",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40207,
+      "imageId": 10207,
+      "name_jp": "新旧分岐の刹那",
+      "skill_en": "Cold-Blooded Strategy",
+      "skill_jp": "冷酷な軍略",
+      "image": "/scene_cards/sc10207_c.png",
+      "owner_id": "reiou",
+      "ownerName": "Reiou",
+      "ownerNameJp": "霊凰",
+      "ownerIcon": "/icons/Reiou.webp",
+      "skill": {
+        "name_en": "Cold-Blooded Strategy",
+        "name_jp": "冷酷な軍略☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "DEF Penetration Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Wei]",
+            "effect": "Hit Rate Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Archer] and Wei Fire Dragon",
+            "effect": "DEF Down 10% against enemy",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All ally generals fighting vs [Archer] and Wei Fire Dragon",
+            "effect": "DEF Down additional 10%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Enemy [Shield]",
+            "effect": "ATK Down 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Surviving ally \"Ranbihaku\", \"GHM\", and Wei Fire Dragon generals",
+            "effect": "Morale Recovery 10%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40208,
+      "imageId": 10208,
+      "name_jp": "歴とした武器",
+      "skill_en": "Poison Domination",
+      "skill_jp": "毒の支配",
+      "image": "/scene_cards/sc10208_c.png",
+      "owner_id": "seika",
+      "ownerName": "Seikai",
+      "ownerNameJp": "成恢",
+      "ownerIcon": "/icons/Seikai.webp",
+      "skill": {
+        "name_en": "Poison Domination",
+        "name_jp": "毒の支配",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "DEF Penetration Up 30%, Evasion (Dodge Chance) Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Poison Infliction Rate Up 60%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy generals",
+            "effect": "Poison Damage Up 100%",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Enemy shield infantry",
+            "effect": "ATK Down 20%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40209,
+      "imageId": 10209,
+      "name_jp": "先従隗始",
+      "skill_en": "The Conqueror Who Moves the World",
+      "skill_jp": "天下を動かす傑物",
+      "image": "/scene_cards/sc10209_c.png",
+      "owner_id": "rakki",
+      "ownerName": "Gakuki",
+      "ownerNameJp": "楽毅",
+      "ownerIcon": "/icons/Gakuki.webp",
+      "skill": {
+        "name_en": "The Conqueror Who Moves the World",
+        "name_jp": "天下を動かす傑物☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Qin, Zhao, Wei, Chu, Han, and Yan",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Qin, Zhao, Wei, Chu, Han, and Yan",
+            "effect": "DEF Up 30%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40210,
+      "imageId": 10210,
+      "name_jp": "一刻を争う状況",
+      "skill_en": "Born Strong",
+      "skill_jp": "生来強者",
+      "image": "/scene_cards/sc10210_c.png",
+      "owner_id": "tou",
+      "ownerName": "Tou",
+      "ownerNameJp": "騰",
+      "ownerIcon": "/icons/Tou.webp",
+      "skill": {
+        "name_en": "Born Strong",
+        "name_jp": "生来強者☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Qin]",
+            "effect": "HP Recovery Rate Up 50%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Wei] generals",
+            "effect": "ATK Down 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Chu] generals",
+            "effect": "Critical Damage Down 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Han] generals",
+            "effect": "Current HP Down 20%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40211,
+      "imageId": 10211,
+      "name_jp": "死地を活路へ",
+      "skill_en": "Oath",
+      "skill_jp": "誓い",
+      "image": "/scene_cards/sc10211_c.png",
+      "owner_id": "ouki",
+      "ownerName": "Ouki",
+      "ownerNameJp": "王騎",
+      "ownerIcon": "/icons/Ouki.webp",
+      "skill": {
+        "name_en": "Oath",
+        "name_jp": "誓い☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self and ally \"Kyou\"",
+            "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self and ally \"Kyou\"",
+            "effect": "Evasion (Dodge Chance) 40%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Cavalry]",
+            "effect": "\"Poison\" Resistance 60%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Archer]",
+            "effect": "Critical Damage Down 30%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40212,
+      "imageId": 10212,
+      "name_jp": "六人目の大将軍",
+      "skill_en": "Loyalty",
+      "skill_jp": "忠義",
+      "image": "/scene_cards/sc10212_c.png",
+      "owner_id": "shoou",
+      "ownerName": "Sho",
+      "ownerNameJp": "昭王",
+      "ownerIcon": "/icons/Sho.webp",
+      "skill": {
+        "name_en": "Loyalty",
+        "name_jp": "忠義☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "ATK Up, DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self and ally Six Great Generals of Qin",
+            "effect": "Anti-[Archer] ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "Alive",
+            "target": "Self and ally Six Great Generals of Qin",
+            "effect": "Morale Recovery 20%",
+            "duration": null
+          },
+          {
+            "condition": "Enemy [Archer] alive",
+            "target": "Self and ally Six Great Generals of Qin",
+            "effect": "Confusion Resistance 、Betrayal Resistance 100%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40213,
+      "imageId": 10213,
+      "name_jp": "常勝に導く引き際",
+      "skill_en": "Undefeated",
+      "skill_jp": "不敗",
+      "image": "/scene_cards/sc10213_c.png",
+      "owner_id": "hakuki",
+      "ownerName": "Hakuki",
+      "ownerNameJp": "白起",
+      "ownerIcon": "/icons/Hakuki.webp",
+      "skill": {
+        "name_en": "Undefeated",
+        "name_jp": "不敗☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Anti-[Cavalry] ATK Up 20％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Ally \"Sho\" and Six Great Generals DEF Up 、Hit Rate Up 20％",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Enemy cavalry generals",
+            "effect": "ATK Down 、Critical Damage Down 20％",
+            "duration": null
+          },
+          {
+            "condition": "At the time of garrison",
+            "target": "Ally siege weapons",
+            "effect": "ATK Up, DEF Up 50％",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning、While gate has HP remaining",
+            "target": "Gate",
+            "effect": "HP Recovery 50,000",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40225,
+      "imageId": 10225,
+      "name_jp": "最後の懇願",
+      "skill_en": "Journey's End",
+      "skill_jp": "旅の終着",
+      "image": "/scene_cards/sc10225_c.png",
+      "owner_id": "taiko",
+      "ownerName": "Queen Biki",
+      "ownerNameJp": "太后",
+      "ownerIcon": "/icons/Queen Biki.webp",
+      "skill": {
+        "name_en": "Journey's End",
+        "name_jp": "旅の終着☆6",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally \"Ei Sei\" and ally \"Rouai\"",
+            "effect": "Max HP Up 100％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally \"Ei Sei\" and ally \"Rouai\"",
+            "effect": "Anti-[Cavalry] ATK Up 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally \"Ei Sei\" and ally \"Rouai\"",
+            "effect": "Anti-[Cavalry] DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": "Alive",
+            "target": "Ally \"Ei Sei\" and ally \"Rouai\"",
+            "effect": "HP Recovery 20％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Shield]",
+            "effect": "Critical Damage Down 30％",
+            "duration": null
+          }
+        ],
+        "star6": true
+      }
+    },
+    {
+      "id": 40230,
+      "imageId": 10230,
+      "name_jp": "逆上",
+      "skill_en": "Ruler of a Superpower",
+      "skill_jp": "超大国の執政者",
+      "image": "/scene_cards/sc10230_c.png",
+      "owner_id": "shunshinkun",
+      "ownerName": "Shunshinkun",
+      "ownerNameJp": "春申君",
+      "ownerIcon": "/icons/Shunshinkun.webp",
+      "skill": {
+        "name_en": "Ruler of a Superpower",
+        "name_jp": "超大国の執政者☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Chu",
+            "effect": "Max HP Up 200％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Chu",
+            "effect": "Max Morale Up 100%",
+            "duration": null
+          },
+          {
+            "condition": "Enemy alive, surviving ally [Chu]",
+            "target": "Ally Chu",
+            "effect": "HP Recovery 30%",
+            "duration": null
+          },
+          {
+            "condition": "Enemy alive, surviving ally [Chu]",
+            "target": "Ally Chu",
+            "effect": "Morale Recovery 20%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40232,
+      "imageId": 10232,
+      "name_jp": "女王率いる山界の軍",
+      "skill_en": "Unification of the Mountain World",
+      "skill_jp": "山界ノ統一",
+      "image": "/scene_cards/sc10232_c.png",
+      "owner_id": "yotanwa",
+      "ownerName": "Yotanwa",
+      "ownerNameJp": "楊端和",
+      "ownerIcon": "/icons/Yotanwa.webp",
+      "skill": {
+        "name_en": "Unification of the Mountain World",
+        "name_jp": "山界ノ統一☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Anti-[Zhao] ATK Up, Anti-[Wei] ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Mountain Folk]",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": "Alive",
+            "target": "Ally [Mountain Folk]",
+            "effect": "Morale Recovery 20%",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Ally [Mountain Folk]",
+            "effect": "\"Betrayal\" Resistance, \"Fear\" Resistance 60%",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Ally [Mountain Folk]",
+            "effect": "ATK Up 30%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40233,
+      "imageId": 10233,
+      "name_jp": "叩きあげられた力",
+      "skill_en": "Vanguard Smasher",
+      "skill_jp": "先陣割砕",
+      "image": "/scene_cards/sc10233_c.png",
+      "owner_id": "rinbujun",
+      "ownerName": "Rinbukun",
+      "ownerNameJp": "臨武君",
+      "ownerIcon": "/icons/Rinbukun.webp",
+      "skill": {
+        "name_en": "Vanguard Smasher",
+        "name_jp": "先陣割砕☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Critical Rate Up 、Critical Damage Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Chu",
+            "effect": "ATK Down Resistance 60%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40234,
+      "imageId": 10234,
+      "name_jp": "天下最強漢の中の漢",
+      "skill_en": "Supreme Wisdom",
+      "skill_jp": "至強の知",
+      "image": "/scene_cards/sc10234_c.png",
+      "owner_id": "kanmei",
+      "ownerName": "Kanmei",
+      "ownerNameJp": "汗明",
+      "ownerIcon": "/icons/Kanmei.webp",
+      "skill": {
+        "name_en": "Supreme Wisdom",
+        "name_jp": "至強の知☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Kanmei Army",
+            "effect": "Max HP Up 100％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Kanmei Army",
+            "effect": "ATK Up, DEF Up 30％",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Kanmei Army",
+            "effect": "ATK Down Resistance 50％",
+            "duration": null
+          },
+          {
+            "condition": "Other ally [Chu] alive",
+            "target": "All enemy generals",
+            "effect": "DEF Down 30％",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40235,
+      "imageId": 10235,
+      "name_jp": "永劫の王翦軍",
+      "skill_en": "Absolute Defense",
+      "skill_jp": "絶対防御",
+      "image": "/scene_cards/sc10235_c.png",
+      "owner_id": "ousen",
+      "ownerName": "Ousen",
+      "ownerNameJp": "王翦",
+      "ownerIcon": "/icons/Ousen.webp",
+      "skill": {
+        "name_en": "Absolute Defense",
+        "name_jp": "絶対防御☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "target": "Self",
+            "effect": "Max HP, attack, and defense increase."
+          },
+          {
+            "target": "Allied Qin generals",
+            "effect": "Defense penetration resistance increases, and defense against cavalry generals increases."
+          },
+          {
+            "condition": "When garrisoning",
+            "target": "Enemy cavalry generals",
+            "effect": "Attack and critical damage decrease."
+          }
+        ]
+      }
+    },
+    {
+      "id": 40236,
+      "imageId": 10236,
+      "name_jp": "速さ重視",
+      "skill_en": "Devoted Retainer",
+      "skill_jp": "侍従懸命",
+      "image": "/scene_cards/sc10236_c.png",
+      "owner_id": "kanjo",
+      "ownerName": "Kanjou",
+      "ownerNameJp": "関常",
+      "ownerIcon": "/icons/Kanjou.webp",
+      "skill": {
+        "name_en": "Devoted Retainer",
+        "name_jp": "侍従懸命☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Squad generals",
+            "effect": "Evasion Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Squad generals",
+            "effect": "Attack Down Resistance Up 40%",
+            "duration": null
+          },
+          {
+            "condition": "While alive",
+            "target": "Ally Gyokuhou Squad generals",
+            "effect": "HP Recovery Rate Up 30%, HP Recovery 30%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "id": 40249,
+      "imageId": 10249,
+      "name_jp": "全部まやかし",
+      "skill_en": "Genius Strategy",
+      "skill_jp": "天才の策略",
+      "image": "/scene_cards/sc10249_c.png",
+      "owner_id": "karin",
+      "ownerName": "Karin",
+      "ownerNameJp": "媧燐",
+      "ownerIcon": "/icons/Karin.webp",
+      "skill": {
+        "name_en": "Genius Strategy",
+        "name_jp": "天才の策略☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "target": "Self",
+            "effect": "Attack increases against the Six Great Generals of Qin and other legendary generals."
+          },
+          {
+            "condition": "At skill max",
+            "target": "Self",
+            "effect": "Attack and defense increase against enemy Qin units."
+          }
+        ]
+      }
+    },
+    {
+      "id": 42001,
+      "imageId": 12001,
+      "name_jp": "喪失",
+      "skill_en": "Determined Interception",
+      "skill_jp": "覚悟の邀撃",
+      "image": "/scene_cards/sc12001_c.png",
+      "owner_id": "tairoji",
+      "ownerName": "Tairoji",
+      "ownerNameJp": "太呂慈",
+      "ownerIcon": "/icons/Tairoji.webp",
+      "skill": {
+        "name_en": "Determined Interception",
+        "name_jp": "覚悟の邀撃☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "target": "Self",
+            "effect": "Max HP and defense increase."
+          },
+          {
+            "condition": "When invading",
+            "target": "Allied Wei generals",
+            "effect": "Attack and attack-down resistance increase."
+          },
+          {
+            "condition": "When garrisoning",
+            "target": "Allied Wei / enemy cavalry generals",
+            "effect": "Allied Wei defense penetration resistance increases; enemy cavalry critical rate decreases."
+          }
+        ]
+      }
+    }
+  ]
+}

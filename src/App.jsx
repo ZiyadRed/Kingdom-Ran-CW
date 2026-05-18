@@ -20,6 +20,7 @@ import cwBuffsData  from '../data/cw_buffs.json'
 import cwTeamBuffs  from '../data/cw_team_buffs.json'
 import cwMaxStats   from '../data/cw_max_stats.json'
 import sceneCardBuffs from '../data/scene_card_cw_buffs.json'
+import cw6SceneCards from '../data/cw6_scene_cards.json'
 import statusEffects from '../data/glossary/status_effects.json'
 import unitMatchups  from '../data/glossary/unit_matchups.json'
 import skillTypesGlossary from '../data/glossary/skill_types.json'
@@ -1019,18 +1020,18 @@ const RARITY_DATA={
   'Zenou':{rarity:'UR',faction:'Qin',name_jp:'ゼノウ'}
 }
 
-const PAGES=['Home','Skill Archive','Guide','Party Builder','Buffs','Tier List','Team Cost']
+const PAGES=['Home','Archive','Guide','Party Builder','Buffs','Tier List','Team Cost']
 const PAGE_ICONS={
   'Home':'\u2302',
-  'Skill Archive':'\uD83D\uDC64',
+  'Archive':'\uD83D\uDC64',
   'Guide':'\uD83D\uDCD6',
   'Party Builder':'\u2694\uFE0F',
   'Buffs':'\uD83D\uDCCA',
   'Tier List':'\uD83C\uDFC6',
   'Team Cost':{img:'/icons/Red_Crystal.webp'},
 }
-const PAGE_SHORT={'Home':'Home','Skill Archive':'Archive','Guide':'Guide','Party Builder':'Builder','Buffs':'Buffs','Tier List':'Tiers','Team Cost':'Cost'}
-const PAGE_TO_ROUTE={'Home':'/','Skill Archive':'/archive','Guide':'/guide','Party Builder':'/builder','Buffs':'/buffs','Tier List':'/tiers','Team Cost':'/cost'}
+const PAGE_SHORT={'Home':'Home','Archive':'Archive','Guide':'Guide','Party Builder':'Builder','Buffs':'Buffs','Tier List':'Tiers','Team Cost':'Cost'}
+const PAGE_TO_ROUTE={'Home':'/','Archive':'/archive','Guide':'/guide','Party Builder':'/builder','Buffs':'/buffs','Tier List':'/tiers','Team Cost':'/cost'}
 function routeMatches(pathname,page){
   const r=PAGE_TO_ROUTE[page]
   if(pathname===r||pathname===r+'/') return true
@@ -1123,8 +1124,11 @@ export default function App(){
       <div className="app-body">
         <Routes>
           <Route path="/" element={<HomePage go={go}/>}/>
-          <Route path="/archive" element={<ArchivePage/>}/>
-          <Route path="/archive/:charId" element={<ArchivePage/>}/>
+          <Route path="/archive" element={<ArchiveHubPage/>}/>
+          <Route path="/archive/characters" element={<><ArchiveTabs active="characters"/><ArchivePage/></>}/>
+          <Route path="/archive/characters/:charId" element={<><ArchiveTabs active="characters"/><ArchivePage/></>}/>
+          <Route path="/archive/cw6-scene-cards" element={<CW6SceneCardsPage/>}/>
+          <Route path="/archive/:charId" element={<><ArchiveTabs active="characters"/><ArchivePage/></>}/>
           <Route path="/builder" element={<BuilderPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} setAtkSk={setAtkSk} setDefSk={setDefSk} setSlot={setSlot} rm={rm} goSim={()=>navigate('/sim')} loadMetaTeam={loadMetaTeam}/>}/>
           <Route path="/sim" element={<SimPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} goBuilder={()=>navigate('/builder')}/>}/>
           <Route path="/buffs" element={<BuffsPage/>}/>
@@ -1156,7 +1160,7 @@ export default function App(){
 // ── ARCHIVE ───────────────────────────────────────────────────────────────────
 function HomePage({go}){
   const tools=[
-    {page:'Skill Archive',title:'Skill Archive',desc:'Browse character skills and effects.'},
+    {page:'Archive',title:'Archive',desc:'Browse character skills and CW scene-card references.'},
     {page:'Guide',title:'Guide',desc:'Learn mechanics, status effects, terrain rules, targeting behavior, and matchups.'},
     {page:'Party Builder',title:'Party Builder',desc:'Build attacking and defending formations, adjust unlocked skills, then open the battle order view.'},
     {page:'Buffs',title:'Buffs',desc:'Review buffs by unit type, source, and stat impact.'},
@@ -1176,7 +1180,7 @@ function HomePage({go}){
             built to help players learn the mode, understand skills and buffs, and plan stronger strategies.
           </p>
           <div className="home-actions">
-            <button className="home-primary" onClick={()=>go('Skill Archive')}>Open Skill Archive</button>
+            <button className="home-primary" onClick={()=>go('Archive')}>Open Archive</button>
             <button className="home-secondary" onClick={()=>go('Guide')}>Read Guide</button>
           </div>
         </div>
@@ -1200,6 +1204,133 @@ function HomePage({go}){
   )
 }
 
+function ArchiveTabs({active}){
+  const navigate=useNavigate()
+  const tabs=[
+    {id:'characters',label:'Characters',count:'199',route:'/archive/characters'},
+    {id:'cw6',label:'CW6★ Scene Cards',count:String(cw6SceneCards.cards?.length||0),route:'/archive/cw6-scene-cards'},
+  ]
+  return(
+    <div style={{
+      display:'flex',alignItems:'center',justifyContent:'center',gap:'8px',flexWrap:'wrap',
+      padding:'12px 1rem',borderBottom:'1px solid var(--bdr)',background:'rgba(250,246,240,.68)',
+    }}>
+      {tabs.map(tab=>{
+        const on=active===tab.id
+        return(
+          <button key={tab.id} onClick={()=>navigate(tab.route)} style={{
+            display:'inline-flex',alignItems:'center',gap:'7px',borderRadius:999,
+            border:`1px solid ${on?'var(--terra)':'var(--bdr)'}`,
+            background:on?'var(--terra)':'var(--sur)',color:on?'#fff':'var(--txt)',
+            padding:'.46rem .82rem',fontSize:'.78rem',fontWeight:900,
+          }}>
+            {tab.label}
+            <span style={{
+              fontSize:'.62rem',padding:'1px 7px',borderRadius:999,
+              background:on?'rgba(255,255,255,.22)':'var(--bg2)',color:on?'#fff':'var(--txt3)',
+              border:`1px solid ${on?'rgba(255,255,255,.24)':'var(--bdr)'}`,
+            }}>{tab.count}</span>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+function ArchiveHubPage(){
+  return(
+    <>
+      <ArchiveTabs active="characters"/>
+      <ArchivePage hideTabs/>
+    </>
+  )
+}
+
+function CW6SceneCardsPage(){
+  const[query,setQuery]=useState('')
+  const[selected,setSelected]=useState(null)
+  const q=query.trim().toLowerCase()
+  const cards=(cw6SceneCards.cards||[]).filter(card=>{
+    if(!q) return true
+    return [card.name_jp,card.skill_en,card.skill_jp,card.ownerName,card.ownerNameJp,String(card.id)]
+      .filter(Boolean)
+      .some(v=>String(v).toLowerCase().includes(q))
+  })
+  const pickCard=card=>setSelected(selected?.id===card.id?null:card)
+  const clearSelection=()=>setSelected(null)
+  return(
+    <>
+    <ArchiveTabs active="cw6"/>
+    <div className={'archive-layout' + (selected?' has-selection':'')}>
+      <div className="gallery-wrap">
+        <div className="gallery-header" style={{alignItems:'flex-start',gap:'12px',flexWrap:'wrap'}}>
+          <div>
+            <h2 className="gallery-title" style={{fontSize:'1rem'}}>CW6{'\u2605'} Scene Cards</h2>
+            <div style={{fontSize:'.72rem',color:'var(--txt3)',marginTop:'3px'}}>6{'\u2605'} scene-card skills and owners</div>
+          </div>
+          <div style={{display:'flex',alignItems:'center',gap:'9px',flexWrap:'wrap',marginLeft:'auto'}}>
+            <span className="gallery-count">{cards.length} cards</span>
+            <input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search cards or skills..." style={{
+              width:260,maxWidth:'60vw',border:'1px solid var(--bdr)',borderRadius:8,background:'var(--sur)',
+              color:'var(--txt)',padding:'.52rem .65rem',fontSize:'.8rem',outline:'none',
+            }}/>
+          </div>
+        </div>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(180px,1fr))',gap:'14px',padding:'14px',alignContent:'start'}}>
+          {cards.map(card=>(
+            <button key={card.id} type="button" onClick={()=>pickCard(card)} style={{
+              background:'var(--sur)',border:'2px solid ' + (selected?.id===card.id?'var(--terra)':'var(--bdr)'),
+              borderRadius:8,overflow:'hidden',cursor:'pointer',textAlign:'left',
+              boxShadow:selected?.id===card.id?'0 8px 22px rgba(6,38,76,.18)':'0 3px 14px rgba(6,38,76,.07)',
+              transform:selected?.id===card.id?'translateY(-2px)':'none',
+              transition:'transform .15s, box-shadow .15s, border-color .15s',
+              display:'flex',flexDirection:'column',
+            }}>
+              <div style={{aspectRatio:'1 / 1',background:'var(--bg2)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                <img src={card.image} alt={card.skill_en} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'contain'}}/>
+              </div>
+              <div style={{padding:'10px 11px 11px',display:'flex',flexDirection:'column',gap:'6px'}}>
+                <div>
+                  <strong style={{display:'block',fontSize:'.84rem',color:'var(--txt)',lineHeight:1.25}}>{card.skill_en}</strong>
+                  <span style={{display:'block',fontSize:'.68rem',color:'var(--txt3)',lineHeight:1.25,marginTop:'2px'}}>{card.skill_jp}</span>
+                </div>
+                {card.ownerName&&(
+                  <div style={{display:'flex',alignItems:'center',gap:'6px',fontSize:'.68rem',fontWeight:800,color:'var(--navy)',minWidth:0}}>
+                    {card.ownerIcon&&<img src={card.ownerIcon} alt="" loading="lazy" decoding="async" style={{width:20,height:20,borderRadius:'50%',objectFit:'cover',objectPosition:'center top',border:'1px solid var(--bdr)',flexShrink:0}}/>}
+                    <span style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{card.ownerName}</span>
+                  </div>
+                )}
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+      {selected&&(
+        <aside className="detail-panel">
+          <div className="detail-header">
+            <img src={selected.image} alt={selected.skill_en} className="detail-portrait" loading="lazy" decoding="async" style={{objectFit:'contain',background:'rgba(255,255,255,.08)',objectPosition:'center'}}/>
+            <div className="detail-info">
+              <div className="detail-name">{selected.skill_en}</div>
+              <div className="detail-jp">{selected.skill_jp}</div>
+              {selected.ownerName&&(
+                <div className="detail-faction" style={{display:'flex',alignItems:'center',gap:'6px',color:'rgba(255,255,255,.82)'}}>
+                  {selected.ownerIcon&&<img src={selected.ownerIcon} alt="" loading="lazy" decoding="async" style={{width:18,height:18,borderRadius:'50%',objectFit:'cover',objectPosition:'center top',border:'1px solid rgba(255,255,255,.22)'}}/>}
+                  <span>{selected.ownerName}</span>
+                </div>
+              )}
+            </div>
+            <button className="detail-close" onClick={clearSelection}>{'\u00d7'}</button>
+          </div>
+          <div className="detail-skills">
+            {selected.skill?<SkillCard skill={selected.skill}/>:<p className="no-skills">Translation pending</p>}
+          </div>
+        </aside>
+      )}
+    </div>
+    </>
+  )
+}
+
 function ArchivePage(){
   const{charId}=useParams()
   const navigate=useNavigate()
@@ -1213,10 +1344,10 @@ function ArchivePage(){
     if(c){setSelected(c);if(c.country)setActiveFac(c.country)}
   },[charId])
   const pickChar=c=>{
-    if(selected?.id===c.id){navigate('/archive');return}
-    navigate(`/archive/${c.id}`)
+    if(selected?.id===c.id){navigate('/archive/characters');return}
+    navigate(`/archive/characters/${c.id}`)
   }
-  const clearSelection=()=>navigate('/archive')
+  const clearSelection=()=>navigate('/archive/characters')
   const facChars=ALL.filter(c=>c.country===activeFac&&c.image)
   const filtered=(search
     ?ALL.filter(c=>{
@@ -1232,14 +1363,14 @@ function ArchivePage(){
     })
     :facChars
   ).slice().sort((a,b)=>a.name_en.localeCompare(b.name_en))
-  const handleFacClick=(fid)=>{setActiveFac(fid);if(selected)navigate('/archive');setSearch('')}
+  const handleFacClick=(fid)=>{setActiveFac(fid);if(selected)navigate('/archive/characters');setSearch('')}
 
   return(
     <div className={`archive-layout${selected?' has-selection':''}`}>
       {/* Sidebar */}
       <aside className="fac-sidebar">
         <div className="fac-search-wrap">
-          <input className="fac-search" placeholder="Search generals…" value={search} onChange={e=>{setSearch(e.target.value);if(selected)navigate('/archive')}}/>
+          <input className="fac-search" placeholder="Search generals…" value={search} onChange={e=>{setSearch(e.target.value);if(selected)navigate('/archive/characters')}}/>
         </div>
         <div className="fac-nav">
           {FACTIONS.map(f=>{
@@ -1267,7 +1398,7 @@ function ArchivePage(){
             className="mobile-search-input"
             placeholder="Search generals…"
             value={search}
-            onChange={e=>{setSearch(e.target.value);if(selected)navigate('/archive')}}/>
+            onChange={e=>{setSearch(e.target.value);if(selected)navigate('/archive/characters')}}/>
           {search&&<button className="mobile-search-clear" onClick={()=>setSearch('')}>✕</button>}
         </div>
         <div className="gallery-header">
