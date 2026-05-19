@@ -3432,7 +3432,7 @@ function UnitMatchupsSection(){
         Damage between unit types follows a rock-paper-scissors relationship.
       </p>
       <div style={{textAlign:'center',marginBottom:'1.75rem'}}>
-        <img src={unitMatchups.chart_image} alt="Unit matchup chart" loading="lazy" decoding="async" style={{display:'block',margin:'0 auto',maxWidth:'min(100%,520px)',height:'auto',borderRadius:'12px',background:'var(--sur)',padding:'1rem',border:'1px solid var(--bdr)',boxSizing:'border-box'}}/>
+        <img src={unitMatchups.chart_image} alt="Unit matchup chart" loading="lazy" decoding="async" style={{display:'block',margin:'0 auto',maxWidth:'min(100%,520px)',height:'auto',boxSizing:'border-box'}}/>
       </div>
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))',gap:'.75rem',marginBottom:'1.5rem'}}>
         {unitMatchups.rules.map((r,i)=>(
