@@ -173,7 +173,7 @@
     "icon": "/icons/Gakurai.webp"
   },
   {
-    "id": "choto",
+    "id": "choutou",
     "name_en": "Choutou",
     "name_jp": "張唐",
     "country": "qin",
@@ -259,7 +259,7 @@
     "icon": "/icons/Choutou.webp"
   },
   {
-    "id": "shimasaku",
+    "id": "shibasaku",
     "name_en": "Shibasaku",
     "name_jp": "司馬錯",
     "country": "qin",
@@ -321,7 +321,7 @@
     "icon": "/icons/Shibasaku.webp"
   },
   {
-    "id": "hyoshiga",
+    "id": "hyoushiga",
     "name_en": "Hyoushiga",
     "name_jp": "豹司牙",
     "country": "qin",
@@ -537,7 +537,7 @@
     "icon": "/icons/Hakuki.webp"
   },
   {
-    "id": "ohkotsu",
+    "id": "oukotsu",
     "name_en": "Oukotsu",
     "name_jp": "王齕",
     "country": "qin",
@@ -692,7 +692,7 @@
     "icon": "/icons/Kaioku.webp"
   },
   {
-    "id": "kosho",
+    "id": "koshou",
     "name_en": "Koshou",
     "name_jp": "胡傷",
     "country": "qin",
@@ -904,7 +904,7 @@
     "icon": "/icons/Rikusen.webp"
   },
   {
-    "id": "kanjo",
+    "id": "kanjou",
     "name_en": "Kanjou",
     "name_jp": "関常",
     "country": "qin",
@@ -1011,7 +1011,7 @@
     "icon": "/icons/Kanjou.webp"
   },
   {
-    "id": "seikyo",
+    "id": "seikyou",
     "name_en": "Seikyou",
     "name_jp": "成蟜",
     "country": "qin",
@@ -1153,7 +1153,7 @@
     "icon": "/icons/Rui.webp"
   },
   {
-    "id": "yo",
+    "id": "you",
     "name_en": "You",
     "name_jp": "陽",
     "country": "qin",

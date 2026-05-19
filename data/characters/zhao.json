@@ -1,6 +1,6 @@
 [
   {
-    "id": "taishi_ka",
+    "id": "ka",
     "name_en": "Ka",
     "name_jp": "太子嘉",
     "country": "zhao",
@@ -62,7 +62,7 @@
     "icon": "/icons/Ka.webp"
   },
   {
-    "id": "shunsuiki",
+    "id": "shunsuiju",
     "name_en": "Shunsuiju",
     "name_jp": "舜水樹",
     "country": "zhao",
@@ -223,7 +223,7 @@
     "icon": "/icons/Shunpeikun.webp"
   },
   {
-    "id": "seikou",
+    "id": "duke_sei",
     "name_en": "Duke Sei",
     "name_jp": "青公",
     "country": "zhao",
@@ -304,7 +304,7 @@
     "icon": "/icons/Duke Sei.webp"
   },
   {
-    "id": "kinmo",
+    "id": "kinmou",
     "name_en": "Kinmou",
     "name_jp": "金毛",
     "country": "zhao",
@@ -482,7 +482,7 @@
     "icon": "/icons/Gakuei.webp"
   },
   {
-    "id": "ryuto",
+    "id": "ryuuto",
     "name_en": "Ryuuto",
     "name_jp": "劉冬",
     "country": "zhao",
@@ -656,7 +656,7 @@
     "icon": "/icons/Kishou.webp"
   },
   {
-    "id": "kisei",
+    "id": "kisui",
     "name_en": "Kisui",
     "name_jp": "紀彗",
     "country": "zhao",

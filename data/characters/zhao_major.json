@@ -385,7 +385,7 @@
     "icon": "/icons/Mangoku.webp"
   },
   {
-    "id": "choso",
+    "id": "chousou",
     "name_en": "Chousou",
     "name_jp": "趙荘",
     "country": "zhao",
@@ -491,7 +491,7 @@
     "icon": "/icons/Chouko.webp"
   },
   {
-    "id": "seika",
+    "id": "seikai",
     "name_en": "Seikai",
     "name_jp": "成恢",
     "country": "han",

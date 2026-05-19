@@ -198,7 +198,7 @@
     "icon": "/icons/Keisha.webp"
   },
   {
-    "id": "rakujo",
+    "id": "gakujou",
     "name_en": "Gakujou",
     "name_jp": "楽乗",
     "country": "zhao",
@@ -272,7 +272,7 @@
     "icon": "/icons/Gakujou.webp"
   },
   {
-    "id": "shinseicho",
+    "id": "shinseijou",
     "name_en": "Shinseijou",
     "name_jp": "晋成常",
     "country": "zhao",
@@ -660,7 +660,7 @@
     "icon": "/icons/Jokan.webp"
   },
   {
-    "id": "rihaku2",
+    "id": "rihaku",
     "name_en": "Rihaku",
     "name_jp": "李白",
     "country": "zhao",
@@ -716,7 +716,7 @@
     "icon": "/icons/Rihaku.webp"
   },
   {
-    "id": "shomou",
+    "id": "shoumou",
     "name_en": "Shoumou",
     "name_jp": "渉孟",
     "country": "zhao",
@@ -778,7 +778,7 @@
     "icon": "/icons/Shoumou.webp"
   },
   {
-    "id": "shika2",
+    "id": "shika",
     "name_en": "Shika",
     "name_jp": "紫夏",
     "country": "zhao",

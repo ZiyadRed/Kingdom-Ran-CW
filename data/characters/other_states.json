@@ -1,6 +1,6 @@
 [
   {
-    "id": "kyobou",
+    "id": "kyoubou",
     "name_en": "Kyoubou",
     "name_jp": "巨暴",
     "country": "chu",
@@ -74,7 +74,7 @@
     "icon": "/icons/Kyoubou.webp"
   },
   {
-    "id": "gotoku",
+    "id": "goutoku",
     "name_en": "Goutoku",
     "name_jp": "豪徳",
     "country": "chu",
@@ -402,7 +402,7 @@
     "icon": "/icons/Chouin.webp"
   },
   {
-    "id": "nako",
+    "id": "nakon",
     "name_en": "Nakon",
     "name_jp": "奈棍",
     "country": "han",

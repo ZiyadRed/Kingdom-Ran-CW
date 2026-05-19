@@ -142,7 +142,7 @@
     "icon": "/icons/Tairoji.webp"
   },
   {
-    "id": "ranbishaku",
+    "id": "ranbihaku",
     "name_en": "Ranbihaku",
     "name_jp": "乱美迫",
     "country": "wei",
@@ -378,7 +378,7 @@
     "icon": "/icons/Shikika.webp"
   },
   {
-    "id": "keiminoo",
+    "id": "keibin",
     "name_en": "Keibin",
     "name_jp": "景湣王",
     "country": "wei",
@@ -458,7 +458,7 @@
     "icon": "/icons/Keibin.webp"
   },
   {
-    "id": "gaimo",
+    "id": "gaimou",
     "name_en": "Gaimou",
     "name_jp": "凱孟",
     "country": "wei",
@@ -750,7 +750,7 @@
     "icon": "/icons/Reiou.webp"
   },
   {
-    "id": "yuren",
+    "id": "yuuren",
     "name_en": "Yuuren",
     "name_jp": "幽連",
     "country": "wei",
@@ -806,7 +806,7 @@
     "icon": "/icons/Yuuren.webp"
   },
   {
-    "id": "korgen",
+    "id": "kourigen",
     "name_en": "Kourigen",
     "name_jp": "黄離弦",
     "country": "wei",

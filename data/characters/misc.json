@@ -155,7 +155,7 @@
     "icon": "/icons/Yugi.webp"
   },
   {
-    "id": "encho",
+    "id": "entei",
     "name_en": "Entei",
     "name_jp": "燕呈",
     "country": "qin",
@@ -217,7 +217,7 @@
     "icon": "/icons/Entei.webp"
   },
   {
-    "id": "bamyuu",
+    "id": "bamyu",
     "name_en": "Bamyu",
     "name_jp": "バミュウ",
     "country": "chu",
@@ -390,7 +390,7 @@
     "icon": "/icons/Kesshi.webp"
   },
   {
-    "id": "genho",
+    "id": "genpo",
     "name_en": "Genpo",
     "name_jp": "玄峰",
     "country": "wei",
@@ -507,7 +507,7 @@
     "icon": "/icons/Amon.webp"
   },
   {
-    "id": "kosho2",
+    "id": "jiou",
     "name_en": "Jiou",
     "name_jp": "江彰",
     "country": "zhao",

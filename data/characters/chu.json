@@ -1,6 +1,6 @@
 [
   {
-    "id": "jino",
+    "id": "jinou",
     "name_en": "Jinou",
     "name_jp": "仁凹",
     "country": "chu",
@@ -81,7 +81,7 @@
     "icon": "/icons/Jinou.webp"
   },
   {
-    "id": "gomosho",
+    "id": "goumasho",
     "name_en": "Goumasho",
     "name_jp": "剛摩諸",
     "country": "chu",
@@ -180,7 +180,7 @@
     "icon": "/icons/Goumasho.webp"
   },
   {
-    "id": "baiman",
+    "id": "beiman",
     "name_en": "Beiman",
     "name_jp": "貝満",
     "country": "chu",
@@ -330,7 +330,7 @@
     "icon": "/icons/Kaen.webp"
   },
   {
-    "id": "koretsuo",
+    "id": "kouretsu",
     "name_en": "Kouretsu",
     "name_jp": "考烈王",
     "country": "chu",
@@ -591,7 +591,7 @@
     "icon": "/icons/Shunshinkun.webp"
   },
   {
-    "id": "bananci",
+    "id": "bananji",
     "name_en": "Bananji",
     "name_jp": "馬南慈",
     "country": "zhao",

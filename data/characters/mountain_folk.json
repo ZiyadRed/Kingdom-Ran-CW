@@ -377,7 +377,7 @@
     "icon": "/icons/Katari.webp"
   },
   {
-    "id": "todji",
+    "id": "toji",
     "name_en": "Toji",
     "name_jp": "トッヂ",
     "country": "mountain_folk",
@@ -549,7 +549,7 @@
     "icon": "/icons/Fuji.webp"
   },
   {
-    "id": "ramaoji",
+    "id": "ramauji",
     "name_en": "Ramauji",
     "name_jp": "ラマウジ",
     "country": "mountain_folk",
@@ -629,7 +629,7 @@
     "icon": "/icons/Ramauji.webp"
   },
   {
-    "id": "pamu",
+    "id": "pam",
     "name_en": "Pam",
     "name_jp": "パム",
     "country": "mountain_folk",

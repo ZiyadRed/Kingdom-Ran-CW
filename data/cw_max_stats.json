@@ -229,7 +229,7 @@
   "defPen": 600,
   "unitType": "Cavalry"
  },
- "korgen": {
+ "kourigen": {
   "cid": 12,
   "gId": 414,
   "name": "黄離弦",
@@ -275,7 +275,7 @@
   "defPen": 600,
   "unitType": "Archer"
  },
- "kaishi_renmei": {
+ "kaishibou": {
   "cid": 14,
   "gId": 359,
   "name": "介子坊",
@@ -367,7 +367,7 @@
   "defPen": 547,
   "unitType": "Shield"
  },
- "kyokai": {
+ "kyougai": {
   "cid": 18,
   "gId": 435,
   "name": "去亥",
@@ -413,7 +413,7 @@
   "defPen": 547,
   "unitType": "Infantry"
  },
- "genho": {
+ "genpo": {
   "cid": 20,
   "gId": 358,
   "name": "玄峰",
@@ -482,7 +482,7 @@
   "defPen": 750,
   "unitType": "Shield"
  },
- "kosho2": {
+ "jiou": {
   "cid": 24,
   "gId": 1,
   "name": "江彰",
@@ -574,7 +574,7 @@
   "defPen": 547,
   "unitType": "Infantry"
  },
- "shika2": {
+ "shika": {
   "cid": 29,
   "gId": 345,
   "name": "紫夏",
@@ -666,7 +666,7 @@
   "defPen": 600,
   "unitType": "Shield"
  },
- "shoumounkun": {
+ "shoubunkun": {
   "cid": 33,
   "gId": 138,
   "name": "昌文君",
@@ -712,7 +712,7 @@
   "defPen": 600,
   "unitType": "Cavalry"
  },
- "shoou": {
+ "sho": {
   "cid": 35,
   "gId": 279,
   "name": "昭王",
@@ -735,7 +735,7 @@
   "defPen": 750,
   "unitType": "Cavalry"
  },
- "shomou": {
+ "shoumou": {
   "cid": 37,
   "gId": 360,
   "name": "渉孟",
@@ -781,7 +781,7 @@
   "defPen": 600,
   "unitType": "Cavalry"
  },
- "suirou": {
+ "suugen": {
   "cid": 39,
   "gId": 415,
   "name": "崇原",
@@ -804,7 +804,7 @@
   "defPen": 600,
   "unitType": "Infantry"
  },
- "seikyo": {
+ "seikyou": {
   "cid": 40,
   "gId": 287,
   "name": "成蟜",
@@ -919,7 +919,7 @@
   "defPen": 600,
   "unitType": "Shield"
  },
- "denyu": {
+ "denyuu": {
   "cid": 45,
   "gId": 334,
   "name": "田有",
@@ -965,7 +965,7 @@
   "defPen": 600,
   "unitType": "Cavalry"
  },
- "dokin": {
+ "doukin": {
   "cid": 47,
   "gId": 478,
   "name": "同金",
@@ -1103,7 +1103,7 @@
   "defPen": 600,
   "unitType": "Shield"
  },
- "obira": {
+ "bihei": {
   "cid": 54,
   "gId": 447,
   "name": "尾平",
@@ -1264,7 +1264,7 @@
   "defPen": 600,
   "unitType": "Cavalry"
  },
- "muten": {
+ "mouten": {
   "cid": 63,
   "gId": 121,
   "name": "蒙恬",
@@ -1287,7 +1287,7 @@
   "defPen": 600,
   "unitType": "Shield"
  },
- "mougo": {
+ "mougou": {
   "cid": 65,
   "gId": 119,
   "name": "蒙驁",
@@ -1310,7 +1310,7 @@
   "defPen": 750,
   "unitType": "Shield"
  },
- "yuren": {
+ "yuuren": {
   "cid": 66,
   "gId": 421,
   "name": "幽連",
@@ -1402,7 +1402,7 @@
   "defPen": 600,
   "unitType": "Archer"
  },
- "rihaku2": {
+ "rihaku": {
   "cid": 71,
   "gId": 413,
   "name": "李白",
@@ -1448,7 +1448,7 @@
   "defPen": 750,
   "unitType": "Shield"
  },
- "ryukoku": {
+ "ryuukoku": {
   "cid": 73,
   "gId": 475,
   "name": "隆国",
@@ -1471,7 +1471,7 @@
   "defPen": 600,
   "unitType": "Shield"
  },
- "ryusen": {
+ "ryuusen": {
   "cid": 74,
   "gId": 373,
   "name": "竜川",
@@ -1517,7 +1517,7 @@
   "defPen": 547,
   "unitType": "Infantry"
  },
- "rinka": {
+ "rinko": {
   "cid": 76,
   "gId": 134,
   "name": "輪虎",
@@ -1540,7 +1540,7 @@
   "defPen": 750,
   "unitType": "Cavalry"
  },
- "rinbo": {
+ "rinbou": {
   "cid": 77,
   "gId": 476,
   "name": "鱗坊",
@@ -1678,7 +1678,7 @@
   "defPen": 750,
   "unitType": "Archer"
  },
- "mou": {
+ "kyou": {
   "cid": 84,
   "gId": 127,
   "name": "摎",
@@ -1724,7 +1724,7 @@
   "defPen": 600,
   "unitType": "Infantry"
  },
- "fuchi": {
+ "en": {
   "cid": 86,
   "gId": 64,
   "name": "渕",
@@ -1908,7 +1908,7 @@
   "defPen": 547,
   "unitType": "Cavalry"
  },
- "choso": {
+ "chousou": {
   "cid": 94,
   "gId": 423,
   "name": "趙荘",
@@ -2023,7 +2023,7 @@
   "defPen": 600,
   "unitType": "Shield"
  },
- "hyoukou": {
+ "duke_hyou": {
   "cid": 99,
   "gId": 124,
   "name": "麃公",
@@ -2115,7 +2115,7 @@
   "defPen": 750,
   "unitType": "Shield"
  },
- "ohkotsu": {
+ "oukotsu": {
   "cid": 115,
   "gId": 160,
   "name": "王齕",
@@ -2138,7 +2138,7 @@
   "defPen": 750,
   "unitType": "Infantry"
  },
- "kosho": {
+ "koshou": {
   "cid": 116,
   "gId": 161,
   "name": "胡傷",
@@ -2161,7 +2161,7 @@
   "defPen": 600,
   "unitType": "Archer"
  },
- "shimasaku": {
+ "shibasaku": {
   "cid": 117,
   "gId": 162,
   "name": "司馬錯",
@@ -2184,7 +2184,7 @@
   "defPen": 750,
   "unitType": "Archer"
  },
- "rakki": {
+ "gakuki": {
   "cid": 118,
   "gId": 163,
   "name": "楽毅",
@@ -2276,7 +2276,7 @@
   "defPen": 750,
   "unitType": "Shield"
  },
- "taiko": {
+ "queen_biki": {
   "cid": 122,
   "gId": 174,
   "name": "太后",
@@ -2299,7 +2299,7 @@
   "defPen": 750,
   "unitType": "Archer"
  },
- "rakujo": {
+ "gakujou": {
   "cid": 124,
   "gId": 412,
   "name": "楽乗",
@@ -2322,7 +2322,7 @@
   "defPen": 600,
   "unitType": "Archer"
  },
- "keiminoo": {
+ "keibin": {
   "cid": 125,
   "gId": 327,
   "name": "景湣王",
@@ -2391,7 +2391,7 @@
   "defPen": 547,
   "unitType": "Archer"
  },
- "yo": {
+ "you": {
   "cid": 131,
   "gId": 339,
   "name": "陽",
@@ -2414,7 +2414,7 @@
   "defPen": 750,
   "unitType": "Archer"
  },
- "ko": {
+ "kou": {
   "cid": 132,
   "gId": 338,
   "name": "向",
@@ -2437,7 +2437,7 @@
   "defPen": 750,
   "unitType": "Archer"
  },
- "encho": {
+ "entei": {
   "cid": 135,
   "gId": 402,
   "name": "燕呈",
@@ -2460,7 +2460,7 @@
   "defPen": 750,
   "unitType": "Infantry"
  },
- "shinseicho": {
+ "shinseijou": {
   "cid": 136,
   "gId": 320,
   "name": "晋成常",
@@ -2506,7 +2506,7 @@
   "defPen": 750,
   "unitType": "Cavalry"
  },
- "rinbujun": {
+ "rinbukun": {
   "cid": 138,
   "gId": 308,
   "name": "臨武君",
@@ -2575,7 +2575,7 @@
   "defPen": 750,
   "unitType": "Cavalry"
  },
- "choto": {
+ "choutou": {
   "cid": 141,
   "gId": 337,
   "name": "張唐",
@@ -2598,7 +2598,7 @@
   "defPen": 750,
   "unitType": "Shield"
  },
- "todji": {
+ "toji": {
   "cid": 142,
   "gId": 488,
   "name": "トッヂ",
@@ -2644,7 +2644,7 @@
   "defPen": 750,
   "unitType": "Archer"
  },
- "ramaoji": {
+ "ramauji": {
   "cid": 144,
   "gId": 484,
   "name": "ラマウジ",
@@ -2690,7 +2690,7 @@
   "defPen": 600,
   "unitType": "Archer"
  },
- "oukenwang": {
+ "ouken": {
   "cid": 146,
   "gId": 348,
   "name": "王建王",
@@ -2713,7 +2713,7 @@
   "defPen": 750,
   "unitType": "Shield"
  },
- "seika": {
+ "seikai": {
   "cid": 147,
   "gId": 312,
   "name": "成恢",
@@ -2759,7 +2759,7 @@
   "defPen": 750,
   "unitType": "Shield"
  },
- "gofuumei": {
+ "gohoumei": {
   "cid": 149,
   "gId": 292,
   "name": "呉鳳明",
@@ -2874,7 +2874,7 @@
   "defPen": 750,
   "unitType": "Archer"
  },
- "bamyuu": {
+ "bamyu": {
   "cid": 172,
   "gId": 585,
   "name": "バミュウ",
@@ -3035,7 +3035,7 @@
   "defPen": 750,
   "unitType": "Infantry"
  },
- "gaimo": {
+ "gaimou": {
   "cid": 180,
   "gId": 284,
   "name": "凱孟",
@@ -3104,7 +3104,7 @@
   "defPen": 750,
   "unitType": "Cavalry"
  },
- "ranbishaku": {
+ "ranbihaku": {
   "cid": 183,
   "gId": 294,
   "name": "乱美迫",
@@ -3127,7 +3127,7 @@
   "defPen": 750,
   "unitType": "Shield"
  },
- "kanjo": {
+ "kanjou": {
   "cid": 184,
   "gId": 296,
   "name": "関常",
@@ -3196,7 +3196,7 @@
   "defPen": 750,
   "unitType": "Infantry"
  },
- "hyoshiga": {
+ "hyoushiga": {
   "cid": 187,
   "gId": 302,
   "name": "豹司牙",
@@ -3242,7 +3242,7 @@
   "defPen": 750,
   "unitType": "Archer"
  },
- "jino": {
+ "jinou": {
   "cid": 189,
   "gId": 588,
   "name": "仁凹",
@@ -3265,7 +3265,7 @@
   "defPen": 600,
   "unitType": "Archer"
  },
- "juutekkoo": {
+ "wategi": {
   "cid": 190,
   "gId": 323,
   "name": "戎翟公",
@@ -3288,7 +3288,7 @@
   "defPen": 750,
   "unitType": "Cavalry"
  },
- "baiman": {
+ "beiman": {
   "cid": 191,
   "gId": 587,
   "name": "貝満",
@@ -3311,7 +3311,7 @@
   "defPen": 600,
   "unitType": "Cavalry"
  },
- "gomosho": {
+ "goumasho": {
   "cid": 192,
   "gId": 586,
   "name": "剛摩諸",
@@ -3380,7 +3380,7 @@
   "defPen": 750,
   "unitType": "Shield"
  },
- "koretsuo": {
+ "kouretsu": {
   "cid": 199,
   "gId": 344,
   "name": "考烈王",
@@ -3403,7 +3403,7 @@
   "defPen": 750,
   "unitType": "Shield"
  },
- "raoai": {
+ "rouai": {
   "cid": 200,
   "gId": 347,
   "name": "嫪毐",
@@ -3426,7 +3426,7 @@
   "defPen": 750,
   "unitType": "Shield"
  },
- "hanryuki": {
+ "hanroki": {
   "cid": 201,
   "gId": 351,
   "name": "樊琉期",
@@ -3564,7 +3564,7 @@
   "defPen": 750,
   "unitType": "Infantry"
  },
- "kisei": {
+ "kisui": {
   "cid": 207,
   "gId": 370,
   "name": "紀彗",
@@ -3610,7 +3610,7 @@
   "defPen": 750,
   "unitType": "Cavalry"
  },
- "kinmo": {
+ "kinmou": {
   "cid": 211,
   "gId": 386,
   "name": "金毛",
@@ -3633,7 +3633,7 @@
   "defPen": 750,
   "unitType": "Shield"
  },
- "shunsuiki": {
+ "shunsuiju": {
   "cid": 212,
   "gId": 388,
   "name": "舜水樹",
@@ -3656,7 +3656,7 @@
   "defPen": 750,
   "unitType": "Cavalry"
  },
- "ryuto": {
+ "ryuuto": {
   "cid": 213,
   "gId": 390,
   "name": "劉冬",
@@ -3702,7 +3702,7 @@
   "defPen": 750,
   "unitType": "Cavalry"
  },
- "bananci": {
+ "bananji": {
   "cid": 215,
   "gId": 394,
   "name": "馬南慈",
@@ -3771,7 +3771,7 @@
   "defPen": 750,
   "unitType": "Shield"
  },
- "kyukou": {
+ "kyuukou": {
   "cid": 219,
   "gId": 405,
   "name": "宮康",
@@ -3794,7 +3794,7 @@
   "defPen": 600,
   "unitType": "Infantry"
  },
- "shotaku": {
+ "shoutaku": {
   "cid": 220,
   "gId": 408,
   "name": "松琢",
@@ -3817,7 +3817,7 @@
   "defPen": 600,
   "unitType": "Infantry"
  },
- "seikou": {
+ "duke_sei": {
   "cid": 221,
   "gId": 410,
   "name": "青公",
@@ -3909,7 +3909,7 @@
   "defPen": 750,
   "unitType": "Shield"
  },
- "romin": {
+ "robin": {
   "cid": 227,
   "gId": 439,
   "name": "呂敏",
@@ -3955,7 +3955,7 @@
   "defPen": 750,
   "unitType": "Infantry"
  },
- "nako": {
+ "nakon": {
   "cid": 229,
   "gId": 454,
   "name": "奈棍",
@@ -4024,7 +4024,7 @@
   "defPen": 750,
   "unitType": "Archer"
  },
- "keirei": {
+ "kyourei": {
   "cid": 233,
   "gId": 468,
   "name": "京令",
@@ -4185,7 +4185,7 @@
   "defPen": 750,
   "unitType": "Cavalry"
  },
- "taishi_ka": {
+ "ka": {
   "cid": 240,
   "gId": 500,
   "name": "太子嘉",
@@ -4208,7 +4208,7 @@
   "defPen": 750,
   "unitType": "Infantry"
  },
- "pamu": {
+ "pam": {
   "cid": 241,
   "gId": 503,
   "name": "パム",
@@ -4277,7 +4277,7 @@
   "defPen": 684,
   "unitType": "Archer"
  },
- "gotoku": {
+ "goutoku": {
   "cid": 249,
   "gId": 521,
   "name": "豪徳",
@@ -4323,7 +4323,7 @@
   "defPen": 750,
   "unitType": "Archer"
  },
- "kyobou": {
+ "kyoubou": {
   "cid": 251,
   "gId": 525,
   "name": "巨暴",

@@ -1,6 +1,6 @@
 [
   {
-    "id": "hyoukou",
+    "id": "duke_hyou",
     "name_en": "Duke Hyou",
     "name_jp": "麃公",
     "country": "qin",
@@ -69,7 +69,7 @@
     "icon": "/icons/Duke Hyou.webp"
   },
   {
-    "id": "mougo",
+    "id": "mougou",
     "name_en": "Mougou",
     "name_jp": "蒙驁",
     "country": "qin",
@@ -187,7 +187,7 @@
     "icon": "/icons/Mouki.webp"
   },
   {
-    "id": "muten_grandpa",
+    "id": "kuzen",
     "name_en": "Kuzen",
     "name_jp": "蒙恬のじぃ",
     "country": "qin",
@@ -703,7 +703,7 @@
     "icon": "/icons/Kyomei.webp"
   },
   {
-    "id": "suirou",
+    "id": "suugen",
     "name_en": "Suugen",
     "name_jp": "崇原",
     "country": "qin",
@@ -760,7 +760,7 @@
     "icon": "/icons/Suugen.webp"
   },
   {
-    "id": "obira",
+    "id": "bihei",
     "name_en": "Bihei",
     "name_jp": "尾平",
     "country": "qin",
@@ -997,7 +997,7 @@
     "icon": "/icons/Muta.webp"
   },
   {
-    "id": "kyokai",
+    "id": "kyougai",
     "name_en": "Kyougai",
     "name_jp": "去亥",
     "country": "qin",
@@ -1053,7 +1053,7 @@
     "icon": "/icons/Kyougai.webp"
   },
   {
-    "id": "dokin",
+    "id": "doukin",
     "name_en": "Doukin",
     "name_jp": "同金",
     "country": "qin",
@@ -1257,7 +1257,7 @@
     "icon": "/icons/Heki.webp"
   },
   {
-    "id": "taiko",
+    "id": "queen_biki",
     "name_en": "Queen Biki",
     "name_jp": "太后",
     "country": "qin",
@@ -1629,7 +1629,7 @@
     ]
   },
   {
-    "id": "shosa",
+    "id": "shousa",
     "name_en": "Shousa",
     "name_jp": "松佐",
     "country": "qin",
@@ -1847,7 +1847,7 @@
     "icon": "/icons/Karyouten.webp"
   },
   {
-    "id": "fuchi",
+    "id": "en",
     "name_en": "En",
     "name_jp": "渕",
     "country": "qin",
@@ -1957,7 +1957,7 @@
     "icon": "/icons/Takukei.webp"
   },
   {
-    "id": "denyu",
+    "id": "denyuu",
     "name_en": "Denyuu",
     "name_jp": "田有",
     "country": "qin",
@@ -2235,7 +2235,7 @@
     "icon": "/icons/Seki.webp"
   },
   {
-    "id": "ryusen",
+    "id": "ryuusen",
     "name_en": "Ryuusen",
     "name_jp": "竜川",
     "country": "qin",
@@ -2459,7 +2459,7 @@
     "icon": "/icons/Rokuomi.webp"
   },
   {
-    "id": "ryukoku",
+    "id": "ryuukoku",
     "name_en": "Ryuukoku",
     "name_jp": "隆国",
     "country": "qin",
@@ -2570,7 +2570,7 @@
     "icon": "/icons/Roen.webp"
   },
   {
-    "id": "rinbo",
+    "id": "rinbou",
     "name_en": "Rinbou",
     "name_jp": "鱗坊",
     "country": "qin",

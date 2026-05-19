@@ -1,6 +1,6 @@
 [
   {
-    "id": "raoai",
+    "id": "rouai",
     "name_en": "Rouai",
     "name_jp": "嫪毐",
     "country": "ai",
@@ -93,7 +93,7 @@
     "icon": "/icons/Rouai.webp"
   },
   {
-    "id": "juutekkoo",
+    "id": "wategi",
     "name_en": "Wategi",
     "name_jp": "戎翟公",
     "country": "ai",
@@ -247,7 +247,7 @@
     "icon": "/icons/Hanoki.webp"
   },
   {
-    "id": "hanryuki",
+    "id": "hanroki",
     "name_en": "Hanroki",
     "name_jp": "樊琉期",
     "country": "ai",
@@ -420,7 +420,7 @@
     "icon": "/icons/Ordo.webp"
   },
   {
-    "id": "denti",
+    "id": "futei",
     "name_en": "Futei",
     "name_jp": "傳抵",
     "country": "zhao",

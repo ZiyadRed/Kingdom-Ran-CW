@@ -202,7 +202,7 @@
     "icon": "/icons/Kanmei.webp"
   },
   {
-    "id": "rinbujun",
+    "id": "rinbukun",
     "name_en": "Rinbukun",
     "name_jp": "臨武君",
     "country": "chu",
@@ -404,7 +404,7 @@
     "icon": "/icons/Renpa.webp"
   },
   {
-    "id": "rinka",
+    "id": "rinko",
     "name_en": "Rinko",
     "name_jp": "輪虎",
     "country": "wei",
@@ -574,7 +574,7 @@
     "icon": "/icons/Hakurei.webp"
   },
   {
-    "id": "kaishi_renmei",
+    "id": "kaishibou",
     "name_en": "Kaishibou",
     "name_jp": "介子坊",
     "country": "wei",
@@ -663,7 +663,7 @@
     "icon": "/icons/Kaishibou.webp"
   },
   {
-    "id": "gofuumei",
+    "id": "gohoumei",
     "name_en": "Gohoumei",
     "name_jp": "呉鳳明",
     "country": "wei",

@@ -392,7 +392,7 @@
     "icon": "/icons/Youka.webp"
   },
   {
-    "id": "keirei",
+    "id": "kyourei",
     "name_en": "Kyourei",
     "name_jp": "京令",
     "country": "qin",
@@ -448,7 +448,7 @@
     "icon": "/icons/Kyourei.webp"
   },
   {
-    "id": "romin",
+    "id": "robin",
     "name_en": "Robin",
     "name_jp": "呂敏",
     "country": "qin",
@@ -690,7 +690,7 @@
     "icon": "/icons/Bain.webp"
   },
   {
-    "id": "shotaku",
+    "id": "shoutaku",
     "name_en": "Shoutaku",
     "name_jp": "松琢",
     "country": "qin",
@@ -777,7 +777,7 @@
     "icon": "/icons/Shoutaku.webp"
   },
   {
-    "id": "kyukou",
+    "id": "kyuukou",
     "name_en": "Kyuukou",
     "name_jp": "宮康",
     "country": "qin",

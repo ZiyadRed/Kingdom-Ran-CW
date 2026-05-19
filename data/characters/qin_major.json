@@ -343,7 +343,7 @@
     "icon": "/icons/Kanki.webp"
   },
   {
-    "id": "muten",
+    "id": "mouten",
     "name_en": "Mouten",
     "name_jp": "蒙恬",
     "country": "qin",
@@ -566,7 +566,7 @@
     "icon": "/icons/Shuheikun.webp"
   },
   {
-    "id": "shoumounkun",
+    "id": "shoubunkun",
     "name_en": "Shoubunkun",
     "name_jp": "昌文君",
     "country": "qin",
@@ -652,7 +652,7 @@
     "icon": "/icons/Shoubunkun.webp"
   },
   {
-    "id": "shoou",
+    "id": "sho",
     "name_en": "Sho",
     "name_jp": "昭王",
     "country": "qin",
@@ -844,7 +844,7 @@
     "icon": "/icons/Ei Sei.webp"
   },
   {
-    "id": "mou",
+    "id": "kyou",
     "name_en": "Kyou",
     "name_jp": "摎",
     "country": "qin",
@@ -1026,7 +1026,7 @@
     "icon": "/icons/Raido.webp"
   },
   {
-    "id": "ko",
+    "id": "kou",
     "name_en": "Kou",
     "name_jp": "向",
     "country": "qin",
