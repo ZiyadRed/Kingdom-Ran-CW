@@ -1251,7 +1251,7 @@ function CW6SceneCardsPage(){
   const cards=cw6SceneCards.cards||[]
   const pickCard=card=>setSelected(selected?.id===card.id?null:card)
   const clearSelection=()=>setSelected(null)
-  const sceneCardTitle=card=>card.name_en||`${card.ownerName||'Scene'} CW6 star`
+  const sceneCardFileName=card=>card.name_en||`${card.ownerName||'Scene'} CW6 star`
   return(
     <>
     <ArchiveTabs active="cw6"/>
@@ -1277,12 +1277,12 @@ function CW6SceneCardsPage(){
               display:'flex',flexDirection:'column',
             }}>
               <div style={{aspectRatio:'1 / 1',background:'var(--bg2)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                <img src={card.thumb||card.image} alt={sceneCardTitle(card)} title={sceneCardTitle(card)} loading="eager" decoding="async" fetchPriority={i<7?'high':'auto'} style={{width:'100%',height:'100%',objectFit:'contain'}}/>
+                <img src={card.thumb||card.image} alt={sceneCardFileName(card)} title={sceneCardFileName(card)} loading="eager" decoding="async" fetchPriority={i<7?'high':'auto'} style={{width:'100%',height:'100%',objectFit:'contain'}}/>
               </div>
               <div style={{padding:'10px 11px 11px',display:'flex',flexDirection:'column',gap:'6px'}}>
                 <div>
-                  <strong style={{display:'block',fontSize:'.84rem',color:'var(--txt)',lineHeight:1.25}}>{sceneCardTitle(card)}</strong>
-                  <span style={{display:'block',fontSize:'.68rem',color:'var(--txt3)',lineHeight:1.25,marginTop:'2px'}}>{card.skill_en} / {card.skill_jp}</span>
+                  <strong style={{display:'block',fontSize:'.84rem',color:'var(--txt)',lineHeight:1.25}}>{card.skill_en}</strong>
+                  <span style={{display:'block',fontSize:'.68rem',color:'var(--txt3)',lineHeight:1.25,marginTop:'2px'}}>{card.skill_jp}</span>
                 </div>
                 {card.ownerName&&(
                   <div style={{display:'flex',alignItems:'center',gap:'6px',fontSize:'.68rem',fontWeight:800,color:'var(--navy)',minWidth:0}}>
@@ -1298,10 +1298,10 @@ function CW6SceneCardsPage(){
       {selected&&(
         <aside className="detail-panel">
           <div className="detail-header">
-            <img src={selected.image} alt={sceneCardTitle(selected)} className="detail-portrait" loading="eager" decoding="async" fetchPriority="high" style={{objectFit:'contain',background:'rgba(255,255,255,.08)',objectPosition:'center'}}/>
+            <img src={selected.image} alt={sceneCardFileName(selected)} className="detail-portrait" loading="eager" decoding="async" fetchPriority="high" style={{objectFit:'contain',background:'rgba(255,255,255,.08)',objectPosition:'center'}}/>
             <div className="detail-info">
-              <div className="detail-name">{sceneCardTitle(selected)}</div>
-              <div className="detail-jp">{selected.skill_en} / {selected.skill_jp}</div>
+              <div className="detail-name">{selected.skill_en}</div>
+              <div className="detail-jp">{selected.skill_jp}</div>
               {selected.ownerName&&(
                 <div className="detail-faction" style={{display:'flex',alignItems:'center',gap:'6px',color:'rgba(255,255,255,.82)'}}>
                   {selected.ownerIcon&&<img src={selected.ownerIcon} alt="" loading="lazy" decoding="async" style={{width:18,height:18,borderRadius:'50%',objectFit:'cover',objectPosition:'center top',border:'1px solid rgba(255,255,255,.22)'}}/>}
@@ -2320,7 +2320,7 @@ function BuffsPage(){
           const m=sceneStatMeta[stat]
           const cards=(sceneCardBuffs.cards||[]).filter(c=>c.stat===stat)
           return(
-            <details key={stat} open={stat==='hp'} style={{
+            <details key={stat} style={{
               border:`1px solid ${m.color}44`,borderRadius:'8px',background:'var(--sur)',overflow:'hidden',
               boxShadow:'0 2px 10px rgba(0,0,0,.05)',
             }}>
