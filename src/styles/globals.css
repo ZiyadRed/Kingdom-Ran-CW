@@ -335,6 +335,143 @@ img { display: block; max-width: 100%; height: auto }
 .cw6-scene-page .gallery-header { position: static; top: auto; z-index: auto }
 .gallery-title { font-size: .95rem; font-weight: 800; color: var(--navy) }
 .gallery-count { font-size: .72rem; color: var(--txt3); background: var(--bg2); border: 1px solid var(--bdr); border-radius: 20px; padding: 2px 9px }
+.progress-tools { display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; justify-content: center }
+.progress-tools-note { font-size: .65rem; color: var(--txt3); margin-right: 4px }
+.progress-tools button,
+.progress-filter-group button,
+.owned-toggle {
+  border: 1px solid var(--bdr);
+  background: var(--sur);
+  color: var(--txt2);
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: .66rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 6px 9px;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s, transform .15s;
+}
+.progress-tools button:hover,
+.progress-filter-group button:hover,
+.owned-toggle:hover { border-color: var(--terra); color: var(--terra2); transform: translateY(-1px) }
+.progress-filter-group { display: inline-flex; align-items: center; gap: 4px; padding: 3px; border: 1px solid var(--bdr); border-radius: 999px; background: var(--bg2) }
+.progress-filter-group button { background: transparent; border-color: transparent; padding: 5px 9px }
+.progress-filter-group button.active { background: var(--navy); border-color: var(--navy); color: #fff }
+.progress-section-bar {
+  display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
+  padding: 8px 10px; border: 1px solid var(--bdr); border-radius: 8px; background: var(--sur);
+  color: var(--txt2); font-size: .76rem; font-weight: 800;
+}
+.buff-progress-panel {
+  margin: 0 0 1.25rem;
+  border: 1px solid var(--bdr);
+  border-radius: 8px;
+  background: var(--sur);
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(6,38,76,.06);
+}
+.buff-progress-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .7rem .9rem;
+  background: linear-gradient(135deg, rgba(6,38,76,.06), rgba(224,127,72,.05));
+  border-bottom: 1px solid var(--bdr);
+}
+.buff-progress-head h3 { margin: 0; font-size: .9rem; color: var(--navy); font-weight: 900 }
+.buff-progress-head p { margin: .18rem 0 0; color: var(--txt3); font-size: .76rem }
+.buff-progress-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: .65rem;
+  padding: .85rem;
+}
+.buff-progress-card {
+  border: 1px solid color-mix(in srgb, var(--pc) 38%, var(--bdr));
+  border-radius: 8px;
+  padding: .75rem;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--pc) 9%, var(--sur)), var(--sur));
+}
+.buff-progress-card-top { display: flex; align-items: center; justify-content: space-between; gap: .5rem; font-size: .78rem; font-weight: 900; color: var(--txt) }
+.buff-progress-card-top b { color: var(--pc); font-size: .88rem }
+.buff-progress-bar { height: 7px; margin: .55rem 0 .35rem; border-radius: 999px; background: var(--bg2); overflow: hidden; border: 1px solid var(--bdr) }
+.buff-progress-bar span { display: block; height: 100%; border-radius: inherit; background: var(--pc) }
+.buff-progress-pct { color: var(--txt3); font-size: .66rem; font-weight: 800 }
+.buff-progress-details { border-top: 1px solid var(--bdr); background: var(--bg2) }
+.buff-progress-details summary {
+  display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+  cursor: pointer; padding: .58rem .9rem; font-size: .78rem; font-weight: 900; color: var(--navy);
+}
+.buff-progress-details summary span:last-child { color: var(--txt3); font-size: .68rem; background: var(--sur); border: 1px solid var(--bdr); border-radius: 999px; padding: 2px 8px }
+.buff-summary-list { display: flex; flex-direction: column; gap: .7rem; padding: 0 .75rem .8rem }
+.buff-summary-section h4 { margin: 0 0 .45rem; color: var(--txt3); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em }
+.buff-summary-rows { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 5px }
+.buff-summary-row {
+  display: grid;
+  grid-template-columns: minmax(96px, 120px) 1fr;
+  align-items: center;
+  gap: .5rem;
+  width: 100%;
+  border: 1px solid var(--bdr);
+  border-radius: 8px;
+  background: var(--sur);
+  padding: .42rem .55rem;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.buff-summary-row:hover { border-color: var(--terra); box-shadow: 0 2px 10px rgba(6,38,76,.08) }
+.buff-summary-name { color: var(--sc); font-size: .82rem; font-weight: 900 }
+.buff-summary-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .45rem }
+.buff-summary-stat { display: flex; align-items: baseline; gap: .22rem; min-width: 0; white-space: nowrap }
+.buff-summary-stat b { color: var(--txt3); font-size: .62rem; text-transform: uppercase; letter-spacing: .04em }
+.buff-summary-stat span { color: var(--txt); font-size: .8rem; font-weight: 900 }
+.buff-summary-stat small { color: var(--txt3); font-size: .62rem }
+.buff-progress-filter-row { display: flex; justify-content: flex-end; padding: 0 1rem .65rem }
+.buff-progress-table-wrap { overflow-x: auto; padding: 0 .85rem .9rem }
+.buff-progress-table { width: 100%; min-width: 720px; border-collapse: separate; border-spacing: 0 5px; font-size: .74rem }
+.buff-progress-table th { text-align: left; color: var(--txt3); font-size: .62rem; text-transform: uppercase; letter-spacing: .06em; padding: 0 .55rem .15rem }
+.buff-progress-table td { background: var(--sur); border-top: 1px solid var(--bdr); border-bottom: 1px solid var(--bdr); padding: .45rem .55rem; color: var(--txt2); vertical-align: middle }
+.buff-progress-table td:first-child { border-left: 1px solid var(--bdr); border-radius: 7px 0 0 7px; width: 1% }
+.buff-progress-table td:last-child { border-right: 1px solid var(--bdr); border-radius: 0 7px 7px 0 }
+.buff-progress-table tr.owned td { background: linear-gradient(90deg, rgba(26,138,90,.1), var(--sur)) }
+.buff-progress-source { display: inline-flex; align-items: center; gap: .45rem; min-width: 0 }
+.buff-progress-source img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; object-position: top; border: 1px solid var(--bdr); flex-shrink: 0 }
+.buff-progress-source b { display: block; color: var(--txt); font-size: .78rem; line-height: 1.15 }
+.buff-progress-source small { display: block; color: var(--txt3); font-size: .62rem; line-height: 1.2 }
+.owned-toggle { background: var(--bg2); white-space: nowrap }
+.owned-toggle-on { background: #1a8a5a; border-color: #1a8a5a; color: #fff }
+.owned-toggle-on:hover { color: #fff; border-color: #146b46 }
+.owned-toggle-overlay {
+  position: absolute; top: 7px; right: 7px; z-index: 2;
+  background: rgba(255,255,255,.92); box-shadow: 0 2px 8px rgba(0,0,0,.16);
+}
+.owned-toggle-overlay.owned-toggle-on { background: rgba(26,138,90,.94) }
+.scene-star-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  width: 100%;
+}
+.scene-star-control button {
+  width: 16px;
+  height: 20px;
+  min-width: 16px;
+  padding: 0;
+  border-radius: 3px;
+  border: 0;
+  background: transparent;
+  color: #c9b980;
+  font-size: .96rem;
+  font-weight: 900;
+  line-height: 1;
+  text-shadow: 0 1px 1px rgba(0,0,0,.18);
+}
+.scene-star-control button.active { color: #d99b22 }
+.scene-star-control button:hover { color: var(--gold2); transform: translateY(-1px) }
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
@@ -856,6 +993,24 @@ img { display: block; max-width: 100%; height: auto }
    RESPONSIVE — Small phone (≤480px)
    ══════════════════════════════════════════════════════════════ */
 @media (max-width: 480px) {
+  .progress-tools { gap: 3px }
+  .progress-tools-note { width: 100%; margin: 0 0 1px; text-align: center; font-size: .6rem }
+  .progress-tools button,
+  .progress-filter-group button,
+  .owned-toggle { font-size: .6rem; padding: 5px 7px }
+  .owned-toggle-overlay { top: 5px; right: 5px }
+  .progress-section-bar { font-size: .68rem; gap: 6px; padding: 7px }
+  .scene-star-control button { width: 15px; min-width: 15px; font-size: .9rem }
+  .buff-progress-head { flex-direction: column; align-items: center; text-align: center; padding: .85rem }
+  .buff-progress-grid { grid-template-columns: 1fr; gap: .5rem; padding: .65rem }
+  .buff-progress-filter-row { justify-content: center; padding: 0 .7rem .6rem }
+  .buff-summary-list { padding: 0 .6rem .75rem; gap: .75rem }
+  .buff-summary-row { grid-template-columns: 1fr; gap: .45rem; padding: .55rem }
+  .buff-summary-stats { grid-template-columns: 1fr; gap: .22rem }
+  .buff-summary-stat { justify-content: space-between; white-space: normal }
+  .buff-summary-stat b { min-width: 58px }
+  .buff-progress-table-wrap { padding: 0 .6rem .75rem }
+  .buff-progress-table { min-width: 640px; font-size: .7rem }
   .gallery-grid    { grid-template-columns: repeat(2, 1fr); gap: .45rem; padding: .5rem }
   .cw6-scene-page .cw6-scene-grid { gap: .5rem !important; padding: .65rem .5rem !important }
   .banner-name     { font-size: .7rem }

@@ -25,6 +25,112 @@ import statusEffects from '../data/glossary/status_effects.json'
 import unitMatchups  from '../data/glossary/unit_matchups.json'
 import skillTypesGlossary from '../data/glossary/skill_types.json'
 
+const PROGRESS_STORAGE_KEY='ranhq-progress-v3'
+const emptyProgress=()=>({cw6Cards:{},sceneBuffCards:{},sceneBuffStars:{},buffSources:{}})
+const normalizeProgress=(raw={})=>{
+  const base=emptyProgress()
+  return Object.fromEntries(Object.keys(base).map(k=>[k,{...(raw[k]||{})}]))
+}
+const readProgress=()=>{
+  if(typeof window==='undefined') return emptyProgress()
+  try{return normalizeProgress(JSON.parse(window.localStorage.getItem(PROGRESS_STORAGE_KEY)||'{}'))}
+  catch{return emptyProgress()}
+}
+function useProgressTracker(){
+  const[progress,setProgress]=useState(readProgress)
+  useEffect(()=>{
+    try{window.localStorage.setItem(PROGRESS_STORAGE_KEY,JSON.stringify(progress))}
+    catch{}
+  },[progress])
+  const isOwned=(bucket,id)=>!!progress[bucket]?.[id]
+  const toggleOwned=(bucket,id)=>{
+    setProgress(prev=>{
+      const next=normalizeProgress(prev)
+      const group={...next[bucket]}
+      if(group[id]) delete group[id]
+      else group[id]=true
+      next[bucket]=group
+      return next
+    })
+  }
+  const setProgressValue=(bucket,id,value)=>{
+    setProgress(prev=>{
+      const next=normalizeProgress(prev)
+      const group={...next[bucket]}
+      if(value===undefined||value===null||value===false||value===0||value==='') delete group[id]
+      else group[id]=value
+      next[bucket]=group
+      return next
+    })
+  }
+  const countOwned=(bucket,ids)=>ids.reduce((n,id)=>n+(isOwned(bucket,id)?1:0),0)
+  const exportProgress=async()=>{
+    const text=JSON.stringify({version:1,exportedAt:new Date().toISOString(),progress},null,2)
+    try{
+      await navigator.clipboard.writeText(text)
+      window.alert('Progress backup copied.')
+    }catch{
+      window.prompt('Copy your RanHQ progress backup:',text)
+    }
+  }
+  const importProgress=()=>{
+    const text=window.prompt('Paste your RanHQ progress backup:')
+    if(!text) return
+    try{
+      const parsed=JSON.parse(text)
+      setProgress(normalizeProgress(parsed.progress||parsed))
+      window.alert('Progress imported.')
+    }catch{
+      window.alert('That progress backup could not be read.')
+    }
+  }
+  const clearProgress=()=>{
+    if(window.confirm('Clear all saved RanHQ progress on this browser?')) setProgress(emptyProgress())
+  }
+  return{progress,isOwned,toggleOwned,setProgressValue,countOwned,exportProgress,importProgress,clearProgress}
+}
+const progressFilterItems=[
+  {id:'all',label:'All'},
+  {id:'owned',label:'Owned'},
+  {id:'missing',label:'Missing'},
+]
+const ProgressTools=({tracker})=>(
+  <div className="progress-tools" aria-label="Progress tools">
+    <span className="progress-tools-note">Saved on this browser</span>
+    <button type="button" onClick={tracker.exportProgress}>Export</button>
+    <button type="button" onClick={tracker.importProgress}>Import</button>
+    <button type="button" onClick={tracker.clearProgress}>Clear</button>
+  </div>
+)
+const OwnedToggle=({owned,onToggle,label='Owned',className=''})=>(
+  <button
+    type="button"
+    className={`owned-toggle${owned?' owned-toggle-on':''}${className?' '+className:''}`}
+    onClick={onToggle}
+    aria-pressed={owned}
+    title={owned?'Marked owned':'Mark as owned'}
+  >
+    {owned?label:'Own'}
+  </button>
+)
+const SceneStarControl=({star,onChange})=>(
+  <div className="scene-star-control" aria-label="Scene card buff star level">
+    {[1,2,3,4,5,6].map(level=>(
+      <button
+        key={level}
+        type="button"
+        className={level<=star?'active':''}
+        aria-pressed={level<=star}
+        title={star===level?'Clear scene card stars':`Set to ${level}/6 stars`}
+        onClick={()=>onChange(star===level?0:level)}
+      >
+        {level<=star?'★':'☆'}
+      </button>
+    ))}
+  </div>
+)
+const buffSourceId=(kind,key,stat,e,i)=>`${kind}:${key}:${stat}:${e.name||''}:${e.name_jp||''}:${e.value||0}:${e.special_label||''}:${i}`
+
 const ALL = [
   ...mountainFolk,...qin,...qinBatch2,...qinMajor,
   ...zhao,...zhaoBatch2,...zhaoMajor,...otherStates,
@@ -1248,7 +1354,14 @@ function ArchiveHubPage(){
 
 function CW6SceneCardsPage(){
   const[selected,setSelected]=useState(null)
+  const[progressFilter,setProgressFilter]=useState('all')
+  const tracker=useProgressTracker()
   const cards=cw6SceneCards.cards||[]
+  const visibleCards=cards.filter(card=>{
+    const owned=tracker.isOwned('cw6Cards',card.id)
+    return progressFilter==='all'||(progressFilter==='owned'?owned:!owned)
+  })
+  const ownedCount=tracker.countOwned('cw6Cards',cards.map(c=>c.id))
   const pickCard=card=>setSelected(selected?.id===card.id?null:card)
   const clearSelection=()=>setSelected(null)
   const sceneCardFileName=card=>card.name_en||`${card.ownerName||'Scene'} CW6 star`
@@ -1263,12 +1376,24 @@ function CW6SceneCardsPage(){
             <div style={{fontSize:'.72rem',color:'var(--txt3)',marginTop:'3px'}}>6{'\u2605'} scene-card skills and owners</div>
           </div>
           <div style={{display:'flex',alignItems:'center',gap:'9px',flexWrap:'wrap',marginLeft:'auto'}}>
-            <span className="gallery-count">{cards.length} cards</span>
+            <span className="gallery-count">{ownedCount}/{cards.length} owned</span>
+            <div className="progress-filter-group" aria-label="CW6 ownership filter">
+              {progressFilterItems.map(item=>(
+                <button key={item.id} type="button" className={progressFilter===item.id?'active':''} onClick={()=>setProgressFilter(item.id)}>{item.label}</button>
+              ))}
+            </div>
+            <ProgressTools tracker={tracker}/>
           </div>
         </div>
         <div className="cw6-scene-grid" style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(180px,1fr))',gap:'14px',padding:'14px',alignContent:'start'}}>
-          {cards.map((card,i)=>(
-            <button key={card.id} type="button" onClick={()=>pickCard(card)} style={{
+          {visibleCards.map((card,i)=>(
+            <div
+              key={card.id}
+              role="button"
+              tabIndex={0}
+              onClick={()=>pickCard(card)}
+              onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pickCard(card)}}}
+              style={{
               background:'var(--sur)',border:'2px solid ' + (selected?.id===card.id?'var(--terra)':'var(--bdr)'),
               borderRadius:8,overflow:'hidden',cursor:'pointer',textAlign:'left',
               boxShadow:selected?.id===card.id?'0 8px 22px rgba(6,38,76,.18)':'0 3px 14px rgba(6,38,76,.07)',
@@ -1276,8 +1401,13 @@ function CW6SceneCardsPage(){
               transition:'transform .15s, box-shadow .15s, border-color .15s',
               display:'flex',flexDirection:'column',
             }}>
-              <div style={{aspectRatio:'1 / 1',background:'var(--bg2)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+              <div style={{position:'relative',aspectRatio:'1 / 1',background:'var(--bg2)',display:'flex',alignItems:'center',justifyContent:'center'}}>
                 <img src={card.thumb||card.image} alt={sceneCardFileName(card)} title={sceneCardFileName(card)} loading="eager" decoding="async" fetchPriority={i<7?'high':'auto'} style={{width:'100%',height:'100%',objectFit:'contain'}}/>
+                <OwnedToggle
+                  owned={tracker.isOwned('cw6Cards',card.id)}
+                  className="owned-toggle-overlay"
+                  onToggle={e=>{e.stopPropagation();tracker.toggleOwned('cw6Cards',card.id)}}
+                />
               </div>
               <div style={{padding:'10px 11px 11px',display:'flex',flexDirection:'column',gap:'6px'}}>
                 <div>
@@ -1291,7 +1421,7 @@ function CW6SceneCardsPage(){
                   </div>
                 )}
               </div>
-            </button>
+            </div>
           ))}
         </div>
       </div>
@@ -1312,6 +1442,10 @@ function CW6SceneCardsPage(){
             <button className="detail-close" onClick={clearSelection}>{'\u00d7'}</button>
           </div>
           <div className="detail-skills">
+            <OwnedToggle
+              owned={tracker.isOwned('cw6Cards',selected.id)}
+              onToggle={()=>tracker.toggleOwned('cw6Cards',selected.id)}
+            />
             {selected.skill?<SkillCard skill={selected.skill}/>:<p className="no-skills">Translation pending</p>}
           </div>
         </aside>
@@ -1443,7 +1577,9 @@ function ArchivePage(){
           <div className="detail-skills">
             {(selected.skills||[]).length===0
               ?<p className="no-skills">Translation pending</p>
-              :(selected.skills||[]).map((sk,i)=><SkillCard key={i} skill={sk}/>)
+              :(selected.skills||[]).map((sk,i)=>(
+                <SkillCard key={i} skill={sk}/>
+              ))
             }
           </div>
         </aside>
@@ -2094,6 +2230,8 @@ function BuffsPage(){
   const[activeKind,setActiveKind]=useState(null) // 'unit'|'state'|'army'|'terrain'
   const[activeKey,setActiveKey]=useState(null)
   const[activeStat,setActiveStat]=useState('HP')
+  const[sceneProgressFilter,setSceneProgressFilter]=useState('all')
+  const tracker=useProgressTracker()
   const lookupEntries=(kind,key,stat)=>{
     if(kind==='unit') return (cwBuffsData[key]||{})[stat]||[]
     if(kind==='state') return ((cwTeamBuffs.states||{})[key]||{})[stat]||[]
@@ -2170,10 +2308,13 @@ function BuffsPage(){
           {entries.map((e,i)=>{
             const char=ALL.find(c=>c.name_en===e.name||c.name_en?.toLowerCase()===e.name.toLowerCase()||c.name_jp===e.name_jp)
             const fc=CC[e.faction]||'#888'
+            const sourceId=buffSourceId('terrain',terrain.name,'terrain',e,i)
+            const owned=tracker.isOwned('buffSources',sourceId)
             return(
               <div key={e.name+i} style={{
                 display:'flex',alignItems:'center',gap:'14px',padding:'12px 16px',borderRadius:'14px',
-                background:'var(--sur)',border:'1px solid var(--bdr)',
+                background:owned?'linear-gradient(90deg,rgba(26,138,90,.1),var(--sur))':'var(--sur)',
+                border:`1px solid ${owned?'#1a8a5a55':'var(--bdr)'}`,
               }}>
                 <div style={{minWidth:'28px',textAlign:'center',fontSize:'.72rem',fontWeight:800,color:'var(--txt3)'}}>{i+1}</div>
                 <div style={{width:52,height:52,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2.5px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
@@ -2192,6 +2333,10 @@ function BuffsPage(){
                   </div>
                 </div>
                 <div style={{display:'flex',alignItems:'center',gap:'8px',flexShrink:0}}>
+                  <OwnedToggle
+                    owned={owned}
+                    onToggle={()=>tracker.toggleOwned('buffSources',sourceId)}
+                  />
                   <img src="/icons/Red_Crystal.webp" alt="Red Crystal" title="Red Crystal upgrade" loading="lazy" decoding="async" style={{width:20,height:20,objectFit:'contain'}}/>
                   <div style={{fontWeight:900,fontSize:'1.05rem',color:terrain.color,minWidth:'52px',textAlign:'right'}}>{e.value.toFixed(1)}%</div>
                 </div>
@@ -2258,11 +2403,13 @@ function BuffsPage(){
             const unlockIcon=e.special_icon|| (e.value===5?'/icons/Shard.webp':'/icons/Red_Crystal.webp')
             const unlockLabel=e.special_label|| (e.value===5?'Shard upgrade':'Red Crystal upgrade')
             const unlockTitle=e.special_label|| (e.value===5?'Unlocked with Shards':'Unlocked with Red Crystals')
+            const sourceId=buffSourceId(activeKind,activeKey,activeStat,e,i)
+            const owned=tracker.isOwned('buffSources',sourceId)
             return(
               <div key={e.name+i} style={{
                 display:'flex',alignItems:'center',gap:'14px',padding:'12px 16px',borderRadius:'14px',
-                background:isTop?`linear-gradient(90deg,${sc}0a,var(--sur))`:'var(--sur)',
-                border:`1px solid ${isTop?sc+'44':'var(--bdr)'}`,transition:'transform .12s,box-shadow .12s',
+                background:owned?'linear-gradient(90deg,rgba(26,138,90,.1),var(--sur))':isTop?`linear-gradient(90deg,${sc}0a,var(--sur))`:'var(--sur)',
+                border:`1px solid ${owned?'#1a8a5a55':isTop?sc+'44':'var(--bdr)'}`,transition:'transform .12s,box-shadow .12s',
               }}
                 onMouseEnter={ev=>{ev.currentTarget.style.transform='translateY(-1px)';ev.currentTarget.style.boxShadow=`0 4px 14px ${sc}20`}}
                 onMouseLeave={ev=>{ev.currentTarget.style.transform='';ev.currentTarget.style.boxShadow=''}}>
@@ -2288,6 +2435,10 @@ function BuffsPage(){
                   </div>
                 </div>
                 <div style={{display:'flex',alignItems:'center',gap:'8px',flexShrink:0}}>
+                  <OwnedToggle
+                    owned={owned}
+                    onToggle={()=>tracker.toggleOwned('buffSources',sourceId)}
+                  />
                   <img src={unlockIcon}
                     alt={unlockLabel}
                     title={unlockTitle}
@@ -2312,13 +2463,182 @@ function BuffsPage(){
     evasion:{label:'Evasion',color:'#7a65c7',total:SCENE_CARD.dodgeRate/100,unit:'%'},
   }
   const sceneStatOrder=['hp','atk','def','morale','crit_rate','evasion']
-  const sceneValueText=e=>e.valueMode==='percent'?`+${e.value.toFixed(1)}%`:`+${e.value.toLocaleString()}`
+  const sceneCardStar=card=>{
+    const saved=Number(tracker.progress.sceneBuffStars?.[card.id]||0)
+    if(saved>0) return Math.min(6,Math.max(0,Math.round(saved)))
+    return tracker.isOwned('sceneBuffCards',card.id)?6:0
+  }
+  const setSceneCardStar=(card,star)=>{
+    const next=Math.min(6,Math.max(0,Number(star)||0))
+    tracker.setProgressValue('sceneBuffStars',card.id,next)
+    if(tracker.progress.sceneBuffCards?.[card.id]) tracker.setProgressValue('sceneBuffCards',card.id,false)
+  }
+  const sceneCardValueAt=(card,star=sceneCardStar(card))=>{
+    if(star<=0) return 0
+    return card.starValues?.[star-1] ?? (star===6?card.value:Math.round((card.value||0)*star/6))
+  }
+  const sceneValueText=(card,value=sceneCardValueAt(card))=>card.valueMode==='percent'?`+${value.toFixed(1)}%`:`+${value.toLocaleString()}`
   const sceneTotalText=m=>m.unit==='%'?`+${m.total.toFixed(1)}%`:`+${m.total.toLocaleString()}`
+  const sceneCardIds=(sceneCardBuffs.cards||[]).map(c=>c.id)
+  const sceneOwnedCount=(sceneCardBuffs.cards||[]).filter(c=>sceneCardStar(c)>0).length
+  const buffStats=['HP','Attack','Defense']
+  const findBuffChar=e=>ALL.find(c=>c.name_en===e.name||c.name_en?.toLowerCase()===e.name?.toLowerCase()||c.name_jp===e.name_jp)
+  const buildSourceRows=()=>{
+    const rows=[]
+    const pushRows=(kind,keys,label)=>{
+      keys.forEach(key=>{
+        buffStats.forEach(stat=>{
+          lookupEntries(kind,key,stat).forEach((e,i)=>{
+            const char=findBuffChar(e)
+            rows.push({
+              bucket:'buffSources',
+              id:buffSourceId(kind,key,stat,e,i),
+              group:label,
+              category:key,
+              stat,
+              source:e.name,
+              jp:e.name_jp,
+              value:`+${(e.value||0).toFixed(1)}%`,
+              unlock:e.special_label||((e.value||0)===5?'Shard':'Red Crystal'),
+              icon:char?.icon||char?.image,
+            })
+          })
+        })
+      })
+    }
+    pushRows('unit',BUFF_UNIT_CATS,'Unit Types')
+    pushRows('state',BUFF_STATES,'States')
+    pushRows('army',BUFF_ARMIES,'Special Units')
+    TERRAIN_BUFFS.forEach(terrain=>{
+      const entries=[...(terrain.entries||[])].sort((a,b)=>b.value-a.value||a.name.localeCompare(b.name))
+      entries.forEach((e,i)=>{
+        const char=findBuffChar(e)
+        rows.push({
+          bucket:'buffSources',
+          id:buffSourceId('terrain',terrain.name,'terrain',e,i),
+          group:'Terrain',
+          category:terrain.name,
+          stat:terrain.typeLabel,
+          source:e.name,
+          jp:e.name_jp,
+          value:`+${(e.value||0).toFixed(1)}%`,
+          unlock:'Red Crystal',
+          icon:char?.icon||char?.image,
+        })
+      })
+    })
+    ;(sceneCardBuffs.cards||[]).forEach(card=>{
+      const m=sceneStatMeta[card.stat]
+      rows.push({
+        bucket:'sceneBuffStars',
+        id:card.id,
+        group:'Scene Cards',
+        category:m?.label||card.stat,
+        stat:m?.label||card.stat,
+        source:card.ownerName,
+        jp:card.name_jp,
+        value:sceneValueText(card),
+        unlock:'Scene Card',
+        icon:card.ownerIcon,
+      })
+    })
+    return rows
+  }
+  const progressRows=buildSourceRows()
+  const ownedBuffValue=(kind,key,stat)=>lookupEntries(kind,key,stat).reduce((sum,e,i)=>sum+(tracker.isOwned('buffSources',buffSourceId(kind,key,stat,e,i))?(e.value||0):0),0)
+  const maxBuffValue=(kind,key,stat)=>lookupEntries(kind,key,stat).reduce((sum,e)=>sum+(e.value||0),0)
+  const buffSummarySections=[
+    {label:'Unit Types',rows:BUFF_UNIT_CATS.map(key=>({key,kind:'unit',color:CAT_COLOR[key]}))},
+    {label:'States',rows:BUFF_STATES.map(key=>({key,kind:'state',color:CC[STATE_FACTION_ID[key]]||'#888'}))},
+    {label:'Special Units',rows:BUFF_ARMIES.map(key=>({key,kind:'army',color:CC[ARMY_PARENT_STATE[key]]||'#888'}))},
+  ]
+  const sceneOwnedByStat=stat=>(sceneCardBuffs.cards||[]).filter(c=>c.stat===stat).reduce((sum,c)=>sum+sceneCardValueAt(c),0)
+  const sceneStatProgress=stat=>{
+    const cards=(sceneCardBuffs.cards||[]).filter(c=>c.stat===stat)
+    const owned=cards.filter(c=>sceneCardStar(c)>0).length
+    return `${owned}/${cards.length}`
+  }
+  const isProgressRowOwned=r=>r.bucket==='sceneBuffStars'?sceneCardStar({id:r.id})>0:tracker.isOwned(r.bucket,r.id)
+  const allOwnedCount=progressRows.reduce((n,r)=>n+(isProgressRowOwned(r)?1:0),0)
+  const statProgressCell=(kind,key,stat)=>(
+    <span className="buff-summary-stat" title={`Max ${stat}: ${maxBuffValue(kind,key,stat).toFixed(1)}%`}>
+      <b>{stat}</b>
+      <span>+{ownedBuffValue(kind,key,stat).toFixed(1)}%</span>
+    </span>
+  )
+  const renderBuffProgressSection=()=>(
+    <section className="buff-progress-panel">
+      <div className="buff-progress-head">
+        <div>
+          <h3>Owned Buff Totals</h3>
+          <p>{allOwnedCount}/{progressRows.length} sources marked owned.</p>
+        </div>
+        <ProgressTools tracker={tracker}/>
+      </div>
+      <details className="buff-progress-details">
+        <summary>
+          <span>Show totals by category</span>
+          <span>by category - click to expand</span>
+        </summary>
+        <div className="buff-summary-list">
+          {buffSummarySections.map(section=>(
+            <div key={section.label} className="buff-summary-section">
+              <h4>{section.label}</h4>
+              <div className="buff-summary-rows">
+                {section.rows.map(row=>(
+                  <button key={`${row.kind}:${row.key}`} type="button" className="buff-summary-row" onClick={()=>handlePick(row.kind,row.key)}>
+                    <span className="buff-summary-name" style={{'--sc':row.color}}>{row.key}</span>
+                    <span className="buff-summary-stats">
+                      {buffStats.map(stat=><span key={stat}>{statProgressCell(row.kind,row.key,stat)}</span>)}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+          <div className="buff-summary-section">
+            <h4>Scene Cards</h4>
+            <div className="buff-summary-rows">
+              <div className="buff-summary-row">
+                <span className="buff-summary-name" style={{'--sc':'#1a8a5a'}}>Scene Card Buffs</span>
+                <span className="buff-summary-stats">
+                  {sceneStatOrder.map(stat=>{
+                    const meta=sceneStatMeta[stat]
+                    const val=sceneOwnedByStat(stat)
+                    const text=meta.unit==='%'?`+${val.toFixed(1)}%`:`+${val.toLocaleString()}`
+                    return(
+                      <span key={stat} className="buff-summary-stat">
+                        <b>{meta.label}</b>
+                        <span>{text}</span>
+                      </span>
+                    )
+                  })}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+    </section>
+  )
   const renderSceneCardsSection=()=>(
     <div style={{marginBottom:'2rem',display:'flex',flexDirection:'column',gap:'10px'}}>
+        <div className="progress-section-bar">
+          <span>{sceneOwnedCount}/{sceneCardIds.length} scene-card buffs owned</span>
+          <div className="progress-filter-group" aria-label="Scene-card buff ownership filter">
+            {progressFilterItems.map(item=>(
+              <button key={item.id} type="button" className={sceneProgressFilter===item.id?'active':''} onClick={()=>setSceneProgressFilter(item.id)}>{item.label}</button>
+            ))}
+          </div>
+        </div>
         {sceneStatOrder.map(stat=>{
           const m=sceneStatMeta[stat]
           const cards=(sceneCardBuffs.cards||[]).filter(c=>c.stat===stat)
+          const visibleCards=cards.filter(card=>{
+            const owned=sceneCardStar(card)>0
+            return sceneProgressFilter==='all'||(sceneProgressFilter==='owned'?owned:!owned)
+          })
+          const ownedCount=cards.filter(c=>sceneCardStar(c)>0).length
           return(
             <details key={stat} style={{
               border:`1px solid ${m.color}44`,borderRadius:'8px',background:'var(--sur)',overflow:'hidden',
@@ -2331,15 +2651,17 @@ function BuffsPage(){
                 <span style={{display:'inline-flex',alignItems:'center',gap:'10px',flexWrap:'wrap'}}>
                   <span style={{fontSize:'.86rem',fontWeight:900,color:m.color}}>{m.label}</span>
                   <span style={{fontSize:'.95rem',fontWeight:900,color:'var(--txt)'}}>{sceneTotalText(m)}</span>
-                  <span style={{fontSize:'.66rem',color:'var(--txt3)',padding:'2px 8px',borderRadius:'999px',background:'var(--bg2)',border:'1px solid var(--bdr)'}}>{cards.length} cards</span>
+                  <span style={{fontSize:'.66rem',color:'var(--txt3)',padding:'2px 8px',borderRadius:'999px',background:'var(--bg2)',border:'1px solid var(--bdr)'}}>{ownedCount}/{cards.length} owned</span>
                 </span>
               </summary>
               <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,116px)',justifyContent:'center',gap:'12px',padding:'12px'}}>
-                {cards.map((card,i)=>(
+                {visibleCards.map((card,i)=>(
+                  (()=>{const star=sceneCardStar(card);return(
                   <div key={card.id} style={{
                     border:'1px solid var(--bdr)',borderRadius:'8px',overflow:'hidden',
-                    background:'var(--sur)',boxShadow:'0 2px 10px rgba(0,0,0,.06)',
-                  }}>
+                    background:star>0?'linear-gradient(180deg,rgba(26,138,90,.1),var(--sur))':'var(--sur)',
+                    boxShadow:'0 2px 10px rgba(0,0,0,.06)',
+                    }}>
                     <div style={{position:'relative',aspectRatio:'1 / 1',background:'var(--bg2)',overflow:'hidden'}}>
                       <img src={card.thumb||card.image} alt={card.name_en} title={card.name_en} loading="eager" decoding="async" fetchPriority={i<4?'high':'auto'} style={{width:'100%',height:'100%',objectFit:'contain',display:'block'}}/>
                       <div style={{
@@ -2347,14 +2669,17 @@ function BuffsPage(){
                         background:'rgba(0,0,0,.66)',color:'#fff',fontSize:'.68rem',fontWeight:900,
                       }}>{sceneValueText(card)}</div>
                     </div>
-                    <div style={{height:44,padding:'7px 9px',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                    <div style={{minHeight:68,padding:'5px 7px 7px',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'5px'}}>
+                      <SceneStarControl star={star} onChange={next=>setSceneCardStar(card,next)}/>
                       <img src={card.ownerIcon} alt={card.ownerName} title={card.ownerName} loading="lazy" decoding="async" style={{
                         width:30,height:30,borderRadius:'50%',objectFit:'cover',objectPosition:'center top',
                         border:`2px solid ${m.color}`,background:m.color+'18',
                       }}/>
                     </div>
                   </div>
+                  )})()
                 ))}
+                {visibleCards.length===0&&<div style={{gridColumn:'1/-1',textAlign:'center',fontSize:'.78rem',color:'var(--txt3)',padding:'1rem'}}>No cards in this filter.</div>}
               </div>
             </details>
           )
@@ -2378,6 +2703,8 @@ function BuffsPage(){
           <span style={{display:'inline-flex',alignItems:'center',gap:'5px'}}><img src="/icons/Shard.webp" alt="" style={{width:15,height:15,objectFit:'contain'}}/>Shard upgrade (+5%)</span>
         </div>
       </div>
+
+      {renderBuffProgressSection()}
 
       <SectionLabel>Unit Types</SectionLabel>
       <div style={{display:'flex',justifyContent:'center',gap:'14px',marginBottom:'2rem',flexWrap:'wrap'}}>

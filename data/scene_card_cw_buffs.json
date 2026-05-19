@@ -20,7 +20,15 @@
       "image": "/scene_cards/webp/Hakusui-Evasion-buff.webp",
       "ownerName": "Hakusui",
       "ownerIcon": "/icons/Hakusui.webp",
-      "thumb": "/scene_cards/thumbs/Hakusui-Evasion-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Hakusui-Evasion-buff-thumb.webp",
+      "starValues": [
+        1.5,
+        2.7,
+        3.9,
+        5.1,
+        6.3,
+        7.5
+      ]
     },
     {
       "id": 40141,
@@ -34,7 +42,15 @@
       "image": "/scene_cards/webp/Hanoki-Attack-buff.webp",
       "ownerName": "Hanoki",
       "ownerIcon": "/icons/Hanoki.webp",
-      "thumb": "/scene_cards/thumbs/Hanoki-Attack-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Hanoki-Attack-buff-thumb.webp",
+      "starValues": [
+        100,
+        180,
+        260,
+        340,
+        420,
+        500
+      ]
     },
     {
       "id": 40142,
@@ -48,7 +64,15 @@
       "image": "/scene_cards/webp/Rien-Defense-buff.webp",
       "ownerName": "Rien",
       "ownerIcon": "/icons/Rien.webp",
-      "thumb": "/scene_cards/thumbs/Rien-Defense-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Rien-Defense-buff-thumb.webp",
+      "starValues": [
+        100,
+        180,
+        260,
+        340,
+        420,
+        500
+      ]
     },
     {
       "id": 40143,
@@ -62,7 +86,15 @@
       "image": "/scene_cards/webp/Kouretsu-Critical-Rate-buff.webp",
       "ownerName": "Kouretsu",
       "ownerIcon": "/icons/Kouretsu.webp",
-      "thumb": "/scene_cards/thumbs/Kouretsu-Critical-Rate-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Kouretsu-Critical-Rate-buff-thumb.webp",
+      "starValues": [
+        2,
+        3.6,
+        5.2,
+        6.8,
+        8.4,
+        10
+      ]
     },
     {
       "id": 40144,
@@ -76,7 +108,15 @@
       "image": "/scene_cards/webp/Rouai-Max-Morale-buff.webp",
       "ownerName": "Rouai",
       "ownerIcon": "/icons/Rouai.webp",
-      "thumb": "/scene_cards/thumbs/Rouai-Max-Morale-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Rouai-Max-Morale-buff-thumb.webp",
+      "starValues": [
+        150,
+        270,
+        390,
+        510,
+        630,
+        750
+      ]
     },
     {
       "id": 40145,
@@ -90,7 +130,15 @@
       "image": "/scene_cards/webp/Hanroki-Evasion-buff.webp",
       "ownerName": "Hanroki",
       "ownerIcon": "/icons/Hanroki.webp",
-      "thumb": "/scene_cards/thumbs/Hanroki-Evasion-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Hanroki-Evasion-buff-thumb.webp",
+      "starValues": [
+        1.5,
+        2.7,
+        3.9,
+        5.1,
+        6.3,
+        7.5
+      ]
     },
     {
       "id": 40146,
@@ -104,7 +152,15 @@
       "image": "/scene_cards/webp/Gakurai-Defense-buff.webp",
       "ownerName": "Gakurai",
       "ownerIcon": "/icons/Gakurai.webp",
-      "thumb": "/scene_cards/thumbs/Gakurai-Defense-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Gakurai-Defense-buff-thumb.webp",
+      "starValues": [
+        100,
+        180,
+        260,
+        340,
+        420,
+        500
+      ]
     },
     {
       "id": 40148,
@@ -118,7 +174,15 @@
       "image": "/scene_cards/webp/Karin-HP-buff.webp",
       "ownerName": "Karin",
       "ownerIcon": "/icons/Karin.webp",
-      "thumb": "/scene_cards/thumbs/Karin-HP-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Karin-HP-buff-thumb.webp",
+      "starValues": [
+        600,
+        1080,
+        1560,
+        2040,
+        2520,
+        3000
+      ]
     },
     {
       "id": 40149,
@@ -132,7 +196,15 @@
       "image": "/scene_cards/webp/Ei-Sei-Max-Morale-buff.webp",
       "ownerName": "Ei Sei",
       "ownerIcon": "/icons/Ei Sei.webp",
-      "thumb": "/scene_cards/thumbs/Ei-Sei-Max-Morale-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Ei-Sei-Max-Morale-buff-thumb.webp",
+      "starValues": [
+        150,
+        270,
+        390,
+        510,
+        630,
+        750
+      ]
     },
     {
       "id": 40184,
@@ -146,7 +218,15 @@
       "image": "/scene_cards/webp/Ei-Sei-Defense-buff.webp",
       "ownerName": "Ei Sei",
       "ownerIcon": "/icons/Ei Sei.webp",
-      "thumb": "/scene_cards/thumbs/Ei-Sei-Defense-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Ei-Sei-Defense-buff-thumb.webp",
+      "starValues": [
+        100,
+        180,
+        260,
+        340,
+        420,
+        500
+      ]
     },
     {
       "id": 40185,
@@ -160,7 +240,15 @@
       "image": "/scene_cards/webp/Kanki-Attack-buff.webp",
       "ownerName": "Kanki",
       "ownerIcon": "/icons/Kanki.webp",
-      "thumb": "/scene_cards/thumbs/Kanki-Attack-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Kanki-Attack-buff-thumb.webp",
+      "starValues": [
+        100,
+        180,
+        260,
+        340,
+        420,
+        500
+      ]
     },
     {
       "id": 40199,
@@ -174,7 +262,15 @@
       "image": "/scene_cards/webp/Kokuou-HP-buff.webp",
       "ownerName": "Kokuou",
       "ownerIcon": "/icons/Kokuou.webp",
-      "thumb": "/scene_cards/thumbs/Kokuou-HP-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Kokuou-HP-buff-thumb.webp",
+      "starValues": [
+        600,
+        1080,
+        1560,
+        2040,
+        2520,
+        3000
+      ]
     },
     {
       "id": 40202,
@@ -188,7 +284,15 @@
       "image": "/scene_cards/webp/Duke-Sei-Critical-Rate-buff.webp",
       "ownerName": "Duke Sei",
       "ownerIcon": "/icons/Duke Sei.webp",
-      "thumb": "/scene_cards/thumbs/Duke-Sei-Critical-Rate-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Duke-Sei-Critical-Rate-buff-thumb.webp",
+      "starValues": [
+        2,
+        3.6,
+        5.2,
+        6.8,
+        8.4,
+        10
+      ]
     },
     {
       "id": 40203,
@@ -202,7 +306,15 @@
       "image": "/scene_cards/webp/Shunpeikun-Max-Morale-buff.webp",
       "ownerName": "Shunpeikun",
       "ownerIcon": "/icons/Shunpeikun.webp",
-      "thumb": "/scene_cards/thumbs/Shunpeikun-Max-Morale-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Shunpeikun-Max-Morale-buff-thumb.webp",
+      "starValues": [
+        150,
+        270,
+        390,
+        510,
+        630,
+        750
+      ]
     },
     {
       "id": 40204,
@@ -216,7 +328,15 @@
       "image": "/scene_cards/webp/Kanki-Attack-buff-2.webp",
       "ownerName": "Kanki",
       "ownerIcon": "/icons/Kanki.webp",
-      "thumb": "/scene_cards/thumbs/Kanki-Attack-buff-2-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Kanki-Attack-buff-2-thumb.webp",
+      "starValues": [
+        100,
+        180,
+        260,
+        340,
+        420,
+        500
+      ]
     },
     {
       "id": 40218,
@@ -230,7 +350,15 @@
       "image": "/scene_cards/webp/Yuri-HP-buff.webp",
       "ownerName": "Yuri",
       "ownerIcon": "/icons/Yuri.webp",
-      "thumb": "/scene_cards/thumbs/Yuri-HP-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Yuri-HP-buff-thumb.webp",
+      "starValues": [
+        600,
+        1080,
+        1560,
+        2040,
+        2520,
+        3000
+      ]
     },
     {
       "id": 40219,
@@ -244,7 +372,15 @@
       "image": "/scene_cards/webp/Toumi-Defense-buff.webp",
       "ownerName": "Toumi",
       "ownerIcon": "/icons/Toumi.webp",
-      "thumb": "/scene_cards/thumbs/Toumi-Defense-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Toumi-Defense-buff-thumb.webp",
+      "starValues": [
+        100,
+        180,
+        260,
+        340,
+        420,
+        500
+      ]
     },
     {
       "id": 40226,
@@ -258,7 +394,15 @@
       "image": "/scene_cards/webp/Kyou-Attack-buff.webp",
       "ownerName": "Kyou",
       "ownerIcon": "/icons/Kyou.webp",
-      "thumb": "/scene_cards/thumbs/Kyou-Attack-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Kyou-Attack-buff-thumb.webp",
+      "starValues": [
+        100,
+        180,
+        260,
+        340,
+        420,
+        500
+      ]
     },
     {
       "id": 40247,
@@ -272,7 +416,15 @@
       "image": "/scene_cards/webp/Ousen-HP-buff.webp",
       "ownerName": "Ousen",
       "ownerIcon": "/icons/Ousen.webp",
-      "thumb": "/scene_cards/thumbs/Ousen-HP-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Ousen-HP-buff-thumb.webp",
+      "starValues": [
+        600,
+        1080,
+        1560,
+        2040,
+        2520,
+        3000
+      ]
     },
     {
       "id": 40273,
@@ -286,7 +438,15 @@
       "image": "/scene_cards/webp/Karin-Defense-buff.webp",
       "ownerName": "Karin",
       "ownerIcon": "/icons/Karin.webp",
-      "thumb": "/scene_cards/thumbs/Karin-Defense-buff-thumb.webp"
+      "thumb": "/scene_cards/thumbs/Karin-Defense-buff-thumb.webp",
+      "starValues": [
+        100,
+        180,
+        260,
+        340,
+        420,
+        500
+      ]
     }
   ]
 }
