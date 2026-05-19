@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useMemo } from 'react'
+﻿import { useState, useRef, useEffect, useMemo } from 'react'
 import { Routes, Route, Navigate, Link, useNavigate, useLocation, useParams } from 'react-router-dom'
 import mountainFolk from '../data/characters/mountain_folk.json'
 import qin          from '../data/characters/qin.json'
@@ -24,6 +24,7 @@ import cw6SceneCards from '../data/cw6_scene_cards.json'
 import statusEffects from '../data/glossary/status_effects.json'
 import unitMatchups  from '../data/glossary/unit_matchups.json'
 import skillTypesGlossary from '../data/glossary/skill_types.json'
+import rarityData from '../data/character_rarity.json'
 
 const PROGRESS_STORAGE_KEY='ranhq-progress-v3'
 const emptyProgress=()=>({cw6Cards:{},sceneBuffCards:{},sceneBuffStars:{},buffSources:{}})
@@ -201,28 +202,25 @@ const UNIT_TYPES={
   raoai:'Shield',ryukoku:'Shield',shoukaku:'Shield',shunshinkun:'Shield',taijifu:'Shield',
   tairoji:'Shield',yugi:'Shield',
 }
-const UNIT_COLOR={Infantry:'#7a7020',Cavalry:'#c0392b',Archer:'#27ae60',Shield:'#2471a3'}
-const UNIT_ICON_SRC={Infantry:'/icons/unit_infantry.webp',Cavalry:'/icons/unit_cavalry.webp',Archer:'/icons/unit_archer.webp',Shield:'/icons/unit_shield.webp'}
-
 // Extend GROUPS from each character's `unit` field so JSON data is the source of truth.
 // Any char with `"unit": "X Army"` is auto-added to GROUPS['X Army'] (creating it if absent).
 ALL.forEach(c=>{
   if(!c.unit) return
   const u=c.unit.trim()
   if(!u) return
-  // Skip pure unit-type values (Infantry / Cavalry / etc.) — those aren't army groups
   if(['Infantry','Cavalry','Archer','Shield'].includes(u)) return
   if(!GROUPS[u]) GROUPS[u]=[]
   if(!GROUPS[u].includes(c.id)) GROUPS[u].push(c.id)
 })
 
-// Fix .png icon refs → .webp, rename Shoka → Shouheikun, patch unit_type + groups
 ALL.forEach(c=>{
-  if(c.icon) c.icon=c.icon.replace('.png','.webp')
-  if(c.id==='shoka'){c.name_en='Shouheikun';c.country='qin'}
   c.unit_type=UNIT_TYPES[c.id]||null
   c.groups=Object.entries(GROUPS).filter(([,ids])=>ids.includes(c.id)).map(([gn])=>gn)
 })
+
+// Fast lookup by name_en (case-insensitive) — replaces repeated ALL.find() scans
+const CHAR_BY_NAME = (()=>{const m={};for(const c of ALL){if(!c.name_en) continue;m[c.name_en]=c;m[c.name_en.toLowerCase()]=c}return m})()
+const findCharByName = n => n && (CHAR_BY_NAME[n] || CHAR_BY_NAME[n.toLowerCase()]) || null
 
 const FACTIONS=[
   {id:'qin',           label:'Qin',           jp:'秦',    color:'#c0392b'},
@@ -250,73 +248,37 @@ function CharIcon({c,size=40,round=false,className=''}){
 
 const TYPE_COLOR={Combat:'#c0392b',Strategy:'#3d6eb5','Internal Affairs':'#1a8a72'}
 
-const BUFF_CATS=[
-  {id:'Cavalry',            label:'Cavalry',      svgColor:'#c0392b',svgShape:'diamond', svgIcon:'♞'},
-  {id:'Infantry',           label:'Infantry',     svgColor:'#c9a84c',svgShape:'circle',  svgIcon:'⚔'},
-  {id:'Archer',             label:'Archer',       svgColor:'#27ae60',svgShape:'pentagon',svgIcon:'🏹'},
-  {id:'Shield',             label:'Shield',       svgColor:'#2471a3',svgShape:'shield',  svgIcon:'🛡'},
-  {id:'Siege Weapon',        label:'Siege Weapon',  svgColor:'#666',   svgShape:'none',    svgIcon:'⚙'},
-  {id:'Attack Siege Weapon', label:'Atk S.W.',     svgColor:'#666',   svgShape:'none',    svgIcon:'💥'},
-  {id:'Defense Siege Weapon',label:'Def S.W.',     svgColor:'#666',   svgShape:'none',    svgIcon:'🔩'},
-  {id:'Terrain',            label:'Terrain',      svgColor:'#666',   svgShape:'none',    svgIcon:'🗺'},
-  {id:'CW Repair',          label:'Repair',       svgColor:'#666',   svgShape:'none',    svgIcon:'🔧'},
-]
-
-function UnitBadge({cat,size=28}){
-  const bc=BUFF_CATS.find(c=>c.id===cat)
-  if(!bc||bc.svgShape==='none') return <span style={{fontSize:size*.6+'px'}}>{bc?.svgIcon||'⚙'}</span>
-  const s=size,h=size
-  if(bc.svgShape==='diamond') return(<svg width={s} height={h} viewBox="0 0 28 28"><path d="M14 2L26 14L14 26L2 14Z" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/><text x="14" y="18" textAnchor="middle" fontSize="11" fill="white" fontWeight="bold">♞</text></svg>)
-  if(bc.svgShape==='circle')  return(<svg width={s} height={h} viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/><text x="14" y="19" textAnchor="middle" fontSize="13" fill="white">⚔</text></svg>)
-  if(bc.svgShape==='pentagon') return(<svg width={s} height={h} viewBox="0 0 28 28"><polygon points="14,2 26,10 22,24 6,24 2,10" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/><text x="14" y="19" textAnchor="middle" fontSize="11" fill="white">🏹</text></svg>)
-  if(bc.svgShape==='shield')  return(<svg width={s} height={h} viewBox="0 0 28 28"><path d="M14 2L26 8V16C26 22 20 26 14 27C8 26 2 22 2 16V8Z" fill={bc.svgColor} stroke={bc.svgColor+'99'} strokeWidth="1.5"/><text x="14" y="19" textAnchor="middle" fontSize="12" fill="white">🛡</text></svg>)
-  return <span>{bc.svgIcon}</span>
-}
-
-// ── Tier List data ────────────────────────────────────────────────────────────
+// ── Tier List + Meta team data ────────────────────────────────────────────────
+// Single source of truth: TIER_TEAMS. META_TEAMS is derived from this + a few
+// builder-only extras. Keeps tier/builder pages in sync automatically.
+const TIER_COLORS={S:'#c0392b',A:'#e07f48',B:'#cc972d',C:'#3d6eb5'}
 const TIER_TEAMS=[
-  {tier:'S',color:'#c0392b',name:'Ouhon',     members:['Shoutaku','Ouhon','Kanjou','Gakuki']},
-  {tier:'S',color:'#c0392b',name:'Archers',   members:['Keisha','Seikai','Hakurei','Queen Biki']},
-  {tier:'S',color:'#c0392b',name:'Zhao',      members:['Shunsuiju','Houken','Shinseijou','Riboku']},
-  {tier:'S',color:'#c0392b',name:'YTW',       members:['Katari','Yotanwa','Kitari','Ramauji']},
-  {tier:'A',color:'#e07f48',name:'Renpa',     members:['Rinko','Tairoji','Renpa','Kouretsu']},
-  {tier:'A',color:'#e07f48',name:'Ousen Army', members:['Hakuki','Makou','Ousen','Akou']},
-  {tier:'A',color:'#e07f48',name:'Karin + Kanmei', members:['Kyoubou','Karin','Kanmei','Shunshinkun']},
-  {tier:'A',color:'#e07f48',name:'Hi Shin',   members:['Garo','Gakurai','Naki','Robin']},
-  {tier:'A',color:'#e07f48',name:'Wei',       members:['Ranbihaku','Tairoji','Reiou','Gokei']},
-  {tier:'B',color:'#cc972d',name:'Ai',        members:['Wategi','Budai','Hanoki','Hamui']},
-  {tier:'B',color:'#cc972d',name:'6GG',       members:['Sho','Ouki','Tou','Kyou']},
-  {tier:'B',color:'#cc972d',name:'Karin',     members:['Rien','Karin','Kaen','Goutoku']},
-  {tier:'B',color:'#cc972d',name:'Chu',       members:['Kyoubou','Rinbukun','Kanmei','Shunshinkun']},
-  {tier:'C',color:'#3d6eb5',name:'Han',       members:['Seikai','Chouin','Bakan','Nakon']},
-  {tier:'C',color:'#3d6eb5',name:'Archer Garrison',members:['Rouai','Queen Biki','Seikai','Keisha']},
-  {tier:'C',color:'#3d6eb5',name:'Rigan',     members:['Kisui','Kishou','Batei','Duke Sei']},
-  {tier:'C',color:'#3d6eb5',name:'Kanki',     members:['Zenou','Raido','Kanki','Naki']},
-]
+  {tier:'S',name:'Ouhon',           members:['Shoutaku','Ouhon','Kanjou','Gakuki']},
+  {tier:'S',name:'Archers',         members:['Keisha','Seikai','Hakurei','Queen Biki']},
+  {tier:'S',name:'Zhao',            members:['Shunsuiju','Houken','Shinseijou','Riboku']},
+  {tier:'S',name:'YTW',             members:['Katari','Yotanwa','Kitari','Ramauji']},
+  {tier:'A',name:'Renpa',           members:['Rinko','Tairoji','Renpa','Kouretsu']},
+  {tier:'A',name:'Ousen Army',      members:['Eiki','Makou','Akou','Ousen']},
+  {tier:'A',name:'Karin + Kanmei',  members:['Kyoubou','Karin','Kanmei','Shunshinkun']},
+  {tier:'A',name:'Hi Shin',         members:['Garo','Gakurai','Naki','Robin']},
+  {tier:'A',name:'Wei',             members:['Ranbihaku','Tairoji','Reiou','Gokei']},
+  {tier:'B',name:'Ai',              members:['Wategi','Budai','Hanoki','Hamui']},
+  {tier:'B',name:'6GG',             members:['Sho','Ouki','Tou','Kyou']},
+  {tier:'B',name:'Karin',           members:['Rien','Karin','Kaen','Goutoku']},
+  {tier:'B',name:'Chu',             members:['Kyoubou','Rinbukun','Kanmei','Shunshinkun']},
+  {tier:'C',name:'Han',             members:['Seikai','Chouin','Bakan','Nakon']},
+  {tier:'C',name:'Archer Garrison', members:['Rouai','Queen Biki','Seikai','Keisha']},
+  {tier:'C',name:'Rigan',           members:['Kisui','Kishou','Batei','Duke Sei']},
+  {tier:'C',name:'Kanki',           members:['Zenou','Raido','Kanki','Naki']},
+].map(t=>({...t,color:TIER_COLORS[t.tier]}))
 
-// ── Builder preset teams ──────────────────────────────────────────────────────
-const META_TEAMS=[
-  {name:'Ouhon',          members:['Shoutaku','Ouhon','Kanjou','Gakuki']},
-  {name:'Archers',        members:['Keisha','Seikai','Hakurei','Queen Biki']},
-  {name:'Zhao',           members:['Shunsuiju','Houken','Shinseijou','Riboku']},
-  {name:'YTW',            members:['Katari','Yotanwa','Kitari','Ramauji']},
-  {name:'Renpa',          members:['Rinko','Tairoji','Renpa','Kouretsu']},
-  {name:'Ousen Army',     members:['Eiki','Makou','Akou','Ousen']},
+// Builder-only extras (not part of the Metawatch tier list)
+const META_TEAM_EXTRAS=[
   {name:'Qin Shields',    members:['Hakuki','Akou','Ousen','Ei Sei']},
-  {name:'Hi Shin',        members:['Garo','Gakurai','Naki','Robin']},
-  {name:'Wei',            members:['Ranbihaku','Tairoji','Reiou','Gokei']},
-  {name:'Ai',             members:['Wategi','Budai','Hanoki','Hamui']},
-  {name:'6GG',            members:['Sho','Ouki','Tou','Kyou']},
-  {name:'Karin',          members:['Rien','Karin','Kaen','Goutoku']},
-  {name:'Chu',            members:['Kyoubou','Rinbukun','Kanmei','Shunshinkun']},
-  {name:'Han',            members:['Seikai','Chouin','Bakan','Nakon']},
-  {name:'Archer Garrison',members:['Rouai','Queen Biki','Seikai','Keisha']},
-  {name:'Rigan',          members:['Kisui','Kishou','Batei','Duke Sei']},
-  {name:'Kanki',          members:['Zenou','Raido','Kanki','Naki']},
   {name:'YTW + Triplets', members:['Yotanwa','Toji','Fuji','Ramauji']},
-  {name:'Karin + Kanmei', members:['Kyoubou','Karin','Kanmei','Shunshinkun']},
   {name:'Gyokuhou',       members:['Shoutaku','Ouhon','Kyuukou','Kanjou']},
 ]
+const META_TEAMS=[...TIER_TEAMS.map(({name,members})=>({name,members})),...META_TEAM_EXTRAS]
 
 // Simulate
 function simulate(a,d){
@@ -347,104 +309,6 @@ function simulate(a,d){
 // Battle-time buffs (union boost, elixirs, role, admin, skills) are applied
 // on top by simulateBattle() — NOT baked into these stats.
 const CW_MAX = cwMaxStats
-// Legacy init-stat fallback (used only if a char has no pre-computed entry)
-const CW_STATS={
-  'amon':{hp:1285,atk:203,def:253,maxMp:2880},
-  'bajio':{hp:1677,atk:574,def:388,maxMp:2160},
-  'bakukoshin':{hp:2460,atk:453,def:364,maxMp:2160},
-  'bamyuu':{hp:1919,atk:453,def:469,maxMp:2400},
-  'bananci':{hp:2136,atk:686,def:438,maxMp:2160},
-  'choso':{hp:2134,atk:417,def:474,maxMp:2160},
-  'chutetsu':{hp:1414,atk:474,def:434,maxMp:2400},
-  'danto':{hp:2114,atk:610,def:610,maxMp:2160},
-  'denrimi':{hp:2319,atk:562,def:453,maxMp:2880},
-  'denti':{hp:1800,atk:478,def:478,maxMp:2160},
-  'dokin':{hp:2123,atk:425,def:438,maxMp:2160},
-  'domon':{hp:2043,atk:354,def:389,maxMp:2880},
-  'douken':{hp:875,atk:230,def:219,maxMp:2880},
-  'fuchi':{hp:2010,atk:342,def:375,maxMp:1920},
-  'fuji':{hp:2349,atk:538,def:457,maxMp:2880},
-  'garo':{hp:1980,atk:438,def:487,maxMp:2160},
-  'gekishin':{hp:1702,atk:544,def:462,maxMp:2160},
-  'gika':{hp:2285,atk:474,def:394,maxMp:2880},
-  'gofuumei':{hp:2532,atk:724,def:524,maxMp:2880},
-  'gokei':{hp:2133,atk:406,def:607,maxMp:1920},
-  'hakurei':{hp:1777,atk:477,def:455,maxMp:2880},
-  'hamui':{hp:1924,atk:674,def:794,maxMp:2160},
-  'hanoki':{hp:1864,atk:644,def:489,maxMp:2160},
-  'houken':{hp:1588,atk:611,def:400,maxMp:2400},
-  'hyoukou':{hp:1869,atk:534,def:404,maxMp:2160},
-  'kaine':{hp:1728,atk:498,def:488,maxMp:2160},
-  'kaishi_renmei':{hp:1672,atk:552,def:415,maxMp:2160},
-  'kanjo':{hp:2886,atk:562,def:568,maxMp:2160},
-  'kanki':{hp:1701,atk:506,def:504,maxMp:2160},
-  'kanmei':{hp:1900,atk:900,def:456,maxMp:2160},
-  'kanou':{hp:1936,atk:452,def:436,maxMp:2160},
-  'karin':{hp:1999,atk:777,def:555,maxMp:2400},
-  'karyoten':{hp:1719,atk:411,def:434,maxMp:2880},
-  'katari':{hp:2281,atk:654,def:383,maxMp:2160},
-  'kei':{hp:1200,atk:250,def:250,maxMp:2400},
-  'keisha':{hp:2400,atk:570,def:570,maxMp:2880},
-  'kisei':{hp:1882,atk:588,def:714,maxMp:2160},
-  'kitari':{hp:2292,atk:627,def:398,maxMp:2160},
-  'kokuou':{hp:2365,atk:432,def:456,maxMp:2880},
-  'kosho':{hp:3535,atk:513,def:505,maxMp:2880},
-  'kouyoku':{hp:1760,atk:496,def:472,maxMp:2160},
-  'kyouen':{hp:1915,atk:513,def:411,maxMp:2880},
-  'kyoukai':{hp:1421,atk:542,def:487,maxMp:2160},
-  'maki':{hp:2087,atk:438,def:443,maxMp:2400},
-  'mangoku':{hp:2289,atk:466,def:406,maxMp:2160},
-  'maron':{hp:1730,atk:501,def:499,maxMp:2400},
-  'miyamoto':{hp:2068,atk:424,def:474,maxMp:1920},
-  'mou':{hp:1544,atk:622,def:402,maxMp:2160},
-  'moubu':{hp:1641,atk:582,def:402,maxMp:2160},
-  'mougo':{hp:2066,atk:402,def:636,maxMp:1920},
-  'mouki':{hp:1525,atk:398,def:385,maxMp:1920},
-  'muta':{hp:1935,atk:365,def:369,maxMp:2400},
-  'muten':{hp:1721,atk:463,def:541,maxMp:2160},
-  'naki':{hp:1847,atk:672,def:453,maxMp:2160},
-  'obira':{hp:1830,atk:289,def:341,maxMp:2400},
-  'ogiko':{hp:2222,atk:511,def:522,maxMp:2880},
-  'ohkotsu':{hp:2678,atk:700,def:636,maxMp:2400},
-  'ordo':{hp:1953,atk:850,def:513,maxMp:2160},
-  'otaji':{hp:2187,atk:547,def:491,maxMp:2880},
-  'ouhon':{hp:1560,atk:522,def:471,maxMp:2160},
-  'ouki':{hp:1800,atk:520,def:510,maxMp:2160},
-  'ousen':{hp:1703,atk:503,def:503,maxMp:1920},
-  'pamu':{hp:2261,atk:491,def:504,maxMp:2400},
-  'rakki':{hp:2728,atk:664,def:633,maxMp:2160},
-  'ramaoji':{hp:2217,atk:551,def:449,maxMp:2880},
-  'ranbishaku':{hp:1824,atk:602,def:406,maxMp:1920},
-  'reiou':{hp:3003,atk:680,def:660,maxMp:2880},
-  'renpa':{hp:1700,atk:600,def:410,maxMp:2160},
-  'riboku':{hp:2888,atk:666,def:666,maxMp:1920},
-  'rikusen':{hp:1888,atk:466,def:448,maxMp:2160},
-  'rinbo':{hp:1843,atk:452,def:452,maxMp:2160},
-  'rinbujun':{hp:2120,atk:740,def:560,maxMp:2160},
-  'rinka':{hp:1634,atk:562,def:411,maxMp:2160},
-  'rokuomi':{hp:1926,atk:476,def:401,maxMp:2160},
-  'ryukoku':{hp:2000,atk:432,def:465,maxMp:1920},
-  'seika':{hp:2729,atk:694,def:501,maxMp:2880},
-  'shihaku':{hp:1800,atk:750,def:490,maxMp:2160},
-  'shika2':{hp:1688,atk:288,def:323,maxMp:2880},
-  'shimasaku':{hp:2876,atk:736,def:598,maxMp:2880},
-  'shin':{hp:1820,atk:504,def:428,maxMp:2160},
-  'shinseicho':{hp:2998,atk:589,def:615,maxMp:2160},
-  'shotaku':{hp:1923,atk:472,def:343,maxMp:2400},
-  'shouheikun':{hp:1900,atk:510,def:450,maxMp:2160},
-  'shoumounkun':{hp:2322,atk:453,def:441,maxMp:2880},
-  'shunmen':{hp:2383,atk:462,def:398,maxMp:2400},
-  'shunshinkun':{hp:3686,atk:488,def:512,maxMp:1920},
-  'sosui':{hp:2153,atk:425,def:410,maxMp:2160},
-  'tairoji':{hp:3636,atk:688,def:688,maxMp:1920},
-  'tou':{hp:1882,atk:527,def:407,maxMp:2160},
-  'yotanwa':{hp:1655,atk:566,def:400,maxMp:2160},
-  'yukii':{hp:1886,atk:656,def:515,maxMp:2880},
-  'yuren':{hp:1494,atk:549,def:444,maxMp:2400},
-  'zenou':{hp:2204,atk:700,def:424,maxMp:2400},
-  'gakurai':{hp:1980,atk:540,def:420,maxMp:2160},
-  'hakuki':{hp:2100,atk:480,def:560,maxMp:1920},
-}
 // Rarity-based maxed defaults for chars without a pre-computed entry
 // (scaled approximations for the 7 unmatched site chars: denti, kakubi,
 //  muten_grandpa, shosa, linhtama, qingxiang, ringyoku)
@@ -890,16 +754,21 @@ function calcTeamEnemyDebuffs(team,enemyTeam=[]){
 function Picker({onSelect,onClose,excl=[]}){
   const[q,setQ]=useState(''),ref=useRef(null)
   useEffect(()=>{ref.current?.focus()},[])
-  const ql=q.toLowerCase()
-  const factionLabel=c=>FACTIONS.find(f=>f.id===c.country)?.label||''
-  const chars=ALL.filter(c=>!excl.includes(c.id)&&(!q||(
-    c.name_en.toLowerCase().includes(ql)||
-    c.name_jp.includes(q)||
-    (c.unit_type&&c.unit_type.toLowerCase().includes(ql))||
-    (c.groups&&c.groups.some(g=>g.toLowerCase().includes(ql)))||
-    factionLabel(c).toLowerCase().includes(ql)||
-    (c.country&&c.country.toLowerCase().includes(ql))
-  )))
+  const exclKey=excl.join('|')
+  const chars=useMemo(()=>{
+    const ql=q.toLowerCase()
+    const factionLabel=c=>FACTIONS.find(f=>f.id===c.country)?.label||''
+    return ALL.filter(c=>!excl.includes(c.id)&&(!q||(
+      c.name_en.toLowerCase().includes(ql)||
+      c.name_jp.includes(q)||
+      (c.unit_type&&c.unit_type.toLowerCase().includes(ql))||
+      (c.groups&&c.groups.some(g=>g.toLowerCase().includes(ql)))||
+      factionLabel(c).toLowerCase().includes(ql)||
+      (c.country&&c.country.toLowerCase().includes(ql))
+    )))
+  // exclKey is the stable representation of `excl`; ESLint can't see that.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[q,exclKey])
   return(
     <div className="overlay" onClick={onClose}>
       <div className="picker" onClick={e=>e.stopPropagation()}>
@@ -924,207 +793,7 @@ function Picker({onSelect,onClose,excl=[]}){
 const RARITY_COST={R:595,SR:800,UR:1750,LG:1750}
 const RARITY_COLOR={R:'#3d9970',SR:'#3d6eb5',UR:'#c0392b',LG:'#d4af37'}
 
-const RARITY_DATA={
-  'Akou':{rarity:'UR',faction:'Qin',name_jp:'亜光'},
-  'Amon':{rarity:'SR',faction:'Qin',name_jp:'亜門'},
-  'Bain':{rarity:'UR',faction:'Qin',name_jp:'馬印'},
-  'Bajio':{rarity:'UR',faction:'Mountain Folk',name_jp:'バジオウ'},
-  'Bakan':{rarity:'SR',faction:'Han',name_jp:'馬関'},
-  'Bakukoshin':{rarity:'SR',faction:'Qin',name_jp:'縛虎申'},
-  'Bamyu':{rarity:'SR',faction:'Chu',name_jp:'バミュウ'},
-  'Bananji':{rarity:'UR',faction:'Zhao',name_jp:'馬南慈'},
-  'Banyou':{rarity:'SR',faction:'Qin',name_jp:'番陽'},
-  'Batei':{rarity:'SR',faction:'Zhao',name_jp:'馬呈'},
-  'Beiman':{rarity:'UR',faction:'Chu',name_jp:'貝満'},
-  'Bihei':{rarity:'R',faction:'Qin',name_jp:'尾平'},
-  'Bikou':{rarity:'R',faction:'Qin',name_jp:'尾到'},
-  'Budai':{rarity:'UR',faction:'Ai',name_jp:'ブダイ'},
-  'Chouin':{rarity:'UR',faction:'Han',name_jp:'張印'},
-  'Chouko':{rarity:'SR',faction:'Zhao',name_jp:'趙高'},
-  'Chousou':{rarity:'SR',faction:'Zhao',name_jp:'趙荘'},
-  'Choutou':{rarity:'UR',faction:'Qin',name_jp:'張唐'},
-  'Chutetsu':{rarity:'SR',faction:'Qin',name_jp:'中鉄'},
-  'Danto':{rarity:'UR',faction:'Mountain Folk',name_jp:'ダント'},
-  'Denei':{rarity:'SR',faction:'Qin',name_jp:'田永'},
-  'Denrimi':{rarity:'UR',faction:'Qin',name_jp:'田里弥'},
-  'Denyuu':{rarity:'SR',faction:'Qin',name_jp:'田有'},
-  'Domon':{rarity:'SR',faction:'Zhao',name_jp:'土門'},
-  'Douken':{rarity:'SR',faction:'Zhao',name_jp:'道剣'},
-  'Doukin':{rarity:'SR',faction:'Qin',name_jp:'同金'},
-  'Duke Hyou':{rarity:'UR',faction:'Qin',name_jp:'麃公'},
-  'Duke Sei':{rarity:'UR',faction:'Zhao',name_jp:'青公'},
-  'Ei Sei':{rarity:'SR',faction:'Qin',name_jp:'嬴政'},
-  'Entei':{rarity:'SR',faction:'Qin',name_jp:'燕呈'},
-  'En':{rarity:'SR',faction:'Qin',name_jp:'渕'},
-  'Fuji':{rarity:'SR',faction:'Mountain Folk',name_jp:'フゥヂ'},
-  'Futei':{rarity:'SR',faction:'Zhao',name_jp:'傳抵'},
-  'Gaimou':{rarity:'UR',faction:'Wei',name_jp:'凱孟'},
-  'Gakuei':{rarity:'UR',faction:'Zhao',name_jp:'岳嬰'},
-  'Gakujou':{rarity:'SR',faction:'Zhao',name_jp:'楽乗'},
-  'Gakuki':{rarity:'UR',faction:'Yan',name_jp:'楽毅'},
-  'Gakurai':{rarity:'UR',faction:'Qin',name_jp:'岳雷'},
-  'Garo':{rarity:'UR',faction:'Qin',name_jp:'我呂'},
-  'Gekishin':{rarity:'UR',faction:'Yan',name_jp:'劇辛'},
-  'Genpo':{rarity:'SR',faction:'Wei',name_jp:'玄峰'},
-  'Gii':{rarity:'SR',faction:'Wei',name_jp:'魏興'},
-  'Gika':{rarity:'SR',faction:'Wei',name_jp:'魏加'},
-  'Gohoumei':{rarity:'UR',faction:'Wei',name_jp:'呉鳳明'},
-  'Gokei':{rarity:'UR',faction:'Wei',name_jp:'呉慶'},
-  'Gotan':{rarity:'SR',faction:'Mountain Folk',name_jp:'剛炭'},
-  'Goumasho':{rarity:'UR',faction:'Chu',name_jp:'剛摩諸'},
-  'Goutoku':{rarity:'SR',faction:'Chu',name_jp:'豪徳'},
-  'Hairou':{rarity:'SR',faction:'Qin',name_jp:'沛浪'},
-  'Hakuki':{rarity:'UR',faction:'Qin',name_jp:'白起'},
-  'Hakukisei':{rarity:'SR',faction:'Qin',name_jp:'白亀西'},
-  'Hakurei':{rarity:'SR',faction:'Chu',name_jp:'白麗'},
-  'Hakusui':{rarity:'UR',faction:'Chu',name_jp:'白翠'},
-  'Hamui':{rarity:'UR',faction:'Ai',name_jp:'ハムイ'},
-  'Hanoki':{rarity:'UR',faction:'Ai',name_jp:'樊於期'},
-  'Hanroki':{rarity:'UR',faction:'Ai',name_jp:'樊琉期'},
-  'Heki':{rarity:'R',faction:'Qin',name_jp:'壁'},
-  'Hokaku':{rarity:'SR',faction:'Qin',name_jp:'蒲鶮'},
-  'Hoki':{rarity:'SR',faction:'Wei',name_jp:'馮忌'},
-  'Houken':{rarity:'UR',faction:'Zhao',name_jp:'龐煖'},
-  'Hyou':{rarity:'SR',faction:'Qin',name_jp:'漂'},
-  'Hyouki':{rarity:'SR',faction:'Wei',name_jp:'氷鬼'},
-  'Hyoushiga':{rarity:'UR',faction:'Qin',name_jp:'豹司牙'},
-  'Jinou':{rarity:'UR',faction:'Chu',name_jp:'仁凹'},
-  'Jiou':{rarity:'SR',faction:'Zhao',name_jp:'江彰'},
-  'Jokan':{rarity:'SR',faction:'Zhao',name_jp:'徐完'},
-  'Junso':{rarity:'UR',faction:'Wei',name_jp:'荀早'},
-  'Ka':{rarity:'UR',faction:'Zhao',name_jp:'太子嘉'},
-  'Kaen':{rarity:'UR',faction:'Chu',name_jp:'媧偃'},
-  'Kaine':{rarity:'SR',faction:'Zhao',name_jp:'カイネ'},
-  'Kaioku':{rarity:'UR',faction:'Qin',name_jp:'介億'},
-  'Kaishibou':{rarity:'SR',faction:'Wei',name_jp:'介子坊'},
-  'Kakubi':{rarity:'SR',faction:'Qin',name_jp:'郭備'},
-  'Kakukai':{rarity:'UR',faction:'Zhao',name_jp:'郭開'},
-  'Kakuun':{rarity:'UR',faction:'Qin',name_jp:'角雲'},
-  'Kanjou':{rarity:'UR',faction:'Qin',name_jp:'関常'},
-  'Kanki':{rarity:'UR',faction:'Qin',name_jp:'桓騎'},
-  'Kanmei':{rarity:'UR',faction:'Chu',name_jp:'汗明'},
-  'Kanou':{rarity:'SR',faction:'Qin',name_jp:'干央'},
-  'Karin':{rarity:'UR',faction:'Chu',name_jp:'媧燐'},
-  'Karyoten':{rarity:'SR',faction:'Qin',name_jp:'河了貂'},
-  'Katari':{rarity:'UR',faction:'Mountain Folk',name_jp:'カタリ'},
-  'Kei':{rarity:'SR',faction:'Qin',name_jp:'慶'},
-  'Keibin':{rarity:'UR',faction:'Wei',name_jp:'景湣王'},
-  'Keisha':{rarity:'UR',faction:'Zhao',name_jp:'慶舎'},
-  'Kesshi':{rarity:'SR',faction:'Zhao',name_jp:'竭氏'},
-  'Kinmou':{rarity:'UR',faction:'Zhao',name_jp:'金毛'},
-  'Kishou':{rarity:'UR',faction:'Zhao',name_jp:'紀昌'},
-  'Kisui':{rarity:'UR',faction:'Zhao',name_jp:'紀彗'},
-  'Kitari':{rarity:'UR',faction:'Mountain Folk',name_jp:'キタリ'},
-  'Kokuou':{rarity:'SR',faction:'Qin',name_jp:'黒桜'},
-  'Koshou':{rarity:'UR',faction:'Qin',name_jp:'胡傷'},
-  'Kou':{rarity:'UR',faction:'Qin',name_jp:'向'},
-  'Kouretsu':{rarity:'UR',faction:'Chu',name_jp:'考烈王'},
-  'Kourigen':{rarity:'SR',faction:'Wei',name_jp:'黄離弦'},
-  'Kousonryu':{rarity:'SR',faction:'Zhao',name_jp:'公孫龍'},
-  'Kouyoku':{rarity:'SR',faction:'Chu',name_jp:'項翼'},
-  'Kuzen':{rarity:'SR',faction:'Qin',name_jp:'蒙恬のじぃ'},
-  'Kyomei':{rarity:'SR',faction:'Qin',name_jp:'羌明'},
-  'Kyou':{rarity:'UR',faction:'Qin',name_jp:'摎'},
-  'KyouEn':{rarity:'SR',faction:'Wei',name_jp:'姜燕'},
-  'Kyoubou':{rarity:'UR',faction:'Chu',name_jp:'巨暴'},
-  'Kyougai':{rarity:'SR',faction:'Qin',name_jp:'去亥'},
-  'Kyoukai':{rarity:'SR',faction:'Qin',name_jp:'羌瘣'},
-  'Kyourei':{rarity:'SR',faction:'Qin',name_jp:'京令'},
-  'Kyoushou':{rarity:'SR',faction:'Qin',name_jp:'羌象'},
-  'Kyuukou':{rarity:'SR',faction:'Qin',name_jp:'宮康'},
-  'Linhtama':{rarity:'SR',faction:'Qin',name_jp:'ランタマ'},
-  'Maki':{rarity:'SR',faction:'Mountain Folk',name_jp:'麻鬼'},
-  'Makou':{rarity:'UR',faction:'Qin',name_jp:'麻礦'},
-  'Mangoku':{rarity:'SR',faction:'Zhao',name_jp:'万極'},
-  'Maron':{rarity:'SR',faction:'Qin',name_jp:'摩論'},
-  'Miyamoto':{rarity:'SR',faction:'Zhao',name_jp:'宮元'},
-  'Moubu':{rarity:'UR',faction:'Qin',name_jp:'蒙武'},
-  'Mougou':{rarity:'UR',faction:'Qin',name_jp:'蒙驁'},
-  'Mouki':{rarity:'SR',faction:'Qin',name_jp:'蒙毅'},
-  'Mouten':{rarity:'SR',faction:'Qin',name_jp:'蒙恬'},
-  'Muta':{rarity:'SR',faction:'Qin',name_jp:'ムタ'},
-  'Naki':{rarity:'UR',faction:'Qin',name_jp:'那貴'},
-  'Nakon':{rarity:'SR',faction:'Han',name_jp:'奈棍'},
-  'Ogiko':{rarity:'SR',faction:'Qin',name_jp:'オギコ'},
-  'Ordo':{rarity:'UR',faction:'Yan',name_jp:'オルド'},
-  'Otaji':{rarity:'SR',faction:'Yan',name_jp:'オタジ'},
-  'Ouhon':{rarity:'SR',faction:'Qin',name_jp:'王賁'},
-  'Ouken':{rarity:'UR',faction:'Qi',name_jp:'王建王'},
-  'Ouki':{rarity:'UR',faction:'Qin',name_jp:'王騎'},
-  'Oukotsu':{rarity:'UR',faction:'Qin',name_jp:'王齕'},
-  'Ousen':{rarity:'UR',faction:'Qin',name_jp:'王翦'},
-  'Pam':{rarity:'SR',faction:'Mountain Folk',name_jp:'パム'},
-  'Qingxiang':{rarity:'SR',faction:'Zhao',name_jp:'青翔'},
-  'Queen Biki':{rarity:'UR',faction:'Qin',name_jp:'太后'},
-  'Raido':{rarity:'R',faction:'Qin',name_jp:'雷土'},
-  'Ramauji':{rarity:'SR',faction:'Mountain Folk',name_jp:'ラマウジ'},
-  'Ranbihaku':{rarity:'UR',faction:'Wei',name_jp:'乱美迫'},
-  'Rankai':{rarity:'SR',faction:'Mountain Folk',name_jp:'ランカイ'},
-  'Reiou':{rarity:'UR',faction:'Wei',name_jp:'霊凰'},
-  'Renpa':{rarity:'UR',faction:'Wei',name_jp:'廉頗'},
-  'Riboku':{rarity:'UR',faction:'Zhao',name_jp:'李牧'},
-  'Rien':{rarity:'UR',faction:'Chu',name_jp:'李園'},
-  'Rihaku':{rarity:'SR',faction:'Zhao',name_jp:'李白'},
-  'Rikusen':{rarity:'UR',faction:'Qin',name_jp:'陸仙'},
-  'Rinbou':{rarity:'SR',faction:'Qin',name_jp:'鱗坊'},
-  'Rinbukun':{rarity:'UR',faction:'Chu',name_jp:'臨武君'},
-  'Ringyoku':{rarity:'UR',faction:'Qin',name_jp:'リン玉'},
-  'Rinko':{rarity:'UR',faction:'Wei',name_jp:'輪虎'},
-  'Rishi':{rarity:'R',faction:'Qin',name_jp:'李斯'},
-  'Robin':{rarity:'UR',faction:'Qin',name_jp:'呂敏'},
-  'Roen':{rarity:'SR',faction:'Qin',name_jp:'魯延'},
-  'Rokin':{rarity:'SR',faction:'Chu',name_jp:'魯近'},
-  'Rokuomi':{rarity:'SR',faction:'Qin',name_jp:'録嗚未'},
-  'Rouai':{rarity:'UR',faction:'Ai',name_jp:'嫪毐'},
-  'Rui':{rarity:'UR',faction:'Qin',name_jp:'瑠衣'},
-  'Ryofui':{rarity:'UR',faction:'Qin',name_jp:'呂不韋'},
-  'Ryuukoku':{rarity:'SR',faction:'Qin',name_jp:'隆国'},
-  'Ryuusen':{rarity:'SR',faction:'Qin',name_jp:'竜川'},
-  'Ryuuto':{rarity:'UR',faction:'Zhao',name_jp:'劉冬'},
-  'Ryuyu':{rarity:'SR',faction:'Qin',name_jp:'竜有'},
-  'Saizatsu':{rarity:'SR',faction:'Qin',name_jp:'蔡沢'},
-  'Saji':{rarity:'SR',faction:'Zhao',name_jp:'左慈'},
-  'Seikai':{rarity:'UR',faction:'Han',name_jp:'成恢'},
-  'Seikyou':{rarity:'SR',faction:'Qin',name_jp:'成蟜'},
-  'Seki':{rarity:'SR',faction:'Qin',name_jp:'石'},
-  'Shibasaku':{rarity:'UR',faction:'Qin',name_jp:'司馬錯'},
-  'Shihaku':{rarity:'UR',faction:'Wei',name_jp:'紫伯'},
-  'Shika':{rarity:'SR',faction:'Zhao',name_jp:'紫夏'},
-  'Shikika':{rarity:'UR',faction:'Wei',name_jp:'紫季歌'},
-  'Shin':{rarity:'SR',faction:'Qin',name_jp:'信'},
-  'Shinseijou':{rarity:'UR',faction:'Zhao',name_jp:'晋成常'},
-  'Shishi':{rarity:'SR',faction:'Qin',name_jp:'肆氏'},
-  'Shoka':{rarity:'SR',faction:'Zhao',name_jp:'尚鹿'},
-  'Sho':{rarity:'SR',faction:'Qin',name_jp:'昭王'},
-  'Shouheikun':{rarity:'UR',faction:'Qin',name_jp:'昌平君'},
-  'Shoumou':{rarity:'SR',faction:'Zhao',name_jp:'渉孟'},
-  'Shoubunkun':{rarity:'UR',faction:'Qin',name_jp:'昌文君'},
-  'Shousa':{rarity:'SR',faction:'Qin',name_jp:'松佐'},
-  'Shoutaku':{rarity:'SR',faction:'Qin',name_jp:'松琢'},
-  'Shuki':{rarity:'SR',faction:'Mountain Folk',name_jp:'朱鬼'},
-  'Shunmen':{rarity:'SR',faction:'Mountain Folk',name_jp:'シュンメン'},
-  'Shunpeikun':{rarity:'UR',faction:'Zhao',name_jp:'春平君'},
-  'Shunshinkun':{rarity:'UR',faction:'Chu',name_jp:'春申君'},
-  'Shunsuiju':{rarity:'UR',faction:'Zhao',name_jp:'舜水樹'},
-  'Sosui':{rarity:'SR',faction:'Qin',name_jp:'楚水'},
-  'Sougen':{rarity:'UR',faction:'Qin',name_jp:'蒼源'},
-  'Suugen':{rarity:'SR',faction:'Qin',name_jp:'崇原'},
-  'Taijifu':{rarity:'SR',faction:'Mountain Folk',name_jp:'タジフ'},
-  'Tairoji':{rarity:'UR',faction:'Wei',name_jp:'太呂慈'},
-  'Takukei':{rarity:'SR',faction:'Qin',name_jp:'澤圭'},
-  'Toji':{rarity:'SR',faction:'Mountain Folk',name_jp:'トッヂ'},
-  'Tou':{rarity:'UR',faction:'Qin',name_jp:'騰'},
-  'Toumi':{rarity:'UR',faction:'Qin',name_jp:'東美'},
-  'Wategi':{rarity:'UR',faction:'Ai',name_jp:'戎翟公'},
-  'Yotanwa':{rarity:'SR',faction:'Mountain Folk',name_jp:'楊端和'},
-  'You':{rarity:'UR',faction:'Qin',name_jp:'陽'},
-  'Youka':{rarity:'UR',faction:'Qin',name_jp:'姚賈'},
-  'Yugi':{rarity:'SR',faction:'Qin',name_jp:'有義'},
-  'Yukii':{rarity:'UR',faction:'Yan',name_jp:'ユキイ'},
-  'Yuri':{rarity:'UR',faction:'Qin',name_jp:'友里'},
-  'Yuuren':{rarity:'SR',faction:'Wei',name_jp:'幽連'},
-  'Zenou':{rarity:'UR',faction:'Qin',name_jp:'ゼノウ'}
-}
+const RARITY_DATA=rarityData
 
 const PAGES=['Home','Archive','Guide','Party Builder','Buffs','Tier List','Team Cost']
 const PAGE_ICONS={
@@ -1199,7 +868,7 @@ export default function App(){
     setSk(p=>{const n=[...p];n[idx]={...DEFAULT_SK};return n})
   }
   const loadMetaTeam=(team,side)=>{
-    const chars=team.members.map(n=>ALL.find(c=>c.name_en===n||c.name_en.toLowerCase()===n.toLowerCase())).filter(Boolean).slice(0,4)
+    const chars=team.members.map(findCharByName).filter(Boolean).slice(0,4)
     const slots=[...chars,...Array(4-chars.length).fill(null)]
     if(side==='attack'){ setAtk(slots); setAtkSk(defaultSks()) }
     else { setDef(slots); setDefSk(defaultSks()) }
@@ -1622,7 +1291,7 @@ function SkillCard({skill}){
 
 // ── META TEAM CARD ────────────────────────────────────────────────────────────
 function MetaTeamCard({team,onLoad}){
-  const chars=team.members.map(n=>ALL.find(c=>c.name_en===n||c.name_en.toLowerCase()===n.toLowerCase())).filter(Boolean)
+  const chars=team.members.map(findCharByName).filter(Boolean)
   const accent=team.color||CC[chars[0]?.country]||'var(--terra)'
   return(
     <div className="meta-card" style={{borderTopColor:accent}}>
@@ -2276,7 +1945,7 @@ function BuffsPage(){
   const ArmyBadge=({name,size=72})=>{
     const c=CC[ARMY_PARENT_STATE[name]]||'#888'
     const leaderName=ARMY_ICON_CHAR[name]
-    const leader=leaderName&&ALL.find(ch=>ch.name_en===leaderName)
+    const leader=leaderName&&findCharByName(leaderName)
     if(leader)
       return <div style={{width:size,height:size,borderRadius:'50%',overflow:'hidden',border:`2.5px solid ${c}`,background:c+'18',flexShrink:0}}><CharIcon c={leader} size={size} round={true}/></div>
     return(
@@ -2306,7 +1975,7 @@ function BuffsPage(){
         </div>
         <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
           {entries.map((e,i)=>{
-            const char=ALL.find(c=>c.name_en===e.name||c.name_en?.toLowerCase()===e.name.toLowerCase()||c.name_jp===e.name_jp)
+            const char=findCharByName(e.name)||ALL.find(c=>c.name_jp===e.name_jp)
             const fc=CC[e.faction]||'#888'
             const sourceId=buffSourceId('terrain',terrain.name,'terrain',e,i)
             const owned=tracker.isOwned('buffSources',sourceId)
@@ -2397,7 +2066,7 @@ function BuffsPage(){
         <div style={{display:'flex',flexDirection:'column',gap:'8px'}}>
           {entries.length===0&&<div style={{textAlign:'center',padding:'2rem 1rem',color:'var(--txt3)',fontSize:'.85rem'}}>No {activeStat} buff for {activeKey}</div>}
           {entries.map((e,i)=>{
-            const char=ALL.find(c=>c.name_en===e.name||c.name_en.toLowerCase()===e.name.toLowerCase())
+            const char=findCharByName(e.name)
             const fc=CC[e.faction]||'#888'
             const isTop=i<3
             const unlockIcon=e.special_icon|| (e.value===5?'/icons/Shard.webp':'/icons/Red_Crystal.webp')
@@ -2482,7 +2151,7 @@ function BuffsPage(){
   const sceneCardIds=(sceneCardBuffs.cards||[]).map(c=>c.id)
   const sceneOwnedCount=(sceneCardBuffs.cards||[]).filter(c=>sceneCardStar(c)>0).length
   const buffStats=['HP','Attack','Defense']
-  const findBuffChar=e=>ALL.find(c=>c.name_en===e.name||c.name_en?.toLowerCase()===e.name?.toLowerCase()||c.name_jp===e.name_jp)
+  const findBuffChar=e=>findCharByName(e.name)||ALL.find(c=>c.name_jp===e.name_jp)
   const buildSourceRows=()=>{
     const rows=[]
     const pushRows=(kind,keys,label)=>{
@@ -2788,9 +2457,6 @@ const TIER_DEFS={
 }
 
 function TierPage(){
-  const byName={}
-  ALL.forEach(c=>{byName[c.name_en.toLowerCase()]=c;byName[c.name_en]=c})
-  const getChar=n=>byName[n]||byName[n.toLowerCase()]||null
   return(
     <div className="tier-page-wrap">
       <div className="tier-page-header">
@@ -2813,7 +2479,7 @@ function TierPage(){
               </div>
               <div className="tier-teams-grid">
                 {teams.map((team,ti)=>{
-                  const chars=team.members.map(n=>getChar(n)).filter(Boolean)
+                  const chars=team.members.map(findCharByName).filter(Boolean)
                   return(
                     <div key={ti} className="tier-team-card" style={{borderLeftColor:color}}>
                       <div className="tier-team-name">{team.name}</div>

@@ -6,3 +6,6 @@ dist/
 
 .vercel
 .env*.local
+
+# Local backups (cleanup sessions)
+src.backup-*/
