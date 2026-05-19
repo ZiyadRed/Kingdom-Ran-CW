@@ -2761,7 +2761,7 @@ const GUIDE_SECTIONS=[
   {id:'bandits',      label:'Bandit Hunt',         category:'Beginner'},
   {id:'matchups',     label:'Unit Matchups',       category:'Beginner'},
   {id:'types',        label:'Skill Types',         category:'Beginner'},
-  {id:'stats',        label:'How To Raise CW Stats',category:'Advanced'},
+  {id:'stats',        label:'How To Raise CW Stats',category:'Beginner'},
   {id:'debuffs',      label:'Debuff Resist',       category:'Advanced'},
   {id:'effects',      label:'Status Effects',      category:'Advanced'},
   {id:'terrain',      label:'Terrain Effects',     category:'Advanced'},
