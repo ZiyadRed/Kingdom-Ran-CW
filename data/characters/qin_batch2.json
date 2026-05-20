@@ -508,8 +508,8 @@
           },
           {
             "condition": null,
-            "target": "Self",
-            "effect": "Ally \"Sho\" and Six Great Generals DEF Up 、Hit Rate Up 20％",
+            "target": "Ally \"Sho\" / Ally Six Great Generals",
+            "effect": "DEF Up 、Hit Rate Up 20％",
             "duration": null
           },
           {

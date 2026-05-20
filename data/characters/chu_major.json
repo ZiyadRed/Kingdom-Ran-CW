@@ -45,7 +45,7 @@
           },
           {
             "condition": null,
-            "target": "Other ally Chu",
+            "target": "Enemy generals",
             "effect": "DEF Down 10%",
             "duration": null
           }
@@ -832,8 +832,8 @@
           },
           {
             "condition": null,
-            "target": "Self",
-            "effect": "Ally [Wei] Burn Resistance 100％",
+            "target": "Ally [Wei]",
+            "effect": "Burn Resistance 100％",
             "duration": null
           },
           {

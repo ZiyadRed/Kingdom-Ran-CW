@@ -153,6 +153,7 @@ const GROUPS={
   'Kisei Army':       ['kisui','batei','ryuuto','duke_sei','kishou'],
   'Ousen Army':       ['akou','denrimi','kanjou','shoutaku','kyuukou','makou'],
   'Coalition Army':   ['karin','kanmei','riboku','houken','seikai','rinbukun','gohoumei','mangoku'],
+  'Ryofui Four Pillars': ['ryofui','mougou'],
 }
 const UNIT_TYPES={
   // Cavalry
@@ -601,7 +602,8 @@ function isTargetedBy(target,G,owner,team){
   if(nameM){
     const nm=nameM[1].trim()
     if(!nm) return false
-    for(const gn of Object.keys(GROUPS)){if(gn.toLowerCase().includes(nm.toLowerCase().split(' ')[0])) return inGroup(G,gn)}
+    const nmFirst=nm.toLowerCase().split(' ')[0]
+    for(const gn of Object.keys(GROUPS)){if(gn.toLowerCase().split(' ')[0]===nmFirst) return inGroup(G,gn)}
     return G.name_en.toLowerCase()===nm.toLowerCase()&&G.id!==owner.id
   }
   return false

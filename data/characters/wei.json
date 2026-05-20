@@ -262,8 +262,8 @@
           },
           {
             "condition": null,
-            "target": "Self",
-            "effect": "Ally Wei Fire Dragon HP Recovery Up 50％",
+            "target": "Ally Wei Fire Dragon",
+            "effect": "HP Recovery Up 50％",
             "duration": null
           },
           {
@@ -722,14 +722,14 @@
           },
           {
             "condition": null,
-            "target": "Ally [Archer] and Wei Fire Dragon",
-            "effect": "DEF Down 10% against enemy",
+            "target": "Enemy generals",
+            "effect": "DEF Down 10%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "All ally generals fighting vs [Archer] and Wei Fire Dragon",
-            "effect": "DEF Down additional 10%",
+            "target": "Enemy [Archer] and Wei Fire Dragon",
+            "effect": "DEF Down 10%",
             "duration": null
           },
           {

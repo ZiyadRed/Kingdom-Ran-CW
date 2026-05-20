@@ -1016,8 +1016,8 @@
           },
           {
             "condition": null,
-            "target": "Self",
-            "effect": "Ally [Infantry] and [Archer] ATK Up 10％",
+            "target": "Ally [Infantry] and [Archer]",
+            "effect": "ATK Up 10％",
             "duration": null
           }
         ]
@@ -1153,8 +1153,8 @@
           },
           {
             "condition": null,
-            "target": "Self",
-            "effect": "Ally Ryofui Four Pillars \"Sure Hit\"",
+            "target": "Ally Ryofui Four Pillars",
+            "effect": "Sure Hit",
             "duration": null
           },
           {
@@ -1804,14 +1804,14 @@
         "effects": [
           {
             "condition": null,
-            "target": "Self",
-            "effect": "Ally [Infantry] and [Cavalry] \"Betrayal\" Resistance 、\"Confusion\" Resistance 35％",
+            "target": "Ally [Infantry] and [Cavalry]",
+            "effect": "\"Betrayal\" Resistance 、\"Confusion\" Resistance 35％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Self",
-            "effect": "Ally [Infantry] and [Cavalry] ATK Up 10％",
+            "target": "Ally [Infantry] and [Cavalry]",
+            "effect": "ATK Up 10％",
             "duration": null
           }
         ]
@@ -1914,14 +1914,14 @@
         "effects": [
           {
             "condition": null,
-            "target": "Self",
-            "effect": "Ally [Infantry] and [Shield] \"Paralysis\" Resistance 40％",
+            "target": "Ally [Infantry] and [Shield]",
+            "effect": "\"Paralysis\" Resistance 40％",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Self",
-            "effect": "Ally [Infantry] and [Shield] DEF Up 10％",
+            "target": "Ally [Infantry] and [Shield]",
+            "effect": "DEF Up 10％",
             "duration": null
           }
         ]
