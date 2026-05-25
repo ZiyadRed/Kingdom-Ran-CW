@@ -427,6 +427,7 @@ const FACTION_MAP={'qin':'qin','zhao':'zhao','chu':'chu','wei':'wei','yan':'yan'
 const STATUS_EFFECTS=['Confusion','Poison','Paralysis','Betrayal','Burn','Fear','Illusion','Reckless']
 const STATUS_RE=new RegExp('^('+STATUS_EFFECTS.join('|')+')','i')
 const TARGET_NAME_ALIASES={moubo:'moubu'}
+const normalizeBuffStat=s=>/^Evasion Rate$/i.test(s)?'Evasion':s
 function parseBuffEffect(str){
   if(!str) return []
   const results=[];let deferred=[]
@@ -485,13 +486,13 @@ function parseBuffEffect(str){
     if(/^Rampage$/i.test(part)){flush({stat:'Rampage',dir:'Up',val:1,ownerType,antiEnemy});continue}
     // "ATK Up (max X%)" — stacking buff with cap, no per-stack value given
     m=part.match(/^(.+?)\s+(Up|Down)\s+\(max\s+(\d+(?:\.\d+)?)[%％]\)$/i)
-    if(m){flush({stat:m[1].trim(),dir:m[2],val:parseFloat(m[3]),ownerType,antiEnemy});continue}
+    if(m){flush({stat:normalizeBuffStat(m[1].trim()),dir:m[2],val:parseFloat(m[3]),ownerType,antiEnemy});continue}
     // "Stat Up/Down X%"
     m=part.match(/^(.+?)\s+(Up|Down)\s+(\d+(?:\.\d+)?)[%％]/)
-    if(m){flush({stat:m[1].trim(),dir:m[2],val:parseFloat(m[3]),ownerType,antiEnemy});continue}
+    if(m){flush({stat:normalizeBuffStat(m[1].trim()),dir:m[2],val:parseFloat(m[3]),ownerType,antiEnemy});continue}
     // "Stat Up/Down" (no value) — deferred
     m=part.match(/^(.+?)\s+(Up|Down)\s*$/)
-    if(m){deferred.push({stat:m[1].trim(),dir:m[2],ownerType,antiEnemy});continue}
+    if(m){deferred.push({stat:normalizeBuffStat(m[1].trim()),dir:m[2],ownerType,antiEnemy});continue}
     // "DEF Penetration [Resistance] X%"
     m=part.match(/^(DEF Penetration(?:\s+Resistance)?)\s+(\d+(?:\.\d+)?)[%％]$/)
     if(m){flush({stat:m[1],dir:'Up',val:parseFloat(m[2]),ownerType,antiEnemy});continue}

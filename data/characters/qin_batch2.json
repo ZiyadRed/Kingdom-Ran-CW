@@ -1400,7 +1400,7 @@
           {
             "condition": "When Garrisoning",
             "target": "Ally Qin generals",
-            "effect": "Evasion Up 20%",
+            "effect": "Evasion Rate Up 20%",
             "duration": null
           }
         ]
@@ -1475,7 +1475,7 @@
           {
             "condition": "When Garrisoning",
             "target": "Ally Qin generals",
-            "effect": "Evasion Up 20%",
+            "effect": "Evasion Rate Up 20%",
             "duration": null
           }
         ]
