@@ -152,6 +152,7 @@ const GROUPS={
   'Kisui Army':       ['kisui','batei','ryuuto','duke_sei','kishou'],
   'Kisei Army':       ['kisui','batei','ryuuto','duke_sei','kishou'],
   'Ousen Army':       ['akou','denrimi','kanjou','shoutaku','kyuukou','makou'],
+  'Moubo Army':       ['moubu','choushi','raiki'],
   'Coalition Army':   ['karin','kanmei','riboku','houken','seikai','rinbukun','gohoumei','mangoku'],
   'Ryofui Four Pillars': ['ryofui','mougou'],
 }
@@ -185,10 +186,11 @@ const UNIT_TYPES={
   toji:'Archer',you:'Archer',yukii:'Archer',kokuou:'Archer',
   // Infantry
   bain:'Infantry',bamyu:'Infantry',bihei:'Infantry',chutetsu:'Infantry',entei:'Infantry',
+  choushi:'Infantry',
   en:'Infantry',gotan:'Infantry',hairou:'Infantry',hokaku:'Infantry',houken:'Infantry',
   jokan:'Infantry',ka:'Infantry',kakukai:'Infantry',kei:'Infantry',kyomei:'Infantry',
   kyourei:'Infantry',kyoushou:'Infantry',kyuukou:'Infantry',linhtama:'Infantry',maron:'Infantry',
-  muta:'Infantry',oukotsu:'Infantry',pam:'Infantry',rankai:'Infantry',rui:'Infantry',
+  muta:'Infantry',oukotsu:'Infantry',pam:'Infantry',raiki:'Infantry',rankai:'Infantry',rui:'Infantry',
   ryuusen:'Infantry',ryuuto:'Infantry',ryuyu:'Infantry',saji:'Infantry',shikika:'Infantry',
   shousa:'Infantry',shoutaku:'Infantry',shuki:'Infantry',shunmen:'Infantry',shunpeikun:'Infantry',
   suugen:'Infantry',toumi:'Infantry',youka:'Infantry',yuri:'Infantry',yuuren:'Infantry',
@@ -828,6 +830,7 @@ const CHAR_GROUPS={
   'Hi Shin Unit':['Shin','Garo','Gakurai','Kyoukai'],
   'HiShin':['Shin','Garo','Gakurai','Kyoukai'],
   'Gakuka':['Mouten','Rikusen'],
+  'Moubo Army':['Moubu','Choushi','Raiki'],
 }
 
 // Per-slot skill mask for the Party Builder.
@@ -984,7 +987,7 @@ function HomePage({go}){
 function ArchiveTabs({active}){
   const navigate=useNavigate()
   const tabs=[
-    {id:'characters',label:'Characters',count:'199',route:'/archive/characters'},
+    {id:'characters',label:'Characters',count:'201',route:'/archive/characters'},
     {id:'cw6',label:'CW6★ Scene Cards',count:String(cw6SceneCards.cards?.length||0),route:'/archive/cw6-scene-cards'},
   ]
   return(

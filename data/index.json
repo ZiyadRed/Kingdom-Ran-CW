@@ -1,8 +1,8 @@
 {
   "_meta": {
-    "total_characters_in_game": 197,
-    "characters_translated": 48,
-    "last_updated": "2026-05-11",
+    "total_characters_in_game": 201,
+    "characters_translated": 50,
+    "last_updated": "2026-05-25",
     "source": "https://pirock55.work/souha-skill-archive/",
     "note": "Characters with only a name entry (no skills array) are placeholders — their skill data is pending translation."
   },
@@ -16,6 +16,8 @@
     { "id": "kanki",       "name_en": "Kanki",         "name_jp": "桓騎",    "country": "qin",           "file": "qin.json",            "status": "pending" },
     { "id": "mouten",       "name_en": "mouten",         "name_jp": "蒙恬",    "country": "qin",           "file": "qin.json",            "status": "pending" },
     { "id": "moubu",       "name_en": "Moubu",         "name_jp": "蒙武",    "country": "qin",           "file": "qin.json",            "status": "pending" },
+    { "id": "choushi",     "name_en": "Choushi",       "name_jp": "丁之",      "country": "qin",           "file": "qin_batch2.json",     "status": "done" },
+    { "id": "raiki",       "name_en": "Raiki",         "name_jp": "来輝",      "country": "qin",           "file": "qin_batch2.json",     "status": "done" },
     { "id": "mouki",       "name_en": "Mouki",         "name_jp": "蒙毅",    "country": "qin",           "file": "qin.json",            "status": "pending" },
     { "id": "mougou",       "name_en": "Mougou",         "name_jp": "蒙驁",    "country": "qin",           "file": "qin.json",            "status": "pending" },
     { "id": "ei_sei",      "name_en": "Ei Sei",        "name_jp": "嬴政",    "country": "qin",           "file": "qin.json",            "status": "pending" },

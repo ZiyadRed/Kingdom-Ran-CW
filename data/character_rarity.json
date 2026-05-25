@@ -79,6 +79,11 @@
                    "faction":  "Zhao",
                    "name_jp":  "趙高"
                },
+    "Choushi":  {
+                    "rarity":  "SR",
+                    "faction":  "Qin",
+                    "name_jp":  "丁之"
+               },
     "Chousou":  {
                     "rarity":  "SR",
                     "faction":  "Zhao",
@@ -658,6 +663,11 @@
                   "rarity":  "R",
                   "faction":  "Qin",
                   "name_jp":  "雷土"
+              },
+    "Raiki":  {
+                  "rarity":  "SR",
+                  "faction":  "Qin",
+                  "name_jp":  "来輝"
               },
     "Ramauji":  {
                     "rarity":  "SR",

@@ -1333,5 +1333,155 @@
     ],
     "image": "/persos/choutetsu.webp",
     "icon": "/icons/Chutetsu.webp"
+  },
+  {
+    "id": "choushi",
+    "name_en": "Choushi",
+    "name_jp": "丁之",
+    "country": "qin",
+    "unit": "Moubo Army",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Master General Attack [Red Turtle]",
+        "name_jp": "名将攻撃【赤亀】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "2-Hit 100% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Only Path to Survival",
+        "name_jp": "唯一の活路",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "2-Hit 120% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Moubo",
+            "effect": "DEF Penetration Up 30%",
+            "duration": "4 turns"
+          },
+          {
+            "condition": "When Garrisoning, enemy cavalry general last in formation",
+            "target": "1 enemy cavalry general",
+            "effect": "Confusion Infliction 100%",
+            "duration": "5 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "In One Fell Swoop",
+        "name_jp": "一気呵成",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Moubo Army generals",
+            "effect": "Guard 100%",
+            "duration": "1 time"
+          },
+          {
+            "condition": null,
+            "target": "Ally Moubo",
+            "effect": "Guard 100%, Sure Hit",
+            "duration": "6 times"
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Ally Qin generals",
+            "effect": "Dodge Up 20%",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "/persos/choushi.png",
+    "icon": "/icons/Choushi.png"
+  },
+  {
+    "id": "raiki",
+    "name_en": "Raiki",
+    "name_jp": "来輝",
+    "country": "qin",
+    "unit": "Moubo Army",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Master General Attack [Red Turtle]",
+        "name_jp": "名将攻撃【赤亀】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest max morale",
+            "target": "1 enemy general",
+            "effect": "2-Hit 100% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Opening the Path",
+        "name_jp": "道を拓く",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy general with highest ATK",
+            "target": "1 enemy general",
+            "effect": "2-Hit 120% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Moubo",
+            "effect": "ATK Up 40%",
+            "duration": "4 turns"
+          },
+          {
+            "condition": "When Garrisoning, enemy cavalry general first in formation",
+            "target": "1 enemy cavalry general",
+            "effect": "Confusion Infliction 100%",
+            "duration": "5 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Proof of the Strongest",
+        "name_jp": "最強の証明",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Qin generals",
+            "effect": "ATK Down Resistance 30%",
+            "duration": null
+          },
+          {
+            "condition": "Enemy general alive",
+            "target": "Surviving ally Moubo",
+            "effect": "HP Recovery 100%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Ally Qin generals",
+            "effect": "Dodge Up 20%",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "image": "/persos/raiki.png",
+    "icon": "/icons/Raiki.png"
   }
 ]
