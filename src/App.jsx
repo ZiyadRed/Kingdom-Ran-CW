@@ -426,6 +426,7 @@ const UNIT_TYPE_LIST=['Infantry','Cavalry','Archer','Shield']
 const FACTION_MAP={'qin':'qin','zhao':'zhao','chu':'chu','wei':'wei','yan':'yan','qi':'qi','han':'han','mountain folk':'mountain_folk','ai':'ai'}
 const STATUS_EFFECTS=['Confusion','Poison','Paralysis','Betrayal','Burn','Fear','Illusion','Reckless']
 const STATUS_RE=new RegExp('^('+STATUS_EFFECTS.join('|')+')','i')
+const TARGET_NAME_ALIASES={moubo:'moubu'}
 function parseBuffEffect(str){
   if(!str) return []
   const results=[];let deferred=[]
@@ -600,13 +601,16 @@ function isTargetedBy(target,G,owner,team){
     if(new RegExp('ally\\s+'+label.replace(/ /g,'\\s+'),'i').test(t)) return G.country===code
   }
   // Specific named general: "Ally Name"
-  const nameM=/ally\s+"?([^"\/\n,\[\]]+?)"?\s*(?:vs\s+\S.*)?$/i.exec(t)
+  const nameM=/(?:surviving\s+)?ally\s+"?([^"\/\n,\[\]]+?)"?\s*(?:vs\s+\S.*)?$/i.exec(t)
   if(nameM){
     const nm=nameM[1].trim()
     if(!nm) return false
-    const nmFirst=nm.toLowerCase().split(' ')[0]
+    const nmKey=nm.toLowerCase()
+    const aliasId=TARGET_NAME_ALIASES[nmKey]
+    if(aliasId) return G.id===aliasId&&G.id!==owner.id
+    const nmFirst=nmKey.split(' ')[0]
     for(const gn of Object.keys(GROUPS)){if(gn.toLowerCase().split(' ')[0]===nmFirst) return inGroup(G,gn)}
-    return G.name_en.toLowerCase()===nm.toLowerCase()&&G.id!==owner.id
+    return G.name_en.toLowerCase()===nmKey&&G.id!==owner.id
   }
   return false
 }
