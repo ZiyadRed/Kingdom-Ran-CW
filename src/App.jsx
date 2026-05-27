@@ -144,6 +144,7 @@ const GROUPS={
   'Six Great Generals': ['hakuki','ouki','kyou','shibasaku','koshou','oukotsu'],
   'Wei Fire Dragon':    ['ranbihaku','tairoji','reiou','gokei','gaimou','gohoumei','shihaku'],
   'Renpa Army':       ['renpa','rinko','genpo','kyouen','kaishibou'],
+  "Renpa's Four Heavenly Kings": ['rinko','genpo','kyouen','kaishibou'],
   'Kanmei Army':      ['kanmei','beiman','goumasho','jinou','kyoubou'],
   'Karin Army':       ['karin','kaen','goutoku','bamyu','kouyoku','hakurei'],
   'Ouki Army':        ['ouki','tou'],
@@ -426,7 +427,7 @@ const UNIT_TYPE_LIST=['Infantry','Cavalry','Archer','Shield']
 const FACTION_MAP={'qin':'qin','zhao':'zhao','chu':'chu','wei':'wei','yan':'yan','qi':'qi','han':'han','mountain folk':'mountain_folk','ai':'ai'}
 const STATUS_EFFECTS=['Confusion','Poison','Paralysis','Betrayal','Burn','Fear','Illusion','Reckless']
 const STATUS_RE=new RegExp('^('+STATUS_EFFECTS.join('|')+')','i')
-const TARGET_NAME_ALIASES={moubo:'moubu'}
+const TARGET_NAME_ALIASES={moubo:'moubu',ghm:'gohoumei'}
 const normalizeBuffStat=s=>/^Evasion Rate$/i.test(s)?'Evasion':s
 function parseBuffEffect(str){
   if(!str) return []
@@ -550,9 +551,78 @@ function parseBuffEffect(str){
   }
   return results
 }
+const normalizeRosterLabel=s=>(s||'').toLowerCase().replace(/[^a-z]/g,'')
+function groupMatchesLabel(groupName,label){
+  const g=normalizeRosterLabel(groupName)
+  const l=normalizeRosterLabel(label)
+  return !!l&&(g===l||g.includes(l)||l.includes(g)||g.includes(l.replace(/s$/,''))||l.includes(g.replace(/s$/,'')))
+}
 function inGroup(c,groupName){
-  const g=groupName.toLowerCase().replace(/[^a-z]/g,'')
-  return(c.groups||[]).some(gn=>{const n=gn.toLowerCase().replace(/[^a-z]/g,'');return n===g||n.includes(g)||g.includes(n)})
+  return(c.groups||[]).some(gn=>groupMatchesLabel(gn,groupName))
+}
+function cleanRosterCriterion(label){
+  return(label||'')
+    .replace(/[\[\]"“”「」]/g,' ')
+    .replace(/\bother\s+than\s+self\b/gi,'')
+    .replace(/\bbesides\s+self\b/gi,'')
+    .replace(/\bsurviving\b/gi,'')
+    .replace(/\bally\b/gi,'')
+    .replace(/\btroops?\b|\bsoldiers?\b|\bmembers?\b/gi,'')
+    .replace(/\bgenerals?\b$/gi,'')
+    .replace(/\bunit\b$/gi,'')
+    .replace(/\s+/g,' ')
+    .trim()
+}
+function rosterCriterionMatches(c,label,owner,forceOther=false){
+  if(!c) return false
+  const other=forceOther||/\bother(?:\s+ally)?\b|\bother\s+than\s+self\b|\bbesides\s+self\b/i.test(label||'')
+  if(other&&owner&&c.id===owner.id) return false
+  const raw=cleanRosterCriterion(label)
+  if(!raw) return false
+  const norm=normalizeRosterLabel(raw)
+  if(/^(?:general|generals|generalattackcount|attackcount)$/.test(norm)) return !other||!owner||c.id!==owner.id
+  const unit=UNIT_TYPE_LIST.find(u=>{
+    const n=normalizeRosterLabel(u)
+    return norm===n||norm===`${n}s`||(u==='Archer'&&norm==='archers')
+  })
+  if(unit) return c.unit_type===unit
+  for(const [labelText,code] of Object.entries(FACTION_MAP)){
+    if(norm===normalizeRosterLabel(labelText)) return c.country===code
+  }
+  for(const gn of Object.keys(GROUPS)){
+    if(groupMatchesLabel(gn,raw)) return inGroup(c,gn)
+  }
+  const aliasId=TARGET_NAME_ALIASES[norm]
+  if(aliasId) return c.id===aliasId&&(!owner||c.id!==owner.id)
+  const named=findCharByName(raw)
+  if(named) return c.id===named.id&&(!owner||c.id!==owner.id)
+  return false
+}
+function matchAllyRosterListTarget(t,G,owner){
+  if(!/^(?:surviving\s+)?(?:other\s+)?ally\b/i.test(t)) return null
+  const globalOther=/^(?:surviving\s+)?other\s+ally\b/i.test(t)
+  const parts=t
+    .replace(/\band\b/gi,'/')
+    .replace(/,/g,'/')
+    .split('/')
+    .map(p=>p.trim())
+    .filter(Boolean)
+  let sawRosterCriterion=false
+  let matched=false
+  for(let part of parts){
+    let other=globalOther
+    part=part
+      .replace(/^surviving\s+/i,'')
+      .replace(/^ally\s+/i,'')
+      .replace(/^other\s+ally\s+/i,()=>{other=true;return''})
+      .replace(/^other\s+/i,()=>{other=true;return''})
+      .trim()
+    const recognizes=team=>team.some(c=>rosterCriterionMatches(c,part,owner,other))
+    if(!recognizes(ALL)) continue
+    sawRosterCriterion=true
+    if(rosterCriterionMatches(G,part,owner,other)) matched=true
+  }
+  return sawRosterCriterion?matched:null
 }
 function isTargetedBy(target,G,owner,team){
   if(!target) return false
@@ -563,6 +633,8 @@ function isTargetedBy(target,G,owner,team){
   if(selfAnd){if(G.id===owner.id) return true; return isTargetedBy('Ally '+selfAnd[1],G,owner,team)}
   // "Self" only
   if(/^self$/i.test(t)) return G.id===owner.id
+  const rosterListMatch=matchAllyRosterListTarget(t,G,owner)
+  if(rosterListMatch!==null) return rosterListMatch
   // Multi-target split on "/"
   if(t.includes('/')) return t.split('/').some(p=>isTargetedBy(p.trim(),G,owner,team))
   const isOther=/^other(?:\s+ally)?\s*/i.test(t)
@@ -617,19 +689,35 @@ function isTargetedBy(target,G,owner,team){
 }
 function getMultiplier(cond,owner,team){
   if(!cond) return 1
-  // "Per (other) ally <Group> [member|general] [besides self]" — strip filler & match group
-  const perM=/per\s+(?:other\s+)?ally\s+(.+?)(?:\s+(?:member|general)s?)?(?:\s+besides\s+self)?$/i.exec(cond.trim())
-  if(perM){
-    let gName=perM[1].trim().replace(/\s+(?:member|general)s?$/i,'').trim()
-    // Match against GROUPS keys (army names like "Ousen Army", "Kanki Army", etc.)
-    for(const [gn,ids] of Object.entries(GROUPS)){
-      const gnLower=gn.toLowerCase()
-      const gNameLower=gName.toLowerCase()
-      if(gnLower===gNameLower||gnLower.includes(gNameLower)||gNameLower.includes(gnLower.split(' ')[0])){
-        return team.filter(m=>ids.includes(m.id)&&m.id!==owner.id).length
+  // Count forms like "Per ally cavalry", "Per other ally Qin",
+  // "Per other ally Qin / Mountain Folk", and named/group variants.
+  const perIdx=cond.search(/\bper\s+(?:other\s+)?ally\b/i)
+  if(perIdx>=0){
+    const parts=cond.slice(perIdx)
+      .replace(/、/g,'/')
+      .split('/')
+      .map(p=>p.trim())
+      .filter(Boolean)
+    let inheritedOther=false
+    let total=0
+    let sawCriterion=false
+    for(let part of parts){
+      let other=inheritedOther
+      const explicit=/\bper\s+(other\s+)?ally\s+(.+)/i.exec(part)
+      if(explicit){
+        other=!!explicit[1]
+        inheritedOther=other
+        part=explicit[2]
       }
+      part=part
+        .replace(/\s+besides\s+self\b/gi,'')
+        .replace(/\s+(?:members?|generals?)\b.*$/i,'')
+        .trim()
+      if(!part) continue
+      total+=team.filter(m=>rosterCriterionMatches(m,part,owner,other)).length
+      sawCriterion=true
     }
-    return 0
+    return sawCriterion?total:0
   }
   const perNameM=/per\s+ally\s+"?([A-Za-z]+)"?/i.exec(cond)
   if(perNameM){const nm=perNameM[1].toLowerCase();return team.some(m=>m.name_en.toLowerCase()===nm)?1:0}
