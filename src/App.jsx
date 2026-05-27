@@ -226,6 +226,96 @@ ALL.forEach(c=>{
 const CHAR_BY_NAME = (()=>{const m={};for(const c of ALL){if(!c.name_en) continue;m[c.name_en]=c;m[c.name_en.toLowerCase()]=c}return m})()
 const findCharByName = n => n && (CHAR_BY_NAME[n] || CHAR_BY_NAME[n.toLowerCase()]) || null
 
+const RED_CRYSTAL_TOTAL_COST={R:595,SR:800,UR:1750,LG:1750}
+const RED_CRYSTAL_SKILL_COSTS={R:[70,175,350],SR:[80,240,480],UR:[100,550,1100],LG:[100,550,1100]}
+const RED_CRYSTAL_UNLOCK_COSTS=Object.fromEntries(
+  Object.entries(RED_CRYSTAL_SKILL_COSTS).map(([rarity,costs])=>[
+    rarity,
+    costs.map((_,i)=>costs.slice(0,i+1).reduce((sum,v)=>sum+v,0)),
+  ])
+)
+const normalizeBuffText=s=>(s||'').toLowerCase().replace(/[\[\]"'’‘“”・–—\-]/g,' ').replace(/\s+/g,' ').trim()
+const buffValueMatches=(text,value)=>{
+  const v=Number(value)
+  if(!Number.isFinite(v)) return false
+  const escaped=String(v).replace('.', '\\.')
+  return new RegExp(`(?:^|\\D)${escaped}(?:0+)?\\s*(?:%|％|ï¼…)`).test(text||'')
+}
+const buffStatMatches=(effect,stat)=>{
+  const t=normalizeBuffText(effect)
+  if(stat==='HP') return /\bmax hp up\b|\bhp up\b/.test(t)
+  if(stat==='Attack') return /\batk up\b|\battack up\b/.test(t)
+  if(stat==='Defense') return /\bdef up\b|\bdefense up\b/.test(t)
+  if(/Damage Dealt Reduction|Damage Taken Increase|Starting Troop HP Loss/i.test(stat||'')) return true
+  return false
+}
+const buffTargetMatches=(skill,effect,kind,key)=>{
+  if(kind==='terrain') return true
+  const hay=normalizeBuffText([effect.target,effect.condition,effect.effect].filter(Boolean).join(' '))
+  const needle=normalizeBuffText(key)
+  if(!needle) return false
+  if(hay.includes(needle)) return true
+  if(kind==='unit') return hay.includes(needle.replace(/y$/,'ies'))||hay.includes(needle.replace(/s$/,''))
+  if(kind==='state') return hay.includes(needle)
+  if(kind==='army') return needle.split(' ').some(part=>part.length>3&&hay.includes(part))
+  return false
+}
+function redCrystalBuffUnlockCost(entry,kind,key,stat){
+  if(!entry||entry.special_icon||entry.special_label||Number(entry.value)===5) return null
+  const char=findCharByName(entry.name)||ALL.find(c=>c.name_jp===entry.name_jp)
+  if(!char) return null
+  const rarity=RARITY_DATA[char.name_en]?.rarity||char.rarity||entry.type||'SR'
+  const costs=RED_CRYSTAL_UNLOCK_COSTS[rarity]
+  if(!costs) return null
+  const skills=(char.skills||[]).filter(skill=>!skill.star6).slice(0,3)
+  const idx=skills.findIndex(skill=>(skill.effects||[]).some(effect=>
+    buffValueMatches(effect.effect,entry.value)&&
+    buffStatMatches(effect.effect,stat)&&
+    buffTargetMatches(skill,effect,kind,key)
+  ))
+  if(idx>=0) return costs[idx]
+  const fallbackIdx=skills.findIndex(skill=>(skill.effects||[]).some(effect=>
+    buffValueMatches(effect.effect,entry.value)&&buffStatMatches(effect.effect,stat)
+  ))
+  if(fallbackIdx>=0) return costs[fallbackIdx]
+  const targetStatIdx=skills.findIndex(skill=>(skill.effects||[]).some(effect=>
+    buffStatMatches(effect.effect,stat)&&buffTargetMatches(skill,effect,kind,key)
+  ))
+  return targetStatIdx>=0?costs[targetStatIdx]:null
+}
+function RedCrystalCostChip({cost}){
+  if(!cost) return null
+  return(
+    <span title={`Red Crystal unlock cost: ${cost.toLocaleString()}`} style={{
+      display:'inline-flex',alignItems:'center',gap:'3px',
+      padding:'3px 8px',borderRadius:'999px',
+      background:'#6a30c814',border:'1px solid #6a30c844',
+      color:'#6a30c8',fontSize:'.67rem',fontWeight:900,
+      whiteSpace:'nowrap',
+    }}>
+      <span>Cost</span>
+      <img src="/icons/Red_Crystal.webp" alt="Red Crystal" loading="lazy" decoding="async" style={{width:13,height:13,objectFit:'contain'}}/>
+      <span>{cost.toLocaleString()}</span>
+    </span>
+  )
+}
+function BuffValueCluster({value,color,cost,icon,iconLabel,iconTitle,fontSize='1.1rem',minWidth='52px'}){
+  return(
+    <div style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'8px',minWidth:'150px',flexShrink:0}}>
+      {icon&&!cost&&<img
+        src={icon}
+        alt={iconLabel||'Unlock source'}
+        title={iconTitle||iconLabel}
+        loading="lazy"
+        decoding="async"
+        style={{width:20,height:20,objectFit:'contain',flexShrink:0}}
+      />}
+      <RedCrystalCostChip cost={cost}/>
+      <div style={{fontWeight:900,fontSize,color,minWidth,textAlign:'right',fontVariantNumeric:'tabular-nums'}}>+{value.toFixed(1)}%</div>
+    </div>
+  )
+}
+
 const FACTIONS=[
   {id:'qin',           label:'Qin',           jp:'秦',    color:'#c0392b'},
   {id:'zhao',          label:'Zhao',          jp:'趙',    color:'#3d6eb5'},
@@ -887,7 +977,7 @@ function Picker({onSelect,onClose,excl=[]}){
 }
 
 // ── TEAM COST ─────────────────────────────────────────────────────────────────
-const RARITY_COST={R:595,SR:800,UR:1750,LG:1750}
+const RARITY_COST=RED_CRYSTAL_TOTAL_COST
 const RARITY_COLOR={R:'#3d9970',SR:'#3d6eb5',UR:'#c0392b',LG:'#d4af37'}
 
 const RARITY_DATA=rarityData
@@ -2077,6 +2167,7 @@ function BuffsPage(){
             const fc=CC[e.faction]||'#888'
             const sourceId=buffSourceId('terrain',terrain.name,'terrain',e,i)
             const owned=tracker.isOwned('buffSources',sourceId)
+            const unlockCost=redCrystalBuffUnlockCost(e,'terrain',terrain.name,terrain.typeLabel)
             return(
               <div key={e.name+i} style={{
                 display:'flex',alignItems:'center',gap:'14px',padding:'12px 16px',borderRadius:'14px',
@@ -2099,13 +2190,20 @@ function BuffsPage(){
                     <span style={{fontSize:'.62rem',color:'var(--txt3)'}}>{FACTIONS.find(f=>f.id===e.faction)?.label||e.faction}</span>
                   </div>
                 </div>
-                <div style={{display:'flex',alignItems:'center',gap:'8px',flexShrink:0}}>
+                <div style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'12px',flexShrink:0,minWidth:'240px'}}>
+                  <BuffValueCluster
+                    value={e.value}
+                    color={terrain.color}
+                    cost={unlockCost}
+                    icon="/icons/Red_Crystal.webp"
+                    iconLabel="Red Crystal"
+                    iconTitle="Red Crystal upgrade"
+                    fontSize="1.05rem"
+                  />
                   <OwnedToggle
                     owned={owned}
                     onToggle={()=>tracker.toggleOwned('buffSources',sourceId)}
                   />
-                  <img src="/icons/Red_Crystal.webp" alt="Red Crystal" title="Red Crystal upgrade" loading="lazy" decoding="async" style={{width:20,height:20,objectFit:'contain'}}/>
-                  <div style={{fontWeight:900,fontSize:'1.05rem',color:terrain.color,minWidth:'52px',textAlign:'right'}}>{e.value.toFixed(1)}%</div>
                 </div>
               </div>
             )
@@ -2172,6 +2270,7 @@ function BuffsPage(){
             const unlockTitle=e.special_label|| (e.value===5?'Unlocked with Shards':'Unlocked with Red Crystals')
             const sourceId=buffSourceId(activeKind,activeKey,activeStat,e,i)
             const owned=tracker.isOwned('buffSources',sourceId)
+            const unlockCost=redCrystalBuffUnlockCost(e,activeKind,activeKey,activeStat)
             return(
               <div key={e.name+i} style={{
                 display:'flex',alignItems:'center',gap:'14px',padding:'12px 16px',borderRadius:'14px',
@@ -2201,18 +2300,19 @@ function BuffsPage(){
                     <span style={{fontSize:'.62rem',color:'var(--txt3)'}}>{FACTIONS.find(f=>f.id===e.faction)?.label||e.faction}</span>
                   </div>
                 </div>
-                <div style={{display:'flex',alignItems:'center',gap:'8px',flexShrink:0}}>
+                <div style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'12px',flexShrink:0,minWidth:'240px'}}>
+                  <BuffValueCluster
+                    value={e.value}
+                    color={sc}
+                    cost={unlockCost}
+                    icon={unlockIcon}
+                    iconLabel={unlockLabel}
+                    iconTitle={unlockTitle}
+                  />
                   <OwnedToggle
                     owned={owned}
                     onToggle={()=>tracker.toggleOwned('buffSources',sourceId)}
                   />
-                  <img src={unlockIcon}
-                    alt={unlockLabel}
-                    title={unlockTitle}
-                    loading="lazy"
-                    decoding="async"
-                    style={{width:20,height:20,objectFit:'contain'}}/>
-                  <div style={{fontWeight:900,fontSize:'1.1rem',color:sc,minWidth:'52px',textAlign:'right'}}>+{e.value.toFixed(1)}%</div>
                 </div>
               </div>
             )
@@ -2615,8 +2715,8 @@ function TeamCostPage(){
   const[picker,setPicker]=useState(null)
   const[search,setSearch]=useState('')
 
-  const COST={R:595,SR:800,UR:1750}
-  const SKILL_COSTS={R:[70,175,350],SR:[80,240,480],UR:[100,550,1100]}
+  const COST=RED_CRYSTAL_TOTAL_COST
+  const SKILL_COSTS=RED_CRYSTAL_SKILL_COSTS
   const RCOL={R:'#3d9970',SR:'#3d6eb5',UR:'#c0392b'}
   const RBG={R:'#3d997018',SR:'#3d6eb518',UR:'#c0392b18'}
 

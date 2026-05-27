@@ -30,7 +30,7 @@
         "name_jp": "介子坊",
         "faction": "wei",
         "type": "SR",
-        "star6": true,
+        "star6": false,
         "value": 7.9
       },
       {
@@ -108,9 +108,9 @@
         "value": 4.3
       },
       {
-        "name": "Douken",
-        "name_jp": "道剣",
-        "faction": "zhao",
+        "name": "Doukin",
+        "name_jp": "同金",
+        "faction": "qin",
         "type": "SR",
         "star6": false,
         "value": 3.8
@@ -123,7 +123,9 @@
         "faction": "han",
         "type": "SR",
         "star6": false,
-        "value": 10.0
+        "value": 10.0,
+        "special_icon": "/icons/Shard.webp",
+        "special_label": "Shard upgrade"
       },
       {
         "name": "Denyuu",
@@ -418,6 +420,14 @@
         "value": 22.8
       },
       {
+        "name": "Kakukai",
+        "name_jp": "郭開",
+        "faction": "zhao",
+        "type": "UR",
+        "star6": false,
+        "value": 22.8
+      },
+      {
         "name": "Kyomei",
         "name_jp": "羌明",
         "faction": "qin",
@@ -466,14 +476,6 @@
         "value": 6.9
       },
       {
-        "name": "Kakukai",
-        "name_jp": "郭開",
-        "faction": "zhao",
-        "type": "UR",
-        "star6": false,
-        "value": 6.9
-      },
-      {
         "name": "Ryuuto",
         "name_jp": "劉冬",
         "faction": "zhao",
@@ -484,20 +486,20 @@
     ],
     "Attack": [
       {
-        "name": "Hokaku",
-        "name_jp": "蒲鶮",
-        "faction": "qin",
-        "type": "SR",
-        "star6": false,
-        "value": 14.9
-      },
-      {
         "name": "Youka",
         "name_jp": "姚賈",
         "faction": "qin",
         "type": "UR",
         "star6": false,
         "value": 12.4
+      },
+      {
+        "name": "Hokaku",
+        "name_jp": "蒲鶮",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 9.9
       },
       {
         "name": "Chutetsu",
@@ -574,12 +576,20 @@
     ],
     "Defense": [
       {
+        "name": "Shunpeikun",
+        "name_jp": "春平君",
+        "faction": "zhao",
+        "type": "UR",
+        "star6": false,
+        "value": 12.4
+      },
+      {
         "name": "Kyourei",
         "name_jp": "京令",
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 14.9
+        "value": 9.9
       },
       {
         "name": "Ryuyu",
@@ -616,14 +626,6 @@
       {
         "name": "Kakukai",
         "name_jp": "郭開",
-        "faction": "zhao",
-        "type": "UR",
-        "star6": false,
-        "value": 5.0
-      },
-      {
-        "name": "Shunpeikun",
-        "name_jp": "春平君",
         "faction": "zhao",
         "type": "UR",
         "star6": false,
@@ -690,6 +692,14 @@
         "value": 18.2
       },
       {
+        "name": "Mouki",
+        "name_jp": "蒙毅",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 18.2
+      },
+      {
         "name": "Bikou",
         "name_jp": "尾到",
         "faction": "qin",
@@ -706,6 +716,14 @@
         "value": 7.9
       },
       {
+        "name": "Kakubi",
+        "name_jp": "郭備",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 7.9
+      },
+      {
         "name": "Heki",
         "name_jp": "壁",
         "faction": "qin",
@@ -714,26 +732,10 @@
         "value": 6.9
       },
       {
-        "name": "Kakubi",
-        "name_jp": "郭備",
-        "faction": "qin",
-        "type": "SR",
-        "star6": false,
-        "value": 5.0
-      },
-      {
         "name": "Kishou",
         "name_jp": "紀昌",
         "faction": "zhao",
         "type": "UR",
-        "star6": false,
-        "value": 5.0
-      },
-      {
-        "name": "Mouki",
-        "name_jp": "蒙毅",
-        "faction": "qin",
-        "type": "SR",
         "star6": false,
         "value": 5.0
       },
@@ -754,14 +756,6 @@
         "type": "SR",
         "star6": false,
         "value": 9.9
-      },
-      {
-        "name": "Raido",
-        "name_jp": "雷土",
-        "faction": "qin",
-        "type": "R",
-        "star6": true,
-        "value": 8.8
       },
       {
         "name": "Hakuki",
@@ -794,6 +788,14 @@
         "type": "SR",
         "star6": false,
         "value": 4.3
+      },
+      {
+        "name": "Raido",
+        "name_jp": "雷土",
+        "faction": "qin",
+        "type": "R",
+        "star6": false,
+        "value": 3.8
       }
     ],
     "Defense": [
