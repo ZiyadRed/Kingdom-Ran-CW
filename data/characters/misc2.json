@@ -1898,7 +1898,9 @@
           }
         ]
       }
-    ]
+    ],
+    "image": "/persos/en.webp",
+    "icon": "/icons/En.webp"
   },
   {
     "id": "takukei",
@@ -2232,6 +2234,7 @@
         ]
       }
     ],
+    "image": "/persos/seki.webp",
     "icon": "/icons/Seki.webp"
   },
   {
