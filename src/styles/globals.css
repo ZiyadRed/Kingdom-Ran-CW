@@ -874,16 +874,34 @@ img { display: block; max-width: 100%; height: auto }
 
   /* Skills panel: fixed bottom sheet */
   .detail-panel {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    width: 100%; height: 62vh; max-height: 62vh;
+    position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+    width: 100%; height: 100dvh; max-height: 100dvh;
     overflow-y: auto; overflow-x: hidden;
     border-left: none; border-top: 3px solid var(--terra);
-    border-radius: 16px 16px 0 0;
+    border-radius: 0;
     box-shadow: 0 -8px 32px rgba(6,38,76,.3);
-    z-index: 150;
+    z-index: 250;
   }
+  .detail-header { padding: .6rem .75rem; gap: .55rem }
+  .detail-portrait { width: 50px; height: 50px; border-radius: 8px }
+  .detail-name { font-size: .88rem; line-height: 1.18 }
+  .detail-jp { font-size: .62rem }
+  .detail-faction { font-size: .66rem; margin-top: .16rem }
+  .detail-skills { padding: .45rem .5rem .55rem; gap: .35rem }
+  .sk-head { padding: .48rem .58rem; gap: .35rem }
+  .sk-name { font-size: .86rem; line-height: 1.2 }
+  .sk-jp { font-size: .6rem }
+  .tag { font-size: .54rem; padding: 1px 5px }
+  .sk-effects { padding: .42rem .5rem .5rem; gap: .38rem }
+  .eff { gap: .18rem }
+  .eff-if { font-size: .68rem; line-height: 1.32; padding: .22rem .42rem }
+  .eff-if-lbl { font-size: .54rem; padding: 0 5px }
+  .eff-body { padding: .32rem .48rem; gap: .08rem .32rem }
+  .eff-tgt { font-size: .8rem; line-height: 1.24 }
+  .eff-val { font-size: .8rem; line-height: 1.32 }
+  .eff-dur { font-size: .64rem; padding: 1px 6px }
   /* Push gallery up when panel open */
-  .has-selection .gallery-wrap { padding-bottom: 65vh }
+  .has-selection .gallery-wrap { padding-bottom: calc(100dvh - var(--hdr-h)) }
 
   /* Party builder */
   .two-sides  { grid-template-columns: 1fr; gap: .65rem }
@@ -999,7 +1017,7 @@ img { display: block; max-width: 100%; height: auto }
   .buff-summary-stat b { min-width: 58px }
   .buff-progress-table-wrap { padding: 0 .6rem .75rem }
   .buff-progress-table { min-width: 640px; font-size: .7rem }
-  .gallery-grid    { grid-template-columns: repeat(2, 1fr); gap: .45rem; padding: .5rem }
+  .gallery-grid    { grid-template-columns: repeat(4, 1fr); gap: .35rem; padding: .4rem }
   .cw6-scene-page .cw6-scene-grid { gap: .5rem !important; padding: .65rem .5rem !important }
   .banner-name     { font-size: .7rem }
   .banner-faction-tag { font-size: .52rem; padding: 1px 5px }
@@ -1086,8 +1104,13 @@ img { display: block; max-width: 100%; height: auto }
   .app-body { padding-bottom: calc(52px + env(safe-area-inset-bottom, 0px)) }
   .foot { padding-bottom: calc(1rem + 52px + env(safe-area-inset-bottom, 0px)) }
   /* Fix detail panel so it sits above bottom nav */
-  .detail-panel { bottom: calc(52px + env(safe-area-inset-bottom, 0px)) }
-  .has-selection .gallery-wrap { padding-bottom: calc(65vh + 52px) }
+  .detail-panel {
+    top: 0;
+    bottom: 0;
+    height: 100dvh;
+    max-height: 100dvh;
+  }
+  .has-selection .gallery-wrap { padding-bottom: calc(100dvh - var(--hdr-h)) }
 }
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
