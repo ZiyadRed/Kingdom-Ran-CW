@@ -283,10 +283,14 @@ function redCrystalBuffUnlockCost(entry,kind,key,stat){
   ))
   return targetStatIdx>=0?costs[targetStatIdx]:null
 }
-function RedCrystalCostChip({cost}){
+function RedCrystalCostChip({cost,value}){
   if(!cost) return null
+  const efficiency=value?cost/value:null
+  const tooltip=efficiency
+    ?`Efficiency: ${Math.round(efficiency).toLocaleString()} red crystals per 1% buff. Lower is better. (${cost.toLocaleString()} cost / ${value.toFixed(1)}% buff)`
+    :`Red Crystal unlock cost: ${cost.toLocaleString()}`
   return(
-    <span title={`Red Crystal unlock cost: ${cost.toLocaleString()}`} style={{
+    <span className="cost-chip" data-tooltip={tooltip} tabIndex={0} aria-label={tooltip} style={{
       display:'inline-flex',alignItems:'center',gap:'3px',
       padding:'3px 8px',borderRadius:'999px',
       background:'#6a30c814',border:'1px solid #6a30c844',
@@ -310,7 +314,7 @@ function BuffValueCluster({value,color,cost,icon,iconLabel,iconTitle,fontSize='1
         decoding="async"
         style={{width:20,height:20,objectFit:'contain',flexShrink:0}}
       />}
-      <RedCrystalCostChip cost={cost}/>
+      <RedCrystalCostChip cost={cost} value={value}/>
       <div style={{fontWeight:900,fontSize,color,minWidth,textAlign:'right',fontVariantNumeric:'tabular-nums'}}>+{value.toFixed(1)}%</div>
     </div>
   )

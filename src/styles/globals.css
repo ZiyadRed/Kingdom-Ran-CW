@@ -432,6 +432,51 @@ img { display: block; max-width: 100%; height: auto }
 .owned-toggle { background: var(--bg2); white-space: nowrap }
 .owned-toggle-on { background: #1a8a5a; border-color: #1a8a5a; color: #fff }
 .owned-toggle-on:hover { color: #fff; border-color: #146b46 }
+.cost-chip { position: relative; cursor: help; outline: none }
+.cost-chip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+  width: max-content;
+  max-width: 260px;
+  padding: 7px 9px;
+  border-radius: 7px;
+  background: var(--navy);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 8px 22px rgba(6,38,76,.24);
+  font-size: .68rem;
+  line-height: 1.35;
+  font-weight: 700;
+  white-space: normal;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity .12s ease, transform .12s ease;
+  z-index: 50;
+}
+.cost-chip::before {
+  content: "";
+  position: absolute;
+  right: 18px;
+  bottom: calc(100% + 3px);
+  border: 5px solid transparent;
+  border-top-color: var(--navy);
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity .12s ease, transform .12s ease;
+  z-index: 51;
+}
+.cost-chip:hover::after,
+.cost-chip:hover::before,
+.cost-chip:focus-visible::after,
+.cost-chip:focus-visible::before {
+  opacity: 1;
+  transform: translateY(0);
+}
 .owned-toggle-overlay {
   position: absolute; top: 7px; right: 7px; z-index: 2;
   background: rgba(255,255,255,.92); box-shadow: 0 2px 8px rgba(0,0,0,.16);
