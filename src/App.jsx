@@ -305,7 +305,7 @@ function RedCrystalCostChip({cost,value}){
 }
 function BuffValueCluster({value,color,cost,icon,iconLabel,iconTitle,fontSize='1.1rem',minWidth='52px'}){
   return(
-    <div style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'8px',minWidth:'150px',flexShrink:0}}>
+    <div className="buff-value-cluster" style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'8px',minWidth:'150px',flexShrink:0}}>
       {icon&&!cost&&<img
         src={icon}
         alt={iconLabel||'Unlock source'}
@@ -2173,19 +2173,19 @@ function BuffsPage(){
             const owned=tracker.isOwned('buffSources',sourceId)
             const unlockCost=redCrystalBuffUnlockCost(e,'terrain',terrain.name,terrain.typeLabel)
             return(
-              <div key={e.name+i} style={{
+              <div key={e.name+i} className="buff-source-row" style={{
                 display:'flex',alignItems:'center',gap:'14px',padding:'12px 16px',borderRadius:'14px',
                 background:owned?'linear-gradient(90deg,rgba(26,138,90,.1),var(--sur))':'var(--sur)',
                 border:`1px solid ${owned?'#1a8a5a55':'var(--bdr)'}`,
               }}>
-                <div style={{minWidth:'28px',textAlign:'center',fontSize:'.72rem',fontWeight:800,color:'var(--txt3)'}}>{i+1}</div>
-                <div style={{width:52,height:52,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2.5px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                <div className="buff-source-rank" style={{minWidth:'28px',textAlign:'center',fontSize:'.72rem',fontWeight:800,color:'var(--txt3)'}}>{i+1}</div>
+                <div className="buff-source-avatar" style={{width:52,height:52,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2.5px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
                   {char?.icon?<img src={char.icon} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}} alt={e.name}/>
                   :char?.image?<img src={char.image} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
                   :<span style={{fontSize:'1.15rem',fontWeight:800,color:fc}}>{e.name[0]}</span>}
                 </div>
-                <div style={{flex:1,minWidth:0}}>
-                  <div style={{display:'flex',alignItems:'center',gap:'6px',flexWrap:'wrap',marginBottom:'3px'}}>
+                <div className="buff-source-info" style={{flex:1,minWidth:0}}>
+                  <div className="buff-source-name-line" style={{display:'flex',alignItems:'center',gap:'6px',flexWrap:'wrap',marginBottom:'3px'}}>
                     <span style={{fontWeight:800,fontSize:'.92rem',color:'var(--txt)'}}>{e.name}</span>
                     <span style={{fontSize:'.65rem',color:'var(--txt3)'}}>{e.name_jp}</span>
                   </div>
@@ -2194,7 +2194,7 @@ function BuffsPage(){
                     <span style={{fontSize:'.62rem',color:'var(--txt3)'}}>{FACTIONS.find(f=>f.id===e.faction)?.label||e.faction}</span>
                   </div>
                 </div>
-                <div style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'12px',flexShrink:0,minWidth:'240px'}}>
+                <div className="buff-source-actions" style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'12px',flexShrink:0,minWidth:'240px'}}>
                   <BuffValueCluster
                     value={e.value}
                     color={terrain.color}
@@ -2276,25 +2276,25 @@ function BuffsPage(){
             const owned=tracker.isOwned('buffSources',sourceId)
             const unlockCost=redCrystalBuffUnlockCost(e,activeKind,activeKey,activeStat)
             return(
-              <div key={e.name+i} style={{
+              <div key={e.name+i} className="buff-source-row" style={{
                 display:'flex',alignItems:'center',gap:'14px',padding:'12px 16px',borderRadius:'14px',
                 background:owned?'linear-gradient(90deg,rgba(26,138,90,.1),var(--sur))':isTop?`linear-gradient(90deg,${sc}0a,var(--sur))`:'var(--sur)',
                 border:`1px solid ${owned?'#1a8a5a55':isTop?sc+'44':'var(--bdr)'}`,transition:'transform .12s,box-shadow .12s',
               }}
                 onMouseEnter={ev=>{ev.currentTarget.style.transform='translateY(-1px)';ev.currentTarget.style.boxShadow=`0 4px 14px ${sc}20`}}
                 onMouseLeave={ev=>{ev.currentTarget.style.transform='';ev.currentTarget.style.boxShadow=''}}>
-                <div style={{minWidth:'32px',textAlign:'center'}}>
+                <div className="buff-source-rank" style={{minWidth:'32px',textAlign:'center'}}>
                   {isTop
                     ?<div style={{width:28,height:28,borderRadius:'50%',background:sc,color:'white',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:800,fontSize:'.75rem',margin:'0 auto'}}>{i+1}</div>
                     :<span style={{fontSize:'.7rem',fontWeight:700,color:'var(--txt3)'}}>{i+1}</span>}
                 </div>
-                <div style={{width:56,height:56,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2.5px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                <div className="buff-source-avatar" style={{width:56,height:56,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2.5px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
                   {char?.icon?<img src={char.icon} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}} alt={e.name}/>
                   :char?.image?<img src={char.image} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
                   :<span style={{fontSize:'1.2rem',fontWeight:700,color:fc}}>{e.name[0]}</span>}
                 </div>
-                <div style={{flex:1,minWidth:0}}>
-                  <div style={{display:'flex',alignItems:'center',gap:'6px',flexWrap:'wrap',marginBottom:'3px'}}>
+                <div className="buff-source-info" style={{flex:1,minWidth:0}}>
+                  <div className="buff-source-name-line" style={{display:'flex',alignItems:'center',gap:'6px',flexWrap:'wrap',marginBottom:'3px'}}>
                     <span style={{fontWeight:700,fontSize:'.92rem',color:'var(--txt)'}}>{e.name}</span>
                     <span style={{fontSize:'.65rem',color:'var(--txt3)'}}>{e.name_jp}</span>
                     {e.star6&&<span style={{fontSize:'.65rem',color:'#c9902a',fontWeight:800}}>☆6</span>}
@@ -2304,7 +2304,7 @@ function BuffsPage(){
                     <span style={{fontSize:'.62rem',color:'var(--txt3)'}}>{FACTIONS.find(f=>f.id===e.faction)?.label||e.faction}</span>
                   </div>
                 </div>
-                <div style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'12px',flexShrink:0,minWidth:'240px'}}>
+                <div className="buff-source-actions" style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'12px',flexShrink:0,minWidth:'240px'}}>
                   <BuffValueCluster
                     value={e.value}
                     color={sc}
