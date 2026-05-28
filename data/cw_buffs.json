@@ -550,6 +550,16 @@
         "value": 5.0
       },
       {
+        "name": "Choushi",
+        "name_jp": "丁之",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0,
+        "special_icon": "/icons/Shard.webp",
+        "special_label": "Shard upgrade"
+      },
+      {
         "name": "Rankai",
         "name_jp": "ランカイ",
         "faction": "mountain_folk",
@@ -638,6 +648,16 @@
         "type": "SR",
         "star6": false,
         "value": 5.0
+      },
+      {
+        "name": "Raiki",
+        "name_jp": "来輝",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0,
+        "special_icon": "/icons/Shard.webp",
+        "special_label": "Shard upgrade"
       },
       {
         "name": "Hairou",
