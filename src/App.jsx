@@ -103,16 +103,15 @@ const ProgressTools=({tracker})=>(
     <button type="button" onClick={tracker.clearProgress}>Clear</button>
   </div>
 )
-const OwnedToggle=({owned,onToggle,label='Owned',className='',icon=null,iconAlt=''})=>(
+const OwnedToggle=({owned,onToggle,label='Owned',className=''})=>(
   <button
     type="button"
     className={`owned-toggle${owned?' owned-toggle-on':''}${className?' '+className:''}`}
     onClick={onToggle}
     aria-pressed={owned}
-    title={owned?`${iconAlt||label} marked owned`:`Mark ${iconAlt||'as'} owned`}
+    title={owned?'Marked owned':'Mark as owned'}
   >
-    {icon&&<img src={icon} alt={iconAlt} loading="lazy" decoding="async" style={{width:13,height:13,objectFit:'contain',marginRight:4,verticalAlign:'-2px'}}/>}
-    {icon?label:(owned?label:'Own')}
+    {owned?label:'Own'}
   </button>
 )
 const SceneStarControl=({star,onChange})=>(
@@ -304,17 +303,10 @@ function RedCrystalCostChip({cost,value}){
     </span>
   )
 }
-function BuffValueCluster({value,color,cost,icon,iconLabel,iconTitle,shardBonus,shardOwned,mainOwned,fontSize='1.1rem',minWidth='52px'}){
-  const shardFade=shardBonus&&!shardOwned?.55:1
-  const crystalFade=shardBonus&&!mainOwned?.55:1
+function BuffValueCluster({value,color,cost,icon,iconLabel,iconTitle,fontSize='1.1rem',minWidth='52px'}){
   return(
-    <div className="buff-value-cluster" style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'8px',minWidth:shardBonus?'200px':'150px',flexShrink:0,flexWrap:'wrap',rowGap:'4px'}}>
-      {shardBonus&&<span className="buff-value-shard" style={{display:'inline-flex',alignItems:'center',gap:'4px',opacity:shardFade}}>
-        <span style={{fontWeight:900,fontSize,color,fontVariantNumeric:'tabular-nums'}}>+5.0%</span>
-        <img src="/icons/Shard.webp" alt="Shard upgrade" title="Shard upgrade" loading="lazy" decoding="async" style={{width:20,height:20,objectFit:'contain',flexShrink:0}}/>
-      </span>}
-      {shardBonus&&<span style={{color:'var(--txt3)',fontWeight:800,fontSize:'.9rem'}}>+</span>}
-      {icon&&!cost&&!shardBonus&&<img
+    <div className="buff-value-cluster" style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'8px',minWidth:'150px',flexShrink:0}}>
+      {icon&&!cost&&<img
         src={icon}
         alt={iconLabel||'Unlock source'}
         title={iconTitle||iconLabel}
@@ -322,10 +314,8 @@ function BuffValueCluster({value,color,cost,icon,iconLabel,iconTitle,shardBonus,
         decoding="async"
         style={{width:20,height:20,objectFit:'contain',flexShrink:0}}
       />}
-      <span className="buff-value-crystal" style={{display:'inline-flex',alignItems:'center',gap:'8px',opacity:crystalFade}}>
-        <RedCrystalCostChip cost={cost} value={value}/>
-        <span style={{fontWeight:900,fontSize,color,minWidth,textAlign:'right',fontVariantNumeric:'tabular-nums'}}>+{value.toFixed(1)}%</span>
-      </span>
+      <RedCrystalCostChip cost={cost} value={value}/>
+      <div style={{fontWeight:900,fontSize,color,minWidth,textAlign:'right',fontVariantNumeric:'tabular-nums'}}>+{value.toFixed(1)}%</div>
     </div>
   )
 }
@@ -2318,43 +2308,39 @@ function BuffsPage(){
                     <span style={{fontSize:'.62rem',color:'var(--txt3)'}}>{FACTIONS.find(f=>f.id===e.faction)?.label||e.faction}</span>
                   </div>
                 </div>
-                <div className="buff-source-actions" style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'12px',flexShrink:0,minWidth:e.shard_bonus?'260px':'240px'}}>
-                  <BuffValueCluster
-                    value={e.value}
-                    color={sc}
-                    cost={unlockCost}
-                    icon={unlockIcon}
-                    iconLabel={unlockLabel}
-                    iconTitle={unlockTitle}
-                    shardBonus={!!e.shard_bonus}
-                    shardOwned={shardOwned}
-                    mainOwned={owned}
-                  />
-                  {e.shard_bonus?(
-                    <div className="buff-source-own-stack" style={{display:'flex',flexDirection:'column',gap:'4px',alignItems:'stretch'}}>
+                <div className="buff-source-actions" style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'10px',flexShrink:0,minWidth:e.shard_bonus?'300px':'240px',flexWrap:e.shard_bonus?'wrap':'nowrap',rowGap:'6px'}}>
+                  {e.shard_bonus?(<>
+                    <span className="buff-value-shard-group" style={{display:'inline-flex',alignItems:'center',gap:'6px',opacity:shardOwned?1:.55}}>
+                      <span style={{fontWeight:900,fontSize:'1.1rem',color:sc,fontVariantNumeric:'tabular-nums'}}>+5.0%</span>
+                      <img src="/icons/Shard.webp" alt="Shard upgrade" title="Shard upgrade" loading="lazy" decoding="async" style={{width:20,height:20,objectFit:'contain',flexShrink:0}}/>
                       <OwnedToggle
                         owned={shardOwned}
                         onToggle={()=>tracker.toggleOwned('buffSources',shardSourceId)}
-                        label="Shard"
-                        className="owned-toggle-shard"
-                        icon="/icons/Shard.webp"
-                        iconAlt="Shard"
                       />
+                    </span>
+                    <span style={{color:'var(--txt3)',fontWeight:800,fontSize:'.9rem'}}>+</span>
+                    <span className="buff-value-crystal-group" style={{display:'inline-flex',alignItems:'center',gap:'8px',opacity:owned?1:.55}}>
+                      <RedCrystalCostChip cost={unlockCost} value={e.value}/>
+                      <span style={{fontWeight:900,fontSize:'1.1rem',color:sc,minWidth:'52px',textAlign:'right',fontVariantNumeric:'tabular-nums'}}>+{e.value.toFixed(1)}%</span>
                       <OwnedToggle
                         owned={owned}
                         onToggle={()=>tracker.toggleOwned('buffSources',sourceId)}
-                        label="Crystal"
-                        className="owned-toggle-crystal"
-                        icon="/icons/Red_Crystal.webp"
-                        iconAlt="Red Crystal"
                       />
-                    </div>
-                  ):(
+                    </span>
+                  </>):(<>
+                    <BuffValueCluster
+                      value={e.value}
+                      color={sc}
+                      cost={unlockCost}
+                      icon={unlockIcon}
+                      iconLabel={unlockLabel}
+                      iconTitle={unlockTitle}
+                    />
                     <OwnedToggle
                       owned={owned}
                       onToggle={()=>tracker.toggleOwned('buffSources',sourceId)}
                     />
-                  )}
+                  </>)}
                 </div>
               </div>
             )

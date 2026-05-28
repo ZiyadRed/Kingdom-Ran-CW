@@ -1144,34 +1144,27 @@ img { display: block; max-width: 100%; height: auto }
     justify-content: flex-end !important;
     gap: 5px !important;
   }
-  .buff-value-cluster > div:last-child,
-  .buff-value-cluster > span:last-child > span:last-child {
+  .buff-value-cluster > div:last-child {
     min-width: 43px !important;
     font-size: .9rem !important;
   }
-  .buff-value-cluster .buff-value-shard span { font-size: .88rem !important }
-  .buff-value-cluster .buff-value-shard img { width: 14px !important; height: 14px !important }
   .buff-source-row-combo {
     flex-wrap: wrap !important;
     row-gap: 6px !important;
   }
   .buff-source-row-combo .buff-source-actions {
     flex: 1 1 100% !important;
-    justify-content: space-between !important;
-    gap: 8px !important;
-    padding-left: 60px;
-  }
-  .buff-source-row-combo .buff-value-cluster {
-    flex: 1 1 auto !important;
-    flex-wrap: wrap;
+    flex-wrap: wrap !important;
     justify-content: flex-end !important;
+    gap: 6px !important;
+    padding-left: 0;
   }
-  .buff-source-own-stack { gap: 3px !important }
-  .buff-source-own-stack .owned-toggle {
-    font-size: .55rem !important;
-    padding: 3px 6px !important;
-    min-width: 56px;
+  .buff-value-shard-group span:first-child,
+  .buff-value-crystal-group > span:last-of-type {
+    font-size: .9rem !important;
   }
+  .buff-value-shard-group img { width: 14px !important; height: 14px !important }
+  .buff-value-crystal-group > span:last-of-type { min-width: 43px !important }
   .cost-chip {
     padding: 2px 6px !important;
     gap: 2px !important;
