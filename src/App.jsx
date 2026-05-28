@@ -103,15 +103,16 @@ const ProgressTools=({tracker})=>(
     <button type="button" onClick={tracker.clearProgress}>Clear</button>
   </div>
 )
-const OwnedToggle=({owned,onToggle,label='Owned',className=''})=>(
+const OwnedToggle=({owned,onToggle,label='Owned',className='',icon=null,iconAlt=''})=>(
   <button
     type="button"
     className={`owned-toggle${owned?' owned-toggle-on':''}${className?' '+className:''}`}
     onClick={onToggle}
     aria-pressed={owned}
-    title={owned?'Marked owned':'Mark as owned'}
+    title={owned?`${iconAlt||label} marked owned`:`Mark ${iconAlt||'as'} owned`}
   >
-    {owned?label:'Own'}
+    {icon&&<img src={icon} alt={iconAlt} loading="lazy" decoding="async" style={{width:13,height:13,objectFit:'contain',marginRight:4,verticalAlign:'-2px'}}/>}
+    {icon?label:(owned?label:'Own')}
   </button>
 )
 const SceneStarControl=({star,onChange})=>(
@@ -2336,12 +2337,16 @@ function BuffsPage(){
                         onToggle={()=>tracker.toggleOwned('buffSources',shardSourceId)}
                         label="Shard"
                         className="owned-toggle-shard"
+                        icon="/icons/Shard.webp"
+                        iconAlt="Shard"
                       />
                       <OwnedToggle
                         owned={owned}
                         onToggle={()=>tracker.toggleOwned('buffSources',sourceId)}
                         label="Crystal"
                         className="owned-toggle-crystal"
+                        icon="/icons/Red_Crystal.webp"
+                        iconAlt="Red Crystal"
                       />
                     </div>
                   ):(
