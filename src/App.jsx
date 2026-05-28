@@ -303,14 +303,16 @@ function RedCrystalCostChip({cost,value}){
     </span>
   )
 }
-function BuffValueCluster({value,color,cost,icon,iconLabel,iconTitle,shardBonus,fontSize='1.1rem',minWidth='52px'}){
+function BuffValueCluster({value,color,cost,icon,iconLabel,iconTitle,shardBonus,shardOwned,mainOwned,fontSize='1.1rem',minWidth='52px'}){
+  const shardFade=shardBonus&&!shardOwned?.55:1
+  const crystalFade=shardBonus&&!mainOwned?.55:1
   return(
-    <div className="buff-value-cluster" style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'8px',minWidth:'180px',flexShrink:0}}>
-      {shardBonus&&<>
-        <div style={{fontWeight:900,fontSize,color,fontVariantNumeric:'tabular-nums'}}>+5.0%</div>
+    <div className="buff-value-cluster" style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'8px',minWidth:shardBonus?'200px':'150px',flexShrink:0,flexWrap:'wrap',rowGap:'4px'}}>
+      {shardBonus&&<span className="buff-value-shard" style={{display:'inline-flex',alignItems:'center',gap:'4px',opacity:shardFade}}>
+        <span style={{fontWeight:900,fontSize,color,fontVariantNumeric:'tabular-nums'}}>+5.0%</span>
         <img src="/icons/Shard.webp" alt="Shard upgrade" title="Shard upgrade" loading="lazy" decoding="async" style={{width:20,height:20,objectFit:'contain',flexShrink:0}}/>
-        <span style={{color:'var(--txt3)',fontWeight:800,fontSize:'.9rem'}}>+</span>
-      </>}
+      </span>}
+      {shardBonus&&<span style={{color:'var(--txt3)',fontWeight:800,fontSize:'.9rem'}}>+</span>}
       {icon&&!cost&&!shardBonus&&<img
         src={icon}
         alt={iconLabel||'Unlock source'}
@@ -319,8 +321,10 @@ function BuffValueCluster({value,color,cost,icon,iconLabel,iconTitle,shardBonus,
         decoding="async"
         style={{width:20,height:20,objectFit:'contain',flexShrink:0}}
       />}
-      <RedCrystalCostChip cost={cost} value={value}/>
-      <div style={{fontWeight:900,fontSize,color,minWidth,textAlign:'right',fontVariantNumeric:'tabular-nums'}}>+{value.toFixed(1)}%</div>
+      <span className="buff-value-crystal" style={{display:'inline-flex',alignItems:'center',gap:'8px',opacity:crystalFade}}>
+        <RedCrystalCostChip cost={cost} value={value}/>
+        <span style={{fontWeight:900,fontSize,color,minWidth,textAlign:'right',fontVariantNumeric:'tabular-nums'}}>+{value.toFixed(1)}%</span>
+      </span>
     </div>
   )
 }
@@ -2278,13 +2282,17 @@ function BuffsPage(){
             const unlockLabel=e.special_label|| (e.value===5?'Shard upgrade':'Red Crystal upgrade')
             const unlockTitle=e.special_label|| (e.value===5?'Unlocked with Shards':'Unlocked with Red Crystals')
             const sourceId=buffSourceId(activeKind,activeKey,activeStat,e,i)
+            const shardSourceId=sourceId+':shard'
             const owned=tracker.isOwned('buffSources',sourceId)
+            const shardOwned=e.shard_bonus?tracker.isOwned('buffSources',shardSourceId):false
+            const fullyOwned=e.shard_bonus?(owned&&shardOwned):owned
+            const partOwned=e.shard_bonus?(owned||shardOwned):owned
             const unlockCost=redCrystalBuffUnlockCost(e,activeKind,activeKey,activeStat)
             return(
-              <div key={e.name+i} className="buff-source-row" style={{
+              <div key={e.name+i} className={`buff-source-row${e.shard_bonus?' buff-source-row-combo':''}`} style={{
                 display:'flex',alignItems:'center',gap:'14px',padding:'12px 16px',borderRadius:'14px',
-                background:owned?'linear-gradient(90deg,rgba(26,138,90,.1),var(--sur))':isTop?`linear-gradient(90deg,${sc}0a,var(--sur))`:'var(--sur)',
-                border:`1px solid ${owned?'#1a8a5a55':isTop?sc+'44':'var(--bdr)'}`,transition:'transform .12s,box-shadow .12s',
+                background:fullyOwned?'linear-gradient(90deg,rgba(26,138,90,.1),var(--sur))':partOwned?'linear-gradient(90deg,rgba(26,138,90,.05),var(--sur))':isTop?`linear-gradient(90deg,${sc}0a,var(--sur))`:'var(--sur)',
+                border:`1px solid ${fullyOwned?'#1a8a5a55':partOwned?'#1a8a5a33':isTop?sc+'44':'var(--bdr)'}`,transition:'transform .12s,box-shadow .12s',
               }}
                 onMouseEnter={ev=>{ev.currentTarget.style.transform='translateY(-1px)';ev.currentTarget.style.boxShadow=`0 4px 14px ${sc}20`}}
                 onMouseLeave={ev=>{ev.currentTarget.style.transform='';ev.currentTarget.style.boxShadow=''}}>
@@ -2309,7 +2317,7 @@ function BuffsPage(){
                     <span style={{fontSize:'.62rem',color:'var(--txt3)'}}>{FACTIONS.find(f=>f.id===e.faction)?.label||e.faction}</span>
                   </div>
                 </div>
-                <div className="buff-source-actions" style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'12px',flexShrink:0,minWidth:'240px'}}>
+                <div className="buff-source-actions" style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'12px',flexShrink:0,minWidth:e.shard_bonus?'260px':'240px'}}>
                   <BuffValueCluster
                     value={e.value}
                     color={sc}
@@ -2318,11 +2326,30 @@ function BuffsPage(){
                     iconLabel={unlockLabel}
                     iconTitle={unlockTitle}
                     shardBonus={!!e.shard_bonus}
+                    shardOwned={shardOwned}
+                    mainOwned={owned}
                   />
-                  <OwnedToggle
-                    owned={owned}
-                    onToggle={()=>tracker.toggleOwned('buffSources',sourceId)}
-                  />
+                  {e.shard_bonus?(
+                    <div className="buff-source-own-stack" style={{display:'flex',flexDirection:'column',gap:'4px',alignItems:'stretch'}}>
+                      <OwnedToggle
+                        owned={shardOwned}
+                        onToggle={()=>tracker.toggleOwned('buffSources',shardSourceId)}
+                        label="Shard"
+                        className="owned-toggle-shard"
+                      />
+                      <OwnedToggle
+                        owned={owned}
+                        onToggle={()=>tracker.toggleOwned('buffSources',sourceId)}
+                        label="Crystal"
+                        className="owned-toggle-crystal"
+                      />
+                    </div>
+                  ):(
+                    <OwnedToggle
+                      owned={owned}
+                      onToggle={()=>tracker.toggleOwned('buffSources',sourceId)}
+                    />
+                  )}
                 </div>
               </div>
             )
@@ -2422,7 +2449,13 @@ function BuffsPage(){
     return rows
   }
   const progressRows=buildSourceRows()
-  const ownedBuffValue=(kind,key,stat)=>lookupEntries(kind,key,stat).reduce((sum,e,i)=>sum+(tracker.isOwned('buffSources',buffSourceId(kind,key,stat,e,i))?((e.value||0)+(e.shard_bonus?5:0)):0),0)
+  const ownedBuffValue=(kind,key,stat)=>lookupEntries(kind,key,stat).reduce((sum,e,i)=>{
+    const id=buffSourceId(kind,key,stat,e,i)
+    let v=0
+    if(tracker.isOwned('buffSources',id)) v+=(e.value||0)
+    if(e.shard_bonus&&tracker.isOwned('buffSources',id+':shard')) v+=5
+    return sum+v
+  },0)
   const maxBuffValue=(kind,key,stat)=>lookupEntries(kind,key,stat).reduce((sum,e)=>sum+(e.value||0)+(e.shard_bonus?5:0),0)
   const buffSummarySections=[
     {label:'Unit Types',rows:BUFF_UNIT_CATS.map(key=>({key,kind:'unit',color:CAT_COLOR[key]}))},
