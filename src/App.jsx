@@ -303,10 +303,15 @@ function RedCrystalCostChip({cost,value}){
     </span>
   )
 }
-function BuffValueCluster({value,color,cost,icon,iconLabel,iconTitle,fontSize='1.1rem',minWidth='52px'}){
+function BuffValueCluster({value,color,cost,icon,iconLabel,iconTitle,shardBonus,fontSize='1.1rem',minWidth='52px'}){
   return(
-    <div className="buff-value-cluster" style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'8px',minWidth:'150px',flexShrink:0}}>
-      {icon&&!cost&&<img
+    <div className="buff-value-cluster" style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'8px',minWidth:'180px',flexShrink:0}}>
+      {shardBonus&&<>
+        <div style={{fontWeight:900,fontSize,color,fontVariantNumeric:'tabular-nums'}}>+5.0%</div>
+        <img src="/icons/Shard.webp" alt="Shard upgrade" title="Shard upgrade" loading="lazy" decoding="async" style={{width:20,height:20,objectFit:'contain',flexShrink:0}}/>
+        <span style={{color:'var(--txt3)',fontWeight:800,fontSize:'.9rem'}}>+</span>
+      </>}
+      {icon&&!cost&&!shardBonus&&<img
         src={icon}
         alt={iconLabel||'Unlock source'}
         title={iconTitle||iconLabel}
@@ -2226,7 +2231,7 @@ function BuffsPage(){
               : activeKind==='state'?(CC[STATE_FACTION_ID[activeKey]]||'#888')
               : (CC[ARMY_PARENT_STATE[activeKey]]||'#888')
     const entries=lookupEntries(activeKind,activeKey,activeStat)
-    const total=entries.reduce((s,e)=>s+(e.value||0),0)
+    const total=entries.reduce((s,e)=>s+(e.value||0)+(e.shard_bonus?5:0),0)
     const sc=BUFF_STAT_COLORS[activeStat]
     return(
       <div>
@@ -2235,7 +2240,7 @@ function BuffsPage(){
             const isOn=activeStat===stat
             const c=BUFF_STAT_COLORS[stat]
             const ents=lookupEntries(activeKind,activeKey,stat)
-            const t=ents.reduce((s,e)=>s+(e.value||0),0)
+            const t=ents.reduce((s,e)=>s+(e.value||0)+(e.shard_bonus?5:0),0)
             return(
               <button key={stat} onClick={()=>setActiveStat(stat)} style={{
                 display:'flex',flexDirection:'column',alignItems:'center',gap:'4px',
@@ -2312,6 +2317,7 @@ function BuffsPage(){
                     icon={unlockIcon}
                     iconLabel={unlockLabel}
                     iconTitle={unlockTitle}
+                    shardBonus={!!e.shard_bonus}
                   />
                   <OwnedToggle
                     owned={owned}
@@ -2369,8 +2375,8 @@ function BuffsPage(){
               stat,
               source:e.name,
               jp:e.name_jp,
-              value:`+${(e.value||0).toFixed(1)}%`,
-              unlock:e.special_label||((e.value||0)===5?'Shard':'Red Crystal'),
+              value:e.shard_bonus?`+5.0% + +${(e.value||0).toFixed(1)}%`:`+${(e.value||0).toFixed(1)}%`,
+              unlock:e.shard_bonus?'Shard + Red Crystal':e.special_label||((e.value||0)===5?'Shard':'Red Crystal'),
               icon:char?.icon||char?.image,
             })
           })
@@ -2416,8 +2422,8 @@ function BuffsPage(){
     return rows
   }
   const progressRows=buildSourceRows()
-  const ownedBuffValue=(kind,key,stat)=>lookupEntries(kind,key,stat).reduce((sum,e,i)=>sum+(tracker.isOwned('buffSources',buffSourceId(kind,key,stat,e,i))?(e.value||0):0),0)
-  const maxBuffValue=(kind,key,stat)=>lookupEntries(kind,key,stat).reduce((sum,e)=>sum+(e.value||0),0)
+  const ownedBuffValue=(kind,key,stat)=>lookupEntries(kind,key,stat).reduce((sum,e,i)=>sum+(tracker.isOwned('buffSources',buffSourceId(kind,key,stat,e,i))?((e.value||0)+(e.shard_bonus?5:0)):0),0)
+  const maxBuffValue=(kind,key,stat)=>lookupEntries(kind,key,stat).reduce((sum,e)=>sum+(e.value||0)+(e.shard_bonus?5:0),0)
   const buffSummarySections=[
     {label:'Unit Types',rows:BUFF_UNIT_CATS.map(key=>({key,kind:'unit',color:CAT_COLOR[key]}))},
     {label:'States',rows:BUFF_STATES.map(key=>({key,kind:'state',color:CC[STATE_FACTION_ID[key]]||'#888'}))},
