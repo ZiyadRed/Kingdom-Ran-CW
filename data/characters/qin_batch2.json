@@ -1015,7 +1015,7 @@
     "name_en": "Seikyou",
     "name_jp": "成蟜",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Frail General Flash [Red Sheep]",
@@ -1071,7 +1071,7 @@
     "name_en": "Rui",
     "name_jp": "瑠衣",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Orange Elephant]",
@@ -1157,7 +1157,7 @@
     "name_en": "You",
     "name_jp": "陽",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Yellow Bull]",
@@ -1407,7 +1407,7 @@
       }
     ],
     "image": "/persos/choushi.png",
-    "icon": "/icons/Choushi.png"
+    "icon": "/icons/Choushi.webp"
   },
   {
     "id": "raiki",
@@ -1482,6 +1482,6 @@
       }
     ],
     "image": "/persos/raiki.png",
-    "icon": "/icons/Raiki.png"
+    "icon": "/icons/Raiki.webp"
   }
 ]

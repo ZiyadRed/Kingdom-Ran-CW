@@ -924,7 +924,7 @@
     "name_jp": "雷土",
     "country": "qin",
     "unit": "Kanki Army",
-    "rarity": "UR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Fierce General Flash [Black Bull]",
@@ -1030,7 +1030,7 @@
     "name_en": "Kou",
     "name_jp": "向",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Yellow Turtle]",

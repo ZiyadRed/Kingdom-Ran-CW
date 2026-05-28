@@ -21,7 +21,7 @@
         "name": "Hyou",
         "name_jp": "漂",
         "faction": "qin",
-        "type": "SR",
+        "type": "R",
         "star6": false,
         "value": 15.9
       },
@@ -45,7 +45,7 @@
         "name": "Kanou",
         "name_jp": "干央",
         "faction": "qin",
-        "type": "SR",
+        "type": "R",
         "star6": false,
         "value": 6.9
       },
@@ -111,7 +111,7 @@
         "name": "Doukin",
         "name_jp": "同金",
         "faction": "qin",
-        "type": "SR",
+        "type": "R",
         "star6": false,
         "value": 3.8
       }
@@ -155,7 +155,7 @@
         "name": "Rinbou",
         "name_jp": "鱗坊",
         "faction": "qin",
-        "type": "SR",
+        "type": "R",
         "star6": false,
         "value": 3.8
       }
@@ -175,7 +175,7 @@
         "name": "Karyoten",
         "name_jp": "河了貂",
         "faction": "qin",
-        "type": "SR",
+        "type": "R",
         "star6": false,
         "value": 18.2
       },
@@ -183,7 +183,7 @@
         "name": "Ogiko",
         "name_jp": "オギコ",
         "faction": "qin",
-        "type": "SR",
+        "type": "UR",
         "star6": false,
         "value": 18.2
       },
@@ -191,7 +191,7 @@
         "name": "Seikyou",
         "name_jp": "成蟜",
         "faction": "qin",
-        "type": "SR",
+        "type": "R",
         "star6": false,
         "value": 15.9
       },
@@ -305,7 +305,7 @@
         "name": "Kyougai",
         "name_jp": "去亥",
         "faction": "qin",
-        "type": "SR",
+        "type": "R",
         "star6": false,
         "value": 3.8
       }
@@ -471,7 +471,7 @@
         "name": "Gotan",
         "name_jp": "剛炭",
         "faction": "mountain_folk",
-        "type": "SR",
+        "type": "R",
         "star6": false,
         "value": 6.9
       },
@@ -561,7 +561,7 @@
         "name": "Saji",
         "name_jp": "左慈",
         "faction": "zhao",
-        "type": "SR",
+        "type": "R",
         "star6": false,
         "value": 3.8
       },
@@ -651,7 +651,7 @@
         "name": "Suugen",
         "name_jp": "崇原",
         "faction": "qin",
-        "type": "SR",
+        "type": "R",
         "star6": false,
         "value": 3.8
       },
@@ -843,7 +843,7 @@
         "name": "Ryuukoku",
         "name_jp": "隆国",
         "faction": "qin",
-        "type": "SR",
+        "type": "R",
         "star6": false,
         "value": 3.8
       }

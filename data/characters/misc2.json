@@ -191,7 +191,7 @@
     "name_en": "Kuzen",
     "name_jp": "蒙恬のじぃ",
     "country": "qin",
-    "rarity": "NR",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Green Sheep]",
@@ -531,7 +531,7 @@
     "name_jp": "シュンメン",
     "country": "mountain_folk",
     "unit": "Hi Shin Unit",
-    "rarity": "NR",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Red Elephant]",
@@ -588,7 +588,7 @@
     "name_jp": "ランカイ",
     "country": "mountain_folk",
     "unit": "Hi Shin Unit",
-    "rarity": "NR",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Red Bull]",
@@ -708,7 +708,7 @@
     "name_jp": "崇原",
     "country": "qin",
     "unit": "Hi Shin Unit",
-    "rarity": "NR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Red Turtle]",
@@ -765,7 +765,7 @@
     "name_jp": "尾平",
     "country": "qin",
     "unit": "Hi Shin Unit",
-    "rarity": "NR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Weak Point Flash [Red Sheep]",
@@ -821,7 +821,7 @@
     "name_en": "Hyou",
     "name_jp": "漂",
     "country": "qin",
-    "rarity": "NR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Weak General Flash [Red Elephant]",
@@ -877,7 +877,7 @@
     "name_en": "Ogiko",
     "name_jp": "オギコ",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Yellow Ox]",
@@ -1001,7 +1001,7 @@
     "name_en": "Kyougai",
     "name_jp": "去亥",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Status Resistance [Red Elephant]",
@@ -1057,7 +1057,7 @@
     "name_en": "Doukin",
     "name_jp": "同金",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Strong General Flash [Red Sheep]",
@@ -1205,7 +1205,7 @@
     "name_en": "Heki",
     "name_jp": "壁",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Fierce General Flash [Yellow Tiger]",
@@ -1467,7 +1467,7 @@
     "name_en": "Bikou",
     "name_jp": "尾到",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Status Resistance [Red Ox]",
@@ -1523,7 +1523,7 @@
     "name_en": "Kanou",
     "name_jp": "干央",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "ATK Down Skill [Red Sheep]",
@@ -1795,7 +1795,7 @@
     "name_en": "Karyoten",
     "name_jp": "河了貂",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Status Resistance [Red Sheep]",
@@ -2466,7 +2466,7 @@
     "name_en": "Ryuukoku",
     "name_jp": "隆国",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Strong General Flash [Red Elephant]",
@@ -2577,7 +2577,7 @@
     "name_en": "Rinbou",
     "name_jp": "鱗坊",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Weak General Flash [Red Ox]",

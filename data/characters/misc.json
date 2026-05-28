@@ -4,7 +4,7 @@
     "name_en": "Yuri",
     "name_jp": "友里",
     "country": "qin",
-    "rarity": "NR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "ATK Enhancement – Special [Infantry]",
@@ -54,7 +54,7 @@
     "name_en": "Toumi",
     "name_jp": "東美",
     "country": "qin",
-    "rarity": "NR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "DEF Enhancement – Special [Infantry]",
@@ -104,7 +104,7 @@
     "name_en": "Yugi",
     "name_jp": "有義",
     "country": "qin",
-    "rarity": "NR",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Black Turtle]",
@@ -277,7 +277,7 @@
     "name_en": "Kakubi",
     "name_jp": "郭備",
     "country": "qin",
-    "rarity": "NR",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "ATK/DEF Enhancement [Red Sheep]",
