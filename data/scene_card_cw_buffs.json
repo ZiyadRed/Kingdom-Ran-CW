@@ -5,7 +5,8 @@
     "def": 2500,
     "maxMp": 2250,
     "critRate": 2000,
-    "dodgeRate": 1500
+    "dodgeRate": 1500,
+    "hitRate": 700
   },
   "cards": [
     {
@@ -446,6 +447,28 @@
         340,
         420,
         500
+      ]
+    },
+    {
+      "id": 40251,
+      "imageId": 10251,
+      "name_en": "Kitari Hit Rate buff",
+      "name_jp": "力による突破",
+      "stat": "hit_rate",
+      "statLabel": "Hit Rate",
+      "value": 7,
+      "valueMode": "percent",
+      "image": "/scene_cards/webp/Kitari-Hit-Rate-buff.webp",
+      "ownerName": "Kitari",
+      "ownerIcon": "/icons/Kitari.webp",
+      "thumb": "/scene_cards/thumbs/Kitari-Hit-Rate-buff-thumb.webp",
+      "starValues": [
+        1.0,
+        2.2,
+        3.4,
+        4.6,
+        5.8,
+        7.0
       ]
     }
   ]
