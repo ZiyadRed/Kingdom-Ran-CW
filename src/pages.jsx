@@ -62,6 +62,74 @@ export function ArchiveTabs({active}){
   )
 }
 
+// Small overlay button placed on a scene-card image to open full-resolution art.
+function ViewArtButton({onClick,style}){
+  return(
+    <button
+      type="button"
+      title="View full-resolution art"
+      aria-label="View full-resolution art"
+      onClick={onClick}
+      style={{
+        position:'absolute',top:7,right:7,zIndex:4,
+        width:26,height:26,padding:0,cursor:'pointer',
+        display:'inline-flex',alignItems:'center',justifyContent:'center',
+        borderRadius:6,border:'1px solid rgba(255,255,255,.32)',
+        background:'rgba(0,0,0,.55)',color:'#fff',backdropFilter:'blur(2px)',
+        ...style,
+      }}
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+      </svg>
+    </button>
+  )
+}
+
+// Full-screen lightbox showing an image at full resolution. Click backdrop / Esc to close.
+function ArtLightbox({src,alt,onClose}){
+  useEffect(()=>{
+    if(!src) return
+    const onKey=e=>{if(e.key==='Escape')onClose()}
+    document.addEventListener('keydown',onKey)
+    const prev=document.body.style.overflow
+    document.body.style.overflow='hidden'
+    return()=>{document.removeEventListener('keydown',onKey);document.body.style.overflow=prev}
+  },[src,onClose])
+  if(!src) return null
+  return(
+    <div
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      style={{
+        position:'fixed',inset:0,zIndex:1000,
+        background:'rgba(0,0,0,.85)',cursor:'zoom-out',
+        display:'flex',alignItems:'center',justifyContent:'center',padding:'24px',
+      }}
+    >
+      <img
+        src={src} alt={alt||''}
+        onClick={e=>e.stopPropagation()}
+        style={{maxWidth:'95vw',maxHeight:'95vh',objectFit:'contain',cursor:'default',
+          borderRadius:8,boxShadow:'0 10px 50px rgba(0,0,0,.6)'}}
+      />
+      <button
+        type="button" onClick={onClose} aria-label="Close"
+        style={{position:'fixed',top:16,right:18,width:40,height:40,borderRadius:'50%',
+          border:'1px solid rgba(255,255,255,.3)',background:'rgba(0,0,0,.5)',color:'#fff',
+          fontSize:'1.5rem',lineHeight:1,cursor:'pointer'}}
+      >{'×'}</button>
+      <a
+        href={src} target="_blank" rel="noopener noreferrer"
+        onClick={e=>e.stopPropagation()}
+        style={{position:'fixed',bottom:18,left:'50%',transform:'translateX(-50%)',
+          fontSize:'.72rem',color:'rgba(255,255,255,.82)',textDecoration:'underline'}}
+      >Open original in new tab</a>
+    </div>
+  )
+}
+
 export function ArchiveHubPage(){
   return(
     <>
@@ -73,6 +141,7 @@ export function ArchiveHubPage(){
 
 export function CW6SceneCardsPage(){
   const[selected,setSelected]=useState(null)
+  const[artSrc,setArtSrc]=useState(null)
   const[progressFilter,setProgressFilter]=useState('all')
   const tracker=useProgressTracker()
   const cards=cw6SceneCards.cards||[]
@@ -122,6 +191,7 @@ export function CW6SceneCardsPage(){
             }}>
               <div style={{position:'relative',aspectRatio:'1 / 1',background:'var(--bg2)',display:'flex',alignItems:'center',justifyContent:'center'}}>
                 <img src={card.thumb||card.image} alt={sceneCardFileName(card)} title={sceneCardFileName(card)} loading="eager" decoding="async" fetchPriority={i<7?'high':'auto'} style={{width:'100%',height:'100%',objectFit:'contain'}}/>
+                {card.image&&<ViewArtButton onClick={e=>{e.stopPropagation();setArtSrc(card.image)}} style={{left:7,right:'auto'}}/>}
                 <OwnedToggle
                   owned={tracker.isOwned('cw6Cards',card.id)}
                   className="owned-toggle-overlay"
@@ -170,6 +240,7 @@ export function CW6SceneCardsPage(){
         </aside>
       )}
     </div>
+    <ArtLightbox src={artSrc} alt="Scene card art" onClose={()=>setArtSrc(null)}/>
     </>
   )
 }
@@ -949,6 +1020,7 @@ export function BuffsPage(){
   const[activeKey,setActiveKey]=useState(null)
   const[activeStat,setActiveStat]=useState('HP')
   const[sceneProgressFilter,setSceneProgressFilter]=useState('all')
+  const[artSrc,setArtSrc]=useState(null)
   const tracker=useProgressTracker()
   const lookupEntries=(kind,key,stat)=>{
     if(kind==='unit') return (cwBuffsData[key]||{})[stat]||[]
@@ -1423,6 +1495,7 @@ export function BuffsPage(){
                     }}>
                     <div style={{position:'relative',aspectRatio:'1 / 1',background:'var(--bg2)',overflow:'hidden'}}>
                       <img src={card.thumb||card.image} alt={card.name_en} title={card.name_en} loading="eager" decoding="async" fetchPriority={i<4?'high':'auto'} style={{width:'100%',height:'100%',objectFit:'contain',display:'block'}}/>
+                      {card.image&&<ViewArtButton onClick={e=>{e.stopPropagation();setArtSrc(card.image)}}/>}
                       <div style={{
                         position:'absolute',left:7,bottom:7,padding:'3px 7px',borderRadius:'6px',
                         background:'rgba(0,0,0,.66)',color:'#fff',fontSize:'.68rem',fontWeight:900,
@@ -1535,6 +1608,7 @@ export function BuffsPage(){
           </div>
         </div>
       )}
+      <ArtLightbox src={artSrc} alt="Scene card art" onClose={()=>setArtSrc(null)}/>
     </div>
   )
 }
