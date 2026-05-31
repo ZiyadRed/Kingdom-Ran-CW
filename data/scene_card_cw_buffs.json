@@ -23,11 +23,11 @@
       "ownerIcon": "/icons/Hakusui.webp",
       "thumb": "/scene_cards/thumbs/Hakusui-Evasion-buff-thumb.webp",
       "starValues": [
-        1.5,
-        2.7,
-        3.9,
-        5.1,
-        6.3,
+        4.95,
+        5.46,
+        5.97,
+        6.48,
+        6.99,
         7.5
       ]
     },
@@ -45,11 +45,11 @@
       "ownerIcon": "/icons/Hanoki.webp",
       "thumb": "/scene_cards/thumbs/Hanoki-Attack-buff-thumb.webp",
       "starValues": [
-        100,
-        180,
-        260,
-        340,
-        420,
+        330,
+        364,
+        398,
+        432,
+        466,
         500
       ]
     },
@@ -67,11 +67,11 @@
       "ownerIcon": "/icons/Rien.webp",
       "thumb": "/scene_cards/thumbs/Rien-Defense-buff-thumb.webp",
       "starValues": [
-        100,
-        180,
-        260,
-        340,
-        420,
+        330,
+        364,
+        398,
+        432,
+        466,
         500
       ]
     },
@@ -89,12 +89,12 @@
       "ownerIcon": "/icons/Kouretsu.webp",
       "thumb": "/scene_cards/thumbs/Kouretsu-Critical-Rate-buff-thumb.webp",
       "starValues": [
-        2,
-        3.6,
-        5.2,
-        6.8,
-        8.4,
-        10
+        6.61,
+        7.28,
+        7.96,
+        8.64,
+        9.32,
+        10.0
       ]
     },
     {
@@ -111,11 +111,11 @@
       "ownerIcon": "/icons/Rouai.webp",
       "thumb": "/scene_cards/thumbs/Rouai-Max-Morale-buff-thumb.webp",
       "starValues": [
-        150,
-        270,
-        390,
-        510,
-        630,
+        495,
+        546,
+        597,
+        648,
+        699,
         750
       ]
     },
@@ -133,11 +133,11 @@
       "ownerIcon": "/icons/Hanroki.webp",
       "thumb": "/scene_cards/thumbs/Hanroki-Evasion-buff-thumb.webp",
       "starValues": [
-        1.5,
-        2.7,
-        3.9,
-        5.1,
-        6.3,
+        4.95,
+        5.46,
+        5.97,
+        6.48,
+        6.99,
         7.5
       ]
     },
@@ -155,11 +155,11 @@
       "ownerIcon": "/icons/Gakurai.webp",
       "thumb": "/scene_cards/thumbs/Gakurai-Defense-buff-thumb.webp",
       "starValues": [
-        100,
-        180,
-        260,
-        340,
-        420,
+        330,
+        364,
+        398,
+        432,
+        466,
         500
       ]
     },
@@ -177,11 +177,11 @@
       "ownerIcon": "/icons/Karin.webp",
       "thumb": "/scene_cards/thumbs/Karin-HP-buff-thumb.webp",
       "starValues": [
-        600,
-        1080,
-        1560,
-        2040,
-        2520,
+        1983,
+        2186,
+        2389,
+        2593,
+        2796,
         3000
       ]
     },
@@ -199,11 +199,11 @@
       "ownerIcon": "/icons/Ei Sei.webp",
       "thumb": "/scene_cards/thumbs/Ei-Sei-Max-Morale-buff-thumb.webp",
       "starValues": [
-        150,
-        270,
-        390,
-        510,
-        630,
+        495,
+        546,
+        597,
+        648,
+        699,
         750
       ]
     },
@@ -221,11 +221,11 @@
       "ownerIcon": "/icons/Ei Sei.webp",
       "thumb": "/scene_cards/thumbs/Ei-Sei-Defense-buff-thumb.webp",
       "starValues": [
-        100,
-        180,
-        260,
-        340,
-        420,
+        330,
+        364,
+        398,
+        432,
+        466,
         500
       ]
     },
@@ -243,11 +243,11 @@
       "ownerIcon": "/icons/Kanki.webp",
       "thumb": "/scene_cards/thumbs/Kanki-Attack-buff-thumb.webp",
       "starValues": [
-        100,
-        180,
-        260,
-        340,
-        420,
+        330,
+        364,
+        398,
+        432,
+        466,
         500
       ]
     },
@@ -265,11 +265,11 @@
       "ownerIcon": "/icons/Kokuou.webp",
       "thumb": "/scene_cards/thumbs/Kokuou-HP-buff-thumb.webp",
       "starValues": [
-        600,
-        1080,
-        1560,
-        2040,
-        2520,
+        1983,
+        2186,
+        2389,
+        2593,
+        2796,
         3000
       ]
     },
@@ -287,12 +287,12 @@
       "ownerIcon": "/icons/Duke Sei.webp",
       "thumb": "/scene_cards/thumbs/Duke-Sei-Critical-Rate-buff-thumb.webp",
       "starValues": [
-        2,
-        3.6,
-        5.2,
-        6.8,
-        8.4,
-        10
+        6.61,
+        7.28,
+        7.96,
+        8.64,
+        9.32,
+        10.0
       ]
     },
     {
@@ -309,11 +309,11 @@
       "ownerIcon": "/icons/Shunpeikun.webp",
       "thumb": "/scene_cards/thumbs/Shunpeikun-Max-Morale-buff-thumb.webp",
       "starValues": [
-        150,
-        270,
-        390,
-        510,
-        630,
+        495,
+        546,
+        597,
+        648,
+        699,
         750
       ]
     },
@@ -331,11 +331,11 @@
       "ownerIcon": "/icons/Kanki.webp",
       "thumb": "/scene_cards/thumbs/Kanki-Attack-buff-2-thumb.webp",
       "starValues": [
-        100,
-        180,
-        260,
-        340,
-        420,
+        330,
+        364,
+        398,
+        432,
+        466,
         500
       ]
     },
@@ -353,11 +353,11 @@
       "ownerIcon": "/icons/Yuri.webp",
       "thumb": "/scene_cards/thumbs/Yuri-HP-buff-thumb.webp",
       "starValues": [
-        600,
-        1080,
-        1560,
-        2040,
-        2520,
+        1983,
+        2186,
+        2389,
+        2593,
+        2796,
         3000
       ]
     },
@@ -375,11 +375,11 @@
       "ownerIcon": "/icons/Toumi.webp",
       "thumb": "/scene_cards/thumbs/Toumi-Defense-buff-thumb.webp",
       "starValues": [
-        100,
-        180,
-        260,
-        340,
-        420,
+        330,
+        364,
+        398,
+        432,
+        466,
         500
       ]
     },
@@ -397,11 +397,11 @@
       "ownerIcon": "/icons/Kyou.webp",
       "thumb": "/scene_cards/thumbs/Kyou-Attack-buff-thumb.webp",
       "starValues": [
-        100,
-        180,
-        260,
-        340,
-        420,
+        330,
+        364,
+        398,
+        432,
+        466,
         500
       ]
     },
@@ -419,11 +419,11 @@
       "ownerIcon": "/icons/Ousen.webp",
       "thumb": "/scene_cards/thumbs/Ousen-HP-buff-thumb.webp",
       "starValues": [
-        600,
-        1080,
-        1560,
-        2040,
-        2520,
+        1983,
+        2186,
+        2389,
+        2593,
+        2796,
         3000
       ]
     },
@@ -441,11 +441,11 @@
       "ownerIcon": "/icons/Karin.webp",
       "thumb": "/scene_cards/thumbs/Karin-Defense-buff-thumb.webp",
       "starValues": [
-        100,
-        180,
-        260,
-        340,
-        420,
+        330,
+        364,
+        398,
+        432,
+        466,
         500
       ]
     },
@@ -463,11 +463,11 @@
       "ownerIcon": "/icons/Kitari.webp",
       "thumb": "/scene_cards/thumbs/Kitari-Hit-Rate-buff-thumb.webp",
       "starValues": [
-        1.0,
-        2.2,
-        3.4,
-        4.6,
-        5.8,
+        4.45,
+        4.96,
+        5.47,
+        5.98,
+        6.49,
         7.0
       ]
     }

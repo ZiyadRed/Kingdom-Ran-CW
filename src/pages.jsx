@@ -1302,8 +1302,8 @@ export function BuffsPage(){
     if(star<=0) return 0
     return card.starValues?.[star-1] ?? (star===6?card.value:Math.round((card.value||0)*star/6))
   }
-  const sceneValueText=(card,value=sceneCardValueAt(card))=>card.valueMode==='percent'?`+${value.toFixed(1)}%`:`+${value.toLocaleString()}`
-  const sceneTotalText=m=>m.unit==='%'?`+${m.total.toFixed(1)}%`:`+${m.total.toLocaleString()}`
+  const sceneValueText=(card,value=sceneCardValueAt(card))=>card.valueMode==='percent'?`+${value.toFixed(2)}%`:`+${value.toLocaleString()}`
+  const sceneTotalText=m=>m.unit==='%'?`+${m.total.toFixed(2)}%`:`+${m.total.toLocaleString()}`
   const sceneCardIds=(sceneCardBuffs.cards||[]).map(c=>c.id)
   const sceneOwnedCount=(sceneCardBuffs.cards||[]).filter(c=>sceneCardStar(c)>0).length
   const buffStats=['HP','Attack','Defense']
@@ -1436,7 +1436,7 @@ export function BuffsPage(){
                   {sceneStatOrder.map(stat=>{
                     const meta=sceneStatMeta[stat]
                     const val=sceneOwnedByStat(stat)
-                    const text=meta.unit==='%'?`+${val.toFixed(1)}%`:`+${val.toLocaleString()}`
+                    const text=meta.unit==='%'?`+${val.toFixed(2)}%`:`+${val.toLocaleString()}`
                     return(
                       <span key={stat} className="buff-summary-stat">
                         <b>{meta.label}</b>
