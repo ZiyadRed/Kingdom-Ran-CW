@@ -357,11 +357,12 @@ export const TIER_TEAMS=[
   {tier:'S',name:'Archers',         members:['Keisha','Seikai','Hakurei','Queen Biki']},
   {tier:'S',name:'Zhao',            members:['Shunsuiju','Houken','Shinseijou','Riboku']},
   {tier:'S',name:'YTW',             members:['Katari','Yotanwa','Kitari','Ramauji']},
-  {tier:'A',name:'Renpa',           members:['Rinko','Tairoji','Renpa','Kouretsu']},
+  {tier:'A',name:'Renpa v2',        members:['Rinko','Kouretsu','Renpa','Kaishibou']},
+  {tier:'A',name:'Hakuki + Ousen',  members:['Hakuki','Makou','Akou','Ousen']},
   {tier:'A',name:'Karin + Kanmei',  members:['Kyoubou','Karin','Kanmei','Shunshinkun']},
   {tier:'A',name:'Hi Shin',         members:['Garo','Gakurai','Naki','Robin']},
   {tier:'A',name:'Wei',             members:['Ranbihaku','Tairoji','Reiou','Gokei']},
-  {tier:'B',name:'Ai',              members:['Wategi','Budai','Hanoki','Hamui']},
+  {tier:'B',name:'Ai',              members:['Rouai','Hanoki','Ryofui','Hanroki']},
   {tier:'B',name:'Ousen Army',      members:['Eiki','Makou','Akou','Ousen']},
   {tier:'B',name:'6GG',             members:['Sho','Ouki','Tou','Kyou']},
   {tier:'B',name:'Karin',           members:['Rien','Karin','Kaen','Goutoku']},
@@ -374,6 +375,8 @@ export const TIER_TEAMS=[
 
 // Builder-only extras (not part of the Metawatch tier list)
 export const META_TEAM_EXTRAS=[
+  {name:'Yan',            members:['Ordo','Gakuki','Yukii','Otaji']},
+  {name:'Moubo',          members:['Choushi','Moubu','Raiki','Ouken']},
   {name:'Qin Shields',    members:['Hakuki','Akou','Ousen','Ei Sei']},
   {name:'YTW + Triplets', members:['Yotanwa','Toji','Fuji','Ramauji']},
   {name:'Gyokuhou',       members:['Shoutaku','Ouhon','Kyuukou','Kanjou']},

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { parseBuffEffect, simulate, ALL, findCharByName, calcCwStats } from './core.jsx'
+import { parseBuffEffect, simulate, ALL, META_TEAMS, findCharByName, calcCwStats } from './core.jsx'
 
 // The buff-text parser is the most intricate pure function in the engine.
 // These lock its behaviour against the documented terminology + formats.
@@ -86,6 +86,14 @@ describe('character data', () => {
     for (const k of ['hp', 'atk', 'def', 'maxMp']) {
       expect(Number.isFinite(s[k])).toBe(true)
       expect(s[k]).toBeGreaterThan(0)
+    }
+  })
+
+  it('resolves the current custom meta teams to complete four-member rosters', () => {
+    for (const name of ['Yan', 'Moubo', 'Renpa v2', 'Ai', 'Hakuki + Ousen']) {
+      const team = META_TEAMS.find((t) => t.name === name)
+      expect(team?.members).toHaveLength(4)
+      expect(team.members.map(findCharByName).filter(Boolean)).toHaveLength(4)
     }
   })
 })

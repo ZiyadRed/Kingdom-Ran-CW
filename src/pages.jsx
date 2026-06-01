@@ -1614,10 +1614,10 @@ export function BuffsPage(){
 }
 // ── TIER LIST ─────────────────────────────────────────────────────────────────
 export const TIER_DEFS={
-  S:{color:'#c0392b',def:'Top-tier armies — tech plays, require all CW6★ cards'},
-  A:{color:'#e07f48',def:'Strong armies — can handle S Tier, need at least 1 CW6★ card'},
-  B:{color:'#cc972d',def:'Solid but niche / expensive — struggle at Gold vs above'},
-  C:{color:'#3d6eb5',def:'Struggle in S5+ / need more data to confirm viability'},
+  S:{color:'#c0392b'},
+  A:{color:'#e07f48'},
+  B:{color:'#cc972d'},
+  C:{color:'#3d6eb5'},
 }
 
 export function TierPage(){
@@ -1625,12 +1625,12 @@ export function TierPage(){
     <div className="tier-page-wrap">
       <div className="tier-page-header">
         <h2 className="tier-main-title">⚔ CW Metawatch</h2>
-        <p className="tier-main-sub">Commonly Seen Armies · Last updated: Apr 2026</p>
+        <p className="tier-main-sub">Commonly Seen Armies · Last updated: Jun 2026</p>
         <p style={{fontSize:'.75rem',color:'var(--txt3)',marginTop:'.25rem'}}>Tier List done by <strong style={{color:'var(--txt2)'}}>Doge</strong></p>
       </div>
       <div className="tier-list">
         {['S','A','B','C'].map(tier=>{
-          const {color,def}=TIER_DEFS[tier]
+          const {color}=TIER_DEFS[tier]
           const teams=TIER_TEAMS.filter(t=>t.tier===tier)
           return(
             <div key={tier} className="tier-section">
@@ -1638,7 +1638,6 @@ export function TierPage(){
                 <div className="tier-big-badge" style={{background:color}}>{tier}</div>
                 <div className="tier-section-info">
                   <div className="tier-section-label" style={{color}}>Tier {tier}</div>
-                  <div className="tier-section-def">{def}</div>
                 </div>
               </div>
               <div className="tier-teams-grid">
