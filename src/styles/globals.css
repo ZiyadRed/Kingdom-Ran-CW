@@ -1198,7 +1198,7 @@ img { display: block; max-width: 100%; height: auto }
   .cost-chip:focus-visible::before {
     transform: translate(-50%, 0);
   }
-  .foot            { font-size: .62rem; padding: .85rem .65rem }
+  .foot            { font-size: .72rem; padding: .85rem .65rem }
   .main-page       { padding: .85rem .6rem }
   .sk-name         { font-size: .88rem }
   .eff-tgt, .eff-val { font-size: .84rem }
