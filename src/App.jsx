@@ -141,9 +141,12 @@ export default function App(){
         </Suspense>
       </div>
       <footer className="foot">
-        <div style={{marginTop:'.35rem'}}>Made by <strong>@ZiyadRed</strong> · Purgatory 復活</div>
+        <div style={{marginTop:'.35rem'}}>Made by <strong>@ZiyadRed</strong> · Purgatory 復活 · Room 575</div>
         <div style={{marginTop:'.2rem'}}>Special thanks <strong>@WiperLuffy</strong> · <a href="https://touranko.vercel.app" target="_blank" rel="noopener noreferrer" style={{color:'var(--txt3)',textDecoration:'underline'}}>touranko.vercel.app</a></div>
-        <div style={{marginTop:'.35rem',color:'var(--txt3)'}}>©Hara Yasuhisa/Shueisha・Kingdom Production Committee ©でらゲー</div>
+        <div style={{marginTop:'.35rem',color:'var(--txt3)'}}>Unofficial fan site — not for commercial purposes.</div>
+        <div style={{marginTop:'.2rem',color:'var(--txt3)'}}>© Yasuhisa Hara / Shueisha・Kingdom Production Committee ©でらゲー</div>
+        <div style={{marginTop:'.2rem',color:'var(--txt3)'}}>非公式ファンサイト・営利目的ではありません。</div>
+        <div style={{marginTop:'.2rem',color:'var(--txt3)'}}>© 原泰久／集英社・キングダム製作委員会 ©でらゲー</div>
         <div style={{marginTop:'.2rem'}}><a href="https://discord.gg/XeeuWs9G2K" target="_blank" rel="noopener noreferrer" style={{color:'var(--txt3)',textDecoration:'underline'}}>Join the Discord</a></div>
       </footer>
       <nav className="bottom-nav">
