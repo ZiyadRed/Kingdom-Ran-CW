@@ -150,7 +150,6 @@ export const GROUPS={
   'Hi Shin Unit':       ['shin','naki','robin','garo','gakurai'],
   'Kanki Army':       ['kanki','naki','robin','zenou','raido','ogiko','maron','kokuou','bain','kakuun'],
   'Kisui Army':       ['kisui','batei','ryuuto','duke_sei','kishou'],
-  'Kisei Army':       ['kisui','batei','ryuuto','duke_sei','kishou'],
   'Ousen Army':       ['akou','denrimi','kanjou','shoutaku','kyuukou','makou'],
   'Moubo Army':       ['moubu','choushi','raiki'],
   'Coalition Army':   ['karin','kanmei','riboku','houken','seikai','rinbukun','gohoumei','mangoku'],

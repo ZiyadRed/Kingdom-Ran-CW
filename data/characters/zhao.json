@@ -227,7 +227,7 @@
     "name_en": "Duke Sei",
     "name_jp": "青公",
     "country": "zhao",
-    "unit": "Kisei Army",
+    "unit": "Kisui Army",
     "rarity": "SR",
     "skills": [
       {
@@ -237,7 +237,7 @@
         "effects": [
           {
             "condition": "Per attack by other ally general",
-            "target": "Ally Kisei Army",
+            "target": "Ally Kisui Army",
             "effect": "ATK Up 2% (max 30%)",
             "duration": "3 turns"
           },
@@ -255,7 +255,7 @@
         "type": "Strategy",
         "effects": [
           {
-            "condition": "When ally Kisei is alive",
+            "condition": "When ally Kisui is alive",
             "target": "Ally Zhao",
             "effect": "ATK Up 20%",
             "duration": null
@@ -275,19 +275,19 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Kisei Army",
+            "target": "Ally Kisui Army",
             "effect": "Status Effect Immunity (excl. Provoke)",
             "duration": "2 times"
           },
           {
-            "condition": "When ally Kisei is alive",
-            "target": "Ally Kisei Army",
+            "condition": "When ally Kisui is alive",
+            "target": "Ally Kisui Army",
             "effect": "Critical Rate Up 10%",
             "duration": null
           },
           {
             "condition": "When ally Kishou is alive",
-            "target": "Ally Kisei Army",
+            "target": "Ally Kisui Army",
             "effect": "Critical Damage Up 10%",
             "duration": null
           },
@@ -660,7 +660,7 @@
     "name_en": "Kisui",
     "name_jp": "紀彗",
     "country": "zhao",
-    "unit": "Kisei Army / Rigan",
+    "unit": "Kisui Army / Rigan",
     "rarity": "UR",
     "skills": [
       {
