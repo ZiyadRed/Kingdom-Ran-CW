@@ -573,7 +573,7 @@
           {
             "condition": "Own HP ≥ 90%, enemy general with highest remaining HP",
             "target": "1 enemy general",
-            "effect": "Poison Infliction",
+            "effect": "Poison Infliction 40%",
             "duration": "2 turns"
           },
           {

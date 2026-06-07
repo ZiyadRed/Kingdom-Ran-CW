@@ -167,7 +167,7 @@ export const UNIT_TYPES={
   kanmei:'Cavalry',kanou:'Cavalry',katari:'Cavalry',kisui:'Cavalry',kitari:'Cavalry',
   kouyoku:'Cavalry',kyou:'Cavalry',kyoubou:'Cavalry',kyoukai:'Cavalry',mangoku:'Cavalry',
   moubu:'Cavalry',mouten:'Cavalry',naki:'Cavalry',nakon:'Cavalry',ordo:'Cavalry',
-  ouhon:'Cavalry',ouki:'Cavalry',qingxiang:'Cavalry',renpa:'Cavalry',rikusen:'Cavalry',
+  ouhon:'Cavalry',ouki:'Cavalry',renpa:'Cavalry',rikusen:'Cavalry',
   rinbou:'Cavalry',rinbukun:'Cavalry',ringyoku:'Cavalry',rinko:'Cavalry',shin:'Cavalry',
   shinseijou:'Cavalry',shihaku:'Cavalry',sho:'Cavalry',shouheikun:'Cavalry',shoumou:'Cavalry',
   shunsuiju:'Cavalry',sosui:'Cavalry',tou:'Cavalry',wategi:'Cavalry',yotanwa:'Cavalry',
@@ -189,7 +189,7 @@ export const UNIT_TYPES={
   choushi:'Infantry',
   en:'Infantry',gotan:'Infantry',hairou:'Infantry',hokaku:'Infantry',houken:'Infantry',
   jokan:'Infantry',ka:'Infantry',kakukai:'Infantry',kei:'Infantry',kyomei:'Infantry',
-  kyourei:'Infantry',kyoushou:'Infantry',kyuukou:'Infantry',linhtama:'Infantry',maron:'Infantry',
+  kyourei:'Infantry',kyoushou:'Infantry',kyuukou:'Infantry',maron:'Infantry',
   muta:'Infantry',oukotsu:'Infantry',pam:'Infantry',raiki:'Infantry',rankai:'Infantry',rui:'Infantry',
   ryuusen:'Infantry',ryuuto:'Infantry',ryuyu:'Infantry',saji:'Infantry',shikika:'Infantry',
   shousa:'Infantry',shoutaku:'Infantry',shuki:'Infantry',shunmen:'Infantry',shunpeikun:'Infantry',
@@ -414,8 +414,8 @@ export function simulate(a,d){
 // on top by simulateBattle() — NOT baked into these stats.
 export const CW_MAX = cwMaxStats
 // Rarity-based maxed defaults for chars without a pre-computed entry
-// (scaled approximations for the 7 unmatched site chars: denti, kakubi,
-//  muten_grandpa, shosa, linhtama, qingxiang, ringyoku)
+// (scaled approximations for the 5 unmatched site chars: denti, kakubi,
+//  muten_grandpa, shosa, ringyoku)
 export const CW_DEF_MAX={
   N:{hp:15000,atk:5000,def:4500,maxMp:6000,critRate:500,critDmgRate:150,hitRate:11250,dodgeRate:1500,adSlay:7000,daSlay:9500,defPen:0},
   R:{hp:22000,atk:8000,def:7000,maxMp:7000,critRate:750,critDmgRate:150,hitRate:11500,dodgeRate:1750,adSlay:8500,daSlay:9300,defPen:300},

@@ -23,7 +23,7 @@
             "condition": null,
             "target": "Ally [Cavalry]",
             "effect": "ATK Up 20%",
-            "duration": null
+            "duration": "3 turns"
           }
         ]
       },
@@ -61,7 +61,7 @@
             "condition": "Own remaining HP < 50%, enemy general with highest ATK",
             "target": "1 enemy general",
             "effect": "ATK Down 50%",
-            "duration": null
+            "duration": "4 turns"
           }
         ]
       }
@@ -1283,8 +1283,8 @@
         ]
       },
       {
-        "name_en": "Endless Ambition",
-        "name_jp": "果てない野望",
+        "name_en": "Endless Desire",
+        "name_jp": "果てない欲望",
         "type": "Combat",
         "effects": [
           {
@@ -2627,169 +2627,5 @@
     ],
     "image": "/persos/rinbou.webp",
     "icon": "/icons/Rinbou.webp"
-  },
-  {
-    "id": "linhtama",
-    "name_en": "Linhtama",
-    "name_jp": "ランタマ",
-    "country": "qin",
-    "rarity": "SR",
-    "image": null,
-    "skills": [
-      {
-        "name_en": "Heavy Pursuit [Green Tiger]",
-        "name_jp": "重追撃【緑虎】",
-        "type": "Combat",
-        "effects": [
-          {
-            "condition": "Per other ally [Cavalry]",
-            "target": "Ally [Cavalry]",
-            "effect": "ATK Up 10%",
-            "duration": null
-          },
-          {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
-            "effect": "150% Damage",
-            "duration": null
-          }
-        ]
-      },
-      {
-        "name_en": "Kanki's Nimble Aide",
-        "name_jp": "俊敏なる腹心",
-        "type": "Strategy",
-        "effects": [
-          {
-            "condition": null,
-            "target": "Ally [Qin]",
-            "effect": "\"Confusion\" Resistance 40%",
-            "duration": null
-          },
-          {
-            "condition": "When Attacking",
-            "target": "Ally Kanki Army",
-            "effect": "Morale Consumption Reduction 30%",
-            "duration": null
-          }
-        ]
-      },
-      {
-        "name_en": "Cruel Pursuit",
-        "name_jp": "残酷追撃",
-        "type": "Combat",
-        "effects": [
-          {
-            "condition": "Enemy general with lowest HP in \"Poison\" state",
-            "target": "1 enemy \"Poison\" general",
-            "effect": "100% Damage",
-            "duration": null
-          },
-          {
-            "condition": "Enemy general with lowest HP in \"Burn\" state",
-            "target": "1 enemy \"Burn\" general",
-            "effect": "100% Damage",
-            "duration": null
-          },
-          {
-            "condition": "Enemy general with lowest HP in \"Fear\" state",
-            "target": "1 enemy \"Fear\" general",
-            "effect": "100% Damage",
-            "duration": null
-          },
-          {
-            "condition": "When Attacking",
-            "target": "Ally Kanki Army",
-            "effect": "Evasion (Dodge Chance) Up 20%",
-            "duration": null
-          },
-          {
-            "condition": "When Attacking, enemy with lowest remaining HP",
-            "target": "1 enemy general",
-            "effect": "150% Damage",
-            "duration": null
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "qingxiang",
-    "name_en": "Qingxiang",
-    "name_jp": "青翔",
-    "country": "zhao",
-    "rarity": "SR",
-    "image": null,
-    "skills": [
-      {
-        "name_en": "Weak Point Flash [Orange Tiger]",
-        "name_jp": "急所一閃【橙虎】",
-        "type": "Combat",
-        "effects": [
-          {
-            "condition": "Per other ally Kisui Army",
-            "target": "Ally Kisui Army",
-            "effect": "ATK Up 2% (max 30%)",
-            "duration": null
-          },
-          {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
-            "effect": "150% Damage",
-            "duration": null
-          }
-        ]
-      },
-      {
-        "name_en": "Loyalty to the Lord",
-        "name_jp": "城主への忠誠",
-        "type": "Strategy",
-        "effects": [
-          {
-            "condition": "Ally \"Kisui\" alive",
-            "target": "Ally [Zhao]",
-            "effect": "ATK Up 20%",
-            "duration": null
-          },
-          {
-            "condition": "Ally \"Kishou\" alive",
-            "target": "Ally [Zhao]",
-            "effect": "DEF Up 20%",
-            "duration": null
-          }
-        ]
-      },
-      {
-        "name_en": "Unforgivable Atrocity",
-        "name_jp": "許し難き非道",
-        "type": "Strategy",
-        "effects": [
-          {
-            "condition": null,
-            "target": "Ally Kisui Army",
-            "effect": "Status Abnormality Nullification (except Provoke)",
-            "duration": null
-          },
-          {
-            "condition": "Ally \"Kisui\" alive",
-            "target": "Ally Kisui Army",
-            "effect": "Critical Rate Up 10%",
-            "duration": null
-          },
-          {
-            "condition": "Ally \"Kishou\" alive",
-            "target": "Ally Kisui Army",
-            "effect": "Critical Damage Up 10%",
-            "duration": null
-          },
-          {
-            "condition": "Enemy Kanki Army alive",
-            "target": "All enemy generals",
-            "effect": "Evasion (Dodge Chance) Down 50%",
-            "duration": null
-          }
-        ]
-      }
-    ]
   }
 ]

@@ -324,7 +324,7 @@
       },
       {
         "name_en": "Calm and Composed",
-        "name_jp": "從容自若",
+        "name_jp": "従容自若",
         "type": "Strategy",
         "effects": [
           {
@@ -662,7 +662,7 @@
           {
             "condition": null,
             "target": "Ally Danto",
-            "effect": "Guard",
+            "effect": "Guard 60%",
             "duration": "2 times"
           },
           {
@@ -810,7 +810,7 @@
           {
             "condition": "Higher own remaining HP (scales)",
             "target": "Self",
-            "effect": "ATK Up",
+            "effect": "ATK Up (max 20%)",
             "duration": "3 turns"
           },
           {

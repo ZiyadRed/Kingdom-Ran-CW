@@ -412,8 +412,8 @@
         ]
       },
       {
-        "name_en": "Medical Framework",
-        "name_jp": "医療の枠",
+        "name_en": "Pinnacle of Medicine",
+        "name_jp": "医療の粋",
         "type": "Strategy",
         "effects": [
           {
@@ -574,8 +574,8 @@
         ]
       },
       {
-        "name_en": "Immovable Guardian",
-        "name_jp": "不動の守護",
+        "name_en": "Immovable Defense",
+        "name_jp": "不動の守備",
         "type": "Combat",
         "effects": [
           {
@@ -1041,7 +1041,7 @@
     "skills": [
       {
         "name_en": "Fierce General Eradication [Red Sheep]",
-        "name_jp": "猛将撲滅【赤羊】",
+        "name_jp": "猛将撃滅【赤羊】",
         "type": "Combat",
         "effects": [
           {
@@ -1247,7 +1247,7 @@
             "condition": "Per allied attack count",
             "target": "Ally [Infantry] and [Cavalry]",
             "effect": "ATK Up 3% (max 25%)",
-            "duration": null
+            "duration": "3 turns"
           }
         ]
       }
@@ -1294,7 +1294,7 @@
           {
             "condition": "When ally \"Shin\" is alive",
             "target": "Self",
-            "effect": "DEF Penetration Up 30%",
+            "effect": "DEF Penetration Up 20%",
             "duration": "3 turns"
           },
           {

@@ -57,7 +57,7 @@
           {
             "condition": "When ally [?] and [?] are both alive",
             "target": "All ally generals",
-            "effect": "Attack Nullification",
+            "effect": "Guard 100%",
             "duration": "1 time"
           }
         ]
@@ -108,7 +108,7 @@
             "condition": "Own HP < 90%",
             "target": "Ally [Qin]",
             "effect": "Critical Damage Up 20%",
-            "duration": null
+            "duration": "3 turns"
           },
           {
             "condition": null,
@@ -152,13 +152,13 @@
             "condition": null,
             "target": "Ally [Qin]",
             "effect": "Critical Rate Up 10%",
-            "duration": null
+            "duration": "3 turns"
           },
           {
             "condition": null,
             "target": "Ally \"Duke Hyou\" and [Hishin] Unit",
             "effect": "Critical Rate Up 20%",
-            "duration": null
+            "duration": "3 turns"
           },
           {
             "condition": "Enemy general with highest max morale",
@@ -627,7 +627,7 @@
       },
       {
         "name_en": "Commander-in-Chief's Right Hand",
-        "name_jp": "軍曹司令の右腕",
+        "name_jp": "軍総司令の右腕",
         "type": "Strategy",
         "effects": [
           {
@@ -1032,7 +1032,7 @@
             "condition": "Own HP ≥ 90%",
             "target": "Ally infantry",
             "effect": "ATK Up 30%",
-            "duration": null
+            "duration": "3 turns"
           }
         ]
       },

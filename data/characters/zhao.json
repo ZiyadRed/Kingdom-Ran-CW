@@ -344,7 +344,7 @@
             "condition": null,
             "target": "Self",
             "effect": "Sure Hit",
-            "duration": "3 turns"
+            "duration": null
           },
           {
             "condition": "Per turn elapsed",
@@ -503,8 +503,8 @@
         ]
       },
       {
-        "name_en": "Rigan Bond [Friend]",
-        "name_jp": "離眼の絆【友】",
+        "name_en": "Rigan Bond [Technique]",
+        "name_jp": "離眼の絆【技】",
         "type": "Combat",
         "effects": [
           {

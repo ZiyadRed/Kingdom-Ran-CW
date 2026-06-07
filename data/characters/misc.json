@@ -533,7 +533,7 @@
           {
             "condition": "Enemy general with highest ATK",
             "target": "2 enemy generals",
-            "effect": "Paralysis Infliction",
+            "effect": "Paralysis Infliction 50%",
             "duration": "3 turns"
           }
         ]
@@ -546,7 +546,7 @@
           {
             "condition": "CW battle (active even when not deployed)",
             "target": "Ally archers",
-            "effect": "Max HP Up 6.9%",
+            "effect": "Max HP Up 15.9%",
             "duration": null
           }
         ]

@@ -144,6 +144,12 @@
           {
             "condition": "Enemy shield soldier with highest DEF",
             "target": "1 enemy shield soldier",
+            "effect": "Provoke Infliction",
+            "duration": "4 turns"
+          },
+          {
+            "condition": "Enemy general with highest DEF",
+            "target": "1 enemy general",
             "effect": "180% Damage",
             "duration": null
           },

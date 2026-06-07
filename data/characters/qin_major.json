@@ -98,7 +98,7 @@
             "condition": null,
             "target": "Ally Gyokuhou Unit",
             "effect": "Guard 100％",
-            "duration": "1 times"
+            "duration": "1 time"
           },
           {
             "condition": null,
@@ -208,8 +208,8 @@
         ]
       },
       {
-        "name_en": "Supreme Siege Commander",
-        "name_jp": "必勝の籠城☆6",
+        "name_en": "Absolute Defense",
+        "name_jp": "絶対防御☆6",
         "type": "Strategy",
         "star6": true,
         "effects": [
@@ -371,7 +371,7 @@
       },
       {
         "name_en": "Brilliant Outburst",
-        "name_jp": "才気爆発",
+        "name_jp": "才気煥発",
         "type": "Strategy",
         "effects": [
           {
@@ -469,8 +469,8 @@
         ]
       },
       {
-        "name_en": "Reaching Supreme Martial Might",
-        "name_jp": "至強に至る武",
+        "name_en": "Surpassing Supreme Martial Might",
+        "name_jp": "至強を超える武",
         "type": "Combat",
         "effects": [
           {
@@ -1047,7 +1047,7 @@
             "condition": null,
             "target": "Self",
             "effect": "Less Likely to be Targeted",
-            "duration": null
+            "duration": "3 turns"
           },
           {
             "condition": "When Garrisoning",
@@ -1182,7 +1182,7 @@
           {
             "condition": null,
             "target": "Ally [Cavalry] other than self",
-            "effect": "Anti-[Archer] ATK Up 20%",
+            "effect": "Anti-[Archer] ATK Up 15%",
             "duration": null
           },
           {

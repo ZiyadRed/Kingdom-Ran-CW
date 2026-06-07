@@ -71,8 +71,8 @@
         ]
       },
       {
-        "name_en": "Karin's Supremacy",
-        "name_jp": "女傑の覇道☆6",
+        "name_en": "Genius's Stratagem",
+        "name_jp": "天才の策略☆6",
         "type": "Strategy",
         "star6": true,
         "effects": [
@@ -287,6 +287,12 @@
           {
             "condition": null,
             "target": "Self",
+            "effect": "ATK Up 40%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
             "effect": "Critical Rate Up 、Critical Damage Up 30%",
             "duration": null
           },
@@ -469,8 +475,8 @@
         ]
       },
       {
-        "name_en": "Renpa's Flying Spear (☆6)",
-        "name_jp": "廉頗の飛槍☆6",
+        "name_en": "Heaven's Guidance",
+        "name_jp": "天の導き☆6",
         "type": "Strategy",
         "star6": true,
         "effects": [

@@ -21,7 +21,7 @@
             "condition": null,
             "target": "Self",
             "effect": "Less Likely to be Targeted",
-            "duration": null
+            "duration": "3 turns"
           },
           {
             "condition": "The higher own remaining HP",

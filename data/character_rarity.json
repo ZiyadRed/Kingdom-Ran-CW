@@ -539,11 +539,6 @@
                     "faction":  "Qin",
                     "name_jp":  "宮康"
                 },
-    "Linhtama":  {
-                     "rarity":  "SR",
-                     "faction":  "Qin",
-                     "name_jp":  "ランタマ"
-                 },
     "Maki":  {
                  "rarity":  "SR",
                  "faction":  "Mountain Folk",
@@ -649,11 +644,6 @@
                 "faction":  "Mountain Folk",
                 "name_jp":  "パム"
             },
-    "Qingxiang":  {
-                      "rarity":  "SR",
-                      "faction":  "Zhao",
-                      "name_jp":  "青翔"
-                  },
     "Queen Biki":  {
                        "rarity":  "UR",
                        "faction":  "Qin",

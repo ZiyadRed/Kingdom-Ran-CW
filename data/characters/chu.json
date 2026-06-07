@@ -530,13 +530,13 @@
           {
             "condition": null,
             "target": "Other ally Chu",
-            "effect": "Max HP Up / Morale Cost Reduction 30%",
+            "effect": "Max HP Up 30%, Morale Cost Reduction 30%",
             "duration": null
           },
           {
             "condition": "When Attacking",
             "target": "Ally Zhao / Wei / Han / Yan",
-            "effect": "Max HP Up / Morale Cost Reduction 20%",
+            "effect": "Max HP Up 20%, Morale Cost Reduction 20%",
             "duration": null
           }
         ]

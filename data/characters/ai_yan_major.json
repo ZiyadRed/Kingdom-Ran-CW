@@ -17,7 +17,7 @@
             "condition": null,
             "target": "Enemy [Qin]",
             "effect": "Evasion (Dodge Chance) Down 20%",
-            "duration": null
+            "duration": "4 turns"
           },
           {
             "condition": "Enemy general with highest ATK",
@@ -42,7 +42,7 @@
             "condition": "When Garrisoning",
             "target": "Ally [Ai]",
             "effect": "Guard 60%",
-            "duration": null
+            "duration": "1 time"
           },
           {
             "condition": null,
@@ -61,13 +61,13 @@
             "condition": null,
             "target": "Self",
             "effect": "\"Provoke\"",
-            "duration": null
+            "duration": "4 turns"
           },
           {
             "condition": null,
             "target": "Ally \"Queen Biki\" and ally [Ai]",
             "effect": "Continuous HP Recovery 10%",
-            "duration": null
+            "duration": "3 turns"
           },
           {
             "condition": null,
@@ -188,7 +188,7 @@
       },
       {
         "name_en": "Instigation of Chaos",
-        "name_jp": "争乱扇動",
+        "name_jp": "騒乱扇動",
         "type": "Strategy",
         "effects": [
           {
@@ -231,7 +231,7 @@
           {
             "condition": "Enemy Qin general with highest ATK",
             "target": "1 enemy Qin general",
-            "effect": "Betrayal Infliction",
+            "effect": "Betrayal Infliction 20%",
             "duration": "3 turns"
           },
           {
@@ -280,7 +280,7 @@
       },
       {
         "name_en": "Dominance over the Weak",
-        "name_jp": "優勝劣勢",
+        "name_jp": "優勝劣敗",
         "type": "Combat",
         "effects": [
           {
@@ -323,7 +323,7 @@
           {
             "condition": "From the 60% Damage",
             "target": "Self",
-            "effect": "HP Drain 10%",
+            "effect": "HP Drain 50%",
             "duration": null
           },
           {
