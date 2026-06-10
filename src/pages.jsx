@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useMemo } from 'react'
+import { useState, useRef, useEffect, useMemo, useDeferredValue } from 'react'
 import { Link, Navigate, useNavigate, useLocation, useParams } from 'react-router-dom'
 import mountainFolk from '../data/characters/mountain_folk.json'
 import qin          from '../data/characters/qin.json'
@@ -26,7 +26,7 @@ import unitMatchups  from '../data/glossary/unit_matchups.json'
 import skillTypesGlossary from '../data/glossary/skill_types.json'
 import rarityData from '../data/character_rarity.json'
 import {
-  PROGRESS_STORAGE_KEY, emptyProgress, normalizeProgress, readProgress, useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, SceneStarControl, buffSourceId, ALL, GROUPS, UNIT_TYPES, CHAR_BY_NAME, findCharByName, ARCHIVE_CHAR_COUNT, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, RED_CRYSTAL_UNLOCK_COSTS, normalizeBuffText, buffValueMatches, buffStatMatches, buffTargetMatches, redCrystalBuffUnlockCost, RedCrystalCostChip, BuffValueCluster, FACTIONS, CC, CharIcon, TYPE_COLOR, TIER_COLORS, TIER_TEAMS, META_TEAM_EXTRAS, META_TEAMS, simulate, CW_MAX, CW_DEF_MAX, _st, CW_TYPE_BUFFS, SCENE_CARD, calcCwStats, simulateBattle, UNIT_TYPE_LIST, FACTION_MAP, STATUS_EFFECTS, STATUS_RE, TARGET_NAME_ALIASES, normalizeBuffStat, parseBuffEffect, normalizeRosterLabel, groupMatchesLabel, inGroup, cleanRosterCriterion, rosterCriterionMatches, matchAllyRosterListTarget, isTargetedBy, getMultiplier, isCondActive, calcCharBuffs, normalizeEnemyTarget, calcTeamEnemyDebuffs, Picker, RARITY_COST, RARITY_COLOR, RARITY_DATA, INVERSE_STATS, SPECIAL_STATS, STAT_ORDER, statSortKey, CHAR_GROUPS, DEFAULT_SK, defaultSks, hasStar6, applyMask
+  PROGRESS_STORAGE_KEY, emptyProgress, normalizeProgress, readProgress, useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, SceneStarControl, buffSourceId, ALL, GROUPS, UNIT_TYPES, CHAR_BY_NAME, findCharByName, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, RED_CRYSTAL_UNLOCK_COSTS, normalizeBuffText, buffValueMatches, buffStatMatches, buffTargetMatches, redCrystalBuffUnlockCost, RedCrystalCostChip, BuffValueCluster, FACTIONS, CC, CharIcon, TYPE_COLOR, TIER_COLORS, TIER_TEAMS, META_TEAM_EXTRAS, META_TEAMS, simulate, CW_MAX, CW_DEF_MAX, _st, CW_TYPE_BUFFS, SCENE_CARD, calcCwStats, simulateBattle, UNIT_TYPE_LIST, FACTION_MAP, STATUS_EFFECTS, STATUS_RE, TARGET_NAME_ALIASES, normalizeBuffStat, parseBuffEffect, normalizeRosterLabel, groupMatchesLabel, inGroup, cleanRosterCriterion, rosterCriterionMatches, matchAllyRosterListTarget, isTargetedBy, getMultiplier, isCondActive, calcCharBuffs, normalizeEnemyTarget, calcTeamEnemyDebuffs, Picker, RARITY_COST, RARITY_COLOR, RARITY_DATA, INVERSE_STATS, SPECIAL_STATS, STAT_ORDER, statSortKey, CHAR_GROUPS, DEFAULT_SK, defaultSks, hasStar6, applyMask
 } from './core.jsx'
 
 export function ArchiveTabs({active}){
@@ -262,16 +262,14 @@ export function ArchivePage(){
   useEffect(()=>{
     document.title=selected?`${selected.name_en} — Archive — RanHQ`:'Archive — RanHQ'
   },[selected])
-  const pickChar=c=>{
-    if(selected?.id===c.id){navigate('/archive/characters');return}
-    navigate(`/archive/characters/${c.id}`)
-  }
   const clearSelection=()=>navigate('/archive/characters')
-  const facChars=ALL.filter(c=>c.country===activeFac&&c.image)
-  const filtered=(search
+  // Defer + memoize the search scan (211 chars × every skill string) so typing
+  // stays responsive on slower phones.
+  const deferredSearch=useDeferredValue(search)
+  const filtered=useMemo(()=>(deferredSearch
     ?ALL.filter(c=>{
-      const q=search.toLowerCase()
-      if(c.name_en.toLowerCase().includes(q)||c.name_jp.includes(search)) return true
+      const q=deferredSearch.toLowerCase()
+      if(c.name_en.toLowerCase().includes(q)||c.name_jp.includes(deferredSearch)) return true
       if(c.unit_type&&c.unit_type.toLowerCase().includes(q)) return true
       if(c.groups&&c.groups.some(g=>g.toLowerCase().includes(q))) return true
       // hidden group tags
@@ -280,8 +278,8 @@ export function ArchivePage(){
       if(c.skills?.some(sk=>sk.effects?.some(e=>e.effect&&e.effect.toLowerCase().includes(q)))) return true
       return false
     })
-    :facChars
-  ).slice().sort((a,b)=>a.name_en.localeCompare(b.name_en))
+    :ALL.filter(c=>c.country===activeFac&&c.image)
+  ).slice().sort((a,b)=>a.name_en.localeCompare(b.name_en)),[deferredSearch,activeFac])
   const handleFacClick=(fid)=>{setActiveFac(fid);if(selected)navigate('/archive/characters');setSearch('')}
 
   return(
@@ -289,7 +287,7 @@ export function ArchivePage(){
       {/* Sidebar */}
       <aside className="fac-sidebar">
         <div className="fac-search-wrap">
-          <input className="fac-search" placeholder="Search generals…" value={search} onChange={e=>{setSearch(e.target.value);if(selected)navigate('/archive/characters')}}/>
+          <input className="fac-search" type="search" aria-label="Search generals" placeholder="Search generals…" value={search} onChange={e=>{setSearch(e.target.value);if(selected)navigate('/archive/characters')}}/>
         </div>
         <div className="fac-nav">
           {FACTIONS.map(f=>{
@@ -315,6 +313,8 @@ export function ArchivePage(){
           <span className="mobile-search-icon">⌕</span>
           <input
             className="mobile-search-input"
+            type="search"
+            aria-label="Search generals"
             placeholder="Search generals…"
             value={search}
             onChange={e=>{setSearch(e.target.value);if(selected)navigate('/archive/characters')}}/>
@@ -326,9 +326,9 @@ export function ArchivePage(){
         </div>
         <div className="gallery-grid">
           {filtered.map(c=>{
-            const skillTag=search?(()=>{
-              const q=search.toLowerCase()
-              if(c.name_en.toLowerCase().includes(q)||c.name_jp.includes(search)) return null
+            const skillTag=deferredSearch?(()=>{
+              const q=deferredSearch.toLowerCase()
+              if(c.name_en.toLowerCase().includes(q)||c.name_jp.includes(deferredSearch)) return null
               if(c.unit_type&&c.unit_type.toLowerCase().includes(q)) return null
               for(const sk of(c.skills||[]))
                 for(const e of(sk.effects||[]))
@@ -336,20 +336,25 @@ export function ArchivePage(){
               return null
             })():null
             return(
-            <button key={c.id}
+            <Link key={c.id}
+              to={`/archive/characters/${c.id}`}
               className={`banner-card${selected?.id===c.id?' banner-selected':''}`}
-              onClick={()=>pickChar(c)}
+              onClick={e=>{if(selected?.id===c.id){e.preventDefault();navigate('/archive/characters')}}}
               style={selected?.id===c.id?{outline:`3px solid ${CC[c.country]||'#999'}`}:{}}>
               <div className="banner-faction-tag" style={{background:CC[c.country]||'#666'}}>
                 {FACTIONS.find(f=>f.id===c.country)?.jp||c.country}
               </div>
-              {c.image?<img src={c.image} alt={c.name_en} className="banner-img" loading="lazy"/>
+              {c.image?<img
+                src={persosThumb(c.image)}
+                srcSet={`${persosThumb(c.image)} 320w, ${c.image} 626w`}
+                sizes="(max-width: 480px) 23vw, (max-width: 768px) 31vw, 180px"
+                alt={c.name_en} className="banner-img" loading="lazy" decoding="async"/>
                 :<div className="banner-ph" style={{background:(CC[c.country]||'#555')+'33',color:CC[c.country]||'#888'}}>{c.name_en[0]}</div>}
               <div className="banner-footer">
                 <span className="banner-name">{c.name_en}</span>
                 {skillTag&&<span className="banner-skill-tag" title={skillTag}>{skillTag.length>22?skillTag.slice(0,21)+'…':skillTag}</span>}
               </div>
-            </button>
+            </Link>
             )
           })}
         </div>
@@ -1110,7 +1115,7 @@ export function BuffsPage(){
                 <div className="buff-source-rank" style={{minWidth:'28px',textAlign:'center',fontSize:'.72rem',fontWeight:800,color:'var(--txt3)'}}>{i+1}</div>
                 <div className="buff-source-avatar" style={{width:52,height:52,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2.5px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
                   {char?.icon?<img src={char.icon} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}} alt={e.name}/>
-                  :char?.image?<img src={char.image} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
+                  :char?.image?<img src={persosThumb(char.image)} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
                   :<span style={{fontSize:'1.15rem',fontWeight:800,color:fc}}>{e.name[0]}</span>}
                 </div>
                 <div className="buff-source-info" style={{flex:1,minWidth:0}}>
@@ -1223,7 +1228,7 @@ export function BuffsPage(){
                 </div>
                 <div className="buff-source-avatar" style={{width:56,height:56,borderRadius:'50%',overflow:'hidden',flexShrink:0,border:`2.5px solid ${fc}`,background:fc+'22',display:'flex',alignItems:'center',justifyContent:'center'}}>
                   {char?.icon?<img src={char.icon} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}} alt={e.name}/>
-                  :char?.image?<img src={char.image} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
+                  :char?.image?<img src={persosThumb(char.image)} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={e.name}/>
                   :<span style={{fontSize:'1.2rem',fontWeight:700,color:fc}}>{e.name[0]}</span>}
                 </div>
                 <div className="buff-source-info" style={{flex:1,minWidth:0}}>
@@ -1778,7 +1783,7 @@ export function TeamCostPage(){
               {/* Portrait */}
               <div style={{position:'relative',aspectRatio:'1 / 1',background:fc+'15',overflow:'hidden'}}>
                 {char.icon?<img src={char.icon} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center'}} alt={char.name_en}/>
-                :char.image?<img src={char.image} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={char.name_en}/>
+                :char.image?<img src={persosThumb(char.image)} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={char.name_en}/>
                 :<div style={{width:'100%',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'2rem',fontWeight:800,color:fc+'66'}}>{char.name_en[0]}</div>}
                 <div style={{position:'absolute',top:'6px',left:'6px',padding:'1px 7px',borderRadius:'5px',background:rc,color:'white',fontSize:'.6rem',fontWeight:800}}>{rarity}</div>
                 <button onClick={()=>clearSlot(idx)} style={{position:'absolute',top:'5px',right:'5px',width:20,height:20,borderRadius:'50%',border:'none',background:'rgba(0,0,0,0.55)',color:'white',cursor:'pointer',fontSize:'.6rem',display:'flex',alignItems:'center',justifyContent:'center'}}>✕</button>
@@ -1891,7 +1896,7 @@ export function TeamCostPage(){
                       onMouseLeave={e=>{if(!isSelected)e.currentTarget.style.background=rc+'0a'}}>
                       <div style={{width:52,height:52,borderRadius:'50%',overflow:'hidden',border:`2px solid ${rc}55`,background:rc+'18',flexShrink:0,display:'flex',alignItems:'center',justifyContent:'center'}}>
                         {c.icon?<img src={c.icon} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={c.name_en}/>
-                        :c.image?<img src={c.image} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={c.name_en}/>
+                        :c.image?<img src={persosThumb(c.image)} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={c.name_en}/>
                         :<span style={{fontWeight:700,color:rc,fontSize:'1.1rem'}}>{c.name_en[0]}</span>}
                       </div>
                       <div style={{fontWeight:700,fontSize:'.68rem',color:'var(--txt)',textAlign:'center',lineHeight:1.2}}>{c.name_en}</div>

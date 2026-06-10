@@ -908,7 +908,8 @@ img { display: block; max-width: 100%; height: auto }
   .mobile-search-input {
     flex: 1; background: var(--bg2); border: 1.5px solid var(--bdr);
     color: var(--txt); padding: .45rem 2rem .45rem 2.2rem;
-    border-radius: 8px; font-family: inherit; font-size: .86rem;
+    border-radius: 8px; font-family: inherit;
+    font-size: 16px; /* ≥16px stops iOS Safari auto-zooming the page on focus */
     width: 100%;
   }
   .mobile-search-input:focus { outline: none; border-color: var(--terra) }
@@ -1391,4 +1392,20 @@ button { -webkit-appearance: none; appearance: none; }
   .tc-total-num { font-size: 1.7rem; }
   .tc-slots { grid-template-columns: repeat(2, 1fr); gap: 8px; }
 }
+
+/* ============================================================
+   NAV AS REAL LINKS
+   Header tabs, bottom nav, home cards/CTAs, and archive cards are
+   <Link> (anchor) elements now — crawlable and open-in-new-tab —
+   so strip anchor defaults to keep the exact button look. */
+a.nb, a.bntab, a.banner-card, a.home-tool-card, a.home-primary, a.home-secondary {
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+/* buttons centered their label by default; keep that as anchors */
+a.home-primary, a.home-secondary { text-align: center }
+/* Skip rendering work for archive cards far off-screen (long faction
+   lists on phones); layout is unaffected since cards size themselves
+   via aspect-ratio. */
+.banner-card { content-visibility: auto }
 

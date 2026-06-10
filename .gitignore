@@ -9,3 +9,5 @@ dist/
 
 # Local backups (cleanup sessions)
 src.backup-*/
+data.backup-*/
+_banner_backup_*/

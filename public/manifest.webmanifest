@@ -1,0 +1,14 @@
+{
+  "name": "RanHQ — Kingdom Ran Castle War Companion",
+  "short_name": "RanHQ",
+  "description": "Fan-made English companion for Kingdom Ran's Castle War mode: browse general skills, build parties, compare buffs, and plan stronger teams.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#06264C",
+  "theme_color": "#06264C",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

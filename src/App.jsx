@@ -1,5 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
-import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, Link, useNavigate, useLocation } from 'react-router-dom'
 
 // Inlined here (no data import) so the shell — and the Home route — never pull
 // in the character data / engine chunk. Pages resolve their own data lazily.
@@ -66,7 +66,6 @@ export default function App(){
   const location=useLocation()
   const navigate=useNavigate()
   const page=currentPage(location.pathname)
-  const go=p=>navigate(PAGE_TO_ROUTE[p])
   const[atk,setAtk]=useState([null,null,null,null])
   const[def,setDef]=useState([null,null,null,null])
   const[atkSk,setAtkSk]=useState(defaultSks())
@@ -104,18 +103,18 @@ export default function App(){
     <div className="app">
       <header className="hdr">
         <div className="hdr-in">
-          <button className="logo" onClick={()=>navigate('/')} style={{background:'none',border:'none',padding:0,cursor:'pointer',color:'inherit'}}>
+          <Link className="logo" to="/" style={{color:'inherit'}}>
             <img src="/ranhq-icon.webp" alt="RanHQ" className="logo-icon"/>
             <div>
               <div className="logo-ja">キングダム乱</div>
               <div className="logo-en">RanHQ</div>
             </div>
-          </button>
+          </Link>
           <nav className="nav">
             {PAGES.map(p=>(
-              <button key={p} className={`nb${page===p?' nb-on':''}`} onClick={()=>go(p)}>
+              <Link key={p} className={`nb${page===p?' nb-on':''}`} to={PAGE_TO_ROUTE[p]}>
                 {p}{p==='Party Builder'&&(atk.filter(Boolean).length+def.filter(Boolean).length)>0&&<span className="nb-dot">{atk.filter(Boolean).length+def.filter(Boolean).length}</span>}
-              </button>
+              </Link>
             ))}
           </nav>
         </div>
@@ -123,7 +122,7 @@ export default function App(){
       <div className="app-body">
         <Suspense fallback={<div style={{ padding: '4rem 1rem', textAlign: 'center', color: 'var(--txt3)' }}>Loading…</div>}>
           <Routes>
-          <Route path="/" element={<HomePage go={go}/>}/>
+          <Route path="/" element={<HomePage/>}/>
           <Route path="/archive" element={<ArchiveHubPage/>}/>
           <Route path="/archive/characters" element={<><ArchiveTabs active="characters"/><ArchivePage/></>}/>
           <Route path="/archive/characters/:charId" element={<><ArchiveTabs active="characters"/><ArchivePage/></>}/>
@@ -151,10 +150,10 @@ export default function App(){
       </footer>
       <nav className="bottom-nav">
         {PAGES.map(p=>(
-          <button key={p} className={`bntab${page===p?' bntab-on':''}`} onClick={()=>go(p)}>
+          <Link key={p} className={`bntab${page===p?' bntab-on':''}`} to={PAGE_TO_ROUTE[p]}>
             <span className="bntab-icon"><PageIcon p={p}/></span>
             {PAGE_SHORT[p]}
-          </button>
+          </Link>
         ))}
       </nav>
     </div>
@@ -162,7 +161,7 @@ export default function App(){
 }
 
 // ── ARCHIVE ───────────────────────────────────────────────────────────────────
-function HomePage({go}){
+function HomePage(){
   const tools=[
     {page:'Archive',title:'Archive',desc:'Browse character skills and CW scene-card references.'},
     {page:'Guide',title:'Guide',desc:'Learn mechanics, status effects, terrain rules, targeting behavior, and matchups.'},
@@ -174,7 +173,11 @@ function HomePage({go}){
   return(
     <main className="home-page">
       <section className="home-hero">
-        <img src="/ranhq-home-banner.webp" alt="" className="home-hero-img" width="1881" height="836" decoding="async" fetchPriority="high"/>
+        <img
+          src="/ranhq-home-banner-1200.webp"
+          srcSet="/ranhq-home-banner-640.webp 640w, /ranhq-home-banner-1200.webp 1200w, /ranhq-home-banner.webp 1881w"
+          sizes="(max-width: 1560px) 100vw, 1560px"
+          alt="" className="home-hero-img" width="1881" height="836" decoding="async" fetchPriority="high"/>
         <div className="home-hero-shade"/>
         <div className="home-hero-content">
           <div className="home-kicker">Kingdom Ran Castle War companion</div>
@@ -184,8 +187,8 @@ function HomePage({go}){
             built to help players learn the mode, understand skills and buffs, and plan stronger strategies.
           </p>
           <div className="home-actions">
-            <button className="home-primary" onClick={()=>go('Archive')}>Open Archive</button>
-            <button className="home-secondary" onClick={()=>go('Guide')}>Read Guide</button>
+            <Link className="home-primary" to="/archive">Open Archive</Link>
+            <Link className="home-secondary" to="/guide">Read Guide</Link>
           </div>
         </div>
       </section>
@@ -196,11 +199,11 @@ function HomePage({go}){
         </div>
         <div className="home-tool-grid">
           {tools.map((tool,i)=>(
-            <button key={tool.page} className={`home-tool-card${i<2?' home-tool-card-main':''}`} onClick={()=>go(tool.page)}>
+            <Link key={tool.page} className={`home-tool-card${i<2?' home-tool-card-main':''}`} to={PAGE_TO_ROUTE[tool.page]}>
               <span className="home-tool-index">{String(i+1).padStart(2,'0')}</span>
               <strong>{tool.title}</strong>
               <span>{tool.desc}</span>
-            </button>
+            </Link>
           ))}
         </div>
       </section>
