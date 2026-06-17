@@ -364,8 +364,8 @@
       "ownerNameJp": "輪虎",
       "ownerIcon": "/icons/Rinko.webp",
       "skill": {
-        "name_en": "Renpa's Flying Spear (☆6)",
-        "name_jp": "廉頗の飛槍☆6",
+        "name_en": "Heaven's Guidance",
+        "name_jp": "天の導き☆6",
         "type": "Strategy",
         "star6": true,
         "effects": [
@@ -919,6 +919,7 @@
         "name_en": "Journey's End",
         "name_jp": "旅の終着☆6",
         "type": "Strategy",
+        "star6": true,
         "effects": [
           {
             "condition": null,
@@ -938,8 +939,7 @@
             "effect": "Critical Damage Down 30%",
             "duration": null
           }
-        ],
-        "star6": true
+        ]
       },
       "thumb": "/scene_cards/thumbs/Queen-Biki-CW6-star-thumb.webp",
       "name_en": "Queen Biki CW6 star"
@@ -1140,8 +1140,8 @@
       "ownerNameJp": "王翦",
       "ownerIcon": "/icons/Ousen.webp",
       "skill": {
-        "name_en": "Supreme Siege Commander",
-        "name_jp": "必勝の籠城☆6",
+        "name_en": "Absolute Defense",
+        "name_jp": "絶対防御☆6",
         "type": "Strategy",
         "star6": true,
         "effects": [
@@ -1246,7 +1246,7 @@
       "id": 40249,
       "imageId": 10249,
       "name_jp": "全部まやかし",
-      "skill_en": "Genius Strategy",
+      "skill_en": "Genius's Stratagem",
       "skill_jp": "天才の策略",
       "image": "/scene_cards/webp/Karin-CW6-star.webp",
       "owner_id": "karin",
@@ -1254,8 +1254,8 @@
       "ownerNameJp": "媧燐",
       "ownerIcon": "/icons/Karin.webp",
       "skill": {
-        "name_en": "Karin's Supremacy",
-        "name_jp": "女傑の覇道☆6",
+        "name_en": "Genius's Stratagem",
+        "name_jp": "天才の策略☆6",
         "type": "Strategy",
         "star6": true,
         "effects": [
