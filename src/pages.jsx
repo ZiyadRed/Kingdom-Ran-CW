@@ -781,37 +781,38 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
                   const{up,down,sources=[],instances}=buff
                   const inv=INVERSE_STATS.has(stat)
                   const isFlag=SPECIAL_STATS.has(stat)
-                  // Guard doesn't stack — render each instance as its own row, sorted desc.
+                  // Guard doesn't stack — show one row for the active (highest) instance,
+                  // with the alternatives revealed on expand.
                   if(stat==='Guard'&&instances&&instances.length){
                     const sorted=[...instances].sort((a,b)=>b.val-a.val)
+                    const top=sorted[0]
+                    const extra=sorted.length-1
+                    const key=`${g.id}|Guard`
+                    const isOpen=expanded===key
                     return(
                       <div key={stat}>
-                        {sorted.map((inst,idx)=>{
-                          const key=`${g.id}|Guard|${idx}`
-                          const isOpen=expanded===key
-                          return(
-                            <div key={idx}>
-                              <div className={`buff-row buff-row-click${isOpen?' buff-row-open':''}`}
-                                   onClick={()=>setExpanded(isOpen?null:key)}>
-                                <span className="buff-stat-name">Guard</span>
-                                <span className="buff-vals">
-                                  <span className="buff-up">+{fmt(inst.val)}%</span>
-                                  {inst.duration&&<span className="buff-dur" style={{fontSize:'.65rem',color:'var(--txt3)',marginLeft:'.3rem'}}>{inst.duration}</span>}
-                                  <span className="buff-chevron">{isOpen?'▴':'▾'}</span>
-                                </span>
+                        <div className={`buff-row buff-row-click${isOpen?' buff-row-open':''}`}
+                             onClick={()=>extra>0&&setExpanded(isOpen?null:key)}>
+                          <span className="buff-stat-name">Guard</span>
+                          <span className="buff-vals">
+                            <span className="buff-up">+{fmt(top.val)}%</span>
+                            {top.duration&&<span className="buff-dur">{top.duration}</span>}
+                            {extra>0&&<span className="buff-more">+{extra}</span>}
+                            <span className="buff-chevron" style={extra>0?undefined:{opacity:.25}}>{isOpen?'▴':'▾'}</span>
+                          </span>
+                        </div>
+                        {isOpen&&extra>0&&(
+                          <div className="buff-sources">
+                            {sorted.map((inst,idx)=>(
+                              <div key={idx} className="buff-source-row">
+                                <CharIcon c={inst.owner} size={16} round={true}/>
+                                <span className="buff-source-name">{inst.owner.name_en}</span>
+                                <span className="buff-up">+{fmt(inst.val)}%{inst.duration?` · ${inst.duration}`:''}</span>
                               </div>
-                              {isOpen&&(
-                                <div className="buff-sources">
-                                  <div className="buff-source-row">
-                                    <CharIcon c={inst.owner} size={16} round={true}/>
-                                    <span className="buff-source-name">{inst.owner.name_en}</span>
-                                    <span className="buff-up">+{fmt(inst.val)}%{inst.duration?` · ${inst.duration}`:''}</span>
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          )
-                        })}
+                            ))}
+                            <div className="buff-guard-note">Doesn't stack — only the highest is active</div>
+                          </div>
+                        )}
                       </div>
                     )
                   }

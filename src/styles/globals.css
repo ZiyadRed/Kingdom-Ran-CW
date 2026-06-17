@@ -739,6 +739,9 @@ img { display: block; max-width: 100%; height: auto }
 .buff-sources    { display: flex; flex-direction: column; gap: 2px; padding: 4px 7px 5px 14px; background: rgba(255,255,255,.03); border-left: 2px solid rgba(255,255,255,.1); margin-top: 1px; border-radius: 0 0 5px 5px }
 .buff-source-row { display: flex; align-items: center; gap: 6px; font-size: .72rem }
 .buff-source-name { color: var(--txt2); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.buff-dur        { font-size: .6rem; color: var(--txt3); background: var(--bg2); border: 1px solid var(--bdr); padding: 0 6px; border-radius: 10px; line-height: 1.5; white-space: nowrap }
+.buff-more       { font-size: .58rem; font-weight: 800; color: var(--txt3); background: rgba(255,255,255,.07); padding: 0 5px; border-radius: 9px; line-height: 1.6 }
+.buff-guard-note { color: var(--txt3); font-style: italic; font-size: .62rem; padding: 3px 2px 1px }
 .bc          { background: var(--sur); border: 1.5px solid var(--bdr); border-top: 3px solid; border-radius: 8px; overflow: hidden; transition: transform .15s }
 .bc:hover    { transform: translateY(-1px) }
 .bc-top      { display: flex; align-items: center; gap: .45rem; padding: .4rem .55rem; border-bottom: 1px solid var(--bdr) }
