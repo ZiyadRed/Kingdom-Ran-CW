@@ -13,20 +13,20 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Own HP < 100%, enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Own HP < 100%, enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "80% Damage",
             "duration": null
           },
           {
-            "condition": "Own HP < 50%, enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Own HP < 50%, enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "100% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           }
@@ -69,8 +69,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           }
@@ -99,8 +99,8 @@
             "duration": null
           },
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -125,13 +125,13 @@
           },
           {
             "condition": null,
-            "target": "Ally generals",
+            "target": "Ally [General]",
             "effect": "Confusion Infliction Rate Up 10%",
             "duration": null
           },
           {
             "condition": "When Attacking",
-            "target": "Ally archers vs shield soldiers",
+            "target": "Ally [Archer] vs shield soldiers",
             "effect": "ATK Up 30%",
             "duration": null
           }
@@ -155,8 +155,8 @@
             "duration": null
           },
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "180% Damage",
             "duration": null
           }
@@ -179,8 +179,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -224,13 +224,13 @@
           },
           {
             "condition": "Own HP < 50%",
-            "target": "Enemy generals",
+            "target": "Enemy [General]",
             "effect": "100% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
@@ -279,8 +279,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           }
@@ -329,8 +329,8 @@
             "duration": "1 time"
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },

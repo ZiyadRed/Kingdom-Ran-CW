@@ -13,13 +13,13 @@
         "effects": [
           {
             "condition": "Other ally [Chu] members alive",
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "Morale Down 10%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "100% Damage",
             "duration": null
           }
@@ -32,13 +32,13 @@
         "effects": [
           {
             "condition": "Other ally [Chu] members alive",
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "Morale Down 20%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "110% Damage",
             "duration": null
           }
@@ -63,7 +63,7 @@
           },
           {
             "condition": null,
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "120% Damage",
             "duration": null
           }
@@ -87,8 +87,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -118,7 +118,7 @@
             "duration": null
           },
           {
-            "condition": "When enemy generals have Illusion status",
+            "condition": "When enemy [General] have Illusion status",
             "target": "Ally Karin Army",
             "effect": "ATK Up 30%",
             "duration": null
@@ -131,8 +131,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
@@ -161,8 +161,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -205,8 +205,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
@@ -217,7 +217,7 @@
             "duration": "4 turns"
           },
           {
-            "condition": "Other ally [Chu] generals alive",
+            "condition": "Other ally [Chu] [General] alive",
             "target": "Enemy [Cavalry]",
             "effect": "Skill Attack Seal 50%",
             "duration": "2 turns"
@@ -242,8 +242,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -310,8 +310,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -329,7 +329,7 @@
           },
           {
             "condition": "Poisoned enemy with highest remaining HP",
-            "target": "1 poisoned enemy general",
+            "target": "1 poisoned enemy [General]",
             "effect": "% of Remaining HP Damage 20%",
             "duration": null
           },
@@ -367,13 +367,13 @@
           },
           {
             "condition": "Poisoned enemies present",
-            "target": "All poisoned enemy generals",
+            "target": "All poisoned enemy [General]",
             "effect": "HP Seal 70%",
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
@@ -385,7 +385,7 @@
           },
           {
             "condition": "Poisoned enemy with highest remaining HP",
-            "target": "1 poisoned enemy general",
+            "target": "1 poisoned enemy [General]",
             "effect": "% of Remaining HP Damage 20%",
             "duration": null
           },
@@ -414,8 +414,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -452,20 +452,20 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "Skill Attack Seal 50%",
             "duration": "2 turns"
           },
           {
-            "condition": "All poisoned enemy generals",
-            "target": "All poisoned enemy generals",
+            "condition": "All poisoned enemy [General]",
+            "target": "All poisoned enemy [General]",
             "effect": "Skill Attack Seal 70%",
             "duration": "2 turns"
           },
           {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
@@ -477,7 +477,7 @@
           },
           {
             "condition": "Poisoned enemy with highest remaining HP",
-            "target": "1 poisoned enemy general",
+            "target": "1 poisoned enemy [General]",
             "effect": "% of Remaining HP Damage 20%",
             "duration": null
           },
@@ -506,8 +506,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -544,20 +544,20 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "Normal Attack Seal 50%",
             "duration": "4 turns"
           },
           {
             "condition": null,
-            "target": "All poisoned enemy generals",
+            "target": "All poisoned enemy [General]",
             "effect": "Normal Attack Seal 70%",
             "duration": "4 turns"
           },
           {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
@@ -569,7 +569,7 @@
           },
           {
             "condition": "Poisoned enemy with highest remaining HP",
-            "target": "1 poisoned enemy general",
+            "target": "1 poisoned enemy [General]",
             "effect": "% of Remaining HP Damage 20%",
             "duration": null
           },
@@ -599,7 +599,7 @@
         "effects": [
           {
             "condition": "Enemy with highest DEF",
-            "target": "1 enemy general",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -649,7 +649,7 @@
         "effects": [
           {
             "condition": "Enemy with highest DEF",
-            "target": "1 enemy general",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
@@ -691,7 +691,7 @@
           },
           {
             "condition": "Enemy with highest ATK",
-            "target": "1 enemy general",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           }
@@ -715,7 +715,7 @@
             "duration": null
           },
           {
-            "condition": "When enemy [Qin] generals are alive",
+            "condition": "When enemy [Qin] [General] are alive",
             "target": "Surviving ally [Ai]",
             "effect": "Morale Recovery 20%",
             "duration": null
@@ -747,7 +747,7 @@
           },
           {
             "condition": "Enemy with highest ATK",
-            "target": "1 enemy general",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           }

@@ -12,8 +12,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },

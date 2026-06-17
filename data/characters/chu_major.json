@@ -13,14 +13,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "3 enemy generals",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "3 enemy [General]",
             "effect": "Illusion Infliction 35%",
             "duration": "3 turns"
           },
@@ -45,7 +45,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy generals",
+            "target": "Enemy [General]",
             "effect": "DEF Down 10%",
             "duration": null
           }
@@ -90,7 +90,7 @@
           },
           {
             "condition": null,
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "Critical Rate Down 40%",
             "duration": null
           }
@@ -120,7 +120,7 @@
             "duration": null
           },
           {
-            "condition": "When Attacking, per ally cavalry general",
+            "condition": "When Attacking, per ally [Cavalry] [General]",
             "target": "Self",
             "effect": "ATK Up 10%",
             "duration": null
@@ -133,14 +133,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Per enemy general defeated while skill is active",
-            "target": "Other ally [Chu] generals",
+            "condition": "Per enemy [General] defeated while skill is active",
+            "target": "Other ally [Chu] [General]",
             "effect": "ATK Up 15%",
             "duration": "4 turns"
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           }
@@ -158,8 +158,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           }
@@ -191,7 +191,7 @@
           },
           {
             "condition": "Other ally [Chu] alive",
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "DEF Down 30%",
             "duration": null
           }
@@ -266,7 +266,7 @@
           },
           {
             "condition": null,
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "80% Damage",
             "duration": null
           }
@@ -322,8 +322,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -366,8 +366,8 @@
             "duration": "1 time"
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "180% Damage",
             "duration": null
           }
@@ -387,7 +387,7 @@
           },
           {
             "condition": "Ally Renpa Army (other than self) alive",
-            "target": "All ally generals",
+            "target": "All ally [General]",
             "effect": "Guard 60%",
             "duration": "2 times"
           }
@@ -411,8 +411,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -455,8 +455,8 @@
             "duration": "3 times"
           },
           {
-            "condition": "Enemy general with lowest max HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest max HP",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           }
@@ -482,7 +482,7 @@
           },
           {
             "condition": "Ally \"Renpa\" alive in same formation",
-            "target": "All ally generals",
+            "target": "All ally [General]",
             "effect": "Morale Consumption Down 30%",
             "duration": null
           }
@@ -506,14 +506,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "Confusion Infliction 70%",
             "duration": "3 turns"
           }
@@ -532,7 +532,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy generals vs archers",
+            "target": "Enemy [General] vs archers",
             "effect": "DEF Down 20%",
             "duration": null
           }
@@ -544,14 +544,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "200% Damage",
             "duration": null
           },
@@ -581,8 +581,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -634,7 +634,7 @@
           },
           {
             "condition": null,
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "Anti-Renpa Army DEF Down 30%",
             "duration": null
           },
@@ -663,14 +663,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "ATK Down 20%",
             "duration": "3 turns"
           }
@@ -682,8 +682,8 @@
         "type": "Strategy",
         "effects": [
           {
-            "condition": "Per ally infantry / per other ally archer general",
-            "target": "Self / Ally attack siege weapons",
+            "condition": "Per ally [Infantry] / per other ally [Archer] [General]",
+            "target": "Self / Ally attack [Siege Weapon]",
             "effect": "ATK Up 10%",
             "duration": null
           }
@@ -695,14 +695,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "ATK Down 20%",
             "duration": "3 turns"
           },
@@ -737,8 +737,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -756,14 +756,14 @@
         "type": "Strategy",
         "effects": [
           {
-            "condition": "Per ally infantry general",
-            "target": "Ally siege weapons",
+            "condition": "Per ally [Infantry] [General]",
+            "target": "Ally [Siege Weapon]",
             "effect": "ATK Up 10%",
             "duration": null
           },
           {
             "condition": "When Garrisoning",
-            "target": "Ally siege weapons vs infantry",
+            "target": "Ally [Siege Weapon] vs infantry",
             "effect": "DEF Up 30%",
             "duration": null
           }
@@ -775,14 +775,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Enemy [Cavalry] / Enemy siege weapons",
+            "target": "Enemy [Cavalry] / Enemy [Siege Weapon]",
             "effect": "ATK Down 20%",
             "duration": "3 turns"
           },

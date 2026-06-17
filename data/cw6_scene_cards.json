@@ -131,7 +131,7 @@
           },
           {
             "condition": "Enemy [Qin] present",
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "DEF Down, Evasion (Dodge Chance) Down 30%",
             "duration": null
           },
@@ -303,7 +303,7 @@
           },
           {
             "condition": "Ally Renpa Army (other than self) alive",
-            "target": "All ally generals",
+            "target": "All ally [General]",
             "effect": "Guard 60%",
             "duration": "2 times"
           }
@@ -343,7 +343,7 @@
           },
           {
             "condition": "Ally \"Renpa\" alive",
-            "target": "Ally generals",
+            "target": "Ally [General]",
             "effect": "HP Recovery 20%",
             "duration": null
           }
@@ -383,7 +383,7 @@
           },
           {
             "condition": "Ally \"Renpa\" alive in same formation",
-            "target": "All ally generals",
+            "target": "All ally [General]",
             "effect": "Morale Consumption Down 30%",
             "duration": null
           }
@@ -417,7 +417,7 @@
           },
           {
             "condition": null,
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "Anti-Renpa Army DEF Down 30%",
             "duration": null
           },
@@ -516,7 +516,7 @@
           {
             "condition": "Other ally [Gyokuhou] Unit alive",
             "target": "Self",
-            "effect": "Enemy generals ATK Down 40%",
+            "effect": "Enemy [General] ATK Down 40%",
             "duration": null
           }
         ]
@@ -601,13 +601,13 @@
           },
           {
             "condition": null,
-            "target": "Enemy generals",
+            "target": "Enemy [General]",
             "effect": "DEF Down vs Archers 10%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Enemy generals",
+            "target": "Enemy [General]",
             "effect": "DEF Down vs Wei Fire Dragon 10%",
             "duration": null
           },
@@ -619,7 +619,7 @@
           },
           {
             "condition": null,
-            "target": "Surviving ally \"Ranbihaku\", \"GHM\", and Wei Fire Dragon generals",
+            "target": "Surviving ally \"Ranbihaku\", \"GHM\", and Wei Fire Dragon [General]",
             "effect": "Morale Recovery 10%",
             "duration": null
           }
@@ -659,7 +659,7 @@
           },
           {
             "condition": null,
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "Poison Damage Up 100%",
             "duration": null
           },
@@ -733,19 +733,19 @@
           },
           {
             "condition": null,
-            "target": "Enemy [Wei] generals",
+            "target": "Enemy [Wei] [General]",
             "effect": "ATK Down 20%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Enemy [Chu] generals",
+            "target": "Enemy [Chu] [General]",
             "effect": "Critical Damage Down 20%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Enemy [Han] generals",
+            "target": "Enemy [Han] [General]",
             "effect": "Current HP Down 20%",
             "duration": null
           }
@@ -883,13 +883,13 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Enemy [Cavalry] generals",
+            "target": "Enemy [Cavalry] [General]",
             "effect": "ATK Down, Critical Damage Down 20%",
             "duration": null
           },
           {
             "condition": "When Garrisoning",
-            "target": "Ally siege weapons",
+            "target": "Ally [Siege Weapon]",
             "effect": "ATK Up, DEF Up 50%",
             "duration": null
           },
@@ -1119,7 +1119,7 @@
           },
           {
             "condition": "Other ally [Chu] alive",
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "DEF Down 30%",
             "duration": null
           }
@@ -1187,19 +1187,19 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Gyokuhou Unit generals",
+            "target": "Ally Gyokuhou Unit [General]",
             "effect": "Evasion (Dodge Chance) Up 30%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Gyokuhou Unit generals",
+            "target": "Ally Gyokuhou Unit [General]",
             "effect": "Attack Down Resistance Up 40%",
             "duration": null
           },
           {
             "condition": "While alive",
-            "target": "Ally Gyokuhou Unit generals",
+            "target": "Ally Gyokuhou Unit [General]",
             "effect": "HP Recovery Rate Up 30%, HP Recovery 30%",
             "duration": null
           }
@@ -1273,7 +1273,7 @@
           },
           {
             "condition": null,
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "Critical Rate Down 40%",
             "duration": null
           }

@@ -12,13 +12,13 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Per ally cavalry general",
+            "condition": "Per ally [Cavalry] [General]",
             "target": "Self",
             "effect": "DEF Up 10%",
             "duration": "3 turns"
@@ -56,8 +56,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -74,8 +74,8 @@
             "duration": null
           },
           {
-            "condition": "When Garrisoning, enemy general with highest remaining HP",
-            "target": "1 enemy general",
+            "condition": "When Garrisoning, enemy [General] with highest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "% of Remaining HP Damage 20%",
             "duration": null
           },
@@ -86,8 +86,8 @@
             "duration": null
           },
           {
-            "condition": "When Garrisoning, enemy siege weapon with lowest remaining HP",
-            "target": "1 enemy siege weapon",
+            "condition": "When Garrisoning, enemy [Siege Weapon] with lowest remaining HP",
+            "target": "1 enemy [Siege Weapon]",
             "effect": "180% Damage",
             "duration": null
           }
@@ -110,8 +110,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -161,7 +161,7 @@
           },
           {
             "condition": null,
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "90% Damage",
             "duration": null
           },
@@ -229,8 +229,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -267,8 +267,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
@@ -303,8 +303,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -323,7 +323,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally attack siege weapons",
+            "target": "Ally attack [Siege Weapon]",
             "effect": "Max HP Up 12.3%",
             "duration": null
           }
@@ -368,7 +368,7 @@
           },
           {
             "condition": "Enemy [Qin] present",
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "DEF Down, Evasion (Dodge Chance) Down 30%",
             "duration": null
           },
@@ -454,7 +454,7 @@
           },
           {
             "condition": null,
-            "target": "Other ally generals",
+            "target": "Other ally [General]",
             "effect": "Poison Infliction Rate Up / Betrayal Infliction Rate Up 25%",
             "duration": null
           }
@@ -466,8 +466,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW siege weapons",
-            "target": "Siege weapon repair",
+            "condition": "When repairing CW [Siege Weapon]",
+            "target": "[Siege Weapon] repair",
             "effect": "Ore Cost Down 2%",
             "duration": null
           }
@@ -479,8 +479,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW siege weapons",
-            "target": "Siege weapon repair",
+            "condition": "When repairing CW [Siege Weapon]",
+            "target": "[Siege Weapon] repair",
             "effect": "Material Cost Down 4.6%",
             "duration": null
           }
@@ -503,14 +503,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "3 enemy generals",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "3 enemy [General]",
             "effect": "Poison Infliction 50%",
             "duration": "4 turns"
           },
@@ -528,20 +528,20 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Own HP ≥ 90%, enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Own HP ≥ 90%, enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Own HP ≥ 90%, poisoned enemy general with highest remaining HP",
-            "target": "1 poisoned enemy general",
+            "condition": "Own HP ≥ 90%, poisoned enemy [General] with highest remaining HP",
+            "target": "1 poisoned enemy [General]",
             "effect": "100% Damage",
             "duration": null
           },
           {
-            "condition": "Own HP < 90%, enemy general with highest DEF",
-            "target": "2 enemy generals",
+            "condition": "Own HP < 90%, enemy [General] with highest DEF",
+            "target": "2 enemy [General]",
             "effect": "90% Damage",
             "duration": null
           },
@@ -553,7 +553,7 @@
           },
           {
             "condition": "Own HP < 90%, poisoned enemies present",
-            "target": "All poisoned enemy generals",
+            "target": "All poisoned enemy [General]",
             "effect": "80% Damage",
             "duration": null
           }
@@ -565,20 +565,20 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Own HP ≥ 90%, enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Own HP ≥ 90%, enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "160% Damage",
             "duration": null
           },
           {
-            "condition": "Own HP ≥ 90%, enemy general with highest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Own HP ≥ 90%, enemy [General] with highest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "Poison Infliction 40%",
             "duration": "2 turns"
           },
           {
             "condition": "Own HP < 90%",
-            "target": "Enemy generals",
+            "target": "Enemy [General]",
             "effect": "70% Damage",
             "duration": null
           },
@@ -590,7 +590,7 @@
           },
           {
             "condition": "Own HP < 90%",
-            "target": "Enemy generals",
+            "target": "Enemy [General]",
             "effect": "Poison Infliction 40%",
             "duration": "2 turns"
           }
@@ -616,7 +616,7 @@
           },
           {
             "condition": null,
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "Poison Damage Up 100%",
             "duration": null
           },

@@ -12,8 +12,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -50,7 +50,7 @@
           },
           {
             "condition": null,
-            "target": "Other ally generals / Enemy generals",
+            "target": "Other ally [General] / Enemy [General]",
             "effect": "DEF Down 20%",
             "duration": null
           },
@@ -92,8 +92,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -104,8 +104,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "When Garrisoning, enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "When Garrisoning, enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "Confusion Infliction 70%",
             "duration": "3 turns"
           }
@@ -142,14 +142,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy shield soldier with highest DEF",
-            "target": "1 enemy shield soldier",
+            "condition": "Enemy [Shield] with highest DEF",
+            "target": "1 enemy [Shield]",
             "effect": "Provoke Infliction",
             "duration": "4 turns"
           },
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "180% Damage",
             "duration": null
           },
@@ -216,8 +216,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -235,7 +235,7 @@
         "type": "Strategy",
         "effects": [
           {
-            "condition": "Per other ally [Zhao] general",
+            "condition": "Per other ally [Zhao] [General]",
             "target": "Ally [Zhao]",
             "effect": "ATK Up 10%",
             "duration": null
@@ -254,8 +254,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "180% Damage",
             "duration": null
           },
@@ -290,8 +290,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -328,8 +328,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Own HP ≥ 90%, enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Own HP ≥ 90%, enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "160% Damage",
             "duration": null
           },
@@ -340,8 +340,8 @@
             "duration": "1 time"
           },
           {
-            "condition": "Own HP < 90%, enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Own HP < 90%, enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "100% Damage",
             "duration": null
           },
@@ -352,7 +352,7 @@
             "duration": null
           },
           {
-            "condition": "Other ally [Zhao] generals' HP < 90% and surviving",
+            "condition": "Other ally [Zhao] [General]' HP < 90% and surviving",
             "target": "Other ally [Zhao]",
             "effect": "HP Recovery 30%",
             "duration": null
@@ -396,8 +396,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -429,7 +429,7 @@
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally defense siege weapons",
+            "target": "Ally defense [Siege Weapon]",
             "effect": "ATK Up 6.4%",
             "duration": null
           }
@@ -452,8 +452,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -526,9 +526,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW siege weapons",
+            "condition": "When repairing CW [Siege Weapon]",
             "target": "Self",
-            "effect": "Siege weapon repair Repair Speed Up 1.7%",
+            "effect": "[Siege Weapon] repair Repair Speed Up 1.7%",
             "duration": null
           }
         ]
@@ -539,9 +539,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW siege weapons",
+            "condition": "When repairing CW [Siege Weapon]",
             "target": "Self",
-            "effect": "Siege weapon repair Coin Consumption Down 5.5%",
+            "effect": "[Siege Weapon] repair Coin Consumption Down 5.5%",
             "duration": null
           }
         ]
@@ -562,14 +562,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
             "condition": "Enemy with highest max HP",
-            "target": "1 enemy general",
+            "target": "1 enemy [General]",
             "effect": "\"Paralysis\" Infliction 70%",
             "duration": "3 turns"
           }
@@ -618,7 +618,7 @@
         "effects": [
           {
             "condition": "The enemy with the lowest remaining strength",
-            "target": "1 enemy general",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -650,7 +650,7 @@
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally attack siege weapons",
+            "target": "Ally attack [Siege Weapon]",
             "effect": "ATK Up 5.8%",
             "duration": null
           }
@@ -672,8 +672,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -705,7 +705,7 @@
         "effects": [
           {
             "condition": "CW battle (effective even if not deployed)",
-            "target": "Ally defense siege weapons",
+            "target": "Ally defense [Siege Weapon]",
             "effect": "DEF Up 6.4%",
             "duration": null
           }
@@ -729,7 +729,7 @@
         "effects": [
           {
             "condition": "The enemy with the lowest remaining strength",
-            "target": "1 enemy general",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -767,7 +767,7 @@
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally attack siege weapons",
+            "target": "Ally attack [Siege Weapon]",
             "effect": "Max HP Up 28.3%",
             "duration": null
           }
@@ -790,8 +790,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -815,9 +815,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW siege weapons",
+            "condition": "When repairing CW [Siege Weapon]",
             "target": "Self",
-            "effect": "Siege weapon repair Coin Consumption Down 3.2%",
+            "effect": "[Siege Weapon] repair Coin Consumption Down 3.2%",
             "duration": null
           }
         ]
@@ -852,8 +852,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },

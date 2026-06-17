@@ -770,8 +770,8 @@ export function isTargetedBy(target,G,owner,team){
   for(const gn of Object.keys(GROUPS)){
     if(t.toLowerCase().includes(gn.toLowerCase())) return inGroup(G,gn)
   }
-  // "All ally generals", "Ally generals" → everyone
-  if(/all\s+all(?:ies|y)|(?:^|\s)ally\s+generals?/i.test(t)) return true
+  // "All ally generals", "Ally generals", "Ally [General]" → everyone
+  if(/all\s+all(?:ies|y)|(?:^|\s)ally\s+\[?generals?\]?/i.test(t)) return true
   // "Other ally generals" / "Other ally" → everyone except self
   if(/other\s+ally/i.test(t)) return G.id!==owner.id
   // Bare country names: "Ally Qin", "Ally Zhao", "Other ally Chu", "Ally Mountain Folk", etc.
@@ -887,8 +887,8 @@ export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false){
 }
 
 export function normalizeEnemyTarget(t){
-  const tl=t.toLowerCase()
-  if(/^enemy\s+generals?\s+vs\b/i.test(t)) return 'Enemy generals'
+  const tl=t.toLowerCase().replace(/[\[\]]/g,'')
+  if(/^enemy\s+generals?\s+vs\b/.test(tl)) return 'Enemy generals'
   if(/all\s+enemy|all\s+generals/i.test(tl)) return 'All enemies'
   const ut=UNIT_TYPE_LIST.find(u=>tl.includes(u.toLowerCase()))
   if(ut) return `Enemy ${ut}`

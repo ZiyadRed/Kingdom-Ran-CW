@@ -13,20 +13,20 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy archer general with lowest remaining HP",
-            "target": "1 enemy archer general",
+            "condition": "Enemy [Archer] [General] with lowest remaining HP",
+            "target": "1 enemy [Archer] [General]",
             "effect": "120% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "120% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy archer general with highest remaining HP",
-            "target": "1 enemy archer general",
+            "condition": "Enemy [Archer] [General] with highest remaining HP",
+            "target": "1 enemy [Archer] [General]",
             "effect": "Normal Attack Seal Infliction 70%",
             "duration": "2 turns"
           }
@@ -50,7 +50,7 @@
             "duration": null
           },
           {
-            "condition": "When enemy archer general is alive",
+            "condition": "When enemy [Archer] [General] is alive",
             "target": "Ally [Qin]",
             "effect": "Hit Rate Up 30%",
             "duration": null
@@ -63,20 +63,20 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy archer general with lowest remaining HP",
-            "target": "1 enemy archer general",
+            "condition": "Enemy [Archer] [General] with lowest remaining HP",
+            "target": "1 enemy [Archer] [General]",
             "effect": "160% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "160% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy archer general with highest remaining HP",
-            "target": "1 enemy archer general",
+            "condition": "Enemy [Archer] [General] with highest remaining HP",
+            "target": "1 enemy [Archer] [General]",
             "effect": "Skill Attack Seal Infliction 70%",
             "duration": "2 turns"
           }
@@ -100,14 +100,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy archer with lowest remaining HP",
-            "target": "1 enemy archer",
+            "condition": "Enemy [Archer] with lowest remaining HP",
+            "target": "1 enemy [Archer]",
             "effect": "100% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           }
@@ -150,14 +150,14 @@
             "duration": "2 turns"
           },
           {
-            "condition": "Enemy archer with lowest remaining HP",
-            "target": "1 enemy archer",
+            "condition": "Enemy [Archer] with lowest remaining HP",
+            "target": "1 enemy [Archer]",
             "effect": "2-Hit 100% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "180% Damage",
             "duration": null
           }
@@ -181,14 +181,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy siege weapon with lowest remaining HP",
-            "target": "1 enemy siege weapon",
+            "condition": "Enemy [Siege Weapon] with lowest remaining HP",
+            "target": "1 enemy [Siege Weapon]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -206,14 +206,14 @@
         "type": "Strategy",
         "effects": [
           {
-            "condition": "Per ally Ousen Army general besides self",
+            "condition": "Per ally Ousen Army [General] besides self",
             "target": "Ally [Qin]",
             "effect": "DEF Up 10%",
             "duration": null
           },
           {
             "condition": "When ally Akou is alive",
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "DEF Down 20%",
             "duration": null
           }
@@ -225,20 +225,20 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy siege weapon with lowest remaining HP",
-            "target": "1 enemy siege weapon",
+            "condition": "Enemy [Siege Weapon] with lowest remaining HP",
+            "target": "1 enemy [Siege Weapon]",
             "effect": "150% Damage",
             "duration": null
           },
           {
             "condition": "When ally Akou is alive",
-            "target": "1 enemy general with highest ATK",
+            "target": "1 enemy [General] with highest ATK",
             "effect": "Confusion Infliction 100%",
             "duration": "3 turns"
           }
@@ -262,8 +262,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -312,8 +312,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "180% Damage",
             "duration": null
           },
@@ -342,8 +342,8 @@
         "type": "Strategy",
         "effects": [
           {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
             "effect": "DEF Down 50%",
             "duration": null
           },
@@ -367,8 +367,8 @@
             "duration": "4 turns"
           },
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           }
@@ -460,8 +460,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -480,19 +480,19 @@
         "effects": [
           {
             "condition": "Other ally Hi Shin Unit member alive",
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "Critical Rate Down 20%",
             "duration": "2 turns"
           },
           {
             "condition": "Other ally Kanki Army member alive",
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "Critical Damage Down 20%",
             "duration": "2 turns"
           },
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           }
@@ -511,13 +511,13 @@
           },
           {
             "condition": "Per other ally Hi Shin Unit member",
-            "target": "All ally generals",
+            "target": "All ally [General]",
             "effect": "ATK Up 10%",
             "duration": null
           },
           {
             "condition": "Per other ally Kanki Army member",
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "DEF Down 10%",
             "duration": null
           }
@@ -542,7 +542,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "ATK Down 20%",
             "duration": null
           }
@@ -554,14 +554,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy siege weapon with lowest DEF",
-            "target": "1 enemy siege weapon",
+            "condition": "Enemy [Siege Weapon] with lowest DEF",
+            "target": "1 enemy [Siege Weapon]",
             "effect": "100% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
             "effect": "160% Damage",
             "duration": null
           },
@@ -585,14 +585,14 @@
             "duration": "4 turns"
           },
           {
-            "condition": "Enemy siege weapon with lowest DEF",
-            "target": "1 enemy siege weapon",
+            "condition": "Enemy [Siege Weapon] with lowest DEF",
+            "target": "1 enemy [Siege Weapon]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
@@ -622,14 +622,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Feared enemy general present",
-            "target": "All enemy generals",
+            "condition": "Feared enemy [General] present",
+            "target": "All enemy [General]",
             "effect": "Morale Down 20%",
             "duration": null
           }
@@ -648,7 +648,7 @@
           },
           {
             "condition": null,
-            "target": "All ally generals",
+            "target": "All ally [General]",
             "effect": "Fear Infliction Rate Up 30%",
             "duration": null
           }
@@ -660,26 +660,26 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest remaining morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest remaining morale",
+            "target": "1 enemy [General]",
             "effect": "Fear Infliction 50%",
             "duration": "4 turns"
           },
           {
             "condition": "Per ally Kanki Army member",
-            "target": "All feared enemy generals",
+            "target": "All feared enemy [General]",
             "effect": "DEF Down 10%",
             "duration": "4 turns"
           },
           {
-            "condition": "Feared enemy general with lowest remaining HP",
-            "target": "1 feared enemy general",
+            "condition": "Feared enemy [General] with lowest remaining HP",
+            "target": "1 feared enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           }
@@ -703,14 +703,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy siege weapon with lowest remaining HP",
-            "target": "1 enemy siege weapon",
+            "condition": "Enemy [Siege Weapon] with lowest remaining HP",
+            "target": "1 enemy [Siege Weapon]",
             "effect": "100% Damage",
             "duration": null
           }
@@ -759,14 +759,14 @@
             "duration": "4 turns"
           },
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy siege weapon with lowest remaining HP",
-            "target": "1 enemy siege weapon",
+            "condition": "Enemy [Siege Weapon] with lowest remaining HP",
+            "target": "1 enemy [Siege Weapon]",
             "effect": "100% Damage",
             "duration": null
           }
@@ -790,8 +790,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -846,8 +846,8 @@
             "duration": "4 turns"
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
@@ -897,8 +897,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -953,8 +953,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "180% Damage",
             "duration": null
           }
@@ -978,14 +978,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Per other ally cavalry member",
+            "condition": "Per other ally [Cavalry] member",
             "target": "Ally [Cavalry]",
             "effect": "ATK Up 10%",
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           }
@@ -1017,19 +1017,19 @@
         "effects": [
           {
             "condition": "Poisoned enemy with lowest remaining HP",
-            "target": "1 poisoned enemy general",
+            "target": "1 poisoned enemy [General]",
             "effect": "100% Damage",
             "duration": null
           },
           {
             "condition": "Burned enemy with lowest remaining HP",
-            "target": "1 burned enemy general",
+            "target": "1 burned enemy [General]",
             "effect": "100% Damage",
             "duration": null
           },
           {
             "condition": "Feared enemy with lowest remaining HP",
-            "target": "1 feared enemy general",
+            "target": "1 feared enemy [General]",
             "effect": "100% Damage",
             "duration": null
           },
@@ -1040,8 +1040,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "When Attacking, enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "When Attacking, enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           }
@@ -1071,8 +1071,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "200% Damage",
             "duration": null
           }
@@ -1096,8 +1096,8 @@
             "duration": null
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "240% Damage",
             "duration": null
           }
@@ -1139,20 +1139,20 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
             "condition": null,
-            "target": "All ally generals",
+            "target": "All ally [General]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           },
           {
             "condition": "Other allies",
-            "target": "Ally generals",
+            "target": "Ally [General]",
             "effect": "Provoke",
             "duration": "3 turns"
           }
@@ -1164,26 +1164,26 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "Betrayal Infliction 50%",
             "duration": "3 turns"
           },
           {
             "condition": "Betrayal-afflicted",
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "Reckless Infliction 100%",
             "duration": "4 turns"
           },
           {
             "condition": "Betrayal-afflicted",
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "Critical Rate Up 30%",
             "duration": "4 turns"
           },
           {
-            "condition": "Enemy general with lowest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           }
@@ -1220,14 +1220,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
             "condition": "When Attacking",
-            "target": "All ally generals",
+            "target": "All ally [General]",
             "effect": "ATK Up 10%",
             "duration": "3 turns"
           }
@@ -1239,13 +1239,13 @@
         "type": "Strategy",
         "effects": [
           {
-            "condition": "Per other ally [Qin] general",
+            "condition": "Per other ally [Qin] [General]",
             "target": "Ally [Qin]",
             "effect": "ATK Up 5%",
             "duration": null
           },
           {
-            "condition": "Per other ally [Hishin] general",
+            "condition": "Per other ally [Hishin] [General]",
             "target": "Ally [Hishin] Unit",
             "effect": "ATK Up 5%",
             "duration": null
@@ -1258,8 +1258,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "160% Damage",
             "duration": null
           },
@@ -1287,13 +1287,13 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Per other ally infantry general",
+            "condition": "Per other ally [Infantry] [General]",
             "target": "Self",
             "effect": "ATK Up 10%",
             "duration": "3 turns"
@@ -1318,8 +1318,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "160% Damage",
             "duration": null
           }
@@ -1337,8 +1337,8 @@
             "duration": "2 turns"
           },
           {
-            "condition": "3 enemy generals with lowest ATK",
-            "target": "3 enemy generals",
+            "condition": "3 enemy [General] with lowest ATK",
+            "target": "3 enemy [General]",
             "effect": "80% Damage each",
             "duration": null
           },

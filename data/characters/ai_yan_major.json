@@ -20,8 +20,8 @@
             "duration": "4 turns"
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "2 enemy generals",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "2 enemy [General]",
             "effect": "100% Damage",
             "duration": null
           }
@@ -33,7 +33,7 @@
         "type": "Strategy",
         "effects": [
           {
-            "condition": "vs Qin generals",
+            "condition": "vs Qin [General]",
             "target": "Ally \"Queen Biki\" and ally [Ai]",
             "effect": "DEF Up 20%",
             "duration": null
@@ -71,13 +71,13 @@
           },
           {
             "condition": null,
-            "target": "Enemy generals",
+            "target": "Enemy [General]",
             "effect": "100% Damage",
             "duration": null
           },
           {
-            "condition": "When Garrisoning, enemy general with highest remaining HP",
-            "target": "1 enemy general",
+            "condition": "When Garrisoning, enemy [General] with highest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "% of remaining HP Damage 20%",
             "duration": null
           },
@@ -106,13 +106,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally cavalry vs Qin",
+            "target": "Ally [Cavalry] vs Qin",
             "effect": "ATK Up 30%",
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           }
@@ -130,8 +130,8 @@
             "duration": null
           },
           {
-            "condition": "When enemy [Qin] generals are present",
-            "target": "Ally generals",
+            "condition": "When enemy [Qin] [General] are present",
+            "target": "Ally [General]",
             "effect": "Critical Rate Up 20%",
             "duration": null
           }
@@ -149,8 +149,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           }
@@ -173,14 +173,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy [Qin] general with highest ATK",
-            "target": "1 enemy [Qin] general",
+            "condition": "Enemy [Qin] [General] with highest ATK",
+            "target": "1 enemy [Qin] [General]",
             "effect": "Betrayal Infliction 20%",
             "duration": "3 turns"
           }
@@ -199,7 +199,7 @@
           },
           {
             "condition": null,
-            "target": "Other ally generals",
+            "target": "Other ally [General]",
             "effect": "Confusion Infliction Rate Up 10%",
             "duration": null
           },
@@ -217,26 +217,26 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy [Qin] generals alive",
+            "condition": "Enemy [Qin] [General] alive",
             "target": "Ally [Ai]",
             "effect": "ATK Up 20%",
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy [Qin] general with highest ATK",
-            "target": "1 enemy [Qin] general",
+            "condition": "Enemy [Qin] [General] with highest ATK",
+            "target": "1 enemy [Qin] [General]",
             "effect": "Betrayal Infliction 20%",
             "duration": "3 turns"
           },
           {
-            "condition": "Confused enemy generals present",
-            "target": "Enemy generals",
+            "condition": "Confused enemy [General] present",
+            "target": "Enemy [General]",
             "effect": "Betrayal Infliction 40%",
             "duration": "3 turns"
           }
@@ -259,14 +259,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "140% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy [Qin] general's HP ≤ 50%, enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [Qin] [General]'s HP ≤ 50%, enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "60% Damage",
             "duration": null
           },
@@ -284,14 +284,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general's HP ≤ 50%, enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General]'s HP ≤ 50%, enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "60% Damage",
             "duration": null
           },
@@ -309,14 +309,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
             "effect": "160% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general's HP ≤ 50%, enemy general with lowest remaining HP",
-            "target": "2 enemy generals",
+            "condition": "Enemy [General]'s HP ≤ 50%, enemy [General] with lowest remaining HP",
+            "target": "2 enemy [General]",
             "effect": "60% Damage",
             "duration": null
           },
@@ -352,8 +352,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -371,7 +371,7 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Per ally general attack count",
+            "condition": "Per ally [General] attack count",
             "target": "Other ally [Yan]",
             "effect": "ATK Up 2% (max 30%)",
             "duration": "4 turns"
@@ -383,8 +383,8 @@
             "duration": null
           },
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "2-Hit 80% Damage",
             "duration": null
           }
@@ -396,8 +396,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "3-Hit 100% Damage",
             "duration": null
           },
@@ -408,8 +408,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "3 enemy generals",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "3 enemy [General]",
             "effect": "Confusion Infliction 20%",
             "duration": "3 turns"
           }
@@ -433,8 +433,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -472,7 +472,7 @@
         "effects": [
           {
             "condition": "Random",
-            "target": "2 enemy generals",
+            "target": "2 enemy [General]",
             "effect": "100% Damage",
             "duration": null
           },
@@ -540,14 +540,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally cavalry vs cavalry",
+            "target": "Ally [Cavalry] vs cavalry",
             "effect": "ATK Up 30%",
             "duration": "3 turns"
           }
@@ -560,13 +560,13 @@
         "effects": [
           {
             "condition": "Random",
-            "target": "Enemy generals",
+            "target": "Enemy [General]",
             "effect": "6-Hit 50% Damage",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Enemy generals",
+            "target": "Enemy [General]",
             "effect": "HP Seal 50%",
             "duration": "4 turns"
           }

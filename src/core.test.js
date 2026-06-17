@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { parseBuffEffect, simulate, ALL, META_TEAMS, findCharByName, calcCwStats } from './core.jsx'
+import { parseBuffEffect, simulate, ALL, META_TEAMS, findCharByName, calcCwStats, isTargetedBy, normalizeEnemyTarget } from './core.jsx'
 
 // The buff-text parser is the most intricate pure function in the engine.
 // These lock its behaviour against the documented terminology + formats.
@@ -40,6 +40,33 @@ describe('parseBuffEffect', () => {
   it('returns nothing for empty input', () => {
     expect(parseBuffEffect('')).toEqual([])
     expect(parseBuffEffect(null)).toEqual([])
+  })
+})
+
+// "general" is the universal unit and is bracketed as a tag ([General]); the
+// matcher must treat the bracketed and word forms identically (display-only).
+describe('bracket-tolerant target matching', () => {
+  const owner = { id: 'a', name_en: 'A', country: 'qin', unit_type: 'Cavalry' }
+  const ally = { id: 'b', name_en: 'B', country: 'wei', unit_type: 'Shield' }
+  const team = [owner, ally]
+
+  it('treats "Ally [General]" like "Ally generals" (everyone)', () => {
+    expect(isTargetedBy('Ally [General]', ally, owner, team)).toBe(true)
+    expect(isTargetedBy('Ally generals', ally, owner, team)).toBe(true)
+  })
+  it('"Other ally [General]" excludes self', () => {
+    expect(isTargetedBy('Other ally [General]', owner, owner, team)).toBe(false)
+    expect(isTargetedBy('Other ally [General]', ally, owner, team)).toBe(true)
+  })
+  it('still resolves unit-type + country tags', () => {
+    expect(isTargetedBy('Ally [Shield]', ally, owner, team)).toBe(true)
+    expect(isTargetedBy('Ally [Shield]', owner, owner, team)).toBe(false)
+    expect(isTargetedBy('Ally [Wei]', ally, owner, team)).toBe(true)
+  })
+  it('normalizeEnemyTarget understands bracketed forms', () => {
+    expect(normalizeEnemyTarget('Enemy [General] vs Qin')).toBe('Enemy generals')
+    expect(normalizeEnemyTarget('All enemy [General]')).toBe('All enemies')
+    expect(normalizeEnemyTarget('Enemy [Cavalry]')).toBe('Enemy Cavalry')
   })
 })
 

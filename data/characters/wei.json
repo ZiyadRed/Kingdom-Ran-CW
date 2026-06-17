@@ -12,14 +12,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "When Attacking, enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "When Attacking, enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "When Garrisoning, enemy general with highest remaining HP",
-            "target": "1 enemy general",
+            "condition": "When Garrisoning, enemy [General] with highest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "% of Remaining HP Damage 20%",
             "duration": null
           },
@@ -62,7 +62,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Enemy generals",
+            "target": "Enemy [General]",
             "effect": "Critical Rate Down 20%",
             "duration": null
           }
@@ -80,8 +80,8 @@
             "duration": "4 turns"
           },
           {
-            "condition": "When Attacking, enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "When Attacking, enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "180% Damage",
             "duration": null
           },
@@ -99,7 +99,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Enemy generals",
+            "target": "Enemy [General]",
             "effect": "100% Damage",
             "duration": null
           },
@@ -155,14 +155,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Own HP ≥ 50%, enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Own HP ≥ 50%, enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "160% Damage",
             "duration": null
           },
           {
-            "condition": "Own HP < 50%, enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Own HP < 50%, enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "100% Damage",
             "duration": null
           },
@@ -173,8 +173,8 @@
             "duration": null
           },
           {
-            "condition": "When Garrisoning, enemy siege weapon with lowest remaining HP",
-            "target": "1 enemy siege weapon",
+            "condition": "When Garrisoning, enemy [Siege Weapon] with lowest remaining HP",
+            "target": "1 enemy [Siege Weapon]",
             "effect": "130% Damage",
             "duration": null
           }
@@ -205,14 +205,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Own HP ≥ 90%, enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Own HP ≥ 90%, enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
           {
-            "condition": "Own HP < 90%, enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Own HP < 90%, enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "100% Damage",
             "duration": null
           },
@@ -229,8 +229,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "When Garrisoning, enemy infantry / enemy siege weapon with highest ATK",
-            "target": "1 enemy infantry / 1 enemy siege weapon",
+            "condition": "When Garrisoning, enemy [Infantry] / enemy [Siege Weapon] with highest ATK",
+            "target": "1 enemy [Infantry] / 1 enemy [Siege Weapon]",
             "effect": "130% Damage",
             "duration": null
           }
@@ -286,8 +286,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -378,8 +378,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -465,8 +465,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           }
@@ -484,8 +484,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "160% Damage",
             "duration": null
           }
@@ -503,8 +503,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
@@ -534,8 +534,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -578,8 +578,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
@@ -590,8 +590,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "When Garrisoning, enemy siege weapon with lowest DEF",
-            "target": "1 enemy siege weapon",
+            "condition": "When Garrisoning, enemy [Siege Weapon] with lowest DEF",
+            "target": "1 enemy [Siege Weapon]",
             "effect": "120% Damage",
             "duration": null
           }
@@ -615,14 +615,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest DEF and own HP > 90%",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF and own HP > 90%",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with highest DEF and own HP < 90%",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF and own HP < 90%",
+            "target": "1 enemy [General]",
             "effect": "160% Damage + HP Drain 60%",
             "duration": null
           },
@@ -659,20 +659,20 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest DEF and own HP > 90%",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF and own HP > 90%",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
           {
             "condition": "Own HP > 90%",
-            "target": "Enemy [Qin] / Enemy siege weapons",
+            "target": "Enemy [Qin] / Enemy [Siege Weapon]",
             "effect": "ATK Down 20%",
             "duration": "3 turns"
           },
           {
             "condition": "Own HP < 90%",
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "70% Damage",
             "duration": null
           },
@@ -710,13 +710,13 @@
           },
           {
             "condition": null,
-            "target": "Enemy generals",
+            "target": "Enemy [General]",
             "effect": "DEF Down vs Archers 10%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Enemy generals",
+            "target": "Enemy [General]",
             "effect": "DEF Down vs Wei Fire Dragon 10%",
             "duration": null
           },
@@ -728,7 +728,7 @@
           },
           {
             "condition": null,
-            "target": "Surviving ally \"Ranbihaku\", \"GHM\", and Wei Fire Dragon generals",
+            "target": "Surviving ally \"Ranbihaku\", \"GHM\", and Wei Fire Dragon [General]",
             "effect": "Morale Recovery 10%",
             "duration": null
           }
@@ -750,14 +750,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "3 enemy generals",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "3 enemy [General]",
             "effect": "\"Illusion\"35%",
             "duration": "3 turns"
           }
@@ -806,8 +806,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -838,9 +838,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW siege weapons",
+            "condition": "When repairing CW [Siege Weapon]",
             "target": "Self",
-            "effect": "Siege weapon repair Ore Consumption Down 6.2%",
+            "effect": "[Siege Weapon] repair Ore Consumption Down 6.2%",
             "duration": null
           }
         ]
@@ -869,8 +869,8 @@
             "duration": "4 turns"
           },
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "2-Hit 100% Damage",
             "duration": null
           }
@@ -894,7 +894,7 @@
             "duration": null
           },
           {
-            "condition": "Per other ally Wei Fire Dragon general",
+            "condition": "Per other ally Wei Fire Dragon [General]",
             "target": "Self",
             "effect": "ATK Up 10%",
             "duration": null
@@ -913,8 +913,8 @@
             "duration": "4 turns"
           },
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "2-Hit 100% Damage",
             "duration": null
           }
@@ -968,9 +968,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW siege weapons",
+            "condition": "When repairing CW [Siege Weapon]",
             "target": "Self",
-            "effect": "Siege weapon repair Material Consumption Down 6.2%",
+            "effect": "[Siege Weapon] repair Material Consumption Down 6.2%",
             "duration": null
           }
         ]

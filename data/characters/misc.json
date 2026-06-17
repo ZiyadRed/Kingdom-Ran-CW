@@ -112,8 +112,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -167,8 +167,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -192,8 +192,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW siege weapons",
-            "target": "Siege weapon repair",
+            "condition": "When repairing CW [Siege Weapon]",
+            "target": "[Siege Weapon] repair",
             "effect": "Currency Cost Down 3.2%",
             "duration": null
           }
@@ -206,7 +206,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally attack siege weapons",
+            "target": "Ally attack [Siege Weapon]",
             "effect": "DEF Up 6.4%",
             "duration": null
           }
@@ -229,14 +229,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy siege weapon with lowest remaining HP",
-            "target": "1 enemy siege weapon",
+            "condition": "Enemy [Siege Weapon] with lowest remaining HP",
+            "target": "1 enemy [Siege Weapon]",
             "effect": "100% Damage",
             "duration": null
           }
@@ -249,7 +249,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally attack siege weapons",
+            "target": "Ally attack [Siege Weapon]",
             "effect": "ATK Up 2.8%",
             "duration": null
           }
@@ -261,8 +261,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW siege weapons",
-            "target": "Siege weapon repair",
+            "condition": "When repairing CW [Siege Weapon]",
+            "target": "[Siege Weapon] repair",
             "effect": "Material Cost Down 6.2%",
             "duration": null
           }
@@ -318,7 +318,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally defense siege weapons",
+            "target": "Ally defense [Siege Weapon]",
             "effect": "Max HP Up 28.3%",
             "duration": null
           }
@@ -341,14 +341,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "3 enemy generals",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "3 enemy [General]",
             "effect": "Illusion Infliction 35%",
             "duration": "3 turns"
           },
@@ -366,8 +366,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW siege weapons",
-            "target": "Siege weapon repair",
+            "condition": "When repairing CW [Siege Weapon]",
+            "target": "[Siege Weapon] repair",
             "effect": "Currency Cost Down 2.4%",
             "duration": null
           }
@@ -379,8 +379,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW siege weapons",
-            "target": "Siege weapon repair",
+            "condition": "When repairing CW [Siege Weapon]",
+            "target": "[Siege Weapon] repair",
             "effect": "Repair Speed Up 3.9%",
             "duration": null
           }
@@ -402,14 +402,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "2 enemy generals",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "2 enemy [General]",
             "effect": "Illusion Infliction 60%",
             "duration": "3 turns"
           }
@@ -422,7 +422,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally attack siege weapons",
+            "target": "Ally attack [Siege Weapon]",
             "effect": "DEF Up 2.8%",
             "duration": null
           }
@@ -434,8 +434,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW siege weapons",
-            "target": "Siege weapon repair",
+            "condition": "When repairing CW [Siege Weapon]",
+            "target": "[Siege Weapon] repair",
             "effect": "Ore Cost Down 6.2%",
             "duration": null
           }
@@ -458,8 +458,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -470,8 +470,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "3 enemy generals",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "3 enemy [General]",
             "effect": "Illusion Infliction 35%",
             "duration": "3 turns"
           }
@@ -496,8 +496,8 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW siege weapons",
-            "target": "Siege weapon repair",
+            "condition": "When repairing CW [Siege Weapon]",
+            "target": "[Siege Weapon] repair",
             "effect": "Currency Cost Down 6.4%",
             "duration": null
           }
@@ -519,8 +519,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -531,8 +531,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "2 enemy generals",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "2 enemy [General]",
             "effect": "Paralysis Infliction 50%",
             "duration": "3 turns"
           }

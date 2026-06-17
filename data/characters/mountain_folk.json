@@ -12,8 +12,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -50,7 +50,7 @@
           },
           {
             "condition": "Random",
-            "target": "3 enemy generals",
+            "target": "3 enemy [General]",
             "effect": "60% Damage",
             "duration": null
           }
@@ -62,20 +62,20 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "2-Hit 80% Damage",
             "duration": null
           },
           {
             "condition": "Other ally [Qin] or [Mountain Folk] alive, first enemy in formation",
-            "target": "1 enemy general",
+            "target": "1 enemy [General]",
             "effect": "2-Hit 80% Damage",
             "duration": null
           },
           {
-            "condition": "When Attacking, enemy general with lowest remaining HP",
-            "target": "1 enemy general",
+            "condition": "When Attacking, enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
             "effect": "100% Damage",
             "duration": null
           }
@@ -137,14 +137,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy archer with highest max morale",
-            "target": "1 enemy archer",
+            "condition": "Enemy [Archer] with highest max morale",
+            "target": "1 enemy [Archer]",
             "effect": "100% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "2-Hit 120% Damage",
             "duration": null
           }
@@ -168,8 +168,8 @@
             "duration": null
           },
           {
-            "condition": "When enemy archers are alive",
-            "target": "All enemy generals",
+            "condition": "When enemy [Archer] are alive",
+            "target": "All enemy [General]",
             "effect": "ATK Down 30%",
             "duration": null
           }
@@ -193,8 +193,8 @@
             "duration": null
           },
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "2-Hit 120% Damage",
             "duration": null
           }
@@ -217,8 +217,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
@@ -267,8 +267,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "190% Damage",
             "duration": null
           },
@@ -315,8 +315,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "2-Hit 140% Damage",
             "duration": null
           }
@@ -341,7 +341,7 @@
           },
           {
             "condition": "When ally Kitari is alive",
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "ATK Down 30%",
             "duration": null
           }
@@ -359,8 +359,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "2-Hit 160% Damage",
             "duration": null
           },
@@ -389,14 +389,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
             "effect": "120% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy shield soldier with lowest DEF",
-            "target": "1 enemy shield soldier",
+            "condition": "Enemy [Shield] with lowest DEF",
+            "target": "1 enemy [Shield]",
             "effect": "120% Damage",
             "duration": null
           },
@@ -439,14 +439,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general earliest in formation order",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] earliest in formation order",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy shield soldier earliest in formation order",
-            "target": "1 enemy shield soldier",
+            "condition": "Enemy [Shield] earliest in formation order",
+            "target": "1 enemy [Shield]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -488,7 +488,7 @@
           },
           {
             "condition": null,
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "80% Damage",
             "duration": null
           }
@@ -538,7 +538,7 @@
           },
           {
             "condition": null,
-            "target": "All enemy generals",
+            "target": "All enemy [General]",
             "effect": "100% Damage",
             "duration": null
           }
@@ -561,8 +561,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with lowest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
             "effect": "2-Hit 100% Damage",
             "duration": null
           },
@@ -605,8 +605,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general earliest in formation order",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] earliest in formation order",
+            "target": "1 enemy [General]",
             "effect": "2-Hit 120% Damage",
             "duration": null
           },
@@ -647,8 +647,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           }
@@ -703,8 +703,8 @@
             "duration": null
           },
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           }
@@ -746,9 +746,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW siege weapons",
+            "condition": "When repairing CW [Siege Weapon]",
             "target": "Self",
-            "effect": "Siege weapon repair Ore Consumption Down 2.7%",
+            "effect": "[Siege Weapon] repair Ore Consumption Down 2.7%",
             "duration": null
           }
         ]
@@ -783,8 +783,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest DEF",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest DEF",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
@@ -814,8 +814,8 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Enemy general with highest max morale",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
             "effect": "130% Damage",
             "duration": null
           }
@@ -827,15 +827,15 @@
         "type": "Strategy",
         "effects": [
           {
-            "condition": "When Attacking, Ally siege weapon with highest ATK",
-            "target": "Ally siege weapons",
-            "effect": "1 siege weapon ATK Up 20%",
+            "condition": "When Attacking, Ally [Siege Weapon] with highest ATK",
+            "target": "Ally [Siege Weapon]",
+            "effect": "1 [Siege Weapon] ATK Up 20%",
             "duration": null
           },
           {
-            "condition": "When Attacking, Ally siege weapon with highest ATK, Per other ally [Mountain Folk]",
-            "target": "Ally siege weapons",
-            "effect": "1 siege weapon ATK Up 5%",
+            "condition": "When Attacking, Ally [Siege Weapon] with highest ATK, Per other ally [Mountain Folk]",
+            "target": "Ally [Siege Weapon]",
+            "effect": "1 [Siege Weapon] ATK Up 5%",
             "duration": null
           }
         ]
@@ -857,14 +857,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy siege weapon with highest ATK",
-            "target": "1 enemy siege weapon",
+            "condition": "Enemy [Siege Weapon] with highest ATK",
+            "target": "1 enemy [Siege Weapon]",
             "effect": "100% Damage",
             "duration": null
           }
@@ -889,9 +889,9 @@
         "type": "Internal Affairs",
         "effects": [
           {
-            "condition": "When repairing CW siege weapons",
+            "condition": "When repairing CW [Siege Weapon]",
             "target": "Self",
-            "effect": "Siege weapon repair Material Consumption Down 5.5%",
+            "effect": "[Siege Weapon] repair Material Consumption Down 5.5%",
             "duration": null
           }
         ]
@@ -945,7 +945,7 @@
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally attack siege weapons",
+            "target": "Ally attack [Siege Weapon]",
             "effect": "ATK Up 4.8%",
             "duration": null
           }
@@ -967,14 +967,14 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy general with highest ATK",
-            "target": "1 enemy general",
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
           },
           {
-            "condition": "Enemy siege weapon with highest ATK",
-            "target": "1 enemy siege weapon",
+            "condition": "Enemy [Siege Weapon] with highest ATK",
+            "target": "1 enemy [Siege Weapon]",
             "effect": "100% Damage",
             "duration": null
           }
@@ -1000,7 +1000,7 @@
         "effects": [
           {
             "condition": "CW battle (effective even when not deployed)",
-            "target": "Ally defense siege weapons",
+            "target": "Ally defense [Siege Weapon]",
             "effect": "ATK Up 4.8%",
             "duration": null
           }
