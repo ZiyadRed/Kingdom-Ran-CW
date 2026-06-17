@@ -90,7 +90,7 @@ describe('character data', () => {
   })
 
   it('resolves the current custom meta teams to complete four-member rosters', () => {
-    for (const name of ['Yan', 'Moubo', 'Renpa v2', 'Ai', 'Hakuki + Ousen']) {
+    for (const name of ['Yan', 'Moubo', 'Renpa v2', 'Ai', 'Hakuki + Ousen', 'Karin Army', 'Ousen v3']) {
       const team = META_TEAMS.find((t) => t.name === name)
       expect(team?.members).toHaveLength(4)
       expect(team.members.map(findCharByName).filter(Boolean)).toHaveLength(4)
