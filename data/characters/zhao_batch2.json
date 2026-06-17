@@ -368,19 +368,13 @@
           {
             "condition": null,
             "target": "Ally Zhao",
-            "effect": "DEF Up 20％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Zhao",
-            "effect": "Anti-[Qin] DEF Up 30%",
+            "effect": "DEF Up 20%, Anti-[Qin] DEF Up 30%",
             "duration": null
           },
           {
             "condition": "Enemy [Qin] or [Mountain Folk] alive",
             "target": "Self",
-            "effect": "HP Recovery 20％",
+            "effect": "HP Recovery 20%",
             "duration": null
           }
         ]
@@ -410,7 +404,7 @@
           {
             "condition": null,
             "target": "Other ally",
-            "effect": "[Shield] DEF Up 20％",
+            "effect": "[Shield] DEF Up 20%",
             "duration": "3 turns"
           }
         ]
@@ -423,7 +417,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Shield]",
-            "effect": "ATK Up 4.3％",
+            "effect": "ATK Up 4.3%",
             "duration": null
           }
         ]
@@ -436,7 +430,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally defense siege weapons",
-            "effect": "ATK Up 6.4％",
+            "effect": "ATK Up 6.4%",
             "duration": null
           }
         ]
@@ -466,7 +460,7 @@
           {
             "condition": null,
             "target": "Ally [Shield]",
-            "effect": "DEF Up 20％",
+            "effect": "DEF Up 20%",
             "duration": "3 turns"
           }
         ]
@@ -479,7 +473,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Archer]",
-            "effect": "DEF Up 4.3％",
+            "effect": "DEF Up 4.3%",
             "duration": null
           }
         ]
@@ -492,7 +486,7 @@
           {
             "condition": "When passing Slope terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Damage Dealt Reduction Resistance 16.6％",
+            "effect": "Damage Dealt Reduction Resistance 16.6%",
             "duration": null
           }
         ]
@@ -515,13 +509,13 @@
           {
             "condition": null,
             "target": "Ally [Shield]",
-            "effect": "DEF Up 10％",
+            "effect": "DEF Up 10%",
             "duration": null
           },
           {
             "condition": "When Garrisoning",
             "target": "Enemy [Cavalry]",
-            "effect": "ATK Down 20％",
+            "effect": "ATK Down 20%",
             "duration": null
           }
         ]
@@ -534,7 +528,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Repair Speed Up 1.7％",
+            "effect": "Siege weapon repair Repair Speed Up 1.7%",
             "duration": null
           }
         ]
@@ -547,7 +541,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Coin Consumption Down 5.5％",
+            "effect": "Siege weapon repair Coin Consumption Down 5.5%",
             "duration": null
           }
         ]
@@ -576,7 +570,7 @@
           {
             "condition": "Enemy with highest max HP",
             "target": "1 enemy general",
-            "effect": "\"Paralysis\" Infliction 70％",
+            "effect": "\"Paralysis\" Infliction 70%",
             "duration": "3 turns"
           }
         ]
@@ -589,7 +583,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Infantry]",
-            "effect": "ATK Up 3.8％",
+            "effect": "ATK Up 3.8%",
             "duration": null
           }
         ]
@@ -602,7 +596,7 @@
           {
             "condition": "When passing Marsh terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Damage Taken Increase Resistance 14.5％",
+            "effect": "Damage Taken Increase Resistance 14.5%",
             "duration": null
           }
         ]
@@ -631,7 +625,7 @@
           {
             "condition": null,
             "target": "Other ally",
-            "effect": "\"Illusion\" Infliction Rate Up 45％",
+            "effect": "\"Illusion\" Infliction Rate Up 45%",
             "duration": "3 turns"
           }
         ]
@@ -644,7 +638,7 @@
           {
             "condition": "When passing Marsh terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Damage Taken Increase Resistance 6.3％",
+            "effect": "Damage Taken Increase Resistance 6.3%",
             "duration": null
           }
         ]
@@ -657,7 +651,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally attack siege weapons",
-            "effect": "ATK Up 5.8％",
+            "effect": "ATK Up 5.8%",
             "duration": null
           }
         ]
@@ -699,7 +693,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Shield]",
-            "effect": "DEF Up 4.3％",
+            "effect": "DEF Up 4.3%",
             "duration": null
           }
         ]
@@ -712,7 +706,7 @@
           {
             "condition": "CW battle (effective even if not deployed)",
             "target": "Ally defense siege weapons",
-            "effect": "DEF Up 6.4％",
+            "effect": "DEF Up 6.4%",
             "duration": null
           }
         ]
@@ -742,13 +736,13 @@
           {
             "condition": null,
             "target": "Other ally",
-            "effect": "[Cavalry] ATK Up 20％",
+            "effect": "[Cavalry] ATK Up 20%",
             "duration": "3 turns"
           },
           {
             "condition": null,
             "target": "Ally [Shield]",
-            "effect": "DEF Up 20％",
+            "effect": "DEF Up 20%",
             "duration": "3 turns"
           }
         ]
@@ -761,7 +755,7 @@
           {
             "condition": "CW battle (effective even if not deployed)",
             "target": "Ally [Cavalry]",
-            "effect": "Max HP Up 7.9％",
+            "effect": "Max HP Up 7.9%",
             "duration": null
           }
         ]
@@ -774,7 +768,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally attack siege weapons",
-            "effect": "Max HP Up 28.3％",
+            "effect": "Max HP Up 28.3%",
             "duration": null
           }
         ]
@@ -804,7 +798,7 @@
           {
             "condition": null,
             "target": "Ally [Shield]",
-            "effect": "DEF Up 20％",
+            "effect": "DEF Up 20%",
             "duration": "3 turns"
           },
           {
@@ -823,7 +817,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Coin Consumption Down 3.2％",
+            "effect": "Siege weapon repair Coin Consumption Down 3.2%",
             "duration": null
           }
         ]
@@ -836,7 +830,7 @@
           {
             "condition": "CW battle (effective even if not deployed)",
             "target": "Ally [Archer]",
-            "effect": "DEF Up 9.9％",
+            "effect": "DEF Up 9.9%",
             "duration": null
           }
         ]
@@ -866,7 +860,7 @@
           {
             "condition": null,
             "target": "Ally [Archer]",
-            "effect": "ATK Up 20％",
+            "effect": "ATK Up 20%",
             "duration": "3 turns"
           }
         ]
@@ -879,7 +873,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Archer]",
-            "effect": "Max HP Up 7.9％",
+            "effect": "Max HP Up 7.9%",
             "duration": null
           }
         ]
@@ -892,7 +886,7 @@
           {
             "condition": "When passing Forest terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Damage Dealt Reduction Resistance 16.6％",
+            "effect": "Damage Dealt Reduction Resistance 16.6%",
             "duration": null
           }
         ]

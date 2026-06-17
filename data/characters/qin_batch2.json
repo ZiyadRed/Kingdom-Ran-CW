@@ -503,29 +503,29 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Anti-[Cavalry] ATK Up 20％",
+            "effect": "Anti-[Cavalry] ATK Up 20%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally \"Sho\" / Ally Six Great Generals",
-            "effect": "DEF Up 、Hit Rate Up 20％",
+            "effect": "DEF Up, Hit Rate Up 20%",
             "duration": null
           },
           {
             "condition": "When Garrisoning",
             "target": "Enemy cavalry generals",
-            "effect": "ATK Down 、Critical Damage Down 20％",
+            "effect": "ATK Down, Critical Damage Down 20%",
             "duration": null
           },
           {
-            "condition": "At the time of garrison",
+            "condition": "When Garrisoning",
             "target": "Ally siege weapons",
-            "effect": "ATK Up, DEF Up 50％",
+            "effect": "ATK Up, DEF Up 50%",
             "duration": null
           },
           {
-            "condition": "When Garrisoning、While gate has HP remaining",
+            "condition": "When Garrisoning, While gate has HP remaining",
             "target": "Gate",
             "effect": "HP Recovery 50,000",
             "duration": null
@@ -868,13 +868,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Hi Shin Unit / Ally Gyokuhou Squad / Ally Gakuka Unit",
+            "target": "Ally Hi Shin Unit / Ally Gyokuhou Unit / Ally Gakuka Unit",
             "effect": "Sure Hit",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Hi Shin Unit / Ally Gyokuhou Squad / Ally Gakuka Unit",
+            "target": "Ally Hi Shin Unit / Ally Gyokuhou Unit / Ally Gakuka Unit",
             "effect": "ATK Up vs Cavalry 20%",
             "duration": null
           }
@@ -908,7 +908,7 @@
     "name_en": "Kanjou",
     "name_jp": "関常",
     "country": "qin",
-    "unit": "Gyokuhou Squad",
+    "unit": "Gyokuhou Unit",
     "rarity": "SR",
     "skills": [
       {
@@ -930,7 +930,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy generals vs Gyokuhou Squad",
+            "target": "Enemy generals vs Gyokuhou Unit",
             "effect": "DEF Down 20%",
             "duration": null
           }
@@ -949,7 +949,7 @@
           },
           {
             "condition": null,
-            "target": "Other ally Gyokuhou Squad",
+            "target": "Other ally Gyokuhou Unit",
             "effect": "Morale Cost Reduction 30%",
             "duration": null
           }
@@ -974,7 +974,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Gyokuhou Squad",
+            "target": "Ally Gyokuhou Unit",
             "effect": "Attack Nullification",
             "duration": "1 time"
           }
@@ -988,19 +988,19 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Gyokuhou Squad generals",
-            "effect": "Evasion Up 30%",
+            "target": "Ally Gyokuhou Unit generals",
+            "effect": "Evasion (Dodge Chance) Up 30%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Gyokuhou Squad generals",
+            "target": "Ally Gyokuhou Unit generals",
             "effect": "Attack Down Resistance Up 40%",
             "duration": null
           },
           {
             "condition": "While alive",
-            "target": "Ally Gyokuhou Squad generals",
+            "target": "Ally Gyokuhou Unit generals",
             "effect": "HP Recovery Rate Up 30%, HP Recovery 30%",
             "duration": null
           }
@@ -1400,7 +1400,7 @@
           {
             "condition": "When Garrisoning",
             "target": "Ally Qin generals",
-            "effect": "Evasion Rate Up 20%",
+            "effect": "Evasion (Dodge Chance) Up 20%",
             "duration": null
           }
         ]
@@ -1475,7 +1475,7 @@
           {
             "condition": "When Garrisoning",
             "target": "Ally Qin generals",
-            "effect": "Evasion Rate Up 20%",
+            "effect": "Evasion (Dodge Chance) Up 20%",
             "duration": null
           }
         ]

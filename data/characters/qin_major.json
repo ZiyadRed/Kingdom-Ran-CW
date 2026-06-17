@@ -4,7 +4,7 @@
     "name_en": "Ouhon",
     "name_jp": "王賁",
     "country": "qin",
-    "unit": "Gyokuhou Squad",
+    "unit": "Gyokuhou Unit",
     "rarity": "UR",
     "skills": [
       {
@@ -33,7 +33,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Hi Shin Unit / Gyokuhou Squad / Gakuka Unit",
+            "target": "Ally Hi Shin Unit / Gyokuhou Unit / Gakuka Unit",
             "effect": "ATK Up 10%",
             "duration": null
           },
@@ -79,31 +79,19 @@
           {
             "condition": null,
             "target": "Ally Gyokuhou Unit",
-            "effect": "Max HP Up 100％",
+            "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally Gyokuhou Unit",
-            "effect": "ATK Up 30％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Gyokuhou Unit",
-            "effect": "DEF Up 30％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Gyokuhou Unit",
-            "effect": "Guard 100％",
+            "effect": "Guard 100%",
             "duration": "1 time"
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Critical Rate Up 30％",
+            "effect": "Critical Rate Up 30%",
             "duration": null
           },
           {
@@ -290,7 +278,7 @@
           {
             "condition": null,
             "target": "Ally Kanki Army",
-            "effect": "Evasion Rate Up 40%",
+            "effect": "Evasion (Dodge Chance) Up 40%",
             "duration": null
           },
           {
@@ -382,7 +370,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Hi Shin Unit / Gyokuhou Squad / Gakuka Unit",
+            "target": "Ally Hi Shin Unit / Gyokuhou Unit / Gakuka Unit",
             "effect": "Max HP Up 50%",
             "duration": null
           }
@@ -754,7 +742,7 @@
           {
             "condition": "Enemy [Archer] alive",
             "target": "Self and ally Six Great Generals of Qin",
-            "effect": "Confusion Resistance 、Betrayal Resistance 100%",
+            "effect": "Confusion Resistance, Betrayal Resistance 100%",
             "duration": null
           }
         ]
@@ -998,25 +986,25 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP Up 100％",
+            "effect": "Max HP Up 100%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK Up, DEF Up 30％",
+            "effect": "ATK Up, DEF Up 30%",
             "duration": null
           },
           {
             "condition": "When Attacking",
             "target": "Ally Kanki Army",
-            "effect": "Hit Rate Up 25％",
+            "effect": "Hit Rate Up 25%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Guard 100％",
+            "effect": "Guard 100%",
             "duration": "2 times"
           }
         ]
@@ -1071,7 +1059,7 @@
           {
             "condition": null,
             "target": "Ally Ei Sei / ally archers",
-            "effect": "Evasion Rate Up 20%",
+            "effect": "Evasion (Dodge Chance) Up 20%",
             "duration": null
           }
         ]
@@ -1415,7 +1403,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Siege weapon repair",
-            "effect": "Siege weapon repair Coin Consumption Down 7.4％",
+            "effect": "Siege weapon repair Coin Consumption Down 7.4%",
             "duration": null
           }
         ]

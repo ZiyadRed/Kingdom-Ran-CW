@@ -245,37 +245,25 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP Up 100％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Self",
-            "effect": "Anti-[Cavalry] ATK Up 30％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Self",
-            "effect": "Anti-[Cavalry] DEF Up 30％",
+            "effect": "Max HP Up 100%, Anti-[Cavalry] ATK Up 30%, Anti-[Cavalry] DEF Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally Wei Fire Dragon",
-            "effect": "HP Recovery Up 50％",
+            "effect": "HP Recovery Up 50%",
             "duration": null
           },
           {
             "condition": "Per ally Wei Fire Dragon",
             "target": "Enemy cavalry",
-            "effect": "ATK Down 10％",
+            "effect": "ATK Down 10%",
             "duration": null
           },
           {
             "condition": "When Garrisoning, enemy [Cavalry] alive",
             "target": "Self",
-            "effect": "HP Recovery 20％",
+            "effect": "HP Recovery 20%",
             "duration": null
           }
         ]
@@ -312,7 +300,7 @@
           {
             "condition": null,
             "target": "Ally Shihaku",
-            "effect": "Evasion Rate Up (Dodge Chance) 40%",
+            "effect": "Evasion (Dodge Chance) Up 40%",
             "duration": "4 turns"
           },
           {
@@ -435,7 +423,7 @@
           {
             "condition": null,
             "target": "Ally Renpa / ally Renpa's Four Heavenly Kings",
-            "effect": "Evasion Rate Up 20%",
+            "effect": "Evasion (Dodge Chance) Up 20%",
             "duration": null
           }
         ]
@@ -567,19 +555,19 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Evasion Rate Up 10%",
+            "effect": "Evasion (Dodge Chance) Up 10%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Other ally Wei",
-            "effect": "Evasion Rate Up 10%",
+            "effect": "Evasion (Dodge Chance) Up 10%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally Gaimo",
-            "effect": "Evasion Rate Up 10%",
+            "effect": "Evasion (Dodge Chance) Up 10%",
             "duration": null
           }
         ]
@@ -770,7 +758,7 @@
           {
             "condition": "Enemy general with highest ATK",
             "target": "3 enemy generals",
-            "effect": "\"Illusion\"35％",
+            "effect": "\"Illusion\"35%",
             "duration": "3 turns"
           }
         ]
@@ -783,7 +771,7 @@
           {
             "condition": "When passing Marsh terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Damage Taken Increase Resistance 7.2％",
+            "effect": "Damage Taken Increase Resistance 7.2%",
             "duration": null
           }
         ]
@@ -796,7 +784,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Infantry]",
-            "effect": "ATK Up 9.9％",
+            "effect": "ATK Up 9.9%",
             "duration": null
           }
         ]
@@ -839,7 +827,7 @@
           {
             "condition": "When passing Slope terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Damage Dealt Reduction Resistance 7.2％",
+            "effect": "Damage Dealt Reduction Resistance 7.2%",
             "duration": null
           }
         ]
@@ -852,7 +840,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Ore Consumption Down 6.2％",
+            "effect": "Siege weapon repair Ore Consumption Down 6.2%",
             "duration": null
           }
         ]
@@ -950,13 +938,13 @@
           {
             "condition": null,
             "target": "Ally [Cavalry]",
-            "effect": "Ally [Archer] \"Confusion\" Resistance 40％",
+            "effect": "Ally [Archer] \"Confusion\" Resistance 40%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally [Cavalry]",
-            "effect": "Ally [Archer] Anti-[Infantry] DEF Up 20％",
+            "effect": "Ally [Archer] Anti-[Infantry] DEF Up 20%",
             "duration": null
           }
         ]
@@ -969,7 +957,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Archer]",
-            "effect": "Max HP Up 7.9％",
+            "effect": "Max HP Up 7.9%",
             "duration": null
           }
         ]
@@ -982,7 +970,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Material Consumption Down 6.2％",
+            "effect": "Siege weapon repair Material Consumption Down 6.2%",
             "duration": null
           }
         ]

@@ -143,7 +143,7 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Evasion Rate Up 20%",
+            "effect": "Evasion (Dodge Chance) Up 20%",
             "duration": null
           }
         ]
@@ -182,31 +182,31 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK Up 30％",
+            "effect": "ATK Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Critical Rate Up 30％",
+            "effect": "Critical Rate Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "DEF Penetration 30％",
+            "effect": "DEF Penetration 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Hit Rate Up 20％",
+            "effect": "Hit Rate Up 20%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Evasion (Dodge Chance) Up 20％",
+            "effect": "Evasion (Dodge Chance) Up 20%",
             "duration": null
           }
         ]
@@ -281,7 +281,7 @@
           {
             "condition": "When ally Riboku is alive",
             "target": "Ally Zhao",
-            "effect": "Evasion Rate Up 20%",
+            "effect": "Evasion (Dodge Chance) Up 20%",
             "duration": "3 turns"
           }
         ]
@@ -351,31 +351,31 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP Up 100％",
+            "effect": "Max HP Up 100%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK Up, DEF Up 30％",
+            "effect": "ATK Up, DEF Up 30%",
             "duration": null
           },
           {
             "condition": "Enemy [Qin] present",
             "target": "Ally Zhao",
-            "effect": "Fear Resistance 100％",
+            "effect": "Fear Resistance 100%",
             "duration": null
           },
           {
             "condition": "Enemy [Qin] present",
             "target": "All enemy generals",
-            "effect": "DEF Down 、Evasion (Dodge Chance) Down 30％",
+            "effect": "DEF Down, Evasion (Dodge Chance) Down 30%",
             "duration": null
           },
           {
             "condition": "Enemy [Qin] present",
             "target": "Self",
-            "effect": "ATK Up 40％",
+            "effect": "ATK Up 40%",
             "duration": null
           }
         ]
@@ -622,7 +622,7 @@
           },
           {
             "condition": "When Attacking",
-            "target": "Enemy shield infantry",
+            "target": "Enemy shield soldiers",
             "effect": "ATK Down 20%",
             "duration": null
           }

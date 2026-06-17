@@ -44,7 +44,7 @@
   "対魏国攻撃力↑":     { "en": "ATK Up vs Wei",               "type": "buff" },
   "対六大将軍攻撃力↑": { "en": "ATK Up vs Six Great Generals", "type": "buff" },
   "対廉頗軍防御力↓":   { "en": "DEF Down for Renpa Army",   "type": "debuff" },
-  "対玉鳳隊防御力↓":   { "en": "DEF Down for Gyokuhou Squad", "type": "debuff" },
+  "対玉鳳隊防御力↓":   { "en": "DEF Down for Gyokuhou Unit", "type": "debuff" },
   "対魏火龍防御力↓":   { "en": "DEF Down for Wei Fire Dragon","type": "debuff" },
 
   "_hp": "HP related effects",
@@ -67,8 +67,8 @@
   "_hit_evade": "Hit and evasion",
   "命中率↑":           { "en": "Hit Rate Up",                  "type": "buff" },
   "命中率↓":           { "en": "Hit Rate Down",                "type": "debuff" },
-  "回避率↑":           { "en": "Evasion Rate Up",              "type": "buff" },
-  "回避率↓":           { "en": "Evasion Rate Down",            "type": "debuff" },
+  "回避率↑":           { "en": "Evasion (Dodge Chance) Up",              "type": "buff" },
+  "回避率↓":           { "en": "Evasion (Dodge Chance) Down",            "type": "debuff" },
 
   "_crit": "Critical hit related effects",
   "クリティカル発生率↑":  { "en": "Critical Rate Up",          "type": "buff" },

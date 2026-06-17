@@ -294,7 +294,7 @@
           {
             "condition": "When enemy Kanki Army are alive",
             "target": "All enemy generals",
-            "effect": "Evasion Rate Down 50%",
+            "effect": "Evasion (Dodge Chance) Down 50%",
             "duration": null
           }
         ]
@@ -628,19 +628,7 @@
           {
             "condition": "When ally is alive",
             "target": "All enemy generals",
-            "effect": "ATK Down 20%",
-            "duration": null
-          },
-          {
-            "condition": "When ally is alive",
-            "target": "All enemy generals",
-            "effect": "Critical Damage Down 20%",
-            "duration": null
-          },
-          {
-            "condition": "When ally is alive",
-            "target": "All enemy generals",
-            "effect": "Critical Rate Down 20%",
+            "effect": "ATK Down 20%, Critical Damage Down 20%, Critical Rate Down 20%",
             "duration": null
           },
           {
@@ -771,13 +759,7 @@
           {
             "condition": "When ally [?] is alive",
             "target": "Ally Zhao",
-            "effect": "ATK Up 10%",
-            "duration": "8 turns"
-          },
-          {
-            "condition": "When ally [?] is alive",
-            "target": "Ally Zhao",
-            "effect": "DEF Up 10%",
+            "effect": "ATK Up 10%, DEF Up 10%",
             "duration": "8 turns"
           },
           {
@@ -802,13 +784,7 @@
           {
             "condition": "When ally [?] is alive",
             "target": "Ally Zhao",
-            "effect": "ATK Up 10%",
-            "duration": "8 turns"
-          },
-          {
-            "condition": "When ally [?] is alive",
-            "target": "Ally Zhao",
-            "effect": "DEF Up 10%",
+            "effect": "ATK Up 10%, DEF Up 10%",
             "duration": "8 turns"
           },
           {
@@ -857,7 +833,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Coin Consumption Down 3.2％",
+            "effect": "Siege weapon repair Coin Consumption Down 3.2%",
             "duration": null
           }
         ]
@@ -870,7 +846,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Archer]",
-            "effect": "ATK Up 9.9％",
+            "effect": "ATK Up 9.9%",
             "duration": null
           }
         ]
@@ -900,7 +876,7 @@
           {
             "condition": "Per other ally [Infantry]",
             "target": "Self",
-            "effect": "ATK Up 10％",
+            "effect": "ATK Up 10%",
             "duration": "3 turns"
           }
         ]
@@ -913,7 +889,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally attack siege weapons",
-            "effect": "Max HP Up 12.3％",
+            "effect": "Max HP Up 12.3%",
             "duration": null
           }
         ]
@@ -926,7 +902,7 @@
           {
             "condition": "CW battle (effective even if not deployed)",
             "target": "Ally defense siege weapons",
-            "effect": "Max HP Up 28.3％",
+            "effect": "Max HP Up 28.3%",
             "duration": null
           }
         ]

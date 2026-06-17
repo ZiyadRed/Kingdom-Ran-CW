@@ -723,7 +723,7 @@
           {
             "condition": "When Attacking, when enemy Qin alive",
             "target": "Ally cavalry",
-            "effect": "Evasion Rate Up 30%",
+            "effect": "Evasion (Dodge Chance) Up 30%",
             "duration": null
           }
         ]

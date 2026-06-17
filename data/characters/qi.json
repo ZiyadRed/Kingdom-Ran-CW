@@ -39,13 +39,13 @@
           {
             "condition": null,
             "target": "Enemy Zhao / Wei / Chu / Han / Yan",
-            "effect": "Evasion Rate Down 20%",
+            "effect": "Evasion (Dodge Chance) Down 20%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally Qin / ally Qi",
-            "effect": "Evasion Rate Up 40%",
+            "effect": "Evasion (Dodge Chance) Up 40%",
             "duration": null
           },
           {

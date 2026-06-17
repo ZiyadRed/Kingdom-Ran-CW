@@ -22,25 +22,25 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP Up 100％",
+            "effect": "Max HP Up 100%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK Up, DEF Up 30％",
+            "effect": "ATK Up, DEF Up 30%",
             "duration": null
           },
           {
             "condition": "When Attacking",
             "target": "Ally Kanki Army",
-            "effect": "Hit Rate Up 25％",
+            "effect": "Hit Rate Up 25%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Guard 100％",
+            "effect": "Guard 100%",
             "duration": "2 times"
           }
         ]
@@ -68,25 +68,25 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP Up 100％",
+            "effect": "Max HP Up 100%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK Up, DEF Up 30％",
+            "effect": "ATK Up, DEF Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Enemy infantry and cavalry",
-            "effect": "Evasion (Dodge Chance) Down 25％",
+            "effect": "Evasion (Dodge Chance) Down 25%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Evasion (Dodge Chance) 25％",
+            "effect": "Evasion (Dodge Chance) 25%",
             "duration": null
           }
         ]
@@ -114,31 +114,31 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP Up 100％",
+            "effect": "Max HP Up 100%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK Up, DEF Up 30％",
+            "effect": "ATK Up, DEF Up 30%",
             "duration": null
           },
           {
             "condition": "Enemy [Qin] present",
             "target": "Ally Zhao",
-            "effect": "Fear Resistance 100％",
+            "effect": "Fear Resistance 100%",
             "duration": null
           },
           {
             "condition": "Enemy [Qin] present",
             "target": "All enemy generals",
-            "effect": "DEF Down 、Evasion (Dodge Chance) Down 30％",
+            "effect": "DEF Down, Evasion (Dodge Chance) Down 30%",
             "duration": null
           },
           {
             "condition": "Enemy [Qin] present",
             "target": "Self",
-            "effect": "ATK Up 40％",
+            "effect": "ATK Up 40%",
             "duration": null
           }
         ]
@@ -166,19 +166,13 @@
           {
             "condition": null,
             "target": "Ally Zhao",
-            "effect": "DEF Up 20％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Zhao",
-            "effect": "Anti-[Qin] DEF Up 30%",
+            "effect": "DEF Up 20%, Anti-[Qin] DEF Up 30%",
             "duration": null
           },
           {
             "condition": "Enemy [Qin] or [Mountain Folk] alive",
             "target": "Self",
-            "effect": "HP Recovery 20％",
+            "effect": "HP Recovery 20%",
             "duration": null
           }
         ]
@@ -252,31 +246,31 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK Up 30％",
+            "effect": "ATK Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Critical Rate Up 30％",
+            "effect": "Critical Rate Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "DEF Penetration 30％",
+            "effect": "DEF Penetration 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Hit Rate Up 20％",
+            "effect": "Hit Rate Up 20%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Evasion (Dodge Chance) Up 20％",
+            "effect": "Evasion (Dodge Chance) Up 20%",
             "duration": null
           }
         ]
@@ -304,19 +298,7 @@
           {
             "condition": null,
             "target": "Ally Renpa Army",
-            "effect": "Max HP Up 100%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Renpa Army",
-            "effect": "ATK Up 30%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Renpa Army",
-            "effect": "DEF Up 30%",
+            "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%",
             "duration": null
           },
           {
@@ -430,25 +412,19 @@
           {
             "condition": "Per other ally Renpa Army",
             "target": "Ally Renpa Army",
-            "effect": "ATK Up 10％",
-            "duration": null
-          },
-          {
-            "condition": "Per other ally Renpa Army",
-            "target": "Ally Renpa Army",
-            "effect": "DEF Up 10％",
+            "effect": "ATK Up 10%, DEF Up 10%",
             "duration": null
           },
           {
             "condition": null,
             "target": "All enemy generals",
-            "effect": "Anti-Renpa Army DEF Down 30％",
+            "effect": "Anti-Renpa Army DEF Down 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally Renpa Army",
-            "effect": "Betrayal Resistance 60％",
+            "effect": "Betrayal Resistance 60%",
             "duration": null
           }
         ]
@@ -476,31 +452,25 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Anti-[Cavalry] ATK Up 30％",
+            "effect": "Anti-[Cavalry] ATK Up 30%, Anti-[Cavalry] DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally shield soldiers",
+            "effect": "Hit Rate Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Anti-[Cavalry] DEF Up 30％",
+            "effect": "Ally [Wei] Burn Resistance 100%",
             "duration": null
           },
           {
-            "condition": null,
-            "target": "Ally shield infantry",
-            "effect": "Hit Rate Up 30％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Self",
-            "effect": "Ally [Wei] Burn Resistance 100％",
-            "duration": null
-          },
-          {
-            "condition": "At the time of garrison",
+            "condition": "When Garrisoning",
             "target": "Enemy cavalry",
-            "effect": "ATK Down 40％",
+            "effect": "ATK Down 40%",
             "duration": null
           }
         ]
@@ -528,31 +498,19 @@
           {
             "condition": null,
             "target": "Ally Gyokuhou Unit",
-            "effect": "Max HP Up 100％",
+            "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally Gyokuhou Unit",
-            "effect": "ATK Up 30％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Gyokuhou Unit",
-            "effect": "DEF Up 30％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Gyokuhou Unit",
-            "effect": "Guard 100％",
+            "effect": "Guard 100%",
             "duration": "1 times"
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Critical Rate Up 30％",
+            "effect": "Critical Rate Up 30%",
             "duration": null
           },
           {
@@ -586,37 +544,37 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP Up 100％",
+            "effect": "Max HP Up 100%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Anti-[Cavalry] ATK Up 30％",
+            "effect": "Anti-[Cavalry] ATK Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Anti-[Cavalry] DEF Up 30％",
+            "effect": "Anti-[Cavalry] DEF Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Ally Wei Fire Dragon HP Recovery Up 50％",
+            "effect": "Ally Wei Fire Dragon HP Recovery Up 50%",
             "duration": null
           },
           {
             "condition": "Per ally Wei Fire Dragon",
             "target": "Enemy cavalry",
-            "effect": "ATK Down 10％",
+            "effect": "ATK Down 10%",
             "duration": null
           },
           {
             "condition": "When Garrisoning, enemy [Cavalry] alive",
             "target": "Self",
-            "effect": "HP Recovery 20％",
+            "effect": "HP Recovery 20%",
             "duration": null
           }
         ]
@@ -719,7 +677,7 @@
           },
           {
             "condition": "When Attacking",
-            "target": "Enemy shield infantry",
+            "target": "Enemy shield soldiers",
             "effect": "ATK Down 20%",
             "duration": null
           }
@@ -748,13 +706,7 @@
           {
             "condition": null,
             "target": "Ally Qin, Zhao, Wei, Chu, Han, and Yan",
-            "effect": "Max HP Up 100%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Qin, Zhao, Wei, Chu, Han, and Yan",
-            "effect": "DEF Up 30%",
+            "effect": "Max HP Up 100%, DEF Up 30%",
             "duration": null
           }
         ]
@@ -904,7 +856,7 @@
           {
             "condition": "Enemy [Archer] alive",
             "target": "Self and ally Six Great Generals of Qin",
-            "effect": "Confusion Resistance 、Betrayal Resistance 100%",
+            "effect": "Confusion Resistance, Betrayal Resistance 100%",
             "duration": null
           }
         ]
@@ -932,29 +884,29 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Anti-[Cavalry] ATK Up 20％",
+            "effect": "Anti-[Cavalry] ATK Up 20%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Ally \"Sho\" and Six Great Generals DEF Up 、Hit Rate Up 20％",
+            "effect": "Ally \"Sho\" and Six Great Generals DEF Up, Hit Rate Up 20%",
             "duration": null
           },
           {
             "condition": "When Garrisoning",
             "target": "Enemy cavalry generals",
-            "effect": "ATK Down 、Critical Damage Down 20％",
+            "effect": "ATK Down, Critical Damage Down 20%",
             "duration": null
           },
           {
-            "condition": "At the time of garrison",
+            "condition": "When Garrisoning",
             "target": "Ally siege weapons",
-            "effect": "ATK Up, DEF Up 50％",
+            "effect": "ATK Up, DEF Up 50%",
             "duration": null
           },
           {
-            "condition": "When Garrisoning、While gate has HP remaining",
+            "condition": "When Garrisoning, While gate has HP remaining",
             "target": "Gate",
             "effect": "HP Recovery 50,000",
             "duration": null
@@ -983,31 +935,19 @@
           {
             "condition": null,
             "target": "Ally \"Ei Sei\" and ally \"Rouai\"",
-            "effect": "Max HP Up 100％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally \"Ei Sei\" and ally \"Rouai\"",
-            "effect": "Anti-[Cavalry] ATK Up 30％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally \"Ei Sei\" and ally \"Rouai\"",
-            "effect": "Anti-[Cavalry] DEF Up 30％",
+            "effect": "Max HP Up 100%, Anti-[Cavalry] ATK Up 30%, Anti-[Cavalry] DEF Up 30%",
             "duration": null
           },
           {
             "condition": "Alive",
             "target": "Ally \"Ei Sei\" and ally \"Rouai\"",
-            "effect": "HP Recovery 20％",
+            "effect": "HP Recovery 20%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Enemy [Shield]",
-            "effect": "Critical Damage Down 30％",
+            "effect": "Critical Damage Down 30%",
             "duration": null
           }
         ],
@@ -1036,13 +976,7 @@
           {
             "condition": null,
             "target": "Ally Chu",
-            "effect": "Max HP Up 200％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Chu",
-            "effect": "Max Morale Up 100%",
+            "effect": "Max HP Up 200%, Max Morale Up 100%",
             "duration": null
           },
           {
@@ -1140,7 +1074,7 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Critical Rate Up 、Critical Damage Up 30%",
+            "effect": "Critical Rate Up, Critical Damage Up 30%",
             "duration": null
           },
           {
@@ -1174,25 +1108,25 @@
           {
             "condition": null,
             "target": "Ally Kanmei Army",
-            "effect": "Max HP Up 100％",
+            "effect": "Max HP Up 100%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally Kanmei Army",
-            "effect": "ATK Up, DEF Up 30％",
+            "effect": "ATK Up, DEF Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally Kanmei Army",
-            "effect": "ATK Down Resistance 50％",
+            "effect": "ATK Down Resistance 50%",
             "duration": null
           },
           {
             "condition": "Other ally [Chu] alive",
             "target": "All enemy generals",
-            "effect": "DEF Down 30％",
+            "effect": "DEF Down 30%",
             "duration": null
           }
         ]
@@ -1259,19 +1193,19 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Gyokuhou Squad generals",
-            "effect": "Evasion Up 30%",
+            "target": "Ally Gyokuhou Unit generals",
+            "effect": "Evasion (Dodge Chance) Up 30%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Gyokuhou Squad generals",
+            "target": "Ally Gyokuhou Unit generals",
             "effect": "Attack Down Resistance Up 40%",
             "duration": null
           },
           {
             "condition": "While alive",
-            "target": "Ally Gyokuhou Squad generals",
+            "target": "Ally Gyokuhou Unit generals",
             "effect": "HP Recovery Rate Up 30%, HP Recovery 30%",
             "duration": null
           }
@@ -1300,13 +1234,7 @@
           {
             "condition": null,
             "target": "Ally Gyokuhou Unit / Ousen Army",
-            "effect": "DEF Up 40%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Gyokuhou Unit / Ousen Army",
-            "effect": "Critical Damage Up 30%",
+            "effect": "DEF Up 40%, Critical Damage Up 30%",
             "duration": null
           },
           {

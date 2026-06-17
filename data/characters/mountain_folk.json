@@ -791,7 +791,7 @@
           {
             "condition": null,
             "target": "Other ally [Mountain Folk]",
-            "effect": "ATK Up 20％",
+            "effect": "ATK Up 20%",
             "duration": "3 turns"
           }
         ]
@@ -827,15 +827,15 @@
         "type": "Strategy",
         "effects": [
           {
-            "condition": "When Attacking、Ally siege weapon with highest ATK",
+            "condition": "When Attacking, Ally siege weapon with highest ATK",
             "target": "Ally siege weapons",
-            "effect": "1 siege weapon ATK Up 20％",
+            "effect": "1 siege weapon ATK Up 20%",
             "duration": null
           },
           {
-            "condition": "When Attacking、Ally siege weapon with highest ATK、Per other ally [Mountain Folk]",
+            "condition": "When Attacking, Ally siege weapon with highest ATK, Per other ally [Mountain Folk]",
             "target": "Ally siege weapons",
-            "effect": "1 siege weapon ATK Up 5％",
+            "effect": "1 siege weapon ATK Up 5%",
             "duration": null
           }
         ]
@@ -878,7 +878,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Infantry]",
-            "effect": "Max HP Up 6.9％",
+            "effect": "Max HP Up 6.9%",
             "duration": null
           }
         ]
@@ -891,7 +891,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Material Consumption Down 5.5％",
+            "effect": "Siege weapon repair Material Consumption Down 5.5%",
             "duration": null
           }
         ]
@@ -914,13 +914,13 @@
           {
             "condition": null,
             "target": "Other ally",
-            "effect": "[Infantry] ATK Up 20％",
+            "effect": "[Infantry] ATK Up 20%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally \"Maki\"",
-            "effect": "ATK Up 20％",
+            "effect": "ATK Up 20%",
             "duration": null
           }
         ]
@@ -933,7 +933,7 @@
           {
             "condition": "When passing Checkpoint terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Squad Damage Reduction 2％",
+            "effect": "Squad Damage Reduction 2%",
             "duration": null
           }
         ]
@@ -946,7 +946,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally attack siege weapons",
-            "effect": "ATK Up 4.8％",
+            "effect": "ATK Up 4.8%",
             "duration": null
           }
         ]
@@ -988,7 +988,7 @@
           {
             "condition": "When passing Slope terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Damage Dealt Reduction Resistance 5.4％",
+            "effect": "Damage Dealt Reduction Resistance 5.4%",
             "duration": null
           }
         ]
@@ -1001,7 +1001,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally defense siege weapons",
-            "effect": "ATK Up 4.8％",
+            "effect": "ATK Up 4.8%",
             "duration": null
           }
         ]

@@ -251,13 +251,7 @@
           {
             "condition": null,
             "target": "Ally Qin, Zhao, Wei, Chu, Han, and Yan",
-            "effect": "Max HP Up 100%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Qin, Zhao, Wei, Chu, Han, and Yan",
-            "effect": "DEF Up 30%",
+            "effect": "Max HP Up 100%, DEF Up 30%",
             "duration": null
           }
         ]
@@ -300,7 +294,7 @@
           {
             "condition": null,
             "target": "Ally Yan",
-            "effect": "Evasion Rate Up 20%",
+            "effect": "Evasion (Dodge Chance) Up 20%",
             "duration": null
           },
           {

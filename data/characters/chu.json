@@ -59,19 +59,19 @@
           {
             "condition": null,
             "target": "Other ally Chu",
-            "effect": "Evasion Rate Up 10%",
+            "effect": "Evasion (Dodge Chance) Up 10%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally cavalry",
-            "effect": "Evasion Rate Up 10%",
+            "effect": "Evasion (Dodge Chance) Up 10%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally Kanmei",
-            "effect": "Evasion Rate Up 10%",
+            "effect": "Evasion (Dodge Chance) Up 10%",
             "duration": null
           }
         ]
@@ -563,13 +563,7 @@
           {
             "condition": null,
             "target": "Ally Chu",
-            "effect": "Max HP Up 200％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Chu",
-            "effect": "Max Morale Up 100%",
+            "effect": "Max HP Up 200%, Max Morale Up 100%",
             "duration": null
           },
           {

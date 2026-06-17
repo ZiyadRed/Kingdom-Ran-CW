@@ -893,13 +893,13 @@
           {
             "condition": null,
             "target": "Ally [Archer]",
-            "effect": "DEF Up 20％",
+            "effect": "DEF Up 20%",
             "duration": "3 turns"
           },
           {
             "condition": "When Garrisoning",
             "target": "Other ally",
-            "effect": "\"Burn\" Infliction Rate Up 50％",
+            "effect": "\"Burn\" Infliction Rate Up 50%",
             "duration": "3 turns"
           }
         ]
@@ -912,7 +912,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Material Consumption Down 2.7％",
+            "effect": "Siege weapon repair Material Consumption Down 2.7%",
             "duration": null
           }
         ]
@@ -925,7 +925,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Archer]",
-            "effect": "Max HP Up 18.2％",
+            "effect": "Max HP Up 18.2%",
             "duration": null
           }
         ]
@@ -961,7 +961,7 @@
           {
             "condition": "Enemy with highest max HP",
             "target": "1 enemy general",
-            "effect": "\"Poison\" Infliction 100％",
+            "effect": "\"Poison\" Infliction 100%",
             "duration": "4 turns"
           }
         ]
@@ -974,7 +974,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Ore Consumption Down 2.7％",
+            "effect": "Siege weapon repair Ore Consumption Down 2.7%",
             "duration": null
           }
         ]
@@ -987,7 +987,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally attack siege weapons",
-            "effect": "ATK Up 6.4％",
+            "effect": "ATK Up 6.4%",
             "duration": null
           }
         ]
@@ -1011,13 +1011,13 @@
           {
             "condition": null,
             "target": "Ally [Infantry]",
-            "effect": "Ally [Archer] \"Illusion\" Resistance 50％",
+            "effect": "Ally [Archer] \"Illusion\" Resistance 50%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally [Infantry] and [Archer]",
-            "effect": "ATK Up 10％",
+            "effect": "ATK Up 10%",
             "duration": null
           }
         ]
@@ -1030,7 +1030,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Archer]",
-            "effect": "ATK Up 3.8％",
+            "effect": "ATK Up 3.8%",
             "duration": null
           }
         ]
@@ -1043,7 +1043,7 @@
           {
             "condition": "When passing Checkpoint terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Squad Damage Reduction 5.5％",
+            "effect": "Squad Damage Reduction 5.5%",
             "duration": null
           }
         ]
@@ -1073,7 +1073,7 @@
           {
             "condition": null,
             "target": "Other ally",
-            "effect": "[Cavalry] DEF Up 20％",
+            "effect": "[Cavalry] DEF Up 20%",
             "duration": "3 turns"
           }
         ]
@@ -1086,7 +1086,7 @@
           {
             "condition": "CW battle (effective even if not deployed)",
             "target": "Ally [Cavalry]",
-            "effect": "ATK Up 3.8％",
+            "effect": "ATK Up 3.8%",
             "duration": null
           }
         ]
@@ -1099,7 +1099,7 @@
           {
             "condition": "When passing Water terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Damage Taken Increase Resistance 14.5％",
+            "effect": "Damage Taken Increase Resistance 14.5%",
             "duration": null
           }
         ]
@@ -1129,7 +1129,7 @@
           {
             "condition": null,
             "target": "Ally generals",
-            "effect": "\"Confusion\" Infliction Rate Up 、\"Betrayal\" Infliction Rate Up 35％",
+            "effect": "\"Confusion\" Infliction Rate Up, \"Betrayal\" Infliction Rate Up 35%",
             "duration": "3 turns"
           }
         ]
@@ -1148,7 +1148,7 @@
           {
             "condition": null,
             "target": "Ally [Ai]",
-            "effect": "\"Confusion\" Infliction Rate Up 、\"Betrayal\" Infliction Rate Up 20％",
+            "effect": "\"Confusion\" Infliction Rate Up, \"Betrayal\" Infliction Rate Up 20%",
             "duration": null
           },
           {
@@ -1160,7 +1160,7 @@
           {
             "condition": null,
             "target": "Ally Ryofui Four Pillars",
-            "effect": "Max HP Up 、Max Morale Up 30%",
+            "effect": "Max HP Up, Max Morale Up 30%",
             "duration": null
           }
         ]
@@ -1173,19 +1173,19 @@
           {
             "condition": null,
             "target": "Ally Ryofui Four Pillars",
-            "effect": "ATK Up, DEF Up 30％",
+            "effect": "ATK Up, DEF Up 30%",
             "duration": "3 turns"
           },
           {
             "condition": null,
             "target": "Enemy [Shield]",
-            "effect": "\"Normal Attack Seal\"50％",
+            "effect": "\"Normal Attack Seal\"50%",
             "duration": "2 turns"
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "Enemy \"Riboku\", \"Ei Sei\", \"Queen Biki\" \"Attack Seal\" 70％",
+            "effect": "Enemy \"Riboku\", \"Ei Sei\", \"Queen Biki\" \"Attack Seal\" 70%",
             "duration": "2 turns"
           },
           {
@@ -1221,7 +1221,7 @@
           {
             "condition": "Ally [Cavalry] HP ≤ 50%",
             "target": "Ally [Cavalry]",
-            "effect": "DEF Up 30％",
+            "effect": "DEF Up 30%",
             "duration": "3 turns"
           }
         ]
@@ -1234,7 +1234,7 @@
           {
             "condition": "CW battle (effective even if not deployed)",
             "target": "Ally [Shield]",
-            "effect": "Max HP Up 6.9％",
+            "effect": "Max HP Up 6.9%",
             "duration": null
           }
         ]
@@ -1247,7 +1247,7 @@
           {
             "condition": "When passing Forest terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Damage Dealt Reduction Resistance 14.5％",
+            "effect": "Damage Dealt Reduction Resistance 14.5%",
             "duration": null
           }
         ]
@@ -1327,13 +1327,13 @@
           {
             "condition": null,
             "target": "Ally [Archer]",
-            "effect": "DEF Up 30％",
+            "effect": "DEF Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Self",
-            "effect": "\"Poison\" Infliction Rate Up 、\"Betrayal\" Infliction Rate Up 20％",
+            "effect": "\"Poison\" Infliction Rate Up, \"Betrayal\" Infliction Rate Up 20%",
             "duration": null
           }
         ]
@@ -1346,31 +1346,19 @@
           {
             "condition": null,
             "target": "Ally \"Ei Sei\" and ally \"Rouai\"",
-            "effect": "Max HP Up 100％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally \"Ei Sei\" and ally \"Rouai\"",
-            "effect": "Anti-[Cavalry] ATK Up 30％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally \"Ei Sei\" and ally \"Rouai\"",
-            "effect": "Anti-[Cavalry] DEF Up 30％",
+            "effect": "Max HP Up 100%, Anti-[Cavalry] ATK Up 30%, Anti-[Cavalry] DEF Up 30%",
             "duration": null
           },
           {
             "condition": "Alive",
             "target": "Ally \"Ei Sei\" and ally \"Rouai\"",
-            "effect": "HP Recovery 20％",
+            "effect": "HP Recovery 20%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Enemy [Shield]",
-            "effect": "Critical Damage Down 30％",
+            "effect": "Critical Damage Down 30%",
             "duration": null
           }
         ],
@@ -1401,7 +1389,7 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Ally [Cavalry] DEF Up 20％",
+            "effect": "Ally [Cavalry] DEF Up 20%",
             "duration": "3 turns"
           }
         ]
@@ -1414,7 +1402,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Archer]",
-            "effect": "ATK Up 4.3％",
+            "effect": "ATK Up 4.3%",
             "duration": null
           }
         ]
@@ -1427,7 +1415,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Coin Consumption Down 7.4％",
+            "effect": "Siege weapon repair Coin Consumption Down 7.4%",
             "duration": null
           }
         ]
@@ -1477,13 +1465,13 @@
           {
             "condition": null,
             "target": "Ally [Infantry]",
-            "effect": "Ally [Shield] \"Confusion\" Resistance 、\"Burn\" Resistance 50％",
+            "effect": "Ally [Shield] \"Confusion\" Resistance, \"Burn\" Resistance 50%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally [Infantry]",
-            "effect": "Ally [Shield] DEF Up 10％",
+            "effect": "Ally [Shield] DEF Up 10%",
             "duration": null
           }
         ]
@@ -1496,7 +1484,7 @@
           {
             "condition": "When passing Forest terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Damage Dealt Reduction Resistance 6.3％",
+            "effect": "Damage Dealt Reduction Resistance 6.3%",
             "duration": null
           }
         ]
@@ -1509,7 +1497,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Shield]",
-            "effect": "Max HP Up 15.9％",
+            "effect": "Max HP Up 15.9%",
             "duration": null
           }
         ]
@@ -1533,13 +1521,13 @@
           {
             "condition": null,
             "target": "Enemy [Archer]",
-            "effect": "ATK Down 15％",
+            "effect": "ATK Down 15%",
             "duration": null
           },
           {
             "condition": "Per other ally [Cavalry] general",
             "target": "Self",
-            "effect": "ATK Up 10％",
+            "effect": "ATK Up 10%",
             "duration": null
           }
         ]
@@ -1552,7 +1540,7 @@
           {
             "condition": "CW battle (effective even if not deployed)",
             "target": "Ally [Cavalry]",
-            "effect": "Max HP Up 6.9％",
+            "effect": "Max HP Up 6.9%",
             "duration": null
           }
         ]
@@ -1565,7 +1553,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Repair Speed Up 4.6％",
+            "effect": "Siege weapon repair Repair Speed Up 4.6%",
             "duration": null
           }
         ]
@@ -1608,7 +1596,7 @@
           {
             "condition": "When passing Water terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Damage Taken Increase Resistance 5.4％",
+            "effect": "Damage Taken Increase Resistance 5.4%",
             "duration": null
           }
         ]
@@ -1621,7 +1609,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally attack siege weapons",
-            "effect": "DEF Up 4.8％",
+            "effect": "DEF Up 4.8%",
             "duration": null
           }
         ]
@@ -1662,7 +1650,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally defense siege weapons",
-            "effect": "ATK Up 2.8％",
+            "effect": "ATK Up 2.8%",
             "duration": null
           }
         ]
@@ -1675,7 +1663,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Ore Consumption Down 6.2％",
+            "effect": "Siege weapon repair Ore Consumption Down 6.2%",
             "duration": null
           }
         ]
@@ -1699,7 +1687,7 @@
           {
             "condition": "Per ally [Shield] general",
             "target": "Self",
-            "effect": "DEF Up 10％",
+            "effect": "DEF Up 10%",
             "duration": null
           }
         ]
@@ -1712,7 +1700,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Cavalry]",
-            "effect": "DEF Up 4.3％",
+            "effect": "DEF Up 4.3%",
             "duration": null
           }
         ]
@@ -1725,7 +1713,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Material Consumption Down 6.2％",
+            "effect": "Siege weapon repair Material Consumption Down 6.2%",
             "duration": null
           }
         ]
@@ -1768,7 +1756,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Infantry]",
-            "effect": "DEF Up 4.3％",
+            "effect": "DEF Up 4.3%",
             "duration": null
           }
         ]
@@ -1781,7 +1769,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Coin Consumption Down 7.4％",
+            "effect": "Siege weapon repair Coin Consumption Down 7.4%",
             "duration": null
           }
         ]
@@ -1805,13 +1793,13 @@
           {
             "condition": null,
             "target": "Ally [Infantry] and [Cavalry]",
-            "effect": "\"Betrayal\" Resistance 、\"Confusion\" Resistance 35％",
+            "effect": "\"Betrayal\" Resistance, \"Confusion\" Resistance 35%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally [Infantry] and [Cavalry]",
-            "effect": "ATK Up 10％",
+            "effect": "ATK Up 10%",
             "duration": null
           }
         ]
@@ -1824,7 +1812,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Repair Speed Up 2.3％",
+            "effect": "Siege weapon repair Repair Speed Up 2.3%",
             "duration": null
           }
         ]
@@ -1837,7 +1825,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Archer]",
-            "effect": "Max HP Up 18.2％",
+            "effect": "Max HP Up 18.2%",
             "duration": null
           }
         ]
@@ -1861,13 +1849,13 @@
           {
             "condition": null,
             "target": "Ally [Infantry]",
-            "effect": "Ally [Shield] \"Poison\" Resistance 60％",
+            "effect": "Ally [Shield] \"Poison\" Resistance 60%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally [Infantry]",
-            "effect": "Ally [Shield] DEF Up 10％",
+            "effect": "Ally [Shield] DEF Up 10%",
             "duration": null
           }
         ]
@@ -1880,7 +1868,7 @@
           {
             "condition": "When passing Water terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Damage Taken Increase Resistance 6.3％",
+            "effect": "Damage Taken Increase Resistance 6.3%",
             "duration": null
           }
         ]
@@ -1893,7 +1881,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally attack siege weapons",
-            "effect": "DEF Up 5.8％",
+            "effect": "DEF Up 5.8%",
             "duration": null
           }
         ]
@@ -1917,13 +1905,13 @@
           {
             "condition": null,
             "target": "Ally [Infantry] and [Shield]",
-            "effect": "\"Paralysis\" Resistance 40％",
+            "effect": "\"Paralysis\" Resistance 40%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally [Infantry] and [Shield]",
-            "effect": "DEF Up 10％",
+            "effect": "DEF Up 10%",
             "duration": null
           }
         ]
@@ -1936,7 +1924,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Material Consumption Down 2.4％",
+            "effect": "Siege weapon repair Material Consumption Down 2.4%",
             "duration": null
           }
         ]
@@ -1949,7 +1937,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Ore Consumption Down 5.5％",
+            "effect": "Siege weapon repair Ore Consumption Down 5.5%",
             "duration": null
           }
         ]
@@ -1979,7 +1967,7 @@
           {
             "condition": null,
             "target": "Ally [Infantry]",
-            "effect": "Ally [Cavalry] \"Betrayal\" Resistance 50％",
+            "effect": "Ally [Cavalry] \"Betrayal\" Resistance 50%",
             "duration": "3 turns"
           }
         ]
@@ -1992,7 +1980,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally defense siege weapons",
-            "effect": "Max HP Up 12.3％",
+            "effect": "Max HP Up 12.3%",
             "duration": null
           }
         ]
@@ -2005,7 +1993,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Cavalry]",
-            "effect": "DEF Up 9.9％",
+            "effect": "DEF Up 9.9%",
             "duration": null
           }
         ]
@@ -2035,7 +2023,7 @@
           {
             "condition": null,
             "target": "Ally [Infantry]",
-            "effect": "Ally [Shield] \"Poison\" Resistance 100％",
+            "effect": "Ally [Shield] \"Poison\" Resistance 100%",
             "duration": "3 turns"
           }
         ]
@@ -2048,7 +2036,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Ore Consumption Down 2.7％",
+            "effect": "Siege weapon repair Ore Consumption Down 2.7%",
             "duration": null
           }
         ]
@@ -2061,7 +2049,7 @@
           {
             "condition": "CW battle (effective even if not deployed)",
             "target": "Ally attack siege weapons",
-            "effect": "Max HP Up 28.3％",
+            "effect": "Max HP Up 28.3%",
             "duration": null
           }
         ]
@@ -2085,13 +2073,13 @@
           {
             "condition": null,
             "target": "Ally [Cavalry]",
-            "effect": "ATK Up 15％",
+            "effect": "ATK Up 15%",
             "duration": null
           },
           {
             "condition": "Per ally [Cavalry] general",
             "target": "Self",
-            "effect": "DEF Up 5％",
+            "effect": "DEF Up 5%",
             "duration": null
           }
         ]
@@ -2104,7 +2092,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Shield]",
-            "effect": "Max HP Up 7.9％",
+            "effect": "Max HP Up 7.9%",
             "duration": null
           }
         ]
@@ -2117,7 +2105,7 @@
           {
             "condition": "CW battle (effective even if not deployed)",
             "target": "Ally [Shield]",
-            "effect": "DEF Up 9.9％",
+            "effect": "DEF Up 9.9%",
             "duration": null
           }
         ]
@@ -2141,13 +2129,13 @@
           {
             "condition": null,
             "target": "Ally [Shield]",
-            "effect": "DEF Up 10％",
+            "effect": "DEF Up 10%",
             "duration": null
           },
           {
             "condition": "When Garrisoning",
             "target": "Other ally",
-            "effect": "[Shield] Anti-[Cavalry] DEF Up 25％",
+            "effect": "[Shield] Anti-[Cavalry] DEF Up 25%",
             "duration": null
           }
         ]
@@ -2160,7 +2148,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Material Consumption Down 2％",
+            "effect": "Siege weapon repair Material Consumption Down 2%",
             "duration": null
           }
         ]
@@ -2173,7 +2161,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Ore Consumption Down 4.6％",
+            "effect": "Siege weapon repair Ore Consumption Down 4.6%",
             "duration": null
           }
         ]
@@ -2202,7 +2190,7 @@
           {
             "condition": null,
             "target": "Ally [Infantry]",
-            "effect": "Ally [Archer] \"Illusion\" Resistance 80％",
+            "effect": "Ally [Archer] \"Illusion\" Resistance 80%",
             "duration": "3 turns"
           }
         ]
@@ -2215,7 +2203,7 @@
           {
             "condition": "When passing through Ambush terrain (effective even when not deployed)",
             "target": "Passing unit",
-            "effect": "Squad Damage Reduction 2.4％",
+            "effect": "Squad Damage Reduction 2.4%",
             "duration": null
           }
         ]
@@ -2228,7 +2216,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally defense siege weapons",
-            "effect": "DEF Up 5.8％",
+            "effect": "DEF Up 5.8%",
             "duration": null
           }
         ]
@@ -2252,13 +2240,13 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "DEF Up 20％",
+            "effect": "DEF Up 20%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Other ally",
-            "effect": "[Infantry] ATK Up 20％",
+            "effect": "[Infantry] ATK Up 20%",
             "duration": null
           }
         ]
@@ -2271,7 +2259,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Infantry]",
-            "effect": "Max HP Up 7.9％",
+            "effect": "Max HP Up 7.9%",
             "duration": null
           }
         ]
@@ -2284,7 +2272,7 @@
           {
             "condition": "When passing Water terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Damage Taken Increase Resistance 16.6％",
+            "effect": "Damage Taken Increase Resistance 16.6%",
             "duration": null
           }
         ]
@@ -2327,7 +2315,7 @@
           {
             "condition": "When passing Checkpoint terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Squad Damage Reduction 2.7％",
+            "effect": "Squad Damage Reduction 2.7%",
             "duration": null
           }
         ]
@@ -2340,7 +2328,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Cavalry]",
-            "effect": "Max HP Up 18.2％",
+            "effect": "Max HP Up 18.2%",
             "duration": null
           }
         ]
@@ -2383,7 +2371,7 @@
           {
             "condition": "When passing Water terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Damage Taken Increase Resistance 7.2％",
+            "effect": "Damage Taken Increase Resistance 7.2%",
             "duration": null
           }
         ]
@@ -2396,7 +2384,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Infantry]",
-            "effect": "Max HP Up 18.2％",
+            "effect": "Max HP Up 18.2%",
             "duration": null
           }
         ]
@@ -2439,7 +2427,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Cavalry]",
-            "effect": "ATK Up 4.3％",
+            "effect": "ATK Up 4.3%",
             "duration": null
           }
         ]
@@ -2452,7 +2440,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Repair Speed Up 5.3％",
+            "effect": "Siege weapon repair Repair Speed Up 5.3%",
             "duration": null
           }
         ]
@@ -2495,7 +2483,7 @@
           {
             "condition": "CW battle (effective even if not deployed)",
             "target": "Ally [Shield]",
-            "effect": "DEF Up 3.8％",
+            "effect": "DEF Up 3.8%",
             "duration": null
           }
         ]
@@ -2508,7 +2496,7 @@
           {
             "condition": "When passing Ambush terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Squad Damage Reduction 5.5％",
+            "effect": "Squad Damage Reduction 5.5%",
             "duration": null
           }
         ]
@@ -2538,7 +2526,7 @@
           {
             "condition": null,
             "target": "Ally [Infantry]",
-            "effect": "Ally [Shield] \"Confusion\" Resistance 70％",
+            "effect": "Ally [Shield] \"Confusion\" Resistance 70%",
             "duration": "3 turns"
           }
         ]
@@ -2551,7 +2539,7 @@
           {
             "condition": "When repairing CW siege weapons",
             "target": "Self",
-            "effect": "Siege weapon repair Ore Consumption Down 2.4％",
+            "effect": "Siege weapon repair Ore Consumption Down 2.4%",
             "duration": null
           }
         ]
@@ -2564,7 +2552,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally attack siege weapons",
-            "effect": "Max HP Up 24.8％",
+            "effect": "Max HP Up 24.8%",
             "duration": null
           }
         ]
@@ -2593,7 +2581,7 @@
           {
             "condition": null,
             "target": "Other ally",
-            "effect": "[Cavalry] ATK Up 20％",
+            "effect": "[Cavalry] ATK Up 20%",
             "duration": "3 turns"
           }
         ]
@@ -2606,7 +2594,7 @@
           {
             "condition": "CW battle (effective even when not deployed)",
             "target": "Ally [Cavalry]",
-            "effect": "DEF Up 3.8％",
+            "effect": "DEF Up 3.8%",
             "duration": null
           }
         ]
@@ -2619,7 +2607,7 @@
           {
             "condition": "When passing Slope terrain (effective even if not deployed)",
             "target": "Passing unit",
-            "effect": "Damage Dealt Reduction Resistance 14.5％",
+            "effect": "Damage Dealt Reduction Resistance 14.5%",
             "duration": null
           }
         ]

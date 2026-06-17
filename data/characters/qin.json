@@ -694,7 +694,7 @@
     "name_en": "Shoutaku",
     "name_jp": "松琢",
     "country": "qin",
-    "unit": "Gyokuhou Squad",
+    "unit": "Gyokuhou Unit",
     "rarity": "SR",
     "skills": [
       {
@@ -729,13 +729,13 @@
           },
           {
             "condition": "Surviving",
-            "target": "Ally Gyokuhou Squad",
+            "target": "Ally Gyokuhou Unit",
             "effect": "HP Recovery 10%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Gyokuhou Squad",
+            "target": "Ally Gyokuhou Unit",
             "effect": "Hit Rate Up 20%",
             "duration": null
           }
@@ -753,7 +753,7 @@
             "duration": "4 turns"
           },
           {
-            "condition": "Per other ally Gyokuhou Squad member",
+            "condition": "Per other ally Gyokuhou Unit member",
             "target": "Ally Ouhon",
             "effect": "ATK Up 15%",
             "duration": "4 turns"
@@ -781,7 +781,7 @@
     "name_en": "Kyuukou",
     "name_jp": "宮康",
     "country": "qin",
-    "unit": "Gyokuhou Squad",
+    "unit": "Gyokuhou Unit",
     "rarity": "SR",
     "skills": [
       {
@@ -816,13 +816,13 @@
           },
           {
             "condition": null,
-            "target": "Ally Gyokuhou Squad",
+            "target": "Ally Gyokuhou Unit",
             "effect": "Betrayal Resistance 30%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Gyokuhou Squad",
+            "target": "Ally Gyokuhou Unit",
             "effect": "Confusion Resistance 50%",
             "duration": null
           }
@@ -840,7 +840,7 @@
             "duration": "4 turns"
           },
           {
-            "condition": "Per other ally Gyokuhou Squad member",
+            "condition": "Per other ally Gyokuhou Unit member",
             "target": "Self",
             "effect": "DEF Up 15%",
             "duration": "4 turns"
@@ -868,13 +868,7 @@
           {
             "condition": null,
             "target": "Ally Gyokuhou Unit / Ousen Army",
-            "effect": "DEF Up 40%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Gyokuhou Unit / Ousen Army",
-            "effect": "Critical Damage Up 30%",
+            "effect": "DEF Up 40%, Critical Damage Up 30%",
             "duration": null
           },
           {
@@ -1042,7 +1036,7 @@
           {
             "condition": "When Attacking",
             "target": "Ally Kanki Army",
-            "effect": "Evasion Rate Up 20%",
+            "effect": "Evasion (Dodge Chance) Up 20%",
             "duration": "3 turns"
           },
           {
@@ -1351,7 +1345,7 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "ATK Down, DEF Down, Evasion Down 30%",
+            "effect": "ATK Down, DEF Down, Evasion (Dodge Chance) Down 30%",
             "duration": null
           },
           {

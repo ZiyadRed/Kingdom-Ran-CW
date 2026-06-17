@@ -174,25 +174,25 @@
           {
             "condition": null,
             "target": "Ally Kanmei Army",
-            "effect": "Max HP Up 100％",
+            "effect": "Max HP Up 100%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally Kanmei Army",
-            "effect": "ATK Up, DEF Up 30％",
+            "effect": "ATK Up, DEF Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally Kanmei Army",
-            "effect": "ATK Down Resistance 50％",
+            "effect": "ATK Down Resistance 50%",
             "duration": null
           },
           {
             "condition": "Other ally [Chu] alive",
             "target": "All enemy generals",
-            "effect": "DEF Down 30％",
+            "effect": "DEF Down 30%",
             "duration": null
           }
         ]
@@ -293,7 +293,7 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Critical Rate Up 、Critical Damage Up 30%",
+            "effect": "Critical Rate Up, Critical Damage Up 30%",
             "duration": null
           },
           {
@@ -382,19 +382,7 @@
           {
             "condition": null,
             "target": "Ally Renpa Army",
-            "effect": "Max HP Up 100%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Renpa Army",
-            "effect": "ATK Up 30%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally Renpa Army",
-            "effect": "DEF Up 30%",
+            "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%",
             "duration": null
           },
           {
@@ -641,25 +629,19 @@
           {
             "condition": "Per other ally Renpa Army",
             "target": "Ally Renpa Army",
-            "effect": "ATK Up 10％",
-            "duration": null
-          },
-          {
-            "condition": "Per other ally Renpa Army",
-            "target": "Ally Renpa Army",
-            "effect": "DEF Up 10％",
+            "effect": "ATK Up 10%, DEF Up 10%",
             "duration": null
           },
           {
             "condition": null,
             "target": "All enemy generals",
-            "effect": "Anti-Renpa Army DEF Down 30％",
+            "effect": "Anti-Renpa Army DEF Down 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally Renpa Army",
-            "effect": "Betrayal Resistance 60％",
+            "effect": "Betrayal Resistance 60%",
             "duration": null
           }
         ]
@@ -821,31 +803,25 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Anti-[Cavalry] ATK Up 30％",
+            "effect": "Anti-[Cavalry] ATK Up 30%, Anti-[Cavalry] DEF Up 30%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Self",
-            "effect": "Anti-[Cavalry] DEF Up 30％",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Ally shield infantry",
-            "effect": "Hit Rate Up 30％",
+            "target": "Ally shield soldiers",
+            "effect": "Hit Rate Up 30%",
             "duration": null
           },
           {
             "condition": null,
             "target": "Ally [Wei]",
-            "effect": "Burn Resistance 100％",
+            "effect": "Burn Resistance 100%",
             "duration": null
           },
           {
-            "condition": "At the time of garrison",
+            "condition": "When Garrisoning",
             "target": "Enemy cavalry",
-            "effect": "ATK Down 40％",
+            "effect": "ATK Down 40%",
             "duration": null
           }
         ]
