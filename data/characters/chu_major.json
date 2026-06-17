@@ -329,7 +329,7 @@
           },
           {
             "condition": null,
-            "target": "Other ally [Cavalry] / ally [Archer]",
+            "target": "Other ally [Cavalry] / Ally [Archer]",
             "effect": "ATK Up 20%",
             "duration": "3 turns"
           }
@@ -342,7 +342,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Self / ally Renpa's Four Heavenly Kings",
+            "target": "Self / Ally Renpa's Four Heavenly Kings",
             "effect": "Max HP Up 60%",
             "duration": null
           },
@@ -437,7 +437,7 @@
           },
           {
             "condition": "When ally Renpa is present",
-            "target": "Ally Renpa / ally Renpa's Four Heavenly Kings",
+            "target": "Ally Renpa / Ally Renpa's Four Heavenly Kings",
             "effect": "DEF Penetration Up 20%",
             "duration": null
           }
@@ -683,7 +683,7 @@
         "effects": [
           {
             "condition": "Per ally infantry / per other ally archer general",
-            "target": "Self / ally attack siege weapons",
+            "target": "Self / Ally attack siege weapons",
             "effect": "ATK Up 10%",
             "duration": null
           }

@@ -38,7 +38,7 @@
           },
           {
             "condition": null,
-            "target": "Self, ally [?], ally [?]",
+            "target": "Self, Ally [?], Ally [?]",
             "effect": "Betrayal Resistance 100%",
             "duration": null
           },
@@ -657,7 +657,7 @@
           },
           {
             "condition": "Own HP ≥ 90%",
-            "target": "Self / ally [Cavalry]",
+            "target": "Self / Ally [Cavalry]",
             "effect": "Guard 40%",
             "duration": "3 times"
           },
@@ -768,7 +768,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally [Infantry] / other ally [Cavalry]",
+            "target": "Ally [Infantry] / Other ally [Cavalry]",
             "effect": "ATK Up 20%",
             "duration": null
           }
@@ -787,7 +787,7 @@
           },
           {
             "condition": null,
-            "target": "Ally [Infantry] / other ally [Cavalry]",
+            "target": "Ally [Infantry] / Other ally [Cavalry]",
             "effect": "Attack Nullification",
             "duration": "1 time"
           }
@@ -937,7 +937,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Other ally [Cavalry] / ally [Shield]",
+            "target": "Other ally [Cavalry] / Ally [Shield]",
             "effect": "Morale Cost Reduction 20%",
             "duration": null
           },
@@ -962,7 +962,7 @@
           },
           {
             "condition": null,
-            "target": "Other ally [Cavalry] / ally [Shield]",
+            "target": "Other ally [Cavalry] / Ally [Shield]",
             "effect": "DEF Penetration Up 10%",
             "duration": "4 turns"
           },

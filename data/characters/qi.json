@@ -44,13 +44,13 @@
           },
           {
             "condition": null,
-            "target": "Ally [Qin] / ally [Qi]",
+            "target": "Ally [Qin] / Ally [Qi]",
             "effect": "Evasion (Dodge Chance) Up 40%",
             "duration": null
           },
           {
             "condition": "When Attacking",
-            "target": "Ally [Qin] / ally [Qi]",
+            "target": "Ally [Qin] / Ally [Qi]",
             "effect": "Morale Cost Reduction 20%",
             "duration": null
           }

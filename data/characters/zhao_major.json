@@ -236,7 +236,7 @@
           },
           {
             "condition": null,
-            "target": "Self / ally [Shield]",
+            "target": "Self / Ally [Shield]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           }
@@ -274,7 +274,7 @@
           },
           {
             "condition": null,
-            "target": "Self / ally [Shield]",
+            "target": "Self / Ally [Shield]",
             "effect": "Guard 60%",
             "duration": "1 time"
           },
@@ -398,7 +398,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Other ally [Cavalry] / ally [Shield]",
+            "target": "Other ally [Cavalry] / Ally [Shield]",
             "effect": "DEF Up 20%",
             "duration": null
           }

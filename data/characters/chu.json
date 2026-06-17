@@ -294,7 +294,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Self / ally [Shield]",
+            "target": "Self / Ally [Shield]",
             "effect": "DEF Up 20%",
             "duration": null
           },
@@ -368,7 +368,7 @@
           },
           {
             "condition": null,
-            "target": "Self / ally Renpa / ally Renpa's Four Heavenly Kings",
+            "target": "Self / Ally Renpa / Ally Renpa's Four Heavenly Kings",
             "effect": "Sure Hit",
             "duration": null
           },
@@ -399,13 +399,13 @@
           },
           {
             "condition": "Feared enemies present",
-            "target": "Self / ally [Cavalry]",
+            "target": "Self / Ally [Cavalry]",
             "effect": "ATK Up 30%",
             "duration": "3 turns"
           },
           {
             "condition": null,
-            "target": "Self / ally Renpa / ally Renpa's Four Heavenly Kings",
+            "target": "Self / Ally Renpa / Ally Renpa's Four Heavenly Kings",
             "effect": "HP Recovery 20%",
             "duration": null
           },
@@ -448,7 +448,7 @@
           },
           {
             "condition": null,
-            "target": "Self / ally Rinbukun / ally Hakurei",
+            "target": "Self / Ally Rinbukun / Ally Hakurei",
             "effect": "Continuous HP Recovery 10%",
             "duration": "3 turns"
           }
@@ -467,7 +467,7 @@
           },
           {
             "condition": null,
-            "target": "Self / ally Rinbukun / ally Hakurei",
+            "target": "Self / Ally Rinbukun / Ally Hakurei",
             "effect": "Status Effect Immunity (excl. Provoke)",
             "duration": "1 time"
           },
@@ -548,7 +548,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally [Zhao] / [Wei] / other [Chu] / [Han] / [Yan]",
+            "target": "Ally [Zhao] / [Wei] / Other [Chu] / [Han] / [Yan]",
             "effect": "ATK Up vs Qin / DEF Up vs Qin 30%",
             "duration": null
           }
