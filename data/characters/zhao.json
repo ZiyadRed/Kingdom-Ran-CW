@@ -685,7 +685,7 @@
           {
             "condition": null,
             "target": "Ally Zhao",
-            "effect": "Continuous HP Recovery 3%",
+            "effect": "Continuous HP Recovery 8%",
             "duration": "4 turns"
           },
           {
