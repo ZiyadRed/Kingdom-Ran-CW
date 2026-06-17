@@ -13,7 +13,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally infantry",
+            "target": "Ally [Infantry]",
             "effect": "ATK Up 1%",
             "duration": null
           }
@@ -26,7 +26,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally infantry",
+            "target": "Ally [Infantry]",
             "effect": "DEF Up 5.4%",
             "duration": null
           }
@@ -39,7 +39,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally infantry",
+            "target": "Ally [Infantry]",
             "effect": "Max HP Up 22.8%",
             "duration": null
           }
@@ -63,7 +63,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally infantry",
+            "target": "Ally [Infantry]",
             "effect": "DEF Up 1%",
             "duration": null
           }
@@ -76,7 +76,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally infantry",
+            "target": "Ally [Infantry]",
             "effect": "ATK Up 5.4%",
             "duration": null
           }
@@ -89,7 +89,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally infantry",
+            "target": "Ally [Infantry]",
             "effect": "Max HP Up 22.8%",
             "duration": null
           }
@@ -119,7 +119,7 @@
           },
           {
             "condition": null,
-            "target": "Other ally shield soldiers",
+            "target": "Other ally [Shield]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           }
@@ -132,7 +132,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally shield soldiers",
+            "target": "Ally [Shield]",
             "effect": "ATK Up 4.3%",
             "duration": null
           }
@@ -145,7 +145,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally shield soldiers",
+            "target": "Ally [Shield]",
             "effect": "DEF Up 9.9%",
             "duration": null
           }
@@ -174,13 +174,13 @@
           },
           {
             "condition": null,
-            "target": "Other ally infantry",
+            "target": "Other ally [Infantry]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           },
           {
             "condition": "When Attacking",
-            "target": "Other ally infantry",
+            "target": "Other ally [Infantry]",
             "effect": "DEF Up 15%",
             "duration": "3 turns"
           }
@@ -286,13 +286,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally cavalry / other ally shield soldiers",
+            "target": "Ally [Cavalry] / other ally [Shield]",
             "effect": "ATK Up 20%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Other ally shield soldiers",
+            "target": "Other ally [Shield]",
             "effect": "DEF Up 20%",
             "duration": null
           }
@@ -305,7 +305,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally shield soldiers",
+            "target": "Ally [Shield]",
             "effect": "Max HP Up 7.9%",
             "duration": null
           }
@@ -354,7 +354,7 @@
           },
           {
             "condition": null,
-            "target": "Ally infantry",
+            "target": "Ally [Infantry]",
             "effect": "Confusion Infliction Rate Up / Paralysis Infliction Rate Up 40%",
             "duration": "3 turns"
           }
@@ -465,7 +465,7 @@
           },
           {
             "condition": null,
-            "target": "Ally shield soldiers",
+            "target": "Ally [Shield]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           },
@@ -484,7 +484,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "DEF Up 3.8%",
             "duration": null
           }
@@ -526,7 +526,7 @@
           },
           {
             "condition": null,
-            "target": "Ally shield soldiers",
+            "target": "Ally [Shield]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           },
@@ -545,7 +545,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "Max HP Up 15.9%",
             "duration": null
           }

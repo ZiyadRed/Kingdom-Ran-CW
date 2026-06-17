@@ -330,7 +330,7 @@
           },
           {
             "condition": null,
-            "target": "Ally cavalry",
+            "target": "Ally [Cavalry]",
             "effect": "DEF Up 15%",
             "duration": null
           },
@@ -355,7 +355,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally infantry",
+            "target": "Ally [Infantry]",
             "effect": "Max HP Up 22.8%",
             "duration": null
           }
@@ -391,13 +391,13 @@
           },
           {
             "condition": null,
-            "target": "Other ally shield soldiers",
+            "target": "Other ally [Shield]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           },
           {
             "condition": "When Attacking",
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "ATK Up 20%",
             "duration": "3 turns"
           }
@@ -435,7 +435,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally shield soldiers",
+            "target": "Ally [Shield]",
             "effect": "Max HP Up 22.8%",
             "duration": null
           }
@@ -540,8 +540,8 @@
             "duration": null
           },
           {
-            "condition": "Surviving ally cavalry",
-            "target": "Ally cavalry",
+            "condition": "Surviving ally [Cavalry]",
+            "target": "Ally [Cavalry]",
             "effect": "HP Recovery 20%",
             "duration": null
           }

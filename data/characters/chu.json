@@ -64,7 +64,7 @@
           },
           {
             "condition": null,
-            "target": "Ally cavalry",
+            "target": "Ally [Cavalry]",
             "effect": "Evasion (Dodge Chance) Up 10%",
             "duration": null
           },
@@ -126,7 +126,7 @@
           },
           {
             "condition": null,
-            "target": "Ally cavalry",
+            "target": "Ally [Cavalry]",
             "effect": "Critical Damage Up 10%",
             "duration": null
           },
@@ -244,7 +244,7 @@
           },
           {
             "condition": null,
-            "target": "Other ally cavalry",
+            "target": "Other ally [Cavalry]",
             "effect": "Critical Rate Up 10%",
             "duration": null
           },
@@ -294,7 +294,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Self / ally shield soldiers",
+            "target": "Self / ally [Shield]",
             "effect": "DEF Up 20%",
             "duration": null
           },
@@ -399,7 +399,7 @@
           },
           {
             "condition": "Feared enemies present",
-            "target": "Self / ally cavalry",
+            "target": "Self / ally [Cavalry]",
             "effect": "ATK Up 30%",
             "duration": "3 turns"
           },
@@ -486,7 +486,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "ATK Up 12.4%",
             "duration": null
           }

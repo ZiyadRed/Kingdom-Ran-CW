@@ -236,7 +236,7 @@
           },
           {
             "condition": null,
-            "target": "Self / ally shield soldiers",
+            "target": "Self / ally [Shield]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           }
@@ -274,7 +274,7 @@
           },
           {
             "condition": null,
-            "target": "Self / ally shield soldiers",
+            "target": "Self / ally [Shield]",
             "effect": "Guard 60%",
             "duration": "1 time"
           },
@@ -398,7 +398,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Other ally cavalry / ally shield soldiers",
+            "target": "Other ally [Cavalry] / ally [Shield]",
             "effect": "DEF Up 20%",
             "duration": null
           }
@@ -424,7 +424,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally cavalry",
+            "target": "Ally [Cavalry]",
             "effect": "Max HP Up 18.2%",
             "duration": null
           }
@@ -448,7 +448,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "ATK Up 20%",
             "duration": null
           },
@@ -516,7 +516,7 @@
           },
           {
             "condition": "When Attacking",
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           }
@@ -622,7 +622,7 @@
           },
           {
             "condition": "When Attacking",
-            "target": "Enemy shield soldiers",
+            "target": "Enemy [Shield]",
             "effect": "ATK Down 20%",
             "duration": null
           }

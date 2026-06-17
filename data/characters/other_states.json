@@ -636,7 +636,7 @@
           },
           {
             "condition": "When Attacking",
-            "target": "Ally cavalry",
+            "target": "Ally [Cavalry]",
             "effect": "DEF Up 40%",
             "duration": null
           }
@@ -722,7 +722,7 @@
           },
           {
             "condition": "When Attacking, when enemy Qin alive",
-            "target": "Ally cavalry",
+            "target": "Ally [Cavalry]",
             "effect": "Evasion (Dodge Chance) Up 30%",
             "duration": null
           }

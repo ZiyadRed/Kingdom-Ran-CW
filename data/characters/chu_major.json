@@ -115,7 +115,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Other ally cavalry",
+            "target": "Other ally [Cavalry]",
             "effect": "ATK Up 20%",
             "duration": null
           },
@@ -222,7 +222,7 @@
           },
           {
             "condition": "When Attacking",
-            "target": "Other ally cavalry",
+            "target": "Other ally [Cavalry]",
             "effect": "ATK Up / Critical Rate Up 20%",
             "duration": null
           }
@@ -329,7 +329,7 @@
           },
           {
             "condition": null,
-            "target": "Other ally cavalry / ally archers",
+            "target": "Other ally [Cavalry] / ally [Archer]",
             "effect": "ATK Up 20%",
             "duration": "3 turns"
           }
@@ -526,7 +526,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "Sure Hit",
             "duration": null
           },
@@ -588,7 +588,7 @@
           },
           {
             "condition": null,
-            "target": "Ally cavalry",
+            "target": "Ally [Cavalry]",
             "effect": "ATK Up 20%",
             "duration": "3 turns"
           }
@@ -601,7 +601,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally cavalry",
+            "target": "Ally [Cavalry]",
             "effect": "Max HP Up 7.9%",
             "duration": null
           }
@@ -708,13 +708,13 @@
           },
           {
             "condition": "When Attacking",
-            "target": "Ally shield soldiers",
+            "target": "Ally [Shield]",
             "effect": "DEF Up 15%",
             "duration": "3 turns"
           },
           {
             "condition": "When Attacking",
-            "target": "Other ally archers",
+            "target": "Other ally [Archer]",
             "effect": "ATK Up 20%",
             "duration": "3 turns"
           }
@@ -808,7 +808,7 @@
           },
           {
             "condition": null,
-            "target": "Ally shield soldiers",
+            "target": "Ally [Shield]",
             "effect": "Hit Rate Up 30%",
             "duration": null
           },

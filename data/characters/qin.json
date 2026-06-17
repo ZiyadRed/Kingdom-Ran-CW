@@ -288,19 +288,19 @@
           },
           {
             "condition": null,
-            "target": "Ally cavalry",
+            "target": "Ally [Cavalry]",
             "effect": "DEF Up vs Archers 20%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "DEF Up vs Shield Soldiers 20%",
             "duration": null
           },
           {
-            "condition": "Ally shield soldiers",
-            "target": "Ally shield soldiers",
+            "condition": "Ally [Shield]",
+            "target": "Ally [Shield]",
             "effect": "DEF Up vs Cavalry 20%",
             "duration": null
           }
@@ -381,7 +381,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally infantry",
+            "target": "Ally [Infantry]",
             "effect": "ATK Up 12.4%",
             "duration": null
           }
@@ -437,7 +437,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally infantry",
+            "target": "Ally [Infantry]",
             "effect": "DEF Up 9.9%",
             "duration": null
           }
@@ -979,7 +979,7 @@
         "effects": [
           {
             "condition": "Per other ally cavalry member",
-            "target": "Ally cavalry",
+            "target": "Ally [Cavalry]",
             "effect": "ATK Up 10%",
             "duration": "3 turns"
           },
@@ -1196,7 +1196,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally infantry",
+            "target": "Ally [Infantry]",
             "effect": "ATK Up 9.9%",
             "duration": null
           }

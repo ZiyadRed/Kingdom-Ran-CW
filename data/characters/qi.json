@@ -25,7 +25,7 @@
           },
           {
             "condition": "The higher own remaining HP",
-            "target": "Ally cavalry",
+            "target": "Ally [Cavalry]",
             "effect": "ATK Up (max 30%)",
             "duration": "3 turns"
           }
@@ -63,7 +63,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally shield soldiers",
+            "target": "Ally [Shield]",
             "effect": "Max HP Up 22.8%",
             "duration": null
           }

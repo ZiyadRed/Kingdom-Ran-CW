@@ -152,7 +152,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Ally shield soldiers",
+            "target": "Ally [Shield]",
             "effect": "DEF Penetration Up 30%",
             "duration": null
           },
@@ -171,19 +171,19 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally shield soldiers",
+            "target": "Ally [Shield]",
             "effect": "ATK Up 20%",
             "duration": "3 turns"
           },
           {
             "condition": "When Garrisoning",
-            "target": "Other ally shield soldiers",
+            "target": "Other ally [Shield]",
             "effect": "Provoke",
             "duration": "3 turns"
           },
           {
             "condition": "When Garrisoning",
-            "target": "Other ally shield soldiers",
+            "target": "Other ally [Shield]",
             "effect": "Guard 60%",
             "duration": "2 times"
           },
@@ -283,7 +283,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Ally shield soldiers",
+            "target": "Ally [Shield]",
             "effect": "Critical Rate Up 20%",
             "duration": null
           }
@@ -389,7 +389,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Other ally cavalry",
+            "target": "Other ally [Cavalry]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           },
@@ -425,7 +425,7 @@
           },
           {
             "condition": null,
-            "target": "Ally shield soldiers",
+            "target": "Ally [Shield]",
             "effect": "DEF Up 20%",
             "duration": null
           }
@@ -505,13 +505,13 @@
           },
           {
             "condition": null,
-            "target": "Self / ally cavalry",
+            "target": "Self / ally [Cavalry]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           },
           {
             "condition": "When Garrisoning",
-            "target": "Ally shield soldiers",
+            "target": "Ally [Shield]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           }
@@ -659,7 +659,7 @@
           },
           {
             "condition": null,
-            "target": "Ally cavalry",
+            "target": "Ally [Cavalry]",
             "effect": "ATK Up 20%",
             "duration": "3 turns"
           }
@@ -771,7 +771,7 @@
           },
           {
             "condition": null,
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "ATK Up 20%",
             "duration": "3 turns"
           },
@@ -1039,7 +1039,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Ally shield soldiers",
+            "target": "Ally [Shield]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           }
@@ -1052,13 +1052,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Ei Sei / ally archers",
+            "target": "Ally Ei Sei / ally [Archer]",
             "effect": "Status Effect Immunity (excl. Provoke)",
             "duration": "1 time"
           },
           {
             "condition": null,
-            "target": "Ally Ei Sei / ally archers",
+            "target": "Ally Ei Sei / ally [Archer]",
             "effect": "Evasion (Dodge Chance) Up 20%",
             "duration": null
           }
@@ -1071,7 +1071,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "ATK Up 12.4%",
             "duration": null
           }
@@ -1374,7 +1374,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Self, Ally Cavalry",
+            "target": "Self, Ally [Cavalry]",
             "effect": "DEF Up 20%",
             "duration": null
           }

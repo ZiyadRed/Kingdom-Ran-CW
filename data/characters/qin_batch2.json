@@ -266,7 +266,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "ATK Up 20%",
             "duration": null
           }
@@ -347,7 +347,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally cavalry",
+            "target": "Ally [Cavalry]",
             "effect": "Hit Rate Up 30%",
             "duration": null
           },
@@ -550,7 +550,7 @@
           },
           {
             "condition": null,
-            "target": "Other ally infantry",
+            "target": "Other ally [Infantry]",
             "effect": "ATK Up 20%",
             "duration": "3 turns"
           }
@@ -638,7 +638,7 @@
           },
           {
             "condition": null,
-            "target": "Ally cavalry",
+            "target": "Ally [Cavalry]",
             "effect": "ATK Up 10%",
             "duration": null
           }
@@ -657,7 +657,7 @@
           },
           {
             "condition": "Own HP ≥ 90%",
-            "target": "Self / ally cavalry",
+            "target": "Self / ally [Cavalry]",
             "effect": "Guard 40%",
             "duration": "3 times"
           },
@@ -699,7 +699,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "DEF Up 20%",
             "duration": null
           }
@@ -768,7 +768,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally infantry / other ally cavalry",
+            "target": "Ally [Infantry] / other ally [Cavalry]",
             "effect": "ATK Up 20%",
             "duration": null
           }
@@ -787,7 +787,7 @@
           },
           {
             "condition": null,
-            "target": "Ally infantry / other ally cavalry",
+            "target": "Ally [Infantry] / other ally [Cavalry]",
             "effect": "Attack Nullification",
             "duration": "1 time"
           }
@@ -805,13 +805,13 @@
             "duration": null
           },
           {
-            "condition": "Other ally cavalry alive",
+            "condition": "Other ally [Cavalry] alive",
             "target": "Ally generals",
             "effect": "ATK Up 10%",
             "duration": "4 turns"
           },
           {
-            "condition": "Ally infantry alive",
+            "condition": "Ally [Infantry] alive",
             "target": "Ally generals",
             "effect": "DEF Up 10%",
             "duration": "4 turns"
@@ -849,7 +849,7 @@
           },
           {
             "condition": null,
-            "target": "Ally cavalry",
+            "target": "Ally [Cavalry]",
             "effect": "ATK Up 20%",
             "duration": "3 turns"
           }
@@ -937,7 +937,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Other ally cavalry / ally shield soldiers",
+            "target": "Other ally [Cavalry] / ally [Shield]",
             "effect": "Morale Cost Reduction 20%",
             "duration": null
           },
@@ -962,7 +962,7 @@
           },
           {
             "condition": null,
-            "target": "Other ally cavalry / ally shield soldiers",
+            "target": "Other ally [Cavalry] / ally [Shield]",
             "effect": "DEF Penetration Up 10%",
             "duration": "4 turns"
           },
@@ -1024,7 +1024,7 @@
           },
           {
             "condition": "Own HP ≥ 90%",
-            "target": "Ally infantry",
+            "target": "Ally [Infantry]",
             "effect": "ATK Up 30%",
             "duration": "3 turns"
           }
@@ -1050,7 +1050,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "Max HP Up 15.9%",
             "duration": null
           }
@@ -1092,7 +1092,7 @@
           },
           {
             "condition": null,
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "Guard 70%",
             "duration": "2 times"
           }
@@ -1105,7 +1105,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "ATK Up 20%",
             "duration": null
           },
@@ -1136,7 +1136,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally infantry",
+            "target": "Ally [Infantry]",
             "effect": "Max HP Up 22.8%",
             "duration": null
           }
@@ -1191,7 +1191,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "Guard 60%",
             "duration": "1 time"
           }
@@ -1204,7 +1204,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "Max HP Up 22.8%",
             "duration": null
           }
@@ -1261,7 +1261,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally infantry",
+            "target": "Ally [Infantry]",
             "effect": "DEF Up 9.9%",
             "duration": null
           }
@@ -1318,7 +1318,7 @@
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
-            "target": "Ally infantry",
+            "target": "Ally [Infantry]",
             "effect": "ATK Up 9.9%",
             "duration": null
           }

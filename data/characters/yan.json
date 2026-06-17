@@ -94,7 +94,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy shield soldiers",
+            "target": "Enemy [Shield]",
             "effect": "30% Damage",
             "duration": null
           },
@@ -106,7 +106,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy shield soldiers",
+            "target": "Enemy [Shield]",
             "effect": "Confusion Infliction 10%",
             "duration": "3 turns"
           }
@@ -144,13 +144,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally archers",
+            "target": "Ally [Archer]",
             "effect": "DEF Penetration Up 20%",
             "duration": "2 turns"
           },
           {
             "condition": null,
-            "target": "Enemy shield soldiers",
+            "target": "Enemy [Shield]",
             "effect": "2-Hit 30% Damage",
             "duration": null
           },
@@ -186,7 +186,7 @@
           },
           {
             "condition": null,
-            "target": "Other ally cavalry",
+            "target": "Other ally [Cavalry]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           }
@@ -299,7 +299,7 @@
           },
           {
             "condition": null,
-            "target": "Ally cavalry",
+            "target": "Ally [Cavalry]",
             "effect": "Max HP Up 30%",
             "duration": null
           }
