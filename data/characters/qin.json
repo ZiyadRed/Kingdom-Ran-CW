@@ -858,6 +858,32 @@
             "duration": null
           }
         ]
+      },
+      {
+        "name_en": "Rock Solid",
+        "name_jp": "堅牢堅固☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "effect": "DEF Up 40%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "effect": "Critical Damage Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Enemy [Cavalry]",
+            "effect": "ATK Down 30%, Critical Damage Down 30%",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "/persos/kyuukou.webp",
