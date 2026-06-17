@@ -516,13 +516,7 @@
           {
             "condition": "When ally [?] is alive",
             "target": "Ally Zhao",
-            "effect": "Hit Rate Up 5%",
-            "duration": "12 turns"
-          },
-          {
-            "condition": "When ally [?] is alive",
-            "target": "Ally Zhao",
-            "effect": "DEF Penetration Up 5%",
+            "effect": "Hit Rate Up 5%, DEF Penetration Up 5%",
             "duration": "12 turns"
           },
           {
@@ -547,13 +541,7 @@
           {
             "condition": "When ally [?] is alive",
             "target": "Ally Zhao",
-            "effect": "Hit Rate Up 5%",
-            "duration": "12 turns"
-          },
-          {
-            "condition": "When ally [?] is alive",
-            "target": "Ally Zhao",
-            "effect": "DEF Penetration Up 5%",
+            "effect": "Hit Rate Up 5%, DEF Penetration Up 5%",
             "duration": "12 turns"
           },
           {

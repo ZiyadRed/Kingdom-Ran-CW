@@ -45,13 +45,7 @@
           {
             "condition": "When ally [?] is alive",
             "target": "Self",
-            "effect": "Critical Rate Up 30%",
-            "duration": null
-          },
-          {
-            "condition": "When ally [?] is alive",
-            "target": "Self",
-            "effect": "Critical Damage Up 30%",
+            "effect": "Critical Rate Up 30%, Critical Damage Up 30%",
             "duration": null
           },
           {

@@ -613,13 +613,7 @@
           {
             "condition": null,
             "target": "Enemy generals",
-            "effect": "Critical Rate Up 20%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Enemy generals",
-            "effect": "Critical Damage Down 50%",
+            "effect": "Critical Rate Up 20%, Critical Damage Down 50%",
             "duration": null
           }
         ]

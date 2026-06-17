@@ -580,13 +580,7 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Critical Damage Up 30%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Self",
-            "effect": "DEF Penetration Up 20%",
+            "effect": "Critical Damage Up 30%, DEF Penetration Up 20%",
             "duration": null
           }
         ]
