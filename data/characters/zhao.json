@@ -13,13 +13,13 @@
         "effects": [
           {
             "condition": "Surviving",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Morale Recovery 30%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "HP Recovery Rate Up 30%",
             "duration": null
           }
@@ -32,13 +32,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "ATK Up / DEF Up 30%",
             "duration": null
           },
           {
-            "condition": "Surviving ally Zhao when enemies are alive",
-            "target": "Ally Zhao",
+            "condition": "Surviving ally [Zhao] when enemies are alive",
+            "target": "Ally [Zhao]",
             "effect": "HP Recovery 30%",
             "duration": null
           }
@@ -132,7 +132,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Hit Rate Up 20%",
             "duration": null
           },
@@ -187,13 +187,13 @@
         "effects": [
           {
             "condition": "Surviving",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Morale Recovery 20%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Guard 60%",
             "duration": "1 time"
           },
@@ -256,13 +256,13 @@
         "effects": [
           {
             "condition": "When ally Kisui is alive",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "ATK Up 20%",
             "duration": null
           },
           {
             "condition": "When ally Kishou is alive",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "DEF Up 20%",
             "duration": null
           }
@@ -322,7 +322,7 @@
             "duration": null
           },
           {
-            "condition": "Other Zhao ally alive, enemy with highest remaining HP",
+            "condition": "Other [Zhao] ally alive, enemy with highest remaining HP",
             "target": "1 enemy general",
             "effect": "% of Remaining HP Damage 20%",
             "duration": null
@@ -348,7 +348,7 @@
           },
           {
             "condition": "Per turn elapsed",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "DEF Up 5% (max 30%)",
             "duration": null
           }
@@ -378,7 +378,7 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Other Zhao ally alive, enemy with highest remaining HP",
+            "condition": "Other [Zhao] ally alive, enemy with highest remaining HP",
             "target": "1 infantry / 1 cavalry enemy general",
             "effect": "% of Remaining HP Damage 20%",
             "duration": null
@@ -428,7 +428,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy Qin",
+            "target": "Enemy [Qin]",
             "effect": "Fear Infliction 50%",
             "duration": "4 turns"
           },
@@ -465,13 +465,13 @@
           },
           {
             "condition": "When feared enemies are present",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "ATK Up 20%",
             "duration": null
           },
           {
             "condition": "When enemy Hi Shin Unit are alive",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Guard 100%",
             "duration": "1 time"
           }
@@ -509,13 +509,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy Qin",
+            "target": "Enemy [Qin]",
             "effect": "ATK Down 5%",
             "duration": "8 turns"
           },
           {
             "condition": "When ally [?] is alive",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Hit Rate Up 5%, DEF Penetration Up 5%",
             "duration": "12 turns"
           },
@@ -534,13 +534,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy Qin",
+            "target": "Enemy [Qin]",
             "effect": "ATK Down 5%",
             "duration": "8 turns"
           },
           {
             "condition": "When ally [?] is alive",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Hit Rate Up 5%, DEF Penetration Up 5%",
             "duration": "12 turns"
           },
@@ -652,7 +652,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Morale Recovery 10%",
             "duration": null
           }
@@ -665,7 +665,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Continuous Morale Recovery 3%",
             "duration": "4 turns"
           },
@@ -684,19 +684,19 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Continuous HP Recovery 8%",
             "duration": "4 turns"
           },
           {
             "condition": "When ally Batei or [?] is alive",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Guard 60%",
             "duration": "1 time"
           },
           {
             "condition": "When ally Batei AND [?] are both alive",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Attack Nullification",
             "duration": "1 time"
           },
@@ -740,13 +740,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy Qin",
+            "target": "Enemy [Qin]",
             "effect": "DEF Down 5%",
             "duration": "8 turns"
           },
           {
             "condition": "When ally [?] is alive",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "ATK Up 10%, DEF Up 10%",
             "duration": "8 turns"
           },
@@ -765,13 +765,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy Qin",
+            "target": "Enemy [Qin]",
             "effect": "DEF Down 5%",
             "duration": "8 turns"
           },
           {
             "condition": "When ally [?] is alive",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "ATK Up 10%, DEF Up 10%",
             "duration": "8 turns"
           },

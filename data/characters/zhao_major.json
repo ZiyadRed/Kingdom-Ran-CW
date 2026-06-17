@@ -38,13 +38,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Other ally Zhao / Wei / Chu / Han / Yan",
+            "target": "Other ally [Zhao] / [Wei] / [Chu] / [Han] / [Yan]",
             "effect": "DEF Up 20%",
             "duration": null
           },
           {
             "condition": "Surviving",
-            "target": "Other ally Zhao / Wei / Chu / Han / Yan",
+            "target": "Other ally [Zhao] / [Wei] / [Chu] / [Han] / [Yan]",
             "effect": "HP Recovery 10%",
             "duration": null
           }
@@ -69,7 +69,7 @@
           },
           {
             "condition": null,
-            "target": "Other ally Zhao / Wei / Chu / Han / Yan",
+            "target": "Other ally [Zhao] / [Wei] / [Chu] / [Han] / [Yan]",
             "effect": "Morale Recovery 10%",
             "duration": null
           },
@@ -249,13 +249,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Critical Rate Up / Hit Rate Up 20%",
             "duration": null
           },
           {
             "condition": "When ally Riboku is present",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Max Morale Up 50%",
             "duration": null
           }
@@ -280,7 +280,7 @@
           },
           {
             "condition": "When ally Riboku is alive",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Evasion (Dodge Chance) Up 20%",
             "duration": "3 turns"
           }
@@ -362,7 +362,7 @@
           },
           {
             "condition": "Enemy [Qin] present",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Fear Resistance 100%",
             "duration": null
           },

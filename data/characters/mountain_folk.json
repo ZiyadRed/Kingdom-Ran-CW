@@ -163,7 +163,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Mountain Folk",
+            "target": "Ally [Mountain Folk]",
             "effect": "Critical Rate Up 20%",
             "duration": null
           },
@@ -181,8 +181,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Per other ally Mountain Folk member",
-            "target": "Ally Mountain Folk",
+            "condition": "Per other ally [Mountain Folk] member",
+            "target": "Ally [Mountain Folk]",
             "effect": "ATK Up 10%",
             "duration": "3 turns"
           },
@@ -223,19 +223,19 @@
             "duration": null
           },
           {
-            "condition": "Other ally Mountain Folk alive, own HP ≥ 50%",
+            "condition": "Other ally [Mountain Folk] alive, own HP ≥ 50%",
             "target": "Self",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           },
           {
-            "condition": "Other ally Mountain Folk alive, own HP < 50%",
+            "condition": "Other ally [Mountain Folk] alive, own HP < 50%",
             "target": "Self",
             "effect": "Attack Nullification",
             "duration": "1 time"
           },
           {
-            "condition": "Other ally Mountain Folk alive, own HP < 50%",
+            "condition": "Other ally [Mountain Folk] alive, own HP < 50%",
             "target": "Self",
             "effect": "HP Recovery 20%",
             "duration": null
@@ -279,19 +279,19 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Other Mountain Folk alive, own HP ≥ 50%",
+            "condition": "Other [Mountain Folk] alive, own HP ≥ 50%",
             "target": "Self",
             "effect": "DEF Up 40%",
             "duration": "3 turns"
           },
           {
-            "condition": "Other Mountain Folk alive, own HP < 50%",
+            "condition": "Other [Mountain Folk] alive, own HP < 50%",
             "target": "Self",
             "effect": "Attack Nullification",
             "duration": "2 times"
           },
           {
-            "condition": "Other Mountain Folk alive, own HP < 50%",
+            "condition": "Other [Mountain Folk] alive, own HP < 50%",
             "target": "Self",
             "effect": "Continuous HP Recovery 10%",
             "duration": "3 turns"
@@ -335,7 +335,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Mountain Folk",
+            "target": "Ally [Mountain Folk]",
             "effect": "DEF Penetration Up 20%",
             "duration": null
           },
@@ -353,8 +353,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Per other ally Mountain Folk member",
-            "target": "Ally Mountain Folk",
+            "condition": "Per other ally [Mountain Folk] member",
+            "target": "Ally [Mountain Folk]",
             "effect": "ATK Up 10%",
             "duration": "3 turns"
           },
@@ -366,7 +366,7 @@
           },
           {
             "condition": "When ally Kitari is alive",
-            "target": "Ally Mountain Folk",
+            "target": "Ally [Mountain Folk]",
             "effect": "Attack Nullification",
             "duration": "1 time"
           }
@@ -402,7 +402,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Mountain Folk",
+            "target": "Ally [Mountain Folk]",
             "effect": "Guard 60%",
             "duration": "1 time"
           }
@@ -415,7 +415,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Mountain Folk",
+            "target": "Ally [Mountain Folk]",
             "effect": "ATK Up / DEF Up 10%",
             "duration": null
           },
@@ -452,7 +452,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Mountain Folk",
+            "target": "Ally [Mountain Folk]",
             "effect": "Guard 60%",
             "duration": "1 time"
           },
@@ -482,7 +482,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Mountain Folk",
+            "target": "Ally [Mountain Folk]",
             "effect": "DEF Penetration Up 10%",
             "duration": "2 turns"
           },
@@ -501,7 +501,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Mountain Folk",
+            "target": "Ally [Mountain Folk]",
             "effect": "Critical Damage Up 10%",
             "duration": null
           },
@@ -526,7 +526,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Mountain Folk",
+            "target": "Ally [Mountain Folk]",
             "effect": "DEF Penetration Up 10%",
             "duration": "2 turns"
           },
@@ -568,7 +568,7 @@
           },
           {
             "condition": "Surviving",
-            "target": "Ally Mountain Folk",
+            "target": "Ally [Mountain Folk]",
             "effect": "HP Recovery 10%",
             "duration": null
           }
@@ -581,7 +581,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Mountain Folk",
+            "target": "Ally [Mountain Folk]",
             "effect": "Critical Rate Up 10%",
             "duration": null
           },
@@ -612,7 +612,7 @@
           },
           {
             "condition": "Surviving",
-            "target": "Mountain Folk",
+            "target": "[Mountain Folk]",
             "effect": "HP Recovery 20%",
             "duration": null
           },
@@ -679,7 +679,7 @@
           },
           {
             "condition": "When ally Danto is alive",
-            "target": "Ally Mountain Folk",
+            "target": "Ally [Mountain Folk]",
             "effect": "Status Effect Immunity (excl. Provoke)",
             "duration": "1 time"
           }

@@ -45,13 +45,13 @@
           },
           {
             "condition": null,
-            "target": "Ally Qin",
+            "target": "Ally [Qin]",
             "effect": "ATK Down Resistance 30%",
             "duration": null
           },
           {
             "condition": "When enemy archer general is alive",
-            "target": "Ally Qin",
+            "target": "Ally [Qin]",
             "effect": "Hit Rate Up 30%",
             "duration": null
           }
@@ -126,7 +126,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Qin",
+            "target": "Ally [Qin]",
             "effect": "DEF Down Resistance 30%",
             "duration": null
           },
@@ -194,7 +194,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Qin",
+            "target": "Ally [Qin]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           }
@@ -207,7 +207,7 @@
         "effects": [
           {
             "condition": "Per ally Ousen Army general besides self",
-            "target": "Ally Qin",
+            "target": "Ally [Qin]",
             "effect": "DEF Up 10%",
             "duration": null
           },
@@ -269,7 +269,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Qin",
+            "target": "Ally [Qin]",
             "effect": "Guard 60%",
             "duration": "1 time"
           }
@@ -282,7 +282,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Qin",
+            "target": "Ally [Qin]",
             "effect": "DEF Up 20%",
             "duration": null
           },
@@ -319,7 +319,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Qin",
+            "target": "Ally [Qin]",
             "effect": "Guard 60%",
             "duration": "1 time"
           }
@@ -361,8 +361,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Zhao, Wei, Chu, Qi enemy with highest ATK",
-            "target": "1 each of Zhao/Wei/Chu/Qi enemy",
+            "condition": "[Zhao], [Wei], [Chu], [Qi] enemy with highest ATK",
+            "target": "1 each of [Zhao]/[Wei]/[Chu]/[Qi] enemy",
             "effect": "Betrayal Infliction 65%",
             "duration": "4 turns"
           },
@@ -405,7 +405,7 @@
         "effects": [
           {
             "condition": "Surviving",
-            "target": "Ally Qin",
+            "target": "Ally [Qin]",
             "effect": "HP Recovery 20%",
             "duration": null
           }
@@ -418,13 +418,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Qin",
+            "target": "Ally [Qin]",
             "effect": "Max HP Up 50%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Qin",
+            "target": "Ally [Qin]",
             "effect": "Poison Resistance / Burn Resistance / Paralysis Resistance 100%",
             "duration": null
           }
@@ -598,7 +598,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Enemy Zhao / Enemy Wei",
+            "target": "Enemy [Zhao] / Enemy [Wei]",
             "effect": "Critical Rate Down 40%",
             "duration": "3 turns"
           }
@@ -904,7 +904,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Qin",
+            "target": "Ally [Qin]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           }
@@ -942,7 +942,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy Zhao / Enemy Wei",
+            "target": "Enemy [Zhao] / Enemy [Wei]",
             "effect": "HP Seal 70%",
             "duration": "4 turns"
           },
@@ -998,7 +998,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Qin",
+            "target": "Ally [Qin]",
             "effect": "Confusion Resistance 40%",
             "duration": null
           },
@@ -1091,7 +1091,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy Zhao / Enemy Wei",
+            "target": "Enemy [Zhao] / Enemy [Wei]",
             "effect": "Morale Down 40%",
             "duration": null
           },

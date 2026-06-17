@@ -39,7 +39,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Chu",
+            "target": "Ally [Chu]",
             "effect": "DEF Penetration Up 30%",
             "duration": null
           },
@@ -58,7 +58,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy Qin",
+            "target": "Enemy [Qin]",
             "effect": "ATK Down 20%",
             "duration": null
           },
@@ -134,7 +134,7 @@
         "effects": [
           {
             "condition": "Per enemy general defeated while skill is active",
-            "target": "Other ally Chu generals",
+            "target": "Other ally [Chu] generals",
             "effect": "ATK Up 15%",
             "duration": "4 turns"
           },
@@ -153,7 +153,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy Qin",
+            "target": "Enemy [Qin]",
             "effect": "DEF Down 20%",
             "duration": "3 turns"
           },
@@ -241,13 +241,13 @@
           },
           {
             "condition": null,
-            "target": "Other ally Chu",
+            "target": "Other ally [Chu]",
             "effect": "DEF Up 10%",
             "duration": null
           },
           {
             "condition": "When Attacking",
-            "target": "Enemy Qin",
+            "target": "Enemy [Qin]",
             "effect": "ATK Down 20%",
             "duration": null
           }
@@ -298,7 +298,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Chu",
+            "target": "Ally [Chu]",
             "effect": "ATK Down Resistance 60%",
             "duration": null
           }
@@ -348,7 +348,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Ally Wei",
+            "target": "Ally [Wei]",
             "effect": "Max Morale Up 60%",
             "duration": null
           }
@@ -431,7 +431,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Wei",
+            "target": "Ally [Wei]",
             "effect": "ATK Up 10%",
             "duration": null
           },
@@ -782,13 +782,13 @@
           },
           {
             "condition": null,
-            "target": "Enemy [Cavalry] / enemy siege weapons",
+            "target": "Enemy [Cavalry] / Enemy siege weapons",
             "effect": "ATK Down 20%",
             "duration": "3 turns"
           },
           {
             "condition": "Own HP ≤ 50%",
-            "target": "Other ally Wei",
+            "target": "Other ally [Wei]",
             "effect": "ATK Up 30%",
             "duration": "3 turns"
           }

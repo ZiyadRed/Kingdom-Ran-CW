@@ -33,7 +33,7 @@
         "type": "Strategy",
         "effects": [
           {
-            "condition": "vs [Qin] generals",
+            "condition": "vs Qin generals",
             "target": "Ally \"Queen Biki\" and ally [Ai]",
             "effect": "DEF Up 20%",
             "duration": null
@@ -125,12 +125,12 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy Qin vs Qin",
+            "target": "Enemy [Qin] vs Qin",
             "effect": "DEF Down 30%",
             "duration": null
           },
           {
-            "condition": "When enemy Qin generals are present",
+            "condition": "When enemy [Qin] generals are present",
             "target": "Ally generals",
             "effect": "Critical Rate Up 20%",
             "duration": null
@@ -144,7 +144,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy Qin",
+            "target": "Enemy [Qin]",
             "effect": "Confusion Infliction 30%",
             "duration": "3 turns"
           },
@@ -179,8 +179,8 @@
             "duration": null
           },
           {
-            "condition": "Enemy Qin general with highest ATK",
-            "target": "1 enemy Qin general",
+            "condition": "Enemy [Qin] general with highest ATK",
+            "target": "1 enemy [Qin] general",
             "effect": "Betrayal Infliction 20%",
             "duration": "3 turns"
           }
@@ -205,7 +205,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Ai",
+            "target": "Ally [Ai]",
             "effect": "Hit Rate Up 30%",
             "duration": null
           }
@@ -217,8 +217,8 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy Qin generals alive",
-            "target": "Ally Ai",
+            "condition": "Enemy [Qin] generals alive",
+            "target": "Ally [Ai]",
             "effect": "ATK Up 20%",
             "duration": "3 turns"
           },
@@ -229,8 +229,8 @@
             "duration": null
           },
           {
-            "condition": "Enemy Qin general with highest ATK",
-            "target": "1 enemy Qin general",
+            "condition": "Enemy [Qin] general with highest ATK",
+            "target": "1 enemy [Qin] general",
             "effect": "Betrayal Infliction 20%",
             "duration": "3 turns"
           },
@@ -265,7 +265,7 @@
             "duration": null
           },
           {
-            "condition": "Enemy Qin general's HP ≤ 50%, enemy general with lowest remaining HP",
+            "condition": "Enemy [Qin] general's HP ≤ 50%, enemy general with lowest remaining HP",
             "target": "1 enemy general",
             "effect": "60% Damage",
             "duration": null
@@ -328,7 +328,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Ai",
+            "target": "Ally [Ai]",
             "effect": "Morale Recovery 10%",
             "duration": null
           }
@@ -372,13 +372,13 @@
         "effects": [
           {
             "condition": "Per ally general attack count",
-            "target": "Other ally Yan",
+            "target": "Other ally [Yan]",
             "effect": "ATK Up 2% (max 30%)",
             "duration": "4 turns"
           },
           {
-            "condition": "When enemy Qin present",
-            "target": "Enemy Qin",
+            "condition": "When enemy [Qin] present",
+            "target": "Enemy [Qin]",
             "effect": "50% Damage",
             "duration": null
           },
@@ -403,7 +403,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy Qin",
+            "target": "Enemy [Qin]",
             "effect": "DEF Down 30%",
             "duration": "3 turns"
           },

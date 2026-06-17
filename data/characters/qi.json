@@ -38,19 +38,19 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy Zhao / Wei / Chu / Han / Yan",
+            "target": "Enemy [Zhao] / [Wei] / [Chu] / [Han] / [Yan]",
             "effect": "Evasion (Dodge Chance) Down 20%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Qin / ally Qi",
+            "target": "Ally [Qin] / ally [Qi]",
             "effect": "Evasion (Dodge Chance) Up 40%",
             "duration": null
           },
           {
             "condition": "When Attacking",
-            "target": "Ally Qin / ally Qi",
+            "target": "Ally [Qin] / ally [Qi]",
             "effect": "Morale Cost Reduction 20%",
             "duration": null
           }

@@ -1428,7 +1428,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Self vs [Shield]",
+            "target": "Self vs shield",
             "effect": "ATK Up 40%, DEF Up 40%",
             "duration": null
           },

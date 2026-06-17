@@ -125,7 +125,7 @@
           },
           {
             "condition": "Enemy [Qin] present",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Fear Resistance 100%",
             "duration": null
           },
@@ -165,7 +165,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "DEF Up 20%, Anti-[Qin] DEF Up 30%",
             "duration": null
           },
@@ -331,7 +331,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Self vs [Shield]",
+            "target": "Self vs shield",
             "effect": "ATK Up 40%, DEF Up 40%",
             "duration": null
           },
@@ -693,7 +693,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Qin, Zhao, Wei, Chu, Han, and Yan",
+            "target": "Ally [Qin], [Zhao], [Wei], [Chu], [Han], and [Yan]",
             "effect": "Max HP Up 100%, DEF Up 30%",
             "duration": null
           }
@@ -963,19 +963,19 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Chu",
+            "target": "Ally [Chu]",
             "effect": "Max HP Up 200%, Max Morale Up 100%",
             "duration": null
           },
           {
             "condition": "Enemy alive, surviving ally [Chu]",
-            "target": "Ally Chu",
+            "target": "Ally [Chu]",
             "effect": "HP Recovery 30%",
             "duration": null
           },
           {
             "condition": "Enemy alive, surviving ally [Chu]",
-            "target": "Ally Chu",
+            "target": "Ally [Chu]",
             "effect": "Morale Recovery 20%",
             "duration": null
           }
@@ -1073,7 +1073,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Chu",
+            "target": "Ally [Chu]",
             "effect": "ATK Down Resistance 60%",
             "duration": null
           }

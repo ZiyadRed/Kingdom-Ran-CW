@@ -50,7 +50,7 @@
           },
           {
             "condition": null,
-            "target": "Other ally generals / enemy generals",
+            "target": "Other ally generals / Enemy generals",
             "effect": "DEF Down 20%",
             "duration": null
           },
@@ -124,7 +124,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Critical Damage Up 20%",
             "duration": null
           },
@@ -235,14 +235,14 @@
         "type": "Strategy",
         "effects": [
           {
-            "condition": "Per other ally Zhao general",
-            "target": "Ally Zhao",
+            "condition": "Per other ally [Zhao] general",
+            "target": "Ally [Zhao]",
             "effect": "ATK Up 10%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Betrayal Resistance 50%",
             "duration": null
           }
@@ -267,7 +267,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy Qin",
+            "target": "Enemy [Qin]",
             "effect": "Normal Attack Seal Infliction 40%",
             "duration": "3 turns"
           }
@@ -316,7 +316,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "DEF Penetration Up 20%",
             "duration": null
           }
@@ -335,7 +335,7 @@
           },
           {
             "condition": "Own HP ≥ 90%",
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "Guard 60%",
             "duration": "1 time"
           },
@@ -352,8 +352,8 @@
             "duration": null
           },
           {
-            "condition": "Other ally Zhao generals' HP < 90% and surviving",
-            "target": "Other ally Zhao",
+            "condition": "Other ally [Zhao] generals' HP < 90% and surviving",
+            "target": "Other ally [Zhao]",
             "effect": "HP Recovery 30%",
             "duration": null
           }
@@ -367,7 +367,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Zhao",
+            "target": "Ally [Zhao]",
             "effect": "DEF Up 20%, Anti-[Qin] DEF Up 30%",
             "duration": null
           },
