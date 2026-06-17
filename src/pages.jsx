@@ -28,6 +28,7 @@ import rarityData from '../data/character_rarity.json'
 import {
   PROGRESS_STORAGE_KEY, emptyProgress, normalizeProgress, readProgress, useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, SceneStarControl, buffSourceId, ALL, GROUPS, UNIT_TYPES, CHAR_BY_NAME, findCharByName, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, RED_CRYSTAL_UNLOCK_COSTS, normalizeBuffText, buffValueMatches, buffStatMatches, buffTargetMatches, redCrystalBuffUnlockCost, RedCrystalCostChip, BuffValueCluster, FACTIONS, CC, CharIcon, TYPE_COLOR, TIER_COLORS, TIER_TEAMS, META_TEAM_EXTRAS, META_TEAMS, simulate, CW_MAX, CW_DEF_MAX, _st, CW_TYPE_BUFFS, SCENE_CARD, calcCwStats, simulateBattle, UNIT_TYPE_LIST, FACTION_MAP, STATUS_EFFECTS, STATUS_RE, TARGET_NAME_ALIASES, normalizeBuffStat, parseBuffEffect, normalizeRosterLabel, groupMatchesLabel, inGroup, cleanRosterCriterion, rosterCriterionMatches, matchAllyRosterListTarget, isTargetedBy, getMultiplier, isCondActive, calcCharBuffs, normalizeEnemyTarget, calcTeamEnemyDebuffs, Picker, RARITY_COST, RARITY_COLOR, RARITY_DATA, INVERSE_STATS, SPECIAL_STATS, STAT_ORDER, statSortKey, CHAR_GROUPS, DEFAULT_SK, defaultSks, hasStar6, applyMask
 } from './core.jsx'
+import { setSeo } from './seo.js'
 
 export function ArchiveTabs({active}){
   const navigate=useNavigate()
@@ -248,6 +249,7 @@ export function CW6SceneCardsPage(){
 export function ArchivePage(){
   const{charId}=useParams()
   const navigate=useNavigate()
+  const location=useLocation()
   const[activeFac,setActiveFac]=useState('qin')
   const[selected,setSelected]=useState(null)
   const[search,setSearch]=useState('')
@@ -258,10 +260,26 @@ export function ArchivePage(){
     if(c){setSelected(c);if(c.country)setActiveFac(c.country)}
   },[charId])
   // Refine the document title with the selected character (App sets the generic
-  // "Archive — RanHQ"; this narrows it without the shell needing the data module).
+  // "Archive - RanHQ"; this narrows it once the data module resolves.
   useEffect(()=>{
-    document.title=selected?`${selected.name_en} — Archive — RanHQ`:'Archive — RanHQ'
-  },[selected])
+    if(selected){
+      const faction=FACTIONS.find(f=>f.id===selected.country)?.label || 'Kingdom Ran'
+      setSeo({
+        title:`${selected.name_en} (${selected.name_jp}) - Kingdom Ran Archive - RanHQ`,
+        description:`${selected.name_en} / ${selected.name_jp} Kingdom Ran general profile with translated Souha skills, Castle War effects, faction, unit type, and buff reference for ${faction}.`,
+        pathname:`/archive/characters/${selected.id}`,
+      })
+    }else{
+      const isArchiveHub=location.pathname.replace(/\/+$/,'')==='/archive'
+      setSeo({
+        title:isArchiveHub?'Kingdom Ran Character Archive - RanHQ':'Kingdom Ran Generals - Archive - RanHQ',
+        description:isArchiveHub
+          ?'Browse the RanHQ Kingdom Ran archive for generals, Japanese names, translated Souha skills, Castle War buffs, CW6 scene cards, and guide references.'
+          :'Search Kingdom Ran generals by English and Japanese names, compare skills, factions, unit types, and Castle War utility.',
+        pathname:isArchiveHub?'/archive':'/archive/characters',
+      })
+    }
+  },[selected,location.pathname])
   const clearSelection=()=>navigate('/archive/characters')
   // Defer + memoize the search scan (211 chars × every skill string) so typing
   // stays responsive on slower phones.

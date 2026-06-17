@@ -11,7 +11,7 @@
     "dev": "vite",
     "sync:star6": "node scripts/sync_star6.mjs",
     "validate:cw6": "node scripts/validate_cw6.mjs",
-    "prebuild": "node scripts/sync_star6.mjs && node scripts/validate_cw6.mjs",
+    "prebuild": "node scripts/generate_sitemap.mjs && node scripts/sync_star6.mjs && node scripts/validate_cw6.mjs",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",

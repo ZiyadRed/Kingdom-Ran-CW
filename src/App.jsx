@@ -1,5 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
 import { Routes, Route, Navigate, Link, useNavigate, useLocation } from 'react-router-dom'
+import { routeSeo, setSeo } from './seo.js'
 
 // Inlined here (no data import) so the shell — and the Home route — never pull
 // in the character data / engine chunk. Pages resolve their own data lazily.
@@ -40,7 +41,7 @@ function routeMatches(pathname,page){
 function currentPage(pathname){
   return PAGES.find(p=>routeMatches(pathname,p))||(pathname.startsWith('/sim')?'':'Home')
 }
-const BASE_TITLE='RanHQ — Kingdom Ran Castle War Companion'
+const BASE_TITLE='RanHQ - Kingdom Ran Castle War Companion'
 // Per-route document title for accurate tabs, history, bookmarks, and SEO.
 function pageTitle(pathname){
   if(pathname==='/'||pathname==='') return BASE_TITLE
@@ -49,12 +50,12 @@ function pageTitle(pathname){
     // A specific character title is set by ArchivePage once it resolves the id.
     return 'Archive — RanHQ'
   }
-  if(pathname.startsWith('/sim')) return 'Battle Order — RanHQ'
-  if(pathname.startsWith('/builder')) return 'Party Builder — RanHQ'
-  if(pathname.startsWith('/buffs')) return 'Buffs — RanHQ'
-  if(pathname.startsWith('/tiers')) return 'Metawatch · Tier List — RanHQ'
-  if(pathname.startsWith('/cost')) return 'Team Cost — RanHQ'
-  if(pathname.startsWith('/guide')) return 'Guide — RanHQ'
+  if(pathname.startsWith('/sim')) return 'Battle Order - RanHQ'
+  if(pathname.startsWith('/builder')) return 'Party Builder - RanHQ'
+  if(pathname.startsWith('/buffs')) return 'Buffs - RanHQ'
+  if(pathname.startsWith('/tiers')) return 'Metawatch - Tier List - RanHQ'
+  if(pathname.startsWith('/cost')) return 'Team Cost - RanHQ'
+  if(pathname.startsWith('/guide')) return 'Guide - RanHQ'
   return BASE_TITLE
 }
 function PageIcon({p}){
@@ -97,8 +98,11 @@ export default function App(){
   }
   // Scroll to top when switching top-level tab (not on character deep-link changes within Archive)
   useEffect(()=>{window.scrollTo(0,0)},[page])
-  // Keep the document title in sync with the current route (tabs, history, SEO).
-  useEffect(()=>{document.title=pageTitle(location.pathname)},[location.pathname])
+  // Keep route-level SEO tags in sync for crawlers that render the SPA.
+  useEffect(()=>{
+    const seo=routeSeo(location.pathname)
+    setSeo({...seo,title:seo.title||pageTitle(location.pathname),pathname:location.pathname})
+  },[location.pathname])
   return(
     <div className="app">
       <header className="hdr">
@@ -185,6 +189,10 @@ function HomePage(){
           <p>
             RanHQ is a fan-made English project for Kingdom Ran's Castle War mode,
             built to help players learn the mode, understand skills and buffs, and plan stronger strategies.
+          </p>
+          <p lang="ja">
+            キングダム乱（キンラン / キングダム 乱 -天下統一への道-）の同盟争覇戦・争覇戦向けに、
+            武将スキル、バフ、編成、攻略メモを英語で整理しています。
           </p>
           <div className="home-actions">
             <Link className="home-primary" to="/archive">Open Archive</Link>
