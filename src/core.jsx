@@ -835,11 +835,11 @@ export function isCondActive(cond,isDefense){
   if(c.includes('when attacking')) return !isDefense
   return true
 }
-export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false){
+export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false,includeCombat=false){
   const stats={}
   for(const owner of team){
     for(const skill of(owner.skills||[])){
-      if(skill.type!=='Strategy') continue
+      if(skill.type!=='Strategy'&&!(includeCombat&&skill.type==='Combat')) continue
       for(const eff of(skill.effects||[])){
         if(!isTargetedBy(eff.target,G,owner,team)) continue
         if(!showAll&&!isCondActive(eff.condition,isDefense)) continue
@@ -896,7 +896,7 @@ export function normalizeEnemyTarget(t){
     if(tl.includes(label)) return `Enemy ${label[0].toUpperCase()+label.slice(1)}`
   return 'Enemies'
 }
-export function calcTeamEnemyDebuffs(team,enemyTeam=[]){
+export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false){
   const byTarget={}
   function addToTarget(key,parsed,owner){
     if(!parsed.length) return
@@ -924,12 +924,12 @@ export function calcTeamEnemyDebuffs(team,enemyTeam=[]){
   }
   for(const owner of team){
     for(const sk of(owner.skills||[])){
-      if(sk.type!=='Strategy') continue
+      if(sk.type!=='Strategy'&&!(includeCombat&&sk.type==='Combat')) continue
       for(const eff of(sk.effects||[])){
         const t=(eff.target||'').trim()
         // skip effects whose condition requires an enemy unit type not present
         if(enemyTeam.length>0){
-          const cm=(eff.condition||'').match(/enemy\s+(infantry|cavalr\w*|archers?|shield)/i)
+          const cm=(eff.condition||'').match(/enemy\s+\[?(infantry|cavalr\w*|archers?|shield)\]?/i)
           if(cm){const raw=cm[1].toLowerCase();const ut=raw.startsWith('arch')?'Archer':raw.startsWith('cav')?'Cavalry':raw.startsWith('inf')?'Infantry':'Shield';if(!enemyTeam.some(g=>g.unit_type===ut)) continue}
         }
         if(/^enemy|^all\s+enemy/i.test(t)){

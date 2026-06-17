@@ -732,16 +732,24 @@ export function StratCol({label,entries,side}){
 
 // ── BUFF TABLE ────────────────────────────────────────────────────────────────
 export function BuffTable({atk,def}){
+  const[includeCombat,setIncludeCombat]=useState(false)
   if(!atk.length&&!def.length) return null
-  const atkBuffs=atk.map(g=>({general:g,buffs:calcCharBuffs(g,atk,def,false,true)}))
-  const defBuffs=def.map(g=>({general:g,buffs:calcCharBuffs(g,def,atk,true,true)}))
-  const atkEnemyDebuffs=calcTeamEnemyDebuffs(atk,def)
-  const defEnemyDebuffs=calcTeamEnemyDebuffs(def,atk)
+  const atkBuffs=atk.map(g=>({general:g,buffs:calcCharBuffs(g,atk,def,false,true,includeCombat)}))
+  const defBuffs=def.map(g=>({general:g,buffs:calcCharBuffs(g,def,atk,true,true,includeCombat)}))
+  const atkEnemyDebuffs=calcTeamEnemyDebuffs(atk,def,includeCombat)
+  const defEnemyDebuffs=calcTeamEnemyDebuffs(def,atk,includeCombat)
   const hasAny=arr=>arr.some(({buffs})=>Object.keys(buffs).length>0)
   if(!hasAny(atkBuffs)&&!hasAny(defBuffs)&&!Object.keys(atkEnemyDebuffs).length&&!Object.keys(defEnemyDebuffs).length) return null
   return(
     <div className="sim-sec">
-      <div className="sec-hd sec-buff">⚡ Team Buff Summary</div>
+      <div className="sec-hd sec-buff" style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:'1rem',flexWrap:'wrap'}}>
+        <span>⚡ Team Buff Summary</span>
+        <label style={{display:'inline-flex',alignItems:'center',gap:'.4rem',fontSize:'.72rem',fontWeight:400,cursor:'pointer',textTransform:'none',letterSpacing:'normal'}}
+               title="Also count buff/debuff effects from combat skills (normally only always-on strategy skills are summed)">
+          <input type="checkbox" checked={includeCombat} onChange={e=>setIncludeCombat(e.target.checked)} style={{cursor:'pointer'}}/>
+          Include combat skills
+        </label>
+      </div>
       <div className="strat-cols">
         <BuffSideTable label="⚔ Attacking Formation" entries={atkBuffs} side="attack" enemyDebuffs={atkEnemyDebuffs}/>
         <BuffSideTable label="🛡 Defending Formation" entries={defBuffs} side="defense" enemyDebuffs={defEnemyDebuffs}/>

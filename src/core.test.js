@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { parseBuffEffect, simulate, ALL, META_TEAMS, findCharByName, calcCwStats, isTargetedBy, normalizeEnemyTarget } from './core.jsx'
+import { parseBuffEffect, simulate, ALL, META_TEAMS, findCharByName, calcCwStats, isTargetedBy, normalizeEnemyTarget, calcCharBuffs, calcTeamEnemyDebuffs } from './core.jsx'
 
 // The buff-text parser is the most intricate pure function in the engine.
 // These lock its behaviour against the documented terminology + formats.
@@ -67,6 +67,46 @@ describe('bracket-tolerant target matching', () => {
     expect(normalizeEnemyTarget('Enemy [General] vs Qin')).toBe('Enemy generals')
     expect(normalizeEnemyTarget('All enemy [General]')).toBe('All enemies')
     expect(normalizeEnemyTarget('Enemy [Cavalry]')).toBe('Enemy Cavalry')
+  })
+})
+
+// The team buff summary sums Strategy skills by default; the "include combat
+// skills" toggle adds Combat-type buff/debuff effects too.
+describe('calcCharBuffs / buff summary', () => {
+  const cav = (id, skills) => ({ id, name_en: id, country: 'qin', unit_type: 'Cavalry', skills })
+
+  it('aggregates a bracketed ally-unit-type buff to matching members only', () => {
+    const owner = cav('a', [{ type: 'Strategy', effects: [
+      { condition: null, target: 'Ally [Cavalry]', effect: 'ATK Up 30%', duration: null },
+    ] }])
+    const cavAlly = { id: 'b', name_en: 'B', country: 'wei', unit_type: 'Cavalry', skills: [] }
+    const shieldAlly = { id: 'c', name_en: 'C', country: 'wei', unit_type: 'Shield', skills: [] }
+    const team = [owner, cavAlly, shieldAlly]
+    expect(calcCharBuffs(cavAlly, team, [], false, true).ATK?.up).toBe(30)
+    expect(calcCharBuffs(shieldAlly, team, [], false, true).ATK).toBeUndefined()
+  })
+
+  it('excludes combat-skill buffs unless includeCombat is set', () => {
+    const owner = cav('a', [
+      { type: 'Strategy', effects: [{ condition: null, target: 'Self', effect: 'ATK Up 20%', duration: null }] },
+      { type: 'Combat', effects: [{ condition: null, target: 'Self', effect: 'DEF Up 30%', duration: '3 turns' }] },
+    ])
+    const team = [owner]
+    const off = calcCharBuffs(owner, team, [], false, true, false)
+    expect(off.ATK?.up).toBe(20)
+    expect(off.DEF).toBeUndefined()
+    const on = calcCharBuffs(owner, team, [], false, true, true)
+    expect(on.ATK?.up).toBe(20)
+    expect(on.DEF?.up).toBe(30)
+  })
+
+  it('includeCombat flows through to enemy debuffs', () => {
+    const owner = cav('a', [{ type: 'Combat', effects: [
+      { condition: null, target: 'All enemy [General]', effect: 'ATK Down 20%', duration: '3 turns' },
+    ] }])
+    expect(Object.keys(calcTeamEnemyDebuffs([owner], [])).length).toBe(0)
+    const withCombat = calcTeamEnemyDebuffs([owner], [], true)
+    expect(withCombat['All enemies']?.down?.ATK).toBe(20)
   })
 })
 
