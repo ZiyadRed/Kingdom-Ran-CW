@@ -112,7 +112,7 @@
         ]
       },
       {
-        "name_en": "Resolute Interception",
+        "name_en": "Determined Interception",
         "name_jp": "覚悟の邀撃☆6",
         "type": "Strategy",
         "star6": true,
@@ -250,13 +250,13 @@
           },
           {
             "condition": null,
-            "target": "Ally Wei Fire Dragon",
+            "target": "Self / Ally Wei Fire Dragon",
             "effect": "HP Recovery Up 50%",
             "duration": null
           },
           {
             "condition": "Per ally Wei Fire Dragon",
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "ATK Down 10%",
             "duration": null
           },
@@ -585,7 +585,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "ATK Down 10%",
             "duration": "3 turns"
           },
@@ -711,13 +711,13 @@
           {
             "condition": null,
             "target": "Enemy generals",
-            "effect": "DEF Down 10%",
+            "effect": "DEF Down vs Archers 10%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Enemy [Archer] and Wei Fire Dragon",
-            "effect": "DEF Down 10%",
+            "target": "Enemy generals",
+            "effect": "DEF Down vs Wei Fire Dragon 10%",
             "duration": null
           },
           {

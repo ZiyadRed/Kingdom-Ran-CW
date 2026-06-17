@@ -168,7 +168,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "Normal Attack Seal 50%",
             "duration": "2 turns"
           }
@@ -212,13 +212,13 @@
           },
           {
             "condition": null,
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "HP Seal 100%",
             "duration": "4 turns"
           },
           {
             "condition": "Other ally Chu generals alive",
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "Skill Attack Seal 50%",
             "duration": "2 turns"
           }

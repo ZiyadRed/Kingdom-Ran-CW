@@ -557,7 +557,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "ATK Down 20%",
             "duration": "3 turns"
           }
@@ -782,7 +782,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy cavalry / enemy siege weapons",
+            "target": "Enemy [Cavalry] / enemy siege weapons",
             "effect": "ATK Down 20%",
             "duration": "3 turns"
           },
@@ -820,7 +820,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "ATK Down 40%",
             "duration": null
           }

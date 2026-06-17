@@ -79,7 +79,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy infantry and cavalry",
+            "target": "Enemy [Infantry] and [Cavalry]",
             "effect": "Evasion (Dodge Chance) Down 25%",
             "duration": null
           },
@@ -463,13 +463,13 @@
           },
           {
             "condition": null,
-            "target": "Self",
-            "effect": "Ally [Wei] Burn Resistance 100%",
+            "target": "Ally [Wei]",
+            "effect": "Burn Resistance 100%",
             "duration": null
           },
           {
             "condition": "When Garrisoning",
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "ATK Down 40%",
             "duration": null
           }
@@ -505,7 +505,7 @@
             "condition": null,
             "target": "Ally Gyokuhou Unit",
             "effect": "Guard 100%",
-            "duration": "1 times"
+            "duration": "1 time"
           },
           {
             "condition": null,
@@ -544,30 +544,18 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP Up 100%",
+            "effect": "Max HP Up 100%, Anti-[Cavalry] ATK Up 30%, Anti-[Cavalry] DEF Up 30%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Self",
-            "effect": "Anti-[Cavalry] ATK Up 30%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Self",
-            "effect": "Anti-[Cavalry] DEF Up 30%",
-            "duration": null
-          },
-          {
-            "condition": null,
-            "target": "Self",
-            "effect": "Ally Wei Fire Dragon HP Recovery Up 50%",
+            "target": "Self / Ally Wei Fire Dragon",
+            "effect": "HP Recovery Up 50%",
             "duration": null
           },
           {
             "condition": "Per ally Wei Fire Dragon",
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "ATK Down 10%",
             "duration": null
           },
@@ -613,14 +601,14 @@
           },
           {
             "condition": null,
-            "target": "Ally [Archer] and Wei Fire Dragon",
-            "effect": "DEF Down 10% against enemy",
+            "target": "Enemy generals",
+            "effect": "DEF Down vs Archers 10%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "All ally generals fighting vs [Archer] and Wei Fire Dragon",
-            "effect": "DEF Down additional 10%",
+            "target": "Enemy generals",
+            "effect": "DEF Down vs Wei Fire Dragon 10%",
             "duration": null
           },
           {
@@ -889,13 +877,13 @@
           },
           {
             "condition": null,
-            "target": "Self",
-            "effect": "Ally \"Sho\" and Six Great Generals DEF Up, Hit Rate Up 20%",
+            "target": "Ally \"Sho\" / Ally Six Great Generals",
+            "effect": "DEF Up, Hit Rate Up 20%",
             "duration": null
           },
           {
             "condition": "When Garrisoning",
-            "target": "Enemy cavalry generals",
+            "target": "Enemy [Cavalry] generals",
             "effect": "ATK Down, Critical Damage Down 20%",
             "duration": null
           },
@@ -1069,6 +1057,12 @@
             "condition": null,
             "target": "Self",
             "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "ATK Up 40%",
             "duration": null
           },
           {
@@ -1300,27 +1294,27 @@
       "ownerNameJp": "太呂慈",
       "ownerIcon": "/icons/Tairoji.webp",
       "skill": {
-        "name_en": "Wei Great General",
-        "name_jp": "魏国大将軍☆6",
+        "name_en": "Determined Interception",
+        "name_jp": "覚悟の邀撃☆6",
         "type": "Strategy",
         "star6": true,
         "effects": [
           {
             "condition": null,
             "target": "Self",
-            "effect": "Max HP Up 100%, ATK Up 30%, DEF Up 30%",
+            "effect": "Max HP Up 100%, DEF Up 30%",
             "duration": null
           },
           {
             "condition": "When Attacking",
             "target": "Ally [Wei]",
-            "effect": "ATK Up 20%, DEF Penetration Resistance Up 30%",
+            "effect": "ATK Up 20%, ATK Down Resistance 30%",
             "duration": null
           },
           {
             "condition": "When Garrisoning",
             "target": "Ally [Wei]",
-            "effect": "DEF Penetration Up 30%, Enemy [Cavalry] Critical Rate Down 40%",
+            "effect": "DEF Penetration Resistance Up 30%, Enemy [Cavalry] Critical Rate Down 40%",
             "duration": null
           }
         ]

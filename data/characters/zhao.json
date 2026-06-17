@@ -101,7 +101,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "Confusion Infliction 50%",
             "duration": "4 turns"
           },
@@ -138,7 +138,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "HP Recovery Rate Down 50%",
             "duration": null
           },
@@ -168,7 +168,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy infantry",
+            "target": "Enemy [Infantry]",
             "effect": "ATK Down 30%",
             "duration": null
           },

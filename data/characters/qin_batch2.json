@@ -81,7 +81,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy archers",
+            "target": "Enemy [Archer]",
             "effect": "Paralysis Infliction 50%",
             "duration": "3 turns"
           }
@@ -365,7 +365,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "Hit Rate Down 20%",
             "duration": null
           }
@@ -390,7 +390,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "ATK Down 20%",
             "duration": "3 turns"
           }
@@ -420,7 +420,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "ATK Down 20%",
             "duration": "3 turns"
           }
@@ -514,7 +514,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Enemy cavalry generals",
+            "target": "Enemy [Cavalry] generals",
             "effect": "ATK Down, Critical Damage Down 20%",
             "duration": null
           },
@@ -619,7 +619,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy archers",
+            "target": "Enemy [Archer]",
             "effect": "ATK Down 20%",
             "duration": "3 turns"
           }
@@ -887,7 +887,7 @@
         "effects": [
           {
             "condition": "Random",
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "4-Hit 30% Damage",
             "duration": null
           },
@@ -982,7 +982,7 @@
       },
       {
         "name_en": "Devoted Retainer",
-        "name_jp": "\u4f8d\u5f93\u61f8\u547d\u26066",
+        "name_jp": "侍従懸命☆6",
         "type": "Strategy",
         "star6": true,
         "effects": [

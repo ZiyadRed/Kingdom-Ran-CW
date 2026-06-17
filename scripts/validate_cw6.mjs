@@ -52,10 +52,23 @@ for (const card of cards) {
   }
   // soft check: the card's skill should match one of the character's star6 skills
   const cardSkill = card.skill?.name_en || card.skill_en
-  const match = ch.star6.some(s => norm(s.name_en) === norm(cardSkill))
-  if (!match) {
+  const matched = ch.star6.find(s => norm(s.name_en) === norm(cardSkill))
+  if (!matched) {
     warnings.push(`${label}: card skill "${cardSkill}" not found among ${owner}'s ` +
                   `star6 skills [${ch.star6.map(s => s.name_en).join(', ')}]`)
+  }
+  // hard check: the SAME star6 skill is duplicated in the character entry and the
+  // archive card — their effects MUST stay identical or the builder and archive show
+  // different skills (the Tairoji/Rinbukun drift, 2026-06-17).
+  const ref = matched || (ch.star6.length === 1 ? ch.star6[0] : null)
+  if (ref) {
+    const sig = e => JSON.stringify((e.effects || [])
+      .map(x => [x.condition ?? null, x.target ?? null, x.effect ?? null, x.duration ?? null]))
+    if (sig(card.skill || {}) !== sig(ref)) {
+      errors.push(`${label}: star6 effects DIFFER between the archive card and ${owner}'s ` +
+                  `character entry (${ch.file}). They are the same skill and must match. ` +
+                  `Reconcile both against game-data ground truth.`)
+    }
   }
 }
 

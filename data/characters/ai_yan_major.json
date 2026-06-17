@@ -453,7 +453,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy infantry / enemy cavalry",
+            "target": "Enemy [Infantry] / Enemy [Cavalry]",
             "effect": "Evasion (Dodge Chance) Down 10%",
             "duration": null
           },
@@ -510,7 +510,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy infantry and cavalry",
+            "target": "Enemy [Infantry] and [Cavalry]",
             "effect": "Evasion (Dodge Chance) Down 25%",
             "duration": null
           },

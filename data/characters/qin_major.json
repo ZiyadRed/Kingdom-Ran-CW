@@ -127,7 +127,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "ATK Down 20%",
             "duration": "3 turns"
           },
@@ -146,7 +146,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "Critical Rate Down 20%",
             "duration": null
           },
@@ -296,13 +296,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy archers",
+            "target": "Enemy [Archer]",
             "effect": "Morale Down 20%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Enemy archers",
+            "target": "Enemy [Archer]",
             "effect": "Fear Infliction 50%",
             "duration": "4 turns"
           },
@@ -351,7 +351,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy cavalry / enemy archers",
+            "target": "Enemy [Cavalry] / Enemy [Archer]",
             "effect": "ATK Down 15%",
             "duration": "3 turns"
           }
@@ -573,7 +573,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "ATK Down 20%",
             "duration": "3 turns"
           }

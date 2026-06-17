@@ -188,7 +188,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy archers",
+            "target": "Enemy [Archer]",
             "effect": "100% Damage",
             "duration": null
           },

@@ -343,7 +343,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "DEF Down 20%",
             "duration": "3 turns"
           },
@@ -387,13 +387,13 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "Morale Down 20%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Enemy cavalry",
+            "target": "Enemy [Cavalry]",
             "effect": "Fear Infliction 100%",
             "duration": "4 turns"
           },
@@ -631,7 +631,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy archers",
+            "target": "Enemy [Archer]",
             "effect": "Provoke Infliction",
             "duration": "4 turns"
           },
