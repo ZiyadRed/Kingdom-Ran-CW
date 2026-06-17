@@ -1281,6 +1281,46 @@
       "name_en": "Kanjou CW6 star"
     },
     {
+      "id": 40237,
+      "imageId": 10237,
+      "name_jp": "嫌な感じ",
+      "skill_en": "Rock Solid",
+      "skill_jp": "堅牢堅固",
+      "image": "/scene_cards/webp/Kyuukou-CW6-star.webp",
+      "owner_id": "kyuukou",
+      "ownerName": "Kyuukou",
+      "ownerNameJp": "宮康",
+      "ownerIcon": "/icons/Kyuukou.webp",
+      "skill": {
+        "name_en": "Rock Solid",
+        "name_jp": "堅牢堅固☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "effect": "DEF Up 40%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "effect": "Critical Damage Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "When Garrisoning",
+            "target": "Enemy [Cavalry]",
+            "effect": "ATK Down 30%, Critical Damage Down 30%",
+            "duration": null
+          }
+        ]
+      },
+      "thumb": "/scene_cards/thumbs/Kyuukou-CW6-star-thumb.webp",
+      "name_en": "Kyuukou CW6 star"
+    },
+    {
       "id": 40249,
       "imageId": 10249,
       "name_jp": "全部まやかし",
