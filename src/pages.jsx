@@ -1,32 +1,14 @@
-import { useState, useRef, useEffect, useMemo, useDeferredValue } from 'react'
-import { Link, Navigate, useNavigate, useLocation, useParams } from 'react-router-dom'
-import mountainFolk from '../data/characters/mountain_folk.json'
-import qin          from '../data/characters/qin.json'
-import qinBatch2    from '../data/characters/qin_batch2.json'
-import qinMajor     from '../data/characters/qin_major.json'
-import zhao         from '../data/characters/zhao.json'
-import zhaoBatch2   from '../data/characters/zhao_batch2.json'
-import zhaoMajor    from '../data/characters/zhao_major.json'
-import otherStates  from '../data/characters/other_states.json'
-import chu          from '../data/characters/chu.json'
-import chuMajor     from '../data/characters/chu_major.json'
-import wei          from '../data/characters/wei.json'
-import yan          from '../data/characters/yan.json'
-import qi           from '../data/characters/qi.json'
-import misc         from '../data/characters/misc.json'
-import misc2        from '../data/characters/misc2.json'
-import aiYanMajor   from '../data/characters/ai_yan_major.json'
+import { useState, useEffect, useMemo, useDeferredValue } from 'react'
+import { Link, useNavigate, useLocation, useParams } from 'react-router-dom'
 import cwBuffsData  from '../data/cw_buffs.json'
 import cwTeamBuffs  from '../data/cw_team_buffs.json'
-import cwMaxStats   from '../data/cw_max_stats.json'
 import sceneCardBuffs from '../data/scene_card_cw_buffs.json'
 import cw6SceneCards from '../data/cw6_scene_cards.json'
 import statusEffects from '../data/glossary/status_effects.json'
 import unitMatchups  from '../data/glossary/unit_matchups.json'
 import skillTypesGlossary from '../data/glossary/skill_types.json'
-import rarityData from '../data/character_rarity.json'
 import {
-  PROGRESS_STORAGE_KEY, emptyProgress, normalizeProgress, readProgress, useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, SceneStarControl, buffSourceId, ALL, GROUPS, UNIT_TYPES, CHAR_BY_NAME, findCharByName, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, RED_CRYSTAL_UNLOCK_COSTS, normalizeBuffText, buffValueMatches, buffStatMatches, buffTargetMatches, redCrystalBuffUnlockCost, RedCrystalCostChip, BuffValueCluster, FACTIONS, CC, CharIcon, TYPE_COLOR, TIER_COLORS, TIER_TEAMS, META_TEAM_EXTRAS, META_TEAMS, simulate, CW_MAX, CW_DEF_MAX, _st, CW_TYPE_BUFFS, SCENE_CARD, calcCwStats, simulateBattle, UNIT_TYPE_LIST, FACTION_MAP, STATUS_EFFECTS, STATUS_RE, TARGET_NAME_ALIASES, normalizeBuffStat, parseBuffEffect, normalizeRosterLabel, groupMatchesLabel, inGroup, cleanRosterCriterion, rosterCriterionMatches, matchAllyRosterListTarget, isTargetedBy, getMultiplier, isCondActive, calcCharBuffs, normalizeEnemyTarget, calcTeamEnemyDebuffs, Picker, RARITY_COST, RARITY_COLOR, RARITY_DATA, INVERSE_STATS, SPECIAL_STATS, STAT_ORDER, statSortKey, CHAR_GROUPS, DEFAULT_SK, defaultSks, hasStar6, applyMask
+  useModalDismiss, useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, SceneStarControl, buffSourceId, ALL, findCharByName, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, redCrystalBuffUnlockCost, RedCrystalCostChip, BuffValueCluster, FACTIONS, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, META_TEAMS, simulate, SCENE_CARD, calcCharBuffs, calcTeamEnemyDebuffs, Picker, RARITY_DATA, INVERSE_STATS, SPECIAL_STATS, statSortKey, CHAR_GROUPS, DEFAULT_SK, hasStar6, applyMask
 } from './core.jsx'
 import { setSeo } from './seo.js'
 
@@ -73,10 +55,12 @@ function ViewArtButton({onClick,style}){
       onClick={onClick}
       style={{
         position:'absolute',top:7,right:7,zIndex:4,
-        width:26,height:26,padding:0,cursor:'pointer',
+        width:26,height:26,minHeight:0,padding:0,cursor:'pointer',
         display:'inline-flex',alignItems:'center',justifyContent:'center',
-        borderRadius:6,border:'1px solid rgba(255,255,255,.32)',
-        background:'rgba(0,0,0,.55)',color:'#fff',backdropFilter:'blur(2px)',
+        borderRadius:'50%',border:'1.5px solid rgba(255,255,255,.85)',
+        background:'rgba(6,38,76,.45)',color:'#fff',
+        WebkitBackdropFilter:'blur(3px)',backdropFilter:'blur(3px)',
+        boxShadow:'0 1px 5px rgba(0,0,0,.28)',
         ...style,
       }}
     >
@@ -89,14 +73,7 @@ function ViewArtButton({onClick,style}){
 
 // Full-screen lightbox showing an image at full resolution. Click backdrop / Esc to close.
 function ArtLightbox({src,alt,onClose}){
-  useEffect(()=>{
-    if(!src) return
-    const onKey=e=>{if(e.key==='Escape')onClose()}
-    document.addEventListener('keydown',onKey)
-    const prev=document.body.style.overflow
-    document.body.style.overflow='hidden'
-    return()=>{document.removeEventListener('keydown',onKey);document.body.style.overflow=prev}
-  },[src,onClose])
+  useModalDismiss(!!src,onClose)
   if(!src) return null
   return(
     <div
@@ -129,6 +106,14 @@ function ArtLightbox({src,alt,onClose}){
       >Open original in new tab</a>
     </div>
   )
+}
+
+// <img> that fades in once decoded, avoiding the hard pop-in as scene-card art
+// streams in. Handles cached images (already `complete` on mount) so they never
+// get stuck transparent.
+function FadeImg({className='',...props}){
+  const onMount=el=>{ if(el&&el.complete&&el.naturalWidth>0) el.classList.add('is-loaded') }
+  return <img ref={onMount} className={`fade-img ${className}`.trim()} onLoad={e=>e.currentTarget.classList.add('is-loaded')} {...props}/>
 }
 
 export function ArchiveHubPage(){
@@ -174,7 +159,7 @@ export function CW6SceneCardsPage(){
             <ProgressTools tracker={tracker}/>
           </div>
         </div>
-        <div className="cw6-scene-grid" style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(180px,1fr))',gap:'14px',padding:'14px',alignContent:'start'}}>
+        <div className="cw6-scene-grid">
           {visibleCards.map((card,i)=>(
             <div
               key={card.id}
@@ -182,16 +167,9 @@ export function CW6SceneCardsPage(){
               tabIndex={0}
               onClick={()=>pickCard(card)}
               onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pickCard(card)}}}
-              style={{
-              background:'var(--sur)',border:'2px solid ' + (selected?.id===card.id?'var(--terra)':'var(--bdr)'),
-              borderRadius:8,overflow:'hidden',cursor:'pointer',textAlign:'left',
-              boxShadow:selected?.id===card.id?'0 8px 22px rgba(6,38,76,.18)':'0 3px 14px rgba(6,38,76,.07)',
-              transform:selected?.id===card.id?'translateY(-2px)':'none',
-              transition:'transform .15s, box-shadow .15s, border-color .15s',
-              display:'flex',flexDirection:'column',
-            }}>
-              <div style={{position:'relative',aspectRatio:'1 / 1',background:'var(--bg2)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                <img src={card.thumb||card.image} alt={sceneCardFileName(card)} title={sceneCardFileName(card)} loading="eager" decoding="async" fetchPriority={i<7?'high':'auto'} style={{width:'100%',height:'100%',objectFit:'contain'}}/>
+              className={`cw6-card${selected?.id===card.id?' is-selected':''}`}>
+              <div className="cw6-card-art">
+                <FadeImg src={card.thumb||card.image} alt={sceneCardFileName(card)} title={sceneCardFileName(card)} loading="eager" decoding="async" fetchPriority={i<7?'high':'auto'} style={{width:'100%',height:'100%',objectFit:'contain'}}/>
                 {card.image&&<ViewArtButton onClick={e=>{e.stopPropagation();setArtSrc(card.image)}} style={{left:7,right:'auto'}}/>}
                 <OwnedToggle
                   owned={tracker.isOwned('cw6Cards',card.id)}
@@ -199,15 +177,15 @@ export function CW6SceneCardsPage(){
                   onToggle={e=>{e.stopPropagation();tracker.toggleOwned('cw6Cards',card.id)}}
                 />
               </div>
-              <div style={{padding:'10px 11px 11px',display:'flex',flexDirection:'column',gap:'6px'}}>
+              <div className="cw6-card-body">
                 <div>
-                  <strong style={{display:'block',fontSize:'.84rem',color:'var(--txt)',lineHeight:1.25}}>{card.skill_en}</strong>
-                  <span style={{display:'block',fontSize:'.68rem',color:'var(--txt3)',lineHeight:1.25,marginTop:'2px'}}>{card.skill_jp}</span>
+                  <strong className="cw6-card-skill">{card.skill_en}</strong>
+                  <span className="cw6-card-jp">{card.skill_jp}</span>
                 </div>
                 {card.ownerName&&(
-                  <div style={{display:'flex',alignItems:'center',gap:'6px',fontSize:'.68rem',fontWeight:800,color:'var(--navy)',minWidth:0}}>
-                    {card.ownerIcon&&<img src={card.ownerIcon} alt="" loading="lazy" decoding="async" style={{width:20,height:20,borderRadius:'50%',objectFit:'cover',objectPosition:'center top',border:'1px solid var(--bdr)',flexShrink:0}}/>}
-                    <span style={{whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{card.ownerName}</span>
+                  <div className="cw6-card-owner">
+                    {card.ownerIcon&&<img className="cw6-card-owner-ico" src={card.ownerIcon} alt="" loading="lazy" decoding="async"/>}
+                    <span className="cw6-card-owner-name">{card.ownerName}</span>
                   </div>
                 )}
               </div>
@@ -218,7 +196,7 @@ export function CW6SceneCardsPage(){
       {selected&&(
         <aside className="detail-panel">
           <div className="detail-header">
-            <img src={selected.image} alt={sceneCardFileName(selected)} className="detail-portrait" loading="eager" decoding="async" fetchPriority="high" style={{objectFit:'contain',background:'rgba(255,255,255,.08)',objectPosition:'center'}}/>
+            <FadeImg src={selected.image} alt={sceneCardFileName(selected)} className="detail-portrait" loading="eager" decoding="async" fetchPriority="high" style={{objectFit:'contain',background:'rgba(255,255,255,.08)',objectPosition:'center'}}/>
             <div className="detail-info">
               <div className="detail-name">{selected.skill_en}</div>
               <div className="detail-jp">{selected.skill_jp}</div>
@@ -563,15 +541,12 @@ export function SkillToggles({char,mask,onChange}){
 
 // ── ACTIVATION ORDER ──────────────────────────────────────────────────────────
 export function SimPage({atk,def,atkSk,defSk,goBuilder}){
-  const[tick,setTick]=useState(0)
   const atkF=atk.map((c,i)=>applyMask(c,atkSk?.[i])).filter(Boolean)
   const defF=def.map((c,i)=>applyMask(c,defSk?.[i])).filter(Boolean)
   if(!atkF.length||!defF.length) return(
     <div className="main-page empty-cta"><p>Choose both attacking and defending teams first.</p><button className="cta-btn" onClick={goBuilder}>Go to Party Builder</button></div>
   )
   const{st,turns}=simulate(atkF,defF)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const battle=useMemo(()=>simulateBattle(atkF,defF),[tick,atkF.map(g=>g.id).join(),defF.map(g=>g.id).join()])
   return(
     <div className="main-page">
       {/* ── Battle Result (hidden for now) ──────────────── */}
@@ -617,13 +592,11 @@ export function SimPage({atk,def,atkSk,defSk,goBuilder}){
   )
 }
 
-export function BattleResult({battle,atkTeam,defTeam,rerun}){
+export function BattleResult({battle,rerun}){
   const{aS,dS,winner,finalTurn,log}=battle
   const isAtkWin=winner==='attack'||winner==='atk_pts'
   const isPoints=winner==='atk_pts'||winner==='def_pts'
-  const winSide=isAtkWin?'attack':'defense'
   const winColor=isAtkWin?'var(--red)':'var(--blue)'
-  const loseColor=isAtkWin?'var(--blue)':'var(--red)'
   const kills=log.flatMap(({turn,events})=>events.filter(e=>e.died).map(e=>({...e,turn})))
   const fmtK=(n)=>n>=1000?`${(n/1000).toFixed(1)}k`:String(n)
   const HpBar=({state,side})=>{
@@ -701,7 +674,7 @@ export function FormBar({generals,side,label}){
     <div className="form-side">
       <div className="form-lbl" style={{color:ac}}>{label}</div>
       <div className="form-chips">
-        {generals.map((g,i)=>(
+        {generals.map(g=>(
           <div key={g.id} className="f-chip" style={{borderTopColor:CC[g.country]||'#999'}}>
             <CharIcon c={g} size={36} round={true}/>
             <span className="f-chip-name">{g.name_en}</span>
@@ -1054,6 +1027,8 @@ export function BuffsPage(){
   const[sceneProgressFilter,setSceneProgressFilter]=useState('all')
   const[artSrc,setArtSrc]=useState(null)
   const tracker=useProgressTracker()
+  const closeDetails=()=>{setActiveKind(null);setActiveKey(null)}
+  useModalDismiss(!!activeKey,closeDetails)
   const lookupEntries=(kind,key,stat)=>{
     if(kind==='unit') return (cwBuffsData[key]||{})[stat]||[]
     if(kind==='state') return ((cwTeamBuffs.states||{})[key]||{})[stat]||[]
@@ -1191,7 +1166,7 @@ export function BuffsPage(){
     const sc=BUFF_STAT_COLORS[activeStat]
     return(
       <div>
-        <div style={{display:'flex',justifyContent:'center',gap:'10px',marginBottom:'1.5rem'}}>
+        <div style={{display:'flex',justifyContent:'center',gap:'10px',position:'sticky',top:0,zIndex:5,background:'var(--sur)',margin:'-18px -18px 1.5rem',padding:'16px 18px 12px',borderBottom:'1px solid var(--bdr)'}}>
           {['HP','Attack','Defense'].map(stat=>{
             const isOn=activeStat===stat
             const c=BUFF_STAT_COLORS[stat]
@@ -1416,11 +1391,6 @@ export function BuffsPage(){
     {label:'Special Units',rows:BUFF_ARMIES.map(key=>({key,kind:'army',color:CC[ARMY_PARENT_STATE[key]]||'#888'}))},
   ]
   const sceneOwnedByStat=stat=>(sceneCardBuffs.cards||[]).filter(c=>c.stat===stat).reduce((sum,c)=>sum+sceneCardValueAt(c),0)
-  const sceneStatProgress=stat=>{
-    const cards=(sceneCardBuffs.cards||[]).filter(c=>c.stat===stat)
-    const owned=cards.filter(c=>sceneCardStar(c)>0).length
-    return `${owned}/${cards.length}`
-  }
   const isProgressRowOwned=r=>r.bucket==='sceneBuffStars'?sceneCardStar({id:r.id})>0:tracker.isOwned(r.bucket,r.id)
   const allOwnedCount=progressRows.reduce((n,r)=>n+(isProgressRowOwned(r)?1:0),0)
   const statProgressCell=(kind,key,stat)=>(
@@ -1612,8 +1582,8 @@ export function BuffsPage(){
         <div style={{fontSize:'.85rem'}}>Tap any category above to see its CW buffs</div>
       </div>
       {activeKey&&(
-        <div className="overlay" onClick={()=>{setActiveKind(null);setActiveKey(null)}}>
-          <div onClick={e=>e.stopPropagation()} style={{
+        <div className="overlay" onClick={closeDetails}>
+          <div role="dialog" aria-modal="true" aria-label={`${activeKey} buffs`} onClick={e=>e.stopPropagation()} style={{
             background:'var(--sur)',borderRadius:'18px',width:'min(720px,94vw)',maxHeight:'88vh',
             display:'flex',flexDirection:'column',overflow:'hidden',
             boxShadow:'0 24px 70px rgba(0,0,0,.35)',border:'1px solid var(--bdr)'
@@ -1632,7 +1602,7 @@ export function BuffsPage(){
                   <div style={{fontSize:'.66rem',color:'var(--txt3)',textTransform:'uppercase',letterSpacing:'.05em'}}>{activeKind==='unit'?'Unit Type':activeKind==='state'?'State':activeKind==='terrain'?'Terrain':'Special Unit'}</div>
                 </div>
               </div>
-              <button className="x-btn" onClick={()=>{setActiveKind(null);setActiveKey(null)}}>✕</button>
+              <button className="x-btn" aria-label="Close" onClick={closeDetails}>✕</button>
             </div>
             <div style={{padding:'18px',overflowY:'auto'}}>
               {renderDetails()}
@@ -1711,6 +1681,8 @@ export function TeamCostPage(){
   const[skillsDone,setSkillsDone]=useState([0,0,0,0])
   const[picker,setPicker]=useState(null)
   const[search,setSearch]=useState('')
+  const closePicker=()=>{setPicker(null);setSearch('')}
+  useModalDismiss(picker!==null,closePicker)
 
   const COST=RED_CRYSTAL_TOTAL_COST
   const SKILL_COSTS=RED_CRYSTAL_SKILL_COSTS
@@ -1896,11 +1868,11 @@ export function TeamCostPage(){
 
       {/* Picker modal */}
       {picker!==null&&(
-        <div className="overlay" onClick={()=>{setPicker(null);setSearch('')}}>
-          <div className="picker" onClick={e=>e.stopPropagation()} style={{maxWidth:'560px',maxHeight:'80vh'}}>
+        <div className="overlay" onClick={closePicker}>
+          <div className="picker" role="dialog" aria-modal="true" aria-label={`Select General for Slot ${picker+1}`} onClick={e=>e.stopPropagation()} style={{maxWidth:'560px',maxHeight:'80vh'}}>
             <div className="picker-head">
               <span>Select General — Slot {picker+1}</span>
-              <button className="x-btn" onClick={()=>{setPicker(null);setSearch('')}}>✕</button>
+              <button className="x-btn" aria-label="Close" onClick={closePicker}>✕</button>
             </div>
             <div className="picker-filters">
               <input autoFocus className="picker-search" placeholder="Search…" value={search} onChange={e=>setSearch(e.target.value)}/>

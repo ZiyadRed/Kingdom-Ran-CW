@@ -481,11 +481,27 @@ img { display: block; max-width: 100%; height: auto }
   opacity: 1;
   transform: translateY(0);
 }
-.owned-toggle-overlay {
+/* Circular icon toggle on card art: "+" to mark owned, green "✓" once owned.
+   The Own/Owned text label is hidden (font-size:0) and replaced by the glyph.
+   Two-class selectors so responsive `.owned-toggle` rules can't re-add text. */
+.owned-toggle.owned-toggle-overlay {
   position: absolute; top: 7px; right: 7px; z-index: 2;
-  background: rgba(255,255,255,.92); box-shadow: 0 2px 8px rgba(0,0,0,.16);
+  width: 26px; height: 26px; min-height: 0; padding: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%; border: 1.5px solid rgba(255,255,255,.85);
+  background: rgba(6,38,76,.45); color: #fff; font-size: 0;
+  -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+  box-shadow: 0 1px 5px rgba(0,0,0,.28);
 }
-.owned-toggle-overlay.owned-toggle-on { background: rgba(26,138,90,.94) }
+.owned-toggle.owned-toggle-overlay::before {
+  content: '+'; position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.05rem; font-weight: 700; line-height: 1; opacity: .92;
+}
+.owned-toggle.owned-toggle-overlay:hover { transform: none; border-color: #fff; color: #fff; background: rgba(6,38,76,.62) }
+.owned-toggle.owned-toggle-overlay.owned-toggle-on { background: #1a8a5a; border-color: rgba(255,255,255,.95) }
+.owned-toggle.owned-toggle-overlay.owned-toggle-on:hover { background: #157049; color: #fff }
+.owned-toggle.owned-toggle-overlay.owned-toggle-on::before { content: '✓'; font-size: .82rem; font-weight: 900; opacity: 1 }
 .scene-star-control {
   display: flex;
   align-items: center;
@@ -815,6 +831,31 @@ img { display: block; max-width: 100%; height: auto }
 .tier-source       { font-size: .68rem; color: var(--txt3); margin-top: 1rem; padding-top: .75rem; border-top: 1px solid var(--bdr); text-align: center }
 
 /* ============================================================
+   CW6 SCENE CARDS — grid + card (class-based so it stays responsive)
+   ============================================================ */
+.cw6-scene-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px; padding: 14px; align-content: start;
+}
+.cw6-card {
+  background: var(--sur); border: 2px solid var(--bdr);
+  border-radius: 8px; overflow: hidden; cursor: pointer; text-align: left;
+  box-shadow: 0 3px 14px rgba(6,38,76,.07);
+  display: flex; flex-direction: column;
+  transition: transform .15s, box-shadow .15s, border-color .15s;
+}
+.cw6-card:hover { border-color: var(--bdr2) }
+.cw6-card.is-selected { border-color: var(--terra); box-shadow: 0 8px 22px rgba(6,38,76,.18); transform: translateY(-2px) }
+.cw6-card-art { position: relative; aspect-ratio: 1 / 1; background: var(--bg2); display: flex; align-items: center; justify-content: center }
+.cw6-card-body { padding: 10px 11px 11px; display: flex; flex-direction: column; gap: 6px }
+.cw6-card-skill { display: block; font-size: .84rem; color: var(--txt); line-height: 1.25 }
+.cw6-card-jp { display: block; font-size: .68rem; color: var(--txt3); line-height: 1.25; margin-top: 2px }
+.cw6-card-owner { display: flex; align-items: center; gap: 6px; font-size: .68rem; font-weight: 800; color: var(--navy); min-width: 0 }
+.cw6-card-owner-ico { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; object-position: center top; border: 1px solid var(--bdr); flex-shrink: 0 }
+.cw6-card-owner-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+
+/* ============================================================
    RESPONSIVE - Tablet (-1024px)
    ============================================================ */
 /* Wide desktop polish (-1600px): roomier panel + larger banners */
@@ -923,7 +964,18 @@ img { display: block; max-width: 100%; height: auto }
   .gallery-header { position: sticky; top: calc(var(--hdr-h) + 54px + 46px); }
   .gallery-grid   { grid-template-columns: repeat(3, 1fr); gap: .5rem; padding: .6rem }
   .cw6-scene-page .gallery-header { position: static; top: auto; z-index: auto }
-  .cw6-scene-page .cw6-scene-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: .6rem !important; padding: .75rem .65rem !important }
+  /* Three cards per row on phones, with tighter internals so they don't feel oversized */
+  .cw6-scene-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; padding: .6rem }
+  .cw6-card { border-width: 1.5px; border-radius: 7px }
+  .cw6-card-body { padding: 6px 7px 7px; gap: 3px }
+  .cw6-card-skill { font-size: .7rem; line-height: 1.18 }
+  .cw6-card-jp { font-size: .56rem; margin-top: 1px }
+  .cw6-card-owner { font-size: .56rem; gap: 4px }
+  .cw6-card-owner-ico { width: 15px; height: 15px }
+  /* Overlay controls shouldn't be forced to the 44px button min-height on these
+     dense cards — they'd swamp the art. Keep them as compact corner icons. */
+  .cw6-card-art button { min-height: 0 }
+  .cw6-card .owned-toggle-overlay { top: 5px; right: 5px }
 
   /* Skills panel: fixed bottom sheet */
   .detail-panel {
@@ -1007,20 +1059,20 @@ img { display: block; max-width: 100%; height: auto }
     min-height: 0;
     justify-content: flex-start;
     transform: none;
-    padding: 1.05rem .95rem 1.25rem;
+    padding: .9rem .95rem 1.1rem;
     background: linear-gradient(180deg, var(--bg), var(--sur));
     color: var(--txt);
   }
   .home-kicker { color: var(--gold2) }
   .home-hero h1 {
     color: var(--navy);
-    font-size: 2.2rem;
+    font-size: 1.95rem;
     text-shadow: none;
   }
   .home-hero p {
     color: var(--txt2);
-    font-size: .88rem;
-    line-height: 1.55;
+    font-size: .82rem;
+    line-height: 1.5;
   }
   .home-actions { flex-direction: column }
   .home-primary,
@@ -1032,8 +1084,15 @@ img { display: block; max-width: 100%; height: auto }
   }
   .home-secondary:hover { background: var(--sur) }
   .home-tools { margin-top: .35rem; padding: 0 .75rem }
-  .home-tool-grid { grid-template-columns: 1fr; gap: .65rem }
-  .home-tool-card { min-height: 124px }
+  /* Compact 2-up grid instead of one big card per row */
+  .home-tool-grid { grid-template-columns: repeat(2, 1fr); gap: .55rem }
+  .home-tool-card { min-height: 0; padding: .8rem .7rem; gap: .3rem }
+  .home-tool-card strong { font-size: .85rem }
+  .home-tool-card span:last-child {
+    font-size: .7rem; line-height: 1.4;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .home-section-head h2 { font-size: 1.02rem }
   .tier-page-wrap { padding: 1rem .75rem }
   .tier-big-badge  { width: 38px; height: 38px; font-size: 1.3rem }
   .tier-teams-grid { grid-template-columns: 1fr }
@@ -1071,7 +1130,8 @@ img { display: block; max-width: 100%; height: auto }
   .buff-progress-table-wrap { padding: 0 .6rem .75rem }
   .buff-progress-table { min-width: 640px; font-size: .7rem }
   .gallery-grid    { grid-template-columns: repeat(4, 1fr); gap: .35rem; padding: .4rem }
-  .cw6-scene-page .cw6-scene-grid { gap: .5rem !important; padding: .65rem .5rem !important }
+  .cw6-scene-grid { gap: .4rem; padding: .5rem }
+  .cw6-card-skill { font-size: .66rem }
   .banner-name     { font-size: .7rem }
   .banner-faction-tag { font-size: .52rem; padding: 1px 5px }
   .nb              { padding: .2rem .42rem; font-size: .62rem }
@@ -1411,4 +1471,107 @@ a.home-primary, a.home-secondary { text-align: center }
    lists on phones); layout is unaffected since cards size themselves
    via aspect-ratio. */
 .banner-card { content-visibility: auto }
+
+/* ============================================================
+   ROUTE LOADING — skeleton + top progress bar (lazy route chunks)
+   ============================================================ */
+.route-progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px;
+  z-index: 300; background: rgba(224,127,72,.15); overflow: hidden;
+}
+.route-progress span {
+  position: absolute; top: 0; left: 0; height: 100%; width: 40%;
+  background: linear-gradient(90deg, transparent, var(--terra), var(--gold));
+  border-radius: 2px;
+  animation: route-bar 1.1s ease-in-out infinite;
+}
+@keyframes route-bar {
+  0%   { left: -42%; width: 42% }
+  50%  { left: 30%;  width: 55% }
+  100% { left: 100%; width: 42% }
+}
+.route-skeleton { max-width: 1400px; margin: 0 auto; padding: 1.5rem; width: 100% }
+.sk {
+  border-radius: 8px;
+  background: linear-gradient(100deg, var(--sur2) 30%, var(--bg2) 50%, var(--sur2) 70%);
+  background-size: 220% 100%;
+  animation: sk-shimmer 1.3s ease-in-out infinite;
+}
+.sk-title { height: 22px; width: 240px; max-width: 70%; margin-bottom: .6rem }
+.sk-sub   { height: 13px; width: 360px; max-width: 90%; margin-bottom: 1.5rem }
+.sk-grid  { display: grid; grid-template-columns: repeat(4, 1fr); gap: .9rem }
+.sk-card  { height: 150px }
+@keyframes sk-shimmer { 0% { background-position: 120% 0 } 100% { background-position: -120% 0 } }
+@media (max-width: 900px)  { .sk-grid { grid-template-columns: repeat(3, 1fr) } }
+@media (max-width: 600px)  { .sk-grid { grid-template-columns: repeat(2, 1fr) } .route-skeleton { padding: .85rem .6rem } }
+@media (prefers-reduced-motion: reduce) {
+  .route-progress span, .sk { animation-duration: 0s }
+}
+
+/* ============================================================
+   IMAGE FADE-IN — scene-card art (no hard pop-in)
+   ============================================================ */
+.fade-img { opacity: 0; transition: opacity .35s ease }
+.fade-img.is-loaded { opacity: 1 }
+@media (prefers-reduced-motion: reduce) { .fade-img { transition: none } }
+
+/* ============================================================
+   CARD MICRO-INTERACTIONS + FOCUS RINGS (a11y)
+   ============================================================ */
+.home-tool-card, .p-card { transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, background .15s ease }
+.home-tool-card:active { transform: translateY(0); box-shadow: 0 3px 10px rgba(6,38,76,.1) }
+/* Keyboard focus visibility — terra ring, no ring on mouse click */
+.home-tool-card:focus-visible,
+.p-card:focus-visible,
+.nb:focus-visible,
+.bntab:focus-visible,
+.bn-sheet-item:focus-visible,
+.x-btn:focus-visible {
+  outline: 2px solid var(--terra);
+  outline-offset: 2px;
+}
+.p-card:focus-visible { border-top-color: var(--terra) }
+
+/* ============================================================
+   TEAM COST — keep running total visible while scrolling slots
+   ============================================================ */
+.tc-banner { position: sticky; top: calc(var(--hdr-h) + 8px); z-index: 50 }
+@media (max-width: 768px) { .tc-banner { top: 8px } }
+
+/* ============================================================
+   MOBILE "MORE" SHEET (bottom-nav overflow)
+   ============================================================ */
+.bn-sheet-overlay { display: none }
+@media (max-width: 768px) {
+  .bn-sheet-overlay {
+    display: block; position: fixed; inset: 0; z-index: 250;
+    background: rgba(6,38,76,.5); backdrop-filter: blur(3px);
+    animation: bn-fade .15s ease;
+  }
+  .bn-sheet {
+    position: fixed; left: 0; right: 0;
+    bottom: calc(52px + env(safe-area-inset-bottom, 0px));
+    background: var(--navy); border-top: 1.5px solid rgba(255,255,255,.12);
+    border-radius: 16px 16px 0 0;
+    padding: .5rem .75rem calc(.75rem + env(safe-area-inset-bottom, 0px));
+    box-shadow: 0 -8px 30px rgba(0,0,0,.4);
+    animation: bn-slide .2s ease;
+  }
+  .bn-sheet-grip {
+    width: 38px; height: 4px; border-radius: 2px;
+    background: rgba(255,255,255,.25); margin: .35rem auto .6rem;
+  }
+  .bn-sheet-item {
+    display: flex; align-items: center; gap: .8rem;
+    padding: .8rem .7rem; border-radius: 10px;
+    color: rgba(255,255,255,.78); font-size: .9rem; font-weight: 600;
+    text-decoration: none; -webkit-tap-highlight-color: transparent;
+  }
+  .bn-sheet-item:active { background: rgba(255,255,255,.08) }
+  .bn-sheet-item-on { color: #fff; background: rgba(224,127,72,.18) }
+  .bn-sheet-item .bntab-icon { font-size: 1.2rem; width: 24px; text-align: center }
+  .bn-sheet-item .bntab-img { width: 22px; height: 22px; object-fit: contain }
+}
+@keyframes bn-fade  { from { opacity: 0 } to { opacity: 1 } }
+@keyframes bn-slide { from { transform: translateY(100%) } to { transform: translateY(0) } }
 

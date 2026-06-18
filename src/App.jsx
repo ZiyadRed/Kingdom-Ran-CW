@@ -21,6 +21,10 @@ const TeamCostPage = lazy(() => import('./pages.jsx').then(m => ({ default: m.Te
 const CWGuidePage = lazy(() => import('./pages.jsx').then(m => ({ default: m.CWGuidePage })))
 
 const PAGES=['Home','Archive','Guide','Party Builder','Buffs','Tier List','Team Cost']
+// Mobile bottom-nav: show the five primary tools inline; the rest live in a
+// "More" sheet so the bar isn't cramped with seven equal-width tabs.
+const PRIMARY_TABS=['Archive','Guide','Party Builder','Buffs','Tier List']
+const MORE_TABS=['Home','Team Cost']
 const PAGE_ICONS={
   'Home':'\u2302',
   'Archive':'\uD83D\uDC64',
@@ -63,6 +67,22 @@ function PageIcon({p}){
   if(v&&typeof v==='object'&&v.img) return <img src={v.img} alt="" className="bntab-img"/>
   return <span>{v}</span>
 }
+// Shown while a lazy route chunk loads: a top progress bar (immediate "something
+// is happening" feedback) plus a content skeleton in place of bare "Loading…".
+function RouteFallback(){
+  return(
+    <>
+      <div className="route-progress" aria-hidden="true"><span/></div>
+      <div className="route-skeleton" role="status" aria-busy="true" aria-label="Loading">
+        <div className="sk sk-title"/>
+        <div className="sk sk-sub"/>
+        <div className="sk-grid">
+          {Array.from({length:8}).map((_,i)=><div key={i} className="sk sk-card"/>)}
+        </div>
+      </div>
+    </>
+  )
+}
 export default function App(){
   const location=useLocation()
   const navigate=useNavigate()
@@ -71,6 +91,7 @@ export default function App(){
   const[def,setDef]=useState([null,null,null,null])
   const[atkSk,setAtkSk]=useState(defaultSks())
   const[defSk,setDefSk]=useState(defaultSks())
+  const[moreOpen,setMoreOpen]=useState(false)
   const rm=(char,side)=>{
     const isAtk=side==='attack'
     const team=isAtk?atk:def
@@ -98,6 +119,16 @@ export default function App(){
   }
   // Scroll to top when switching top-level tab (not on character deep-link changes within Archive)
   useEffect(()=>{window.scrollTo(0,0)},[page])
+  // Close the mobile "More" sheet on any navigation and lock scroll / allow Escape while it's open.
+  useEffect(()=>{setMoreOpen(false)},[location.pathname])
+  useEffect(()=>{
+    if(!moreOpen) return
+    const onKey=e=>{if(e.key==='Escape')setMoreOpen(false)}
+    document.addEventListener('keydown',onKey)
+    const prev=document.body.style.overflow
+    document.body.style.overflow='hidden'
+    return()=>{document.removeEventListener('keydown',onKey);document.body.style.overflow=prev}
+  },[moreOpen])
   // Keep route-level SEO tags in sync for crawlers that render the SPA.
   useEffect(()=>{
     const seo=routeSeo(location.pathname)
@@ -124,7 +155,7 @@ export default function App(){
         </div>
       </header>
       <div className="app-body">
-        <Suspense fallback={<div style={{ padding: '4rem 1rem', textAlign: 'center', color: 'var(--txt3)' }}>Loading…</div>}>
+        <Suspense fallback={<RouteFallback/>}>
           <Routes>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/archive" element={<ArchiveHubPage/>}/>
@@ -153,13 +184,30 @@ export default function App(){
         <div style={{marginTop:'.2rem'}}><a href="https://discord.gg/XeeuWs9G2K" target="_blank" rel="noopener noreferrer" style={{color:'var(--txt3)',textDecoration:'underline'}}>Join the Discord</a></div>
       </footer>
       <nav className="bottom-nav">
-        {PAGES.map(p=>(
+        {PRIMARY_TABS.map(p=>(
           <Link key={p} className={`bntab${page===p?' bntab-on':''}`} to={PAGE_TO_ROUTE[p]}>
             <span className="bntab-icon"><PageIcon p={p}/></span>
             {PAGE_SHORT[p]}
           </Link>
         ))}
+        <button type="button" className={`bntab${MORE_TABS.includes(page)?' bntab-on':''}`} aria-haspopup="true" aria-expanded={moreOpen} onClick={()=>setMoreOpen(true)}>
+          <span className="bntab-icon">{'⋯'}</span>
+          More
+        </button>
       </nav>
+      {moreOpen&&(
+        <div className="bn-sheet-overlay" onClick={()=>setMoreOpen(false)}>
+          <div className="bn-sheet" role="dialog" aria-modal="true" aria-label="More pages" onClick={e=>e.stopPropagation()}>
+            <div className="bn-sheet-grip"/>
+            {MORE_TABS.map(p=>(
+              <Link key={p} className={`bn-sheet-item${page===p?' bn-sheet-item-on':''}`} to={PAGE_TO_ROUTE[p]} onClick={()=>setMoreOpen(false)}>
+                <span className="bntab-icon"><PageIcon p={p}/></span>
+                <span>{p}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

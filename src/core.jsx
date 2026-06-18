@@ -16,14 +16,23 @@ import misc         from '../data/characters/misc.json'
 import misc2        from '../data/characters/misc2.json'
 import aiYanMajor   from '../data/characters/ai_yan_major.json'
 import cwBuffsData  from '../data/cw_buffs.json'
-import cwTeamBuffs  from '../data/cw_team_buffs.json'
 import cwMaxStats   from '../data/cw_max_stats.json'
 import sceneCardBuffs from '../data/scene_card_cw_buffs.json'
-import cw6SceneCards from '../data/cw6_scene_cards.json'
-import statusEffects from '../data/glossary/status_effects.json'
-import unitMatchups  from '../data/glossary/unit_matchups.json'
-import skillTypesGlossary from '../data/glossary/skill_types.json'
 import rarityData from '../data/character_rarity.json'
+
+// Shared modal behavior: close on Escape and lock background scroll while a
+// modal/overlay is open. `active` gates it so the hook is safe to call
+// unconditionally (rules-of-hooks) even when the modal is closed.
+export function useModalDismiss(active,onClose){
+  useEffect(()=>{
+    if(!active) return
+    const onKey=e=>{if(e.key==='Escape')onClose()}
+    document.addEventListener('keydown',onKey)
+    const prev=document.body.style.overflow
+    document.body.style.overflow='hidden'
+    return()=>{document.removeEventListener('keydown',onKey);document.body.style.overflow=prev}
+  },[active,onClose])
+}
 
 export const PROGRESS_STORAGE_KEY='ranhq-progress-v3'
 export const emptyProgress=()=>({cw6Cards:{},sceneBuffCards:{},sceneBuffStars:{},buffSources:{}})
@@ -40,7 +49,7 @@ export function useProgressTracker(){
   const[progress,setProgress]=useState(readProgress)
   useEffect(()=>{
     try{window.localStorage.setItem(PROGRESS_STORAGE_KEY,JSON.stringify(progress))}
-    catch{}
+    catch{ /* localStorage unavailable (private mode / quota) — ignore */ }
   },[progress])
   const isOwned=(bucket,id)=>!!progress[bucket]?.[id]
   const toggleOwned=(bucket,id)=>{
@@ -235,7 +244,7 @@ export const RED_CRYSTAL_UNLOCK_COSTS=Object.fromEntries(
     costs.map((_,i)=>costs.slice(0,i+1).reduce((sum,v)=>sum+v,0)),
   ])
 )
-export const normalizeBuffText=s=>(s||'').toLowerCase().replace(/[\[\]"'’‘“”・–—\-]/g,' ').replace(/\s+/g,' ').trim()
+export const normalizeBuffText=s=>(s||'').toLowerCase().replace(/[[\]"'’‘“”・–—-]/g,' ').replace(/\s+/g,' ').trim()
 export const buffValueMatches=(text,value)=>{
   const v=Number(value)
   if(!Number.isFinite(v)) return false
@@ -537,7 +546,7 @@ export const normalizeBuffStat=s=>/^Evasion Rate$/i.test(s)?'Evasion':s
 export function parseBuffEffect(str){
   if(!str) return []
   const results=[];let deferred=[]
-  for(let part of str.split(/[,、\/]/)){
+  for(let part of str.split(/[,、/]/)){
     part=part.trim().replace(/\\/g,'').replace(/["\u201C\u201D\u300C\u300D]/g,'').trim()
     part=part.replace(/^and\s+/i,'').replace(/\s*\(Dodge Chance\)/gi,'').replace(/\s+additional\b/gi,'').replace(/\s+vs\s+\S+/gi,'').trim()
     if(!part) continue
@@ -570,7 +579,7 @@ export function parseBuffEffect(str){
         if(m){antiEnemy=gn;part=m[1];break}
       }
     }
-    function flush(r){
+    const flush=r=>{
       results.push(r)
       for(const d of deferred){
         if(d.statusPrefix!==undefined){
@@ -667,7 +676,7 @@ export function inGroup(c,groupName){
 }
 export function cleanRosterCriterion(label){
   return(label||'')
-    .replace(/[\[\]"“”「」]/g,' ')
+    .replace(/[[\]"“”「」]/g,' ')
     .replace(/\bother\s+than\s+self\b/gi,'')
     .replace(/\bbesides\s+self\b/gi,'')
     .replace(/\bsurviving\b/gi,'')
@@ -734,7 +743,7 @@ export function isTargetedBy(target,G,owner,team){
   const t=target.trim()
   if(/^enemy|^1\s*enemy|^other\s+enemy|^siege\s+weapon|^ally\s+siege|^gate|^\d+\s+enemy|^Enemy\s*\[/i.test(t)) return false
   // "Self and/or ally X"
-  const selfAnd=/^self(?:\s+and|\s*[\/,])\s*ally\s+(.+)/i.exec(t)
+  const selfAnd=/^self(?:\s+and|\s*[/,])\s*ally\s+(.+)/i.exec(t)
   if(selfAnd){if(G.id===owner.id) return true; return isTargetedBy('Ally '+selfAnd[1],G,owner,team)}
   // "Self" only
   if(/^self$/i.test(t)) return G.id===owner.id
@@ -779,7 +788,7 @@ export function isTargetedBy(target,G,owner,team){
     if(new RegExp('ally\\s+'+label.replace(/ /g,'\\s+'),'i').test(t)) return G.country===code
   }
   // Specific named general: "Ally Name"
-  const nameM=/(?:surviving\s+)?ally\s+"?([^"\/\n,\[\]]+?)"?\s*(?:vs\s+\S.*)?$/i.exec(t)
+  const nameM=/(?:surviving\s+)?ally\s+"?([^"/\n,[\]]+?)"?\s*(?:vs\s+\S.*)?$/i.exec(t)
   if(nameM){
     const nm=nameM[1].trim()
     if(!nm) return false
@@ -887,7 +896,7 @@ export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false,includeCo
 }
 
 export function normalizeEnemyTarget(t){
-  const tl=t.toLowerCase().replace(/[\[\]]/g,'')
+  const tl=t.toLowerCase().replace(/[[\]]/g,'')
   if(/^enemy\s+generals?\s+vs\b/.test(tl)) return 'Enemy generals'
   if(/all\s+enemy|all\s+generals/i.test(tl)) return 'All enemies'
   const ut=UNIT_TYPE_LIST.find(u=>tl.includes(u.toLowerCase()))
@@ -955,6 +964,7 @@ export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false){
 // Picker
 export function Picker({onSelect,onClose,excl=[]}){
   const[q,setQ]=useState(''),ref=useRef(null)
+  useModalDismiss(true,onClose)
   useEffect(()=>{ref.current?.focus()},[])
   const exclKey=excl.join('|')
   const chars=useMemo(()=>{
@@ -973,8 +983,8 @@ export function Picker({onSelect,onClose,excl=[]}){
   },[q,exclKey])
   return(
     <div className="overlay" onClick={onClose}>
-      <div className="picker" onClick={e=>e.stopPropagation()}>
-        <div className="picker-head"><span>Select General</span><button className="x-btn" onClick={onClose}>✕</button></div>
+      <div className="picker" role="dialog" aria-modal="true" aria-label="Select General" onClick={e=>e.stopPropagation()}>
+        <div className="picker-head"><span>Select General</span><button className="x-btn" aria-label="Close" onClick={onClose}>✕</button></div>
         <div className="picker-filters"><input ref={ref} className="picker-search" placeholder="Search…" value={q} onChange={e=>setQ(e.target.value)}/></div>
         <div className="picker-grid">
           {chars.map(c=>(
