@@ -53,6 +53,8 @@ const urls = [
   ...readCharacters().map(id => ({ route: `/archive/characters/${id}`, priority: '0.65' })),
 ]
 
+const absoluteUrls = urls.map(({ route }) => `${ROOT}${route === '/' ? '/' : route}`)
+
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(({ route, priority }) => {
@@ -63,4 +65,5 @@ ${urls.map(({ route, priority }) => {
 `
 
 fs.writeFileSync(path.resolve('public/sitemap.xml'), xml)
-console.log(`generate_sitemap: wrote ${urls.length} URLs to public/sitemap.xml`)
+fs.writeFileSync(path.resolve('public/sitemap.txt'), `${absoluteUrls.join('\n')}\n`)
+console.log(`generate_sitemap: wrote ${urls.length} URLs to public/sitemap.xml and public/sitemap.txt`)
