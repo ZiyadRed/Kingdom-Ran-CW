@@ -361,42 +361,42 @@ export function CharIcon({c,size=40,round=false,className=''}){
 export const TYPE_COLOR={Combat:'#c0392b',Strategy:'#3d6eb5','Internal Affairs':'#1a8a72'}
 
 // ── Tier List + Meta team data ────────────────────────────────────────────────
-// Single source of truth: TIER_TEAMS. META_TEAMS is derived from this + a few
-// builder-only extras. Keeps tier/builder pages in sync automatically.
-export const TIER_COLORS={S:'#c0392b',A:'#e07f48',B:'#cc972d',C:'#3d6eb5'}
-export const TIER_TEAMS=[
-  {tier:'S',name:'Ouhon',           members:['Shoutaku','Ouhon','Kanjou','Gakuki']},
+// Single source of truth: META_TEAMS. Teams tagged with a `tier` (SS/S/A/B/C)
+// appear on the Metawatch tier list; untagged teams are Party-Builder-only
+// extras. TIER_TEAMS is derived from META_TEAMS, so both pages stay in sync.
+export const TIER_COLORS={SS:'#d4a32c',S:'#c0392b',A:'#e07f48',B:'#cc972d',C:'#3d6eb5'}
+export const META_TEAMS=[
+  // ── Metawatch tier list (carry a `tier`; order within a tier = display order) ──
+  {tier:'SS',name:'Gyokuhou',       members:['Shoutaku','Ouhon','Kyuukou','Kanjou']},
+  {tier:'S',name:'YTW',             members:['Katari','Yotanwa','Kitari','Ramauji']},
   {tier:'S',name:'Archers',         members:['Keisha','Seikai','Hakurei','Queen Biki']},
   {tier:'S',name:'Zhao',            members:['Shunsuiju','Houken','Shinseijou','Riboku']},
-  {tier:'S',name:'YTW',             members:['Katari','Yotanwa','Kitari','Ramauji']},
-  {tier:'A',name:'Hakuki + Ousen',  members:['Hakuki','Makou','Akou','Ousen']},
-  {tier:'A',name:'Ousen v3',        members:['Ousen','Akou','Makou','Kyuukou']},
+  {tier:'S',name:'Wei',             members:['Ranbihaku','Tairoji','Reiou','Gokei']},
   {tier:'A',name:'Karin + Kanmei',  members:['Kyoubou','Karin','Kanmei','Shunshinkun']},
+  {tier:'A',name:'Hakuki + Ousen',  members:['Hakuki','Makou','Akou','Ousen']},
   {tier:'A',name:'Hi Shin',         members:['Garo','Gakurai','Naki','Robin']},
-  {tier:'A',name:'Wei',             members:['Ranbihaku','Tairoji','Reiou','Gokei']},
-  {tier:'B',name:'Renpa v1',        members:['Rinko','Tairoji','Renpa','Kouretsu']},
-  {tier:'B',name:'Ai',              members:['Rouai','Hanoki','Ryofui','Hanroki']},
-  {tier:'B',name:'Ousen Army',      members:['Eiki','Makou','Akou','Ousen']},
+  {tier:'A',name:'YTW + Triplets',  members:['Yotanwa','Toji','Fuji','Ramauji']},
   {tier:'B',name:'6GG',             members:['Sho','Ouki','Tou','Kyou']},
-  {tier:'B',name:'Karin',           members:['Rien','Karin','Kaen','Goutoku']},
+  {tier:'B',name:'Renpa v1',        members:['Rinko','Tairoji','Renpa','Kouretsu']},
   {tier:'B',name:'Karin Army',      members:['Karin','Kaen','Goutoku','Shunshinkun']},
-  {tier:'B',name:'Chu',             members:['Kyoubou','Rinbukun','Kanmei','Shunshinkun']},
-  {tier:'C',name:'Han',             members:['Seikai','Chouin','Bakan','Nakon']},
+  {tier:'B',name:'Han',             members:['Seikai','Chouin','Bakan','Nakon']},
+  {tier:'C',name:'Ai',              members:['Rouai','Hanoki','Ryofui','Hanroki']},
   {tier:'C',name:'Archer Garrison', members:['Rouai','Queen Biki','Seikai','Keisha']},
   {tier:'C',name:'Rigan',           members:['Kisui','Kishou','Batei','Duke Sei']},
   {tier:'C',name:'Kanki',           members:['Zenou','Raido','Kanki','Naki']},
-].map(t=>({...t,color:TIER_COLORS[t.tier]}))
-
-// Builder-only extras (not part of the Metawatch tier list)
-export const META_TEAM_EXTRAS=[
+  {tier:'C',name:'Ousen Army',      members:['Eiki','Makou','Akou','Ousen']},
+  {tier:'C',name:'Yan',             members:['Ordo','Gakuki','Yukii','Otaji']},
+  // ── Party-Builder-only extras (no `tier`, not on the tier list) ──
+  {name:'Ouhon',          members:['Shoutaku','Ouhon','Kanjou','Gakuki']},
+  {name:'Ousen v3',       members:['Ousen','Akou','Makou','Kyuukou']},
+  {name:'Karin',          members:['Rien','Karin','Kaen','Goutoku']},
+  {name:'Chu',            members:['Kyoubou','Rinbukun','Kanmei','Shunshinkun']},
   {name:'Renpa v2',       members:['Rinko','Kouretsu','Renpa','Kaishibou']},
-  {name:'Yan',            members:['Ordo','Gakuki','Yukii','Otaji']},
   {name:'Moubo',          members:['Choushi','Moubu','Raiki','Ouken']},
   {name:'Qin Shields',    members:['Hakuki','Akou','Ousen','Ei Sei']},
-  {name:'YTW + Triplets', members:['Yotanwa','Toji','Fuji','Ramauji']},
-  {name:'Gyokuhou',       members:['Shoutaku','Ouhon','Kyuukou','Kanjou']},
 ]
-export const META_TEAMS=[...TIER_TEAMS.map(({name,members})=>({name,members})),...META_TEAM_EXTRAS]
+// Tier list = the META_TEAMS that carry a tier, with their colour resolved.
+export const TIER_TEAMS=META_TEAMS.filter(t=>t.tier).map(t=>({...t,color:TIER_COLORS[t.tier]}))
 
 // Simulate
 export function simulate(a,d){

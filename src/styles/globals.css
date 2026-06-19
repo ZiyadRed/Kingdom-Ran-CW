@@ -771,64 +771,61 @@ img { display: block; max-width: 100%; height: auto }
 .bc-cond     { color: var(--txt3); font-size: .65rem; font-style: italic }
 
 /* ============================================================
-   TIER LIST
+   TIER LIST — CW Metawatch  (Oswald headings + Barlow body,
+   warm parchment theme imported from Claude Design)
    ============================================================ */
-.tier-page-wrap   { max-width: 1100px; margin: 0 auto; padding: 1.5rem }
-.tier-page-header { text-align: center; margin-bottom: 1.5rem; padding: 1.25rem; background: var(--navy); border-radius: 12px }
-.tier-main-title  { font-size: 1.4rem; font-weight: 900; color: #fff; letter-spacing: .06em }
-.tier-main-sub    { font-size: .8rem; color: rgba(255,255,255,.55); margin-top: .3rem }
+.mw-wrap  { background: radial-gradient(1100px 520px at 50% -120px,#f1e9d8 0%,rgba(241,233,216,0) 70%),#e7ddc9; padding: 30px 16px 56px; font-family: 'Barlow',sans-serif; min-height: 100vh }
+.mw-inner { max-width: 960px; margin: 0 auto }
 
-/* New tier list - each tier = section with colored left bar */
-.tier-list        { display: flex; flex-direction: column; gap: .75rem }
-.tier-section     { border-radius: 12px; overflow: hidden; border: 1.5px solid var(--bdr) }
-.tier-section-head {
-  display: flex; align-items: center; gap: .9rem;
-  padding: .7rem 1rem; border-bottom: 1px solid var(--bdr);
-  background: var(--bg2)
-}
-.tier-big-badge   {
-  width: 44px; height: 44px; border-radius: 8px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.6rem; font-weight: 900; color: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,.25)
-}
-.tier-section-label { font-size: .85rem; font-weight: 800; letter-spacing: .04em }
-.tier-section-def   { font-size: .72rem; color: var(--txt2); margin-top: .1rem }
+/* Hero header */
+.mw-hero { position: relative; overflow: hidden; background: linear-gradient(180deg,#14294d,#0d1d37); border: 1px solid rgba(212,175,55,.3); border-radius: 14px; padding: 22px 28px; text-align: center; box-shadow: 0 12px 32px rgba(0,0,0,.2) }
+.mw-hero-title { font-family: 'Oswald',sans-serif; font-weight: 600; font-size: 30px; letter-spacing: .05em; color: #fff }
+.mw-hero-sub   { font-size: 14px; color: #c9d4e6; margin-top: 6px }
+.mw-hero-by    { font-size: 12px; color: #7d8aa3; margin-top: 2px }
+.mw-hero-by span { color: #e3bf57 }
+.mw-hero-accent { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg,transparent,#d4af37,transparent) }
 
-/* Rows of team cards stacked vertically inside each section */
-.tier-teams-grid  {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0;
-  background: var(--sur);
-  border-top: 1px solid var(--bdr)
-}
+/* SS — apex showcase */
+.mw-ss { margin-top: 24px }
+.mw-ss-head { position: relative; overflow: hidden; padding: 18px 22px; background: linear-gradient(135deg,#241803,#41300b 55%,#221701); border: 1px solid #6e5419; border-bottom: none; border-radius: 14px 14px 0 0; display: flex; align-items: center; gap: 16px }
+.mw-ss-watermark { position: absolute; right: -14px; top: -34px; opacity: .07; transform: rotate(9deg); pointer-events: none }
+.mw-ss-badge { flex: none; width: 50px; height: 50px; border-radius: 12px; background: linear-gradient(180deg,#f9de86,#d4a32c); display: flex; align-items: center; justify-content: center; animation: ssPulse 3.2s ease-in-out infinite }
+.mw-ss-titles { position: relative }
+.mw-ss-title { font-family: 'Oswald',sans-serif; font-weight: 700; font-size: 27px; letter-spacing: .12em; color: #f5d77e; text-transform: uppercase; text-shadow: 0 1px 0 #000 }
+.mw-ss-sub   { font-size: 12px; color: #cbac68; letter-spacing: .05em; margin-top: 1px }
+.mw-ss-sheen { position: absolute; top: 0; left: 0; height: 100%; width: 42%; background: linear-gradient(105deg,transparent,rgba(255,245,210,.22),transparent); animation: ssSheen 4.2s linear infinite; pointer-events: none }
+.mw-ss-body { background: #16110a; border: 1px solid #6e5419; border-top: none; border-radius: 0 0 14px 14px; padding: 14px; box-shadow: 0 14px 36px rgba(0,0,0,.28) }
+.mw-ss-teams { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center }
+.mw-ss-tagline { text-align: center; font-family: 'Oswald',sans-serif; font-weight: 500; font-size: 11px; color: #9c8244; margin-top: 11px; letter-spacing: .22em }
 
-/* Each team = horizontal row: colored border | name | member icons */
-.tier-team-card {
-  display: grid; grid-template-columns: minmax(82px, 112px) 1fr; align-items: center; gap: .85rem;
-  padding: .7rem 1rem; border-bottom: 1px solid var(--bdr);
-  border-left: 4px solid transparent;
-  transition: background .15s;
-  min-width: 0; min-height: 92px
-}
-.tier-team-card:nth-child(odd)  { border-right: 1px solid var(--bdr) }
-.tier-team-card:hover { background: var(--sur2) }
-
-.tier-team-name {
-  font-size: .8rem; font-weight: 900; color: var(--navy);
-  min-width: 0; letter-spacing: .02em; line-height: 1.2
+@keyframes ssSheen { 0% { transform: translateX(-160%) skewX(-18deg) } 100% { transform: translateX(420%) skewX(-18deg) } }
+@keyframes ssPulse {
+  0%,100% { box-shadow: inset 0 1px 0 rgba(255,255,255,.65),0 0 0 1px rgba(245,215,126,.35),0 4px 12px rgba(212,163,44,.5) }
+  50%     { box-shadow: inset 0 1px 0 rgba(255,255,255,.65),0 0 0 1px rgba(245,215,126,.7),0 4px 16px rgba(212,163,44,.7) }
 }
 
-/* Member cells - icon + name stacked, displayed in a row */
-.tier-team-members { display: grid; grid-template-columns: repeat(4, minmax(48px, 1fr)); gap: .55rem; min-width: 0; align-items: start }
-.tier-member       { display: flex; flex-direction: column; align-items: center; gap: .2rem; min-width: 0 }
-.tier-member-img-wrap { position: relative }
-.tier-member-img   { width: 52px !important; height: 52px !important; border-radius: 50% !important; border: 2px solid var(--bdr); box-shadow: 0 2px 6px rgba(6,38,76,.18); display: block; object-fit: cover; object-position: top center }
-.tier-member-ph    { width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--bdr); display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; background: var(--bg2) }
-.tier-s6           { position: absolute; top: -3px; right: -3px; background: var(--gold); color: var(--navy); font-size: .45rem; font-weight: 800; padding: 1px 3px; border-radius: 3px; line-height: 1.4 }
-.tier-member-name  { font-size: .62rem; color: var(--txt2); text-align: center; max-width: 58px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 600 }
-.tier-source       { font-size: .68rem; color: var(--txt3); margin-top: 1rem; padding-top: .75rem; border-top: 1px solid var(--bdr); text-align: center }
+/* Tier S/A/B/C header pills */
+.mw-section { margin-top: 22px }
+.mw-tier-head { display: flex; align-items: center; gap: 14px; background: linear-gradient(180deg,#f4ecdb,#ece1c9); border: 1px solid rgba(0,0,0,.06); border-radius: 12px; padding: 11px 16px; box-shadow: 0 2px 6px rgba(0,0,0,.05) }
+.mw-tier-badge { flex: none; width: 46px; height: 46px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Oswald',sans-serif; font-weight: 700; font-size: 24px; box-shadow: inset 0 1px 0 rgba(255,255,255,.4),0 3px 8px rgba(0,0,0,.2) }
+.mw-tier-label { font-family: 'Oswald',sans-serif; font-weight: 600; font-size: 21px; letter-spacing: .09em; text-transform: uppercase }
+.mw-teams { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px }
+
+/* Team card */
+.mw-team { display: flex; gap: 14px; align-items: center; background: #faf5ea; border: 1px solid rgba(0,0,0,.06); border-left: 4px solid transparent; border-radius: 10px; padding: 12px 14px; box-shadow: 0 1px 3px rgba(0,0,0,.06); transition: transform .12s, box-shadow .12s }
+.mw-team:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.1) }
+.mw-team--ss { flex: 1 1 100%; max-width: 460px; background: linear-gradient(180deg,#251b0d,#1b1408); border: 1px solid #6e5419; border-left: 4px solid #f0c14b; box-shadow: 0 4px 14px rgba(0,0,0,.4), inset 0 1px 0 rgba(245,215,126,.12) }
+.mw-team-name { flex: none; width: 96px; font-family: 'Oswald',sans-serif; font-weight: 600; font-size: 15px; color: #3a2f24; line-height: 1.15 }
+.mw-team--ss .mw-team-name { color: #f5d77e }
+.mw-team-members { display: flex; gap: 10px; flex: 1; justify-content: flex-end }
+.mw-member { display: flex; flex-direction: column; align-items: center; gap: 5px; width: 58px; position: relative }
+.mw-avatar { width: 48px; height: 48px; border-radius: 50%; border: 2px solid rgba(0,0,0,.2); overflow: hidden; display: flex; align-items: center; justify-content: center; background: #d8c8a8 }
+.mw-team--ss .mw-avatar { background: #14100a }
+.mw-avatar-img { width: 44px !important; height: 44px !important; border-radius: 50% !important; object-fit: cover; object-position: top center; display: block }
+.mw-badge { position: absolute; top: -4px; right: 7px; background: linear-gradient(180deg,#f7da7e,#d49a2a); color: #3a2a08; font-family: 'Barlow',sans-serif; font-weight: 700; font-size: 10px; padding: 1px 5px; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,.3); line-height: 1.3 }
+.mw-mem-name { font-size: 11px; color: #6a5d4a; text-align: center; line-height: 1.1; max-width: 58px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.mw-team--ss .mw-mem-name { color: #cbb98c }
+.mw-source { font-size: 11px; color: #8a7c63; margin-top: 22px; text-align: center; line-height: 1.5 }
 
 /* ============================================================
    CW6 SCENE CARDS — grid + card (class-based so it stays responsive)
@@ -869,7 +866,6 @@ img { display: block; max-width: 100%; height: auto }
 @media (max-width: 1024px) {
   :root { --panel: 300px }
   .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) }
-  .tier-team-name { font-size: .78rem }
   .meta-grid { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)) }
   .main-page { padding: 1.25rem 1rem }
 }
@@ -1093,14 +1089,13 @@ img { display: block; max-width: 100%; height: auto }
     display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
   }
   .home-section-head h2 { font-size: 1.02rem }
-  .tier-page-wrap { padding: 1rem .75rem }
-  .tier-big-badge  { width: 38px; height: 38px; font-size: 1.3rem }
-  .tier-teams-grid { grid-template-columns: 1fr }
-  .tier-team-card  { grid-template-columns: minmax(58px, 72px) 1fr; gap: .5rem; padding: .5rem .65rem; min-height: 82px }
-  .tier-team-card:nth-child(odd) { border-right: none }
-  .tier-team-name  { font-size: .75rem }
-  .tier-team-members { gap: .35rem; grid-template-columns: repeat(4, minmax(40px, 1fr)) }
-  .tier-member-img, .tier-member-ph { width: 44px !important; height: 44px !important }
+  .mw-wrap { padding: 20px 10px 40px }
+  .mw-hero-title { font-size: 24px }
+  .mw-ss-head { padding: 14px 16px; gap: 12px }
+  .mw-ss-title { font-size: 22px }
+  .mw-teams { grid-template-columns: 1fr }
+  .mw-team--ss { max-width: none }
+  .mw-team-name { width: 88px; font-size: 14px }
   .meta-grid       { grid-template-columns: repeat(2, 1fr) }
 
   /* Simulate */
@@ -1135,10 +1130,13 @@ img { display: block; max-width: 100%; height: auto }
   .banner-name     { font-size: .7rem }
   .banner-faction-tag { font-size: .52rem; padding: 1px 5px }
   .nb              { padding: .2rem .42rem; font-size: .62rem }
-  .tier-team-card  { gap: .35rem; padding: .4rem .5rem }
-  .tier-team-name  { min-width: 54px; font-size: .7rem }
-  .tier-member-img, .tier-member-ph { width: 38px; height: 38px }
-  .tier-member-name { font-size: .56rem; max-width: 42px }
+  .mw-team  { gap: 8px; padding: 10px }
+  .mw-team-name  { width: 72px; font-size: 13px }
+  .mw-team-members { gap: 6px }
+  .mw-member { width: 46px }
+  .mw-avatar { width: 42px; height: 42px }
+  .mw-avatar-img { width: 38px !important; height: 38px !important }
+  .mw-mem-name { font-size: 10px; max-width: 46px }
   .meta-grid       { grid-template-columns: 1fr 1fr; gap: .55rem }
   .meta-card-head  { padding: .45rem .6rem }
   .meta-name       { font-size: .78rem }

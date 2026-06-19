@@ -1614,63 +1614,96 @@ export function BuffsPage(){
     </div>
   )
 }
-// ── TIER LIST ─────────────────────────────────────────────────────────────────
+// ── TIER LIST (CW Metawatch) ──────────────────────────────────────────────────
+// Per-tier visual config. `badge`=header chip gradient, `label`=tier label text
+// colour, `accent`=team-card left bar, `ring`=avatar border on light cards.
 export const TIER_DEFS={
-  S:{color:'#c0392b'},
-  A:{color:'#e07f48'},
-  B:{color:'#cc972d'},
-  C:{color:'#3d6eb5'},
+  SS:{label:'#f5d77e', accent:'#f0c14b', ring:'#b9912e',           badge:'linear-gradient(180deg,#f9de86,#d4a32c)', badgeText:'#4a3408'},
+  S :{label:'#c23b30', accent:'#c23b30', ring:'rgba(194,59,48,.4)',  badge:'linear-gradient(180deg,#e2564a,#c23b30)', badgeText:'#fff'},
+  A :{label:'#c75f1a', accent:'#d76a1f', ring:'rgba(215,106,31,.4)', badge:'linear-gradient(180deg,#f0903f,#d76a1f)', badgeText:'#fff'},
+  B :{label:'#b07d18', accent:'#d39a25', ring:'rgba(211,154,37,.45)',badge:'linear-gradient(180deg,#edc24f,#d39a25)', badgeText:'#4a3408'},
+  C :{label:'#2f66bd', accent:'#2f66bd', ring:'rgba(47,102,189,.4)', badge:'linear-gradient(180deg,#5b8fd6,#2f66bd)', badgeText:'#fff'},
 }
 
-export function TierPage(){
+// Star of David / shield star used in the SS header (lucide "star" path).
+const SS_STAR='M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z'
+
+function TierTeamCard({team,def,ss=false}){
+  const chars=team.members.map(findCharByName).filter(Boolean)
   return(
-    <div className="tier-page-wrap">
-      <div className="tier-page-header">
-        <h2 className="tier-main-title">⚔ CW Metawatch</h2>
-        <p className="tier-main-sub">Commonly Seen Armies · Last updated: Jun 2026</p>
-        <p style={{fontSize:'.75rem',color:'var(--txt3)',marginTop:'.25rem'}}>Tier List done by <strong style={{color:'var(--txt2)'}}>Doge</strong></p>
-      </div>
-      <div className="tier-list">
-        {['S','A','B','C'].map(tier=>{
-          const {color}=TIER_DEFS[tier]
-          const teams=TIER_TEAMS.filter(t=>t.tier===tier)
+    <div className={'mw-team'+(ss?' mw-team--ss':'')} style={{borderLeftColor:def.accent}}>
+      <div className="mw-team-name">{team.name}</div>
+      <div className="mw-team-members">
+        {chars.map((c,ci)=>{
+          const star6=(c.skills||[]).some(s=>s.star6)
           return(
-            <div key={tier} className="tier-section">
-              <div className="tier-section-head">
-                <div className="tier-big-badge" style={{background:color}}>{tier}</div>
-                <div className="tier-section-info">
-                  <div className="tier-section-label" style={{color}}>Tier {tier}</div>
-                </div>
+            <div key={ci} className="mw-member">
+              <div className="mw-avatar" style={{borderColor:ss?'#b9912e':def.ring}}>
+                <CharIcon c={c} size={44} round={true} className="mw-avatar-img"/>
               </div>
-              <div className="tier-teams-grid">
-                {teams.map((team,ti)=>{
-                  const chars=team.members.map(findCharByName).filter(Boolean)
-                  return(
-                    <div key={ti} className="tier-team-card" style={{borderLeftColor:color}}>
-                      <div className="tier-team-name">{team.name}</div>
-                      <div className="tier-team-members">
-                        {chars.map((c,ci)=>{
-                          const hasStar6=(c.skills||[]).some(s=>s.star6)
-                          return(
-                            <div key={ci} className="tier-member">
-                              <div className="tier-member-img-wrap">
-                                <CharIcon c={c} size={52} round={true} className="tier-member-img"/>
-                                {hasStar6&&<span className="tier-s6">☆6</span>}
-                              </div>
-                              <span className="tier-member-name">{c.name_en}</span>
-                            </div>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
+              {star6&&<span className="mw-badge">☆6</span>}
+              <span className="mw-mem-name">{c.name_en}</span>
             </div>
           )
         })}
       </div>
-      <p className="tier-source">Source: Gold fights, X, YouTube and Community insights · Benchmark: Army Synergy, Unique Skills, Unit Stats and Training Cost</p>
+    </div>
+  )
+}
+
+export function TierPage(){
+  return(
+    <div className="mw-wrap">
+      <div className="mw-inner">
+
+        {/* Hero header */}
+        <div className="mw-hero">
+          <div className="mw-hero-title">⚔ CW METAWATCH</div>
+          <div className="mw-hero-sub">Commonly Seen Armies · Last updated: Jun 2026</div>
+          <div className="mw-hero-by">Tier List done by <span>Doge</span></div>
+          <div className="mw-hero-accent"/>
+        </div>
+
+        {/* SS — apex showcase (single, centered team) */}
+        <section className="mw-ss">
+          <div className="mw-ss-head">
+            <svg className="mw-ss-watermark" width="180" height="180" viewBox="0 0 24 24" fill="#f5d77e" aria-hidden="true"><path d={SS_STAR}/><path d="M5 21h14"/></svg>
+            <div className="mw-ss-badge">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="#4a3408" stroke="#4a3408" strokeWidth="1" strokeLinejoin="round" aria-hidden="true"><path d={SS_STAR}/><path d="M5 21h14"/></svg>
+            </div>
+            <div className="mw-ss-titles">
+              <div className="mw-ss-title">Tier SS</div>
+              <div className="mw-ss-sub">The apex — strongest team in the game</div>
+            </div>
+            <div className="mw-ss-sheen"/>
+          </div>
+          <div className="mw-ss-body">
+            <div className="mw-ss-teams">
+              {TIER_TEAMS.filter(t=>t.tier==='SS').map((team,ti)=><TierTeamCard key={ti} team={team} def={TIER_DEFS.SS} ss/>)}
+            </div>
+            <div className="mw-ss-tagline">★ UNDISPUTED META KINGS ★</div>
+          </div>
+        </section>
+
+        {/* S / A / B / C */}
+        {['S','A','B','C'].map(tier=>{
+          const def=TIER_DEFS[tier]
+          const teams=TIER_TEAMS.filter(t=>t.tier===tier)
+          return(
+            <section key={tier} className="mw-section">
+              <div className="mw-tier-head">
+                <div className="mw-tier-badge" style={{background:def.badge,color:def.badgeText}}>{tier}</div>
+                <div className="mw-tier-label" style={{color:def.label}}>Tier {tier}</div>
+              </div>
+              <div className="mw-teams">
+                {teams.map((team,ti)=><TierTeamCard key={ti} team={team} def={def}/>)}
+              </div>
+            </section>
+          )
+        })}
+
+        <p className="mw-source">Source: Gold fights, X, YouTube and Community insights · Benchmark: Army Synergy, Unique Skills, Unit Stats and Training Cost</p>
+      </div>
     </div>
   )
 }
