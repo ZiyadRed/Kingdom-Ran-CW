@@ -993,5 +993,15 @@
                   "rarity":  "UR",
                   "faction":  "Qin",
                   "name_jp":  "ゼノウ"
-              }
+              },
+    "Kou (昂)":  {
+                 "rarity":  "UR",
+                 "faction":  "Qin",
+                 "name_jp":  "昂"
+             },
+    "Eiki":  {
+                 "rarity":  "SR",
+                 "faction":  "Qin",
+                 "name_jp":  "英紀"
+             }
 }
