@@ -1130,13 +1130,17 @@ img { display: block; max-width: 100%; height: auto }
   .banner-name     { font-size: .7rem }
   .banner-faction-tag { font-size: .52rem; padding: 1px 5px }
   .nb              { padding: .2rem .42rem; font-size: .62rem }
-  .mw-team  { gap: 8px; padding: 10px }
-  .mw-team-name  { width: 72px; font-size: 13px }
-  .mw-team-members { gap: 6px }
-  .mw-member { width: 46px }
-  .mw-avatar { width: 42px; height: 42px }
-  .mw-avatar-img { width: 38px !important; height: 38px !important }
-  .mw-mem-name { font-size: 10px; max-width: 46px }
+  /* Buffs: 3 picker cards per row instead of 2 (overrides inline width/gap) */
+  .buff-pick-row   { gap: 8px !important }
+  .buff-pick-card  { width: 31% !important; min-width: 0 !important; padding: 12px 6px 10px !important; border-radius: 14px !important }
+  /* Tier list: smaller avatars + tighter rows so more teams fit per screen */
+  .mw-team  { gap: 6px; padding: 8px 9px }
+  .mw-team-name  { width: 70px; font-size: 12.5px }
+  .mw-team-members { gap: 5px }
+  .mw-member { width: 42px }
+  .mw-avatar { width: 38px; height: 38px }
+  .mw-avatar-img { width: 34px !important; height: 34px !important }
+  .mw-mem-name { font-size: 9.5px; max-width: 42px }
   .meta-grid       { grid-template-columns: 1fr 1fr; gap: .55rem }
   .meta-card-head  { padding: .45rem .6rem }
   .meta-name       { font-size: .78rem }

@@ -1042,7 +1042,7 @@ export function BuffsPage(){
   const renderCard=(kind,key,col,iconNode,countLabel)=>{
     const isActive=activeKind===kind&&activeKey===key
     return(
-      <button key={kind+':'+key} onClick={()=>handlePick(kind,key)} style={{
+      <button key={kind+':'+key} className="buff-pick-card" onClick={()=>handlePick(kind,key)} style={{
         display:'flex',flexDirection:'column',alignItems:'center',gap:'10px',
         padding:'16px 18px 12px',borderRadius:'18px',cursor:'pointer',width:'138px',
         border:`2px solid ${isActive?col:'var(--bdr)'}`,
@@ -1541,7 +1541,7 @@ export function BuffsPage(){
       {renderBuffProgressSection()}
 
       <SectionLabel>Unit Types</SectionLabel>
-      <div style={{display:'flex',justifyContent:'center',gap:'14px',marginBottom:'2rem',flexWrap:'wrap'}}>
+      <div className="buff-pick-row" style={{display:'flex',justifyContent:'center',gap:'14px',marginBottom:'2rem',flexWrap:'wrap'}}>
         {BUFF_UNIT_CATS.map(cat=>{
           const uniqueNames=new Set(Object.values(cwBuffsData[cat]||{}).flat().map(e=>e.name))
           return renderCard('unit',cat,CAT_COLOR[cat],<UnitCatIcon cat={cat} size={64}/>,`${uniqueNames.size} generals`)
@@ -1549,7 +1549,7 @@ export function BuffsPage(){
       </div>
 
       <SectionLabel>States</SectionLabel>
-      <div style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
+      <div className="buff-pick-row" style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
         {BUFF_STATES.map(s=>{
           const col=CC[STATE_FACTION_ID[s]]||'#888'
           const n=stateCount(s)
@@ -1558,7 +1558,7 @@ export function BuffsPage(){
       </div>
 
       <SectionLabel>Special Units</SectionLabel>
-      <div style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
+      <div className="buff-pick-row" style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
         {BUFF_ARMIES.map(a=>{
           const col=CC[ARMY_PARENT_STATE[a]]||'#888'
           const n=armyCount(a)
@@ -1567,7 +1567,7 @@ export function BuffsPage(){
       </div>
 
       <SectionLabel>Terrain</SectionLabel>
-      <div style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
+      <div className="buff-pick-row" style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
         {TERRAIN_BUFFS.map(t=>renderCard('terrain',t.name,t.color,<TerrainIcon terrain={t}/>,`${t.entries.length} generals`))}
       </div>
 
