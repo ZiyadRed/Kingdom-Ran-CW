@@ -8,7 +8,7 @@ import statusEffects from '../data/glossary/status_effects.json'
 import unitMatchups  from '../data/glossary/unit_matchups.json'
 import skillTypesGlossary from '../data/glossary/skill_types.json'
 import {
-  useModalDismiss, useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, SceneStarControl, buffSourceId, ALL, findCharByName, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, redCrystalBuffUnlockCost, RedCrystalCostChip, BuffValueCluster, FACTIONS, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, META_TEAMS, simulate, SCENE_CARD, calcCharBuffs, calcTeamEnemyDebuffs, Picker, RARITY_DATA, INVERSE_STATS, SPECIAL_STATS, statSortKey, CHAR_GROUPS, DEFAULT_SK, hasStar6, applyMask
+  useModalDismiss, useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, SceneStarControl, buffSourceId, ALL, findCharByName, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, redCrystalBuffUnlockCost, RedCrystalCostChip, BuffValueCluster, FACTIONS, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, META_TEAMS, simulate, SCENE_CARD, calcCharBuffs, calcTeamEnemyDebuffs, Picker, RARITY_DATA, INVERSE_STATS, SPECIAL_STATS, statSortKey, CHAR_GROUPS, DEFAULT_SK, hasStar6, applyMask, buffEntryRarity
 } from './core.jsx'
 import { setSeo } from './seo.js'
 
@@ -1126,7 +1126,7 @@ export function BuffsPage(){
                     <span style={{fontSize:'.65rem',color:'var(--txt3)'}}>{e.name_jp}</span>
                   </div>
                   <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
-                    <span style={{fontSize:'.62rem',padding:'1px 7px',borderRadius:'4px',background:fc+'22',color:fc,border:`1px solid ${fc}44`,fontWeight:700}}>{e.type}</span>
+                    <span style={{fontSize:'.62rem',padding:'1px 7px',borderRadius:'4px',background:fc+'22',color:fc,border:`1px solid ${fc}44`,fontWeight:700}}>{buffEntryRarity(e)}</span>
                     <span style={{fontSize:'.62rem',color:'var(--txt3)'}}>{FACTIONS.find(f=>f.id===e.faction)?.label||e.faction}</span>
                   </div>
                 </div>
@@ -1240,7 +1240,7 @@ export function BuffsPage(){
                     {e.star6&&<span style={{fontSize:'.65rem',color:'#c9902a',fontWeight:800}}>☆6</span>}
                   </div>
                   <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
-                    <span style={{fontSize:'.62rem',padding:'1px 7px',borderRadius:'4px',background:fc+'22',color:fc,border:`1px solid ${fc}44`,fontWeight:700}}>{e.type}</span>
+                    <span style={{fontSize:'.62rem',padding:'1px 7px',borderRadius:'4px',background:fc+'22',color:fc,border:`1px solid ${fc}44`,fontWeight:700}}>{buffEntryRarity(e)}</span>
                     <span style={{fontSize:'.62rem',color:'var(--txt3)'}}>{FACTIONS.find(f=>f.id===e.faction)?.label||e.faction}</span>
                   </div>
                 </div>

@@ -274,7 +274,7 @@ export function redCrystalBuffUnlockCost(entry,kind,key,stat){
   if(!entry||entry.special_icon||entry.special_label||Number(entry.value)===5) return null
   const char=findCharByName(entry.name)||ALL.find(c=>c.name_jp===entry.name_jp)
   if(!char) return null
-  const rarity=RARITY_DATA[char.name_en]?.rarity||char.rarity||entry.type||'SR'
+  const rarity=buffEntryRarity(entry)||char.rarity||'SR'
   const costs=RED_CRYSTAL_UNLOCK_COSTS[rarity]
   if(!costs) return null
   const skills=(char.skills||[]).filter(skill=>!skill.star6).slice(0,3)
@@ -1006,6 +1006,21 @@ export const RARITY_COST=RED_CRYSTAL_TOTAL_COST
 export const RARITY_COLOR={R:'#3d9970',SR:'#3d6eb5',UR:'#c0392b',LG:'#d4af37'}
 
 export const RARITY_DATA=rarityData
+
+// Authoritative rarity lookup for buff entries. character_rarity.json is the
+// single source of truth; the `type` field hand-coded on buff entries had
+// drifted (and even held an invalid "SSR"). Match ONLY by Japanese name — it is
+// unique, whereas a few romanizations collide (e.g. 昂 and 向 both romanize to
+// "Kou", so matching by English name would mix them up). Fall back to the
+// entry's own `type` only for the handful of minor generals not yet in the
+// rarity file (currently 昂 and 英紀).
+const RARITY_BY_JP=Object.fromEntries(
+  Object.values(rarityData).filter(v=>v&&v.name_jp).map(v=>[v.name_jp,v.rarity])
+)
+export function buffEntryRarity(entry){
+  if(!entry) return null
+  return RARITY_BY_JP[entry.name_jp]||entry.type||null
+}
 
 // ----- shared stat ordering (used by buff engine + buff tables) -----
 // Stats where "Down" is beneficial for the buff receiver (e.g. less morale cost = good)
