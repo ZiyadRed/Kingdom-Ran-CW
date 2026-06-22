@@ -159,7 +159,7 @@ export const GROUPS={
   'Hi Shin Unit':       ['shin','naki','robin','garo','gakurai'],
   'Kanki Army':       ['kanki','naki','robin','zenou','raido','ogiko','maron','kokuou','bain','kakuun'],
   'Kisui Army':       ['kisui','batei','ryuuto','duke_sei','kishou'],
-  'Ousen Army':       ['akou','denrimi','kanjou','shoutaku','kyuukou','makou'],
+  'Ousen Army':       ['akou','denrimi','kanjou','shoutaku','kyuukou','makou','koujyun','chouyou'],
   'Moubo Army':       ['moubu','choushi','raiki'],
   'Coalition Army':   ['karin','kanmei','riboku','houken','seikai','rinbukun','gohoumei','mangoku'],
   'Ryofui Four Pillars': ['ryofui','mougou'],
@@ -202,7 +202,7 @@ export const UNIT_TYPES={
   ryuusen:'Infantry',ryuuto:'Infantry',ryuyu:'Infantry',saji:'Infantry',shikika:'Infantry',
   shousa:'Infantry',shoutaku:'Infantry',shuki:'Infantry',shunmen:'Infantry',shunpeikun:'Infantry',
   suugen:'Infantry',toumi:'Infantry',youka:'Infantry',yuri:'Infantry',yuuren:'Infantry',
-  zenou:'Infantry',
+  zenou:'Infantry',koujyun:'Infantry',
   // Shield
   banyou:'Shield',bikou:'Shield',chouin:'Shield',choutou:'Shield',denei:'Shield',
   ei_sei:'Shield',gokei:'Shield',goumasho:'Shield',hakuki:'Shield',heki:'Shield',
@@ -211,7 +211,7 @@ export const UNIT_TYPES={
   miyamoto:'Shield',mougou:'Shield',mouki:'Shield',ouken:'Shield',ousen:'Shield',
   raido:'Shield',ranbihaku:'Shield',riboku:'Shield',rien:'Shield',rihaku:'Shield',
   rouai:'Shield',ryuukoku:'Shield',shoukaku:'Shield',shunshinkun:'Shield',taijifu:'Shield',
-  tairoji:'Shield',yugi:'Shield',
+  tairoji:'Shield',yugi:'Shield',chouyou:'Shield',
 }
 // Extend GROUPS from each character's `unit` field so JSON data is the source of truth.
 // Any char with `"unit": "X Army"` is auto-added to GROUPS['X Army'] (creating it if absent).

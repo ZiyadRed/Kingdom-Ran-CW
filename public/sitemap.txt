@@ -38,6 +38,7 @@ https://ranhq.vercel.app/archive/characters/chouko
 https://ranhq.vercel.app/archive/characters/choushi
 https://ranhq.vercel.app/archive/characters/chousou
 https://ranhq.vercel.app/archive/characters/choutou
+https://ranhq.vercel.app/archive/characters/chouyou
 https://ranhq.vercel.app/archive/characters/chutetsu
 https://ranhq.vercel.app/archive/characters/danto
 https://ranhq.vercel.app/archive/characters/denei
@@ -114,6 +115,7 @@ https://ranhq.vercel.app/archive/characters/kitari
 https://ranhq.vercel.app/archive/characters/kokuou
 https://ranhq.vercel.app/archive/characters/koshou
 https://ranhq.vercel.app/archive/characters/kou
+https://ranhq.vercel.app/archive/characters/koujyun
 https://ranhq.vercel.app/archive/characters/kouretsu
 https://ranhq.vercel.app/archive/characters/kourigen
 https://ranhq.vercel.app/archive/characters/kousonryu

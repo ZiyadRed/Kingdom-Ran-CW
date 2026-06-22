@@ -94,6 +94,11 @@
                     "faction":  "Qin",
                     "name_jp":  "張唐"
                 },
+    "Chouyou":  {
+                    "rarity":  "SR",
+                    "faction":  "Qin",
+                    "name_jp":  "丁陽"
+                },
     "Chutetsu":  {
                      "rarity":  "SR",
                      "faction":  "Qin",
@@ -469,6 +474,11 @@
                 "faction":  "Qin",
                 "name_jp":  "向"
             },
+    "Koujyun":  {
+                    "rarity":  "SR",
+                    "faction":  "Qin",
+                    "name_jp":  "高順"
+                },
     "Kouretsu":  {
                      "rarity":  "UR",
                      "faction":  "Chu",

@@ -18,6 +18,8 @@
     { "id": "moubu",       "name_en": "Moubu",         "name_jp": "蒙武",    "country": "qin",           "file": "qin.json",            "status": "pending" },
     { "id": "choushi",     "name_en": "Choushi",       "name_jp": "丁之",      "country": "qin",           "file": "qin_batch2.json",     "status": "done" },
     { "id": "raiki",       "name_en": "Raiki",         "name_jp": "来輝",      "country": "qin",           "file": "qin_batch2.json",     "status": "done" },
+    { "id": "koujyun",     "name_en": "Koujyun",       "name_jp": "高順",      "country": "qin",           "file": "qin_batch2.json",     "status": "done" },
+    { "id": "chouyou",     "name_en": "Chouyou",       "name_jp": "丁陽",      "country": "qin",           "file": "qin_batch2.json",     "status": "done" },
     { "id": "mouki",       "name_en": "Mouki",         "name_jp": "蒙毅",    "country": "qin",           "file": "qin.json",            "status": "pending" },
     { "id": "mougou",       "name_en": "Mougou",         "name_jp": "蒙驁",    "country": "qin",           "file": "qin.json",            "status": "pending" },
     { "id": "ei_sei",      "name_en": "Ei Sei",        "name_jp": "嬴政",    "country": "qin",           "file": "qin.json",            "status": "pending" },

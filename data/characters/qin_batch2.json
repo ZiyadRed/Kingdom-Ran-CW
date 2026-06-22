@@ -1477,5 +1477,141 @@
     ],
     "image": "/persos/raiki.png",
     "icon": "/icons/Raiki.webp"
+  },
+  {
+    "id": "koujyun",
+    "name_en": "Koujyun",
+    "name_jp": "高順",
+    "country": "qin",
+    "unit": "Makou Army",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Blue Turtle]",
+        "name_jp": "重追撃【青亀】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "When ally [?] is alive",
+            "target": "Ally Ousen Army",
+            "effect": "Guard 60%",
+            "duration": "1 time"
+          }
+        ]
+      },
+      {
+        "name_en": "Battle-Hardened Corps",
+        "name_jp": "鍛え上げた兵団",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Qin]",
+            "effect": "ATK Up 10%",
+            "duration": null
+          },
+          {
+            "condition": "When ally [?] is alive",
+            "target": "Ally Ousen Army",
+            "effect": "ATK Up 30%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Defensive Armament",
+        "name_jp": "防衛軍備",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
+            "effect": "170% Damage",
+            "duration": null
+          },
+          {
+            "condition": "When ally [?] is alive",
+            "target": "Ally Ousen Army",
+            "effect": "Guard 80%",
+            "duration": "1 time"
+          }
+        ]
+      }
+    ],
+    "image": "/persos/koujyun.webp"
+  },
+  {
+    "id": "chouyou",
+    "name_en": "Chouyou",
+    "name_jp": "丁陽",
+    "country": "qin",
+    "unit": "Makou Army",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Blue Bull]",
+        "name_jp": "重追撃【青牛】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "When ally [?] is alive",
+            "target": "Surviving ally Ousen Army",
+            "effect": "HP Recovery 20%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Elite Soldiers",
+        "name_jp": "精強な兵",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Qin]",
+            "effect": "Critical Damage Up 10%",
+            "duration": null
+          },
+          {
+            "condition": "When ally [?] is alive",
+            "target": "Ally Ousen Army",
+            "effect": "Critical Damage Up 30%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Rally",
+        "name_jp": "立て直し",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
+            "effect": "170% Damage",
+            "duration": null
+          },
+          {
+            "condition": "When ally [?] is alive",
+            "target": "Ally Ousen Army",
+            "effect": "Continuous HP Recovery 8%",
+            "duration": "4 turns"
+          }
+        ]
+      }
+    ],
+    "image": "/persos/chouyou.webp"
   }
 ]
