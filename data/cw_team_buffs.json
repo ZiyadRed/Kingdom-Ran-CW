@@ -613,6 +613,20 @@
           "faction": "qin",
           "type": "UR",
           "value": 5.0
+        },
+        {
+          "name": "Koujyun",
+          "name_jp": "高順",
+          "faction": "qin",
+          "type": "SR",
+          "value": 5.0
+        },
+        {
+          "name": "Chouyou",
+          "name_jp": "丁陽",
+          "faction": "qin",
+          "type": "SR",
+          "value": 5.0
         }
       ]
     },

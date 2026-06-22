@@ -545,6 +545,14 @@
         "value": 5.0
       },
       {
+        "name": "Koujyun",
+        "name_jp": "高順",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0
+      },
+      {
         "name": "Oukotsu",
         "name_jp": "王齕",
         "faction": "qin",
@@ -650,6 +658,14 @@
       {
         "name": "Hokaku",
         "name_jp": "蒲鶮",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0
+      },
+      {
+        "name": "Koujyun",
+        "name_jp": "高順",
         "faction": "qin",
         "type": "SR",
         "star6": false,
@@ -817,6 +833,14 @@
         "value": 5.0
       },
       {
+        "name": "Chouyou",
+        "name_jp": "丁陽",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0
+      },
+      {
         "name": "Kousonryu",
         "name_jp": "公孫龍",
         "faction": "zhao",
@@ -864,6 +888,14 @@
         "name_jp": "角雲",
         "faction": "qin",
         "type": "UR",
+        "star6": false,
+        "value": 5.0
+      },
+      {
+        "name": "Chouyou",
+        "name_jp": "丁陽",
+        "faction": "qin",
+        "type": "SR",
         "star6": false,
         "value": 5.0
       },
