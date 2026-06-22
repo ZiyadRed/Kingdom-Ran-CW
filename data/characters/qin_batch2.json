@@ -1498,7 +1498,7 @@
             "duration": null
           },
           {
-            "condition": "When ally [?] is alive",
+            "condition": "When ally Makou is alive",
             "target": "Ally Ousen Army",
             "effect": "Guard 60%",
             "duration": "1 time"
@@ -1517,7 +1517,7 @@
             "duration": null
           },
           {
-            "condition": "When ally [?] is alive",
+            "condition": "When ally Makou is alive",
             "target": "Ally Ousen Army",
             "effect": "ATK Up 30%",
             "duration": null
@@ -1536,7 +1536,7 @@
             "duration": null
           },
           {
-            "condition": "When ally [?] is alive",
+            "condition": "When ally Makou is alive",
             "target": "Ally Ousen Army",
             "effect": "Guard 80%",
             "duration": "1 time"
@@ -1566,7 +1566,7 @@
             "duration": null
           },
           {
-            "condition": "When ally [?] is alive",
+            "condition": "When ally Makou is alive",
             "target": "Surviving ally Ousen Army",
             "effect": "HP Recovery 20%",
             "duration": null
@@ -1585,7 +1585,7 @@
             "duration": null
           },
           {
-            "condition": "When ally [?] is alive",
+            "condition": "When ally Makou is alive",
             "target": "Ally Ousen Army",
             "effect": "Critical Damage Up 30%",
             "duration": null
@@ -1604,7 +1604,7 @@
             "duration": null
           },
           {
-            "condition": "When ally [?] is alive",
+            "condition": "When ally Makou is alive",
             "target": "Ally Ousen Army",
             "effect": "Continuous HP Recovery 8%",
             "duration": "4 turns"
