@@ -6,7 +6,8 @@
     "maxMp": 2250,
     "critRate": 2000,
     "dodgeRate": 1500,
-    "hitRate": 700
+    "hitRate": 700,
+    "defDownResist": 500
   },
   "cards": [
     {
@@ -469,6 +470,28 @@
         5.98,
         6.49,
         7.0
+      ]
+    },
+    {
+      "id": 40274,
+      "imageId": 10274,
+      "name_en": "Shin Defense Down Resistance buff",
+      "name_jp": "継承の矛と新星",
+      "stat": "def_down_resist",
+      "statLabel": "Defense Down Resistance",
+      "value": 5,
+      "valueMode": "percent",
+      "image": "/scene_cards/webp/Shin-Defense-Down-Resistance-buff.webp",
+      "ownerName": "Shin",
+      "ownerIcon": "/icons/Shin.webp",
+      "thumb": "/scene_cards/thumbs/Shin-Defense-Down-Resistance-buff-thumb.webp",
+      "starValues": [
+        3.3,
+        3.64,
+        3.98,
+        4.32,
+        4.66,
+        5.0
       ]
     }
   ]
