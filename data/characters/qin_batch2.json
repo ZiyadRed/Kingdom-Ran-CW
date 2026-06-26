@@ -1544,7 +1544,8 @@
         ]
       }
     ],
-    "image": "/persos/koujyun.webp"
+    "image": "/persos/koujyun.webp",
+    "icon": "/icons/Koujyun.webp"
   },
   {
     "id": "chouyou",
@@ -1612,6 +1613,7 @@
         ]
       }
     ],
-    "image": "/persos/chouyou.webp"
+    "image": "/persos/chouyou.webp",
+    "icon": "/icons/Chouyou.webp"
   }
 ]

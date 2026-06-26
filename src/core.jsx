@@ -394,6 +394,7 @@ export const META_TEAMS=[
   {name:'Renpa v2',       members:['Rinko','Kouretsu','Renpa','Kaishibou']},
   {name:'Moubo',          members:['Choushi','Moubu','Raiki','Ouken']},
   {name:'Qin Shields',    members:['Hakuki','Akou','Ousen','Ei Sei']},
+  {name:'Makou Army',     members:['Makou','Koujyun','Chouyou','Denrimi']},
 ]
 // Tier list = the META_TEAMS that carry a tier, with their colour resolved.
 export const TIER_TEAMS=META_TEAMS.filter(t=>t.tier).map(t=>({...t,color:TIER_COLORS[t.tier]}))
