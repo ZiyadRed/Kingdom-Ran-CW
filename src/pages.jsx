@@ -709,8 +709,8 @@ export function BuffTable({atk,def}){
   if(!atk.length&&!def.length) return null
   const atkBuffs=atk.map(g=>({general:g,buffs:calcCharBuffs(g,atk,def,false,true,includeCombat)}))
   const defBuffs=def.map(g=>({general:g,buffs:calcCharBuffs(g,def,atk,true,true,includeCombat)}))
-  const atkEnemyDebuffs=calcTeamEnemyDebuffs(atk,def,includeCombat)
-  const defEnemyDebuffs=calcTeamEnemyDebuffs(def,atk,includeCombat)
+  const atkEnemyDebuffs=calcTeamEnemyDebuffs(atk,def,includeCombat,false)
+  const defEnemyDebuffs=calcTeamEnemyDebuffs(def,atk,includeCombat,true)
   const hasAny=arr=>arr.some(({buffs})=>Object.keys(buffs).length>0)
   if(!hasAny(atkBuffs)&&!hasAny(defBuffs)&&!Object.keys(atkEnemyDebuffs).length&&!Object.keys(defEnemyDebuffs).length) return null
   return(

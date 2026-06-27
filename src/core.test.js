@@ -110,6 +110,70 @@ describe('calcCharBuffs / buff summary', () => {
   })
 })
 
+// Enemy debuffs (the "↓ Enemy …" rows) must honour the same conditions the
+// effect text carries: garrison/attacking timing, per-ally scaling, and
+// ally/enemy presence. Regression guard for the Kyuukou "When Garrisoning,
+// Enemy [Cavalry]" debuff that previously showed on every side.
+describe('calcTeamEnemyDebuffs condition gating', () => {
+  const mk = (id, country, unit_type, skills) => ({ id, name_en: id, country, unit_type, skills })
+
+  it('hides "When Garrisoning" enemy debuffs on the attacking side, shows them on garrison', () => {
+    const owner = mk('kyuukou', 'qin', 'Cavalry', [{ type: 'Strategy', effects: [
+      { condition: 'When Garrisoning', target: 'Enemy [Cavalry]', effect: 'ATK Down 30%', duration: null },
+    ] }])
+    const enemy = [mk('e', 'zhao', 'Cavalry', [])]
+    // attacking formation (isDefense=false): garrison condition inactive
+    expect(Object.keys(calcTeamEnemyDebuffs([owner], enemy, false, false)).length).toBe(0)
+    // garrison formation (isDefense=true): debuff applies
+    expect(calcTeamEnemyDebuffs([owner], enemy, false, true)['Enemy Cavalry']?.down?.ATK).toBe(30)
+  })
+
+  it('drops an Enemy [Cavalry] debuff when the enemy team has no cavalry', () => {
+    const owner = mk('k', 'qin', 'Cavalry', [{ type: 'Strategy', effects: [
+      { condition: 'When Garrisoning', target: 'Enemy [Cavalry]', effect: 'ATK Down 30%', duration: null },
+    ] }])
+    const noCav = [mk('e', 'zhao', 'Shield', [])]
+    expect(Object.keys(calcTeamEnemyDebuffs([owner], noCav, false, true)).length).toBe(0)
+  })
+
+  it('honours "When Attacking" enemy debuffs only on the attacking side', () => {
+    const owner = mk('seikai', 'qin', 'Archer', [{ type: 'Strategy', effects: [
+      { condition: 'When Attacking', target: 'Enemy [Shield]', effect: 'ATK Down 20%', duration: null },
+    ] }])
+    const enemy = [mk('e', 'zhao', 'Shield', [])]
+    expect(calcTeamEnemyDebuffs([owner], enemy, false, false)['Enemy Shield']?.down?.ATK).toBe(20)
+    expect(Object.keys(calcTeamEnemyDebuffs([owner], enemy, false, true)).length).toBe(0)
+  })
+
+  it('scales a "Per other ally X" enemy debuff by the matching ally count', () => {
+    const owner = mk('robin', 'qin', 'Cavalry', [{ type: 'Strategy', effects: [
+      { condition: 'Per other ally [Qin]', target: 'All enemy [General]', effect: 'DEF Down 10%', duration: null },
+    ] }])
+    const a2 = mk('x', 'qin', 'Shield', [])
+    const a3 = mk('y', 'qin', 'Archer', [])
+    expect(calcTeamEnemyDebuffs([owner, a2, a3], [], false, false)['All enemies'].down.DEF).toBe(20)
+    // no other Qin allies ⇒ condition unmet ⇒ hidden
+    expect(Object.keys(calcTeamEnemyDebuffs([owner], [], false, false)).length).toBe(0)
+  })
+
+  it('hides a named-ally-presence enemy debuff unless that ally is on the team', () => {
+    const owner = mk('katari', 'qin', 'Cavalry', [{ type: 'Strategy', effects: [
+      { condition: 'When ally Ouhon is alive', target: 'All enemy [General]', effect: 'ATK Down 30%', duration: null },
+    ] }])
+    expect(Object.keys(calcTeamEnemyDebuffs([owner], [], false, false)).length).toBe(0)
+    const ouhon = mk('ouhon', 'qin', 'Cavalry', [])
+    expect(calcTeamEnemyDebuffs([owner, ouhon], [], false, false)['All enemies'].down.ATK).toBe(30)
+  })
+
+  it('keeps dynamic-state conditions (e.g. "Confused enemy present") as potential', () => {
+    const owner = mk('hanoki', 'qin', 'Cavalry', [{ type: 'Combat', effects: [
+      { condition: 'Confused enemy [General] present', target: 'All enemy [General]', effect: 'ATK Down 15%', duration: null },
+    ] }])
+    // not a composition gate → still shown when combat skills are included
+    expect(calcTeamEnemyDebuffs([owner], [], true, false)['All enemies'].down.ATK).toBe(15)
+  })
+})
+
 // Combat skills fire in REVERSE slot order, one per turn, Normal Attack when
 // a general runs out (see NOTES_FOR_CLAUDE.md). Strategy skills are skipped.
 describe('simulate turn ordering', () => {

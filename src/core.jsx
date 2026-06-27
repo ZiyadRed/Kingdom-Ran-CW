@@ -906,9 +906,46 @@ export function normalizeEnemyTarget(t){
     if(tl.includes(label)) return `Enemy ${label[0].toUpperCase()+label.slice(1)}`
   return 'Enemies'
 }
-export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false){
+// Is `crit` a real roster criterion (unit type, faction, group, or named general)?
+// Distinguishes composition gates ("ally Makou", "[Chu]") from dynamic battle
+// states ("burned", "feared", "surviving") that should always show as potential.
+export function isRosterCriterion(crit){
+  return !!crit&&ALL.some(c=>rosterCriterionMatches(c,crit,null,false))
+}
+// How strongly an enemy-targeting effect's condition is met for this side:
+// 0 = inactive (skip), ≥1 = active (per-ally conditions scale by the ally count).
+// Mirrors the timing/per-ally gating calcCharBuffs applies to ally buffs, and
+// additionally respects ally/enemy *presence* conditions.
+export function enemyDebuffFactor(cond,isDefense,owner,team,enemyTeam=[]){
+  if(!cond) return 1
+  // Timing — "When Garrisoning" applies only on the garrison (defending) side,
+  // "When Attacking" only on offense.
+  if(!isCondActive(cond,isDefense)) return 0
+  // Per-ally scaling — "Per (other) ally X" multiplies by the matching ally count.
+  if(/\bper\s+(?:other\s+)?ally\b/i.test(cond)){
+    const m=getMultiplier(cond,owner,team)
+    return m>0?m:0
+  }
+  // Ally presence — "When ally Makou is alive", "Other ally [Chu] alive", …
+  const allyM=cond.match(/\b(other\s+)?ally\b(.*?)\b(?:alive|present)\b/i)
+  if(allyM){
+    const crit=(allyM[2]||'').replace(/\b(?:is|are)\b/gi,'').trim()
+    if(isRosterCriterion(crit))
+      return team.some(c=>rosterCriterionMatches(c,crit,owner,!!allyM[1]))?1:0
+  }
+  // Enemy presence — "Enemy [Qin] present", "When enemy Kanki Army are alive".
+  // Only filter when the enemy team is known; otherwise show the potential.
+  const enemyM=cond.match(/\benemy\b(.*?)\b(?:alive|present)\b/i)
+  if(enemyM&&enemyTeam.length>0){
+    const crit=(enemyM[1]||'').replace(/\b(?:is|are)\b/gi,'').trim()
+    if(isRosterCriterion(crit))
+      return enemyTeam.some(c=>rosterCriterionMatches(c,crit,null,false))?1:0
+  }
+  return 1
+}
+export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false,isDefense=false){
   const byTarget={}
-  function addToTarget(key,parsed,owner){
+  function addToTarget(key,parsed,owner,factor=1){
     if(!parsed.length) return
     if(enemyTeam.length>0){
       const ut=UNIT_TYPE_LIST.find(u=>key===`Enemy ${u}`)
@@ -926,10 +963,11 @@ export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false){
         if(!isUT&&FACTION_MAP[antiEnemy.toLowerCase()]&&!enemyTeam.some(g=>g.country===FACTION_MAP[antiEnemy.toLowerCase()])) continue
       }
       const d=dir==='Up'?'up':'down'
-      byTarget[key][d][stat]=(byTarget[key][d][stat]||0)+val
+      const v=val*factor
+      byTarget[key][d][stat]=(byTarget[key][d][stat]||0)+v
       const skey=`${d}|${stat}`
       if(!byTarget[key].sources[skey]) byTarget[key].sources[skey]=[]
-      byTarget[key].sources[skey].push({owner,contribution:val,dir:d})
+      byTarget[key].sources[skey].push({owner,contribution:v,dir:d})
     }
   }
   for(const owner of team){
@@ -937,13 +975,17 @@ export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false){
       if(sk.type!=='Strategy'&&!(includeCombat&&sk.type==='Combat')) continue
       for(const eff of(sk.effects||[])){
         const t=(eff.target||'').trim()
+        // Respect the effect's condition: timing (garrison/attacking), per-ally
+        // scaling, and ally/enemy presence. factor 0 ⇒ condition unmet → skip.
+        const factor=enemyDebuffFactor(eff.condition,isDefense,owner,team,enemyTeam)
+        if(!factor) continue
         // skip effects whose condition requires an enemy unit type not present
         if(enemyTeam.length>0){
           const cm=(eff.condition||'').match(/enemy\s+\[?(infantry|cavalr\w*|archers?|shield)\]?/i)
           if(cm){const raw=cm[1].toLowerCase();const ut=raw.startsWith('arch')?'Archer':raw.startsWith('cav')?'Cavalry':raw.startsWith('inf')?'Infantry':'Shield';if(!enemyTeam.some(g=>g.unit_type===ut)) continue}
         }
         if(/^enemy|^all\s+enemy/i.test(t)){
-          addToTarget(normalizeEnemyTarget(t),parseBuffEffect(eff.effect),owner)
+          addToTarget(normalizeEnemyTarget(t),parseBuffEffect(eff.effect),owner,factor)
         } else {
           // collect embedded "Enemy [X] Stat Dir Val" parts from ally-target effects
           for(const part of (eff.effect||'').split(/[,、]/)){
@@ -953,7 +995,7 @@ export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false){
             if(!m) continue
             const targetType=m[1].trim()
             const key=UNIT_TYPE_LIST.includes(targetType)?`Enemy ${targetType}`:`Enemy ${targetType[0].toUpperCase()+targetType.slice(1)}`
-            addToTarget(key,[{stat:m[2].trim(),dir:m[3],val:parseFloat(m[4])}],owner)
+            addToTarget(key,[{stat:m[2].trim(),dir:m[3],val:parseFloat(m[4])}],owner,factor)
           }
         }
       }
