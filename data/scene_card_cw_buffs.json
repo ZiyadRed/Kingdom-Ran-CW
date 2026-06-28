@@ -7,6 +7,7 @@
     "critRate": 2000,
     "dodgeRate": 1500,
     "hitRate": 700,
+    "atkDownResist": 500,
     "defDownResist": 500
   },
   "cards": [
@@ -470,6 +471,28 @@
         5.98,
         6.49,
         7.0
+      ]
+    },
+    {
+      "id": 40271,
+      "imageId": 10271,
+      "name_en": "Yuri Attack Down Resistance buff",
+      "name_jp": "慟哭",
+      "stat": "atk_down_resist",
+      "statLabel": "Attack Down Resistance",
+      "value": 5,
+      "valueMode": "percent",
+      "image": "/scene_cards/webp/Yuri-Attack-Down-Resistance-buff.webp",
+      "ownerName": "Yuri",
+      "ownerIcon": "/icons/Yuri.webp",
+      "thumb": "/scene_cards/thumbs/Yuri-Attack-Down-Resistance-buff-thumb.webp",
+      "starValues": [
+        3.3,
+        3.64,
+        3.98,
+        4.32,
+        4.66,
+        5.0
       ]
     },
     {
