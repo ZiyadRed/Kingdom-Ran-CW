@@ -1293,9 +1293,10 @@ export function BuffsPage(){
     crit_rate:{label:'Critical Rate',color:'#b85b28',total:SCENE_CARD.critRate/100,unit:'%'},
     evasion:{label:'Evasion',color:'#7a65c7',total:SCENE_CARD.dodgeRate/100,unit:'%'},
     hit_rate:{label:'Hit Rate',color:'#c79a3a',total:(SCENE_CARD.hitRate||0)/100,unit:'%'},
+    atk_down_resist:{label:'Attack Down Resistance',color:'#b5654d',total:(SCENE_CARD.atkDownResist||0)/100,unit:'%'},
     def_down_resist:{label:'Defense Down Resistance',color:'#5d8aa8',total:(SCENE_CARD.defDownResist||0)/100,unit:'%'},
   }
-  const sceneStatOrder=['hp','atk','def','morale','crit_rate','evasion','hit_rate','def_down_resist']
+  const sceneStatOrder=['hp','atk','def','morale','crit_rate','evasion','hit_rate','atk_down_resist','def_down_resist']
   const sceneCardStar=card=>{
     const saved=Number(tracker.progress.sceneBuffStars?.[card.id]||0)
     if(saved>0) return Math.min(6,Math.max(0,Math.round(saved)))
