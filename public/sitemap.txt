@@ -4,6 +4,7 @@ https://ranhq.vercel.app/archive/characters
 https://ranhq.vercel.app/archive/cw6-scene-cards
 https://ranhq.vercel.app/guide
 https://ranhq.vercel.app/builder
+https://ranhq.vercel.app/castle-points
 https://ranhq.vercel.app/buffs
 https://ranhq.vercel.app/tiers
 https://ranhq.vercel.app/cost

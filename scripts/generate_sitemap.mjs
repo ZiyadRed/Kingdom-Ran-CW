@@ -12,6 +12,7 @@ const staticRoutes = [
   ['/archive/cw6-scene-cards', '0.8'],
   ['/guide', '0.9'],
   ['/builder', '0.8'],
+  ['/castle-points', '0.8'],
   ['/buffs', '0.8'],
   ['/tiers', '0.8'],
   ['/cost', '0.7'],

@@ -88,6 +88,11 @@ export function routeSeo(pathname){
     description: 'Calculate red crystal and character cost planning for Kingdom Ran teams, unlocks, and Castle War preparation.',
     robots: 'index,follow',
   }
+  if(path === '/castle-points') return {
+    title: 'Kingdom Ran Castle Points Calculator - RanHQ',
+    description: 'Calculate Kingdom Ran Castle War alliance points from large, medium, and small castle counts, then compare projected rankings.',
+    robots: 'index,follow',
+  }
   if(path === '/sim') return {
     title: 'Battle Order - RanHQ',
     description: 'Temporary battle order view for a RanHQ party builder setup.',
