@@ -1650,6 +1650,9 @@ button { -webkit-appearance: none; appearance: none; }
   font-size: .72rem;
   font-weight: 950;
 }
+.cp-mobile-cell-label {
+  display: none;
+}
 .cp-name-cell {
   display: grid;
   gap: .25rem;
@@ -1926,8 +1929,127 @@ button { -webkit-appearance: none; appearance: none; }
   .cp-mode-tabs button {
     flex: 1;
   }
+  .cp-table-shell {
+    overflow-x: visible;
+  }
   .cp-table {
-    min-width: 840px;
+    display: block;
+    min-width: 0;
+  }
+  .cp-table thead {
+    display: none;
+  }
+  .cp-table tbody {
+    display: grid;
+    gap: .65rem;
+    padding: .65rem;
+  }
+  .cp-table tr {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .5rem;
+    padding-bottom: .65rem;
+    border-bottom: 1px solid rgba(200,184,152,.72);
+  }
+  .cp-table tr:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+  .cp-table td {
+    display: block;
+    min-width: 0;
+    padding: 0;
+    border-bottom: 0;
+  }
+  .cp-table td:first-child {
+    grid-column: 1 / -1;
+  }
+  .cp-name-cell {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: .5rem;
+  }
+  .cp-name-cell input {
+    min-height: 40px;
+  }
+  .cp-name-cell span,
+  .cp-name-cell button {
+    justify-self: end;
+  }
+  .cp-castle-cell {
+    display: grid;
+    gap: .28rem;
+  }
+  .cp-mobile-cell-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .24rem;
+    min-width: 0;
+    color: var(--navy);
+    font-size: .66rem;
+    font-weight: 950;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  .cp-mobile-cell-label img {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 auto;
+    object-fit: contain;
+    object-position: center bottom;
+    filter: drop-shadow(0 2px 2px rgba(6,38,76,.14));
+  }
+  .cp-stepper {
+    width: 100%;
+    grid-template-columns: 30px minmax(30px, 1fr) 30px;
+    border-radius: 7px;
+  }
+  .cp-stepper button {
+    width: 30px;
+    height: 32px;
+    min-height: 32px;
+    font-size: .92rem;
+  }
+  .cp-stepper input {
+    height: 32px;
+    padding: .16rem .12rem;
+    font-size: .78rem;
+  }
+  .cp-table td:nth-last-child(-n+3) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    gap: .18rem;
+    min-height: 54px;
+    border: 1px solid rgba(200,184,152,.72);
+    border-radius: 8px;
+    background: rgba(255,255,255,.64);
+    padding: .42rem .45rem;
+  }
+  .cp-table td:nth-last-child(-n+3)::before {
+    content: attr(data-label);
+    color: var(--txt3);
+    font-size: .58rem;
+    font-weight: 950;
+    line-height: 1;
+    text-align: left;
+    text-transform: uppercase;
+  }
+  .cp-num,
+  .cp-total-input {
+    text-align: left;
+  }
+  .cp-total-input {
+    height: 28px;
+    padding: .18rem 0 0;
+    border: 0;
+    background: transparent;
+    font-size: .78rem;
+    box-shadow: none;
+  }
+  .cp-total-input:focus {
+    box-shadow: none;
   }
 }
 

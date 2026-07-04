@@ -234,7 +234,11 @@ export default function CastlePointsPage(){
                         </div>
                       </td>
                       {CASTLE_TYPES.map(type => (
-                        <td key={type.id}>
+                        <td key={type.id} className="cp-castle-cell" data-label={type.label}>
+                          <span className="cp-mobile-cell-label">
+                            <img src={type.icon} alt="" aria-hidden="true" />
+                            {type.label}
+                          </span>
                           <CastleStepper
                             alliance={alliance}
                             type={type}
@@ -242,8 +246,8 @@ export default function CastlePointsPage(){
                           />
                         </td>
                       ))}
-                      <td className="cp-num">{formatNumber(today)}</td>
-                      <td>
+                      <td className="cp-num" data-label="Today">{formatNumber(today)}</td>
+                      <td data-label="Current">
                         <input
                           className="cp-total-input"
                           type="number"
@@ -255,7 +259,7 @@ export default function CastlePointsPage(){
                           onChange={event => updateAlliance(alliance.id, () => ({ carried: clampNumber(event.target.value) }))}
                         />
                       </td>
-                      <td className="cp-num cp-projected">{formatNumber(projected)}</td>
+                      <td className="cp-num cp-projected" data-label="Projected">{formatNumber(projected)}</td>
                     </tr>
                   )
                 })}
