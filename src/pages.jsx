@@ -1051,7 +1051,7 @@ export function BuffsPage(){
         transform:isActive?'translateY(-4px) scale(1.03)':'scale(1)',
         transition:'all .2s ease',
       }}>
-        <div style={{width:72,height:72,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{iconNode}</div>
+        <div className={`buff-pick-icon buff-pick-icon-${kind}`} style={{width:72,height:72,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{iconNode}</div>
         <div style={{textAlign:'center'}}>
           <div style={{fontWeight:800,fontSize:'.88rem',color:isActive?col:'var(--txt)',marginBottom:'4px',lineHeight:'1.15'}}>{key}</div>
           <div style={{fontSize:'.64rem',color:'var(--txt3)',background:'var(--bg2)',padding:'2px 9px',borderRadius:'20px',border:'1px solid var(--bdr)',display:'inline-block'}}>{countLabel}</div>
@@ -1166,7 +1166,7 @@ export function BuffsPage(){
     const sc=BUFF_STAT_COLORS[activeStat]
     return(
       <div>
-        <div style={{display:'flex',justifyContent:'center',gap:'10px',position:'sticky',top:0,zIndex:5,background:'var(--sur)',margin:'-18px -18px 1.5rem',padding:'16px 18px 12px',borderBottom:'1px solid var(--bdr)'}}>
+        <div className="buff-stat-tabs" style={{display:'flex',justifyContent:'center',gap:'10px',position:'sticky',top:0,zIndex:5,background:'var(--sur)',margin:'-18px -18px 1.5rem',padding:'16px 18px 12px',borderBottom:'1px solid var(--bdr)'}}>
           {['HP','Attack','Defense'].map(stat=>{
             const isOn=activeStat===stat
             const c=BUFF_STAT_COLORS[stat]
@@ -1457,7 +1457,7 @@ export function BuffsPage(){
     </section>
   )
   const renderSceneCardsSection=()=>(
-    <div style={{marginBottom:'2rem',display:'flex',flexDirection:'column',gap:'10px'}}>
+    <div className="buff-scene-section" style={{marginBottom:'2rem',display:'flex',flexDirection:'column',gap:'10px'}}>
         <div className="progress-section-bar">
           <span>{sceneOwnedCount}/{sceneCardIds.length} scene-card buffs owned</span>
           <div className="progress-filter-group" aria-label="Scene-card buff ownership filter">
@@ -1489,7 +1489,7 @@ export function BuffsPage(){
                   <span style={{fontSize:'.66rem',color:'var(--txt3)',padding:'2px 8px',borderRadius:'999px',background:'var(--bg2)',border:'1px solid var(--bdr)'}}>{ownedCount}/{cards.length} owned</span>
                 </span>
               </summary>
-              <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,116px)',justifyContent:'center',gap:'12px',padding:'12px'}}>
+              <div className="buff-scene-card-grid" style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,116px)',justifyContent:'center',gap:'12px',padding:'12px'}}>
                 {visibleCards.map((card,i)=>(
                   (()=>{const star=sceneCardStar(card);return(
                   <div key={card.id} style={{
@@ -1523,14 +1523,14 @@ export function BuffsPage(){
     </div>
   )
   const SectionLabel=({children})=>(
-    <div style={{display:'flex',alignItems:'center',gap:'10px',margin:'0 0 1rem'}}>
+    <div className="buff-section-label" style={{display:'flex',alignItems:'center',gap:'10px',margin:'0 0 1rem'}}>
       <div style={{flex:1,height:1,background:'var(--bdr)'}}/>
       <span style={{fontSize:'.72rem',fontWeight:800,color:'var(--txt3)',letterSpacing:'.08em',textTransform:'uppercase'}}>{children}</span>
       <div style={{flex:1,height:1,background:'var(--bdr)'}}/>
     </div>
   )
   return(
-    <div style={{maxWidth:'960px',margin:'0 auto',padding:'0 1rem'}}>
+    <div className="buffs-page" style={{maxWidth:'960px',margin:'0 auto',padding:'0 1rem'}}>
       <div style={{textAlign:'center',marginBottom:'1.5rem',paddingTop:'1rem'}}>
         <h2 style={{fontSize:'1.5rem',fontWeight:800,color:'var(--txt)',marginBottom:'.3rem'}}>CW Buffs</h2>
         <p style={{fontSize:'.82rem',color:'var(--txt3)',maxWidth:'620px',margin:'0 auto'}}>Passive buffs that stay active for the whole Castle War, even when the general isn't on the field. You unlock them by upgrading characters — Red Crystals raise the skill-level buffs, Shards grant the flat +5%.</p>
