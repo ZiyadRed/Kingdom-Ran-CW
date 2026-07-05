@@ -1754,10 +1754,10 @@ export function TeamCostPage(){
   const rCount=filled.filter(c=>RARITY_DATA[c.name_en]?.rarity==='R').length
 
   return(
-    <div style={{maxWidth:'900px',margin:'0 auto',padding:'1rem 1rem 3rem'}}>
+    <div className="team-cost-page" style={{maxWidth:'900px',margin:'0 auto',padding:'1rem 1rem 3rem'}}>
 
       {/* Header */}
-      <div style={{textAlign:'center',marginBottom:'2.5rem'}}>
+      <div className="tc-head" style={{textAlign:'center',marginBottom:'2.5rem'}}>
         <h2 style={{fontSize:'1.6rem',fontWeight:900,color:'var(--txt)',marginBottom:'.3rem',letterSpacing:'-.5px'}}>Team Cost Calculator</h2>
         <p style={{fontSize:'.82rem',color:'var(--txt3)'}}>Select up to 4 generals to calculate total Red Crystal cost</p>
       </div>
@@ -1804,7 +1804,7 @@ export function TeamCostPage(){
           const remaining=char?remainingCost(rarity,done):null
           const isMaxed=char&&remaining===0
           return char?(
-            <div key={idx} style={{
+            <div key={idx} className="tc-slot-card tc-slot-filled" style={{
               borderRadius:'16px',overflow:'hidden',
               border:`2px solid ${rc}55`,
               background:`linear-gradient(160deg,${rc}0d,var(--sur))`,
@@ -1859,7 +1859,7 @@ export function TeamCostPage(){
               </div>
             </div>
           ):(
-            <button key={idx} onClick={()=>{setPicker(idx);setSearch('')}} style={{
+            <button key={idx} className="tc-slot-card tc-slot-empty" onClick={()=>{setPicker(idx);setSearch('')}} style={{
               borderRadius:'18px',border:'2px dashed var(--bdr)',
               background:'var(--sur)',minHeight:'120px',
               display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:'8px',
@@ -1876,12 +1876,12 @@ export function TeamCostPage(){
       </div>
 
       {/* Rarity reference */}
-      <div style={{display:'flex',justifyContent:'center',gap:'8px',marginBottom:'2rem',flexWrap:'wrap'}}>
+      <div className="tc-rarity-row" style={{display:'flex',justifyContent:'center',gap:'8px',marginBottom:'2rem',flexWrap:'wrap'}}>
         {(['R','SR','UR']).map(r=>{
           const[s1,s2,s3]=SKILL_COSTS[r]
           const rc2=RCOL[r]
           return(
-            <div key={r} style={{borderRadius:'12px',background:RBG[r],border:`1px solid ${rc2}44`,overflow:'hidden',minWidth:'180px'}}>
+            <div key={r} className="tc-rarity-card" style={{borderRadius:'12px',background:RBG[r],border:`1px solid ${rc2}44`,overflow:'hidden',minWidth:'180px'}}>
               <div style={{padding:'5px 12px',background:rc2+'22',borderBottom:`1px solid ${rc2}33`,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
                 <span style={{fontWeight:800,fontSize:'.82rem',color:rc2}}>{r}</span>
                 <span style={{fontSize:'.68rem',color:rc2,fontWeight:700,display:'flex',alignItems:'center',gap:'3px'}}>
@@ -1912,14 +1912,14 @@ export function TeamCostPage(){
             <div className="picker-filters">
               <input autoFocus className="picker-search" placeholder="Search…" value={search} onChange={e=>setSearch(e.target.value)}/>
             </div>
-            <div style={{overflowY:'auto',maxHeight:'55vh',padding:'8px'}}>
-              <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(110px,1fr))',gap:'8px'}}>
+            <div className="tc-picker-body" style={{overflowY:'auto',maxHeight:'55vh',padding:'8px'}}>
+              <div className="tc-picker-grid" style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(110px,1fr))',gap:'8px'}}>
                 {filtered.map(c=>{
                   const rarity=RARITY_DATA[c.name_en]?.rarity||'SR'
                   const rc=RCOL[rarity]
                   const isSelected=slots.some(s=>s?.id===c.id)
                   return(
-                    <button key={c.id} disabled={isSelected} onClick={()=>setSlot(picker,c)} style={{
+                    <button key={c.id} className="tc-picker-card" disabled={isSelected} onClick={()=>setSlot(picker,c)} style={{
                       borderRadius:'12px',border:`1.5px solid ${isSelected?'var(--bdr)':rc+'55'}`,
                       background:isSelected?'var(--bg2)':rc+'0a',
                       padding:'8px',display:'flex',flexDirection:'column',alignItems:'center',gap:'5px',
@@ -1928,7 +1928,7 @@ export function TeamCostPage(){
                     }}
                       onMouseEnter={e=>{if(!isSelected)e.currentTarget.style.background=rc+'18'}}
                       onMouseLeave={e=>{if(!isSelected)e.currentTarget.style.background=rc+'0a'}}>
-                      <div style={{width:52,height:52,borderRadius:'50%',overflow:'hidden',border:`2px solid ${rc}55`,background:rc+'18',flexShrink:0,display:'flex',alignItems:'center',justifyContent:'center'}}>
+                      <div className="tc-picker-avatar" style={{width:52,height:52,borderRadius:'50%',overflow:'hidden',border:`2px solid ${rc}55`,background:rc+'18',flexShrink:0,display:'flex',alignItems:'center',justifyContent:'center'}}>
                         {c.icon?<img src={c.icon} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={c.name_en}/>
                         :c.image?<img src={persosThumb(c.image)} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={c.name_en}/>
                         :<span style={{fontWeight:700,color:rc,fontSize:'1.1rem'}}>{c.name_en[0]}</span>}
@@ -1967,7 +1967,7 @@ export const GUIDE_GROUPS=['Beginner','Advanced']
 
 export function GuideCard({title,children,accent='var(--terra)'}) {
   return (
-    <div style={{
+    <div className="guide-card" style={{
       borderRadius:'12px',background:'var(--sur)',border:'1px solid var(--bdr)',
       borderTop:`4px solid ${accent}`,padding:'1rem',boxShadow:'0 2px 8px rgba(6,38,76,.05)',
     }}>
@@ -2338,14 +2338,14 @@ export function CWGuidePage(){
   const active=GUIDE_SECTIONS.find(s=>s.id===section)?.id || 'basics'
   const go=id=>navigate(`/guide/${id}`)
   return(
-    <div style={{maxWidth:'960px',width:'100%',margin:'0 auto',padding:'0 1rem',boxSizing:'border-box'}}>
-      <div style={{textAlign:'center',marginBottom:'1.5rem',paddingTop:'1rem'}}>
+    <div className="guide-page" style={{maxWidth:'960px',width:'100%',margin:'0 auto',padding:'0 1rem',boxSizing:'border-box'}}>
+      <div className="guide-head" style={{textAlign:'center',marginBottom:'1.5rem',paddingTop:'1rem'}}>
         <h2 style={{fontSize:'1.5rem',fontWeight:800,color:'var(--txt)',marginBottom:'.3rem'}}>CW Guide</h2>
         <p style={{fontSize:'.82rem',color:'var(--txt3)'}}>Tips, mechanics, and reference info for Castle Wars</p>
       </div>
-      <div style={{display:'flex',flexDirection:'column',gap:'1rem',marginBottom:'1.75rem'}}>
+      <div className="guide-section-tabs" style={{display:'flex',flexDirection:'column',gap:'1rem',marginBottom:'1.75rem'}}>
         {GUIDE_GROUPS.map(group=>(
-          <div key={group}>
+          <div key={group} className="guide-group">
             <div style={{fontSize:'.68rem',fontWeight:900,letterSpacing:'.08em',textTransform:'uppercase',color:'var(--txt3)',textAlign:'center',marginBottom:'.45rem'}}>
               {group}
             </div>
@@ -2353,7 +2353,7 @@ export function CWGuidePage(){
               {GUIDE_SECTIONS.filter(s=>s.category===group).map(s=>{
                 const on=active===s.id
                 return(
-                  <button key={s.id} onClick={()=>go(s.id)} style={{
+                  <button key={s.id} className="guide-tab" onClick={()=>go(s.id)} style={{
                     padding:'.55rem 1.1rem',borderRadius:'999px',cursor:'pointer',
                     fontSize:'.85rem',fontWeight:on?700:500,
                     background:on?'var(--txt)':'var(--sur)',
