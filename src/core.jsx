@@ -156,7 +156,7 @@ export const GROUPS={
   'Kanmei Army':      ['kanmei','beiman','goumasho','jinou','kyoubou'],
   'Karin Army':       ['karin','kaen','goutoku','bamyu','kouyoku','hakurei'],
   'Ouki Army':        ['ouki','tou'],
-  'Hi Shin Unit':       ['shin','naki','robin','garo','gakurai'],
+  'Hi Shin Unit':       ['shin','naki','robin','garo','gakurai','tonkaku','tonkoku'],
   'Kanki Army':       ['kanki','naki','robin','zenou','raido','ogiko','maron','kokuou','bain','kakuun'],
   'Kisui Army':       ['kisui','batei','ryuuto','duke_sei','kishou'],
   'Ousen Army':       ['akou','denrimi','kanjou','shoutaku','kyuukou','makou','koujyun','chouyou'],
@@ -202,7 +202,7 @@ export const UNIT_TYPES={
   ryuusen:'Infantry',ryuuto:'Infantry',ryuyu:'Infantry',saji:'Infantry',shikika:'Infantry',
   shousa:'Infantry',shoutaku:'Infantry',shuki:'Infantry',shunmen:'Infantry',shunpeikun:'Infantry',
   suugen:'Infantry',toumi:'Infantry',youka:'Infantry',yuri:'Infantry',yuuren:'Infantry',
-  zenou:'Infantry',koujyun:'Infantry',
+  zenou:'Infantry',koujyun:'Infantry',tonkaku:'Infantry',tonkoku:'Infantry',
   // Shield
   banyou:'Shield',bikou:'Shield',chouin:'Shield',choutou:'Shield',denei:'Shield',
   ei_sei:'Shield',gokei:'Shield',goumasho:'Shield',hakuki:'Shield',heki:'Shield',
@@ -1076,8 +1076,8 @@ export function statSortKey(s){const i=STAT_ORDER.indexOf(s);return i===-1?STAT_
 // ----- party-builder skill masks + hidden search tags (shared) -----
 // Hidden search tags — searching these strings finds the listed characters
 export const CHAR_GROUPS={
-  'Hi Shin Unit':['Shin','Garo','Gakurai','Kyoukai'],
-  'HiShin':['Shin','Garo','Gakurai','Kyoukai'],
+  'Hi Shin Unit':['Shin','Garo','Gakurai','Kyoukai','Tonkaku','Tonkoku'],
+  'HiShin':['Shin','Garo','Gakurai','Kyoukai','Tonkaku','Tonkoku'],
   'Gakuka':['Mouten','Rikusen'],
   'Moubo Army':['Moubu','Choushi','Raiki'],
 }

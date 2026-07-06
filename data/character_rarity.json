@@ -959,6 +959,16 @@
                   "faction":  "Qin",
                   "name_jp":  "東美"
               },
+    "Tonkaku":  {
+                    "rarity":  "SR",
+                    "faction":  "Qin",
+                    "name_jp":  "惇角"
+                },
+    "Tonkoku":  {
+                    "rarity":  "SR",
+                    "faction":  "Qin",
+                    "name_jp":  "惇告"
+                },
     "Wategi":  {
                    "rarity":  "UR",
                    "faction":  "Ai",

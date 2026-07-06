@@ -1615,5 +1615,191 @@
     ],
     "image": "/persos/chouyou.webp",
     "icon": "/icons/Chouyou.webp"
+  },
+  {
+    "id": "tonkaku",
+    "name_en": "Tonkaku",
+    "name_jp": "惇角",
+    "country": "qin",
+    "unit": "Hi Shin Unit",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Blue Tiger]",
+        "name_jp": "重追撃【青虎】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "DEF Up 20%",
+            "duration": "4 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Headlong Charge",
+        "name_jp": "猪突",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Hi Shin Unit [General]",
+            "effect": "DEF Penetration Up 10%",
+            "duration": "4 turns"
+          },
+          {
+            "condition": "Enemy [General] earliest in formation order",
+            "target": "1 enemy [General]",
+            "effect": "170% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "HP Recovery 20%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Tonkoku is alive",
+            "target": "Self",
+            "effect": "Guard 60%",
+            "duration": "3 times"
+          }
+        ]
+      },
+      {
+        "name_en": "Triumphant Grin",
+        "name_jp": "得意満面",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Provoke",
+            "duration": "4 turns"
+          },
+          {
+            "condition": null,
+            "target": "Ally Hi Shin Unit [General]",
+            "effect": "DEF Penetration Up 20%",
+            "duration": "4 turns"
+          },
+          {
+            "condition": "Enemy [General] earliest in formation order",
+            "target": "1 enemy [General]",
+            "effect": "180% Damage",
+            "duration": null
+          },
+          {
+            "condition": "When ally Tonkoku is alive",
+            "target": "Self",
+            "effect": "Guard 60%",
+            "duration": "3 times"
+          }
+        ]
+      }
+    ],
+    "image": "/persos/tonkaku.png",
+    "icon": "/icons/Tonkaku.png"
+  },
+  {
+    "id": "tonkoku",
+    "name_en": "Tonkoku",
+    "name_jp": "惇告",
+    "country": "qin",
+    "unit": "Hi Shin Unit",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Blue Tiger]",
+        "name_jp": "重追撃【青虎】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "DEF Up 20%",
+            "duration": "4 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Fierce Advance",
+        "name_jp": "猛進",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Hi Shin Unit [General]",
+            "effect": "ATK Up 10%",
+            "duration": "4 turns"
+          },
+          {
+            "condition": "Enemy [General] earliest in formation order",
+            "target": "1 enemy [General]",
+            "effect": "170% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "HP Recovery 20%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Tonkaku is alive",
+            "target": "Self",
+            "effect": "Guard 60%",
+            "duration": "3 times"
+          }
+        ]
+      },
+      {
+        "name_en": "High Spirits",
+        "name_jp": "意気揚々",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Provoke",
+            "duration": "4 turns"
+          },
+          {
+            "condition": null,
+            "target": "Ally Hi Shin Unit [General]",
+            "effect": "ATK Up 20%",
+            "duration": "4 turns"
+          },
+          {
+            "condition": "Enemy [General] earliest in formation order",
+            "target": "1 enemy [General]",
+            "effect": "180% Damage",
+            "duration": null
+          },
+          {
+            "condition": "When ally Tonkaku is alive",
+            "target": "Self",
+            "effect": "Guard 60%",
+            "duration": "3 times"
+          }
+        ]
+      }
+    ],
+    "image": "/persos/tonkoku.png",
+    "icon": "/icons/Tonkoku.png"
   }
 ]

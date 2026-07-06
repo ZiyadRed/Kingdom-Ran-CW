@@ -211,6 +211,8 @@ https://ranhq.vercel.app/archive/characters/taijifu
 https://ranhq.vercel.app/archive/characters/tairoji
 https://ranhq.vercel.app/archive/characters/takukei
 https://ranhq.vercel.app/archive/characters/toji
+https://ranhq.vercel.app/archive/characters/tonkaku
+https://ranhq.vercel.app/archive/characters/tonkoku
 https://ranhq.vercel.app/archive/characters/tou
 https://ranhq.vercel.app/archive/characters/toumi
 https://ranhq.vercel.app/archive/characters/wategi
