@@ -11,6 +11,7 @@ describe('skill condition display classifier', () => {
 
   it('separates battle timing from target selection', () => {
     expect(labels('When Garrisoning, enemy [General] with highest ATK')).toEqual(['When', 'Target'])
+    expect(texts('When Garrisoning, enemy [General] with highest ATK')).toEqual(['Garrisoning', 'enemy [General] with highest ATK'])
   })
 
   it('separates activation requirements from target selection', () => {

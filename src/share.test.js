@@ -22,7 +22,7 @@ describe('Discord share formatting', () => {
       }],
     })
     expect(text).toContain('**RanHQ Skills: Test General**')
-    expect(text).toContain('1 enemy [General] -> 150% Damage | When: When Attacking; Target: enemy [General] with highest ATK')
+    expect(text).toContain('1 enemy [General] -> 150% Damage | When: Attacking; Target: enemy [General] with highest ATK')
     expect(text).not.toContain('IF')
   })
 

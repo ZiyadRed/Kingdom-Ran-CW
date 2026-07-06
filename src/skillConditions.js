@@ -31,7 +31,7 @@ export function classifyConditionPart(part){
   if(!text) return result
   if(/^when passing(?: through)?\b/i.test(text)) return chip('route','Route',text)
   if(/^cw battle\b/i.test(text)) return chip('mode','Mode',text)
-  if(/^when (?:attacking|garrisoning|repairing)\b/i.test(text)) return chip('when','When',text)
+  if(/^when (?:attacking|garrisoning|repairing)\b/i.test(text)) return chip('when','When',stripLeadingWord(text,'when'))
   if(isScaling(lower)) return chip('scales','Scales',text)
   if(isAfter(lower)) return chip('after','After',text)
   if(/^damage dealt by\b/i.test(text)) return chip('source','Source',text)
@@ -50,6 +50,10 @@ function pushExpanded(parts,rawPart){
 
 function chip(kind,label,text){
   return {kind,label,text}
+}
+
+function stripLeadingWord(text,word){
+  return String(text||'').replace(new RegExp(`^${word}\\s+`,'i'),'').trim()
 }
 
 function isScaling(lower){
