@@ -11,6 +11,8 @@ import {
   useModalDismiss, useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, SceneStarControl, buffSourceId, ALL, findCharByName, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, redCrystalBuffUnlockCost, RedCrystalCostChip, BuffValueCluster, FACTIONS, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, META_TEAMS, simulate, SCENE_CARD, calcCharBuffs, calcTeamEnemyDebuffs, Picker, RARITY_DATA, INVERSE_STATS, SPECIAL_STATS, statSortKey, CHAR_GROUPS, DEFAULT_SK, hasStar6, applyMask, buffEntryRarity
 } from './core.jsx'
 import { setSeo } from './seo.js'
+import { classifyConditionParts } from './skillConditions.js'
+import { createCharacterSkillsImage, createTeamSkillsImage, downloadBlob, formatCharacterSkillsShare, formatTeamBuffShare, shareImageBlob, shareText } from './share.js'
 
 export function ArchiveTabs({active}){
   const navigate=useNavigate()
@@ -368,6 +370,13 @@ export function ArchivePage(){
                 {FACTIONS.find(f=>f.id===selected.country)?.label}
               </div>
             </div>
+            <div className="detail-actions">
+              <ShareButton
+                title={`${selected.name_en} skills - RanHQ`}
+                getText={()=>formatCharacterSkillsShare(selected)}
+              />
+              <SkillImageButton character={selected}/>
+            </div>
             <button className="detail-close" onClick={clearSelection}>✕</button>
           </div>
           <div className="detail-skills">
@@ -402,7 +411,7 @@ export function SkillCard({skill}){
       <div className="sk-effects">
         {(skill.effects||[]).map((e,i)=>(
           <div key={i} className="eff">
-            {e.condition&&<div className="eff-if"><span className="eff-if-lbl">IF</span>{e.condition}</div>}
+            <SkillConditionChips condition={e.condition}/>
             <div className="eff-body">
               <span className="eff-tgt">{e.target}</span>
               <span className="eff-sep">→</span>
@@ -416,7 +425,211 @@ export function SkillCard({skill}){
   )
 }
 
-// ── META TEAM CARD ────────────────────────────────────────────────────────────
+export function ShareButton({title,getText,label='Share',className=''}) {
+  const[status,setStatus]=useState('idle')
+  const onShare=async()=>{
+    try{
+      const result=await shareText({title,text:getText()})
+      if(result==='cancelled') return
+      setStatus(result==='shared'?'shared':'copied')
+      window.setTimeout(()=>setStatus('idle'),1800)
+    }catch{
+      setStatus('failed')
+      window.setTimeout(()=>setStatus('idle'),2200)
+    }
+  }
+  const text=status==='shared'?'Shared':status==='copied'?'Copied':status==='failed'?'Copy failed':label
+  return(
+    <button type="button" className={`share-btn ${className}`.trim()} onClick={onShare}>
+      {text}
+    </button>
+  )
+}
+
+export function SkillImageButton({character}){
+  const[status,setStatus]=useState('idle')
+  const[preview,setPreview]=useState(null)
+  useEffect(()=>()=>{if(preview?.url) URL.revokeObjectURL(preview.url)},[preview?.url])
+  const clearPreview=()=>{
+    setPreview(prev=>{
+      if(prev?.url) URL.revokeObjectURL(prev.url)
+      return null
+    })
+  }
+  const showRendered=rendered=>{
+    const url=URL.createObjectURL(rendered.blob)
+    setPreview(prev=>{
+      if(prev?.url) URL.revokeObjectURL(prev.url)
+      return {...rendered,url}
+    })
+  }
+  const setTimedStatus=next=>{
+    setStatus(next)
+    window.setTimeout(()=>setStatus('idle'),next==='failed'?2200:1800)
+  }
+  const makeImage=async()=>{
+    try{
+      setStatus('making')
+      const rendered=await createCharacterSkillsImage(character)
+      showRendered(rendered)
+      const result=await shareImageBlob(rendered.blob,rendered.fileName,`${character.name_en} skills - RanHQ`)
+      if(result==='cancelled'){setStatus('idle');return}
+      setTimedStatus(result==='shared'?'shared':result==='copied'?'image-copied':'preview')
+    }catch{
+      setTimedStatus('failed')
+    }
+  }
+  const copyPreview=async()=>{
+    if(!preview) return
+    try{
+      const result=await shareImageBlob(preview.blob,preview.fileName,`${character.name_en} skills - RanHQ`)
+      if(result==='cancelled') return
+      setTimedStatus(result==='shared'?'shared':result==='copied'?'image-copied':'preview')
+    }catch{
+      setTimedStatus('failed')
+    }
+  }
+  const text={
+    idle:'Image',
+    making:'Making...',
+    shared:'Shared',
+    'image-copied':'Copied image',
+    preview:'Preview ready',
+    failed:'Image failed',
+  }[status]||'Image'
+  return(
+    <>
+      <button type="button" className="share-btn share-image-btn" onClick={makeImage} disabled={status==='making'}>
+        {text}
+      </button>
+      {preview&&(
+        <div className="share-preview-backdrop" role="dialog" aria-modal="true" aria-label={`${character.name_en} skill image preview`} onClick={clearPreview}>
+          <div className="share-preview" onClick={e=>e.stopPropagation()}>
+            <div className="share-preview-head">
+              <div>
+                <strong>{character.name_en} skill image</strong>
+                <span>Paste into Discord after copying, or download the PNG.</span>
+              </div>
+              <button type="button" className="share-preview-close" onClick={clearPreview}>Close</button>
+            </div>
+            <div className="share-preview-img-wrap">
+              <img src={preview.url} alt={`${character.name_en} skill share preview`}/>
+            </div>
+            <div className="share-preview-actions">
+              <button type="button" className="share-btn" onClick={copyPreview}>Copy image</button>
+              <button type="button" className="share-btn" onClick={()=>downloadBlob(preview.blob,preview.fileName)}>Download PNG</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
+
+export function TeamImageButton({team,side='team'}){
+  const[status,setStatus]=useState('idle')
+  const[preview,setPreview]=useState(null)
+  const sideName=side==='attack'?'Attacking Team':side==='defense'?'Defending Team':'Team'
+  const title=`${sideName} Skills`
+  useEffect(()=>()=>{if(preview?.url) URL.revokeObjectURL(preview.url)},[preview?.url])
+  if(!team?.length) return null
+  const clearPreview=()=>{
+    setPreview(prev=>{
+      if(prev?.url) URL.revokeObjectURL(prev.url)
+      return null
+    })
+  }
+  const showRendered=rendered=>{
+    const url=URL.createObjectURL(rendered.blob)
+    setPreview(prev=>{
+      if(prev?.url) URL.revokeObjectURL(prev.url)
+      return {...rendered,url}
+    })
+  }
+  const setTimedStatus=next=>{
+    setStatus(next)
+    window.setTimeout(()=>setStatus('idle'),next==='failed'?2200:1800)
+  }
+  const makeImage=async()=>{
+    try{
+      setStatus('making')
+      const rendered=await createTeamSkillsImage({
+        team,
+        title,
+        side,
+      })
+      showRendered(rendered)
+      const result=await shareImageBlob(rendered.blob,rendered.fileName,`${title} - RanHQ`)
+      if(result==='cancelled'){setStatus('idle');return}
+      setTimedStatus(result==='shared'?'shared':result==='copied'?'image-copied':'preview')
+    }catch{
+      setTimedStatus('failed')
+    }
+  }
+  const copyPreview=async()=>{
+    if(!preview) return
+    try{
+      const result=await shareImageBlob(preview.blob,preview.fileName,`${title} - RanHQ`)
+      if(result==='cancelled') return
+      setTimedStatus(result==='shared'?'shared':result==='copied'?'image-copied':'preview')
+    }catch{
+      setTimedStatus('failed')
+    }
+  }
+  const text={
+    idle:'Share Team',
+    making:'Making...',
+    shared:'Shared',
+    'image-copied':'Copied image',
+    preview:'Preview ready',
+    failed:'Image failed',
+  }[status]||'Share Team'
+  return(
+    <>
+      <button type="button" className="share-btn team-share-btn" onClick={makeImage} disabled={status==='making'}>
+        {text}
+      </button>
+      {preview&&(
+        <div className="share-preview-backdrop" role="dialog" aria-modal="true" aria-label={`${title} image preview`} onClick={clearPreview}>
+          <div className="share-preview share-preview-wide" onClick={e=>e.stopPropagation()}>
+            <div className="share-preview-head">
+              <div>
+                <strong>{title} image</strong>
+                <span>Paste into Discord after copying, or download the PNG.</span>
+              </div>
+              <button type="button" className="share-preview-close" onClick={clearPreview}>Close</button>
+            </div>
+            <div className="share-preview-img-wrap">
+              <img src={preview.url} alt={`${title} share preview`}/>
+            </div>
+            <div className="share-preview-actions">
+              <button type="button" className="share-btn" onClick={copyPreview}>Copy image</button>
+              <button type="button" className="share-btn" onClick={()=>downloadBlob(preview.blob,preview.fileName)}>Download PNG</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
+
+// Skill condition chips
+export function SkillConditionChips({condition}){
+  const chips=classifyConditionParts(condition)
+  if(chips.length===0) return null
+  return(
+    <div className="eff-conds" aria-label="Skill effect qualifiers">
+      {chips.map((chip,i)=>(
+        <span key={`${chip.kind}-${chip.text}-${i}`} className={`eff-cond eff-cond-${chip.kind}`}>
+          <span className="eff-cond-lbl">{chip.label}</span>
+          <span className="eff-cond-text">{chip.text}</span>
+        </span>
+      ))}
+    </div>
+  )
+}
+
+// Meta team card
 export function MetaTeamCard({team,onLoad}){
   const chars=team.members.map(findCharByName).filter(Boolean)
   const accent=team.color||CC[chars[0]?.country]||'var(--terra)'
@@ -481,9 +694,13 @@ export function BuilderPage({atk,def,atkSk,defSk,setAtkSk,setDefSk,setSlot,rm,go
 
 export function SideSlots({side,label,party,skMask,onSlot,onRm,onSkChange}){
   const ac=side==='attack'?'var(--red)':'var(--blue)'
+  const maskedTeam=party.map((c,i)=>applyMask(c,skMask?.[i])).filter(Boolean)
   return(
     <div className="side">
-      <div className="side-lbl" style={{color:ac,borderBottomColor:ac}}>{label}</div>
+      <div className="side-lbl side-lbl-with-action" style={{color:ac,borderBottomColor:ac}}>
+        <span>{label}</span>
+        <TeamImageButton team={maskedTeam} side={side}/>
+      </div>
       {Array.from({length:4}).map((_,i)=>{
         const m=party[i]
         return m?(
@@ -717,11 +934,27 @@ export function BuffTable({atk,def}){
     <div className="sim-sec">
       <div className="sec-hd sec-buff" style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:'1rem',flexWrap:'wrap'}}>
         <span>⚡ Team Buff Summary</span>
-        <label style={{display:'inline-flex',alignItems:'center',gap:'.4rem',fontSize:'.72rem',fontWeight:400,cursor:'pointer',textTransform:'none',letterSpacing:'normal'}}
-               title="Also count buff/debuff effects from combat skills (normally only always-on strategy skills are summed)">
-          <input type="checkbox" checked={includeCombat} onChange={e=>setIncludeCombat(e.target.checked)} style={{cursor:'pointer'}}/>
-          Include combat skills
-        </label>
+        <div className="sec-actions">
+          <ShareButton
+            title="RanHQ Team Buff Summary"
+            getText={()=>formatTeamBuffShare({
+              atk,
+              def,
+              atkBuffs,
+              defBuffs,
+              atkEnemyDebuffs,
+              defEnemyDebuffs,
+              includeCombat,
+              specialStats:SPECIAL_STATS,
+              statSortKey,
+            })}
+          />
+          <label style={{display:'inline-flex',alignItems:'center',gap:'.4rem',fontSize:'.72rem',fontWeight:400,cursor:'pointer',textTransform:'none',letterSpacing:'normal'}}
+                 title="Also count buff/debuff effects from combat skills (normally only always-on strategy skills are summed)">
+            <input type="checkbox" checked={includeCombat} onChange={e=>setIncludeCombat(e.target.checked)} style={{cursor:'pointer'}}/>
+            Include combat skills
+          </label>
+        </div>
       </div>
       <div className="strat-cols">
         <BuffSideTable label="⚔ Attacking Formation" entries={atkBuffs} side="attack" enemyDebuffs={atkEnemyDebuffs}/>

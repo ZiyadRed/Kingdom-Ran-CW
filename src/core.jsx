@@ -197,7 +197,7 @@ export const UNIT_TYPES={
   choushi:'Infantry',
   en:'Infantry',gotan:'Infantry',hairou:'Infantry',hokaku:'Infantry',houken:'Infantry',
   jokan:'Infantry',ka:'Infantry',kakukai:'Infantry',kei:'Infantry',kyomei:'Infantry',
-  kyourei:'Infantry',kyoushou:'Infantry',kyuukou:'Infantry',maron:'Infantry',
+  kyourei:'Infantry',kyoushou:'Infantry',maron:'Infantry',
   muta:'Infantry',oukotsu:'Infantry',pam:'Infantry',raiki:'Infantry',rankai:'Infantry',rui:'Infantry',
   ryuusen:'Infantry',ryuuto:'Infantry',ryuyu:'Infantry',saji:'Infantry',shikika:'Infantry',
   shousa:'Infantry',shoutaku:'Infantry',shuki:'Infantry',shunmen:'Infantry',shunpeikun:'Infantry',
@@ -211,7 +211,7 @@ export const UNIT_TYPES={
   miyamoto:'Shield',mougou:'Shield',mouki:'Shield',ouken:'Shield',ousen:'Shield',
   raido:'Shield',ranbihaku:'Shield',riboku:'Shield',rien:'Shield',rihaku:'Shield',
   rouai:'Shield',ryuukoku:'Shield',shoukaku:'Shield',shunshinkun:'Shield',taijifu:'Shield',
-  tairoji:'Shield',yugi:'Shield',chouyou:'Shield',
+  tairoji:'Shield',yugi:'Shield',chouyou:'Shield',kyuukou:'Shield',
 }
 // Extend GROUPS from each character's `unit` field so JSON data is the source of truth.
 // Any char with `"unit": "X Army"` is auto-added to GROUPS['X Army'] (creating it if absent).
