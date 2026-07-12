@@ -1243,6 +1243,46 @@
       "name_en": "Kyuukou CW6 star"
     },
     {
+      "id": 40238,
+      "imageId": 10238,
+      "name_jp": "敵後軍の足止め",
+      "skill_en": "Inherited Loyalty",
+      "skill_jp": "継ぐ忠心",
+      "image": "/scene_cards/webp/Shoutaku-CW6-star.webp",
+      "owner_id": "shoutaku",
+      "ownerName": "Shoutaku",
+      "ownerNameJp": "松琢",
+      "ownerIcon": "/icons/Shoutaku.webp",
+      "skill": {
+        "name_en": "Inherited Loyalty",
+        "name_jp": "継ぐ忠心☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "effect": "Anti-[Cavalry] ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "effect": "Hit Rate Up 40%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "effect": "Confusion Resistance 50%",
+            "duration": null
+          }
+        ]
+      },
+      "thumb": "/scene_cards/thumbs/Shoutaku-CW6-star-thumb.webp",
+      "name_en": "Shoutaku CW6 star"
+    },
+    {
       "id": 40249,
       "imageId": 10249,
       "name_jp": "全部まやかし",

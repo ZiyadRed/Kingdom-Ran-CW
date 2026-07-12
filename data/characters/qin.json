@@ -771,6 +771,32 @@
             "duration": null
           }
         ]
+      },
+      {
+        "name_en": "Inherited Loyalty",
+        "name_jp": "継ぐ忠心☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "effect": "Anti-[Cavalry] ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "effect": "Hit Rate Up 40%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "effect": "Confusion Resistance 50%",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "/persos/shoutaku.webp",
