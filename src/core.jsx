@@ -160,6 +160,9 @@ export const ALL = [
 
 export const GROUPS={
   'Gyokuhou':           ['ouhon','kanjou','shoutaku','kyuukou'],
+  'Chinese Ten Bows':   ['gika','kyouen','kourigen','sougen','hakurei'],
+  "Zhao's Three Great Heavens": ['renpa'],
+  "Zhao's New Three Great Heavens": ['houken','riboku'],
   'Six Great Generals': ['hakuki','ouki','kyou','shibasaku','koshou','oukotsu'],
   'Wei Fire Dragon':    ['ranbihaku','tairoji','reiou','gokei','gaimou','gohoumei','shihaku'],
   'Renpa Army':       ['renpa','rinko','genpo','kyouen','kaishibou'],
@@ -173,7 +176,11 @@ export const GROUPS={
   'Ousen Army':       ['akou','denrimi','kanjou','shoutaku','kyuukou','makou','koujyun','chouyou'],
   'Moubo Army':       ['moubu','choushi','raiki'],
   'Coalition Army':   ['karin','kanmei','riboku','houken','seikai','rinbukun','gohoumei','mangoku'],
-  'Ryofui Four Pillars': ['ryofui','mougou'],
+  'Ryofui Four Pillars': ['ryofui','mougou','saizatsu','shouheikun','moubu','rishi'],
+  'Qiang Tribe':        ['kyoukai','kyourei','kyoushou'],
+  'Mera Tribe':         ['katari','kitari'],
+  'Figo Tribe':         ['danto','pam'],
+  'Akou Army':          ['akou','eiki'],
 }
 export const UNIT_TYPES={
   // Cavalry
@@ -381,9 +388,9 @@ export const META_TEAMS=[
   {tier:'SS',name:'Gyokuhou',       members:['Shoutaku','Ouhon','Kyuukou','Kanjou']},
   {tier:'S',name:'YTW',             members:['Katari','Yotanwa','Kitari','Ramauji']},
   {tier:'S',name:'Archers',         members:['Keisha','Seikai','Hakurei','Queen Biki']},
-  {tier:'S',name:'Zhao',            members:['Shunsuiju','Houken','Shinseijou','Riboku']},
+  {tier:'A',name:'Zhao',            members:['Shunsuiju','Houken','Shinseijou','Riboku']},
   {tier:'S',name:'Wei',             members:['Ranbihaku','Tairoji','Reiou','Gokei']},
-  {tier:'A',name:'Karin + Kanmei',  members:['Kyoubou','Karin','Kanmei','Shunshinkun']},
+  {tier:'S',name:'Karin + Kanmei',  members:['Kyoubou','Karin','Kanmei','Shunshinkun']},
   {tier:'A',name:'Hakuki + Ousen',  members:['Hakuki','Makou','Akou','Ousen']},
   {tier:'A',name:'Hi Shin',         members:['Garo','Gakurai','Naki','Robin']},
   {tier:'A',name:'YTW + Triplets',  members:['Yotanwa','Toji','Fuji','Ramauji']},
@@ -1091,6 +1098,15 @@ export const CHAR_GROUPS={
   'HiShin':['Shin','Garo','Gakurai','Kyoukai','Tonkaku','Tonkoku'],
   'Gakuka':['Mouten','Rikusen'],
   'Moubo Army':['Moubu','Choushi','Raiki'],
+  'Gyokuhou':['Ouhon','Kanjou','Shoutaku','Kyuukou'],
+  'Chinese Ten Bows':['Gika','Kyouen','Kourigen','Sougen','Hakurei'],
+  "Zhao's Three Great Heavens":['Renpa'],
+  "Zhao's New Three Great Heavens":['Houken','Riboku'],
+  'Qiang Tribe':['Kyoukai','Kyourei','Kyoushou'],
+  'Mera Tribe':['Katari','Kitari'],
+  'Figo Tribe':['Danto','Pam'],
+  'Akou Army':['Akou','Eiki'],
+  'Ryofui Four Pillars':['Ryofui','Mougou','Saizatsu','Shouheikun','Moubu','Rishi'],
 }
 
 // Per-slot skill mask for the Party Builder.
