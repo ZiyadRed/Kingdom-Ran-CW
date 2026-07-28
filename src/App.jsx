@@ -234,7 +234,7 @@ function HomePage(){
           src="/ranhq-home-banner-1200.webp"
           srcSet="/ranhq-home-banner-640.webp 640w, /ranhq-home-banner-1200.webp 1200w, /ranhq-home-banner.webp 1881w"
           sizes="(max-width: 1560px) 100vw, 1560px"
-          alt="" className="home-hero-img" width="1881" height="836" decoding="async" fetchPriority="high"/>
+          alt="" className="home-hero-img" width="1881" height="836" decoding="async"/>
         <div className="home-hero-shade"/>
         <div className="home-hero-content">
           <div className="home-kicker">Kingdom Ran Castle War companion</div>

@@ -28,7 +28,7 @@ export function ArchiveTabs({active}){
       {tabs.map(tab=>{
         const on=active===tab.id
         return(
-          <button key={tab.id} onClick={()=>navigate(tab.route)} style={{
+          <button key={tab.id} aria-pressed={on} onClick={()=>navigate(tab.route)} style={{
             display:'inline-flex',alignItems:'center',gap:'7px',borderRadius:999,
             border:`1px solid ${on?'var(--terra)':'var(--bdr)'}`,
             background:on?'var(--terra)':'var(--sur)',color:on?'#fff':'var(--txt)',
@@ -171,7 +171,7 @@ export function CW6SceneCardsPage(){
               onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pickCard(card)}}}
               className={`cw6-card${selected?.id===card.id?' is-selected':''}`}>
               <div className="cw6-card-art">
-                <FadeImg src={card.thumb||card.image} alt={sceneCardFileName(card)} title={sceneCardFileName(card)} loading="eager" decoding="async" fetchPriority={i<7?'high':'auto'} style={{width:'100%',height:'100%',objectFit:'contain'}}/>
+                <FadeImg src={card.thumb||card.image} alt={sceneCardFileName(card)} title={sceneCardFileName(card)} loading={i<7?'eager':'lazy'} decoding="async" style={{width:'100%',height:'100%',objectFit:'contain'}}/>
                 {card.image&&<ViewArtButton onClick={e=>{e.stopPropagation();setArtSrc(card.image)}} style={{left:7,right:'auto'}}/>}
                 <OwnedToggle
                   owned={tracker.isOwned('cw6Cards',card.id)}
@@ -198,7 +198,7 @@ export function CW6SceneCardsPage(){
       {selected&&(
         <aside className="detail-panel">
           <div className="detail-header">
-            <FadeImg src={selected.image} alt={sceneCardFileName(selected)} className="detail-portrait" loading="eager" decoding="async" fetchPriority="high" style={{objectFit:'contain',background:'rgba(255,255,255,.08)',objectPosition:'center'}}/>
+            <FadeImg src={selected.image} alt={sceneCardFileName(selected)} className="detail-portrait" loading="eager" decoding="async" style={{objectFit:'contain',background:'rgba(255,255,255,.08)',objectPosition:'center'}}/>
             <div className="detail-info">
               <div className="detail-name">{selected.skill_en}</div>
               <div className="detail-jp">{selected.skill_jp}</div>
@@ -316,7 +316,7 @@ export function ArchivePage(){
             placeholder="Search generals…"
             value={search}
             onChange={e=>{setSearch(e.target.value);if(selected)navigate('/archive/characters')}}/>
-          {search&&<button className="mobile-search-clear" onClick={()=>setSearch('')}>✕</button>}
+          {search&&<button className="mobile-search-clear" type="button" aria-label="Clear search" onClick={()=>setSearch('')}>✕</button>}
         </div>
         <div className="gallery-header">
           <h2 className="gallery-title">{search?`Results (${filtered.length})`:`${FACTIONS.find(f=>f.id===activeFac)?.label} Roster`}</h2>
@@ -1731,7 +1731,7 @@ export function BuffsPage(){
                     boxShadow:'0 2px 10px rgba(0,0,0,.06)',
                     }}>
                     <div style={{position:'relative',aspectRatio:'1 / 1',background:'var(--bg2)',overflow:'hidden'}}>
-                      <img src={card.thumb||card.image} alt={card.name_en} title={card.name_en} loading="eager" decoding="async" fetchPriority={i<4?'high':'auto'} style={{width:'100%',height:'100%',objectFit:'contain',display:'block'}}/>
+                      <img src={card.thumb||card.image} alt={card.name_en} title={card.name_en} loading={i<4?'eager':'lazy'} decoding="async" style={{width:'100%',height:'100%',objectFit:'contain',display:'block'}}/>
                       {card.image&&<ViewArtButton onClick={e=>{e.stopPropagation();setArtSrc(card.image)}}/>}
                       <div style={{
                         position:'absolute',left:7,bottom:7,padding:'3px 7px',borderRadius:'6px',
@@ -1955,7 +1955,6 @@ export function TeamCostPage(){
   const COST=RED_CRYSTAL_TOTAL_COST
   const SKILL_COSTS=RED_CRYSTAL_SKILL_COSTS
   const RCOL={R:'#3d9970',SR:'#3d6eb5',UR:'#c0392b'}
-  const RBG={R:'#3d997018',SR:'#3d6eb518',UR:'#c0392b18'}
 
   const remainingCost=(rarity,done)=>SKILL_COSTS[rarity||'SR'].slice(done).reduce((s,v)=>s+v,0)
 
@@ -1987,48 +1986,38 @@ export function TeamCostPage(){
   const rCount=filled.filter(c=>RARITY_DATA[c.name_en]?.rarity==='R').length
 
   return(
-    <div className="team-cost-page" style={{maxWidth:'900px',margin:'0 auto',padding:'1rem 1rem 3rem'}}>
+    <div className="team-cost-page">
 
       {/* Header */}
-      <div className="tc-head" style={{textAlign:'center',marginBottom:'2.5rem'}}>
-        <h2 style={{fontSize:'1.6rem',fontWeight:900,color:'var(--txt)',marginBottom:'.3rem',letterSpacing:'-.5px'}}>Team Cost Calculator</h2>
-        <p style={{fontSize:'.82rem',color:'var(--txt3)'}}>Select up to 4 generals to calculate total Red Crystal cost</p>
-      </div>
+      <header className="tc-head">
+        <h1>Team Cost</h1>
+        <p>Calculate the Red Crystals needed to finish up to four generals.</p>
+      </header>
 
-      {/* Crystal total banner */}
-      <div className="tc-banner" style={{
-        padding:'20px 28px',borderRadius:'20px',marginBottom:'2rem',
-        background:'linear-gradient(135deg,#1a0a2e,#2d1255)',
-        border:'1.5px solid #6a30c8',
-        boxShadow:'0 8px 32px rgba(106,48,200,0.25)',
-      }}>
-        <div className="tc-banner-left">
-          <img src="/icons/Red_Crystal.webp" alt="Red Crystal" style={{width:56,height:56,objectFit:"contain",flexShrink:0}}/>
-          <div className="tc-banner-total">
-            <div style={{fontSize:'.72rem',color:'#b89fe0',fontWeight:600,textTransform:'uppercase',letterSpacing:'1px'}}>Red Crystals Needed</div>
-            <div className="tc-total-num">{total.toLocaleString()}</div>
+      {/* Crystal total */}
+      <section className="tc-summary" aria-live="polite">
+        <div className="tc-summary-main">
+          <img src="/icons/Red_Crystal.webp" alt="" aria-hidden="true"/>
+          <div>
+            <span>Red Crystals needed</span>
+            <strong>{total.toLocaleString()}</strong>
           </div>
         </div>
-        <div className="tc-banner-right">
-          {urCount>0&&<div style={{textAlign:'center',padding:'8px 16px',borderRadius:'12px',background:'#c0392b22',border:'1px solid #c0392b55'}}>
-            <div style={{fontWeight:800,fontSize:'1.1rem',color:'#e05555'}}>{urCount}</div>
-            <div style={{fontSize:'.62rem',color:'#e05555aa',fontWeight:600}}>UR</div>
-          </div>}
-          {srCount>0&&<div style={{textAlign:'center',padding:'8px 16px',borderRadius:'12px',background:'#3d6eb522',border:'1px solid #3d6eb555'}}>
-            <div style={{fontWeight:800,fontSize:'1.1rem',color:'#6a9ee0'}}>{srCount}</div>
-            <div style={{fontSize:'.62rem',color:'#6a9ee0aa',fontWeight:600}}>SR</div>
-          </div>}
-          {rCount>0&&<div style={{textAlign:'center',padding:'8px 16px',borderRadius:'12px',background:'#3d997022',border:'1px solid #3d997055'}}>
-            <div style={{fontWeight:800,fontSize:'1.1rem',color:'#5dc090'}}>{rCount}</div>
-            <div style={{fontSize:'.62rem',color:'#5dc090aa',fontWeight:600}}>R</div>
-          </div>}
-          {filled.length===0&&<div style={{fontSize:'.78rem',color:'#b89fe0',opacity:.6}}>No generals selected</div>}
+        <div className="tc-summary-meta">
+          {urCount>0&&<span style={{'--rarity-color':RCOL.UR}}><b>{urCount}</b> UR</span>}
+          {srCount>0&&<span style={{'--rarity-color':RCOL.SR}}><b>{srCount}</b> SR</span>}
+          {rCount>0&&<span style={{'--rarity-color':RCOL.R}}><b>{rCount}</b> R</span>}
+          {filled.length===0&&<span className="tc-summary-empty">Choose a slot to begin</span>}
+          {filled.length>0&&<button type="button" className="tc-clear-all" onClick={clearAll}>Clear all</button>}
         </div>
-        {filled.length>0&&<button onClick={clearAll} style={{padding:'6px 16px',borderRadius:'8px',border:'1px solid #6a30c855',background:'transparent',color:'#b89fe0',fontSize:'.72rem',cursor:'pointer'}}>Clear All</button>}
-      </div>
+      </section>
 
       {/* 4 Slots */}
-      <div className="tc-slots">
+      <div className="tc-section-head">
+        <h2>Team</h2>
+        <span>{filled.length} / 4 selected</span>
+      </div>
+      <section className="tc-slots" aria-label="Team slots">
         {slots.map((char,idx)=>{
           const rarity=char?RARITY_DATA[char.name_en]?.rarity||'SR':null
           const fc=char?(CC[char.country]||'#888'):null
@@ -2106,32 +2095,37 @@ export function TeamCostPage(){
             </button>
           )
         })}
-      </div>
+      </section>
 
       {/* Rarity reference */}
-      <div className="tc-rarity-row" style={{display:'flex',justifyContent:'center',gap:'8px',marginBottom:'2rem',flexWrap:'wrap'}}>
-        {(['R','SR','UR']).map(r=>{
-          const[s1,s2,s3]=SKILL_COSTS[r]
-          const rc2=RCOL[r]
-          return(
-            <div key={r} className="tc-rarity-card" style={{borderRadius:'12px',background:RBG[r],border:`1px solid ${rc2}44`,overflow:'hidden',minWidth:'180px'}}>
-              <div style={{padding:'5px 12px',background:rc2+'22',borderBottom:`1px solid ${rc2}33`,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-                <span style={{fontWeight:800,fontSize:'.82rem',color:rc2}}>{r}</span>
-                <span style={{fontSize:'.68rem',color:rc2,fontWeight:700,display:'flex',alignItems:'center',gap:'3px'}}>
-                  <img src="/icons/Red_Crystal.webp" alt="RC" style={{width:12,height:12,objectFit:'contain'}}/>{COST[r].toLocaleString()} total
-                </span>
-              </div>
-              <div style={{padding:'6px 12px',display:'flex',gap:'10px',fontSize:'.68rem',color:'var(--txt3)'}}>
-                {[[1,s1],[2,s2],[3,s3]].map(([n,v])=>(
-                  <span key={n} style={{display:'flex',alignItems:'center',gap:'2px'}}>
-                    <span style={{fontWeight:700,color:rc2}}>{['①','②','③'][n-1]}</span>
-                    <img src="/icons/Red_Crystal.webp" alt="RC" style={{width:11,height:11,objectFit:'contain'}}/>{v}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )
-        })}
+      <div className="tc-reference-head">
+        <h2>Skill costs</h2>
+        <span>By rarity</span>
+      </div>
+      <div className="tc-cost-table-wrap">
+        <table className="tc-cost-table" aria-label="Red Crystal skill costs by rarity">
+          <thead>
+            <tr>
+              <th>Rarity</th>
+              <th>Skill 1</th>
+              <th>Skill 2</th>
+              <th>Skill 3</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {(['R','SR','UR']).map(r=>(
+              <tr key={r} style={{'--rarity-color':RCOL[r]}}>
+                <th scope="row">{r}</th>
+                {SKILL_COSTS[r].map((value,index)=><td key={index}>{value.toLocaleString()}</td>)}
+                <td className="tc-cost-total">
+                  <img src="/icons/Red_Crystal.webp" alt="" aria-hidden="true"/>
+                  {COST[r].toLocaleString()}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
       {/* Picker modal */}
@@ -2586,7 +2580,7 @@ export function CWGuidePage(){
               {GUIDE_SECTIONS.filter(s=>s.category===group).map(s=>{
                 const on=active===s.id
                 return(
-                  <button key={s.id} className="guide-tab" onClick={()=>go(s.id)} style={{
+                  <button key={s.id} className="guide-tab" aria-pressed={on} onClick={()=>go(s.id)} style={{
                     padding:'.55rem 1.1rem',borderRadius:'999px',cursor:'pointer',
                     fontSize:'.85rem',fontWeight:on?700:500,
                     background:on?'var(--txt)':'var(--sur)',
