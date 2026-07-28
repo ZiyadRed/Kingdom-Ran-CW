@@ -38,7 +38,18 @@ export const PROGRESS_STORAGE_KEY='ranhq-progress-v3'
 export const emptyProgress=()=>({cw6Cards:{},sceneBuffCards:{},sceneBuffStars:{},buffSources:{}})
 export const normalizeProgress=(raw={})=>{
   const base=emptyProgress()
-  return Object.fromEntries(Object.keys(base).map(k=>[k,{...(raw[k]||{})}]))
+  const buffSources={...(raw.buffSources||{})}
+  // Buff ownership used to include the array index in its key. Migrate those
+  // legacy keys once so inserting/reordering contributors can never change
+  // what a player owns again.
+  for(const key of Object.keys(buffSources)){
+    const stable=key.replace(/:\d+(?::shard)?$/,'')
+    if(stable!==key){
+      if(buffSources[key] && !buffSources[stable]) buffSources[stable]=buffSources[key]
+      delete buffSources[key]
+    }
+  }
+  return Object.fromEntries(Object.keys(base).map(k=>[k,k==='buffSources'?buffSources:{...(raw[k]||{})}]))
 }
 export const readProgress=()=>{
   if(typeof window==='undefined') return emptyProgress()
@@ -138,7 +149,7 @@ export const SceneStarControl=({star,onChange})=>(
     ))}
   </div>
 )
-export const buffSourceId=(kind,key,stat,e,i)=>`${kind}:${key}:${stat}:${e.name||''}:${e.name_jp||''}:${e.value||0}:${e.special_label||''}:${i}`
+export const buffSourceId=(kind,key,stat,e,_i)=>`${kind}:${key}:${stat}:${e.name||''}:${e.name_jp||''}:${e.value||0}:${e.special_label||''}`
 
 export const ALL = [
   ...mountainFolk,...qin,...qinBatch2,...qinMajor,
@@ -190,7 +201,7 @@ export const UNIT_TYPES={
   ogiko:'Archer',otaji:'Archer',queen_biki:'Archer',ramauji:'Archer',reiou:'Archer',
   rishi:'Archer',robin:'Archer',roen:'Archer',rokin:'Archer',ryofui:'Archer',
   saizatsu:'Archer',seikai:'Archer',seikyou:'Archer',seki:'Archer',shibasaku:'Archer',
-  shika:'Archer',shishi:'Archer',shoubunkun:'Archer',sougen:'Archer',takukei:'Archer',
+  shika:'Archer',shishi:'Archer',shoubunkun:'Archer',sougen:'Archer',soujin:'Archer',takukei:'Archer',
   toji:'Archer',you:'Archer',yukii:'Archer',kokuou:'Archer',
   // Infantry
   bain:'Infantry',bamyu:'Infantry',bihei:'Infantry',chutetsu:'Infantry',entei:'Infantry',

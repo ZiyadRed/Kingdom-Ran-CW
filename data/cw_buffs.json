@@ -611,6 +611,22 @@
         "type": "UR",
         "star6": false,
         "value": 1.0
+      },
+      {
+        "name": "Tonkoku",
+        "name_jp": "惇告",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0
+      },
+      {
+        "name": "Tonkaku",
+        "name_jp": "惇角",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0
       }
     ],
     "Defense": [
@@ -720,6 +736,22 @@
         "type": "UR",
         "star6": false,
         "value": 1.0
+      },
+      {
+        "name": "Tonkoku",
+        "name_jp": "惇告",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0
+      },
+      {
+        "name": "Tonkaku",
+        "name_jp": "惇角",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0
       }
     ]
   },

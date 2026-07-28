@@ -208,6 +208,13 @@
           "value": 5.0
         },
         {
+          "name": "Kyoubou",
+          "name_jp": "巨暴",
+          "faction": "chu",
+          "type": "UR",
+          "value": 5.0
+        },
+        {
           "name": "Rinbukun",
           "name_jp": "臨武君",
           "faction": "chu",
@@ -223,6 +230,13 @@
         }
       ],
       "Defense": [
+        {
+          "name": "Kyoubou",
+          "name_jp": "巨暴",
+          "faction": "chu",
+          "type": "UR",
+          "value": 5.0
+        },
         {
           "name": "Beiman",
           "name_jp": "貝満",
@@ -500,9 +514,30 @@
           "faction": "qin",
           "type": "NR",
           "value": 5.0
+        },
+        {
+          "name": "Tonkaku",
+          "name_jp": "惇角",
+          "faction": "qin",
+          "type": "SR",
+          "value": 5.0
+        },
+        {
+          "name": "Robin",
+          "name_jp": "呂敏",
+          "faction": "qin",
+          "type": "UR",
+          "value": 5.0
         }
       ],
       "Defense": [
+        {
+          "name": "Tonkoku",
+          "name_jp": "惇告",
+          "faction": "qin",
+          "type": "SR",
+          "value": 5.0
+        },
         {
           "name": "Denei",
           "name_jp": "田永",

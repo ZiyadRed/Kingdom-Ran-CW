@@ -1,5 +1,45 @@
 [
   {
+    "id": "soujin",
+    "name_en": "Soujin",
+    "name_jp": "蒼仁",
+    "country": "qin",
+    "unit": "Hi Shin Unit",
+    "rarity": "UR",
+    "skills": [
+      {
+        "name_en": "Ironclad Flash [Blue Elephant]",
+        "name_jp": "鉄壁一閃【青象】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy [General] with highest DEF", "target": "1 enemy [General]", "effect": "150% Damage", "duration": null },
+          { "condition": "When ally Soutan is alive", "target": "1 enemy [General] with lowest remaining HP", "effect": "100% Damage 2 times", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Tenth Transmission [Ren]",
+        "name_jp": "十号相伝【仁】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Sure Hit", "duration": null },
+          { "condition": null, "target": "Ally Hi Shin Unit Shield [General]", "effect": "ATK Up 20%", "duration": null },
+          { "condition": "When ally Soutan is alive", "target": "Self", "effect": "Critical Rate Up 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Annihilating Precision Bow",
+        "name_jp": "殲滅精弓",
+        "type": "Combat",
+        "effects": [
+          { "condition": "When ally Soutan is alive and own HP is 70% or higher", "target": "All enemy [General]", "effect": "100% Damage", "duration": null },
+          { "condition": null, "target": "1 enemy [General] with highest DEF", "effect": "170% Damage", "duration": null }
+        ]
+      }
+    ],
+    "image": "/persos/soujin.png",
+    "icon": "/icons/Soujin.png"
+  },
+  {
     "id": "sougen",
     "name_en": "Sougen",
     "name_jp": "蒼源",
