@@ -3706,6 +3706,10 @@ a.home-primary, a.home-secondary { text-align: center }
     object-fit: cover !important;
     object-position: top center !important;
   }
+  .tc-slot-filled > div:first-child img.tc-character-icon {
+    object-fit: contain !important;
+    object-position: center !important;
+  }
   .tc-slot-filled > div:first-child > div {
     font-size: 1.25rem !important;
   }

@@ -2038,7 +2038,7 @@ export function TeamCostPage(){
               onMouseLeave={e=>e.currentTarget.style.transform=''}>
               {/* Portrait */}
               <div style={{position:'relative',aspectRatio:'1 / 1',background:fc+'15',overflow:'hidden'}}>
-                {char.icon?<img src={char.icon} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center'}} alt={char.name_en}/>
+                {char.icon?<img src={char.icon} className="tc-character-icon" loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'contain',objectPosition:'center'}} alt={char.name_en}/>
                 :char.image?<img src={persosThumb(char.image)} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'top center'}} alt={char.name_en}/>
                 :<div style={{width:'100%',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'2rem',fontWeight:800,color:fc+'66'}}>{char.name_en[0]}</div>}
                 <div style={{position:'absolute',top:'6px',left:'6px',padding:'1px 7px',borderRadius:'5px',background:rc,color:'white',fontSize:'.6rem',fontWeight:800}}>{rarity}</div>
