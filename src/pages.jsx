@@ -1243,8 +1243,8 @@ export const WOGG_BUFF_SOURCES = [
   {name:'Houken',icon:'/icons/Houken.webp'},
   {name:'Denyuu',icon:'/icons/Denyuu.webp'},
   {name:'Ryuusen',icon:'/icons/Ryuusen.webp'},
-  {name:'Banyu',icon:'/persos/thumbs/banyou.webp'},
-  {name:'Kuzan',icon:'/persos/thumbs/kozen.webp'},
+  {name:'Banyu',icon:'/icons/Banyou.webp'},
+  {name:'Kuzen',icon:'/icons/Kuzen.webp'},
   {name:'Chousou',icon:'/icons/Chousou.webp'},
 ]
 
