@@ -2411,11 +2411,14 @@ a.home-primary, a.home-secondary { text-align: center }
   .buff-summary-stat {
     display: grid;
     gap: 1px;
-    white-space: nowrap;
+    min-width: 0;
+    white-space: normal;
   }
   .buff-summary-stat b {
     min-width: 0;
     font-size: .48rem;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
   }
   .buff-summary-stat span {
     font-size: .63rem;

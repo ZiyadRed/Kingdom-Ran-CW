@@ -205,7 +205,8 @@
           "name_jp": "巨暴",
           "faction": "chu",
           "type": "UR",
-          "value": 5.0
+          "value": 5.0,
+          "source_id": "kyoubou-attack-1"
         },
         {
           "name": "Kyoubou",

@@ -149,7 +149,10 @@ export const SceneStarControl=({star,onChange})=>(
     ))}
   </div>
 )
-export const buffSourceId=(kind,key,stat,e,_i)=>`${kind}:${key}:${stat}:${e.name||''}:${e.name_jp||''}:${e.value||0}:${e.special_label||''}`
+export const buffSourceId=(kind,key,stat,e,_i)=>{
+  const base=`${kind}:${key}:${stat}:${e.name||''}:${e.name_jp||''}:${e.value||0}:${e.special_label||''}`
+  return e.source_id?`${base}:${e.source_id}`:base
+}
 
 export const ALL = [
   ...mountainFolk,...qin,...qinBatch2,...qinMajor,
