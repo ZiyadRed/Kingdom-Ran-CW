@@ -1246,6 +1246,7 @@ export const WOGG_BUFF_SOURCES = [
   {name:'Banyu',icon:'/icons/Banyou.webp'},
   {name:'Kuzen',icon:'/icons/Kuzen.webp'},
   {name:'Chousou',icon:'/icons/Chousou.webp'},
+  {name:'Shoumou',icon:'/icons/Shoumou.webp'},
 ]
 
 export const UNIT_ICON_SCALE={Infantry:1.18,Cavalry:1.18,Archer:1,Shield:1}
