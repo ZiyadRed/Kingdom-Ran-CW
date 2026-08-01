@@ -1235,6 +1235,18 @@ export const STATE_FACTION_ID = {Qin:'qin',Zhao:'zhao',Wei:'wei',Chu:'chu',Han:'
 export const BUFF_ARMIES = ['Gyokuhou Squad','Hishin Unit','Kanki Army','Karin Army','Ousen Army','Ouki Army','Gakuka Unit','Six Great Generals']
 export const ARMY_PARENT_STATE = {'Gyokuhou Squad':'qin','Hishin Unit':'qin','Kanki Army':'qin','Karin Army':'chu','Ousen Army':'qin','Ouki Army':'qin','Gakuka Unit':'qin','Six Great Generals':'qin'}
 export const ARMY_ICON_CHAR = {'Gyokuhou Squad':'Ouhon','Hishin Unit':'Shin','Kanki Army':'Kanki','Karin Army':'Karin','Ousen Army':'Ousen','Ouki Army':'Ouki','Gakuka Unit':'Mouten','Six Great Generals':'Sho'}
+export const WOGG_BUFF_NAME = 'Way of The Great General'
+export const WOGG_BUFF_DESCRIPTION = 'These buffs unlock from the second page of WoGG.'
+export const WOGG_BUFF_SOURCES = [
+  {name:'Bajio',icon:'/icons/Bajio.webp'},
+  {name:'Gakuki',icon:'/icons/Gakuki.webp'},
+  {name:'Houken',icon:'/icons/Houken.webp'},
+  {name:'Denyuu',icon:'/icons/Denyuu.webp'},
+  {name:'Ryuusen',icon:'/icons/Ryuusen.webp'},
+  {name:'Banyu',icon:'/persos/thumbs/banyou.webp'},
+  {name:'Kuzan',icon:'/persos/thumbs/kozen.webp'},
+  {name:'Chousou',icon:'/icons/Chousou.webp'},
+]
 
 export const UNIT_ICON_SCALE={Infantry:1.18,Cavalry:1.18,Archer:1,Shield:1}
 export function UnitCatIcon({cat,size=80}){
@@ -1254,7 +1266,7 @@ export function TerrainEffectIcon({terrain,size=64}){
 }
 
 export function BuffsPage(){
-  const[activeKind,setActiveKind]=useState(null) // 'unit'|'state'|'army'|'terrain'
+  const[activeKind,setActiveKind]=useState(null) // 'unit'|'state'|'army'|'terrain'|'wogg'
   const[activeKey,setActiveKey]=useState(null)
   const[activeStat,setActiveStat]=useState('HP')
   const[sceneProgressFilter,setSceneProgressFilter]=useState('all')
@@ -1314,6 +1326,30 @@ export function BuffsPage(){
     )
   }
   // ── details panel ──
+  const WoggIcon=({size=72})=>(
+    <div style={{width:size,height:size,borderRadius:'50%',background:'linear-gradient(135deg,#d6a634,#8e6313)',display:'flex',alignItems:'center',justifyContent:'center',color:'#fff8dd',fontWeight:900,fontSize:size*.38+'px',fontFamily:'serif',border:'2px solid #d6a634',boxShadow:'0 4px 14px #8e631355'}}>
+      {'将'}
+    </div>
+  )
+  const renderWoggDetails=()=> (
+    <div>
+      <div style={{display:'flex',gap:'14px',alignItems:'center',padding:'14px 16px',borderRadius:'14px',marginBottom:'1rem',background:'linear-gradient(90deg,#d6a63418,#d6a63408)',border:'1.5px solid #d6a63444'}}>
+        <WoggIcon size={54}/>
+        <div style={{minWidth:0}}>
+          <div style={{fontWeight:900,fontSize:'1.05rem',color:'var(--txt)',marginBottom:'4px'}}>{WOGG_BUFF_NAME}</div>
+          <div style={{fontSize:'.82rem',lineHeight:1.45,color:'var(--txt2)'}}>{WOGG_BUFF_DESCRIPTION}</div>
+        </div>
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(112px,1fr))',gap:'10px'}}>
+        {WOGG_BUFF_SOURCES.map(source=>(
+          <div key={source.name} style={{display:'flex',flexDirection:'column',alignItems:'center',gap:'8px',padding:'12px 8px',borderRadius:'12px',background:'var(--sur)',border:'1px solid var(--bdr)'}}>
+            <img src={source.icon} alt={source.name} title={source.name} loading="lazy" decoding="async" style={{width:64,height:64,borderRadius:'50%',objectFit:'cover',objectPosition:'center top',border:'2px solid #d6a63466',background:'#d6a63418'}}/>
+            <span style={{fontWeight:800,fontSize:'.78rem',color:'var(--txt)',textAlign:'center'}}>{source.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
   const renderTerrainDetails=(terrain)=>{
     const entries=[...(terrain.entries||[])].sort((a,b)=>b.value-a.value||a.name.localeCompare(b.name))
     return(
@@ -1387,6 +1423,7 @@ export function BuffsPage(){
   }
   const renderDetails=()=>{
     if(!activeKey) return null
+    if(activeKind==='wogg') return renderWoggDetails()
     if(activeKind==='terrain'){
       const terrain=TERRAIN_BUFFS.find(t=>t.name===activeKey)
       return terrain?renderTerrainDetails(terrain):null
@@ -1801,6 +1838,14 @@ export function BuffsPage(){
         })}
       </div>
 
+      <SectionLabel>{WOGG_BUFF_NAME}</SectionLabel>
+      <p style={{fontSize:'.78rem',color:'var(--txt3)',textAlign:'center',margin:'-.35rem auto 1rem',maxWidth:'520px'}}>
+        {WOGG_BUFF_DESCRIPTION}
+      </p>
+      <div className="buff-pick-row" style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
+        {renderCard('wogg',WOGG_BUFF_NAME,'#b88b2c',<WoggIcon size={64}/>,`${WOGG_BUFF_SOURCES.length} characters`)}
+      </div>
+
       <SectionLabel>Terrain</SectionLabel>
       <div className="buff-pick-row" style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
         {TERRAIN_BUFFS.map(t=>renderCard('terrain',t.name,t.color,<TerrainIcon terrain={t}/>,`${t.entries.length} generals`))}
@@ -1825,8 +1870,10 @@ export function BuffsPage(){
           }}>
             <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'14px 18px',borderBottom:'1px solid var(--bdr)',background:'var(--bg2)'}}>
               <div style={{display:'flex',alignItems:'center',gap:'12px'}}>
-                {activeKind==='unit'
-                  ?<UnitCatIcon cat={activeKey} size={32}/>
+                {activeKind==='wogg'
+                  ?<WoggIcon size={32}/>
+                  :activeKind==='unit'
+                    ?<UnitCatIcon cat={activeKey} size={32}/>
                   :activeKind==='state'
                     ?<StateBadge id={STATE_FACTION_ID[activeKey]} size={32}/>
                     :activeKind==='terrain'
@@ -1834,7 +1881,7 @@ export function BuffsPage(){
                       :<ArmyBadge name={activeKey} size={32}/>}
                 <div>
                   <div style={{fontWeight:800,fontSize:'.95rem',color:'var(--txt)'}}>{activeKey}</div>
-                  <div style={{fontSize:'.66rem',color:'var(--txt3)',textTransform:'uppercase',letterSpacing:'.05em'}}>{activeKind==='unit'?'Unit Type':activeKind==='state'?'State':activeKind==='terrain'?'Terrain':'Special Unit'}</div>
+                  <div style={{fontSize:'.66rem',color:'var(--txt3)',textTransform:'uppercase',letterSpacing:'.05em'}}>{activeKind==='wogg'?'Buff Type':activeKind==='unit'?'Unit Type':activeKind==='state'?'State':activeKind==='terrain'?'Terrain':'Special Unit'}</div>
                 </div>
               </div>
               <button className="x-btn" aria-label="Close" onClick={closeDetails}>✕</button>
