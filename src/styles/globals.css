@@ -2333,6 +2333,11 @@ a.home-primary, a.home-secondary { text-align: center }
     width: 38px !important;
     height: 38px !important;
   }
+  .buff-pick-icon-wogg > div {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 15px !important;
+  }
   .buff-pick-icon-army img {
     width: 100% !important;
     height: 100% !important;
