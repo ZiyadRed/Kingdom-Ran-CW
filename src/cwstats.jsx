@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ALL, CharIcon } from './core.jsx'
 
 export const CW_STATS_STORAGE_KEY = 'ranhq-cw-stats-v1'
@@ -163,12 +163,10 @@ function StatInput({ label, value, onChange, buff = false, percentage = false })
 
 function EmptySlot({ slotIndex, onSelect }) {
   return (
-    <button type="button" className="cwstats-empty-slot" onClick={onSelect}>
+    <button type="button" className="cwstats-empty-slot" onClick={onSelect} aria-label={`Add character to slot ${slotIndex + 1}`}>
+      <span className="cwstats-roster-index">{slotIndex + 1}</span>
       <span className="cwstats-empty-mark" aria-hidden="true">+</span>
-      <span>
-        <strong>Slot {slotIndex + 1}</strong>
-        <small>Choose a character</small>
-      </span>
+      <strong>Add</strong>
     </button>
   )
 }
@@ -191,18 +189,18 @@ function CharacterSlot({ character, slotIndex, values, onChange, onChangeBaseBuf
           <span>{rarity} · {unit}</span>
         </div>
         <div className="cwstats-slot-power">
-          <span>Projected CW power</span>
+          <span>CW power after buffs</span>
           <strong>{formatPower(power)}</strong>
           <small className={powerChange > 0 ? 'is-positive' : powerChange < 0 ? 'is-negative' : ''}>
-            {powerChange === 0 ? 'No change' : `${powerChange > 0 ? '+' : ''}${formatPower(powerChange)} change`}
+            {powerChange === 0 ? 'No change' : `${powerChange > 0 ? '+' : ''}${formatPower(powerChange)} vs current`}
           </small>
         </div>
       </header>
 
       <div className="cwstats-stat-section">
         <div className="cwstats-section-label">
-          <span>Set character stats</span>
-          <small>Current values from the CW screen</small>
+          <span>CW screen values</span>
+          <small>From the CW screen</small>
         </div>
         <div className="cwstats-stat-grid">
           <StatInput label="HP" value={values.hp} onChange={(value) => onChange('hp', value)} />
@@ -210,35 +208,33 @@ function CharacterSlot({ character, slotIndex, values, onChange, onChangeBaseBuf
           <StatInput label="Maximum Attack" value={values.atkMax} onChange={(value) => onChange('atkMax', value)} />
           <StatInput label="Defense" value={values.def} onChange={(value) => onChange('def', value)} />
         </div>
+      </div>
+
+      <div className="cwstats-buff-editor">
         <div className="cwstats-current-percent-row">
-          <span className="cwstats-subsection-label">Current buff %</span>
+          <span className="cwstats-subsection-label">Already active buffs</span>
           <div className="cwstats-percent-grid">
             <StatInput label="HP%" percentage value={values.buffs.hp} onChange={(value) => onChangeBaseBuff('hp', value)} />
             <StatInput label="Attack%" percentage value={values.buffs.atk} onChange={(value) => onChangeBaseBuff('atk', value)} />
             <StatInput label="Defense%" percentage value={values.buffs.def} onChange={(value) => onChangeBaseBuff('def', value)} />
           </div>
         </div>
-      </div>
-
-      <div className="cwstats-buff-section">
-        <div className="cwstats-section-label cwstats-section-label-buff">
-          <span>Buff increase</span>
-          <small>Add to the current percentages</small>
-        </div>
-        <div className="cwstats-buff-grid">
-          <StatInput label="HP%" buff percentage value={values.buffChanges.hp} onChange={(value) => onChangeBuff('hp', value)} />
-          <StatInput label="Attack%" buff percentage value={values.buffChanges.atk} onChange={(value) => onChangeBuff('atk', value)} />
-          <StatInput label="Defense%" buff percentage value={values.buffChanges.def} onChange={(value) => onChangeBuff('def', value)} />
+        <div className="cwstats-buff-section">
+          <div className="cwstats-section-label cwstats-section-label-buff">
+            <span>Buffs to add</span>
+            <small>Enter 5 for 5%</small>
+          </div>
+          <div className="cwstats-buff-grid">
+            <StatInput label="HP%" buff percentage value={values.buffChanges.hp} onChange={(value) => onChangeBuff('hp', value)} />
+            <StatInput label="Attack%" buff percentage value={values.buffChanges.atk} onChange={(value) => onChangeBuff('atk', value)} />
+            <StatInput label="Defense%" buff percentage value={values.buffChanges.def} onChange={(value) => onChangeBuff('def', value)} />
+          </div>
         </div>
       </div>
 
       <footer className="cwstats-slot-foot">
-        <div className="cwstats-buffed-summary">
-          <span>Projected values</span>
-          <small>HP {formatNumber(projected.hp)} · ATK {formatNumber(projected.atkMin)}–{formatNumber(projected.atkMax)} · DEF {formatNumber(projected.def)}</small>
-        </div>
         <div className="cwstats-slot-actions">
-          <button type="button" className="cwstats-action-button" onClick={onChangeCharacter}>Change</button>
+          <button type="button" className="cwstats-action-button" onClick={onChangeCharacter}>Change character</button>
           <button type="button" className="cwstats-action-button cwstats-action-danger" onClick={onRemove}>Remove</button>
         </div>
       </footer>
@@ -262,7 +258,7 @@ function CharacterSearch({ team, teamIndex, query, open, activeSlot, inputRef, o
 
   return (
     <div className="cwstats-search-wrap">
-      <label className="cwstats-search-label" htmlFor={`cwstats-search-${teamIndex}`}>Select a character</label>
+      <label className="cwstats-search-label" htmlFor={`cwstats-search-${teamIndex}`}>Choose a character for Team {teamIndex + 1}</label>
       <div className="cwstats-search-input-wrap">
         <SearchIcon />
         <input
@@ -271,7 +267,7 @@ function CharacterSearch({ team, teamIndex, query, open, activeSlot, inputRef, o
           className="cwstats-search-input"
           type="search"
           value={query}
-          placeholder="Search by character name…"
+          placeholder="Search character to add…"
           autoComplete="off"
           onFocus={onFocus}
           onChange={(event) => onChange(event.target.value)}
@@ -281,7 +277,7 @@ function CharacterSearch({ team, teamIndex, query, open, activeSlot, inputRef, o
       {open && (
         <div className="cwstats-search-results" role="listbox" aria-label={`Character search for Team ${teamIndex + 1}`}>
           {!normalizedQuery && (
-            <p className="cwstats-search-hint">Start typing to find a character. Select a slot first when replacing someone.</p>
+            <p className="cwstats-search-hint">Start typing to add a character to the next empty slot.</p>
           )}
           {normalizedQuery && results.length === 0 && (
             <p className="cwstats-search-hint">No characters match “{query}”.</p>
@@ -308,7 +304,7 @@ function CharacterSearch({ team, teamIndex, query, open, activeSlot, inputRef, o
             )
           })}
           {normalizedQuery && !canSelect && results.length > 0 && (
-            <p className="cwstats-search-hint">All four slots are filled. Use Change on a slot to replace it.</p>
+            <p className="cwstats-search-hint">All four slots are filled. Use Change character on a card to replace someone.</p>
           )}
         </div>
       )}
@@ -316,9 +312,11 @@ function CharacterSearch({ team, teamIndex, query, open, activeSlot, inputRef, o
   )
 }
 
-function TeamSection({ team, teamIndex, characters, query, open, activeSlot, inputRef, onSearchFocus, onQueryChange, onSelectCharacter, onSelectSlot, onChangeStat, onChangeBaseBuff, onChangeBuff, onRemoveCharacter, onRemoveTeam }) {
+function TeamSection({ team, teamIndex, characters, query, open, activeSlot, editingSlot, inputRef, onSearchFocus, onQueryChange, onSelectCharacter, onSelectSlot, onEditSlot, onChangeStat, onChangeBaseBuff, onChangeBuff, onRemoveCharacter, onRemoveTeam }) {
   const filled = team.filter(Boolean).length
   const total = team.reduce((sum, id) => sum + (id ? calculateCwPower(projectedCwStats(characters[id])) : 0), 0)
+  const editingIndex = editingSlot?.teamIndex === teamIndex ? editingSlot.slotIndex : null
+  const editingId = editingIndex === null ? null : team[editingIndex]
 
   return (
     <section className="cwstats-team" aria-labelledby={`cwstats-team-title-${teamIndex}`}>
@@ -326,7 +324,7 @@ function TeamSection({ team, teamIndex, characters, query, open, activeSlot, inp
         <div className="cwstats-team-title">
           <div>
             <h2 id={`cwstats-team-title-${teamIndex}`}>Team {teamIndex + 1}</h2>
-            <span>{filled} / {CW_STATS_SLOTS} characters selected</span>
+            <span>{filled} of {CW_STATS_SLOTS} characters</span>
           </div>
           {teamIndex > 0 && (
             <button type="button" className="cwstats-remove-team" onClick={onRemoveTeam}>Remove team</button>
@@ -338,53 +336,70 @@ function TeamSection({ team, teamIndex, characters, query, open, activeSlot, inp
         </div>
       </header>
 
-      <div className="cwstats-team-search">
-        <CharacterSearch
-          team={team}
-          teamIndex={teamIndex}
-          query={query}
-          open={open}
-          activeSlot={activeSlot}
-          inputRef={inputRef}
-          onFocus={onSearchFocus}
-          onChange={onQueryChange}
-          onSelect={onSelectCharacter}
-        />
-        <p className="cwstats-search-note">
-          {activeSlot?.teamIndex === teamIndex
-            ? `Adding to slot ${activeSlot.slotIndex + 1}`
-            : 'Tap an empty slot, then search for a character.'}
-        </p>
-      </div>
-
-      <div className="cwstats-slot-grid">
+      <div className="cwstats-roster" aria-label={`Team ${teamIndex + 1} roster`}>
         {team.map((characterId, slotIndex) => {
           if (!characterId) {
             return <EmptySlot key={slotIndex} slotIndex={slotIndex} onSelect={() => onSelectSlot(teamIndex, slotIndex)} />
           }
           const character = characterById[characterId] || { id: characterId, name_en: characterId, rarity: '—', unit_type: 'General' }
           const values = characters[characterId] || emptyCwCharacter()
+          const unit = character.unit_type || character.unit || 'General'
+          const power = calculateCwPower(projectedCwStats(values))
           return (
-            <CharacterSlot
+            <button
+              type="button"
               key={`${characterId}-${slotIndex}`}
-              character={character}
-              slotIndex={slotIndex}
-              values={values}
-              onChange={(field, value) => onChangeStat(characterId, field, value)}
-              onChangeBaseBuff={(field, value) => onChangeBaseBuff(characterId, field, value)}
-              onChangeBuff={(field, value) => onChangeBuff(characterId, field, value)}
-              onChangeCharacter={() => onSelectSlot(teamIndex, slotIndex)}
-              onRemove={() => onRemoveCharacter(teamIndex, slotIndex)}
-            />
+              className={`cwstats-roster-slot${editingIndex === slotIndex ? ' is-active' : ''}`}
+              aria-pressed={editingIndex === slotIndex}
+              onClick={() => onEditSlot(teamIndex, slotIndex)}
+            >
+              <span className="cwstats-roster-index">{slotIndex + 1}</span>
+              <CharIcon c={character} size={42} round className="cwstats-roster-avatar" />
+              <span className="cwstats-roster-copy">
+                <strong>{character.name_en}</strong>
+                <small>{unit}</small>
+              </span>
+              <span className="cwstats-roster-power">{formatPower(power)}</span>
+            </button>
           )
         })}
       </div>
 
-      <footer className={`cwstats-team-foot${filled === 0 ? ' cwstats-team-foot-empty' : ''}`}>
-        <span>Team {teamIndex + 1} total power</span>
-        <strong>{formatPower(total)}</strong>
-        {filled < CW_STATS_SLOTS && <small>Add the remaining characters to complete this team.</small>}
-      </footer>
+      {open && (
+        <div className="cwstats-team-search">
+          <CharacterSearch
+            team={team}
+            teamIndex={teamIndex}
+            query={query}
+            open={open}
+            activeSlot={activeSlot}
+            inputRef={inputRef}
+            onFocus={onSearchFocus}
+            onChange={onQueryChange}
+            onSelect={onSelectCharacter}
+          />
+        </div>
+      )}
+
+      {editingId && (
+        <div className="cwstats-editor">
+          <CharacterSlot
+            key={`${editingId}-${editingIndex}`}
+            character={characterById[editingId] || { id: editingId, name_en: editingId, rarity: '—', unit_type: 'General' }}
+            slotIndex={editingIndex}
+            values={characters[editingId] || emptyCwCharacter()}
+            onChange={(field, value) => onChangeStat(editingId, field, value)}
+            onChangeBaseBuff={(field, value) => onChangeBaseBuff(editingId, field, value)}
+            onChangeBuff={(field, value) => onChangeBuff(editingId, field, value)}
+            onChangeCharacter={() => onSelectSlot(teamIndex, editingIndex)}
+            onRemove={() => onRemoveCharacter(teamIndex, editingIndex)}
+          />
+        </div>
+      )}
+
+      {filled > 0 && !editingId && !open && (
+        <p className="cwstats-editor-hint">Select a character above to edit their stats.</p>
+      )}
     </section>
   )
 }
@@ -394,6 +409,7 @@ export function CWStatsPage() {
   const [queries, setQueries] = useState({})
   const [openTeam, setOpenTeam] = useState(null)
   const [activeSlot, setActiveSlot] = useState(null)
+  const [editingSlot, setEditingSlot] = useState(null)
   const searchRefs = useRef([])
 
   useEffect(() => {
@@ -424,16 +440,15 @@ export function CWStatsPage() {
     }
   }, [])
 
-  const teamTotals = useMemo(() => state.teams.map((team) => team.reduce(
-    (sum, id) => sum + (id ? calculateCwPower(projectedCwStats(state.characters[id])) : 0),
-    0,
-  )), [state.characters, state.teams])
-  const characterCount = state.teams.flat().filter(Boolean).length
-  const cachedCount = Object.keys(state.characters).length
-
   const openSlot = (teamIndex, slotIndex) => {
     setActiveSlot({ teamIndex, slotIndex })
     setOpenTeam(teamIndex)
+  }
+
+  const editSlot = (teamIndex, slotIndex) => {
+    setEditingSlot({ teamIndex, slotIndex })
+    setOpenTeam(null)
+    setActiveSlot(null)
   }
 
   const focusTeamSearch = (teamIndex) => {
@@ -482,10 +497,11 @@ export function CWStatsPage() {
   }
 
   const selectCharacter = (teamIndex, character) => {
+    const team = state.teams[teamIndex] || Array(CW_STATS_SLOTS).fill(null)
+    const requestedSlot = activeSlot?.teamIndex === teamIndex ? activeSlot.slotIndex : team.findIndex((id) => !id)
+    if (requestedSlot < 0 || team.some((id, index) => id === character.id && index !== requestedSlot)) return
+
     setState((previous) => {
-      const team = previous.teams[teamIndex] || Array(CW_STATS_SLOTS).fill(null)
-      const requestedSlot = activeSlot?.teamIndex === teamIndex ? activeSlot.slotIndex : team.findIndex((id) => !id)
-      if (requestedSlot < 0 || team.some((id, index) => id === character.id && index !== requestedSlot)) return previous
       const teams = previous.teams.map((existing, index) => (
         index === teamIndex
           ? existing.map((id, indexInTeam) => indexInTeam === requestedSlot ? character.id : id)
@@ -502,6 +518,7 @@ export function CWStatsPage() {
     setQueries((previous) => ({ ...previous, [teamIndex]: '' }))
     setOpenTeam(null)
     setActiveSlot(null)
+    setEditingSlot({ teamIndex, slotIndex: requestedSlot })
   }
 
   const removeCharacter = (teamIndex, slotIndex) => {
@@ -512,6 +529,7 @@ export function CWStatsPage() {
       )),
     }))
     setActiveSlot(null)
+    if (editingSlot?.teamIndex === teamIndex && editingSlot.slotIndex === slotIndex) setEditingSlot(null)
   }
 
   const addTeam = () => {
@@ -538,43 +556,30 @@ export function CWStatsPage() {
     })
     setOpenTeam(null)
     setActiveSlot(null)
+    setEditingSlot(null)
   }
 
   const clearSavedCalculator = () => {
-    if (!window.confirm('Clear all saved CW Stats teams and character values on this device?')) return
+    if (!window.confirm('Clear all saved calculator teams and character values on this device?')) return
     setState(createDefaultCwStatsState())
     setQueries({})
     setOpenTeam(null)
     setActiveSlot(null)
+    setEditingSlot(null)
   }
 
   return (
     <main className="cwstats-page">
       <header className="cwstats-page-head">
         <div>
-          <h1>CW Stats Calculator</h1>
-          <p>Set current CW stats and percentages, preview HP%, Attack%, and Defense% increases, and compare up to five separate teams.</p>
+          <h1>Stats Calculator</h1>
+          <p>Enter the values shown on the CW screen, including active buffs, then add new buffs to see the updated power.</p>
         </div>
         <div className="cwstats-page-actions">
-          <span className="cwstats-save-note">Saved automatically on this device</span>
-          <button type="button" className="cwstats-clear-button" onClick={clearSavedCalculator}>Clear saved data</button>
+          <span className="cwstats-save-note">Saved automatically</span>
+          <button type="button" className="cwstats-clear-button" onClick={clearSavedCalculator}>Reset calculator</button>
         </div>
       </header>
-
-      <section className="cwstats-summary" aria-label="CW Stats calculator summary">
-        <div>
-          <span>Teams</span>
-          <strong>{state.teams.length} / {CW_STATS_MAX_TEAMS}</strong>
-        </div>
-        <div>
-          <span>Characters placed</span>
-          <strong>{characterCount}</strong>
-        </div>
-        <div>
-          <span>Saved character values</span>
-          <strong>{cachedCount}</strong>
-        </div>
-      </section>
 
       <div className="cwstats-team-list">
         {state.teams.map((team, teamIndex) => (
@@ -586,6 +591,7 @@ export function CWStatsPage() {
             query={queries[teamIndex] || ''}
             open={openTeam === teamIndex}
             activeSlot={activeSlot}
+            editingSlot={editingSlot}
             inputRef={(element) => { searchRefs.current[teamIndex] = element }}
             onSearchFocus={() => focusTeamSearch(teamIndex)}
             onQueryChange={(value) => {
@@ -595,6 +601,7 @@ export function CWStatsPage() {
             }}
             onSelectCharacter={(character) => selectCharacter(teamIndex, character)}
             onSelectSlot={openSlot}
+            onEditSlot={editSlot}
             onChangeStat={updateCharacter}
             onChangeBaseBuff={updateBaseBuff}
             onChangeBuff={updateBuffChange}
@@ -604,15 +611,10 @@ export function CWStatsPage() {
         ))}
       </div>
 
-      <div className="cwstats-total-check" aria-live="polite">
-        {teamTotals.map((total, index) => <span key={index}>Team {index + 1}: <strong>{formatPower(total)}</strong></span>)}
-      </div>
-
       <button type="button" className="cwstats-add-team" onClick={addTeam} disabled={state.teams.length >= CW_STATS_MAX_TEAMS}>
         <span aria-hidden="true">+</span>
-        {state.teams.length >= CW_STATS_MAX_TEAMS ? 'Maximum of 5 teams reached' : 'Add new team'}
+        {state.teams.length >= CW_STATS_MAX_TEAMS ? 'Maximum of 5 teams reached' : 'Add another team'}
       </button>
-      <p className="cwstats-limit-note">Each team is calculated separately. You can compare up to {CW_STATS_MAX_TEAMS} teams on this page.</p>
     </main>
   )
 }

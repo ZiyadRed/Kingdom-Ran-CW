@@ -89,7 +89,7 @@ export function routeSeo(pathname){
     robots: 'index,follow',
   }
   if(path === '/cw-stats') return {
-    title: 'Kingdom Ran CW Stats Calculator - RanHQ',
+    title: 'Kingdom Ran Stats Calculator - RanHQ',
     description: 'Calculate individual Kingdom Ran Castle War Power and compare up to five separate four-character teams from your current stats and buffs.',
     robots: 'index,follow',
   }

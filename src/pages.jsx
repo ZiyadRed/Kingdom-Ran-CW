@@ -21,29 +21,17 @@ export function ArchiveTabs({active}){
     {id:'cw6',label:'CW6★ Scene Cards',count:String(cw6SceneCards.cards?.length||0),route:'/archive/cw6-scene-cards'},
   ]
   return(
-    <div style={{
-      display:'flex',alignItems:'center',justifyContent:'center',gap:'8px',flexWrap:'wrap',
-      padding:'12px 1rem',borderBottom:'1px solid var(--bdr)',background:'rgba(250,246,240,.68)',
-    }}>
+    <nav className="archive-tabs" aria-label="Archive sections">
       {tabs.map(tab=>{
         const on=active===tab.id
         return(
-          <button key={tab.id} aria-pressed={on} onClick={()=>navigate(tab.route)} style={{
-            display:'inline-flex',alignItems:'center',gap:'7px',borderRadius:999,
-            border:`1px solid ${on?'var(--terra)':'var(--bdr)'}`,
-            background:on?'var(--terra)':'var(--sur)',color:on?'#fff':'var(--txt)',
-            padding:'.46rem .82rem',fontSize:'.78rem',fontWeight:900,
-          }}>
+          <button key={tab.id} className={`archive-tab${on?' archive-tab-active':''}`} aria-pressed={on} onClick={()=>navigate(tab.route)}>
             {tab.label}
-            <span style={{
-              fontSize:'.62rem',padding:'1px 7px',borderRadius:999,
-              background:on?'rgba(255,255,255,.22)':'var(--bg2)',color:on?'#fff':'var(--txt3)',
-              border:`1px solid ${on?'rgba(255,255,255,.24)':'var(--bdr)'}`,
-            }}>{tab.count}</span>
+            <span>{tab.count}</span>
           </button>
         )
       })}
-    </div>
+    </nav>
   )
 }
 
@@ -148,7 +136,7 @@ export function CW6SceneCardsPage(){
       <div className="gallery-wrap">
         <div className="gallery-header" style={{alignItems:'flex-start',gap:'12px',flexWrap:'wrap'}}>
           <div>
-            <h2 className="gallery-title" style={{fontSize:'1rem'}}>CW6{'\u2605'} Scene Cards</h2>
+            <h1 className="gallery-title">CW6{'\u2605'} Scene Cards</h1>
             <div style={{fontSize:'.72rem',color:'var(--txt3)',marginTop:'3px'}}>6{'\u2605'} scene-card skills and owners</div>
           </div>
           <div style={{display:'flex',alignItems:'center',gap:'9px',flexWrap:'wrap',marginLeft:'auto'}}>
@@ -319,7 +307,7 @@ export function ArchivePage(){
           {search&&<button className="mobile-search-clear" type="button" aria-label="Clear search" onClick={()=>setSearch('')}>✕</button>}
         </div>
         <div className="gallery-header">
-          <h2 className="gallery-title">{search?`Results (${filtered.length})`:`${FACTIONS.find(f=>f.id===activeFac)?.label} Roster`}</h2>
+          <h1 className="gallery-title">{search?`Results (${filtered.length})`:`${FACTIONS.find(f=>f.id===activeFac)?.label} Roster`}</h1>
           <span className="gallery-count">{filtered.length} generals</span>
         </div>
         <div className="gallery-grid">
@@ -647,8 +635,8 @@ export function MetaTeamCard({team,onLoad}){
         ))}
       </div>
       <div className="meta-btns">
-        <button className="meta-btn meta-atk" onClick={()=>onLoad(team,'attack')}>⚔ Set as Attacker</button>
-        <button className="meta-btn meta-def" onClick={()=>onLoad(team,'defense')}>🛡 Set as Defender</button>
+        <button className="meta-btn meta-atk" aria-label="Set as Attacker" onClick={()=>onLoad(team,'attack')}><span className="meta-btn-full">Set as Attacker</span><span className="meta-btn-short">Attack</span></button>
+        <button className="meta-btn meta-def" aria-label="Set as Defender" onClick={()=>onLoad(team,'defense')}><span className="meta-btn-full">Set as Defender</span><span className="meta-btn-short">Defend</span></button>
       </div>
     </div>
   )
@@ -657,33 +645,53 @@ export function MetaTeamCard({team,onLoad}){
 // ── PARTY BUILDER ─────────────────────────────────────────────────────────────
 export function BuilderPage({atk,def,atkSk,defSk,setAtkSk,setDefSk,setSlot,rm,goSim,loadMetaTeam}){
   const[picker,setPicker]=useState(null)
+  const[activeSide,setActiveSide]=useState('attack')
+  const[buffsOpen,setBuffsOpen]=useState(()=>typeof window==='undefined'||!window.matchMedia('(max-width: 768px)').matches)
   const atkF=atk.filter(Boolean),defF=def.filter(Boolean)
   const atkM=atk.map((c,i)=>applyMask(c,atkSk[i])).filter(Boolean)
   const defM=def.map((c,i)=>applyMask(c,defSk[i])).filter(Boolean)
   // Only exclude chars already on the SAME side — opposing-team chars must remain searchable
   const excl=picker ? (picker.side==='attack'?atkF:defF).map(c=>c.id) : []
   const updateSk=(side,idx,mask)=>(side==='attack'?setAtkSk:setDefSk)(p=>{const n=[...p];n[idx]=mask;return n})
+  useEffect(()=>{
+    const media=window.matchMedia('(max-width: 768px)')
+    const sync=event=>setBuffsOpen(!event.matches)
+    media.addEventListener('change',sync)
+    return()=>media.removeEventListener('change',sync)
+  },[])
   return(
-    <div className="main-page">
+    <div className="main-page builder-page">
       {picker&&<Picker onSelect={c=>setSlot(c,picker.side,picker.idx)} onClose={()=>setPicker(null)} excl={excl}/>}
-      <h2 className="pg-title">Party Builder</h2>
+      <h1 className="pg-title">Party Builder</h1>
       <p className="pg-sub">Click slots to add generals. Last slot fires first.</p>
-      <div className="two-sides">
-        <SideSlots side="attack"  label="⚔ Attacking" party={atk} skMask={atkSk}
+      <div className="builder-side-switch" role="group" aria-label="Formation side">
+        <button type="button" className={activeSide==='attack'?'active':''} aria-pressed={activeSide==='attack'} onClick={()=>setActiveSide('attack')}>Attacking <span>{atkF.length}/4</span></button>
+        <button type="button" className={activeSide==='defense'?'active':''} aria-pressed={activeSide==='defense'} onClick={()=>setActiveSide('defense')}>Defending <span>{defF.length}/4</span></button>
+      </div>
+      <div className={`two-sides builder-two-sides builder-show-${activeSide}`}>
+        <SideSlots side="attack"  label="Attacking" party={atk} skMask={atkSk}
                    onSlot={i=>setPicker({side:'attack',idx:i})}  onRm={c=>rm(c,'attack')}
                    onSkChange={(i,mk)=>updateSk('attack',i,mk)}/>
         <div className="vs-sep">VS</div>
-        <SideSlots side="defense" label="🛡 Defending" party={def} skMask={defSk}
+        <SideSlots side="defense" label="Defending" party={def} skMask={defSk}
                    onSlot={i=>setPicker({side:'defense',idx:i})} onRm={c=>rm(c,'defense')}
                    onSkChange={(i,mk)=>updateSk('defense',i,mk)}/>
       </div>
-      {(atkF.length&&defF.length)>0&&<div className="cta-row"><button className="cta-btn" onClick={goSim}>Simulate Battle Order</button></div>}
-      <BuffTable atk={atkM} def={defM}/>
+      {(atkF.length&&defF.length)>0&&<div className="cta-row"><button className="cta-btn" onClick={goSim}>View Battle Order</button></div>}
+      {(atkM.length||defM.length)>0&&(
+        <section className="builder-buff-disclosure">
+          <button type="button" className="builder-buff-toggle" aria-expanded={buffsOpen} onClick={()=>setBuffsOpen(open=>!open)}>
+            <span><strong>Team buffs</strong><small>Calculated from this formation</small></span>
+            <span>{buffsOpen?'Hide':'Review'}</span>
+          </button>
+          {buffsOpen&&<BuffTable atk={atkM} def={defM}/>}
+        </section>
+      )}
 
       {/* Meta Teams */}
       <div className="meta-section">
-        <h3 className="meta-section-title">Meta Teams</h3>
-        <p className="meta-section-sub">Click Attack or Defense to load a team into the formation above.</p>
+        <h2 className="meta-section-title">Start from a known team</h2>
+        <p className="meta-section-sub">Load a current formation, then adjust it in the editor above.</p>
         <div className="meta-grid">
           {META_TEAMS.map((team,i)=><MetaTeamCard key={i} team={team} onLoad={(t,side)=>loadMetaTeam(t.members.map(findCharByName),side)}/>)}
         </div>
@@ -696,7 +704,7 @@ export function SideSlots({side,label,party,skMask,onSlot,onRm,onSkChange}){
   const ac=side==='attack'?'var(--red)':'var(--blue)'
   const maskedTeam=party.map((c,i)=>applyMask(c,skMask?.[i])).filter(Boolean)
   return(
-    <div className="side">
+    <div className={`side side-${side}`}>
       <div className="side-lbl side-lbl-with-action" style={{color:ac,borderBottomColor:ac}}>
         <span>{label}</span>
         <TeamImageButton team={maskedTeam} side={side}/>
@@ -769,21 +777,29 @@ export function SimPage({atk,def,atkSk,defSk,goBuilder}){
       {/* ── Battle Result (hidden for now) ──────────────── */}
       {/* <BattleResult battle={battle} atkTeam={atkF} defTeam={defF} rerun={()=>setTick(t=>t+1)}/> */}
 
+      <header className="sim-page-head">
+        <div>
+          <h1>Battle Order</h1>
+          <p>Strategy effects stay active throughout the battle. Combat skills fire from the last formation slot first.</p>
+        </div>
+        <button type="button" onClick={goBuilder}>Edit teams</button>
+      </header>
+
       {/* ── Formation bars ─────────────────────────────────── */}
       <div className="form-bars">
-        <FormBar generals={atkF} side="attack" label="⚔ Attacking"/>
+        <FormBar generals={atkF} side="attack" label="Attacking"/>
         <div className="form-vs">VS</div>
-        <FormBar generals={defF} side="defense" label="🛡 Defending"/>
+        <FormBar generals={defF} side="defense" label="Defending"/>
       </div>
       <div className="sim-sec">
-        <div className="sec-hd sec-strat">⚑ Strategy Skills — Always Active</div>
+        <div className="sec-hd sec-strat">Strategy Skills — Always Active</div>
         <div className="strat-cols">
-          <StratCol label="⚔ Attacking Formation" entries={st.attack} side="attack"/>
-          <StratCol label="🛡 Defending Formation" entries={st.defense} side="defense"/>
+          <StratCol label="Attacking Formation" entries={st.attack} side="attack"/>
+          <StratCol label="Defending Formation" entries={st.defense} side="defense"/>
         </div>
       </div>
       <div className="sim-sec">
-        <div className="sec-hd sec-combat">⚔ Skill Activation Order</div>
+        <div className="sec-hd sec-combat">Skill Activation Order</div>
         {turns.map(({turn,entries})=>(
           <div key={turn} className="turn">
             <div className="turn-lbl">Turn {turn}</div>
@@ -1272,6 +1288,7 @@ export function BuffsPage(){
   const[activeStat,setActiveStat]=useState('HP')
   const[sceneProgressFilter,setSceneProgressFilter]=useState('all')
   const[artSrc,setArtSrc]=useState(null)
+  const[buffSearch,setBuffSearch]=useState('')
   const tracker=useProgressTracker()
   const closeDetails=()=>{setActiveKind(null);setActiveKey(null)}
   useModalDismiss(!!activeKey,closeDetails)
@@ -1280,6 +1297,17 @@ export function BuffsPage(){
     if(kind==='state') return ((cwTeamBuffs.states||{})[key]||{})[stat]||[]
     if(kind==='army')  return ((cwTeamBuffs.armies||{})[key]||{})[stat]||[]
     return []
+  }
+  const buffSearchNorm=buffSearch.trim().toLowerCase()
+  const categoryMatches=(kind,key)=>{
+    if(!buffSearchNorm) return true
+    if(key.toLowerCase().includes(buffSearchNorm)) return true
+    if(kind==='wogg') return WOGG_BUFF_SOURCES.some(source=>source.name.toLowerCase().includes(buffSearchNorm))
+    if(kind==='terrain'){
+      const terrain=TERRAIN_BUFFS.find(item=>item.name===key)
+      return terrain?.entries.some(entry=>`${entry.name} ${entry.name_jp||''}`.toLowerCase().includes(buffSearchNorm))
+    }
+    return buffStats.some(stat=>lookupEntries(kind,key,stat).some(entry=>`${entry.name} ${entry.name_jp||''} ${stat}`.toLowerCase().includes(buffSearchNorm)))
   }
   const handlePick=(kind,key)=>{
     if(activeKind===kind&&activeKey===key){setActiveKind(null);setActiveKey(null)}
@@ -1801,21 +1829,27 @@ export function BuffsPage(){
     </div>
   )
   return(
-    <div className="buffs-page" style={{maxWidth:'960px',margin:'0 auto',padding:'0 1rem'}}>
-      <div style={{textAlign:'center',marginBottom:'1.5rem',paddingTop:'1rem'}}>
-        <h2 style={{fontSize:'1.5rem',fontWeight:800,color:'var(--txt)',marginBottom:'.3rem'}}>CW Buffs</h2>
-        <p style={{fontSize:'.82rem',color:'var(--txt3)',maxWidth:'620px',margin:'0 auto'}}>Passive buffs that stay active for the whole Castle War, even when the general isn't on the field. You unlock them by upgrading characters — Red Crystals raise the skill-level buffs, Shards grant the flat +5%.</p>
-        <div style={{display:'flex',justifyContent:'center',gap:'18px',marginTop:'.6rem',fontSize:'.7rem',color:'var(--txt3)'}}>
+    <div className="buffs-page">
+      <header className="buffs-page-head">
+        <div>
+          <h1>Buff Tracker</h1>
+          <p>Mark the passive buffs you own and keep a live total across unit types, states, special units, terrain, and scene cards.</p>
+        </div>
+        <label className="buff-global-search">
+          <span>Find a category or general</span>
+          <input type="search" value={buffSearch} onChange={event=>setBuffSearch(event.target.value)} placeholder="Search buffs…"/>
+        </label>
+        <div className="buffs-legend">
           <span style={{display:'inline-flex',alignItems:'center',gap:'5px'}}><img src="/icons/Red_Crystal.webp" alt="" style={{width:15,height:15,objectFit:'contain'}}/>Red Crystal upgrade</span>
           <span style={{display:'inline-flex',alignItems:'center',gap:'5px'}}><img src="/icons/Shard.webp" alt="" style={{width:15,height:15,objectFit:'contain'}}/>Shard upgrade (+5%)</span>
         </div>
-      </div>
+      </header>
 
       {renderBuffProgressSection()}
 
       <SectionLabel>Unit Types</SectionLabel>
       <div className="buff-pick-row" style={{display:'flex',justifyContent:'center',gap:'14px',marginBottom:'2rem',flexWrap:'wrap'}}>
-        {BUFF_UNIT_CATS.map(cat=>{
+        {BUFF_UNIT_CATS.filter(cat=>categoryMatches('unit',cat)).map(cat=>{
           const uniqueNames=new Set(Object.values(cwBuffsData[cat]||{}).flat().map(e=>e.name))
           return renderCard('unit',cat,CAT_COLOR[cat],<UnitCatIcon cat={cat} size={64}/>,`${uniqueNames.size} generals`)
         })}
@@ -1823,7 +1857,7 @@ export function BuffsPage(){
 
       <SectionLabel>States</SectionLabel>
       <div className="buff-pick-row" style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
-        {BUFF_STATES.map(s=>{
+        {BUFF_STATES.filter(state=>categoryMatches('state',state)).map(s=>{
           const col=CC[STATE_FACTION_ID[s]]||'#888'
           const n=stateCount(s)
           return renderCard('state',s,col,<StateBadge id={STATE_FACTION_ID[s]}/>,`${n} ${n===1?'general':'generals'}`)
@@ -1832,7 +1866,7 @@ export function BuffsPage(){
 
       <SectionLabel>Special Units</SectionLabel>
       <div className="buff-pick-row" style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
-        {BUFF_ARMIES.map(a=>{
+        {BUFF_ARMIES.filter(army=>categoryMatches('army',army)).map(a=>{
           const col=CC[ARMY_PARENT_STATE[a]]||'#888'
           const n=armyCount(a)
           return renderCard('army',a,col,<ArmyBadge name={a}/>,`${n} ${n===1?'general':'generals'}`)
@@ -1844,12 +1878,12 @@ export function BuffsPage(){
         {WOGG_BUFF_DESCRIPTION}
       </p>
       <div className="buff-pick-row" style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
-        {renderCard('wogg',WOGG_BUFF_NAME,'#b88b2c',<WoggIcon size={64}/>,`${WOGG_BUFF_SOURCES.length} characters`)}
+        {categoryMatches('wogg',WOGG_BUFF_NAME)&&renderCard('wogg',WOGG_BUFF_NAME,'#b88b2c',<WoggIcon size={64}/>,`${WOGG_BUFF_SOURCES.length} characters`)}
       </div>
 
       <SectionLabel>Terrain</SectionLabel>
       <div className="buff-pick-row" style={{display:'flex',justifyContent:'center',gap:'12px',marginBottom:'2rem',flexWrap:'wrap'}}>
-        {TERRAIN_BUFFS.map(t=>renderCard('terrain',t.name,t.color,<TerrainIcon terrain={t}/>,`${t.entries.length} generals`))}
+        {TERRAIN_BUFFS.filter(terrain=>categoryMatches('terrain',terrain.name)).map(t=>renderCard('terrain',t.name,t.color,<TerrainIcon terrain={t}/>,`${t.entries.length} generals`))}
       </div>
 
       <SectionLabel>Scene Cards</SectionLabel>
@@ -1941,7 +1975,7 @@ export function TierPage(){
 
         {/* Hero header */}
         <div className="mw-hero">
-          <div className="mw-hero-title">⚔ CW METAWATCH</div>
+          <h1 className="mw-hero-title">CW METAWATCH</h1>
           <div className="mw-hero-sub">Commonly Seen Armies · Last updated: Jun 2026</div>
           <div className="mw-hero-by">Tier List done by <span>Doge</span></div>
           <div className="mw-hero-accent"/>
@@ -2611,37 +2645,34 @@ export function CWGuidePage(){
   const navigate=useNavigate()
   const {section}=useParams()
   const active=GUIDE_SECTIONS.find(s=>s.id===section)?.id || 'basics'
-  const go=id=>navigate(`/guide/${id}`)
+  const[contentsOpen,setContentsOpen]=useState(false)
+  const activeLabel=GUIDE_SECTIONS.find(s=>s.id===active)?.label||'Basics'
+  const go=id=>{navigate(`/guide/${id}`);setContentsOpen(false)}
   return(
-    <div className="guide-page" style={{maxWidth:'960px',width:'100%',margin:'0 auto',padding:'0 1rem',boxSizing:'border-box'}}>
-      <div className="guide-head" style={{textAlign:'center',marginBottom:'1.5rem',paddingTop:'1rem'}}>
-        <h2 style={{fontSize:'1.5rem',fontWeight:800,color:'var(--txt)',marginBottom:'.3rem'}}>CW Guide</h2>
-        <p style={{fontSize:'.82rem',color:'var(--txt3)'}}>Tips, mechanics, and reference info for Castle Wars</p>
-      </div>
-      <div className="guide-section-tabs" style={{display:'flex',flexDirection:'column',gap:'1rem',marginBottom:'1.75rem'}}>
+    <main className="guide-page">
+      <header className="guide-head">
+        <h1>Castle War Guide</h1>
+        <p>Mechanics, status effects, terrain, targeting rules, and practical references for Castle War.</p>
+      </header>
+      <button type="button" className="guide-contents-toggle" aria-expanded={contentsOpen} aria-controls="guide-contents" onClick={()=>setContentsOpen(open=>!open)}>
+        <span><small>Guide section</small><strong>{activeLabel}</strong></span>
+        <span aria-hidden="true">{contentsOpen?'−':'+'}</span>
+      </button>
+      <nav id="guide-contents" className={`guide-section-tabs${contentsOpen?' guide-section-tabs-open':''}`} aria-label="Guide contents">
         {GUIDE_GROUPS.map(group=>(
           <div key={group} className="guide-group">
-            <div style={{fontSize:'.68rem',fontWeight:900,letterSpacing:'.08em',textTransform:'uppercase',color:'var(--txt3)',textAlign:'center',marginBottom:'.45rem'}}>
-              {group}
-            </div>
-            <div style={{display:'flex',justifyContent:'center',gap:'8px',flexWrap:'wrap'}}>
+            <h2>{group}</h2>
+            <div>
               {GUIDE_SECTIONS.filter(s=>s.category===group).map(s=>{
                 const on=active===s.id
                 return(
-                  <button key={s.id} className="guide-tab" aria-pressed={on} onClick={()=>go(s.id)} style={{
-                    padding:'.55rem 1.1rem',borderRadius:'999px',cursor:'pointer',
-                    fontSize:'.85rem',fontWeight:on?700:500,
-                    background:on?'var(--txt)':'var(--sur)',
-                    color:on?'var(--bg2)':'var(--txt2)',
-                    border:`1px solid ${on?'var(--txt)':'var(--bdr)'}`,
-                    transition:'all .15s ease',
-                  }}>{s.label}</button>
+                  <button key={s.id} className="guide-tab" aria-pressed={on} onClick={()=>go(s.id)}>{s.label}</button>
                 )
               })}
             </div>
           </div>
         ))}
-      </div>
+      </nav>
       {active==='basics' && <CastleWarBasicsSection/>}
       {active==='stats-screen' && <CWStatsScreenGuideSection/>}
       {active==='stats' && <CWStatsGuideSection/>}
@@ -2654,7 +2685,7 @@ export function CWGuidePage(){
       {active==='types' && <SkillTypesSection/>}
       {active==='interactions' && <EffectInteractionsSection/>}
       {active==='targeting' && <TargetingRulesSection/>}
-    </div>
+    </main>
   )
 }
 

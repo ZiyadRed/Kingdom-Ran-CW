@@ -22,24 +22,60 @@ const CWStatsPage = lazy(() => import('./cwstats.jsx').then(m => ({ default: m.C
 const CWGuidePage = lazy(() => import('./pages.jsx').then(m => ({ default: m.CWGuidePage })))
 const CastlePointsPage = lazy(() => import('./castlepoints.jsx'))
 
-const PAGES=['Home','Archive','Guide','Party Builder','Castle Points','Buffs','Tier List','Team Cost','CW Stats']
-// Mobile bottom-nav: show the five primary tools inline; the rest live in a
-// "More" sheet so the bar isn't cramped with seven equal-width tabs.
-const PRIMARY_TABS=['Archive','Guide','Party Builder','Buffs','Tier List']
-const MORE_TABS=['Home','Castle Points','Team Cost','CW Stats']
-const PAGE_ICONS={
-  'Home':'\u2302',
-  'Archive':'\uD83D\uDC64',
-  'Guide':'\uD83D\uDCD6',
-  'Party Builder':'\u2694\uFE0F',
-  'Castle Points':'\u25C6',
-  'Buffs':'\uD83D\uDCCA',
-  'Tier List':'\uD83C\uDFC6',
-  'Team Cost':{img:'/icons/Red_Crystal.webp'},
-  'CW Stats':'\u2696\uFE0F',
+const PAGES=['Home','Archive','Guide','Party Builder','Battle Order','Castle Points','Buffs','Tier List','Team Cost','Stats Calculator']
+const PAGE_TO_ROUTE={
+  'Home':'/',
+  'Archive':'/archive',
+  'Guide':'/guide',
+  'Party Builder':'/builder',
+  'Battle Order':'/sim',
+  'Castle Points':'/castle-points',
+  'Buffs':'/buffs',
+  'Tier List':'/tiers',
+  'Team Cost':'/cost',
+  'Stats Calculator':'/cw-stats',
 }
-const PAGE_SHORT={'Home':'Home','Archive':'Archive','Guide':'Guide','Party Builder':'Builder','Castle Points':'Points','Buffs':'Buffs','Tier List':'Tiers','Team Cost':'Cost','CW Stats':'CW Stats'}
-const PAGE_TO_ROUTE={'Home':'/','Archive':'/archive','Guide':'/guide','Party Builder':'/builder','Castle Points':'/castle-points','Buffs':'/buffs','Tier List':'/tiers','Team Cost':'/cost','CW Stats':'/cw-stats'}
+const NAV_GROUPS=[
+  {
+    label:'Archive',
+    route:'/archive',
+    pages:['Archive'],
+    items:[
+      {label:'Characters',route:'/archive/characters',note:'Skills, stats, and factions'},
+      {label:'CW6★ Scene Cards',route:'/archive/cw6-scene-cards',note:'Owners and translated skills'},
+    ],
+  },
+  {
+    label:'Teams',
+    route:'/builder',
+    pages:['Tier List','Party Builder','Battle Order'],
+    items:[
+      {label:'Party Builder',route:'/builder',note:'Build attacking and defending teams'},
+      {label:'Metawatch',route:'/tiers',note:'Current recommended formations'},
+      {label:'Battle Order',route:'/sim',note:'Review turns and team buffs'},
+    ],
+  },
+  {label:'Guide',route:'/guide',pages:['Guide']},
+  {
+    label:'Tools',
+    route:'/buffs',
+    pages:['Buffs','Stats Calculator','Team Cost','Castle Points'],
+    items:[
+      {label:'Buff Tracker',route:'/buffs',note:'Mark owned sources and totals'},
+      {label:'Stats Calculator',route:'/cw-stats',note:'Calculate Castle War power'},
+      {label:'Team Cost',route:'/cost',note:'Plan red crystal costs'},
+      {label:'Castle Points',route:'/castle-points',note:'Project alliance ranking'},
+    ],
+  },
+]
+const MOBILE_TABS=[
+  {label:'Archive',page:'Archive',route:'/archive',icon:'archive'},
+  {label:'Builder',page:'Party Builder',route:'/builder',icon:'teams'},
+  {label:'Metawatch',page:'Tier List',route:'/tiers',icon:'rank'},
+  {label:'Guide',page:'Guide',route:'/guide',icon:'book'},
+]
+const TOOL_PAGES=['Buffs','Stats Calculator','Team Cost','Castle Points']
+const TOOL_LINKS=NAV_GROUPS.find(group=>group.label==='Tools').items
 function routeMatches(pathname,page){
   const r=PAGE_TO_ROUTE[page]
   if(pathname===r||pathname===r+'/') return true
@@ -47,7 +83,7 @@ function routeMatches(pathname,page){
   return false
 }
 function currentPage(pathname){
-  return PAGES.find(p=>routeMatches(pathname,p))||(pathname.startsWith('/sim')?'':'Home')
+  return PAGES.find(p=>routeMatches(pathname,p))||'Home'
 }
 const BASE_TITLE='RanHQ - Kingdom Ran Castle War Companion'
 // Per-route document title for accurate tabs, history, bookmarks, and SEO.
@@ -64,14 +100,20 @@ function pageTitle(pathname){
   if(pathname.startsWith('/buffs')) return 'Buffs - RanHQ'
   if(pathname.startsWith('/tiers')) return 'Metawatch - Tier List - RanHQ'
   if(pathname.startsWith('/cost')) return 'Team Cost - RanHQ'
-  if(pathname.startsWith('/cw-stats')) return 'CW Stats Calculator - RanHQ'
+  if(pathname.startsWith('/cw-stats')) return 'Stats Calculator - RanHQ'
   if(pathname.startsWith('/guide')) return 'Guide - RanHQ'
   return BASE_TITLE
 }
-function PageIcon({p}){
-  const v=PAGE_ICONS[p]
-  if(v&&typeof v==='object'&&v.img) return <img src={v.img} alt="" className="bntab-img"/>
-  return <span>{v}</span>
+function UiIcon({name,size=20}){
+  const common={width:size,height:size,viewBox:'0 0 24 24',fill:'none',stroke:'currentColor',strokeWidth:1.9,strokeLinecap:'round',strokeLinejoin:'round','aria-hidden':true}
+  if(name==='archive') return <svg {...common}><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.5-3.7 2.3-5.5 5.5-5.5s5 1.8 5.5 5.5"/><path d="M16 5h5M16 9h5M17 13h4M17 17h4"/></svg>
+  if(name==='rank') return <svg {...common}><path d="M6 20v-6M12 20V9M18 20V4"/><path d="m4 10 5-4 4 2 6-6"/></svg>
+  if(name==='teams') return <svg {...common}><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20c.4-4 2.2-6 5.5-6s5.1 2 5.5 6M14 15c3.7-.5 6.2 1.2 6.8 5"/></svg>
+  if(name==='book') return <svg {...common}><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v17H7.5A3.5 3.5 0 0 0 4 22z"/><path d="M20 5.5A3.5 3.5 0 0 0 16.5 2H13v17h3.5A3.5 3.5 0 0 1 20 22z"/></svg>
+  if(name==='tools') return <svg {...common}><path d="m14.7 6.3 3-3a4.2 4.2 0 0 1-5.3 5.3l-7 7a2.1 2.1 0 1 0 3 3l7-7a4.2 4.2 0 0 0 5.3-5.3l-3 3z"/></svg>
+  if(name==='chevron') return <svg {...common}><path d="m8 10 4 4 4-4"/></svg>
+  if(name==='arrow') return <svg {...common}><path d="M5 12h14M14 7l5 5-5 5"/></svg>
+  return null
 }
 // Shown while a lazy route chunk loads: a top progress bar (immediate "something
 // is happening" feedback) plus a content skeleton in place of bare "Loading…".
@@ -140,23 +182,42 @@ export default function App(){
     const seo=routeSeo(location.pathname)
     setSeo({...seo,title:seo.title||pageTitle(location.pathname),pathname:location.pathname})
   },[location.pathname])
+  const selectedCount=atk.filter(Boolean).length+def.filter(Boolean).length
   return(
     <div className="app">
       <header className="hdr">
         <div className="hdr-in">
-          <Link className="logo" to="/" style={{color:'inherit'}}>
+          <Link className="logo" to="/" aria-label="RanHQ home">
             <img src="/ranhq-icon.webp" alt="RanHQ" className="logo-icon"/>
             <div>
               <div className="logo-ja">キングダム乱</div>
               <div className="logo-en">RanHQ</div>
             </div>
           </Link>
-          <nav className="nav">
-            {PAGES.map(p=>(
-              <Link key={p} className={`nb${page===p?' nb-on':''}`} to={PAGE_TO_ROUTE[p]}>
-                {p}{p==='Party Builder'&&(atk.filter(Boolean).length+def.filter(Boolean).length)>0&&<span className="nb-dot">{atk.filter(Boolean).length+def.filter(Boolean).length}</span>}
-              </Link>
-            ))}
+          <nav className="nav" aria-label="Primary navigation">
+            {NAV_GROUPS.map(group=>{
+              const active=group.pages.includes(page)
+              return(
+                <div key={group.label} className={`nav-group${active?' nav-group-active':''}`}>
+                  <Link className="nav-link" to={group.route}>
+                    <span>{group.label}</span>
+                    {group.label==='Teams'&&selectedCount>0&&<span className="nav-count" aria-label={`${selectedCount} selected generals`}>{selectedCount}</span>}
+                    {group.items&&<UiIcon name="chevron" size={15}/>}
+                  </Link>
+                  {group.items&&(
+                    <div className="nav-menu">
+                      <div className="nav-menu-title">{group.label}</div>
+                      {group.items.map(item=>(
+                        <Link key={item.route} to={item.route} className={location.pathname.startsWith(item.route)?'is-current':''}>
+                          <span>{item.label}</span>
+                          <small>{item.note}</small>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
           </nav>
         </div>
       </header>
@@ -183,34 +244,47 @@ export default function App(){
         </Suspense>
       </div>
       <footer className="foot">
-        <div style={{marginTop:'.35rem'}}>Made by <strong>@ZiyadRed</strong> · Purgatory 復活 · Room 575</div>
-        <div style={{marginTop:'.2rem'}}>Special thanks <strong>@WiperLuffy</strong> · <a href="https://touranko.vercel.app" target="_blank" rel="noopener noreferrer" style={{color:'var(--txt3)',textDecoration:'underline'}}>touranko.vercel.app</a></div>
-        <div style={{marginTop:'.35rem',color:'var(--txt3)'}}>Unofficial fan site — not for commercial purposes.</div>
-        <div style={{marginTop:'.2rem',color:'var(--txt3)'}}>© Yasuhisa Hara / Shueisha・Kingdom Production Committee ©でらゲー</div>
-        <div style={{marginTop:'.2rem',color:'var(--txt3)'}}>非公式ファンサイト・営利目的ではありません。</div>
-        <div style={{marginTop:'.2rem',color:'var(--txt3)'}}>© 原泰久／集英社・キングダム製作委員会 ©でらゲー</div>
-        <div style={{marginTop:'.2rem'}}><a href="https://discord.gg/XeeuWs9G2K" target="_blank" rel="noopener noreferrer" style={{color:'var(--txt3)',textDecoration:'underline'}}>Join the Discord</a></div>
+        <div className="foot-inner">
+          <div className="foot-primary">
+            <span>Made by <strong>@ZiyadRed</strong> · Purgatory 復活 · Room 575</span>
+            <span>Special thanks <strong>@WiperLuffy</strong> · <a href="https://touranko.vercel.app" target="_blank" rel="noopener noreferrer">touranko.vercel.app</a></span>
+            <a className="foot-discord" href="https://discord.gg/XeeuWs9G2K" target="_blank" rel="noopener noreferrer">Join the Discord</a>
+          </div>
+          <div className="foot-legal">
+            <span>Unofficial fan site — not for commercial purposes.</span>
+            <span>© Yasuhisa Hara / Shueisha・Kingdom Production Committee ©でらゲー</span>
+            <span lang="ja">非公式ファンサイト・営利目的ではありません。 © 原泰久／集英社・キングダム製作委員会 ©でらゲー</span>
+          </div>
+        </div>
       </footer>
       <nav className="bottom-nav">
-        {PRIMARY_TABS.map(p=>(
-          <Link key={p} className={`bntab${page===p?' bntab-on':''}`} to={PAGE_TO_ROUTE[p]}>
-            <span className="bntab-icon"><PageIcon p={p}/></span>
-            {PAGE_SHORT[p]}
-          </Link>
-        ))}
-        <button type="button" className={`bntab${MORE_TABS.includes(page)?' bntab-on':''}`} aria-haspopup="true" aria-expanded={moreOpen} onClick={()=>setMoreOpen(true)}>
-          <span className="bntab-icon">{'⋯'}</span>
-          More
+        {MOBILE_TABS.map(tab=>{
+          const active=page===tab.page||(tab.page==='Party Builder'&&page==='Battle Order')
+          return(
+            <Link key={tab.label} className={`bntab${active?' bntab-on':''}`} to={tab.route}>
+              <span className="bntab-icon"><UiIcon name={tab.icon}/></span>
+              {tab.label}
+            </Link>
+          )
+        })}
+        <button type="button" className={`bntab${TOOL_PAGES.includes(page)?' bntab-on':''}`} aria-haspopup="dialog" aria-expanded={moreOpen} onClick={()=>setMoreOpen(true)}>
+          <span className="bntab-icon"><UiIcon name="tools"/></span>
+          Tools
         </button>
       </nav>
       {moreOpen&&(
         <div className="bn-sheet-overlay" onClick={()=>setMoreOpen(false)}>
-          <div className="bn-sheet" role="dialog" aria-modal="true" aria-label="More pages" onClick={e=>e.stopPropagation()}>
+          <div className="bn-sheet" role="dialog" aria-modal="true" aria-label="RanHQ tools" onClick={e=>e.stopPropagation()}>
             <div className="bn-sheet-grip"/>
-            {MORE_TABS.map(p=>(
-              <Link key={p} className={`bn-sheet-item${page===p?' bn-sheet-item-on':''}`} to={PAGE_TO_ROUTE[p]} onClick={()=>setMoreOpen(false)}>
-                <span className="bntab-icon"><PageIcon p={p}/></span>
-                <span>{p}</span>
+            <div className="bn-sheet-head">
+              <div><strong>Tools</strong><span>Track progress and calculate Castle War values.</span></div>
+              <button type="button" onClick={()=>setMoreOpen(false)} aria-label="Close tools">×</button>
+            </div>
+            {TOOL_LINKS.map(item=>(
+              <Link key={item.route} className={`bn-sheet-item${location.pathname.startsWith(item.route)?' bn-sheet-item-on':''}`} to={item.route} onClick={()=>setMoreOpen(false)}>
+                <span className="bn-sheet-item-icon"><UiIcon name="tools" size={18}/></span>
+                <span><strong>{item.label}</strong><small>{item.note}</small></span>
+                <UiIcon name="arrow" size={17}/>
               </Link>
             ))}
           </div>
@@ -222,15 +296,42 @@ export default function App(){
 
 // ── ARCHIVE ───────────────────────────────────────────────────────────────────
 function HomePage(){
-  const tools=[
-    {page:'Archive',title:'Archive',desc:'Browse character skills and CW scene-card references.'},
-    {page:'Guide',title:'Guide',desc:'Learn mechanics, status effects, terrain rules, targeting behavior, and matchups.'},
-    {page:'Party Builder',title:'Party Builder',desc:'Build attacking and defending formations, adjust unlocked skills, then open the battle order view.'},
-    {page:'Castle Points',title:'Castle Points',desc:'Project alliance ranking from large, medium, and small castle counts.'},
-    {page:'Buffs',title:'Buffs',desc:'Review buffs by unit type, source, and stat impact.'},
-    {page:'Tier List',title:'Metawatch',desc:'See current team tiers and strong Castle War formations.'},
-    {page:'Team Cost',title:'Team Cost',desc:'Calculate the red crystals needed for characters and teams.'},
-    {page:'CW Stats',title:'CW Stats Calculator',desc:'Calculate individual and team Castle War Power from your stats.'},
+  const lanes=[
+    {
+      icon:'archive',
+      title:'Find game information',
+      description:'Translated character skills and Castle War references in one searchable archive.',
+      links:[
+        {label:'Characters',route:'/archive/characters'},
+        {label:'CW6★ Scene Cards',route:'/archive/cw6-scene-cards'},
+      ],
+    },
+    {
+      icon:'teams',
+      title:'Build and compare teams',
+      description:'Start with current formations, adjust unlocked skills, and inspect the battle order.',
+      links:[
+        {label:'Party Builder',route:'/builder'},
+        {label:'Metawatch',route:'/tiers'},
+        {label:'Battle Order',route:'/sim'},
+      ],
+    },
+    {
+      icon:'tools',
+      title:'Track and calculate',
+      description:'Keep your owned buffs organized and plan the resources and power behind each team.',
+      links:[
+        {label:'Buff Tracker',route:'/buffs'},
+        {label:'Stats Calculator',route:'/cw-stats'},
+        {label:'Team Cost',route:'/cost'},
+        {label:'Castle Points',route:'/castle-points'},
+      ],
+    },
+  ]
+  const guideLinks=[
+    {label:'Castle War basics',route:'/guide/basics',image:'/guide/basics-map-en.webp'},
+    {label:'General roles',route:'/guide/roles',image:'/guide/roles-selection.webp'},
+    {label:'CW stats screen',route:'/guide/stats-screen',image:'/guide/cw-stats-screen.webp'},
   ]
   return(
     <main className="home-page">
@@ -242,33 +343,44 @@ function HomePage(){
           alt="" className="home-hero-img" width="1881" height="836" decoding="async"/>
         <div className="home-hero-shade"/>
         <div className="home-hero-content">
-          <div className="home-kicker">Kingdom Ran Castle War companion</div>
           <h1>RanHQ</h1>
-          <p>
-            RanHQ is a fan-made English project for Kingdom Ran's Castle War mode,
-            built to help players learn the mode, understand skills and buffs, and plan stronger strategies.
-          </p>
-          <p lang="ja">
-            キングダム乱（キンラン / キングダム 乱 -天下統一への道-）の同盟争覇戦・争覇戦向けに、
-            武将スキル、バフ、編成、攻略メモを英語で整理しています。
-          </p>
+          <p>Build stronger Castle War teams with translated skills, matchup knowledge, and practical planning tools.</p>
           <div className="home-actions">
             <Link className="home-primary" to="/archive">Open Archive</Link>
-            <Link className="home-secondary" to="/guide">Read Guide</Link>
+            <Link className="home-secondary" to="/builder">Build a Team</Link>
           </div>
         </div>
       </section>
 
       <section className="home-tools">
-        <div className="home-section-head">
-          <h2>Start Here</h2>
+        <div className="home-task-lanes">
+          {lanes.map((lane)=>(
+            <article key={lane.title} className="home-task-lane">
+              <div className="home-task-head">
+                <span className="home-task-icon"><UiIcon name={lane.icon} size={24}/></span>
+                <div><h3>{lane.title}</h3><p>{lane.description}</p></div>
+              </div>
+              <div className="home-task-links">
+                {lane.links.map(link=>(
+                  <Link key={link.route} to={link.route}><span>{link.label}</span><UiIcon name="arrow" size={17}/></Link>
+                ))}
+              </div>
+            </article>
+          ))}
         </div>
-        <div className="home-tool-grid">
-          {tools.map((tool,i)=>(
-            <Link key={tool.page} className={`home-tool-card${i<2?' home-tool-card-main':''}`} to={PAGE_TO_ROUTE[tool.page]}>
-              <span className="home-tool-index">{String(i+1).padStart(2,'0')}</span>
-              <strong>{tool.title}</strong>
-              <span>{tool.desc}</span>
+      </section>
+
+      <section className="home-guide-preview">
+        <div className="home-guide-copy">
+          <h2>Learn Castle War</h2>
+          <p>Use the field guide when you need mechanics, targeting rules, status effects, terrain, or matchup references.</p>
+          <Link to="/guide">Open the complete guide <UiIcon name="arrow" size={17}/></Link>
+        </div>
+        <div className="home-guide-list">
+          {guideLinks.map(item=>(
+            <Link key={item.route} to={item.route}>
+              <img src={item.image} alt="" loading="lazy" decoding="async"/>
+              <span>{item.label}</span>
             </Link>
           ))}
         </div>
