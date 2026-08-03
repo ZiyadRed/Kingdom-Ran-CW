@@ -344,7 +344,7 @@ function HomePage(){
         <div className="home-hero-shade"/>
         <div className="home-hero-content">
           <h1>RanHQ</h1>
-          <p>Build stronger Castle War teams with translated skills, matchup knowledge, and practical planning tools.</p>
+          <p>Your Castle War companion for team building, buffs, matchups, and everything CW related.</p>
           <div className="home-actions">
             <Link className="home-primary" to="/archive">Open Archive</Link>
             <Link className="home-secondary" to="/builder">Build a Team</Link>

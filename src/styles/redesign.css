@@ -908,12 +908,12 @@ textarea {
   .foot-discord { margin: 6px 0 0; justify-self: start; }
 
   .home-page { padding-bottom: 36px; }
-  .home-hero { display: grid; min-height: 315px; align-items: end; }
-  .home-hero-img { height: 315px; max-height: none; object-position: 61% center; }
-  .home-hero-shade { display: block; background: linear-gradient(0deg, rgba(3,17,34,.96) 0%, rgba(3,17,34,.72) 50%, rgba(3,17,34,.06) 100%); }
-  .home-hero-content { grid-area: 1 / 1; justify-content: flex-end; padding: 34px 18px 28px !important; background: transparent; color: #fff; }
-  .home-hero h1 { margin-bottom: 9px; color: #fff; font-size: 46px; text-shadow: 0 3px 18px rgba(0,0,0,.5); }
-  .home-hero p { max-width: 340px; margin-bottom: 17px; color: rgba(255,255,255,.9); font-size: 15px; line-height: 1.45; text-shadow: 0 2px 8px rgba(0,0,0,.62); }
+  .home-hero { display: flex; flex-direction: column; min-height: 0; align-items: stretch; background: var(--navy); }
+  .home-hero-img { width: 100%; height: auto; max-height: none; aspect-ratio: 1881 / 836; object-fit: contain; object-position: center; }
+  .home-hero-shade { display: none; }
+  .home-hero-content { grid-area: auto; justify-content: flex-start; padding: 18px 18px 22px !important; background: var(--navy); color: #fff; }
+  .home-hero h1 { margin-bottom: 6px; color: #fff; font-size: 40px; text-shadow: none; }
+  .home-hero p { max-width: 350px; margin-bottom: 15px; color: rgba(255,255,255,.88); font-size: 14px; line-height: 1.42; text-shadow: none; }
   .home-primary,
   .home-secondary { min-height: 44px !important; padding-inline: 15px; font-size: 13px; }
   .home-secondary { border-color: rgba(255,255,255,.36); background: rgba(6,38,76,.66); color: #fff; }
@@ -1122,8 +1122,8 @@ textarea {
 }
 
 @media (max-width: 420px) {
-  .home-hero { min-height: 300px; }
-  .home-hero-img { height: 300px; }
+  .home-hero { min-height: 0; }
+  .home-hero-img { height: auto; }
   .home-guide-preview { padding: 18px; }
   .home-guide-list a { grid-template-columns: 96px minmax(0, 1fr); }
   .guide-section-tabs-open { grid-template-columns: 1fr !important; }
