@@ -16,6 +16,7 @@ const staticRoutes = [
   ['/buffs', '0.8'],
   ['/tiers', '0.8'],
   ['/cost', '0.7'],
+  ['/cw-stats', '0.8'],
 ]
 
 const guideSections = [

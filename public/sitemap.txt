@@ -8,6 +8,7 @@ https://ranhq.vercel.app/castle-points
 https://ranhq.vercel.app/buffs
 https://ranhq.vercel.app/tiers
 https://ranhq.vercel.app/cost
+https://ranhq.vercel.app/cw-stats
 https://ranhq.vercel.app/guide/basics
 https://ranhq.vercel.app/guide/stats-screen
 https://ranhq.vercel.app/guide/stats

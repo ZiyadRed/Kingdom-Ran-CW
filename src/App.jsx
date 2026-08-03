@@ -18,14 +18,15 @@ const SimPage = lazy(() => import('./pages.jsx').then(m => ({ default: m.SimPage
 const BuffsPage = lazy(() => import('./pages.jsx').then(m => ({ default: m.BuffsPage })))
 const TierPage = lazy(() => import('./pages.jsx').then(m => ({ default: m.TierPage })))
 const TeamCostPage = lazy(() => import('./pages.jsx').then(m => ({ default: m.TeamCostPage })))
+const CWStatsPage = lazy(() => import('./cwstats.jsx').then(m => ({ default: m.CWStatsPage })))
 const CWGuidePage = lazy(() => import('./pages.jsx').then(m => ({ default: m.CWGuidePage })))
 const CastlePointsPage = lazy(() => import('./castlepoints.jsx'))
 
-const PAGES=['Home','Archive','Guide','Party Builder','Castle Points','Buffs','Tier List','Team Cost']
+const PAGES=['Home','Archive','Guide','Party Builder','Castle Points','Buffs','Tier List','Team Cost','CW Stats']
 // Mobile bottom-nav: show the five primary tools inline; the rest live in a
 // "More" sheet so the bar isn't cramped with seven equal-width tabs.
 const PRIMARY_TABS=['Archive','Guide','Party Builder','Buffs','Tier List']
-const MORE_TABS=['Home','Castle Points','Team Cost']
+const MORE_TABS=['Home','Castle Points','Team Cost','CW Stats']
 const PAGE_ICONS={
   'Home':'\u2302',
   'Archive':'\uD83D\uDC64',
@@ -35,9 +36,10 @@ const PAGE_ICONS={
   'Buffs':'\uD83D\uDCCA',
   'Tier List':'\uD83C\uDFC6',
   'Team Cost':{img:'/icons/Red_Crystal.webp'},
+  'CW Stats':'\u2696\uFE0F',
 }
-const PAGE_SHORT={'Home':'Home','Archive':'Archive','Guide':'Guide','Party Builder':'Builder','Castle Points':'Points','Buffs':'Buffs','Tier List':'Tiers','Team Cost':'Cost'}
-const PAGE_TO_ROUTE={'Home':'/','Archive':'/archive','Guide':'/guide','Party Builder':'/builder','Castle Points':'/castle-points','Buffs':'/buffs','Tier List':'/tiers','Team Cost':'/cost'}
+const PAGE_SHORT={'Home':'Home','Archive':'Archive','Guide':'Guide','Party Builder':'Builder','Castle Points':'Points','Buffs':'Buffs','Tier List':'Tiers','Team Cost':'Cost','CW Stats':'CW Stats'}
+const PAGE_TO_ROUTE={'Home':'/','Archive':'/archive','Guide':'/guide','Party Builder':'/builder','Castle Points':'/castle-points','Buffs':'/buffs','Tier List':'/tiers','Team Cost':'/cost','CW Stats':'/cw-stats'}
 function routeMatches(pathname,page){
   const r=PAGE_TO_ROUTE[page]
   if(pathname===r||pathname===r+'/') return true
@@ -62,6 +64,7 @@ function pageTitle(pathname){
   if(pathname.startsWith('/buffs')) return 'Buffs - RanHQ'
   if(pathname.startsWith('/tiers')) return 'Metawatch - Tier List - RanHQ'
   if(pathname.startsWith('/cost')) return 'Team Cost - RanHQ'
+  if(pathname.startsWith('/cw-stats')) return 'CW Stats Calculator - RanHQ'
   if(pathname.startsWith('/guide')) return 'Guide - RanHQ'
   return BASE_TITLE
 }
@@ -172,6 +175,7 @@ export default function App(){
           <Route path="/buffs" element={<BuffsPage/>}/>
           <Route path="/tiers" element={<TierPage/>}/>
           <Route path="/cost" element={<TeamCostPage/>}/>
+          <Route path="/cw-stats" element={<CWStatsPage/>}/>
           <Route path="/guide" element={<CWGuidePage/>}/>
           <Route path="/guide/:section" element={<CWGuidePage/>}/>
           <Route path="*" element={<Navigate to="/archive" replace/>}/>
@@ -226,6 +230,7 @@ function HomePage(){
     {page:'Buffs',title:'Buffs',desc:'Review buffs by unit type, source, and stat impact.'},
     {page:'Tier List',title:'Metawatch',desc:'See current team tiers and strong Castle War formations.'},
     {page:'Team Cost',title:'Team Cost',desc:'Calculate the red crystals needed for characters and teams.'},
+    {page:'CW Stats',title:'CW Stats Calculator',desc:'Calculate individual and team Castle War Power from your stats.'},
   ]
   return(
     <main className="home-page">
