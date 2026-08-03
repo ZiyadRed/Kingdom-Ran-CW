@@ -1127,8 +1127,26 @@ textarea {
   .home-guide-preview { padding: 18px; }
   .home-guide-list a { grid-template-columns: 96px minmax(0, 1fr); }
   .guide-section-tabs-open { grid-template-columns: 1fr !important; }
-  .meta-members { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; padding: 5px 3px 4px; }
-  .meta-member-img { width: 22px !important; height: 22px !important; }
+  .meta-members {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 6px 3px 5px;
+  }
+  .meta-member { flex: 0 0 clamp(27px, 7.7vw, 30px); }
+  .meta-member + .meta-member { margin-left: -6px; }
+  .meta-member-img {
+    width: clamp(27px, 7.7vw, 30px) !important;
+    height: clamp(27px, 7.7vw, 30px) !important;
+    aspect-ratio: 1;
+    box-sizing: border-box;
+    border: 2px solid var(--sur);
+    border-radius: 50% !important;
+    object-fit: cover;
+    object-position: center top;
+    box-shadow: 0 1px 4px rgba(6,38,76,.2);
+  }
   .meta-member-name { display: none; }
   .meta-card-head { min-height: 22px; padding: 3px 5px; }
   .meta-name { overflow: hidden; font-size: 9.5px; text-overflow: ellipsis; white-space: nowrap; }
