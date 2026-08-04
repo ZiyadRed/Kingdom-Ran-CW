@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import unitBuffs from '../data/cw_buffs.json'
 import teamBuffs from '../data/cw_team_buffs.json'
 import {
   META_TEAMS,
@@ -70,6 +71,23 @@ describe('redesign progress-storage contract', () => {
     expect(new Set(ids).size).toBe(2)
     expect(ids).toContain('state:Chu:Attack:Kyoubou:巨暴:5::kyoubou-attack-1')
     expect(ids).toContain('state:Chu:Attack:Kyoubou:巨暴:5:')
+  })
+
+  it('splits Nakon Defense into two independent 5% sources and migrates old ownership', () => {
+    const entries = unitBuffs.Cavalry.Defense.filter((entry) => entry.name === 'Nakon')
+    expect(entries).toHaveLength(2)
+    expect(entries.map((entry) => entry.value)).toEqual([5, 5])
+
+    const ids = entries.map((entry, index) => buffSourceId('unit', 'Cavalry', 'Defense', entry, index))
+    expect(new Set(ids).size).toBe(2)
+    expect(ids[0]).toContain(':nakon-defense-1')
+    expect(ids[1]).toContain(':nakon-defense-2')
+
+    const legacyId = `unit:Cavalry:Defense:${entries[0].name}:${entries[0].name_jp}:10:${entries[0].special_label}`
+    expect(normalizeProgress({ buffSources: { [legacyId]: true } }).buffSources).toEqual({
+      [ids[0]]: true,
+      [ids[1]]: true,
+    })
   })
 })
 

@@ -49,6 +49,7 @@ export const normalizeProgress=(raw={})=>{
       delete buffSources[key]
     }
   }
+  migrateNakonBuffOwnership(buffSources)
   return Object.fromEntries(Object.keys(base).map(k=>[k,k==='buffSources'?buffSources:{...(raw[k]||{})}]))
 }
 export const readProgress=()=>{
@@ -152,6 +153,20 @@ export const SceneStarControl=({star,onChange})=>(
 export const buffSourceId=(kind,key,stat,e,_i)=>{
   const base=`${kind}:${key}:${stat}:${e.name||''}:${e.name_jp||''}:${e.value||0}:${e.special_label||''}`
   return e.source_id?`${base}:${e.source_id}`:base
+}
+
+// Nakon was previously stored as one 10% source. Preserve that ownership by
+// marking both new 5% sources when an existing visitor has the old key.
+function migrateNakonBuffOwnership(buffSources){
+  const entries=(cwBuffsData.Cavalry?.Defense||[]).filter(e=>e.name==='Nakon')
+  if(entries.length!==2) return
+  const legacy=`unit:Cavalry:Defense:${entries[0].name}:${entries[0].name_jp}:10:${entries[0].special_label||''}`
+  if(!buffSources[legacy]) return
+  entries.forEach((entry,index)=>{
+    const id=buffSourceId('unit','Cavalry','Defense',entry,index)
+    if(!buffSources[id]) buffSources[id]=buffSources[legacy]
+  })
+  delete buffSources[legacy]
 }
 
 export const ALL = [

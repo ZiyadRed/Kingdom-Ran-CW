@@ -133,7 +133,19 @@
         "faction": "han",
         "type": "SR",
         "star6": false,
-        "value": 10.0,
+        "value": 5.0,
+        "source_id": "nakon-defense-1",
+        "special_icon": "/icons/Shard.webp",
+        "special_label": "Shard upgrade"
+      },
+      {
+        "name": "Nakon",
+        "name_jp": "奈棍",
+        "faction": "han",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0,
+        "source_id": "nakon-defense-2",
         "special_icon": "/icons/Shard.webp",
         "special_label": "Shard upgrade"
       },
