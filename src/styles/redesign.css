@@ -1176,6 +1176,250 @@ textarea {
   .foot-legal span:nth-child(2) { display: none; }
 }
 
+/* Stats Calculator readability: make supporting data easier to scan without
+   changing the calculator's values, structure, or saved-state behavior. */
+.cwstats-page-head p {
+  color: #314c68;
+  font-size: 16px;
+  font-weight: 550;
+  line-height: 1.55;
+}
+.cwstats-save-note {
+  color: #314c68;
+  font-size: 13px;
+  font-weight: 700;
+}
+.cwstats-team-title span {
+  color: #314c68;
+  font-size: 13px;
+  font-weight: 700;
+}
+.cwstats-team-total span {
+  color: #314c68;
+  font-size: 12px;
+  font-weight: 800;
+}
+.cwstats-team-total > small {
+  display: block;
+  margin-top: .3rem;
+  color: #314c68;
+  font-size: .76rem;
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: normal;
+}
+.cwstats-team-total > small .cwstats-power-delta {
+  display: block;
+  color: inherit;
+  font-size: 1rem;
+  font-weight: 900;
+}
+.cwstats-team-total > small .cwstats-power-delta-context {
+  display: block;
+  margin-top: .08rem;
+  color: inherit;
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .015em;
+}
+.cwstats-team-total > small.is-positive { color: #126239; }
+.cwstats-team-total > small.is-negative { color: #9b2d25; }
+.cwstats-roster-index {
+  color: #9a552c;
+  font-size: 11px;
+}
+.cwstats-roster-copy strong { font-size: 14px; }
+.cwstats-roster-copy small {
+  color: #314c68;
+  font-size: 12px;
+  font-weight: 750;
+}
+.cwstats-roster-power {
+  color: #173754;
+  font-size: 13px;
+}
+.cwstats-slot-identity strong { font-size: 1rem; }
+.cwstats-slot-identity span {
+  color: #314c68;
+  font-size: .78rem;
+  font-weight: 750;
+}
+.cwstats-slot-power > span {
+  color: #314c68;
+  font-size: .75rem;
+  font-weight: 800;
+}
+.cwstats-slot-power > small {
+  margin-top: .3rem;
+  font-size: .76rem;
+  line-height: 1.2;
+  white-space: normal;
+}
+.cwstats-slot-power > small .cwstats-power-delta {
+  display: block;
+  color: inherit;
+  font-size: 1rem;
+  font-weight: 900;
+}
+.cwstats-slot-power > small .cwstats-power-delta-context {
+  display: block;
+  margin-top: .08rem;
+  color: inherit;
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .015em;
+}
+.cwstats-slot-power > small.is-positive { color: #126239; }
+.cwstats-slot-power > small.is-negative { color: #9b2d25; }
+.cwstats-section-label > span {
+  color: #1e3b58;
+  font-size: .9rem;
+}
+.cwstats-section-label > small {
+  color: #314c68;
+  font-size: .76rem;
+  font-weight: 700;
+}
+.cwstats-subsection-label {
+  color: #314c68;
+  font-size: .8rem;
+  font-weight: 750;
+}
+.cwstats-input > span {
+  color: #314c68;
+  font-size: .78rem;
+  font-weight: 900;
+}
+.cwstats-input input {
+  min-height: 42px;
+  border-color: #ad9a7d;
+  color: #173754;
+  font-size: .95rem;
+}
+.cwstats-input input::placeholder {
+  color: #687483;
+  opacity: 1;
+}
+.cwstats-search-label {
+  color: #314c68;
+  font-size: .78rem;
+}
+.cwstats-search-input { font-size: .94rem; }
+.cwstats-action-button,
+.cwstats-clear-button,
+.cwstats-remove-team { font-size: .78rem; }
+
+/* Keep the calculator's supporting text dark enough to read without relying
+   on bright white text or low-contrast beige borders. */
+.cwstats-page,
+.cwstats-page button,
+.cwstats-page input { -webkit-font-smoothing: antialiased; }
+.cwstats-page h1,
+.cwstats-page h2,
+.cwstats-page strong { color: #173754; }
+.cwstats-team,
+.cwstats-slot-card { border-color: #ad9a7d; }
+.cwstats-team-head,
+.cwstats-slot-head,
+.cwstats-slot-foot { border-color: #b5a487; }
+.cwstats-team-head,
+.cwstats-slot-head { background: #f3ecdf; }
+.cwstats-roster-slot,
+.cwstats-roster .cwstats-empty-slot { border-color: #ad9a7d; }
+
+.cwstats-scene-card-buffs {
+  border-top: 1px solid #b5a487;
+  background: #fbf3e7;
+}
+.cwstats-scene-card-buffs summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: .75rem;
+  min-height: 48px;
+  padding: .7rem .75rem;
+  color: #6d461f;
+  cursor: pointer;
+  font-size: .9rem;
+  font-weight: 850;
+  list-style: none;
+}
+.cwstats-scene-card-buffs summary::-webkit-details-marker { display: none; }
+.cwstats-scene-card-buffs summary::before {
+  content: '+';
+  display: inline-grid;
+  flex: 0 0 auto;
+  width: 23px;
+  height: 23px;
+  place-items: center;
+  border: 1px solid #b6814d;
+  border-radius: 50%;
+  color: #8b5723;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.cwstats-scene-card-buffs summary > span { display: block; min-width: 0; }
+.cwstats-scene-card-buffs[open] summary::before { content: '−'; }
+.cwstats-scene-card-buffs summary:focus-visible {
+  outline: 3px solid rgba(224,127,72,.28);
+  outline-offset: -3px;
+}
+.cwstats-base-buff-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .55rem;
+  padding: 0 .75rem .85rem;
+}
+.cwstats-input-base input {
+  border-color: #b6814c;
+  background: #fff8ec;
+  color: #70471d;
+}
+.cwstats-input-base input:focus {
+  border-color: #8f5e2c;
+  box-shadow: 0 0 0 2px rgba(143,94,44,.16);
+}
+
+@media (max-width: 768px) {
+  .cwstats-page-head p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .cwstats-save-note { font-size: 12px; }
+  .cwstats-team-title span { font-size: 12px; }
+  .cwstats-team-total span { font-size: 11px; }
+  .cwstats-team-total > small { font-size: .7rem; }
+  .cwstats-team-total > small .cwstats-power-delta { font-size: .85rem; }
+  .cwstats-team-total > small .cwstats-power-delta-context { font-size: .68rem; }
+  .cwstats-roster-copy strong { font-size: 11.5px; }
+  .cwstats-roster-copy small {
+    display: block;
+    color: #314c68;
+    font-size: 10px;
+    line-height: 1.2;
+  }
+  .cwstats-roster-power { font-size: 11px; }
+  .cwstats-slot-identity strong { font-size: .9rem; }
+  .cwstats-slot-identity span { font-size: .72rem; }
+  .cwstats-slot-power > span { font-size: .68rem; }
+  .cwstats-slot-power > small { font-size: .7rem; }
+  .cwstats-slot-power > small .cwstats-power-delta { font-size: .85rem; }
+  .cwstats-slot-power > small .cwstats-power-delta-context { font-size: .68rem; }
+  .cwstats-section-label > span { font-size: .8rem; }
+  .cwstats-section-label > small { font-size: .7rem; }
+  .cwstats-subsection-label { font-size: .72rem; }
+  .cwstats-input > span { font-size: .72rem; }
+  .cwstats-input input { min-height: 40px; font-size: .9rem; }
+  .cwstats-search-label { font-size: .72rem; }
+  .cwstats-search-input { font-size: .9rem; }
+  .cwstats-action-button,
+  .cwstats-clear-button,
+  .cwstats-remove-team { font-size: .72rem; }
+  .cwstats-scene-card-buffs summary { min-height: 46px; padding: .65rem .65rem; font-size: .82rem; }
+  .cwstats-base-buff-grid { gap: .45rem; padding-inline: .65rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     scroll-behavior: auto !important;

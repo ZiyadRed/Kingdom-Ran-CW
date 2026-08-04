@@ -18,11 +18,13 @@ export const emptyCwCharacter = () => ({
   def: '',
   buffs: { hp: '', atk: '', def: '' },
   buffChanges: { hp: '', atk: '', def: '' },
+  baseBuffs: { hp: '', atk: '', def: '' },
 })
 
 const normalizeCwCharacter = (raw = {}) => {
   const buffs = raw.buffs || raw.pct || {}
   const buffChanges = raw.buffChanges || raw.changes || {}
+  const baseBuffs = raw.baseBuffs || raw.rawBuffs || raw.sceneCardBaseBuffs || {}
   return {
     hp: raw.hp ?? '',
     atkMin: raw.atkMin ?? '',
@@ -37,6 +39,11 @@ const normalizeCwCharacter = (raw = {}) => {
       hp: buffChanges.hp ?? '',
       atk: buffChanges.atk ?? '',
       def: buffChanges.def ?? '',
+    },
+    baseBuffs: {
+      hp: baseBuffs.hp ?? '',
+      atk: baseBuffs.atk ?? '',
+      def: baseBuffs.def ?? '',
     },
   }
 }
@@ -69,11 +76,13 @@ export const projectedCwStats = (stats = {}) => {
   Object.entries(CW_BUFF_FIELDS).forEach(([buffField, fields]) => {
     const currentBuff = numberOrZero(current.buffs[buffField])
     const change = numberOrZero(current.buffChanges[buffField])
+    const baseBuff = numberOrZero(current.baseBuffs[buffField])
     const currentFactor = percentFactor(currentBuff)
     const projectedFactor = percentFactor(currentBuff + change)
 
     fields.forEach((field) => {
-      projected[field] = Math.round(displayed[field] / currentFactor * projectedFactor)
+      const baseValue = displayed[field] / currentFactor
+      projected[field] = Math.round((baseValue + baseBuff) * projectedFactor)
     })
   })
 
@@ -143,9 +152,9 @@ function SearchIcon() {
   )
 }
 
-function StatInput({ label, value, onChange, buff = false, percentage = false }) {
+function StatInput({ label, value, onChange, buff = false, base = false, percentage = false }) {
   return (
-    <label className={`cwstats-input${buff ? ' cwstats-input-buff' : ''}${percentage && !buff ? ' cwstats-input-percent' : ''}`}>
+    <label className={`cwstats-input${buff ? ' cwstats-input-buff' : ''}${base ? ' cwstats-input-base' : ''}${percentage && !buff && !base ? ' cwstats-input-percent' : ''}`}>
       <span>{label}</span>
       <input
         type="number"
@@ -171,7 +180,7 @@ function EmptySlot({ slotIndex, onSelect }) {
   )
 }
 
-function CharacterSlot({ character, slotIndex, values, onChange, onChangeBaseBuff, onChangeBuff, onChangeCharacter, onRemove }) {
+function CharacterSlot({ character, slotIndex, values, onChange, onChangeBaseBuff, onChangeBuff, onChangeSceneCardBuff, onChangeCharacter, onRemove }) {
   const currentStats = displayedCwStats(values)
   const projected = projectedCwStats(values)
   const currentPower = calculateCwPower(currentStats)
@@ -192,7 +201,12 @@ function CharacterSlot({ character, slotIndex, values, onChange, onChangeBaseBuf
           <span>CW power after buffs</span>
           <strong>{formatPower(power)}</strong>
           <small className={powerChange > 0 ? 'is-positive' : powerChange < 0 ? 'is-negative' : ''}>
-            {powerChange === 0 ? 'No change' : `${powerChange > 0 ? '+' : ''}${formatPower(powerChange)} vs current`}
+            {powerChange === 0 ? 'No change' : (
+              <>
+                <span className="cwstats-power-delta">{powerChange > 0 ? '+' : ''}{formatPower(powerChange)}</span>
+                <span className="cwstats-power-delta-context">vs current</span>
+              </>
+            )}
           </small>
         </div>
       </header>
@@ -222,7 +236,6 @@ function CharacterSlot({ character, slotIndex, values, onChange, onChangeBaseBuf
         <div className="cwstats-buff-section">
           <div className="cwstats-section-label cwstats-section-label-buff">
             <span>Buffs to add</span>
-            <small>Enter 5 for 5%</small>
           </div>
           <div className="cwstats-buff-grid">
             <StatInput label="HP%" buff percentage value={values.buffChanges.hp} onChange={(value) => onChangeBuff('hp', value)} />
@@ -230,6 +243,16 @@ function CharacterSlot({ character, slotIndex, values, onChange, onChangeBaseBuf
             <StatInput label="Defense%" buff percentage value={values.buffChanges.def} onChange={(value) => onChangeBuff('def', value)} />
           </div>
         </div>
+        <details className="cwstats-scene-card-buffs">
+          <summary>
+            <span>Scene Card base buffs</span>
+          </summary>
+          <div className="cwstats-base-buff-grid">
+            <StatInput label="HP" base value={values.baseBuffs.hp} onChange={(value) => onChangeSceneCardBuff('hp', value)} />
+            <StatInput label="Attack" base value={values.baseBuffs.atk} onChange={(value) => onChangeSceneCardBuff('atk', value)} />
+            <StatInput label="Defense" base value={values.baseBuffs.def} onChange={(value) => onChangeSceneCardBuff('def', value)} />
+          </div>
+        </details>
       </div>
 
       <footer className="cwstats-slot-foot">
@@ -312,9 +335,11 @@ function CharacterSearch({ team, teamIndex, query, open, activeSlot, inputRef, o
   )
 }
 
-function TeamSection({ team, teamIndex, characters, query, open, activeSlot, editingSlot, inputRef, onSearchFocus, onQueryChange, onSelectCharacter, onSelectSlot, onEditSlot, onChangeStat, onChangeBaseBuff, onChangeBuff, onRemoveCharacter, onRemoveTeam }) {
+function TeamSection({ team, teamIndex, characters, query, open, activeSlot, editingSlot, inputRef, onSearchFocus, onQueryChange, onSelectCharacter, onSelectSlot, onEditSlot, onChangeStat, onChangeBaseBuff, onChangeBuff, onChangeSceneCardBuff, onRemoveCharacter, onRemoveTeam }) {
   const filled = team.filter(Boolean).length
+  const currentTotal = team.reduce((sum, id) => sum + (id ? calculateCwPower(displayedCwStats(characters[id])) : 0), 0)
   const total = team.reduce((sum, id) => sum + (id ? calculateCwPower(projectedCwStats(characters[id])) : 0), 0)
+  const powerChange = total - currentTotal
   const editingIndex = editingSlot?.teamIndex === teamIndex ? editingSlot.slotIndex : null
   const editingId = editingIndex === null ? null : team[editingIndex]
 
@@ -331,8 +356,16 @@ function TeamSection({ team, teamIndex, characters, query, open, activeSlot, edi
           )}
         </div>
         <div className="cwstats-team-total">
-          <span>Team power</span>
+          <span>Team power after buffs</span>
           <strong>{formatPower(total)}</strong>
+          <small className={powerChange > 0 ? 'is-positive' : powerChange < 0 ? 'is-negative' : ''}>
+            {powerChange === 0 ? 'No change' : (
+              <>
+                <span className="cwstats-power-delta">{powerChange > 0 ? '+' : ''}{formatPower(powerChange)}</span>
+                <span className="cwstats-power-delta-context">vs current</span>
+              </>
+            )}
+          </small>
         </div>
       </header>
 
@@ -391,6 +424,7 @@ function TeamSection({ team, teamIndex, characters, query, open, activeSlot, edi
             onChange={(field, value) => onChangeStat(editingId, field, value)}
             onChangeBaseBuff={(field, value) => onChangeBaseBuff(editingId, field, value)}
             onChangeBuff={(field, value) => onChangeBuff(editingId, field, value)}
+            onChangeSceneCardBuff={(field, value) => onChangeSceneCardBuff(editingId, field, value)}
             onChangeCharacter={() => onSelectSlot(teamIndex, editingIndex)}
             onRemove={() => onRemoveCharacter(teamIndex, editingIndex)}
           />
@@ -496,6 +530,19 @@ export function CWStatsPage() {
     })
   }
 
+  const updateSceneCardBaseBuff = (characterId, buffField, value) => {
+    setState((previous) => {
+      const current = previous.characters[characterId] || emptyCwCharacter()
+      return {
+        ...previous,
+        characters: {
+          ...previous.characters,
+          [characterId]: { ...current, baseBuffs: { ...current.baseBuffs, [buffField]: value } },
+        },
+      }
+    })
+  }
+
   const selectCharacter = (teamIndex, character) => {
     const team = state.teams[teamIndex] || Array(CW_STATS_SLOTS).fill(null)
     const requestedSlot = activeSlot?.teamIndex === teamIndex ? activeSlot.slotIndex : team.findIndex((id) => !id)
@@ -573,7 +620,7 @@ export function CWStatsPage() {
       <header className="cwstats-page-head">
         <div>
           <h1>Stats Calculator</h1>
-          <p>Enter the values shown on the CW screen, including active buffs, then add new buffs to see the updated power.</p>
+          <p>Enter the CW screen values, including active buffs. Add percentage buffs or Scene Card base buffs to preview the updated power.</p>
         </div>
         <div className="cwstats-page-actions">
           <span className="cwstats-save-note">Saved automatically</span>
@@ -605,6 +652,7 @@ export function CWStatsPage() {
             onChangeStat={updateCharacter}
             onChangeBaseBuff={updateBaseBuff}
             onChangeBuff={updateBuffChange}
+            onChangeSceneCardBuff={updateSceneCardBaseBuff}
             onRemoveCharacter={removeCharacter}
             onRemoveTeam={() => removeTeam(teamIndex)}
           />

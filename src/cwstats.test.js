@@ -49,6 +49,22 @@ describe('CW Stats calculator formula', () => {
     expect(projectedCwStats(stats)).toEqual({ hp: 1045, atkMin: 109, atkMax: 218, def: 300 })
   })
 
+  it('adds Scene Card base buffs before applying the percentage multiplier', () => {
+    const stats = {
+      hp: 271383,
+      atkMin: 49087,
+      atkMax: 51671,
+      def: 19972,
+      buffs: { hp: 684.7, atk: 251.7, def: 234.2 },
+      buffChanges: { hp: 0, atk: 0, def: 0 },
+      baseBuffs: { hp: 1983, atk: 0, def: 0 },
+    }
+    expect(projectedCwStats(stats)).toEqual({ hp: 286944, atkMin: 49087, atkMax: 51671, def: 19972 })
+    expect(projectedCwStats({ ...stats, buffChanges: { hp: 5, atk: 0, def: 0 } }).hp).toBe(288772)
+    expect(projectedCwStats({ hp: 1000, atkMin: 100, atkMax: 200, def: 300, baseBuffs: { hp: 10, atk: 10, def: 20 } }))
+      .toEqual({ hp: 1010, atkMin: 110, atkMax: 210, def: 320 })
+  })
+
   it('treats blank or non-numeric inputs as zero without producing NaN', () => {
     expect(calculateCwPower({ hp: '', atkMin: 'not a number', atkMax: '', def: '' })).toBe(0)
   })
@@ -86,6 +102,18 @@ describe('CW Stats calculator saved state', () => {
       def: '',
       buffs: { hp: '', atk: 5, def: '' },
       buffChanges: { hp: '', atk: '', def: '' },
+      baseBuffs: { hp: '', atk: '', def: '' },
     })
+  })
+
+  it('preserves saved Scene Card base buffs and defaults missing values safely', () => {
+    const normalized = normalizeCwStatsState({
+      characters: {
+        shin: { baseBuffs: { hp: 1983, def: 20 } },
+        ouki: { rawBuffs: { atk: 12 } },
+      },
+    })
+    expect(normalized.characters.shin.baseBuffs).toEqual({ hp: 1983, atk: '', def: 20 })
+    expect(normalized.characters.ouki.baseBuffs).toEqual({ hp: '', atk: 12, def: '' })
   })
 })
