@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { ALL, CharIcon } from './core.jsx'
+import { ALL, CharIcon, RARITY_DATA } from './core.jsx'
 
 export const CW_STATS_STORAGE_KEY = 'ranhq-cw-stats-v1'
 export const CW_POWER_WEIGHTS = { hp: 0.2, atk: 0.64102, def: 1 }
@@ -138,8 +138,18 @@ const readStoredCwStats = () => {
 
 const formatNumber = (value) => Math.round(numberOrZero(value)).toLocaleString('en-US')
 const formatPower = (value) => formatNumber(value)
-const characterById = Object.fromEntries(ALL.map((character) => [character.id, character]))
+// Team Cost's rarity file is the authoritative assignment for calculator labels.
+// The general archive data contains historical/raw rarity values for some units.
+export const cwStatsCharacterRarity = (character = {}) => (
+  RARITY_DATA[character.name_en]?.rarity || character.rarity || '—'
+)
+
+const characterById = Object.fromEntries(ALL.map((character) => [
+  character.id,
+  { ...character, rarity: cwStatsCharacterRarity(character) },
+]))
 const characterList = ALL
+  .map((character) => ({ ...character, rarity: cwStatsCharacterRarity(character) }))
   .filter((character) => character?.id && character?.name_en)
   .sort((a, b) => a.name_en.localeCompare(b.name_en))
 

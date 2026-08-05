@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import {
   calculateCwPower,
+  cwStatsCharacterRarity,
   createDefaultCwStatsState,
   displayedCwStats,
   normalizeCwStatsState,
@@ -67,6 +68,13 @@ describe('CW Stats calculator formula', () => {
 
   it('treats blank or non-numeric inputs as zero without producing NaN', () => {
     expect(calculateCwPower({ hp: '', atkMin: 'not a number', atkMax: '', def: '' })).toBe(0)
+  })
+})
+
+describe('CW Stats calculator rarity labels', () => {
+  it('uses the Team Cost assignments instead of raw archive rarity values', () => {
+    expect(cwStatsCharacterRarity({ name_en: 'Ouhon', rarity: 'UR' })).toBe('SR')
+    expect(cwStatsCharacterRarity({ name_en: 'Kanjou', rarity: 'SR' })).toBe('UR')
   })
 })
 
