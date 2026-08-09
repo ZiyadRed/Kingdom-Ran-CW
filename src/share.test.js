@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { formatCharacterSkillsShare, formatTeamBuffShare, limitDiscordMessage } from './share.js'
+import { formatCharacterSkillsShare, formatSceneCardShare, formatTeamBuffShare, limitDiscordMessage } from './share.js'
 
 describe('Discord share formatting', () => {
   it('formats character skills with condition labels instead of IF text', () => {
@@ -41,6 +41,25 @@ describe('Discord share formatting', () => {
     expect(text).toContain('Team: 1. A / 2. B')
     expect(text).toContain('- A: ATK +30%, Guard 60x')
     expect(text).toContain('- Enemy debuff on Enemy Cavalry: ATK -20%')
+  })
+
+  it('formats CW6 scene cards with the archive link and skill effects', () => {
+    const text=formatSceneCardShare({
+      ownerName:'Rien',
+      skill_en:'Building a Strong Nation',
+      skill_jp:'強国構築☆6',
+      skill:{
+        name_en:'Building a Strong Nation',
+        name_jp:'強国構築☆6',
+        type:'Strategy',
+        star6:true,
+        effects:[{target:'Self',effect:'ATK Up 30%',duration:null}],
+      },
+    })
+    expect(text).toContain('**RanHQ CW6 Scene Card: Building a Strong Nation**')
+    expect(text).toContain('Rien - Strategy - 6-star')
+    expect(text).toContain('<https://ranhq.vercel.app/archive/cw6-scene-cards>')
+    expect(text).toContain('- Self -> ATK Up 30%')
   })
 
   it('keeps truncated messages within the configured limit and preserves the link', () => {

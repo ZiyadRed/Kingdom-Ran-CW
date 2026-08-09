@@ -1361,6 +1361,116 @@
       },
       "thumb": "/scene_cards/thumbs/Tairoji-CW6-star-thumb.webp",
       "name_en": "Tairoji CW6 star"
+    },
+    {
+      "id": 42002,
+      "imageId": 12002,
+      "name_jp": "世が知らぬ傑物",
+      "skill_en": "Generational Shift",
+      "skill_jp": "世代の転換",
+      "image": "/scene_cards/webp/Gohoumei-CW6-star.webp",
+      "owner_id": "gohoumei",
+      "ownerName": "Gohoumei",
+      "ownerNameJp": "呉鳳明",
+      "ownerIcon": "/icons/Gohoumei.webp",
+      "skill": {
+        "name_en": "Generational Shift",
+        "name_jp": "世代の転換☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Wei]",
+            "effect": "Max HP Up 50%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Cavalry]",
+            "effect": "Max HP Up 50%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "ATK Up, DEF Up, Hit Rate Up 15%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Wei]",
+            "effect": "ATK Up, DEF Up, Hit Rate Up 15%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Cavalry]",
+            "effect": "ATK Up, DEF Up, Hit Rate Up 15%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Evasion (Dodge Chance) 40%",
+            "duration": null
+          }
+        ]
+      },
+      "thumb": "/scene_cards/thumbs/Gohoumei-CW6-star-thumb.webp",
+      "name_en": "Gohoumei CW6 star"
+    },
+    {
+      "id": 42008,
+      "imageId": 12008,
+      "name_jp": "丞相就任要請",
+      "skill_en": "Building a Strong Nation",
+      "skill_jp": "強国構築",
+      "image": "/scene_cards/webp/Rien-CW6-star.webp",
+      "owner_id": "rien",
+      "ownerName": "Rien",
+      "ownerNameJp": "李園",
+      "ownerIcon": "/icons/Rien.webp",
+      "skill": {
+        "name_en": "Building a Strong Nation",
+        "name_jp": "強国構築☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "ATK Up, DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Qin]",
+            "effect": "Evasion (Dodge Chance) Down 40%",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Enemy [Cavalry]",
+            "effect": "ATK Down 20%",
+            "duration": null
+          }
+        ]
+      },
+      "thumb": "/scene_cards/thumbs/Rien-CW6-star-thumb.webp",
+      "name_en": "Rien CW6 star"
     }
   ]
 }

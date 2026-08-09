@@ -223,6 +223,38 @@
             "duration": "2 turns"
           }
         ]
+      },
+      {
+        "name_en": "Building a Strong Nation",
+        "name_jp": "強国構築☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "ATK Up, DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Qin]",
+            "effect": "Evasion (Dodge Chance) Down 40%",
+            "duration": null
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Enemy [Cavalry]",
+            "effect": "ATK Down 20%",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "/persos/rien.webp",

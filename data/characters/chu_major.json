@@ -719,6 +719,56 @@
             "duration": "3 turns"
           }
         ]
+      },
+      {
+        "name_en": "Generational Shift",
+        "name_jp": "世代の転換☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Max HP Up 100%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Wei]",
+            "effect": "Max HP Up 50%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Cavalry]",
+            "effect": "Max HP Up 50%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "ATK Up, DEF Up, Hit Rate Up 15%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Wei]",
+            "effect": "ATK Up, DEF Up, Hit Rate Up 15%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Cavalry]",
+            "effect": "ATK Up, DEF Up, Hit Rate Up 15%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Evasion (Dodge Chance) 40%",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "/persos/gohoumei.webp",

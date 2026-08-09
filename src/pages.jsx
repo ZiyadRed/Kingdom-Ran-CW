@@ -12,7 +12,7 @@ import {
 } from './core.jsx'
 import { setSeo } from './seo.js'
 import { classifyConditionParts } from './skillConditions.js'
-import { createCharacterSkillsImage, createTeamSkillsImage, downloadBlob, formatCharacterSkillsShare, formatTeamBuffShare, shareImageBlob, shareText } from './share.js'
+import { characterShareUrl, createCharacterSkillsImage, createTeamSkillsImage, downloadBlob, formatCharacterSkillsShare, formatSceneCardShare, formatTeamBuffShare, sceneCardShareUrl, shareImageBlob, shareText } from './share.js'
 
 export function ArchiveTabs({active}){
   const navigate=useNavigate()
@@ -196,6 +196,24 @@ export function CW6SceneCardsPage(){
                   <span>{selected.ownerName}</span>
                 </div>
               )}
+            </div>
+            <div className="detail-actions">
+              <ShareButton
+                title={`${selected.skill_en||sceneCardFileName(selected)} - RanHQ`}
+                getText={()=>formatSceneCardShare(selected)}
+              />
+              <SkillImageButton
+                character={{
+                  ...selected,
+                  name_en:selected.ownerName||selected.skill_en||sceneCardFileName(selected),
+                  name_jp:selected.ownerNameJp||selected.skill_jp,
+                  icon:selected.ownerIcon,
+                  unit_type:'CW6 Scene Card',
+                  skills:selected.skill?[selected.skill]:[],
+                }}
+                url={sceneCardShareUrl()}
+                label="CW6 scene card"
+              />
             </div>
             <button className="detail-close" onClick={clearSelection}>{'\u00d7'}</button>
           </div>
@@ -434,9 +452,10 @@ export function ShareButton({title,getText,label='Share',className=''}) {
   )
 }
 
-export function SkillImageButton({character}){
+export function SkillImageButton({character,url=characterShareUrl(character),label='skills'}){
   const[status,setStatus]=useState('idle')
   const[preview,setPreview]=useState(null)
+  const imageTitle=`${character.name_en} ${label}`
   useEffect(()=>()=>{if(preview?.url) URL.revokeObjectURL(preview.url)},[preview?.url])
   const clearPreview=()=>{
     setPreview(prev=>{
@@ -458,9 +477,9 @@ export function SkillImageButton({character}){
   const makeImage=async()=>{
     try{
       setStatus('making')
-      const rendered=await createCharacterSkillsImage(character)
+      const rendered=await createCharacterSkillsImage(character,{url})
       showRendered(rendered)
-      const result=await shareImageBlob(rendered.blob,rendered.fileName,`${character.name_en} skills - RanHQ`)
+      const result=await shareImageBlob(rendered.blob,rendered.fileName,`${imageTitle} - RanHQ`)
       if(result==='cancelled'){setStatus('idle');return}
       setTimedStatus(result==='shared'?'shared':result==='copied'?'image-copied':'preview')
     }catch{
@@ -470,7 +489,7 @@ export function SkillImageButton({character}){
   const copyPreview=async()=>{
     if(!preview) return
     try{
-      const result=await shareImageBlob(preview.blob,preview.fileName,`${character.name_en} skills - RanHQ`)
+      const result=await shareImageBlob(preview.blob,preview.fileName,`${imageTitle} - RanHQ`)
       if(result==='cancelled') return
       setTimedStatus(result==='shared'?'shared':result==='copied'?'image-copied':'preview')
     }catch{
@@ -491,17 +510,17 @@ export function SkillImageButton({character}){
         {text}
       </button>
       {preview&&(
-        <div className="share-preview-backdrop" role="dialog" aria-modal="true" aria-label={`${character.name_en} skill image preview`} onClick={clearPreview}>
+        <div className="share-preview-backdrop" role="dialog" aria-modal="true" aria-label={`${imageTitle} preview`} onClick={clearPreview}>
           <div className="share-preview" onClick={e=>e.stopPropagation()}>
             <div className="share-preview-head">
               <div>
-                <strong>{character.name_en} skill image</strong>
+                <strong>{imageTitle} image</strong>
                 <span>Paste into Discord after copying, or download the PNG.</span>
               </div>
               <button type="button" className="share-preview-close" onClick={clearPreview}>Close</button>
             </div>
             <div className="share-preview-img-wrap">
-              <img src={preview.url} alt={`${character.name_en} skill share preview`}/>
+              <img src={preview.url} alt={`${imageTitle} share preview`}/>
             </div>
             <div className="share-preview-actions">
               <button type="button" className="share-btn" onClick={copyPreview}>Copy image</button>
@@ -1254,15 +1273,17 @@ export const ARMY_ICON_CHAR = {'Gyokuhou Squad':'Ouhon','Hishin Unit':'Shin','Ka
 export const WOGG_BUFF_NAME = 'Way of The Great General'
 export const WOGG_BUFF_DESCRIPTION = 'These buffs unlock from the second page of WoGG.'
 export const WOGG_BUFF_SOURCES = [
-  {name:'Bajio',icon:'/icons/Bajio.webp'},
-  {name:'Gakuki',icon:'/icons/Gakuki.webp'},
-  {name:'Houken',icon:'/icons/Houken.webp'},
-  {name:'Denyuu',icon:'/icons/Denyuu.webp'},
-  {name:'Ryuusen',icon:'/icons/Ryuusen.webp'},
-  {name:'Banyu',icon:'/icons/Banyou.webp'},
-  {name:'Kuzen',icon:'/icons/Kuzen.webp'},
-  {name:'Chousou',icon:'/icons/Chousou.webp'},
-  {name:'Shoumou',icon:'/icons/Shoumou.webp'},
+  {name:'Bajio',icon:'/icons/Bajio.webp',tier:'A'},
+  {name:'Gakuki',icon:'/icons/Gakuki.webp',tier:'A'},
+  {name:'Houken',icon:'/icons/Houken.webp',tier:'A'},
+  {name:'Denyuu',icon:'/icons/Denyuu.webp',tier:'B'},
+  {name:'Ryuusen',icon:'/icons/Ryuusen.webp',tier:'B'},
+  {name:'Banyu',icon:'/icons/Banyou.webp',tier:'B'},
+  {name:'Kuzen',icon:'/icons/Kuzen.webp',tier:'B'},
+  {name:'Chousou',icon:'/icons/Chousou.webp',tier:'B'},
+  {name:'Shoumou',icon:'/icons/Shoumou.webp',tier:'B'},
+  {name:'Kousonryu',icon:'/icons/Kousonryu.webp',tier:'B'},
+  {name:'Mangoku',icon:'/icons/Mangoku.webp',tier:'B'},
 ]
 
 export const UNIT_ICON_SCALE={Infantry:1.18,Cavalry:1.18,Archer:1,Shield:1}
@@ -1371,9 +1392,10 @@ export function BuffsPage(){
       </div>
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(112px,1fr))',gap:'10px'}}>
         {WOGG_BUFF_SOURCES.map(source=>(
-          <div key={source.name} style={{display:'flex',flexDirection:'column',alignItems:'center',gap:'8px',padding:'12px 8px',borderRadius:'12px',background:'var(--sur)',border:'1px solid var(--bdr)'}}>
+          <div key={source.name} style={{display:'flex',flexDirection:'column',alignItems:'center',gap:'6px',padding:'12px 8px',borderRadius:'12px',background:'var(--sur)',border:'1px solid var(--bdr)'}}>
             <img src={source.icon} alt={source.name} title={source.name} loading="lazy" decoding="async" style={{width:64,height:64,borderRadius:'50%',objectFit:'cover',objectPosition:'center top',border:'2px solid #d6a63466',background:'#d6a63418'}}/>
             <span style={{fontWeight:800,fontSize:'.78rem',color:'var(--txt)',textAlign:'center'}}>{source.name}</span>
+            <span aria-label={`Tier ${source.tier}`} style={{fontWeight:900,fontSize:'.72rem',lineHeight:1,color:'#b88b2c',letterSpacing:'.08em'}}>{source.tier}</span>
           </div>
         ))}
       </div>

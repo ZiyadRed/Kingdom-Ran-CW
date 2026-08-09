@@ -42,6 +42,10 @@ export function builderShareUrl(){
   return absoluteUrl('/builder')
 }
 
+export function sceneCardShareUrl(){
+  return absoluteUrl('/archive/cw6-scene-cards')
+}
+
 export async function createCharacterSkillsImage(character,{url=characterShareUrl(character)}={}){
   if(typeof document==='undefined') throw new Error('Image rendering requires a browser.')
   const measureCanvas=document.createElement('canvas')
@@ -142,6 +146,25 @@ export function formatCharacterSkillsShare(character,{url=characterShareUrl(char
     })
   }
 
+  return limitDiscordMessage(lines.join('\n').trim(),url,maxLength)
+}
+
+export function formatSceneCardShare(card,{url=sceneCardShareUrl(),maxLength=DISCORD_MESSAGE_LIMIT}={}){
+  const skill=card?.skill||{}
+  const skillName=skill.name_en||card?.skill_en||'Unnamed skill'
+  const skillJp=skill.name_jp||card?.skill_jp
+  const details=[card?.ownerName,skill.type,skill.star6&&'6-star'].filter(Boolean).join(' - ')
+  const lines=[
+    `**RanHQ CW6 Scene Card: ${skillName}**`,
+    details,
+    `<${url}>`,
+    '',
+    `**${skillName}**`,
+  ]
+  if(skillJp) lines.push(`_${skillJp}_`)
+  const effects=skill.effects||[]
+  if(!effects.length) lines.push('- No translated effects yet.')
+  effects.forEach(effect=>lines.push(`- ${formatEffectForShare(effect)}`))
   return limitDiscordMessage(lines.join('\n').trim(),url,maxLength)
 }
 
