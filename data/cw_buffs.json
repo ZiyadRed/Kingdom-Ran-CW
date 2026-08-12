@@ -764,6 +764,14 @@
         "type": "SR",
         "star6": false,
         "value": 5.0
+      },
+      {
+        "name": "Heirai",
+        "name_jp": "平来",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0
       }
     ]
   },

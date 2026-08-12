@@ -254,6 +254,11 @@
                    "faction":  "Qin",
                    "name_jp":  "沛浪"
                },
+    "Heirai":  {
+                   "rarity":  "SR",
+                   "faction":  "Qin",
+                   "name_jp":  "平来"
+               },
     "Hakuki":  {
                    "rarity":  "UR",
                    "faction":  "Qin",
@@ -389,6 +394,11 @@
                    "faction":  "Qin",
                    "name_jp":  "関常"
                },
+    "Kanto":  {
+                  "rarity":  "SR",
+                  "faction":  "Qin",
+                  "name_jp":  "干斗"
+              },
     "Kanki":  {
                   "rarity":  "UR",
                   "faction":  "Qin",

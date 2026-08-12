@@ -1841,5 +1841,135 @@
     ],
     "image": "/persos/tonkoku.png",
     "icon": "/icons/Tonkoku.png"
+  },
+  {
+    "id": "kanto",
+    "name_en": "Kanto",
+    "name_jp": "干斗",
+    "country": "qin",
+    "unit": "Hi Shin Unit",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Purple Sheep]",
+        "name_jp": "重追撃【紫羊】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "When ally Heirai is alive",
+            "target": "Ally Hi Shin Unit [General]",
+            "effect": "DEF Up 20%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
+            "effect": "150% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Longing for the Unit",
+        "name_jp": "隊への憧憬",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Hi Shin Unit [General]",
+            "effect": "Attack Down Resistance Up 40%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Survival Focus [Kanto]",
+        "name_jp": "生存集中【干斗】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "When ally Heirai is alive",
+            "target": "Ally Hi Shin Unit [General]",
+            "effect": "DEF Up 40%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Enemy [General] earliest in formation order",
+            "target": "1 enemy [General]",
+            "effect": "170% Damage",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "icon": "/icons/Kanto.png"
+  },
+  {
+    "id": "heirai",
+    "name_en": "Heirai",
+    "name_jp": "平来",
+    "country": "qin",
+    "unit": "Hi Shin Unit",
+    "rarity": "SR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Purple Elephant]",
+        "name_jp": "重追撃【紫象】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "When ally Kanto is alive",
+            "target": "1 enemy [General] with lowest remaining HP",
+            "effect": "100% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "New Recruit's Resolve",
+        "name_jp": "新兵の覚悟",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Hi Shin Unit [General]",
+            "effect": "Hit Rate Up 40%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Survival Focus [Heirai]",
+        "name_jp": "生存集中【平来】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy [General] earliest in formation order",
+            "target": "1 enemy [General]",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": "When ally Kanto is alive",
+            "target": "1 enemy [General] earliest in formation order",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Hi Shin Unit [General]",
+            "effect": "Continuous HP Recovery 10%",
+            "duration": "4 turns"
+          }
+        ]
+      }
+    ],
+    "icon": "/icons/Heirai.png"
   }
 ]

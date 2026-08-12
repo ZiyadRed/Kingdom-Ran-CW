@@ -524,6 +524,13 @@
           "value": 5.0
         },
         {
+          "name": "Kanto",
+          "name_jp": "干斗",
+          "faction": "qin",
+          "type": "SR",
+          "value": 5.0
+        },
+        {
           "name": "Robin",
           "name_jp": "呂敏",
           "faction": "qin",
