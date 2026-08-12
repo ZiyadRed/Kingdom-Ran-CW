@@ -1849,6 +1849,7 @@
     "country": "qin",
     "unit": "Hi Shin Unit",
     "rarity": "SR",
+    "image": "/persos/kanto.jpg",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Purple Sheep]",
@@ -1911,6 +1912,7 @@
     "country": "qin",
     "unit": "Hi Shin Unit",
     "rarity": "SR",
+    "image": "/persos/heirai.jpg",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Purple Elephant]",
