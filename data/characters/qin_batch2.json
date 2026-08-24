@@ -138,18 +138,24 @@
           },
           {
             "condition": null,
-            "target": "Self, Ally [?], Ally [?]",
+            "target": "Self, Ally Soujin, Ally Soutan",
             "effect": "Betrayal Resistance 100%",
             "duration": null
           },
           {
-            "condition": "When ally [?] is alive",
+            "condition": "When ally Soujin is alive",
             "target": "Self",
-            "effect": "Critical Rate Up 30%, Critical Damage Up 30%",
+            "effect": "Critical Rate Up 30%",
             "duration": null
           },
           {
-            "condition": "When ally [?] and [?] are both alive",
+            "condition": "When ally Soutan is alive",
+            "target": "Self",
+            "effect": "Critical Damage Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Soujin and Soutan are both alive",
             "target": "All ally [General]",
             "effect": "Guard 100%",
             "duration": "1 time"
