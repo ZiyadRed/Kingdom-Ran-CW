@@ -2288,7 +2288,7 @@ export const GUIDE_SECTIONS=[
   {id:'matchups',     label:'Unit Matchups',       category:'Beginner'},
   {id:'types',        label:'Skill Types',         category:'Beginner'},
   {id:'stats',        label:'How To Raise CW Stats',category:'Beginner'},
-  {id:'leaders',      label:'Commander & Strategist',category:'Advanced'},
+  {id:'leaders',      label:'Leader & Strategist', category:'Advanced'},
   {id:'debuffs',      label:'Debuff Resist',       category:'Advanced'},
   {id:'effects',      label:'Status Effects',      category:'Advanced'},
   {id:'terrain',      label:'Terrain Effects',     category:'Advanced'},
@@ -2664,22 +2664,20 @@ export function TerrainEffectsSection(){
   )
 }
 
-// -- Souha Commander / Strategist skills (2026-09-02 update) -----------------
+// -- Souha Leader / Strategist skills ---------------------------------------
 // Source: https://www.kingdomran.jp/info/260902souha-skill
-// Per-general skill effects were NOT published in the announcement
-// ("the skill effect differs for each general"), so this section documents the
+// Per-general skill effects are not published, so this section documents the
 // system only. Add the individual effects here once they are known.
 export const SOUHA_LEADER_ROLES=[
   {
-    id:'commander',
-    label:'Commander',
+    id:'leader',
+    label:'Leader',
     label_jp:'争覇総大将',
     accent:'#c0392b',
-    stone:'Commander Release Stone',
+    stoneImg:'/guide/leader-stone.webp',
     stone_jp:'争覇総大将解放石',
-    cost:'1,000',
-    riskLabel:'If the Commander falls',
-    risk:'You lose immediately, on the spot — even if every other unit in your formation is still alive.',
+    riskLabel:'If your Leader dies',
+    risk:'You lose the battle instantly, even if every other unit is still alive.',
     riskIcon:null,
     generals:['Renpa','Sho','Rien','Kisui','Rouai'],
   },
@@ -2688,31 +2686,21 @@ export const SOUHA_LEADER_ROLES=[
     label:'Strategist',
     label_jp:'争覇軍師',
     accent:'#2980b9',
-    stone:'Strategist Release Stone',
+    stoneImg:'/guide/strategist-stone.webp',
     stone_jp:'争覇軍師解放石',
-    cost:'1,000',
-    riskLabel:'If the Strategist falls',
+    riskLabel:'If your Strategist dies',
     risk:'Every allied unit is inflicted with Confusion for 1 turn.',
     riskIcon:'/icons/status/confusion.webp',
     generals:['Shouheikun','Gohoumei','Beiman','Koshou','Shunsuiju'],
   },
 ]
 
-export function CommanderStrategistSection(){
+export function LeaderStrategistSection(){
   return(
     <div>
-      <p style={{fontSize:'.82rem',color:'var(--txt3)',textAlign:'center',marginBottom:'1rem'}}>
-        Two optional formation slots that fire an extra skill on turn 1 &mdash; each with a penalty if the holder dies.
+      <p style={{fontSize:'.82rem',color:'var(--txt3)',textAlign:'center',marginBottom:'1.2rem'}}>
+        Two optional formation slots. Each fires an extra skill on turn 1 &mdash; and punishes you if its holder dies.
       </p>
-      <div style={{
-        margin:'0 auto 1.5rem',maxWidth:'660px',padding:'.65rem .9rem',borderRadius:'10px',
-        background:'var(--bg2)',border:'1px solid var(--bdr)',fontSize:'.78rem',
-        color:'var(--txt3)',textAlign:'center',lineHeight:1.55,
-      }}>
-        Added in the <strong style={{color:'var(--txt2)'}}>2 September 2026</strong> update. The skill effects differ
-        for every general and were not listed in the announcement, so this page covers how the system works rather
-        than what each general does.
-      </div>
 
       <div style={{display:'grid',gap:'1rem',gridTemplateColumns:'repeat(auto-fit,minmax(290px,1fr))'}}>
         {SOUHA_LEADER_ROLES.map(role=>(
@@ -2720,23 +2708,21 @@ export function CommanderStrategistSection(){
             borderRadius:'12px',background:'var(--sur)',border:'1px solid var(--bdr)',
             borderTop:'4px solid '+role.accent,padding:'1rem',
           }}>
-            <h3 style={{fontSize:'1rem',fontWeight:900,color:'var(--txt)',margin:0}}>{role.label}</h3>
-            <div style={{fontSize:'.78rem',color:'var(--txt3)',marginBottom:'.7rem'}}>{role.label_jp}</div>
-
-            <div style={{
-              display:'flex',justifyContent:'space-between',gap:'.5rem',alignItems:'baseline',
-              padding:'.45rem .6rem',borderRadius:'8px',background:'var(--bg2)',
-              border:'1px solid var(--bdr)',fontSize:'.78rem',marginBottom:'.7rem',
-            }}>
-              <span style={{color:'var(--txt2)'}}>
-                {role.stone}<br/><small style={{color:'var(--txt3)'}}>{role.stone_jp}</small>
-              </span>
-              <strong style={{color:'var(--gold2)',whiteSpace:'nowrap'}}>&times;{role.cost}</strong>
+            <div style={{display:'flex',alignItems:'center',gap:'.7rem',marginBottom:'.8rem'}}>
+              <img src={role.stoneImg} alt={role.stone_jp} width="52" height="52" loading="lazy" decoding="async"
+                style={{width:52,height:52,flexShrink:0,objectFit:'contain'}}/>
+              <div style={{minWidth:0}}>
+                <h3 style={{fontSize:'1rem',fontWeight:900,color:'var(--txt)',margin:0}}>{role.label}</h3>
+                <div style={{fontSize:'.78rem',color:'var(--txt3)'}}>{role.label_jp}</div>
+                <div style={{fontSize:'.72rem',color:'var(--txt3)',marginTop:'.15rem'}}>
+                  Unlock: <strong style={{color:'var(--gold2)'}}>1,000</strong> &times; {role.stone_jp}
+                </div>
+              </div>
             </div>
 
             <div style={{
               padding:'.55rem .65rem',borderRadius:'8px',
-              background:role.accent+'12',border:'1px solid '+role.accent+'55',marginBottom:'.75rem',
+              background:role.accent+'12',border:'1px solid '+role.accent+'55',marginBottom:'.8rem',
             }}>
               <div style={{
                 display:'flex',alignItems:'center',gap:'.35rem',fontSize:'.75rem',
@@ -2752,7 +2738,7 @@ export function CommanderStrategistSection(){
               fontSize:'.73rem',fontWeight:800,color:'var(--txt3)',
               textTransform:'uppercase',letterSpacing:'.04em',marginBottom:'.4rem',
             }}>
-              Eligible at launch
+              Generals
             </div>
             <div style={{display:'flex',flexWrap:'wrap',gap:'.4rem'}}>
               {role.generals.map(n=>{
@@ -2772,29 +2758,13 @@ export function CommanderStrategistSection(){
         ))}
       </div>
 
-      <div style={{marginTop:'1rem',display:'grid',gap:'1rem',gridTemplateColumns:'repeat(auto-fit,minmax(290px,1fr))'}}>
+      <div style={{marginTop:'1rem'}}>
         <GuideCard title="How it works" accent="var(--navy)">
           <GuideList items={[
             <>The skill fires on <strong>turn 1</strong>, as soon as a general holding the role is set in your formation.</>,
-            <>One Commander <em>and</em> one Strategist per formation. You can run both at once, but only one of each.</>,
-            <>Effects are per-general, so <em>which</em> general holds the slot matters as much as filling it.</>,
-          ]}/>
-        </GuideCard>
-        <GuideCard title="Unlocking the slots" accent="var(--gold)">
-          <GuideList items={[
-            <>Each role is unlocked with its own stone, <strong>1,000</strong> pieces per general.</>,
-            <>Stones come from special sales, presents, and event rewards.</>,
-            <>Every player received 1,000 of <em>each</em> stone at the 2 September maintenance, enough to unlock one Commander and one Strategist for free.</>,
-          ]}/>
-        </GuideCard>
-        <GuideCard title="Weighing the risk" accent="var(--terra)">
-          <p style={{margin:'0 0 .4rem'}}>
-            Both roles trade safety for a turn-1 advantage, but the two penalties are nowhere near equal.
-          </p>
-          <GuideList items={[
-            <>A dead Commander ends the battle instantly, so the slot is safest on a general unlikely to be focused down.</>,
-            <>A dead Strategist costs one turn of Confusion. Recoverable, but it lands on <em>every</em> allied unit at once.</>,
-            <>Enemy targeting is unchanged by these roles, so see <strong>Targeting Rules</strong> and <strong>Status Effects</strong>.</>,
+            <>One Leader <em>and</em> one Strategist per formation. You can run both at once, but only one of each.</>,
+            <>The effect differs for every general, so <em>which</em> general holds the slot matters as much as filling it.</>,
+            <>The two penalties are nowhere near equal. Losing the Strategist costs one turn; losing the Leader costs the battle, so put that slot on someone unlikely to be focused down.</>,
           ]}/>
         </GuideCard>
       </div>
@@ -2839,7 +2809,7 @@ export function CWGuidePage(){
       {active==='stats' && <CWStatsGuideSection/>}
       {active==='roles' && <RolesGuideSection/>}
       {active==='bandits' && <BanditHuntGuideSection/>}
-      {active==='leaders' && <CommanderStrategistSection/>}
+      {active==='leaders' && <LeaderStrategistSection/>}
       {active==='debuffs' && <DebuffResistanceGuideSection/>}
       {active==='effects' && <StatusEffectsSection/>}
       {active==='matchups' && <UnitMatchupsSection/>}
