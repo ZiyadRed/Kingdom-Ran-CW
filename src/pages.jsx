@@ -2672,10 +2672,9 @@ export const SOUHA_LEADER_ROLES=[
   {
     id:'leader',
     label:'Leader',
-    label_jp:'争覇総大将',
     accent:'#c0392b',
     stoneImg:'/guide/leader-stone.webp',
-    stone_jp:'争覇総大将解放石',
+    stone:'Leader Release Stone',
     riskLabel:'If your Leader dies',
     risk:'You lose the battle instantly, even if every other unit is still alive.',
     riskIcon:null,
@@ -2684,10 +2683,9 @@ export const SOUHA_LEADER_ROLES=[
   {
     id:'strategist',
     label:'Strategist',
-    label_jp:'争覇軍師',
     accent:'#2980b9',
     stoneImg:'/guide/strategist-stone.webp',
-    stone_jp:'争覇軍師解放石',
+    stone:'Strategist Release Stone',
     riskLabel:'If your Strategist dies',
     risk:'Every allied unit is inflicted with Confusion for 1 turn.',
     riskIcon:'/icons/status/confusion.webp',
@@ -2699,7 +2697,7 @@ export function LeaderStrategistSection(){
   return(
     <div>
       <p style={{fontSize:'.82rem',color:'var(--txt3)',textAlign:'center',marginBottom:'1.2rem'}}>
-        Two optional formation slots. Each fires an extra skill on turn 1 &mdash; and punishes you if its holder dies.
+        Two optional skills. Each fires on turn 1 &mdash; and punishes you if its holder dies.
       </p>
 
       <div style={{display:'grid',gap:'1rem',gridTemplateColumns:'repeat(auto-fit,minmax(290px,1fr))'}}>
@@ -2709,13 +2707,12 @@ export function LeaderStrategistSection(){
             borderTop:'4px solid '+role.accent,padding:'1rem',
           }}>
             <div style={{display:'flex',alignItems:'center',gap:'.7rem',marginBottom:'.8rem'}}>
-              <img src={role.stoneImg} alt={role.stone_jp} width="52" height="52" loading="lazy" decoding="async"
+              <img src={role.stoneImg} alt={role.stone} width="52" height="52" loading="lazy" decoding="async"
                 style={{width:52,height:52,flexShrink:0,objectFit:'contain'}}/>
               <div style={{minWidth:0}}>
                 <h3 style={{fontSize:'1rem',fontWeight:900,color:'var(--txt)',margin:0}}>{role.label}</h3>
-                <div style={{fontSize:'.78rem',color:'var(--txt3)'}}>{role.label_jp}</div>
-                <div style={{fontSize:'.72rem',color:'var(--txt3)',marginTop:'.15rem'}}>
-                  Unlock: <strong style={{color:'var(--gold2)'}}>1,000</strong> &times; {role.stone_jp}
+                <div style={{fontSize:'.75rem',color:'var(--txt3)',marginTop:'.2rem'}}>
+                  Unlock: <strong style={{color:'var(--gold2)'}}>1,000</strong> &times; {role.stone}
                 </div>
               </div>
             </div>
