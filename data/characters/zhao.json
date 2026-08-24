@@ -1,6 +1,13 @@
 [
   {
     "id": "ka",
+    "source": {
+      "characterId": 240,
+      "generalIds": [
+        499,
+        500
+      ]
+    },
     "name_en": "Ka",
     "name_jp": "太子嘉",
     "country": "zhao",
@@ -63,6 +70,13 @@
   },
   {
     "id": "shunsuiju",
+    "source": {
+      "characterId": 212,
+      "generalIds": [
+        387,
+        388
+      ]
+    },
     "name_en": "Shunsuiju",
     "name_jp": "舜水樹",
     "country": "zhao",
@@ -156,6 +170,13 @@
   },
   {
     "id": "shunpeikun",
+    "source": {
+      "characterId": 222,
+      "generalIds": [
+        426,
+        427
+      ]
+    },
     "name_en": "Shunpeikun",
     "name_jp": "春平君",
     "country": "zhao",
@@ -224,6 +245,13 @@
   },
   {
     "id": "duke_sei",
+    "source": {
+      "characterId": 221,
+      "generalIds": [
+        409,
+        410
+      ]
+    },
     "name_en": "Duke Sei",
     "name_jp": "青公",
     "country": "zhao",
@@ -305,6 +333,13 @@
   },
   {
     "id": "kinmou",
+    "source": {
+      "characterId": 211,
+      "generalIds": [
+        385,
+        386
+      ]
+    },
     "name_en": "Kinmou",
     "name_jp": "金毛",
     "country": "zhao",
@@ -397,6 +432,13 @@
   },
   {
     "id": "gakuei",
+    "source": {
+      "characterId": 210,
+      "generalIds": [
+        382,
+        383
+      ]
+    },
     "name_en": "Gakuei",
     "name_jp": "岳嬰",
     "country": "zhao",
@@ -483,6 +525,13 @@
   },
   {
     "id": "ryuuto",
+    "source": {
+      "characterId": 213,
+      "generalIds": [
+        389,
+        390
+      ]
+    },
     "name_en": "Ryuuto",
     "name_jp": "劉冬",
     "country": "zhao",
@@ -514,9 +563,15 @@
             "duration": "8 turns"
           },
           {
-            "condition": "When ally [?] is alive",
+            "condition": "When ally Kisui is alive",
             "target": "Ally [Zhao]",
-            "effect": "Hit Rate Up 5%, DEF Penetration Up 5%",
+            "effect": "Hit Rate Up 5%",
+            "duration": "12 turns"
+          },
+          {
+            "condition": "When ally Batei is alive",
+            "target": "Ally [Zhao]",
+            "effect": "DEF Penetration Up 5%",
             "duration": "12 turns"
           },
           {
@@ -539,9 +594,15 @@
             "duration": "8 turns"
           },
           {
-            "condition": "When ally [?] is alive",
+            "condition": "When ally Kisui is alive",
             "target": "Ally [Zhao]",
-            "effect": "Hit Rate Up 5%, DEF Penetration Up 5%",
+            "effect": "Hit Rate Up 5%",
+            "duration": "12 turns"
+          },
+          {
+            "condition": "When ally Batei is alive",
+            "target": "Ally [Zhao]",
+            "effect": "DEF Penetration Up 5%",
             "duration": "12 turns"
           },
           {
@@ -558,6 +619,13 @@
   },
   {
     "id": "kishou",
+    "source": {
+      "characterId": 218,
+      "generalIds": [
+        399,
+        400
+      ]
+    },
     "name_en": "Kishou",
     "name_jp": "紀昌",
     "country": "zhao",
@@ -633,6 +701,13 @@
   },
   {
     "id": "kisui",
+    "source": {
+      "characterId": 207,
+      "generalIds": [
+        369,
+        370
+      ]
+    },
     "name_en": "Kisui",
     "name_jp": "紀彗",
     "country": "zhao",
@@ -689,13 +764,13 @@
             "duration": "4 turns"
           },
           {
-            "condition": "When ally Batei or [?] is alive",
+            "condition": "When ally Batei or Ryuuto is alive",
             "target": "Ally [Zhao]",
             "effect": "Guard 60%",
             "duration": "1 time"
           },
           {
-            "condition": "When ally Batei AND [?] are both alive",
+            "condition": "When ally Batei and Ryuuto are both alive",
             "target": "Ally [Zhao]",
             "effect": "Attack Nullification",
             "duration": "1 time"
@@ -714,6 +789,13 @@
   },
   {
     "id": "batei",
+    "source": {
+      "characterId": 214,
+      "generalIds": [
+        391,
+        392
+      ]
+    },
     "name_en": "Batei",
     "name_jp": "馬呈",
     "country": "zhao",
@@ -745,9 +827,15 @@
             "duration": "8 turns"
           },
           {
-            "condition": "When ally [?] is alive",
+            "condition": "When ally Kisui is alive",
             "target": "Ally [Zhao]",
-            "effect": "ATK Up 10%, DEF Up 10%",
+            "effect": "ATK Up 10%",
+            "duration": "8 turns"
+          },
+          {
+            "condition": "When ally Ryuuto is alive",
+            "target": "Ally [Zhao]",
+            "effect": "DEF Up 10%",
             "duration": "8 turns"
           },
           {
@@ -770,9 +858,15 @@
             "duration": "8 turns"
           },
           {
-            "condition": "When ally [?] is alive",
+            "condition": "When ally Kisui is alive",
             "target": "Ally [Zhao]",
-            "effect": "ATK Up 10%, DEF Up 10%",
+            "effect": "ATK Up 10%",
+            "duration": "8 turns"
+          },
+          {
+            "condition": "When ally Ryuuto is alive",
+            "target": "Ally [Zhao]",
+            "effect": "DEF Up 10%",
             "duration": "8 turns"
           },
           {
@@ -789,6 +883,14 @@
   },
   {
     "id": "gika",
+    "source": {
+      "characterId": 96,
+      "generalIds": [
+        62,
+        245,
+        355
+      ]
+    },
     "name_en": "Gika",
     "name_jp": "魏加",
     "country": "zhao",
@@ -845,6 +947,14 @@
   },
   {
     "id": "hoki",
+    "source": {
+      "characterId": 95,
+      "generalIds": [
+        85,
+        216,
+        411
+      ]
+    },
     "name_en": "Hoki",
     "name_jp": "馮忌",
     "country": "zhao",

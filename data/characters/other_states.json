@@ -1,6 +1,13 @@
 [
   {
     "id": "kyoubou",
+    "source": {
+      "characterId": 251,
+      "generalIds": [
+        524,
+        525
+      ]
+    },
     "name_en": "Kyoubou",
     "name_jp": "巨暴",
     "country": "chu",
@@ -75,6 +82,14 @@
   },
   {
     "id": "goutoku",
+    "source": {
+      "characterId": 249,
+      "generalIds": [
+        519,
+        520,
+        521
+      ]
+    },
     "name_en": "Goutoku",
     "name_jp": "豪徳",
     "country": "chu",
@@ -150,6 +165,13 @@
   },
   {
     "id": "rien",
+    "source": {
+      "characterId": 198,
+      "generalIds": [
+        340,
+        341
+      ]
+    },
     "name_en": "Rien",
     "name_jp": "李園",
     "country": "chu",
@@ -262,6 +284,14 @@
   },
   {
     "id": "rokin",
+    "source": {
+      "characterId": 248,
+      "generalIds": [
+        516,
+        517,
+        518
+      ]
+    },
     "name_en": "Rokin",
     "name_jp": "魯近",
     "country": "chu",
@@ -331,6 +361,13 @@
   },
   {
     "id": "chouin",
+    "source": {
+      "characterId": 161,
+      "generalIds": [
+        458,
+        459
+      ]
+    },
     "name_en": "Chouin",
     "name_jp": "張印",
     "country": "han",
@@ -435,6 +472,14 @@
   },
   {
     "id": "nakon",
+    "source": {
+      "characterId": 229,
+      "generalIds": [
+        452,
+        453,
+        454
+      ]
+    },
     "name_en": "Nakon",
     "name_jp": "奈棍",
     "country": "han",
@@ -527,6 +572,14 @@
   },
   {
     "id": "bakan",
+    "source": {
+      "characterId": 230,
+      "generalIds": [
+        455,
+        456,
+        457
+      ]
+    },
     "name_en": "Bakan",
     "name_jp": "馬関",
     "country": "han",
@@ -619,6 +672,13 @@
   },
   {
     "id": "budai",
+    "source": {
+      "characterId": 236,
+      "generalIds": [
+        479,
+        480
+      ]
+    },
     "name_en": "Budai",
     "name_jp": "ブダイ",
     "country": "ai",
@@ -705,6 +765,13 @@
   },
   {
     "id": "hamui",
+    "source": {
+      "characterId": 235,
+      "generalIds": [
+        472,
+        473
+      ]
+    },
     "name_en": "Hamui",
     "name_jp": "ハムイ",
     "country": "ai",
@@ -742,7 +809,7 @@
           },
           {
             "condition": null,
-            "target": "Ally [?]",
+            "target": "Ally Wategi",
             "effect": "Confusion Infliction Rate Up 20%",
             "duration": null
           },

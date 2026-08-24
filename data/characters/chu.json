@@ -1,6 +1,13 @@
 [
   {
     "id": "jinou",
+    "source": {
+      "characterId": 189,
+      "generalIds": [
+        321,
+        588
+      ]
+    },
     "name_en": "Jinou",
     "name_jp": "仁凹",
     "country": "chu",
@@ -82,6 +89,13 @@
   },
   {
     "id": "goumasho",
+    "source": {
+      "characterId": 192,
+      "generalIds": [
+        325,
+        586
+      ]
+    },
     "name_en": "Goumasho",
     "name_jp": "剛摩諸",
     "country": "chu",
@@ -181,6 +195,13 @@
   },
   {
     "id": "beiman",
+    "source": {
+      "characterId": 191,
+      "generalIds": [
+        324,
+        587
+      ]
+    },
     "name_en": "Beiman",
     "name_jp": "貝満",
     "country": "chu",
@@ -262,6 +283,13 @@
   },
   {
     "id": "kaen",
+    "source": {
+      "characterId": 173,
+      "generalIds": [
+        266,
+        371
+      ]
+    },
     "name_en": "Kaen",
     "name_jp": "媧偃",
     "country": "chu",
@@ -331,6 +359,13 @@
   },
   {
     "id": "kouretsu",
+    "source": {
+      "characterId": 199,
+      "generalIds": [
+        343,
+        344
+      ]
+    },
     "name_en": "Kouretsu",
     "name_jp": "考烈王",
     "country": "chu",
@@ -423,6 +458,13 @@
   },
   {
     "id": "hakusui",
+    "source": {
+      "characterId": 188,
+      "generalIds": [
+        303,
+        304
+      ]
+    },
     "name_en": "Hakusui",
     "name_jp": "白翠",
     "country": "chu",
@@ -498,6 +540,13 @@
   },
   {
     "id": "shunshinkun",
+    "source": {
+      "characterId": 121,
+      "generalIds": [
+        168,
+        274
+      ]
+    },
     "name_en": "Shunshinkun",
     "name_jp": "春申君",
     "country": "chu",
@@ -586,6 +635,13 @@
   },
   {
     "id": "bananji",
+    "source": {
+      "characterId": 215,
+      "generalIds": [
+        393,
+        394
+      ]
+    },
     "name_en": "Bananji",
     "name_jp": "馬南慈",
     "country": "zhao",
@@ -636,7 +692,7 @@
             "duration": null
           },
           {
-            "condition": "When ally [?] is alive, enemy [General] with highest ATK",
+            "condition": "When ally Riboku is alive, enemy [General] with highest ATK",
             "target": "1 enemy [General]",
             "effect": "180% Damage",
             "duration": null
