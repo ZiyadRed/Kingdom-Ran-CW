@@ -19,7 +19,7 @@ const BuffsPage = lazy(() => import('./pages.jsx').then(m => ({ default: m.Buffs
 const TierPage = lazy(() => import('./pages.jsx').then(m => ({ default: m.TierPage })))
 const TeamCostPage = lazy(() => import('./pages.jsx').then(m => ({ default: m.TeamCostPage })))
 const CWStatsPage = lazy(() => import('./cwstats.jsx').then(m => ({ default: m.CWStatsPage })))
-const CWGuidePage = lazy(() => import('./pages.jsx').then(m => ({ default: m.CWGuidePage })))
+const CWGuidePage = lazy(() => import('./guide.jsx').then(m => ({ default: m.CWGuidePage })))
 const CastlePointsPage = lazy(() => import('./castlepoints.jsx'))
 
 const PAGES=['Home','Archive','Guide','Party Builder','Battle Order','Castle Points','Buffs','Tier List','Team Cost','Stats Calculator']
