@@ -26,6 +26,7 @@ const guideSections = [
   'roles',
   'bandits',
   'leaders',
+  'crystals',
   'debuffs',
   'effects',
   'matchups',

@@ -15,6 +15,7 @@ https://ranhq.vercel.app/guide/stats
 https://ranhq.vercel.app/guide/roles
 https://ranhq.vercel.app/guide/bandits
 https://ranhq.vercel.app/guide/leaders
+https://ranhq.vercel.app/guide/crystals
 https://ranhq.vercel.app/guide/debuffs
 https://ranhq.vercel.app/guide/effects
 https://ranhq.vercel.app/guide/matchups

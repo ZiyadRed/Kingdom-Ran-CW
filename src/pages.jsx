@@ -2287,6 +2287,7 @@ export const GUIDE_SECTIONS=[
   {id:'bandits',      label:'Bandit Hunt',         category:'Beginner'},
   {id:'matchups',     label:'Unit Matchups',       category:'Beginner'},
   {id:'types',        label:'Skill Types',         category:'Beginner'},
+  {id:'crystals',     label:'Crystal Types',       category:'Beginner'},
   {id:'stats',        label:'How To Raise CW Stats',category:'Beginner'},
   {id:'leaders',      label:'Leader & Strategist', category:'Advanced'},
   {id:'debuffs',      label:'Debuff Resist',       category:'Advanced'},
@@ -2664,6 +2665,90 @@ export function TerrainEffectsSection(){
   )
 }
 
+// -- Crystal types ----------------------------------------------------------
+// Red/Blue unlock CW skills; Orange/Green unlock the Leader/Strategist skills.
+// Red costs come from RED_CRYSTAL_TOTAL_COST / RED_CRYSTAL_SKILL_COSTS in core.
+export const CRYSTAL_TYPES=[
+  {
+    id:'red',
+    name:'Red Crystal',
+    img:'/guide/red-crystal.webp',
+    accent:'#c0392b',
+    unlocks:'Castle War skills',
+    body:'The standard crystal. Unlocks the three Castle War skills on any general.',
+    cost:'1,750 to fully unlock a UR general (100 / 550 / 1,100 per skill). SR costs 800, R costs 595.',
+  },
+  {
+    id:'blue',
+    name:'Blue Crystal',
+    img:'/guide/blue-crystal.webp',
+    accent:'#2980b9',
+    unlocks:'Hi Shin Unit only',
+    body:'Works exactly like a Red Crystal, but can only be spent on Hi Shin Unit generals.',
+    cost:'Same costs as Red. Spend these on Hi Shin members first and keep your Red for everyone else.',
+  },
+  {
+    id:'orange',
+    name:'Orange Crystal',
+    img:'/guide/orange-crystal.webp',
+    accent:'#e07f48',
+    unlocks:'Leader skill',
+    body:'Unlocks the Leader skill on a general who can hold that role.',
+    cost:'1,000 per general.',
+  },
+  {
+    id:'green',
+    name:'Green Crystal',
+    img:'/guide/green-crystal.webp',
+    accent:'#16a085',
+    unlocks:'Strategist skill',
+    body:'Unlocks the Strategist skill on a general who can hold that role.',
+    cost:'1,000 per general.',
+  },
+]
+
+export function CrystalTypesSection(){
+  return(
+    <div>
+      <p style={{fontSize:'.82rem',color:'var(--txt3)',textAlign:'center',marginBottom:'1.2rem'}}>
+        Four crystals unlock skills, and they are not interchangeable. Each one only works on what it is meant for.
+      </p>
+      <div style={{display:'grid',gap:'1rem',gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))'}}>
+        {CRYSTAL_TYPES.map(c=>(
+          <div key={c.id} style={{
+            borderRadius:'12px',background:'var(--sur)',border:'1px solid var(--bdr)',
+            borderTop:'4px solid '+c.accent,padding:'1rem',
+          }}>
+            <div style={{display:'flex',alignItems:'center',gap:'.7rem',marginBottom:'.6rem'}}>
+              <img src={c.img} alt={c.name} width="48" height="48" loading="lazy" decoding="async"
+                style={{width:48,height:48,flexShrink:0,objectFit:'contain'}}/>
+              <div style={{minWidth:0}}>
+                <h3 style={{fontSize:'.96rem',fontWeight:900,color:'var(--txt)',margin:0}}>{c.name}</h3>
+                <div style={{fontSize:'.75rem',fontWeight:700,color:c.accent}}>{c.unlocks}</div>
+              </div>
+            </div>
+            <p style={{fontSize:'.81rem',color:'var(--txt2)',lineHeight:1.55,margin:'0 0 .5rem'}}>{c.body}</p>
+            <div style={{
+              fontSize:'.76rem',color:'var(--txt3)',lineHeight:1.5,
+              padding:'.45rem .6rem',borderRadius:'8px',
+              background:'var(--bg2)',border:'1px solid var(--bdr)',
+            }}>{c.cost}</div>
+          </div>
+        ))}
+      </div>
+      <div style={{marginTop:'1rem'}}>
+        <GuideCard title="Which to spend first" accent="var(--navy)">
+          <GuideList items={[
+            <>Blue is the most restricted, so spend it on Hi Shin Unit generals before touching Red on them.</>,
+            <>Red is the one you will always be short of &mdash; a single UR general costs <strong>1,750</strong>.</>,
+            <>Orange and Green only matter once you have a general who can hold the Leader or Strategist role. See <strong>Leader &amp; Strategist</strong>.</>,
+          ]}/>
+        </GuideCard>
+      </div>
+    </div>
+  )
+}
+
 // -- Souha Leader / Strategist skills ---------------------------------------
 // Source: https://www.kingdomran.jp/info/260902souha-skill
 // Per-general skill effects are not published, so this section documents the
@@ -2673,7 +2758,7 @@ export const SOUHA_LEADER_ROLES=[
     id:'leader',
     label:'Leader',
     accent:'#c0392b',
-    stoneImg:'/guide/leader-stone.webp',
+    stoneImg:'/guide/orange-crystal.webp',
     stone:'Orange Crystals',
     riskLabel:'If your Leader dies',
     risk:'You lose the battle instantly, even if every other unit is still alive.',
@@ -2684,7 +2769,7 @@ export const SOUHA_LEADER_ROLES=[
     id:'strategist',
     label:'Strategist',
     accent:'#2980b9',
-    stoneImg:'/guide/strategist-stone.webp',
+    stoneImg:'/guide/green-crystal.webp',
     stone:'Green Crystals',
     riskLabel:'If your Strategist dies',
     risk:'Every allied unit is inflicted with Confusion for 1 turn.',
@@ -2812,6 +2897,7 @@ export function CWGuidePage(){
       {active==='matchups' && <UnitMatchupsSection/>}
       {active==='terrain' && <TerrainEffectsSection/>}
       {active==='types' && <SkillTypesSection/>}
+      {active==='crystals' && <CrystalTypesSection/>}
       {active==='interactions' && <EffectInteractionsSection/>}
       {active==='targeting' && <TargetingRulesSection/>}
     </main>
