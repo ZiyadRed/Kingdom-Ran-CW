@@ -1,6 +1,59 @@
 [
   {
+    "id": "soutan",
+    "source": {
+      "characterId": 258,
+      "generalIds": [
+        541,
+        542
+      ]
+    },
+    "name_en": "Soutan",
+    "name_jp": "蒼淡",
+    "country": "qin",
+    "unit": "Hi Shin Unit",
+    "rarity": "UR",
+    "skills": [
+      {
+        "name_en": "Ironclad Flash [Blue Ox]",
+        "name_jp": "鉄壁一閃【青牛】",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy [General] with highest DEF", "target": "1 enemy [General]", "effect": "150% Damage", "duration": null },
+          { "condition": "Ally Soujin's remaining HP < 70%, enemy [General] with highest DEF", "target": "1 enemy [General]", "effect": "170% Damage", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Ten-Bow Transmission [Tan]",
+        "name_jp": "十弓相伝【淡】",
+        "type": "Strategy",
+        "effects": [
+          { "condition": null, "target": "Self", "effect": "Sure Hit", "duration": null },
+          { "condition": null, "target": "Ally Hi Shin Unit [General]", "effect": "DEF Penetration Up 20%", "duration": null },
+          { "condition": "When ally Soujin is alive", "target": "Self", "effect": "Critical Damage Up 20%", "duration": null }
+        ]
+      },
+      {
+        "name_en": "Crushing Heavy Bow",
+        "name_jp": "滅砕剛弓",
+        "type": "Combat",
+        "effects": [
+          { "condition": "Enemy [General] with highest DEF", "target": "1 enemy [General]", "effect": "180% Damage", "duration": null },
+          { "condition": "Ally Soujin's remaining HP < 70%, enemy [General] with highest DEF", "target": "1 enemy [General]", "effect": "220% Damage", "duration": null }
+        ]
+      }
+    ],
+    "image": "/persos/soutan.png"
+  },
+  {
     "id": "soujin",
+    "source": {
+      "characterId": 261,
+      "generalIds": [
+        549,
+        550
+      ]
+    },
     "name_en": "Soujin",
     "name_jp": "蒼仁",
     "country": "qin",
@@ -17,8 +70,8 @@
         ]
       },
       {
-        "name_en": "Tenth Transmission [Ren]",
-        "name_jp": "十号相伝【仁】",
+        "name_en": "Ten-Bow Transmission [Ren]",
+        "name_jp": "十弓相伝【仁】",
         "type": "Strategy",
         "effects": [
           { "condition": null, "target": "Self", "effect": "Sure Hit", "duration": null },
@@ -41,6 +94,13 @@
   },
   {
     "id": "sougen",
+    "source": {
+      "characterId": 264,
+      "generalIds": [
+        557,
+        558
+      ]
+    },
     "name_en": "Sougen",
     "name_jp": "蒼源",
     "country": "qin",
@@ -127,6 +187,13 @@
   },
   {
     "id": "gakurai",
+    "source": {
+      "characterId": 202,
+      "generalIds": [
+        353,
+        354
+      ]
+    },
     "name_en": "Gakurai",
     "name_jp": "岳雷",
     "country": "qin",
@@ -208,6 +275,13 @@
   },
   {
     "id": "choutou",
+    "source": {
+      "characterId": 141,
+      "generalIds": [
+        225,
+        337
+      ]
+    },
     "name_en": "Choutou",
     "name_jp": "張唐",
     "country": "qin",
@@ -294,6 +368,13 @@
   },
   {
     "id": "shibasaku",
+    "source": {
+      "characterId": 117,
+      "generalIds": [
+        156,
+        162
+      ]
+    },
     "name_en": "Shibasaku",
     "name_jp": "司馬錯",
     "country": "qin",
@@ -356,6 +437,13 @@
   },
   {
     "id": "hyoushiga",
+    "source": {
+      "characterId": 187,
+      "generalIds": [
+        301,
+        302
+      ]
+    },
     "name_en": "Hyoushiga",
     "name_jp": "豹司牙",
     "country": "qin",
@@ -436,6 +524,13 @@
   },
   {
     "id": "hakuki",
+    "source": {
+      "characterId": 114,
+      "generalIds": [
+        153,
+        159
+      ]
+    },
     "name_en": "Hakuki",
     "name_jp": "白起",
     "country": "qin",
@@ -572,6 +667,13 @@
   },
   {
     "id": "oukotsu",
+    "source": {
+      "characterId": 115,
+      "generalIds": [
+        154,
+        160
+      ]
+    },
     "name_en": "Oukotsu",
     "name_jp": "王齕",
     "country": "qin",
@@ -634,6 +736,13 @@
   },
   {
     "id": "kaioku",
+    "source": {
+      "characterId": 175,
+      "generalIds": [
+        272,
+        342
+      ]
+    },
     "name_en": "Kaioku",
     "name_jp": "介億",
     "country": "qin",
@@ -727,6 +836,13 @@
   },
   {
     "id": "koshou",
+    "source": {
+      "characterId": 116,
+      "generalIds": [
+        155,
+        161
+      ]
+    },
     "name_en": "Koshou",
     "name_jp": "胡傷",
     "country": "qin",
@@ -795,6 +911,13 @@
   },
   {
     "id": "garo",
+    "source": {
+      "characterId": 178,
+      "generalIds": [
+        280,
+        424
+      ]
+    },
     "name_en": "Garo",
     "name_jp": "我呂",
     "country": "qin",
@@ -870,6 +993,13 @@
   },
   {
     "id": "rikusen",
+    "source": {
+      "characterId": 119,
+      "generalIds": [
+        166,
+        352
+      ]
+    },
     "name_en": "Rikusen",
     "name_jp": "陸仙",
     "country": "qin",
@@ -939,6 +1069,13 @@
   },
   {
     "id": "kanjou",
+    "source": {
+      "characterId": 184,
+      "generalIds": [
+        295,
+        296
+      ]
+    },
     "name_en": "Kanjou",
     "name_jp": "関常",
     "country": "qin",
@@ -1046,6 +1183,14 @@
   },
   {
     "id": "seikyou",
+    "source": {
+      "characterId": 40,
+      "generalIds": [
+        69,
+        111,
+        287
+      ]
+    },
     "name_en": "Seikyou",
     "name_jp": "成蟜",
     "country": "qin",
@@ -1102,6 +1247,13 @@
   },
   {
     "id": "rui",
+    "source": {
+      "characterId": 179,
+      "generalIds": [
+        281,
+        282
+      ]
+    },
     "name_en": "Rui",
     "name_jp": "瑠衣",
     "country": "qin",
@@ -1188,6 +1340,13 @@
   },
   {
     "id": "you",
+    "source": {
+      "characterId": 131,
+      "generalIds": [
+        213,
+        339
+      ]
+    },
     "name_en": "You",
     "name_jp": "陽",
     "country": "qin",
@@ -1256,6 +1415,12 @@
   },
   {
     "id": "ryuyu",
+    "source": {
+      "characterId": 75,
+      "generalIds": [
+        32
+      ]
+    },
     "name_en": "Ryuyu",
     "name_jp": "竜有",
     "country": "qin",
@@ -1313,6 +1478,13 @@
   },
   {
     "id": "chutetsu",
+    "source": {
+      "characterId": 43,
+      "generalIds": [
+        26,
+        326
+      ]
+    },
     "name_en": "Chutetsu",
     "name_jp": "中鉄",
     "country": "qin",
@@ -1370,6 +1542,14 @@
   },
   {
     "id": "choushi",
+    "source": {
+      "characterId": 133,
+      "generalIds": [
+        217,
+        592,
+        593
+      ]
+    },
     "name_en": "Choushi",
     "name_jp": "丁之",
     "country": "qin",
@@ -1445,6 +1625,14 @@
   },
   {
     "id": "raiki",
+    "source": {
+      "characterId": 134,
+      "generalIds": [
+        218,
+        594,
+        595
+      ]
+    },
     "name_en": "Raiki",
     "name_jp": "来輝",
     "country": "qin",
@@ -1520,6 +1708,14 @@
   },
   {
     "id": "koujyun",
+    "source": {
+      "characterId": 257,
+      "generalIds": [
+        538,
+        539,
+        540
+      ]
+    },
     "name_en": "Koujyun",
     "name_jp": "高順",
     "country": "qin",
@@ -1589,6 +1785,14 @@
   },
   {
     "id": "chouyou",
+    "source": {
+      "characterId": 256,
+      "generalIds": [
+        535,
+        536,
+        537
+      ]
+    },
     "name_en": "Chouyou",
     "name_jp": "丁陽",
     "country": "qin",
@@ -1658,6 +1862,14 @@
   },
   {
     "id": "tonkaku",
+    "source": {
+      "characterId": 259,
+      "generalIds": [
+        543,
+        544,
+        545
+      ]
+    },
     "name_en": "Tonkaku",
     "name_jp": "惇角",
     "country": "qin",
@@ -1751,6 +1963,14 @@
   },
   {
     "id": "tonkoku",
+    "source": {
+      "characterId": 260,
+      "generalIds": [
+        546,
+        547,
+        548
+      ]
+    },
     "name_en": "Tonkoku",
     "name_jp": "惇告",
     "country": "qin",
@@ -1844,6 +2064,14 @@
   },
   {
     "id": "kanto",
+    "source": {
+      "characterId": 262,
+      "generalIds": [
+        551,
+        552,
+        553
+      ]
+    },
     "name_en": "Kanto",
     "name_jp": "干斗",
     "country": "qin",
@@ -1907,6 +2135,14 @@
   },
   {
     "id": "heirai",
+    "source": {
+      "characterId": 263,
+      "generalIds": [
+        554,
+        555,
+        556
+      ]
+    },
     "name_en": "Heirai",
     "name_jp": "平来",
     "country": "qin",

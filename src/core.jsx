@@ -226,7 +226,8 @@ export const UNIT_TYPES={
   ogiko:'Archer',otaji:'Archer',queen_biki:'Archer',ramauji:'Archer',reiou:'Archer',
   rishi:'Archer',robin:'Archer',roen:'Archer',rokin:'Archer',ryofui:'Archer',
   saizatsu:'Archer',seikai:'Archer',seikyou:'Archer',seki:'Archer',shibasaku:'Archer',
-  shika:'Archer',shishi:'Archer',shoubunkun:'Archer',sougen:'Archer',soujin:'Archer',takukei:'Archer',
+  shika:'Archer',shishi:'Archer',shoubunkun:'Archer',sougen:'Archer',soujin:'Archer',soutan:'Archer',
+  takukei:'Archer',
   toji:'Archer',you:'Archer',yukii:'Archer',kokuou:'Archer',
   // Infantry
   bain:'Infantry',bamyu:'Infantry',bihei:'Infantry',chutetsu:'Infantry',entei:'Infantry',
@@ -1112,8 +1113,8 @@ export function statSortKey(s){const i=STAT_ORDER.indexOf(s);return i===-1?STAT_
 // ----- party-builder skill masks + hidden search tags (shared) -----
 // Hidden search tags — searching these strings finds the listed characters
 export const CHAR_GROUPS={
-  'Hi Shin Unit':['Shin','Garo','Gakurai','Kyoukai','Tonkaku','Tonkoku','Kanto','Heirai'],
-  'HiShin':['Shin','Garo','Gakurai','Kyoukai','Tonkaku','Tonkoku','Kanto','Heirai'],
+  'Hi Shin Unit':['Shin','Garo','Gakurai','Kyoukai','Tonkaku','Tonkoku','Kanto','Heirai','Soujin','Soutan'],
+  'HiShin':['Shin','Garo','Gakurai','Kyoukai','Tonkaku','Tonkoku','Kanto','Heirai','Soujin','Soutan'],
   'Gakuka':['Mouten','Rikusen'],
   'Moubo Army':['Moubu','Choushi','Raiki'],
   'Gyokuhou':['Ouhon','Kanjou','Shoutaku','Kyuukou'],

@@ -80,6 +80,7 @@ https://ranhq.vercel.app/archive/characters/hakusui
 https://ranhq.vercel.app/archive/characters/hamui
 https://ranhq.vercel.app/archive/characters/hanoki
 https://ranhq.vercel.app/archive/characters/hanroki
+https://ranhq.vercel.app/archive/characters/heirai
 https://ranhq.vercel.app/archive/characters/heki
 https://ranhq.vercel.app/archive/characters/hokaku
 https://ranhq.vercel.app/archive/characters/hoki
@@ -103,6 +104,7 @@ https://ranhq.vercel.app/archive/characters/kanjou
 https://ranhq.vercel.app/archive/characters/kanki
 https://ranhq.vercel.app/archive/characters/kanmei
 https://ranhq.vercel.app/archive/characters/kanou
+https://ranhq.vercel.app/archive/characters/kanto
 https://ranhq.vercel.app/archive/characters/karin
 https://ranhq.vercel.app/archive/characters/karyoten
 https://ranhq.vercel.app/archive/characters/katari
@@ -207,6 +209,8 @@ https://ranhq.vercel.app/archive/characters/shunshinkun
 https://ranhq.vercel.app/archive/characters/shunsuiju
 https://ranhq.vercel.app/archive/characters/sosui
 https://ranhq.vercel.app/archive/characters/sougen
+https://ranhq.vercel.app/archive/characters/soujin
+https://ranhq.vercel.app/archive/characters/soutan
 https://ranhq.vercel.app/archive/characters/suugen
 https://ranhq.vercel.app/archive/characters/taijifu
 https://ranhq.vercel.app/archive/characters/tairoji
