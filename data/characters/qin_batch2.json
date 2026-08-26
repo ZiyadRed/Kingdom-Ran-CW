@@ -43,7 +43,8 @@
         ]
       }
     ],
-    "image": "/persos/soutan.png"
+    "image": "/persos/soutan.png",
+    "icon": "/icons/Soutan.png"
   },
   {
     "id": "soujin",
