@@ -151,7 +151,7 @@
           {
             "condition": null,
             "target": "Self",
-            "effect": "Evasion (Dodge Chance) Up 20%",
+            "effect": "Evasion (Dodge Chance) 20%",
             "duration": null
           }
         ]

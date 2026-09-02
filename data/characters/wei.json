@@ -314,7 +314,7 @@
           {
             "condition": null,
             "target": "Ally Shihaku",
-            "effect": "Evasion (Dodge Chance) Up 40%",
+            "effect": "Evasion (Dodge Chance) 40%",
             "duration": "4 turns"
           },
           {

@@ -35,7 +35,7 @@
           {
             "condition": null,
             "target": "Ally Renpa Army",
-            "effect": "Evasion (Dodge Chance) 20%",
+            "effect": "Evasion (Dodge Chance) Up 20%",
             "duration": null
           },
           {
@@ -317,7 +317,7 @@
           {
             "condition": null,
             "target": "Ally [Wei]",
-            "effect": "Evasion (Dodge Chance) 30%",
+            "effect": "Evasion (Dodge Chance) Up 30%",
             "duration": null
           },
           {
