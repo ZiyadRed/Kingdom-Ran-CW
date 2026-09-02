@@ -15,11 +15,6 @@
   line-height: 1.5; font-size: .76rem;
 }
 .sk-source-label { color: #3d6eb5; font-size: .62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
-.sk-source-status {
-  display: inline-block; margin-inline-start: .45rem; color: var(--txt3); font-size: .58rem;
-  font-weight: 800; letter-spacing: .03em; vertical-align: middle;
-}
-.sk-source-status.is-verified { color: #2f8f4e; }
 
 /* RTL audit: logical edges keep the archive, cards, and overlays coherent. */
 html[dir="rtl"] .hdr-in { direction: rtl; }

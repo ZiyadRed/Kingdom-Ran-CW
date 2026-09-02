@@ -479,9 +479,6 @@ export function SkillCard({skill}){
         <div>
           <span className="sk-name">{displayName}</span>
           {secondaryName(displayName,skill.name_jp)&&<span className="sk-jp">{skill.name_jp}</span>}
-          <span className={`sk-source-status${skill.sourceStatus==='VERIFIED_ORIGINAL'?' is-verified':''}`}>
-            {skill.sourceStatus==='VERIFIED_ORIGINAL'?t('sourceVerified'):t('sourceUnavailable')}
-          </span>
         </div>
         <div className="sk-tags">
           {skill.star6&&<span className="tag t-star">☆6</span>}
