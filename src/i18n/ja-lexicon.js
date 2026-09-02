@@ -41,7 +41,7 @@ export const STATS = {
   'Speed': '速度',
 
   'Hit Rate': '命中率',
-  'Critical Rate': 'クリティカル率',
+  'Critical Rate': 'クリティカル発生率',
   'Critical Damage': 'クリティカルダメージ',
   'DEF Penetration': '防御力貫通',
   'Evasion': '回避率',
