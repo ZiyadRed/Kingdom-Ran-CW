@@ -77,8 +77,8 @@ const BASE_ROUTE_SEO = {
       pageType: 'WebPage',
     },
     '/archive': {
-      title: 'キングダム乱 武将・争覇カードアーカイブ | RanHQ',
-      description: 'キングダム乱の武将名、争覇スキル、勢力、兵種、CW6★争覇カードを確認できる日本語アーカイブです。',
+      title: 'キングダム乱 武将・追想カードアーカイブ | RanHQ',
+      description: 'キングダム乱の武将名、争覇スキル、勢力、兵種、CW6★追想カードを確認できる日本語アーカイブです。',
       pageType: 'CollectionPage',
     },
     '/archive/characters': {
@@ -87,8 +87,8 @@ const BASE_ROUTE_SEO = {
       pageType: 'CollectionPage',
     },
     '/archive/cw6-scene-cards': {
-      title: 'キングダム乱 CW6★争覇カード・技能一覧 | RanHQ',
-      description: 'キングダム乱のCW6★争覇カードを所持武将、日本語技能名、原文、効果とともに確認できます。',
+      title: 'キングダム乱 CW6★追想カード・技能一覧 | RanHQ',
+      description: 'キングダム乱のCW6★追想カードを所持武将、日本語技能名、原文、効果とともに確認できます。',
       pageType: 'CollectionPage',
     },
     '/guide': {
@@ -108,7 +108,7 @@ const BASE_ROUTE_SEO = {
     },
     '/buffs': {
       title: 'キングダム乱 同盟争覇戦バフ一覧・管理 | RanHQ',
-      description: 'キングダム乱の同盟争覇戦バフを能力、出典、兵種、対象、地形、争覇カードごとに確認・管理できます。',
+      description: 'キングダム乱の同盟争覇戦バフを能力、出典、兵種、対象、地形、追想カードごとに確認・管理できます。',
       pageType: 'WebPage',
     },
     '/tiers': {
@@ -117,13 +117,13 @@ const BASE_ROUTE_SEO = {
       pageType: 'WebPage',
     },
     '/cost': {
-      title: 'キングダム乱 編成コスト・赤水晶計算 | RanHQ',
-      description: 'キングダム乱の武将技能解放に必要な赤水晶を計算し、4武将の育成コストを確認できます。',
+      title: 'キングダム乱 編成コスト・赤の争覇解放石計算 | RanHQ',
+      description: 'キングダム乱の武将技能解放に必要な赤の争覇解放石を計算し、4武将の育成コストを確認できます。',
       pageType: 'WebPage',
     },
     '/cw-stats': {
       title: 'キングダム乱 同盟争覇戦ステータス計算 | RanHQ',
-      description: '争覇画面の数値、有効なバフ、追加バフ、争覇カード基礎値から武将と編成の戦力を計算できます。',
+      description: '争覇画面の数値、有効なバフ、追加バフ、追想カード基礎値から武将と編成の戦力を計算できます。',
       pageType: 'WebPage',
     },
     '/sim': {
@@ -222,7 +222,7 @@ const GUIDE_LABELS = {
     roles: '武将の役割',
     bandits: '盗賊討伐',
     leaders: '総大将・軍師技能',
-    crystals: '水晶の種類',
+    crystals: '争覇解放石の種類',
     debuffs: 'デバフ耐性',
     effects: '状態異常',
     matchups: '兵種相性',
