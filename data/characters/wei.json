@@ -139,7 +139,14 @@
       }
     ],
     "image": "/persos/tairoji.webp",
-    "icon": "/icons/Tairoji.webp"
+    "icon": "/icons/Tairoji.webp",
+    "source": {
+      "characterId": 205,
+      "generalIds": [
+        365,
+        366
+      ]
+    }
   },
   {
     "id": "ranbihaku",
@@ -192,7 +199,7 @@
             "duration": null
           },
           {
-            "condition": "When ally Reihō is alive",
+            "condition": "When ally Reiou is alive",
             "target": "Self vs siege weapons",
             "effect": "ATK Up 30%",
             "duration": null
@@ -270,7 +277,14 @@
       }
     ],
     "image": "/persos/ranbihaku.webp",
-    "icon": "/icons/Ranbihaku.webp"
+    "icon": "/icons/Ranbihaku.webp",
+    "source": {
+      "characterId": 183,
+      "generalIds": [
+        293,
+        294
+      ]
+    }
   },
   {
     "id": "shikika",
@@ -363,7 +377,14 @@
       }
     ],
     "image": "/persos/shikika.webp",
-    "icon": "/icons/Shikika.webp"
+    "icon": "/icons/Shikika.webp",
+    "source": {
+      "characterId": 186,
+      "generalIds": [
+        299,
+        300
+      ]
+    }
   },
   {
     "id": "keibin",
@@ -443,7 +464,14 @@
       }
     ],
     "image": "/persos/keibin.webp",
-    "icon": "/icons/Keibin.webp"
+    "icon": "/icons/Keibin.webp",
+    "source": {
+      "characterId": 125,
+      "generalIds": [
+        203,
+        327
+      ]
+    }
   },
   {
     "id": "gaimou",
@@ -518,7 +546,14 @@
       }
     ],
     "image": "/persos/gaimou.webp",
-    "icon": "/icons/Gaimou.webp"
+    "icon": "/icons/Gaimou.webp",
+    "source": {
+      "characterId": 180,
+      "generalIds": [
+        283,
+        284
+      ]
+    }
   },
   {
     "id": "junso",
@@ -566,7 +601,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Gaimo",
+            "target": "Ally Gaimou",
             "effect": "Evasion (Dodge Chance) Up 10%",
             "duration": null
           }
@@ -599,7 +634,14 @@
       }
     ],
     "image": "/persos/junsou.webp",
-    "icon": "/icons/Junso.webp"
+    "icon": "/icons/Junso.webp",
+    "source": {
+      "characterId": 185,
+      "generalIds": [
+        297,
+        298
+      ]
+    }
   },
   {
     "id": "reiou",
@@ -735,7 +777,14 @@
         ]
       }
     ],
-    "icon": "/icons/Reiou.webp"
+    "icon": "/icons/Reiou.webp",
+    "source": {
+      "characterId": 181,
+      "generalIds": [
+        285,
+        286
+      ]
+    }
   },
   {
     "id": "yuuren",
@@ -791,7 +840,15 @@
       }
     ],
     "image": "/persos/yuuren.webp",
-    "icon": "/icons/Yuuren.webp"
+    "icon": "/icons/Yuuren.webp",
+    "source": {
+      "characterId": 66,
+      "generalIds": [
+        45,
+        193,
+        421
+      ]
+    }
   },
   {
     "id": "kourigen",
@@ -847,7 +904,15 @@
       }
     ],
     "image": "/persos/kourigen.webp",
-    "icon": "/icons/Kourigen.webp"
+    "icon": "/icons/Kourigen.webp",
+    "source": {
+      "characterId": 12,
+      "generalIds": [
+        50,
+        201,
+        414
+      ]
+    }
   },
   {
     "id": "shihaku",
@@ -921,7 +986,14 @@
         ]
       }
     ],
-    "icon": "/icons/Shihaku.webp"
+    "icon": "/icons/Shihaku.webp",
+    "source": {
+      "characterId": 182,
+      "generalIds": [
+        289,
+        290
+      ]
+    }
   },
   {
     "id": "hyouki",
@@ -977,6 +1049,14 @@
       }
     ],
     "image": "/persos/hyouki.webp",
-    "icon": "/icons/Hyouki.webp"
+    "icon": "/icons/Hyouki.webp",
+    "source": {
+      "characterId": 145,
+      "generalIds": [
+        229,
+        418,
+        419
+      ]
+    }
   }
 ]

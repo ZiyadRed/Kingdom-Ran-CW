@@ -71,6 +71,13 @@
       }
     ],
     "image": "/persos/ouken.webp",
-    "icon": "/icons/Ouken.webp"
+    "icon": "/icons/Ouken.webp",
+    "source": {
+      "characterId": 146,
+      "generalIds": [
+        230,
+        348
+      ]
+    }
   }
 ]

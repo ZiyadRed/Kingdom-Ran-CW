@@ -1,0 +1,486 @@
+{
+  "snapshot": "v8.6.0_20260826_c23b0a22",
+  "source": "mstUnionConquestGenerals.chiefGeneralSkillId / tacticianSkillId",
+  "skills": [
+    {
+      "owner_id": "renpa",
+      "characterId": 78,
+      "ownerName": "Renpa",
+      "ownerNameJp": "廉頗",
+      "ownerIcon": "/icons/Renpa.webp",
+      "role": "Leader",
+      "role_jp": "総大将",
+      "sourceField": "chiefGeneralSkillId",
+      "unlockSkillGroupId": 1,
+      "skill": {
+        "cwId": 851,
+        "textId": 850,
+        "name_en": "Great General's Roar",
+        "name_jp": "大将軍の一喝",
+        "type": "Leader",
+        "roleSkill": true,
+        "mp": 2000,
+        "skillType": 2,
+        "timing": 1,
+        "mainIconId": 405,
+        "subIconIds": [3, 221, 117, 141, 22],
+        "effectIds": [3447, 3448, 1714, 3477, 3449, 3450, 3451],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Renpa Army",
+            "effect": "DEF Up 80%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Renpa Army",
+            "effect": "Evasion (Dodge Chance) 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Renpa Army",
+            "effect": "Confusion Resistance 100%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "Morale Down 30%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "owner_id": "sho",
+      "characterId": 35,
+      "ownerName": "Sho",
+      "ownerNameJp": "昭王",
+      "ownerIcon": "/icons/Sho.webp",
+      "role": "Leader",
+      "role_jp": "総大将",
+      "sourceField": "chiefGeneralSkillId",
+      "unlockSkillGroupId": 1,
+      "skill": {
+        "cwId": 852,
+        "textId": 851,
+        "name_en": "War God's Grand Command",
+        "name_jp": "戦神の大号令",
+        "type": "Leader",
+        "roleSkill": true,
+        "mp": 2000,
+        "skillType": 2,
+        "timing": 1,
+        "mainIconId": 404,
+        "subIconIds": [2, 209, 3, 4, 116, 170, 112],
+        "effectIds": [1019, 3452, 3453, 3454, 3254, 3455, 3371, 3457, 3456],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self / Ally Six Great Generals of Qin",
+            "effect": "ATK Up 20%, DEF Up 60%",
+            "duration": null
+          },
+          {
+            "condition": "Surviving",
+            "target": "Self / Ally Six Great Generals of Qin",
+            "effect": "HP Recovery 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Qin]",
+            "effect": "Hit Rate Up 40%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "Critical Damage Down 20%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "owner_id": "rien",
+      "characterId": 198,
+      "ownerName": "Rien",
+      "ownerNameJp": "李園",
+      "ownerIcon": "/icons/Rien.webp",
+      "role": "Leader",
+      "role_jp": "総大将",
+      "sourceField": "chiefGeneralSkillId",
+      "unlockSkillGroupId": 1,
+      "skill": {
+        "cwId": 853,
+        "textId": 852,
+        "name_en": "Chu's New Prime Minister",
+        "name_jp": "楚国新宰相",
+        "type": "Leader",
+        "roleSkill": true,
+        "mp": 2000,
+        "skillType": 2,
+        "timing": 1,
+        "mainIconId": 404,
+        "subIconIds": [3, 179, 4, 22],
+        "effectIds": [3453, 3458, 3254, 3538, 3459],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Chu]",
+            "effect": "DEF Up 60%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Chu]",
+            "effect": "HP Recovery 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Cavalry]",
+            "effect": "Morale Down 40%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "owner_id": "kisui",
+      "characterId": 207,
+      "ownerName": "Kisui",
+      "ownerNameJp": "紀彗",
+      "ownerIcon": "/icons/Kisui.webp",
+      "role": "Leader",
+      "role_jp": "総大将",
+      "sourceField": "chiefGeneralSkillId",
+      "unlockSkillGroupId": 1,
+      "skill": {
+        "cwId": 854,
+        "textId": 853,
+        "name_en": "United in Strength and Purpose",
+        "name_jp": "戮力協心",
+        "type": "Leader",
+        "roleSkill": true,
+        "mp": 2000,
+        "skillType": 2,
+        "timing": 1,
+        "mainIconId": 405,
+        "subIconIds": [2, 228, 3, 116, 111],
+        "effectIds": [1019, 3460, 3453, 3461, 3371, 3462, 3463],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Kisui Army",
+            "effect": "ATK Up 20%, DEF Up 60%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Kisui Army",
+            "effect": "Hit Rate Up 40%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "Critical Rate Down 50%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "owner_id": "rouai",
+      "characterId": 200,
+      "ownerName": "Rouai",
+      "ownerNameJp": "嫪毐",
+      "ownerIcon": "/icons/Rouai.webp",
+      "role": "Leader",
+      "role_jp": "総大将",
+      "sourceField": "chiefGeneralSkillId",
+      "unlockSkillGroupId": 1,
+      "skill": {
+        "cwId": 855,
+        "textId": 854,
+        "name_en": "March of Resolve",
+        "name_jp": "覚悟の行軍",
+        "type": "Leader",
+        "roleSkill": true,
+        "mp": 2000,
+        "skillType": 2,
+        "timing": 1,
+        "mainIconId": 405,
+        "subIconIds": [2, 270, 3, 247, 249, 14, 171],
+        "effectIds": [1019, 3464, 3453, 3465, 3466, 3467, 3468],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Ai]",
+            "effect": "ATK Up 20%, DEF Up 60%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Other ally [Ai]",
+            "effect": "Confusion / Betrayal Infliction Rate Up 50%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Qin]",
+            "effect": "DEF Down 40%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "owner_id": "shouheikun",
+      "characterId": 34,
+      "ownerName": "Shouheikun",
+      "ownerNameJp": "昌平君",
+      "ownerIcon": "/icons/Shuheikun.webp",
+      "role": "Strategist",
+      "role_jp": "軍師",
+      "sourceField": "tacticianSkillId",
+      "unlockSkillGroupId": 2,
+      "skill": {
+        "cwId": 856,
+        "textId": 855,
+        "name_en": "Frontline Command",
+        "name_jp": "陣頭指揮",
+        "type": "Strategist",
+        "roleSkill": true,
+        "mp": 1000,
+        "skillType": 2,
+        "timing": 1,
+        "mainIconId": 404,
+        "subIconIds": [2, 170, 4, 250],
+        "effectIds": [1994, 3469, 3254, 3539, 3471, 3472],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Qin]",
+            "effect": "ATK Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Qin]",
+            "effect": "HP Recovery 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Qin]",
+            "effect": "Paralysis Infliction Rate Up 50%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "owner_id": "gohoumei",
+      "characterId": 149,
+      "ownerName": "Gohoumei",
+      "ownerNameJp": "呉鳳明",
+      "ownerIcon": "/icons/Gohoumei.webp",
+      "role": "Strategist",
+      "role_jp": "軍師",
+      "sourceField": "tacticianSkillId",
+      "unlockSkillGroupId": 2,
+      "skill": {
+        "cwId": 857,
+        "textId": 856,
+        "name_en": "Crouching Dragon, Fledgling Phoenix",
+        "name_jp": "臥竜鳳雛",
+        "type": "Strategist",
+        "roleSkill": true,
+        "mp": 1000,
+        "skillType": 2,
+        "timing": 1,
+        "mainIconId": 404,
+        "subIconIds": [147, 117, 176, 159, 4],
+        "effectIds": [1713, 2532, 3473, 1564, 3476, 3474, 3475],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Less Likely to be Targeted",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Wei]",
+            "effect": "Evasion (Dodge Chance) 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Wei]",
+            "effect": "DEF Penetration Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Wei]",
+            "effect": "Continuous HP Recovery 8%",
+            "duration": "16 turns"
+          }
+        ]
+      }
+    },
+    {
+      "owner_id": "beiman",
+      "characterId": 191,
+      "ownerName": "Beiman",
+      "ownerNameJp": "貝満",
+      "ownerIcon": "/icons/Beiman.webp",
+      "role": "Strategist",
+      "role_jp": "軍師",
+      "sourceField": "tacticianSkillId",
+      "unlockSkillGroupId": 2,
+      "skill": {
+        "cwId": 858,
+        "textId": 857,
+        "name_en": "Supreme Strategy [Beiman]",
+        "name_jp": "至強の軍略【貝満】",
+        "type": "Strategist",
+        "roleSkill": true,
+        "mp": 1000,
+        "skillType": 2,
+        "timing": 1,
+        "mainIconId": 404,
+        "subIconIds": [147, 3, 179, 6, 274, 118],
+        "effectIds": [1713, 1020, 1806, 2186, 3478, 3479],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Less Likely to be Targeted",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Chu]",
+            "effect": "DEF Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Kanmei Army",
+            "effect": "Critical Rate Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "Hit Rate Down 40%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "owner_id": "koshou",
+      "characterId": 116,
+      "ownerName": "Koshou",
+      "ownerNameJp": "胡傷",
+      "ownerIcon": "/icons/Koshou.webp",
+      "role": "Strategist",
+      "role_jp": "軍師",
+      "sourceField": "tacticianSkillId",
+      "unlockSkillGroupId": 2,
+      "skill": {
+        "cwId": 859,
+        "textId": 858,
+        "name_en": "Brilliant Wisdom",
+        "name_jp": "聡明叡智",
+        "type": "Strategist",
+        "roleSkill": true,
+        "mp": 1000,
+        "skillType": 2,
+        "timing": 1,
+        "mainIconId": 406,
+        "subIconIds": [147, 15, 112, 118],
+        "effectIds": [1713, 3480, 3481, 3479],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Less Likely to be Targeted",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "ATK Down 40%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "Critical Damage Down 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "Hit Rate Down 40%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "owner_id": "shunsuiju",
+      "characterId": 212,
+      "ownerName": "Shunsuiju",
+      "ownerNameJp": "舜水樹",
+      "ownerIcon": "/icons/Shunsuiju.webp",
+      "role": "Strategist",
+      "role_jp": "軍師",
+      "sourceField": "tacticianSkillId",
+      "unlockSkillGroupId": 2,
+      "skill": {
+        "cwId": 860,
+        "textId": 859,
+        "name_en": "Boundless Stratagems",
+        "name_jp": "機略縦横",
+        "type": "Strategist",
+        "roleSkill": true,
+        "mp": 1000,
+        "skillType": 2,
+        "timing": 1,
+        "mainIconId": 404,
+        "subIconIds": [247, 252, 4, 7, 14],
+        "effectIds": [2131, 3482, 3254, 3540, 1909, 2266, 3484],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "Confusion / Burn Infliction Rate Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "Surviving",
+            "target": "Ally [Zhao]",
+            "effect": "HP Recovery 30%, Morale Recovery 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "DEF Down 30%",
+            "duration": null
+          }
+        ]
+      }
+    }
+  ]
+}

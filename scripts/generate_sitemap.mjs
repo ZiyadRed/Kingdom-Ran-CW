@@ -1,73 +1,46 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import {
+  SITE_URL,
+  baseIndexablePaths,
+  indexableRoutes,
+  localizedVariants,
+} from './seo/routes.mjs'
 
-const ROOT = 'https://ranhq.vercel.app'
-const lastmod = new Date().toISOString().slice(0, 10)
-const characterDir = path.resolve('data/characters')
+const escapeXml = (value) => String(value)
+  .replaceAll('&', '&amp;')
+  .replaceAll('<', '&lt;')
+  .replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;')
+  .replaceAll("'", '&apos;')
 
-const staticRoutes = [
-  ['/', '1.0'],
-  ['/archive', '0.9'],
-  ['/archive/characters', '0.9'],
-  ['/archive/cw6-scene-cards', '0.8'],
-  ['/guide', '0.9'],
-  ['/builder', '0.8'],
-  ['/castle-points', '0.8'],
-  ['/buffs', '0.8'],
-  ['/tiers', '0.8'],
-  ['/cost', '0.7'],
-  ['/cw-stats', '0.8'],
-]
+const entries = baseIndexablePaths().flatMap((basePath) => {
+  const variants = localizedVariants(basePath)
+  const alternates = [
+    ...variants,
+    { locale: 'x-default', url: variants.find((variant) => variant.locale === 'en').url },
+  ]
+  return variants.map((variant) => [
+    '  <url>',
+    `    <loc>${escapeXml(variant.url)}</loc>`,
+    ...alternates.map((alternate) => (
+      `    <xhtml:link rel="alternate" hreflang="${alternate.locale}" href="${escapeXml(alternate.url)}" />`
+    )),
+    '  </url>',
+  ].join('\n'))
+})
 
-const guideSections = [
-  'basics',
-  'stats-screen',
-  'stats',
-  'roles',
-  'bandits',
-  'leaders',
-  'crystals',
-  'debuffs',
-  'effects',
-  'matchups',
-  'terrain',
-  'types',
-  'interactions',
-  'targeting',
-]
+const xml = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+  ...entries,
+  '</urlset>',
+  '',
+].join('\n')
 
-function readCharacters(){
-  const seen = new Set()
-  const chars = []
-  for(const file of fs.readdirSync(characterDir).filter(name => name.endsWith('.json')).sort()){
-    const raw = JSON.parse(fs.readFileSync(path.join(characterDir, file), 'utf8'))
-    const entries = Array.isArray(raw) ? raw : raw.characters || []
-    for(const char of entries){
-      if(!char?.id || seen.has(char.id)) continue
-      seen.add(char.id)
-      chars.push(char.id)
-    }
-  }
-  return chars.sort((a, b) => a.localeCompare(b))
-}
-
-const urls = [
-  ...staticRoutes.map(([route, priority]) => ({ route, priority })),
-  ...guideSections.map(id => ({ route: `/guide/${id}`, priority: '0.75' })),
-  ...readCharacters().map(id => ({ route: `/archive/characters/${id}`, priority: '0.65' })),
-]
-
-const absoluteUrls = urls.map(({ route }) => `${ROOT}${route === '/' ? '/' : route}`)
-
-const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map(({ route, priority }) => {
-  const loc = `${ROOT}${route === '/' ? '/' : route}`
-  return `  <url><loc>${loc}</loc><lastmod>${lastmod}</lastmod><priority>${priority}</priority></url>`
-}).join('\n')}
-</urlset>
-`
+const routes = indexableRoutes()
+const text = `${routes.map(({ path: routePath }) => `${SITE_URL}${routePath}`).join('\n')}\n`
 
 fs.writeFileSync(path.resolve('public/sitemap.xml'), xml)
-fs.writeFileSync(path.resolve('public/sitemap.txt'), `${absoluteUrls.join('\n')}\n`)
-console.log(`generate_sitemap: wrote ${urls.length} URLs to public/sitemap.xml and public/sitemap.txt`)
+fs.writeFileSync(path.resolve('public/sitemap.txt'), text)
+console.log(`generate_sitemap: wrote ${routes.length} canonical localized URLs with reciprocal hreflang annotations`)

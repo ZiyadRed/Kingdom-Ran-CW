@@ -59,7 +59,7 @@
                   "faction":  "Qin",
                   "name_jp":  "尾平"
               },
-    "Bikou":  {
+    "Bitou":  {
                   "rarity":  "R",
                   "faction":  "Qin",
                   "name_jp":  "尾到"
@@ -214,7 +214,7 @@
                   "faction":  "Wei",
                   "name_jp":  "玄峰"
               },
-    "Gii":  {
+    "Gikou":  {
                 "rarity":  "SR",
                 "faction":  "Wei",
                 "name_jp":  "魏興"
@@ -264,7 +264,7 @@
                    "faction":  "Qin",
                    "name_jp":  "白起"
                },
-    "Hakukisei":  {
+    "Hakukisai":  {
                       "rarity":  "SR",
                       "faction":  "Qin",
                       "name_jp":  "白亀西"
@@ -289,7 +289,7 @@
                    "faction":  "Ai",
                    "name_jp":  "樊於期"
                },
-    "Hanroki":  {
+    "Hanruki":  {
                     "rarity":  "UR",
                     "faction":  "Ai",
                     "name_jp":  "樊琉期"
@@ -304,7 +304,7 @@
                    "faction":  "Qin",
                    "name_jp":  "蒲鶮"
                },
-    "Hoki":  {
+    "Fuuki":  {
                  "rarity":  "SR",
                  "faction":  "Wei",
                  "name_jp":  "馮忌"
@@ -334,7 +334,7 @@
                   "faction":  "Chu",
                   "name_jp":  "仁凹"
               },
-    "Jiou":  {
+    "Koushou":  {
                  "rarity":  "SR",
                  "faction":  "Zhao",
                  "name_jp":  "江彰"
@@ -444,7 +444,7 @@
                    "faction":  "Zhao",
                    "name_jp":  "慶舎"
                },
-    "Kesshi":  {
+    "Ketsushi":  {
                    "rarity":  "SR",
                    "faction":  "Zhao",
                    "name_jp":  "竭氏"
@@ -484,7 +484,7 @@
                 "faction":  "Qin",
                 "name_jp":  "向"
             },
-    "Koujyun":  {
+    "Koujun":  {
                     "rarity":  "SR",
                     "faction":  "Qin",
                     "name_jp":  "高順"
@@ -509,7 +509,7 @@
                     "faction":  "Chu",
                     "name_jp":  "項翼"
                 },
-    "Kuzen":  {
+    "Kozen":  {
                   "rarity":  "SR",
                   "faction":  "Qin",
                   "name_jp":  "蒙恬のじぃ"
@@ -529,12 +529,12 @@
                    "faction":  "Wei",
                    "name_jp":  "姜燕"
                },
-    "Kyoubou":  {
+    "Kyobou":  {
                     "rarity":  "UR",
                     "faction":  "Chu",
                     "name_jp":  "巨暴"
                 },
-    "Kyougai":  {
+    "Kyogai":  {
                     "rarity":  "R",
                     "faction":  "Qin",
                     "name_jp":  "去亥"
@@ -579,7 +579,7 @@
                   "faction":  "Qin",
                   "name_jp":  "摩論"
               },
-    "Miyamoto":  {
+    "Kyuugen":  {
                      "rarity":  "SR",
                      "faction":  "Zhao",
                      "name_jp":  "宮元"
@@ -804,7 +804,7 @@
                   "faction":  "Qin",
                   "name_jp":  "竜有"
               },
-    "Saizatsu":  {
+    "Saitaku":  {
                      "rarity":  "SR",
                      "faction":  "Qin",
                      "name_jp":  "蔡沢"
@@ -964,7 +964,7 @@
                 "faction":  "Qin",
                 "name_jp":  "騰"
             },
-    "Toumi":  {
+    "Toubi":  {
                   "rarity":  "UR",
                   "faction":  "Qin",
                   "name_jp":  "東美"

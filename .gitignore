@@ -11,3 +11,10 @@ dist/
 src.backup-*/
 data.backup-*/
 _banner_backup_*/
+
+# Python bytecode from the localization scripts
+__pycache__/
+*.pyc
+
+# Local agent orchestration state
+.ai-team/

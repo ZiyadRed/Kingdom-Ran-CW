@@ -122,7 +122,15 @@
     ],
     "notes": "Core unit; her name appears as a buff target in many Mountain Folk skill conditions.",
     "image": "/persos/yotanwa.webp",
-    "icon": "/icons/Yotanwa.webp"
+    "icon": "/icons/Yotanwa.webp",
+    "source": {
+      "characterId": 68,
+      "generalIds": [
+        89,
+        117,
+        139
+      ]
+    }
   },
   {
     "id": "kitari",
@@ -202,7 +210,14 @@
       }
     ],
     "image": "/persos/kitari.webp",
-    "icon": "/icons/Kitari.webp"
+    "icon": "/icons/Kitari.webp",
+    "source": {
+      "characterId": 237,
+      "generalIds": [
+        481,
+        482
+      ]
+    }
   },
   {
     "id": "danto",
@@ -300,7 +315,14 @@
       }
     ],
     "image": "/persos/danto.webp",
-    "icon": "/icons/Danto.webp"
+    "icon": "/icons/Danto.webp",
+    "source": {
+      "characterId": 239,
+      "generalIds": [
+        497,
+        498
+      ]
+    }
   },
   {
     "id": "katari",
@@ -374,7 +396,14 @@
       }
     ],
     "image": "/persos/katari.webp",
-    "icon": "/icons/Katari.webp"
+    "icon": "/icons/Katari.webp",
+    "source": {
+      "characterId": 245,
+      "generalIds": [
+        510,
+        511
+      ]
+    }
   },
   {
     "id": "toji",
@@ -466,7 +495,15 @@
       }
     ],
     "image": "/persos/toji.webp",
-    "icon": "/icons/Toji.webp"
+    "icon": "/icons/Toji.webp",
+    "source": {
+      "characterId": 142,
+      "generalIds": [
+        226,
+        487,
+        488
+      ]
+    }
   },
   {
     "id": "fuji",
@@ -546,7 +583,15 @@
       }
     ],
     "image": "/persos/fuji.webp",
-    "icon": "/icons/Fuji.webp"
+    "icon": "/icons/Fuji.webp",
+    "source": {
+      "characterId": 143,
+      "generalIds": [
+        227,
+        489,
+        490
+      ]
+    }
   },
   {
     "id": "ramauji",
@@ -626,7 +671,15 @@
       }
     ],
     "image": "/persos/ramauji.webp",
-    "icon": "/icons/Ramauji.webp"
+    "icon": "/icons/Ramauji.webp",
+    "source": {
+      "characterId": 144,
+      "generalIds": [
+        228,
+        483,
+        484
+      ]
+    }
   },
   {
     "id": "pam",
@@ -712,7 +765,15 @@
       }
     ],
     "image": "/persos/pam.webp",
-    "icon": "/icons/Pam.webp"
+    "icon": "/icons/Pam.webp",
+    "source": {
+      "characterId": 241,
+      "generalIds": [
+        501,
+        502,
+        503
+      ]
+    }
   },
   {
     "id": "taijifu",
@@ -768,7 +829,15 @@
       }
     ],
     "image": "/persos/taijifu.webp",
-    "icon": "/icons/Taijifu.webp"
+    "icon": "/icons/Taijifu.webp",
+    "source": {
+      "characterId": 4,
+      "generalIds": [
+        56,
+        184,
+        485
+      ]
+    }
   },
   {
     "id": "bajio",
@@ -842,7 +911,14 @@
       }
     ],
     "image": "/persos/bajio.webp",
-    "icon": "/icons/Bajio.webp"
+    "icon": "/icons/Bajio.webp",
+    "source": {
+      "characterId": 5,
+      "generalIds": [
+        95,
+        123
+      ]
+    }
   },
   {
     "id": "gotan",
@@ -897,7 +973,13 @@
         ]
       }
     ],
-    "icon": "/icons/Gotan.webp"
+    "icon": "/icons/Gotan.webp",
+    "source": {
+      "characterId": 25,
+      "generalIds": [
+        11
+      ]
+    }
   },
   {
     "id": "shuki",
@@ -952,7 +1034,13 @@
         ]
       }
     ],
-    "icon": "/icons/Shuki.webp"
+    "icon": "/icons/Shuki.webp",
+    "source": {
+      "characterId": 30,
+      "generalIds": [
+        14
+      ]
+    }
   },
   {
     "id": "maki",
@@ -1007,6 +1095,12 @@
         ]
       }
     ],
-    "icon": "/icons/Maki.webp"
+    "icon": "/icons/Maki.webp",
+    "source": {
+      "characterId": 59,
+      "generalIds": [
+        15
+      ]
+    }
   }
 ]

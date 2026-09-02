@@ -66,7 +66,14 @@
         ]
       }
     ],
-    "icon": "/icons/Duke Hyou.webp"
+    "icon": "/icons/Duke Hyou.webp",
+    "source": {
+      "characterId": 99,
+      "generalIds": [
+        96,
+        124
+      ]
+    }
   },
   {
     "id": "mougou",
@@ -128,7 +135,14 @@
       }
     ],
     "image": "/persos/mougou.webp",
-    "icon": "/icons/Mougou.webp"
+    "icon": "/icons/Mougou.webp",
+    "source": {
+      "characterId": 65,
+      "generalIds": [
+        91,
+        119
+      ]
+    }
   },
   {
     "id": "mouki",
@@ -184,11 +198,19 @@
       }
     ],
     "image": "/persos/mouki.webp",
-    "icon": "/icons/Mouki.webp"
+    "icon": "/icons/Mouki.webp",
+    "source": {
+      "characterId": 61,
+      "generalIds": [
+        59,
+        211,
+        474
+      ]
+    }
   },
   {
     "id": "kuzen",
-    "name_en": "Kuzen",
+    "name_en": "Kozen",
     "name_jp": "蒙恬のじぃ",
     "country": "qin",
     "rarity": "SR",
@@ -240,7 +262,14 @@
       }
     ],
     "image": "/persos/kozen.webp",
-    "icon": "/icons/Kuzen.webp"
+    "icon": "/icons/Kuzen.webp",
+    "source": {
+      "characterId": 64,
+      "generalIds": [
+        22,
+        269
+      ]
+    }
   },
   {
     "id": "rishi",
@@ -302,7 +331,16 @@
       }
     ],
     "image": "/persos/rishi.webp",
-    "icon": "/icons/Rishi.webp"
+    "icon": "/icons/Rishi.webp",
+    "source": {
+      "characterId": 70,
+      "generalIds": [
+        47,
+        494,
+        495,
+        496
+      ]
+    }
   },
   {
     "id": "douken",
@@ -357,7 +395,13 @@
         ]
       }
     ],
-    "icon": "/icons/Douken.webp"
+    "icon": "/icons/Douken.webp",
+    "source": {
+      "characterId": 48,
+      "generalIds": [
+        3
+      ]
+    }
   },
   {
     "id": "shishi",
@@ -412,11 +456,17 @@
         ]
       }
     ],
-    "icon": "/icons/Shishi.webp"
+    "icon": "/icons/Shishi.webp",
+    "source": {
+      "characterId": 91,
+      "generalIds": [
+        20
+      ]
+    }
   },
   {
     "id": "gii",
-    "name_en": "Gii",
+    "name_en": "Gikou",
     "name_jp": "魏興",
     "country": "wei",
     "rarity": "NR",
@@ -467,7 +517,13 @@
         ]
       }
     ],
-    "icon": "/icons/Gii.webp"
+    "icon": "/icons/Gii.webp",
+    "source": {
+      "characterId": 97,
+      "generalIds": [
+        13
+      ]
+    }
   },
   {
     "id": "maron",
@@ -523,7 +579,15 @@
       }
     ],
     "image": "/persos/maron.webp",
-    "icon": "/icons/Maron.webp"
+    "icon": "/icons/Maron.webp",
+    "source": {
+      "characterId": 120,
+      "generalIds": [
+        167,
+        270,
+        349
+      ]
+    }
   },
   {
     "id": "shunmen",
@@ -580,7 +644,15 @@
       }
     ],
     "image": "/persos/shunmen.webp",
-    "icon": "/icons/Shunmen.webp"
+    "icon": "/icons/Shunmen.webp",
+    "source": {
+      "characterId": 3,
+      "generalIds": [
+        49,
+        181,
+        486
+      ]
+    }
   },
   {
     "id": "rankai",
@@ -637,7 +709,15 @@
       }
     ],
     "image": "/persos/rankai.webp",
-    "icon": "/icons/Rankai.webp"
+    "icon": "/icons/Rankai.webp",
+    "source": {
+      "characterId": 7,
+      "generalIds": [
+        55,
+        164,
+        165
+      ]
+    }
   },
   {
     "id": "kyomei",
@@ -700,7 +780,15 @@
       }
     ],
     "image": "/persos/kyoumei.webp",
-    "icon": "/icons/Kyomei.webp"
+    "icon": "/icons/Kyomei.webp",
+    "source": {
+      "characterId": 176,
+      "generalIds": [
+        275,
+        276,
+        380
+      ]
+    }
   },
   {
     "id": "suugen",
@@ -757,7 +845,16 @@
       }
     ],
     "image": "/persos/suugen.webp",
-    "icon": "/icons/Suugen.webp"
+    "icon": "/icons/Suugen.webp",
+    "source": {
+      "characterId": 39,
+      "generalIds": [
+        33,
+        183,
+        316,
+        415
+      ]
+    }
   },
   {
     "id": "bihei",
@@ -814,7 +911,16 @@
       }
     ],
     "image": "/persos/bihei.webp",
-    "icon": "/icons/Bihei.webp"
+    "icon": "/icons/Bihei.webp",
+    "source": {
+      "characterId": 54,
+      "generalIds": [
+        52,
+        113,
+        446,
+        447
+      ]
+    }
   },
   {
     "id": "hyou",
@@ -870,7 +976,14 @@
       }
     ],
     "image": null,
-    "icon": "/icons/Hyou.webp"
+    "icon": "/icons/Hyou.webp",
+    "source": {
+      "characterId": 55,
+      "generalIds": [
+        70,
+        112
+      ]
+    }
   },
   {
     "id": "ogiko",
@@ -932,7 +1045,15 @@
       }
     ],
     "image": "/persos/ogiko.webp",
-    "icon": "/icons/Ogiko.webp"
+    "icon": "/icons/Ogiko.webp",
+    "source": {
+      "characterId": 171,
+      "generalIds": [
+        262,
+        263,
+        425
+      ]
+    }
   },
   {
     "id": "muta",
@@ -994,11 +1115,19 @@
       }
     ],
     "image": "/persos/muta.webp",
-    "icon": "/icons/Muta.webp"
+    "icon": "/icons/Muta.webp",
+    "source": {
+      "characterId": 6,
+      "generalIds": [
+        48,
+        273,
+        451
+      ]
+    }
   },
   {
     "id": "kyougai",
-    "name_en": "Kyougai",
+    "name_en": "Kyogai",
     "name_jp": "去亥",
     "country": "qin",
     "rarity": "R",
@@ -1050,7 +1179,16 @@
       }
     ],
     "image": "/persos/kyogai.webp",
-    "icon": "/icons/Kyougai.webp"
+    "icon": "/icons/Kyougai.webp",
+    "source": {
+      "characterId": 18,
+      "generalIds": [
+        30,
+        182,
+        434,
+        435
+      ]
+    }
   },
   {
     "id": "doukin",
@@ -1106,7 +1244,16 @@
       }
     ],
     "image": "/persos/doukin.webp",
-    "icon": "/icons/Doukin.webp"
+    "icon": "/icons/Doukin.webp",
+    "source": {
+      "characterId": 47,
+      "generalIds": [
+        42,
+        186,
+        291,
+        478
+      ]
+    }
   },
   {
     "id": "ryofui",
@@ -1198,7 +1345,14 @@
       }
     ],
     "image": "/persos/ryofui.webp",
-    "icon": "/icons/Ryofui.webp"
+    "icon": "/icons/Ryofui.webp",
+    "source": {
+      "characterId": 79,
+      "generalIds": [
+        108,
+        136
+      ]
+    }
   },
   {
     "id": "heki",
@@ -1254,7 +1408,16 @@
       }
     ],
     "image": "/persos/heki.webp",
-    "icon": "/icons/Heki.webp"
+    "icon": "/icons/Heki.webp",
+    "source": {
+      "characterId": 57,
+      "generalIds": [
+        35,
+        81,
+        180,
+        288
+      ]
+    }
   },
   {
     "id": "queen_biki",
@@ -1366,7 +1529,14 @@
       }
     ],
     "image": "/persos/biki.webp",
-    "icon": "/icons/Queen Biki.webp"
+    "icon": "/icons/Queen Biki.webp",
+    "source": {
+      "characterId": 122,
+      "generalIds": [
+        173,
+        174
+      ]
+    }
   },
   {
     "id": "kyouen",
@@ -1448,11 +1618,19 @@
       }
     ],
     "image": "/persos/kyouen.webp",
-    "icon": "/icons/Kyouen.webp"
+    "icon": "/icons/Kyouen.webp",
+    "source": {
+      "characterId": 83,
+      "generalIds": [
+        78,
+        178,
+        278
+      ]
+    }
   },
   {
     "id": "bikou",
-    "name_en": "Bikou",
+    "name_en": "Bitou",
     "name_jp": "尾到",
     "country": "qin",
     "rarity": "R",
@@ -1504,7 +1682,16 @@
       }
     ],
     "image": "/persos/bitou.webp",
-    "icon": "/icons/Bikou.webp"
+    "icon": "/icons/Bikou.webp",
+    "source": {
+      "characterId": 53,
+      "generalIds": [
+        25,
+        448,
+        449,
+        450
+      ]
+    }
   },
   {
     "id": "kanou",
@@ -1560,7 +1747,16 @@
       }
     ],
     "image": "/persos/kanou.webp",
-    "icon": "/icons/Kanou.webp"
+    "icon": "/icons/Kanou.webp",
+    "source": {
+      "characterId": 15,
+      "generalIds": [
+        41,
+        189,
+        306,
+        477
+      ]
+    }
   },
   {
     "id": "kei",
@@ -1614,7 +1810,14 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Kei.webp",
+    "source": {
+      "characterId": 19,
+      "generalIds": [
+        23
+      ]
+    }
   },
   {
     "id": "shousa",
@@ -1670,7 +1873,15 @@
       }
     ],
     "image": "/persos/shousa.webp",
-    "icon": "/icons/Shousa.webp"
+    "icon": "/icons/Shousa.webp",
+    "source": {
+      "characterId": 36,
+      "generalIds": [
+        53,
+        191,
+        314
+      ]
+    }
   },
   {
     "id": "sosui",
@@ -1720,7 +1931,15 @@
       }
     ],
     "image": "/persos/sosui.webp",
-    "icon": "/icons/Sosui.webp"
+    "icon": "/icons/Sosui.webp",
+    "source": {
+      "characterId": 42,
+      "generalIds": [
+        66,
+        197,
+        311
+      ]
+    }
   },
   {
     "id": "hairou",
@@ -1776,7 +1995,15 @@
       }
     ],
     "image": "/persos/hairou.webp",
-    "icon": "/icons/Hairou.webp"
+    "icon": "/icons/Hairou.webp",
+    "source": {
+      "characterId": 85,
+      "generalIds": [
+        51,
+        192,
+        420
+      ]
+    }
   },
   {
     "id": "karyoten",
@@ -1832,7 +2059,15 @@
       }
     ],
     "image": "/persos/ten.webp",
-    "icon": "/icons/Karyouten.webp"
+    "icon": "/icons/Karyouten.webp",
+    "source": {
+      "characterId": 13,
+      "generalIds": [
+        38,
+        94,
+        122
+      ]
+    }
   },
   {
     "id": "en",
@@ -1888,7 +2123,16 @@
       }
     ],
     "image": "/persos/en.webp",
-    "icon": "/icons/En.webp"
+    "icon": "/icons/En.webp",
+    "source": {
+      "characterId": 86,
+      "generalIds": [
+        64,
+        114,
+        604,
+        605
+      ]
+    }
   },
   {
     "id": "takukei",
@@ -1944,7 +2188,16 @@
       }
     ],
     "image": "/persos/takukei.webp",
-    "icon": "/icons/Takukei.webp"
+    "icon": "/icons/Takukei.webp",
+    "source": {
+      "characterId": 87,
+      "generalIds": [
+        31,
+        198,
+        440,
+        441
+      ]
+    }
   },
   {
     "id": "denyuu",
@@ -2000,7 +2253,15 @@
       }
     ],
     "image": "/persos/denyuu.webp",
-    "icon": "/icons/Denyuu.webp"
+    "icon": "/icons/Denyuu.webp",
+    "source": {
+      "characterId": 45,
+      "generalIds": [
+        65,
+        190,
+        334
+      ]
+    }
   },
   {
     "id": "denei",
@@ -2056,7 +2317,15 @@
       }
     ],
     "image": "/persos/denei.webp",
-    "icon": "/icons/Denei.webp"
+    "icon": "/icons/Denei.webp",
+    "source": {
+      "characterId": 44,
+      "generalIds": [
+        54,
+        271,
+        356
+      ]
+    }
   },
   {
     "id": "banyou",
@@ -2112,11 +2381,18 @@
       }
     ],
     "image": "/persos/banyou.webp",
-    "icon": "/icons/Banyou.webp"
+    "icon": "/icons/Banyou.webp",
+    "source": {
+      "characterId": 52,
+      "generalIds": [
+        16,
+        268
+      ]
+    }
   },
   {
     "id": "hakukisei",
-    "name_en": "Hakukisei",
+    "name_en": "Hakukisai",
     "name_jp": "白亀西",
     "country": "qin",
     "rarity": "SR",
@@ -2167,7 +2443,13 @@
         ]
       }
     ],
-    "icon": "/icons/Hakukisei.webp"
+    "icon": "/icons/Hakukisei.webp",
+    "source": {
+      "characterId": 49,
+      "generalIds": [
+        21
+      ]
+    }
   },
   {
     "id": "seki",
@@ -2223,7 +2505,16 @@
       }
     ],
     "image": "/persos/seki.webp",
-    "icon": "/icons/Seki.webp"
+    "icon": "/icons/Seki.webp",
+    "source": {
+      "characterId": 41,
+      "generalIds": [
+        27,
+        199,
+        590,
+        591
+      ]
+    }
   },
   {
     "id": "ryuusen",
@@ -2279,7 +2570,15 @@
       }
     ],
     "image": "/persos/ryuusen.webp",
-    "icon": "/icons/Ryuusen.webp"
+    "icon": "/icons/Ryuusen.webp",
+    "source": {
+      "characterId": 74,
+      "generalIds": [
+        67,
+        185,
+        373
+      ]
+    }
   },
   {
     "id": "bakukoshin",
@@ -2335,7 +2634,15 @@
       }
     ],
     "image": "/persos/bakukoshin.webp",
-    "icon": "/icons/Bakukoshin.webp"
+    "icon": "/icons/Bakukoshin.webp",
+    "source": {
+      "characterId": 50,
+      "generalIds": [
+        57,
+        200,
+        381
+      ]
+    }
   },
   {
     "id": "kyoushou",
@@ -2391,7 +2698,15 @@
       }
     ],
     "image": "/persos/kyoushou.webp",
-    "icon": "/icons/Kyoushou.webp"
+    "icon": "/icons/Kyoushou.webp",
+    "source": {
+      "characterId": 89,
+      "generalIds": [
+        37,
+        194,
+        305
+      ]
+    }
   },
   {
     "id": "rokuomi",
@@ -2447,7 +2762,15 @@
       }
     ],
     "image": "/persos/rokuomi.webp",
-    "icon": "/icons/Rokuomi.webp"
+    "icon": "/icons/Rokuomi.webp",
+    "source": {
+      "characterId": 81,
+      "generalIds": [
+        61,
+        175,
+        384
+      ]
+    }
   },
   {
     "id": "ryuukoku",
@@ -2503,7 +2826,16 @@
       }
     ],
     "image": "/persos/ryuukoku.webp",
-    "icon": "/icons/Ryuukoku.webp"
+    "icon": "/icons/Ryuukoku.webp",
+    "source": {
+      "characterId": 73,
+      "generalIds": [
+        39,
+        188,
+        309,
+        475
+      ]
+    }
   },
   {
     "id": "roen",
@@ -2558,7 +2890,16 @@
         ]
       }
     ],
-    "icon": "/icons/Roen.webp"
+    "icon": "/icons/Roen.webp",
+    "source": {
+      "characterId": 80,
+      "generalIds": [
+        24,
+        606,
+        607,
+        608
+      ]
+    }
   },
   {
     "id": "rinbou",
@@ -2614,6 +2955,76 @@
       }
     ],
     "image": "/persos/rinbou.webp",
-    "icon": "/icons/Rinbou.webp"
+    "icon": "/icons/Rinbou.webp",
+    "source": {
+      "characterId": 77,
+      "generalIds": [
+        40,
+        187,
+        315,
+        476
+      ]
+    }
+  },
+  {
+    "id": "kou2",
+    "name_en": "Kou",
+    "name_jp": "昂",
+    "country": "qin",
+    "rarity": "NR",
+    "skills": [
+      {
+        "name_en": "Heavy Pursuit [Red Bull]",
+        "name_jp": "重追撃【赤牛】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy [General] with lowest remaining HP",
+            "target": "1 enemy [General]",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Infantry]",
+            "effect": "Ally [Shield] \"Burn\" Resistance 100%",
+            "duration": "3 turns"
+          }
+        ]
+      },
+      {
+        "name_en": "Marsh Terrain Aptitude – Small",
+        "name_jp": "泥濘適性・小",
+        "type": "Internal Affairs",
+        "effects": [
+          {
+            "condition": "When passing Marsh terrain (effective even if not deployed)",
+            "target": "Passing unit",
+            "effect": "Damage Taken Increase Resistance 5.4%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "DEF Enhancement – Small Improved [Defense Siege Weapons]",
+        "name_jp": "防御力強化・小改【防衛兵器】",
+        "type": "Internal Affairs",
+        "effects": [
+          {
+            "condition": "CW battle (effective even when not deployed)",
+            "target": "Ally defense [Siege Weapon]",
+            "effect": "DEF Up 4.8%",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "icon": "/icons/Kou2.webp",
+    "source": {
+      "characterId": 23,
+      "generalIds": [
+        18
+      ]
+    }
   }
 ]

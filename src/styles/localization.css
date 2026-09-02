@@ -1,0 +1,64 @@
+/* ── Locale controls and source-text presentation ───────────────────────── */
+.locale-switcher { display: inline-flex; align-items: center; flex: 0 0 auto; }
+.locale-switcher select {
+  min-height: 32px; border: 1px solid rgba(255,255,255,.22); border-radius: 6px;
+  background: rgba(255,255,255,.08); color: #fff; padding: 0 .45rem;
+  font: inherit; font-size: .72rem; cursor: pointer;
+}
+.locale-switcher option { color: #06264c; background: #fff; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.sk-source-desc {
+  display: flex; flex-direction: column; gap: .22rem; margin: -.15rem 0 .15rem;
+  padding: .48rem .6rem; border: 1px solid rgba(61,110,181,.26);
+  border-inline-start: 3px solid #3d6eb5; border-radius: 5px;
+  background: rgba(61,110,181,.07); color: var(--txt2); white-space: pre-line;
+  line-height: 1.5; font-size: .76rem;
+}
+.sk-source-label { color: #3d6eb5; font-size: .62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
+.sk-source-status {
+  display: inline-block; margin-inline-start: .45rem; color: var(--txt3); font-size: .58rem;
+  font-weight: 800; letter-spacing: .03em; vertical-align: middle;
+}
+.sk-source-status.is-verified { color: #2f8f4e; }
+
+/* RTL audit: logical edges keep the archive, cards, and overlays coherent. */
+html[dir="rtl"] .hdr-in { direction: rtl; }
+html[dir="rtl"] .nav-menu { right: auto; left: 0; }
+html[dir="rtl"] .nav-menu a.is-current { box-shadow: inset -3px 0 var(--terra); }
+html[dir="rtl"] .home-task-lane + .home-task-lane { border-left: 0; border-right: 1px solid var(--bdr); }
+html[dir="rtl"] .detail-panel { border-left: 0; border-right: 1px solid var(--bdr); box-shadow: 16px 0 44px rgba(6,38,76,.14); }
+html[dir="rtl"] .sk-head { border-left: 0; border-right: 5px solid; }
+html[dir="rtl"] .te-attack, html[dir="rtl"] .te-defense { border-left: 0; border-right: 3px solid; }
+html[dir="rtl"] .te-attack { border-right-color: rgba(192,57,43,.3); }
+html[dir="rtl"] .te-defense { border-right-color: rgba(26,95,168,.3); }
+html[dir="rtl"] .buff-sources { border-left: 0; border-right: 2px solid rgba(255,255,255,.1); padding-left: 7px; padding-right: 14px; }
+html[dir="rtl"] .locale-switcher select { direction: rtl; }
+
+/* The guide's desktop layout uses a floated table of contents. Mirror the
+   float, logical gap, and fixed content offset for RTL instead of leaving the
+   reading column anchored to the wrong edge. */
+html[dir="rtl"] .guide-head { text-align: right !important; }
+html[dir="rtl"] .guide-section-tabs { float: right; margin: 0 0 30px 36px !important; }
+html[dir="rtl"] .guide-tab { text-align: right; }
+html[dir="rtl"] .guide-page > :not(.guide-head):not(.guide-section-tabs):not(.guide-contents-toggle) {
+  margin-left: 0; margin-right: 276px;
+}
+html[dir="rtl"] .guide-group h2 { text-align: right; }
+
+@media (max-width: 600px) {
+  .locale-switcher select { min-height: 30px; font-size: .68rem; max-width: 82px; }
+  html[dir="rtl"] .guide-section-tabs { float: none; margin: -8px 0 24px !important; }
+  html[dir="rtl"] .guide-page > :not(.guide-head):not(.guide-section-tabs):not(.guide-contents-toggle) { margin-right: 0; }
+}
+
+/* The target -> effect separator is a literal arrow. In RTL the reading
+   direction is leftward, so an unmirrored arrow points back at the target.
+   The guide already uses a left arrow for the same relationship. */
+html[dir="rtl"] .eff-sep { display: inline-block; transform: scaleX(-1); }
+
+/* Footer and the mobile guide contents toggle hard-code text-align: left,
+   which strands them against the wrong edge on an RTL page. */
+html[dir="rtl"] .foot,
+html[dir="rtl"] .foot-inner,
+html[dir="rtl"] .guide-contents-toggle { text-align: right; }
+html[dir="rtl"] .foot-discord { margin-left: 0; margin-right: auto; }

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { parseBuffEffect, simulate, ALL, META_TEAMS, findCharByName, calcCwStats, isTargetedBy, normalizeEnemyTarget, calcCharBuffs, calcTeamEnemyDebuffs } from './core.jsx'
+import { parseBuffEffect, simulate, ALL, META_TEAMS, findCharByName, calcCwStats, isTargetedBy, normalizeEnemyTarget, calcCharBuffs, calcTeamEnemyDebuffs, SOUHA_ROLE_SKILLS, DEFAULT_SK, defaultSks, applyMask, updateSkillMasks, normalizeProgress } from './core.jsx'
 
 // The buff-text parser is the most intricate pure function in the engine.
 // These lock its behaviour against the documented terminology + formats.
@@ -70,8 +70,8 @@ describe('bracket-tolerant target matching', () => {
   })
 })
 
-// The team buff summary sums Strategy skills by default; the "include combat
-// skills" toggle adds Combat-type buff/debuff effects too.
+// The team buff summary sums Strategy plus selected Leader/Strategist skills
+// by default; the "include combat skills" toggle adds Combat effects too.
 describe('calcCharBuffs / buff summary', () => {
   const cav = (id, skills) => ({ id, name_en: id, country: 'qin', unit_type: 'Cavalry', skills })
 
@@ -107,6 +107,51 @@ describe('calcCharBuffs / buff summary', () => {
     expect(Object.keys(calcTeamEnemyDebuffs([owner], [])).length).toBe(0)
     const withCombat = calcTeamEnemyDebuffs([owner], [], true)
     expect(withCombat['All enemies']?.down?.ATK).toBe(20)
+  })
+
+  it('includes selected Leader and Strategist skills without the combat toggle', () => {
+    const leader = cav('leader', [{ type: 'Leader', effects: [
+      { condition: null, target: 'Self', effect: 'DEF Up 80%', duration: null },
+      { condition: null, target: 'All enemy [General]', effect: 'Morale Down 30%', duration: null },
+    ] }])
+    expect(calcCharBuffs(leader, [leader], [], false, true).DEF?.up).toBe(80)
+    expect(calcTeamEnemyDebuffs([leader])['All enemies']?.down?.Morale).toBe(30)
+  })
+})
+
+describe('Souha Leader / Strategist staging', () => {
+  it('attaches the exact v8.6.0 role roster and CW ids to site characters', () => {
+    expect(SOUHA_ROLE_SKILLS).toHaveLength(10)
+    expect(SOUHA_ROLE_SKILLS.map(entry=>entry.skill.cwId)).toEqual([851,852,853,854,855,856,857,858,859,860])
+    expect(SOUHA_ROLE_SKILLS.filter(entry=>entry.role==='Leader')).toHaveLength(5)
+    expect(SOUHA_ROLE_SKILLS.filter(entry=>entry.role==='Strategist')).toHaveLength(5)
+    for(const entry of SOUHA_ROLE_SKILLS){
+      const char=findCharByName(entry.ownerName)
+      expect(char?.id).toBe(entry.owner_id)
+      expect(char?.roleSkill?.cwId).toBe(entry.skill.cwId)
+      expect(char?.roleSkill?.type).toBe(entry.role)
+    }
+  })
+
+  it('keeps role skills outside the normal 1-3 unlock chain', () => {
+    // Any role holder whose star-6 card is already released works here; the
+    // property under test is the masking, not the character.
+    const holder=findCharByName('Renpa')
+    const withoutRole=applyMask(holder,{...DEFAULT_SK,role:false})
+    const withRole=applyMask(holder,{n:0,s6:false,role:true})
+    expect(withoutRole.skills.some(skill=>skill.roleSkill)).toBe(false)
+    expect(withoutRole.skills.some(skill=>skill.star6)).toBe(true)
+    expect(withRole.skills.map(skill=>skill.name_en)).toEqual([holder.roleSkill.name_en])
+  })
+
+  it('enforces one holder per role while allowing one Leader and one Strategist', () => {
+    const party=['Renpa','Sho','Shouheikun','Gohoumei'].map(findCharByName)
+    let masks=defaultSks()
+    masks=updateSkillMasks(masks,party,0,{...masks[0],role:true})
+    masks=updateSkillMasks(masks,party,1,{...masks[1],role:true})
+    expect(masks.map(mask=>mask.role)).toEqual([false,true,false,false])
+    masks=updateSkillMasks(masks,party,2,{...masks[2],role:true})
+    expect(masks.map(mask=>mask.role)).toEqual([false,true,true,false])
   })
 })
 
@@ -196,6 +241,34 @@ describe('simulate turn ordering', () => {
     expect(st.attack).toHaveLength(1)
     expect(st.attack[0].skills.map((s) => s.name)).toEqual(['s1'])
   })
+
+  it('collects selected role skills into their own turn-1 section', () => {
+    const a = [g('A', [{ type: 'Leader', name: 'leader1' }, { type: 'Strategy', name: 's1' }])]
+    const { roles, st } = simulate(a, [])
+    expect(roles.attack[0].skills.map((s) => s.name)).toEqual(['leader1'])
+    expect(st.attack[0].skills.map((s) => s.name)).toEqual(['s1'])
+  })
+})
+
+describe('progress migrations', () => {
+  it('keeps Fuuki siege ownership after the Hoki display-name correction', () => {
+    const attackLegacy='siege:Attack Siege Weapons:HP:Hoki:馮忌:12.3:'
+    const defenseLegacy='siege:Defense Siege Weapons:HP:Hoki:馮忌:28.3:'
+    const unrelatedLegacy='unit:Shield:Defense:Hoki:馮忌:12.3:'
+    const normalized=normalizeProgress({buffSources:{
+      [attackLegacy]:true,
+      [defenseLegacy]:'owned',
+      [unrelatedLegacy]:true,
+    }})
+
+    expect(normalized.buffSources).toMatchObject({
+      'siege:Attack Siege Weapons:HP:Fuuki:馮忌:12.3:':true,
+      'siege:Defense Siege Weapons:HP:Fuuki:馮忌:28.3:':'owned',
+      [unrelatedLegacy]:true,
+    })
+    expect(normalized.buffSources[attackLegacy]).toBeUndefined()
+    expect(normalized.buffSources[defenseLegacy]).toBeUndefined()
+  })
 })
 
 // Guards against the data graph silently breaking during refactors.
@@ -209,6 +282,15 @@ describe('character data', () => {
     const shin = findCharByName('Shin')
     expect(shin?.id).toBe('shin')
     expect(findCharByName('shin')).toBe(shin)
+  })
+
+  it('resolves corrected and legacy Romaji spellings to the same stable ID', () => {
+    expect(findCharByName('Bitou')?.id).toBe('bikou')
+    expect(findCharByName('Bikou')).toBe(findCharByName('Bitou'))
+    expect(findCharByName('Fuuki')?.id).toBe('hoki')
+    expect(findCharByName('Hoki')).toBe(findCharByName('Fuuki'))
+    expect(findCharByName('Kyuugen')?.id).toBe('miyamoto')
+    expect(findCharByName('Miyamoto')).toBe(findCharByName('Kyuugen'))
   })
 
   it('produces finite maxed CW stats for a known character', () => {

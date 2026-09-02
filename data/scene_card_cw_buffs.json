@@ -124,14 +124,14 @@
     {
       "id": 40145,
       "imageId": 10145,
-      "name_en": "Hanroki Evasion buff",
+      "name_en": "Hanruki Evasion buff",
       "name_jp": "函谷関通過 樊琉期",
       "stat": "evasion",
       "statLabel": "Evasion",
       "value": 7.5,
       "valueMode": "percent",
       "image": "/scene_cards/webp/Hanroki-Evasion-buff.webp",
-      "ownerName": "Hanroki",
+      "ownerName": "Hanruki",
       "ownerIcon": "/icons/Hanroki.webp",
       "thumb": "/scene_cards/thumbs/Hanroki-Evasion-buff-thumb.webp",
       "starValues": [
@@ -366,14 +366,14 @@
     {
       "id": 40219,
       "imageId": 10219,
-      "name_en": "Toumi Defense buff",
+      "name_en": "Toubi Defense buff",
       "name_jp": "祈り届く…",
       "stat": "def",
       "statLabel": "Defense",
       "value": 500,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Toumi-Defense-buff.webp",
-      "ownerName": "Toumi",
+      "ownerName": "Toubi",
       "ownerIcon": "/icons/Toumi.webp",
       "thumb": "/scene_cards/thumbs/Toumi-Defense-buff-thumb.webp",
       "starValues": [

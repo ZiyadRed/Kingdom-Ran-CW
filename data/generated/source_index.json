@@ -1,0 +1,2652 @@
+{
+  "_meta": {
+    "schema": "ranhq.source_index/1",
+    "rows": 661
+  },
+  "skills": {
+    "rouai#0": {
+      "status": "exact",
+      "skillId": 461
+    },
+    "rouai#1": {
+      "status": "exact",
+      "skillId": 462
+    },
+    "rouai#2": {
+      "status": "exact",
+      "skillId": 463
+    },
+    "wategi#0": {
+      "status": "exact",
+      "skillId": 424
+    },
+    "wategi#1": {
+      "status": "exact",
+      "skillId": 425
+    },
+    "wategi#2": {
+      "status": "exact",
+      "skillId": 426
+    },
+    "hanoki#0": {
+      "status": "exact",
+      "skillId": 438
+    },
+    "hanoki#1": {
+      "status": "exact",
+      "skillId": 439
+    },
+    "hanoki#2": {
+      "status": "exact",
+      "skillId": 440
+    },
+    "hanroki#0": {
+      "status": "exact",
+      "skillId": 449
+    },
+    "hanroki#1": {
+      "status": "exact",
+      "skillId": 450
+    },
+    "hanroki#2": {
+      "status": "exact",
+      "skillId": 451
+    },
+    "ordo#0": {
+      "status": "exact",
+      "skillId": 51
+    },
+    "ordo#1": {
+      "status": "exact",
+      "skillId": 161
+    },
+    "ordo#2": {
+      "status": "exact",
+      "skillId": 162
+    },
+    "futei#0": {
+      "status": "ambiguous",
+      "skillId": null
+    },
+    "futei#1": {
+      "status": "exact",
+      "skillId": 390
+    },
+    "futei#2": {
+      "status": "exact",
+      "skillId": 391
+    },
+    "futei#3": {
+      "status": "resolved",
+      "skillId": 518
+    },
+    "kouyoku#0": {
+      "status": "exact",
+      "skillId": 105
+    },
+    "kouyoku#1": {
+      "status": "exact",
+      "skillId": 432
+    },
+    "kouyoku#2": {
+      "status": "exact",
+      "skillId": 433
+    },
+    "jinou#0": {
+      "status": "exact",
+      "skillId": 409
+    },
+    "jinou#1": {
+      "status": "exact",
+      "skillId": 410
+    },
+    "jinou#2": {
+      "status": "exact",
+      "skillId": 411
+    },
+    "goumasho#0": {
+      "status": "exact",
+      "skillId": 427
+    },
+    "goumasho#1": {
+      "status": "exact",
+      "skillId": 429
+    },
+    "goumasho#2": {
+      "status": "exact",
+      "skillId": 428
+    },
+    "beiman#0": {
+      "status": "exact",
+      "skillId": 421
+    },
+    "beiman#1": {
+      "status": "exact",
+      "skillId": 422
+    },
+    "beiman#2": {
+      "status": "exact",
+      "skillId": 423
+    },
+    "kaen#0": {
+      "status": "exact",
+      "skillId": 65
+    },
+    "kaen#1": {
+      "status": "exact",
+      "skillId": 154
+    },
+    "kaen#2": {
+      "status": "exact",
+      "skillId": 155
+    },
+    "kouretsu#0": {
+      "status": "exact",
+      "skillId": 456
+    },
+    "kouretsu#1": {
+      "status": "exact",
+      "skillId": 457
+    },
+    "kouretsu#2": {
+      "status": "exact",
+      "skillId": 458
+    },
+    "hakusui#0": {
+      "status": "exact",
+      "skillId": 468
+    },
+    "hakusui#1": {
+      "status": "exact",
+      "skillId": 469
+    },
+    "hakusui#2": {
+      "status": "exact",
+      "skillId": 467
+    },
+    "shunshinkun#0": {
+      "status": "exact",
+      "skillId": 76
+    },
+    "shunshinkun#1": {
+      "status": "exact",
+      "skillId": 381
+    },
+    "shunshinkun#2": {
+      "status": "exact",
+      "skillId": 382
+    },
+    "shunshinkun#3": {
+      "status": "resolved",
+      "skillId": 729
+    },
+    "bananji#0": {
+      "status": "exact",
+      "skillId": 712
+    },
+    "bananji#1": {
+      "status": "exact",
+      "skillId": 713
+    },
+    "bananji#2": {
+      "status": "exact",
+      "skillId": 714
+    },
+    "karin#0": {
+      "status": "exact",
+      "skillId": 56
+    },
+    "karin#1": {
+      "status": "exact",
+      "skillId": 350
+    },
+    "karin#2": {
+      "status": "exact",
+      "skillId": 351
+    },
+    "karin#3": {
+      "status": "resolved",
+      "skillId": 777
+    },
+    "kanmei#0": {
+      "status": "exact",
+      "skillId": 32
+    },
+    "kanmei#1": {
+      "status": "exact",
+      "skillId": 73
+    },
+    "kanmei#2": {
+      "status": "exact",
+      "skillId": 75
+    },
+    "kanmei#3": {
+      "status": "resolved",
+      "skillId": 762
+    },
+    "rinbukun#0": {
+      "status": "exact",
+      "skillId": 37
+    },
+    "rinbukun#1": {
+      "status": "exact",
+      "skillId": 119
+    },
+    "rinbukun#2": {
+      "status": "exact",
+      "skillId": 130
+    },
+    "rinbukun#3": {
+      "status": "resolved",
+      "skillId": 753
+    },
+    "renpa#0": {
+      "status": "exact",
+      "skillId": 71
+    },
+    "renpa#1": {
+      "status": "exact",
+      "skillId": 372
+    },
+    "renpa#2": {
+      "status": "exact",
+      "skillId": 373
+    },
+    "renpa#3": {
+      "status": "resolved",
+      "skillId": 567
+    },
+    "rinko#0": {
+      "status": "exact",
+      "skillId": 57
+    },
+    "rinko#1": {
+      "status": "exact",
+      "skillId": 352
+    },
+    "rinko#2": {
+      "status": "exact",
+      "skillId": 353
+    },
+    "rinko#3": {
+      "status": "resolved",
+      "skillId": 585
+    },
+    "hakurei#0": {
+      "status": "exact",
+      "skillId": 96
+    },
+    "hakurei#1": {
+      "status": "exact",
+      "skillId": 407
+    },
+    "hakurei#2": {
+      "status": "exact",
+      "skillId": 408
+    },
+    "kaishibou#0": {
+      "status": "exact",
+      "skillId": 47
+    },
+    "kaishibou#1": {
+      "status": "exact",
+      "skillId": 274
+    },
+    "kaishibou#2": {
+      "status": "exact",
+      "skillId": 333
+    },
+    "kaishibou#3": {
+      "status": "resolved",
+      "skillId": 594
+    },
+    "gohoumei#0": {
+      "status": "exact",
+      "skillId": 17
+    },
+    "gohoumei#1": {
+      "status": "exact",
+      "skillId": 148
+    },
+    "gohoumei#2": {
+      "status": "exact",
+      "skillId": 149
+    },
+    "gohoumei#3": {
+      "status": "resolved",
+      "skillId": 850
+    },
+    "gokei#0": {
+      "status": "exact",
+      "skillId": 29
+    },
+    "gokei#1": {
+      "status": "exact",
+      "skillId": 82
+    },
+    "gokei#2": {
+      "status": "exact",
+      "skillId": 83
+    },
+    "gokei#3": {
+      "status": "resolved",
+      "skillId": 606
+    },
+    "yuri#0": {
+      "status": "exact",
+      "skillId": 615
+    },
+    "yuri#1": {
+      "status": "exact",
+      "skillId": 616
+    },
+    "yuri#2": {
+      "status": "exact",
+      "skillId": 349
+    },
+    "toumi#0": {
+      "status": "exact",
+      "skillId": 507
+    },
+    "toumi#1": {
+      "status": "exact",
+      "skillId": 508
+    },
+    "toumi#2": {
+      "status": "exact",
+      "skillId": 349
+    },
+    "yugi#0": {
+      "status": "exact",
+      "skillId": 413
+    },
+    "yugi#1": {
+      "status": "exact",
+      "skillId": 214
+    },
+    "yugi#2": {
+      "status": "exact",
+      "skillId": 253
+    },
+    "entei#0": {
+      "status": "exact",
+      "skillId": 125
+    },
+    "entei#1": {
+      "status": "exact",
+      "skillId": 184
+    },
+    "entei#2": {
+      "status": "exact",
+      "skillId": 259
+    },
+    "bamyu#0": {
+      "status": "exact",
+      "skillId": 26
+    },
+    "bamyu#1": {
+      "status": "exact",
+      "skillId": 220
+    },
+    "bamyu#2": {
+      "status": "exact",
+      "skillId": 175
+    },
+    "kakubi#0": {
+      "status": "exact",
+      "skillId": 23
+    },
+    "kakubi#1": {
+      "status": "exact",
+      "skillId": 286
+    },
+    "kakubi#2": {
+      "status": "exact",
+      "skillId": 301
+    },
+    "kesshi#0": {
+      "status": "exact",
+      "skillId": 85
+    },
+    "kesshi#1": {
+      "status": "exact",
+      "skillId": 182
+    },
+    "kesshi#2": {
+      "status": "exact",
+      "skillId": 191
+    },
+    "genpo#0": {
+      "status": "exact",
+      "skillId": 78
+    },
+    "genpo#1": {
+      "status": "exact",
+      "skillId": 256
+    },
+    "genpo#2": {
+      "status": "exact",
+      "skillId": 181
+    },
+    "amon#0": {
+      "status": "exact",
+      "skillId": 122
+    },
+    "amon#1": {
+      "status": "exact",
+      "skillId": 243
+    },
+    "amon#2": {
+      "status": "exact",
+      "skillId": 186
+    },
+    "jiou#0": {
+      "status": "exact",
+      "skillId": 134
+    },
+    "jiou#1": {
+      "status": "ambiguous",
+      "skillId": null
+    },
+    "jiou#2": {
+      "status": "exact",
+      "skillId": 337
+    },
+    "duke_hyou#0": {
+      "status": "exact",
+      "skillId": 51
+    },
+    "duke_hyou#1": {
+      "status": "exact",
+      "skillId": 376
+    },
+    "duke_hyou#2": {
+      "status": "exact",
+      "skillId": 377
+    },
+    "mougou#0": {
+      "status": "exact",
+      "skillId": 22
+    },
+    "mougou#1": {
+      "status": "exact",
+      "skillId": 158
+    },
+    "mougou#2": {
+      "status": "exact",
+      "skillId": 159
+    },
+    "mouki#0": {
+      "status": "exact",
+      "skillId": 43
+    },
+    "mouki#1": {
+      "status": "exact",
+      "skillId": 172
+    },
+    "mouki#2": {
+      "status": "exact",
+      "skillId": 289
+    },
+    "kuzen#0": {
+      "status": "exact",
+      "skillId": 74
+    },
+    "kuzen#1": {
+      "status": "exact",
+      "skillId": 172
+    },
+    "kuzen#2": {
+      "status": "exact",
+      "skillId": 289
+    },
+    "rishi#0": {
+      "status": "exact",
+      "skillId": 91
+    },
+    "rishi#1": {
+      "status": "exact",
+      "skillId": 177
+    },
+    "rishi#2": {
+      "status": "exact",
+      "skillId": 228
+    },
+    "douken#0": {
+      "status": "exact",
+      "skillId": 46
+    },
+    "douken#1": {
+      "status": "exact",
+      "skillId": 310
+    },
+    "douken#2": {
+      "status": "exact",
+      "skillId": 329
+    },
+    "shishi#0": {
+      "status": "exact",
+      "skillId": 112
+    },
+    "shishi#1": {
+      "status": "exact",
+      "skillId": 189
+    },
+    "shishi#2": {
+      "status": "exact",
+      "skillId": 300
+    },
+    "gii#0": {
+      "status": "exact",
+      "skillId": 30
+    },
+    "gii#1": {
+      "status": "exact",
+      "skillId": 328
+    },
+    "gii#2": {
+      "status": "exact",
+      "skillId": 335
+    },
+    "maron#0": {
+      "status": "exact",
+      "skillId": 67
+    },
+    "maron#1": {
+      "status": "exact",
+      "skillId": 298
+    },
+    "maron#2": {
+      "status": "exact",
+      "skillId": 175
+    },
+    "shunmen#0": {
+      "status": "exact",
+      "skillId": 31
+    },
+    "shunmen#1": {
+      "status": "exact",
+      "skillId": 268
+    },
+    "shunmen#2": {
+      "status": "exact",
+      "skillId": 235
+    },
+    "rankai#0": {
+      "status": "exact",
+      "skillId": 39
+    },
+    "rankai#1": {
+      "status": "exact",
+      "skillId": 196
+    },
+    "rankai#2": {
+      "status": "exact",
+      "skillId": 339
+    },
+    "kyomei#0": {
+      "status": "resolved",
+      "skillId": 139
+    },
+    "kyomei#1": {
+      "status": "exact",
+      "skillId": 314
+    },
+    "kyomei#2": {
+      "status": "exact",
+      "skillId": 271
+    },
+    "suugen#0": {
+      "status": "exact",
+      "skillId": 55
+    },
+    "suugen#1": {
+      "status": "exact",
+      "skillId": 231
+    },
+    "suugen#2": {
+      "status": "exact",
+      "skillId": 180
+    },
+    "bihei#0": {
+      "status": "exact",
+      "skillId": 16
+    },
+    "bihei#1": {
+      "status": "exact",
+      "skillId": 306
+    },
+    "bihei#2": {
+      "status": "exact",
+      "skillId": 270
+    },
+    "hyou#0": {
+      "status": "exact",
+      "skillId": 15
+    },
+    "hyou#1": {
+      "status": "exact",
+      "skillId": 336
+    },
+    "hyou#2": {
+      "status": "exact",
+      "skillId": 276
+    },
+    "ogiko#0": {
+      "status": "exact",
+      "skillId": 94
+    },
+    "ogiko#1": {
+      "status": "exact",
+      "skillId": 172
+    },
+    "ogiko#2": {
+      "status": "exact",
+      "skillId": 283
+    },
+    "muta#0": {
+      "status": "exact",
+      "skillId": 89
+    },
+    "muta#1": {
+      "status": "exact",
+      "skillId": 178
+    },
+    "muta#2": {
+      "status": "exact",
+      "skillId": 223
+    },
+    "kyougai#0": {
+      "status": "exact",
+      "skillId": 121
+    },
+    "kyougai#1": {
+      "status": "exact",
+      "skillId": 207
+    },
+    "kyougai#2": {
+      "status": "exact",
+      "skillId": 337
+    },
+    "doukin#0": {
+      "status": "exact",
+      "skillId": 107
+    },
+    "doukin#1": {
+      "status": "exact",
+      "skillId": 201
+    },
+    "doukin#2": {
+      "status": "exact",
+      "skillId": 319
+    },
+    "ryofui#0": {
+      "status": "exact",
+      "skillId": 111
+    },
+    "ryofui#1": {
+      "status": "exact",
+      "skillId": 443
+    },
+    "ryofui#2": {
+      "status": "exact",
+      "skillId": 444
+    },
+    "heki#0": {
+      "status": "exact",
+      "skillId": 115
+    },
+    "heki#1": {
+      "status": "exact",
+      "skillId": 285
+    },
+    "heki#2": {
+      "status": "exact",
+      "skillId": 313
+    },
+    "queen_biki#0": {
+      "status": "exact",
+      "skillId": 62
+    },
+    "queen_biki#1": {
+      "status": "exact",
+      "skillId": 359
+    },
+    "queen_biki#2": {
+      "status": "exact",
+      "skillId": 360
+    },
+    "queen_biki#3": {
+      "status": "resolved",
+      "skillId": 679
+    },
+    "kyouen#0": {
+      "status": "exact",
+      "skillId": 97
+    },
+    "kyouen#1": {
+      "status": "exact",
+      "skillId": 208
+    },
+    "kyouen#2": {
+      "status": "exact",
+      "skillId": 187
+    },
+    "kyouen#3": {
+      "status": "resolved",
+      "skillId": 576
+    },
+    "bikou#0": {
+      "status": "exact",
+      "skillId": 117
+    },
+    "bikou#1": {
+      "status": "exact",
+      "skillId": 312
+    },
+    "bikou#2": {
+      "status": "exact",
+      "skillId": 288
+    },
+    "kanou#0": {
+      "status": "exact",
+      "skillId": 40
+    },
+    "kanou#1": {
+      "status": "exact",
+      "skillId": 273
+    },
+    "kanou#2": {
+      "status": "exact",
+      "skillId": 192
+    },
+    "kei#0": {
+      "status": "exact",
+      "skillId": 16
+    },
+    "kei#1": {
+      "status": "exact",
+      "skillId": 316
+    },
+    "kei#2": {
+      "status": "exact",
+      "skillId": 257
+    },
+    "shousa#0": {
+      "status": "exact",
+      "skillId": 59
+    },
+    "shousa#1": {
+      "status": "exact",
+      "skillId": 226
+    },
+    "shousa#2": {
+      "status": "exact",
+      "skillId": 181
+    },
+    "sosui#0": {
+      "status": "exact",
+      "skillId": 25
+    },
+    "sosui#1": {
+      "status": "exact",
+      "skillId": 238
+    },
+    "sosui#2": {
+      "status": "exact",
+      "skillId": 175
+    },
+    "hairou#0": {
+      "status": "exact",
+      "skillId": 31
+    },
+    "hairou#1": {
+      "status": "exact",
+      "skillId": 232
+    },
+    "hairou#2": {
+      "status": "exact",
+      "skillId": 187
+    },
+    "karyoten#0": {
+      "status": "exact",
+      "skillId": 129
+    },
+    "karyoten#1": {
+      "status": "exact",
+      "skillId": 190
+    },
+    "karyoten#2": {
+      "status": "exact",
+      "skillId": 283
+    },
+    "en#0": {
+      "status": "exact",
+      "skillId": 70
+    },
+    "en#1": {
+      "status": "exact",
+      "skillId": 318
+    },
+    "en#2": {
+      "status": "exact",
+      "skillId": 258
+    },
+    "takukei#0": {
+      "status": "exact",
+      "skillId": 135
+    },
+    "takukei#1": {
+      "status": "exact",
+      "skillId": 171
+    },
+    "takukei#2": {
+      "status": "exact",
+      "skillId": 180
+    },
+    "denyuu#0": {
+      "status": "exact",
+      "skillId": 108
+    },
+    "denyuu#1": {
+      "status": "exact",
+      "skillId": 298
+    },
+    "denyuu#2": {
+      "status": "exact",
+      "skillId": 241
+    },
+    "denei#0": {
+      "status": "exact",
+      "skillId": 126
+    },
+    "denei#1": {
+      "status": "exact",
+      "skillId": 178
+    },
+    "denei#2": {
+      "status": "exact",
+      "skillId": 295
+    },
+    "banyou#0": {
+      "status": "exact",
+      "skillId": 20
+    },
+    "banyou#1": {
+      "status": "exact",
+      "skillId": 286
+    },
+    "banyou#2": {
+      "status": "exact",
+      "skillId": 253
+    },
+    "hakukisei#0": {
+      "status": "exact",
+      "skillId": 69
+    },
+    "hakukisei#1": {
+      "status": "exact",
+      "skillId": 170
+    },
+    "hakukisei#2": {
+      "status": "exact",
+      "skillId": 179
+    },
+    "seki#0": {
+      "status": "exact",
+      "skillId": 103
+    },
+    "seki#1": {
+      "status": "exact",
+      "skillId": 330
+    },
+    "seki#2": {
+      "status": "exact",
+      "skillId": 264
+    },
+    "ryuusen#0": {
+      "status": "exact",
+      "skillId": 41
+    },
+    "ryuusen#1": {
+      "status": "exact",
+      "skillId": 268
+    },
+    "ryuusen#2": {
+      "status": "exact",
+      "skillId": 321
+    },
+    "bakukoshin#0": {
+      "status": "exact",
+      "skillId": 58
+    },
+    "bakukoshin#1": {
+      "status": "exact",
+      "skillId": 338
+    },
+    "bakukoshin#2": {
+      "status": "exact",
+      "skillId": 277
+    },
+    "kyoushou#0": {
+      "status": "exact",
+      "skillId": 88
+    },
+    "kyoushou#1": {
+      "status": "exact",
+      "skillId": 320
+    },
+    "kyoushou#2": {
+      "status": "resolved",
+      "skillId": 271
+    },
+    "rokuomi#0": {
+      "status": "exact",
+      "skillId": 44
+    },
+    "rokuomi#1": {
+      "status": "exact",
+      "skillId": 202
+    },
+    "rokuomi#2": {
+      "status": "exact",
+      "skillId": 193
+    },
+    "ryuukoku#0": {
+      "status": "exact",
+      "skillId": 68
+    },
+    "ryuukoku#1": {
+      "status": "exact",
+      "skillId": 249
+    },
+    "ryuukoku#2": {
+      "status": "exact",
+      "skillId": 331
+    },
+    "roen#0": {
+      "status": "exact",
+      "skillId": 80
+    },
+    "roen#1": {
+      "status": "exact",
+      "skillId": 177
+    },
+    "roen#2": {
+      "status": "exact",
+      "skillId": 294
+    },
+    "rinbou#0": {
+      "status": "exact",
+      "skillId": 102
+    },
+    "rinbou#1": {
+      "status": "exact",
+      "skillId": 237
+    },
+    "rinbou#2": {
+      "status": "exact",
+      "skillId": 307
+    },
+    "kou2#0": {
+      "status": "exact",
+      "skillId": 131
+    },
+    "kou2#1": {
+      "status": "exact",
+      "skillId": 322
+    },
+    "kou2#2": {
+      "status": "exact",
+      "skillId": 263
+    },
+    "yotanwa#0": {
+      "status": "exact",
+      "skillId": 52
+    },
+    "yotanwa#1": {
+      "status": "exact",
+      "skillId": 163
+    },
+    "yotanwa#2": {
+      "status": "exact",
+      "skillId": 164
+    },
+    "yotanwa#3": {
+      "status": "resolved",
+      "skillId": 741
+    },
+    "kitari#0": {
+      "status": "exact",
+      "skillId": 680
+    },
+    "kitari#1": {
+      "status": "exact",
+      "skillId": 681
+    },
+    "kitari#2": {
+      "status": "exact",
+      "skillId": 682
+    },
+    "danto#0": {
+      "status": "exact",
+      "skillId": 730
+    },
+    "danto#1": {
+      "status": "exact",
+      "skillId": 731
+    },
+    "danto#2": {
+      "status": "exact",
+      "skillId": 732
+    },
+    "katari#0": {
+      "status": "exact",
+      "skillId": 742
+    },
+    "katari#1": {
+      "status": "exact",
+      "skillId": 743
+    },
+    "katari#2": {
+      "status": "exact",
+      "skillId": 744
+    },
+    "toji#0": {
+      "status": "exact",
+      "skillId": 706
+    },
+    "toji#1": {
+      "status": "exact",
+      "skillId": 707
+    },
+    "toji#2": {
+      "status": "exact",
+      "skillId": 708
+    },
+    "fuji#0": {
+      "status": "exact",
+      "skillId": 709
+    },
+    "fuji#1": {
+      "status": "exact",
+      "skillId": 710
+    },
+    "fuji#2": {
+      "status": "exact",
+      "skillId": 711
+    },
+    "ramauji#0": {
+      "status": "exact",
+      "skillId": 683
+    },
+    "ramauji#1": {
+      "status": "exact",
+      "skillId": 684
+    },
+    "ramauji#2": {
+      "status": "exact",
+      "skillId": 685
+    },
+    "pam#0": {
+      "status": "exact",
+      "skillId": 778
+    },
+    "pam#1": {
+      "status": "exact",
+      "skillId": 779
+    },
+    "pam#2": {
+      "status": "exact",
+      "skillId": 780
+    },
+    "taijifu#0": {
+      "status": "exact",
+      "skillId": 35
+    },
+    "taijifu#1": {
+      "status": "exact",
+      "skillId": 178
+    },
+    "taijifu#2": {
+      "status": "exact",
+      "skillId": 217
+    },
+    "bajio#0": {
+      "status": "exact",
+      "skillId": 19
+    },
+    "bajio#1": {
+      "status": "exact",
+      "skillId": 152
+    },
+    "bajio#2": {
+      "status": "exact",
+      "skillId": 153
+    },
+    "gotan#0": {
+      "status": "exact",
+      "skillId": 31
+    },
+    "gotan#1": {
+      "status": "exact",
+      "skillId": 267
+    },
+    "gotan#2": {
+      "status": "exact",
+      "skillId": 174
+    },
+    "shuki#0": {
+      "status": "exact",
+      "skillId": 21
+    },
+    "shuki#1": {
+      "status": "exact",
+      "skillId": 334
+    },
+    "shuki#2": {
+      "status": "exact",
+      "skillId": 221
+    },
+    "maki#0": {
+      "status": "exact",
+      "skillId": 31
+    },
+    "maki#1": {
+      "status": "exact",
+      "skillId": 304
+    },
+    "maki#2": {
+      "status": "exact",
+      "skillId": 227
+    },
+    "kyoubou#0": {
+      "status": "exact",
+      "skillId": 754
+    },
+    "kyoubou#1": {
+      "status": "exact",
+      "skillId": 755
+    },
+    "kyoubou#2": {
+      "status": "exact",
+      "skillId": 756
+    },
+    "goutoku#0": {
+      "status": "exact",
+      "skillId": 721
+    },
+    "goutoku#1": {
+      "status": "exact",
+      "skillId": 722
+    },
+    "goutoku#2": {
+      "status": "exact",
+      "skillId": 723
+    },
+    "rien#0": {
+      "status": "exact",
+      "skillId": 476
+    },
+    "rien#1": {
+      "status": "exact",
+      "skillId": 477
+    },
+    "rien#2": {
+      "status": "exact",
+      "skillId": 478
+    },
+    "rien#3": {
+      "status": "resolved",
+      "skillId": 844
+    },
+    "rokin#0": {
+      "status": "exact",
+      "skillId": 718
+    },
+    "rokin#1": {
+      "status": "exact",
+      "skillId": 719
+    },
+    "rokin#2": {
+      "status": "exact",
+      "skillId": 720
+    },
+    "chouin#0": {
+      "status": "exact",
+      "skillId": 634
+    },
+    "chouin#1": {
+      "status": "exact",
+      "skillId": 635
+    },
+    "chouin#2": {
+      "status": "exact",
+      "skillId": 636
+    },
+    "nakon#0": {
+      "status": "exact",
+      "skillId": 623
+    },
+    "nakon#1": {
+      "status": "exact",
+      "skillId": 624
+    },
+    "nakon#2": {
+      "status": "exact",
+      "skillId": 625
+    },
+    "bakan#0": {
+      "status": "exact",
+      "skillId": 623
+    },
+    "bakan#1": {
+      "status": "exact",
+      "skillId": 626
+    },
+    "bakan#2": {
+      "status": "exact",
+      "skillId": 627
+    },
+    "budai#0": {
+      "status": "exact",
+      "skillId": 665
+    },
+    "budai#1": {
+      "status": "exact",
+      "skillId": 666
+    },
+    "budai#2": {
+      "status": "exact",
+      "skillId": 667
+    },
+    "hamui#0": {
+      "status": "exact",
+      "skillId": 654
+    },
+    "hamui#1": {
+      "status": "exact",
+      "skillId": 656
+    },
+    "hamui#2": {
+      "status": "exact",
+      "skillId": 655
+    },
+    "ouken#0": {
+      "status": "exact",
+      "skillId": 81
+    },
+    "ouken#1": {
+      "status": "exact",
+      "skillId": 388
+    },
+    "ouken#2": {
+      "status": "exact",
+      "skillId": 389
+    },
+    "makou#0": {
+      "status": "exact",
+      "skillId": 790
+    },
+    "makou#1": {
+      "status": "exact",
+      "skillId": 791
+    },
+    "makou#2": {
+      "status": "exact",
+      "skillId": 792
+    },
+    "akou#0": {
+      "status": "exact",
+      "skillId": 763
+    },
+    "akou#1": {
+      "status": "exact",
+      "skillId": 764
+    },
+    "akou#2": {
+      "status": "exact",
+      "skillId": 765
+    },
+    "eiki#0": {
+      "status": "exact",
+      "skillId": 793
+    },
+    "eiki#1": {
+      "status": "exact",
+      "skillId": 794
+    },
+    "eiki#2": {
+      "status": "exact",
+      "skillId": 795
+    },
+    "denrimi#0": {
+      "status": "exact",
+      "skillId": 745
+    },
+    "denrimi#1": {
+      "status": "exact",
+      "skillId": 746
+    },
+    "denrimi#2": {
+      "status": "exact",
+      "skillId": 747
+    },
+    "youka#0": {
+      "status": "exact",
+      "skillId": 715
+    },
+    "youka#1": {
+      "status": "exact",
+      "skillId": 716
+    },
+    "youka#2": {
+      "status": "exact",
+      "skillId": 717
+    },
+    "kyourei#0": {
+      "status": "exact",
+      "skillId": 646
+    },
+    "kyourei#1": {
+      "status": "exact",
+      "skillId": 647
+    },
+    "kyourei#2": {
+      "status": "exact",
+      "skillId": 235
+    },
+    "robin#0": {
+      "status": "resolved",
+      "skillId": 101
+    },
+    "robin#1": {
+      "status": "exact",
+      "skillId": 607
+    },
+    "robin#2": {
+      "status": "exact",
+      "skillId": 608
+    },
+    "kakuun#0": {
+      "status": "exact",
+      "skillId": 598
+    },
+    "kakuun#1": {
+      "status": "exact",
+      "skillId": 599
+    },
+    "kakuun#2": {
+      "status": "resolved",
+      "skillId": 600
+    },
+    "bain#0": {
+      "status": "exact",
+      "skillId": 586
+    },
+    "bain#1": {
+      "status": "exact",
+      "skillId": 587
+    },
+    "bain#2": {
+      "status": "exact",
+      "skillId": 588
+    },
+    "shoutaku#0": {
+      "status": "exact",
+      "skillId": 416
+    },
+    "shoutaku#1": {
+      "status": "exact",
+      "skillId": 548
+    },
+    "shoutaku#2": {
+      "status": "exact",
+      "skillId": 549
+    },
+    "shoutaku#3": {
+      "status": "resolved",
+      "skillId": 829
+    },
+    "kyuukou#0": {
+      "status": "exact",
+      "skillId": 545
+    },
+    "kyuukou#1": {
+      "status": "exact",
+      "skillId": 546
+    },
+    "kyuukou#2": {
+      "status": "exact",
+      "skillId": 547
+    },
+    "kyuukou#3": {
+      "status": "resolved",
+      "skillId": 812
+    },
+    "naki#0": {
+      "status": "exact",
+      "skillId": 498
+    },
+    "naki#1": {
+      "status": "exact",
+      "skillId": 499
+    },
+    "naki#2": {
+      "status": "exact",
+      "skillId": 500
+    },
+    "ringyoku#0": {
+      "status": "exact",
+      "skillId": 485
+    },
+    "ringyoku#1": {
+      "status": "exact",
+      "skillId": 486
+    },
+    "ringyoku#2": {
+      "status": "exact",
+      "skillId": 487
+    },
+    "zenou#0": {
+      "status": "exact",
+      "skillId": 479
+    },
+    "zenou#1": {
+      "status": "exact",
+      "skillId": 480
+    },
+    "zenou#2": {
+      "status": "exact",
+      "skillId": 481
+    },
+    "hokaku#0": {
+      "status": "exact",
+      "skillId": 663
+    },
+    "hokaku#1": {
+      "status": "exact",
+      "skillId": 664
+    },
+    "hokaku#2": {
+      "status": "exact",
+      "skillId": 199
+    },
+    "shin#0": {
+      "status": "exact",
+      "skillId": 14
+    },
+    "shin#1": {
+      "status": "exact",
+      "skillId": 142
+    },
+    "shin#2": {
+      "status": "exact",
+      "skillId": 143
+    },
+    "kyoukai#0": {
+      "status": "exact",
+      "skillId": 87
+    },
+    "kyoukai#1": {
+      "status": "exact",
+      "skillId": 397
+    },
+    "kyoukai#2": {
+      "status": "exact",
+      "skillId": 398
+    },
+    "soutan#0": {
+      "status": "exact",
+      "skillId": 861
+    },
+    "soutan#1": {
+      "status": "exact",
+      "skillId": 862
+    },
+    "soutan#2": {
+      "status": "exact",
+      "skillId": 863
+    },
+    "soujin#0": {
+      "status": "exact",
+      "skillId": 830
+    },
+    "soujin#1": {
+      "status": "resolved",
+      "skillId": 831
+    },
+    "soujin#2": {
+      "status": "exact",
+      "skillId": 832
+    },
+    "sougen#0": {
+      "status": "exact",
+      "skillId": 781
+    },
+    "sougen#1": {
+      "status": "exact",
+      "skillId": 783
+    },
+    "sougen#2": {
+      "status": "exact",
+      "skillId": 782
+    },
+    "gakurai#0": {
+      "status": "exact",
+      "skillId": 471
+    },
+    "gakurai#1": {
+      "status": "exact",
+      "skillId": 470
+    },
+    "gakurai#2": {
+      "status": "exact",
+      "skillId": 472
+    },
+    "choutou#0": {
+      "status": "exact",
+      "skillId": 132
+    },
+    "choutou#1": {
+      "status": "exact",
+      "skillId": 465
+    },
+    "choutou#2": {
+      "status": "exact",
+      "skillId": 464
+    },
+    "shibasaku#0": {
+      "status": "exact",
+      "skillId": 38
+    },
+    "shibasaku#1": {
+      "status": "exact",
+      "skillId": 168
+    },
+    "shibasaku#2": {
+      "status": "exact",
+      "skillId": 169
+    },
+    "hyoushiga#0": {
+      "status": "exact",
+      "skillId": 402
+    },
+    "hyoushiga#1": {
+      "status": "exact",
+      "skillId": 403
+    },
+    "hyoushiga#2": {
+      "status": "exact",
+      "skillId": 404
+    },
+    "hakuki#0": {
+      "status": "exact",
+      "skillId": 414
+    },
+    "hakuki#1": {
+      "status": "exact",
+      "skillId": 302
+    },
+    "hakuki#2": {
+      "status": "exact",
+      "skillId": 303
+    },
+    "hakuki#3": {
+      "status": "resolved",
+      "skillId": 691
+    },
+    "oukotsu#0": {
+      "status": "exact",
+      "skillId": 18
+    },
+    "oukotsu#1": {
+      "status": "exact",
+      "skillId": 150
+    },
+    "oukotsu#2": {
+      "status": "exact",
+      "skillId": 151
+    },
+    "kaioku#0": {
+      "status": "exact",
+      "skillId": 138
+    },
+    "kaioku#1": {
+      "status": "exact",
+      "skillId": 366
+    },
+    "kaioku#2": {
+      "status": "exact",
+      "skillId": 367
+    },
+    "koshou#0": {
+      "status": "exact",
+      "skillId": 33
+    },
+    "koshou#1": {
+      "status": "exact",
+      "skillId": 92
+    },
+    "koshou#2": {
+      "status": "exact",
+      "skillId": 95
+    },
+    "garo#0": {
+      "status": "exact",
+      "skillId": 156
+    },
+    "garo#1": {
+      "status": "exact",
+      "skillId": 157
+    },
+    "garo#2": {
+      "status": "exact",
+      "skillId": 160
+    },
+    "rikusen#0": {
+      "status": "exact",
+      "skillId": 51
+    },
+    "rikusen#1": {
+      "status": "exact",
+      "skillId": 405
+    },
+    "rikusen#2": {
+      "status": "exact",
+      "skillId": 406
+    },
+    "kanjou#0": {
+      "status": "exact",
+      "skillId": 385
+    },
+    "kanjou#1": {
+      "status": "exact",
+      "skillId": 386
+    },
+    "kanjou#2": {
+      "status": "exact",
+      "skillId": 387
+    },
+    "kanjou#3": {
+      "status": "resolved",
+      "skillId": 801
+    },
+    "seikyou#0": {
+      "status": "exact",
+      "skillId": 49
+    },
+    "seikyou#1": {
+      "status": "exact",
+      "skillId": 171
+    },
+    "seikyou#2": {
+      "status": "exact",
+      "skillId": 282
+    },
+    "rui#0": {
+      "status": "exact",
+      "skillId": 167
+    },
+    "rui#1": {
+      "status": "exact",
+      "skillId": 348
+    },
+    "rui#2": {
+      "status": "exact",
+      "skillId": 349
+    },
+    "you#0": {
+      "status": "exact",
+      "skillId": 127
+    },
+    "you#1": {
+      "status": "exact",
+      "skillId": 459
+    },
+    "you#2": {
+      "status": "exact",
+      "skillId": 460
+    },
+    "ryuyu#0": {
+      "status": "exact",
+      "skillId": 416
+    },
+    "ryuyu#1": {
+      "status": "exact",
+      "skillId": 256
+    },
+    "ryuyu#2": {
+      "status": "exact",
+      "skillId": 235
+    },
+    "chutetsu#0": {
+      "status": "exact",
+      "skillId": 67
+    },
+    "chutetsu#1": {
+      "status": "exact",
+      "skillId": 226
+    },
+    "chutetsu#2": {
+      "status": "exact",
+      "skillId": 199
+    },
+    "choushi#0": {
+      "status": "exact",
+      "skillId": 802
+    },
+    "choushi#1": {
+      "status": "exact",
+      "skillId": 805
+    },
+    "choushi#2": {
+      "status": "exact",
+      "skillId": 806
+    },
+    "raiki#0": {
+      "status": "exact",
+      "skillId": 802
+    },
+    "raiki#1": {
+      "status": "exact",
+      "skillId": 803
+    },
+    "raiki#2": {
+      "status": "exact",
+      "skillId": 804
+    },
+    "koujyun#0": {
+      "status": "exact",
+      "skillId": 816
+    },
+    "koujyun#1": {
+      "status": "exact",
+      "skillId": 817
+    },
+    "koujyun#2": {
+      "status": "exact",
+      "skillId": 818
+    },
+    "chouyou#0": {
+      "status": "exact",
+      "skillId": 813
+    },
+    "chouyou#1": {
+      "status": "exact",
+      "skillId": 814
+    },
+    "chouyou#2": {
+      "status": "exact",
+      "skillId": 815
+    },
+    "tonkaku#0": {
+      "status": "exact",
+      "skillId": 819
+    },
+    "tonkaku#1": {
+      "status": "exact",
+      "skillId": 820
+    },
+    "tonkaku#2": {
+      "status": "exact",
+      "skillId": 821
+    },
+    "tonkoku#0": {
+      "status": "exact",
+      "skillId": 819
+    },
+    "tonkoku#1": {
+      "status": "exact",
+      "skillId": 822
+    },
+    "tonkoku#2": {
+      "status": "exact",
+      "skillId": 823
+    },
+    "kanto#0": {
+      "status": "exact",
+      "skillId": 833
+    },
+    "kanto#1": {
+      "status": "exact",
+      "skillId": 834
+    },
+    "kanto#2": {
+      "status": "exact",
+      "skillId": 835
+    },
+    "heirai#0": {
+      "status": "exact",
+      "skillId": 836
+    },
+    "heirai#1": {
+      "status": "exact",
+      "skillId": 837
+    },
+    "heirai#2": {
+      "status": "exact",
+      "skillId": 838
+    },
+    "ouhon#0": {
+      "status": "exact",
+      "skillId": 53
+    },
+    "ouhon#1": {
+      "status": "exact",
+      "skillId": 165
+    },
+    "ouhon#2": {
+      "status": "exact",
+      "skillId": 166
+    },
+    "ouhon#3": {
+      "status": "resolved",
+      "skillId": 614
+    },
+    "ousen#0": {
+      "status": "exact",
+      "skillId": 109
+    },
+    "ousen#1": {
+      "status": "exact",
+      "skillId": 435
+    },
+    "ousen#2": {
+      "status": "exact",
+      "skillId": 434
+    },
+    "ousen#3": {
+      "status": "resolved",
+      "skillId": 771
+    },
+    "kanki#0": {
+      "status": "exact",
+      "skillId": 123
+    },
+    "kanki#1": {
+      "status": "exact",
+      "skillId": 455
+    },
+    "kanki#2": {
+      "status": "exact",
+      "skillId": 454
+    },
+    "mouten#0": {
+      "status": "exact",
+      "skillId": 72
+    },
+    "mouten#1": {
+      "status": "exact",
+      "skillId": 374
+    },
+    "mouten#2": {
+      "status": "exact",
+      "skillId": 375
+    },
+    "moubu#0": {
+      "status": "exact",
+      "skillId": 34
+    },
+    "moubu#1": {
+      "status": "exact",
+      "skillId": 104
+    },
+    "moubu#2": {
+      "status": "exact",
+      "skillId": 106
+    },
+    "shouheikun#0": {
+      "status": "exact",
+      "skillId": 77
+    },
+    "shouheikun#1": {
+      "status": "exact",
+      "skillId": 383
+    },
+    "shouheikun#2": {
+      "status": "exact",
+      "skillId": 384
+    },
+    "shoubunkun#0": {
+      "status": "exact",
+      "skillId": 27
+    },
+    "shoubunkun#1": {
+      "status": "exact",
+      "skillId": 36
+    },
+    "shoubunkun#2": {
+      "status": "exact",
+      "skillId": 42
+    },
+    "sho#0": {
+      "status": "exact",
+      "skillId": 47
+    },
+    "sho#1": {
+      "status": "exact",
+      "skillId": 144
+    },
+    "sho#2": {
+      "status": "exact",
+      "skillId": 145
+    },
+    "sho#3": {
+      "status": "resolved",
+      "skillId": 705
+    },
+    "ei_sei#0": {
+      "status": "exact",
+      "skillId": 48
+    },
+    "ei_sei#1": {
+      "status": "exact",
+      "skillId": 146
+    },
+    "ei_sei#2": {
+      "status": "exact",
+      "skillId": 147
+    },
+    "kyou#0": {
+      "status": "exact",
+      "skillId": 12
+    },
+    "kyou#1": {
+      "status": "exact",
+      "skillId": 140
+    },
+    "kyou#2": {
+      "status": "exact",
+      "skillId": 141
+    },
+    "raido#0": {
+      "status": "exact",
+      "skillId": 496
+    },
+    "raido#1": {
+      "status": "exact",
+      "skillId": 497
+    },
+    "raido#2": {
+      "status": "exact",
+      "skillId": 213
+    },
+    "raido#3": {
+      "status": "resolved",
+      "skillId": 506
+    },
+    "kou#0": {
+      "status": "exact",
+      "skillId": 133
+    },
+    "kou#1": {
+      "status": "exact",
+      "skillId": 466
+    },
+    "kou#2": {
+      "status": "exact",
+      "skillId": 467
+    },
+    "saizatsu#0": {
+      "status": "exact",
+      "skillId": 79
+    },
+    "saizatsu#1": {
+      "status": "exact",
+      "skillId": 183
+    },
+    "saizatsu#2": {
+      "status": "exact",
+      "skillId": 174
+    },
+    "ouki#0": {
+      "status": "exact",
+      "skillId": 13
+    },
+    "ouki#1": {
+      "status": "exact",
+      "skillId": 136
+    },
+    "ouki#2": {
+      "status": "exact",
+      "skillId": 137
+    },
+    "ouki#3": {
+      "status": "resolved",
+      "skillId": 673
+    },
+    "tou#0": {
+      "status": "exact",
+      "skillId": 120
+    },
+    "tou#1": {
+      "status": "exact",
+      "skillId": 447
+    },
+    "tou#2": {
+      "status": "exact",
+      "skillId": 448
+    },
+    "tou#3": {
+      "status": "resolved",
+      "skillId": 662
+    },
+    "shoukaku#0": {
+      "status": "exact",
+      "skillId": 45
+    },
+    "shoukaku#1": {
+      "status": "exact",
+      "skillId": 262
+    },
+    "shoukaku#2": {
+      "status": "exact",
+      "skillId": 187
+    },
+    "tairoji#0": {
+      "status": "exact",
+      "skillId": 482
+    },
+    "tairoji#1": {
+      "status": "exact",
+      "skillId": 483
+    },
+    "tairoji#2": {
+      "status": "exact",
+      "skillId": 484
+    },
+    "tairoji#3": {
+      "status": "resolved",
+      "skillId": 789
+    },
+    "ranbihaku#0": {
+      "status": "exact",
+      "skillId": 368
+    },
+    "ranbihaku#1": {
+      "status": "exact",
+      "skillId": 369
+    },
+    "ranbihaku#2": {
+      "status": "exact",
+      "skillId": 370
+    },
+    "ranbihaku#3": {
+      "status": "resolved",
+      "skillId": 622
+    },
+    "shikika#0": {
+      "status": "exact",
+      "skillId": 399
+    },
+    "shikika#1": {
+      "status": "exact",
+      "skillId": 400
+    },
+    "shikika#2": {
+      "status": "exact",
+      "skillId": 349
+    },
+    "keibin#0": {
+      "status": "exact",
+      "skillId": 90
+    },
+    "keibin#1": {
+      "status": "exact",
+      "skillId": 401
+    },
+    "keibin#2": {
+      "status": "exact",
+      "skillId": 389
+    },
+    "gaimou#0": {
+      "status": "exact",
+      "skillId": 354
+    },
+    "gaimou#1": {
+      "status": "exact",
+      "skillId": 355
+    },
+    "gaimou#2": {
+      "status": "exact",
+      "skillId": 356
+    },
+    "junso#0": {
+      "status": "exact",
+      "skillId": 392
+    },
+    "junso#1": {
+      "status": "exact",
+      "skillId": 394
+    },
+    "junso#2": {
+      "status": "exact",
+      "skillId": 393
+    },
+    "reiou#0": {
+      "status": "exact",
+      "skillId": 361
+    },
+    "reiou#1": {
+      "status": "exact",
+      "skillId": 362
+    },
+    "reiou#2": {
+      "status": "exact",
+      "skillId": 363
+    },
+    "reiou#3": {
+      "status": "resolved",
+      "skillId": 633
+    },
+    "yuuren#0": {
+      "status": "exact",
+      "skillId": 110
+    },
+    "yuuren#1": {
+      "status": "exact",
+      "skillId": 326
+    },
+    "yuuren#2": {
+      "status": "exact",
+      "skillId": 199
+    },
+    "kourigen#0": {
+      "status": "exact",
+      "skillId": 93
+    },
+    "kourigen#1": {
+      "status": "exact",
+      "skillId": 308
+    },
+    "kourigen#2": {
+      "status": "exact",
+      "skillId": 181
+    },
+    "shihaku#0": {
+      "status": "exact",
+      "skillId": 378
+    },
+    "shihaku#1": {
+      "status": "exact",
+      "skillId": 379
+    },
+    "shihaku#2": {
+      "status": "exact",
+      "skillId": 380
+    },
+    "hyouki#0": {
+      "status": "exact",
+      "skillId": 371
+    },
+    "hyouki#1": {
+      "status": "exact",
+      "skillId": 280
+    },
+    "hyouki#2": {
+      "status": "exact",
+      "skillId": 175
+    },
+    "otaji#0": {
+      "status": "exact",
+      "skillId": 643
+    },
+    "otaji#1": {
+      "status": "exact",
+      "skillId": 644
+    },
+    "otaji#2": {
+      "status": "exact",
+      "skillId": 645
+    },
+    "yukii#0": {
+      "status": "exact",
+      "skillId": 473
+    },
+    "yukii#1": {
+      "status": "exact",
+      "skillId": 474
+    },
+    "yukii#2": {
+      "status": "exact",
+      "skillId": 475
+    },
+    "gakuki#0": {
+      "status": "ambiguous",
+      "skillId": null
+    },
+    "gakuki#1": {
+      "status": "exact",
+      "skillId": 430
+    },
+    "gakuki#2": {
+      "status": "exact",
+      "skillId": 431
+    },
+    "gakuki#3": {
+      "status": "resolved",
+      "skillId": 653
+    },
+    "gekishin#0": {
+      "status": "exact",
+      "skillId": 99
+    },
+    "gekishin#1": {
+      "status": "exact",
+      "skillId": 417
+    },
+    "gekishin#2": {
+      "status": "exact",
+      "skillId": 418
+    },
+    "ka#0": {
+      "status": "exact",
+      "skillId": 733
+    },
+    "ka#1": {
+      "status": "exact",
+      "skillId": 734
+    },
+    "ka#2": {
+      "status": "exact",
+      "skillId": 735
+    },
+    "shunsuiju#0": {
+      "status": "exact",
+      "skillId": 595
+    },
+    "shunsuiju#1": {
+      "status": "exact",
+      "skillId": 596
+    },
+    "shunsuiju#2": {
+      "status": "exact",
+      "skillId": 597
+    },
+    "shunpeikun#0": {
+      "status": "exact",
+      "skillId": 577
+    },
+    "shunpeikun#1": {
+      "status": "exact",
+      "skillId": 578
+    },
+    "shunpeikun#2": {
+      "status": "exact",
+      "skillId": 579
+    },
+    "duke_sei#0": {
+      "status": "exact",
+      "skillId": 568
+    },
+    "duke_sei#1": {
+      "status": "exact",
+      "skillId": 569
+    },
+    "duke_sei#2": {
+      "status": "exact",
+      "skillId": 570
+    },
+    "kinmou#0": {
+      "status": "exact",
+      "skillId": 559
+    },
+    "kinmou#1": {
+      "status": "exact",
+      "skillId": 560
+    },
+    "kinmou#2": {
+      "status": "exact",
+      "skillId": 561
+    },
+    "gakuei#0": {
+      "status": "exact",
+      "skillId": 550
+    },
+    "gakuei#1": {
+      "status": "exact",
+      "skillId": 551
+    },
+    "gakuei#2": {
+      "status": "exact",
+      "skillId": 552
+    },
+    "ryuuto#0": {
+      "status": "exact",
+      "skillId": 536
+    },
+    "ryuuto#1": {
+      "status": "exact",
+      "skillId": 537
+    },
+    "ryuuto#2": {
+      "status": "exact",
+      "skillId": 538
+    },
+    "kishou#0": {
+      "status": "exact",
+      "skillId": 509
+    },
+    "kishou#1": {
+      "status": "exact",
+      "skillId": 528
+    },
+    "kishou#2": {
+      "status": "exact",
+      "skillId": 529
+    },
+    "kisui#0": {
+      "status": "exact",
+      "skillId": 519
+    },
+    "kisui#1": {
+      "status": "exact",
+      "skillId": 520
+    },
+    "kisui#2": {
+      "status": "exact",
+      "skillId": 521
+    },
+    "kisui#3": {
+      "status": "resolved",
+      "skillId": 869
+    },
+    "batei#0": {
+      "status": "exact",
+      "skillId": 510
+    },
+    "batei#1": {
+      "status": "exact",
+      "skillId": 511
+    },
+    "batei#2": {
+      "status": "exact",
+      "skillId": 512
+    },
+    "gika#0": {
+      "status": "exact",
+      "skillId": 98
+    },
+    "gika#1": {
+      "status": "exact",
+      "skillId": 184
+    },
+    "gika#2": {
+      "status": "exact",
+      "skillId": 211
+    },
+    "hoki#0": {
+      "status": "exact",
+      "skillId": 415
+    },
+    "hoki#1": {
+      "status": "exact",
+      "skillId": 292
+    },
+    "hoki#2": {
+      "status": "exact",
+      "skillId": 301
+    },
+    "kakukai#0": {
+      "status": "exact",
+      "skillId": 452
+    },
+    "kakukai#1": {
+      "status": "exact",
+      "skillId": 453
+    },
+    "kakukai#2": {
+      "status": "exact",
+      "skillId": 349
+    },
+    "keisha#0": {
+      "status": "exact",
+      "skillId": 113
+    },
+    "keisha#1": {
+      "status": "exact",
+      "skillId": 436
+    },
+    "keisha#2": {
+      "status": "exact",
+      "skillId": 437
+    },
+    "keisha#3": {
+      "status": "resolved",
+      "skillId": 544
+    },
+    "gakujou#0": {
+      "status": "exact",
+      "skillId": 101
+    },
+    "gakujou#1": {
+      "status": "exact",
+      "skillId": 441
+    },
+    "gakujou#2": {
+      "status": "exact",
+      "skillId": 442
+    },
+    "shinseijou#0": {
+      "status": "exact",
+      "skillId": 66
+    },
+    "shinseijou#1": {
+      "status": "exact",
+      "skillId": 364
+    },
+    "shinseijou#2": {
+      "status": "exact",
+      "skillId": 365
+    },
+    "shinseijou#3": {
+      "status": "resolved",
+      "skillId": 535
+    },
+    "kousonryu#0": {
+      "status": "ambiguous",
+      "skillId": null
+    },
+    "kousonryu#1": {
+      "status": "exact",
+      "skillId": 214
+    },
+    "kousonryu#2": {
+      "status": "exact",
+      "skillId": 229
+    },
+    "domon#0": {
+      "status": "exact",
+      "skillId": 24
+    },
+    "domon#1": {
+      "status": "exact",
+      "skillId": 244
+    },
+    "domon#2": {
+      "status": "exact",
+      "skillId": 309
+    },
+    "miyamoto#0": {
+      "status": "exact",
+      "skillId": 64
+    },
+    "miyamoto#1": {
+      "status": "exact",
+      "skillId": 188
+    },
+    "miyamoto#2": {
+      "status": "exact",
+      "skillId": 185
+    },
+    "saji#0": {
+      "status": "exact",
+      "skillId": 54
+    },
+    "saji#1": {
+      "status": "exact",
+      "skillId": 195
+    },
+    "saji#2": {
+      "status": "exact",
+      "skillId": 325
+    },
+    "jokan#0": {
+      "status": "exact",
+      "skillId": 84
+    },
+    "jokan#1": {
+      "status": "exact",
+      "skillId": 324
+    },
+    "jokan#2": {
+      "status": "exact",
+      "skillId": 222
+    },
+    "rihaku#0": {
+      "status": "exact",
+      "skillId": 116
+    },
+    "rihaku#1": {
+      "status": "exact",
+      "skillId": 250
+    },
+    "rihaku#2": {
+      "status": "exact",
+      "skillId": 265
+    },
+    "shoumou#0": {
+      "status": "exact",
+      "skillId": 128
+    },
+    "shoumou#1": {
+      "status": "exact",
+      "skillId": 274
+    },
+    "shoumou#2": {
+      "status": "exact",
+      "skillId": 295
+    },
+    "shika#0": {
+      "status": "exact",
+      "skillId": 114
+    },
+    "shika#1": {
+      "status": "exact",
+      "skillId": 184
+    },
+    "shika#2": {
+      "status": "exact",
+      "skillId": 247
+    },
+    "kokuou#0": {
+      "status": "exact",
+      "skillId": 60
+    },
+    "kokuou#1": {
+      "status": "exact",
+      "skillId": 280
+    },
+    "kokuou#2": {
+      "status": "exact",
+      "skillId": 315
+    },
+    "riboku#0": {
+      "status": "exact",
+      "skillId": 118
+    },
+    "riboku#1": {
+      "status": "exact",
+      "skillId": 445
+    },
+    "riboku#2": {
+      "status": "exact",
+      "skillId": 446
+    },
+    "houken#0": {
+      "status": "exact",
+      "skillId": 86
+    },
+    "houken#1": {
+      "status": "exact",
+      "skillId": 395
+    },
+    "houken#2": {
+      "status": "exact",
+      "skillId": 396
+    },
+    "houken#3": {
+      "status": "resolved",
+      "skillId": 558
+    },
+    "kaine#0": {
+      "status": "exact",
+      "skillId": 100
+    },
+    "kaine#1": {
+      "status": "exact",
+      "skillId": 419
+    },
+    "kaine#2": {
+      "status": "exact",
+      "skillId": 420
+    },
+    "mangoku#0": {
+      "status": "exact",
+      "skillId": 124
+    },
+    "mangoku#1": {
+      "status": "exact",
+      "skillId": 292
+    },
+    "mangoku#2": {
+      "status": "exact",
+      "skillId": 327
+    },
+    "mangoku#3": {
+      "status": "resolved",
+      "skillId": 527
+    },
+    "chousou#0": {
+      "status": "exact",
+      "skillId": 28
+    },
+    "chousou#1": {
+      "status": "exact",
+      "skillId": 332
+    },
+    "chousou#2": {
+      "status": "exact",
+      "skillId": 277
+    },
+    "chouko#0": {
+      "status": "exact",
+      "skillId": 50
+    },
+    "chouko#1": {
+      "status": "exact",
+      "skillId": 176
+    },
+    "chouko#2": {
+      "status": "exact",
+      "skillId": 173
+    },
+    "seikai#0": {
+      "status": "exact",
+      "skillId": 61
+    },
+    "seikai#1": {
+      "status": "exact",
+      "skillId": 357
+    },
+    "seikai#2": {
+      "status": "exact",
+      "skillId": 358
+    },
+    "seikai#3": {
+      "status": "resolved",
+      "skillId": 642
+    }
+  }
+}

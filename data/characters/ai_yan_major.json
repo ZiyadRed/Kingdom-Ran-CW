@@ -90,7 +90,19 @@
         ]
       }
     ],
-    "icon": "/icons/Rouai.webp"
+    "icon": "/icons/Rouai.webp",
+    "source": {
+      "characterId": 200,
+      "generalIds": [
+        346,
+        347
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    }
   },
   {
     "id": "wategi",
@@ -158,7 +170,19 @@
       }
     ],
     "image": "/persos/wategi.webp",
-    "icon": "/icons/Wategi.webp"
+    "icon": "/icons/Wategi.webp",
+    "source": {
+      "characterId": 190,
+      "generalIds": [
+        322,
+        323
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    }
   },
   {
     "id": "hanoki",
@@ -244,11 +268,23 @@
       }
     ],
     "image": "/persos/hanoki.webp",
-    "icon": "/icons/Hanoki.webp"
+    "icon": "/icons/Hanoki.webp",
+    "source": {
+      "characterId": 197,
+      "generalIds": [
+        335,
+        336
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    }
   },
   {
     "id": "hanroki",
-    "name_en": "Hanroki",
+    "name_en": "Hanruki",
     "name_jp": "樊琉期",
     "country": "ai",
     "rarity": "SR",
@@ -336,7 +372,19 @@
       }
     ],
     "image": "/persos/hanroki.webp",
-    "icon": "/icons/Hanroki.webp"
+    "icon": "/icons/Hanroki.webp",
+    "source": {
+      "characterId": 201,
+      "generalIds": [
+        350,
+        351
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    }
   },
   {
     "id": "ordo",
@@ -417,7 +465,19 @@
       }
     ],
     "image": "/persos/ordo.webp",
-    "icon": "/icons/Ordo.webp"
+    "icon": "/icons/Ordo.webp",
+    "source": {
+      "characterId": 140,
+      "generalIds": [
+        224,
+        317
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    }
   },
   {
     "id": "futei",
@@ -524,7 +584,22 @@
       }
     ],
     "image": "/persos/futei.webp",
-    "icon": "/icons/Futei.webp"
+    "icon": "/icons/Futei.webp",
+    "source": {
+      "characterId": 170,
+      "generalIds": [
+        260,
+        261,
+        318
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "resolved",
+      "basis": "RanHQ 傳抵 maps to source 傅抵; owner-linked CW identity selects characterId 170; literal 傳/傅 difference preserved."
+    }
   },
   {
     "id": "kouyoku",
@@ -587,6 +662,20 @@
       }
     ],
     "image": "/persos/kouyoku.webp",
-    "icon": "/icons/Kouyoku.webp"
+    "icon": "/icons/Kouyoku.webp",
+    "source": {
+      "characterId": 158,
+      "generalIds": [
+        246,
+        247,
+        332
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    }
   }
 ]

@@ -1427,6 +1427,54 @@
       "name_en": "Gohoumei CW6 star"
     },
     {
+      "id": 42004,
+      "imageId": 12004,
+      "name_jp": "闘志の伝染",
+      "skill_en": "Hidden Great General",
+      "skill_jp": "隠れた名将",
+      "image": "/scene_cards/png/Kisui-CW6-star.png",
+      "owner_id": "kisui",
+      "ownerName": "Kisui",
+      "ownerNameJp": "紀彗",
+      "ownerIcon": "/icons/Kisui.webp",
+      "publicTime": 1789290000,
+      "cwIds": [864, 865, 866, 867, 868, 869],
+      "skill": {
+        "name_en": "Hidden Great General",
+        "name_jp": "隠れた名将☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Kisui Army",
+            "effect": "Morale Consumption Down 30%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Batei is alive",
+            "target": "Ally Kisui Army",
+            "effect": "Anti-[Qin] ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Ryuuto is alive",
+            "target": "Ally Kisui Army",
+            "effect": "ATK Down Resistance 30%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Batei and Ryuuto are alive",
+            "target": "Ally Kisui Army",
+            "effect": "Betrayal Resistance 50%",
+            "duration": null
+          }
+        ]
+      },
+      "thumb": "/scene_cards/thumbs/Kisui-CW6-star-thumb.png",
+      "name_en": "Spreading Fighting Spirit"
+    },
+    {
       "id": 42008,
       "imageId": 12008,
       "name_jp": "丞相就任要請",

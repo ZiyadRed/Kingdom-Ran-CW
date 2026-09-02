@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useLocale, formatNumber as formatLocaleNumber, pluralSuffix } from './i18n/index.js'
 
 export const CASTLE_POINT_VALUES = {
   large: 2700,
@@ -65,40 +67,95 @@ export function rankCastlePointBoard(board, values = CASTLE_POINT_VALUES){
     .map((alliance, index) => ({ ...alliance, rank: index + 1 }))
 }
 
-function formatNumber(value){
-  return clampNumber(value).toLocaleString()
+function formatNumber(value, locale){
+  return formatLocaleNumber(clampNumber(value), locale)
 }
 
-function plural(value, word){
-  return `${value} ${word}${value === 1 ? '' : 's'}`
+/**
+ * A counted label whose number is grouped by the locale formatter.
+ *
+ * The formatted value is a string, which would defeat i18next's own plural
+ * selection, so the plural category is derived from the real number and the
+ * key is chosen here. Arabic needs up to six categories; English resolves to
+ * `_one`/`_other` and falls back to the base key.
+ */
+function countLabel(value, key, t, locale){
+  const count = clampNumber(value)
+  const formatted = formatNumber(count, locale)
+  const base = `castlePoints.${key}`
+  return t(`${base}${pluralSuffix(count, locale)}`, {
+    count: formatted,
+    defaultValue: t(base, { count: formatted }),
+  })
 }
 
-function castleEquivalent(points){
-  if(points <= 0) return '0 points'
-  if(points >= CASTLE_POINT_VALUES.large) return plural(Math.ceil(points / CASTLE_POINT_VALUES.large), 'large castle')
-  if(points >= CASTLE_POINT_VALUES.medium) return plural(Math.ceil(points / CASTLE_POINT_VALUES.medium), 'medium castle')
-  return plural(Math.ceil(points / CASTLE_POINT_VALUES.small), 'small castle')
+/** As countLabel, for keys used directly rather than through a castle type. */
+function pointsLabel(value, key, t, locale){
+  const count = clampNumber(value)
+  const formatted = formatNumber(count, locale)
+  const base = `castlePoints.${key}`
+  return t(`${base}${pluralSuffix(count, locale)}`, {
+    count: formatted,
+    defaultValue: t(base, { count: formatted }),
+  })
+}
+
+/**
+ * "1,234 projected" in English, but Arabic puts the label before the value:
+ * "المتوقع 1,234". Lower-casing is an English-only convention.
+ */
+function projectedSummary(value, t, locale){
+  const label = t('castlePoints.projected')
+  const number = formatNumber(value, locale)
+  // Arabic and Japanese both name the quantity before the value — 「予測 1,234」,
+  // not 「1,234 予測」, which reads as a stray noun after the number.
+  if(locale.direction === 'rtl' || locale.code === 'ja') return `${label} ${number}`
+  return `${number} ${locale.code === 'en' ? label.toLowerCase() : label}`
+}
+
+function castleTypeLabel(typeId, t, language){
+  const typeLabel = t(`castlePoints.${typeId}`, { defaultValue: typeId })
+  const noun = t('castlePoints.castle')
+  // Only English names the size and the noun separately ("Large" + "castle").
+  // 大城 and قلعة كبيرة are already whole nouns, so appending gives 「大城 城」.
+  if(language === 'ar' || (noun && typeLabel.includes(noun))) return typeLabel
+  return `${typeLabel} ${noun}`
+}
+
+function castleEquivalent(points, t, locale){
+  if(points <= 0) return t('castlePoints.zeroPoints')
+  if(points >= CASTLE_POINT_VALUES.large) return countLabel(Math.ceil(points / CASTLE_POINT_VALUES.large), 'largeCastleCount', t, locale)
+  if(points >= CASTLE_POINT_VALUES.medium) return countLabel(Math.ceil(points / CASTLE_POINT_VALUES.medium), 'mediumCastleCount', t, locale)
+  return countLabel(Math.ceil(points / CASTLE_POINT_VALUES.small), 'smallCastleCount', t, locale)
 }
 
 function CastleStepper({ alliance, type, onChange }){
+  const { t } = useTranslation('common')
+  const locale = useLocale()
   const value = clampNumber(alliance[type.id])
+  const typeLabel = castleTypeLabel(type.id, t, locale.code)
+  const allianceLabel = alliance?.isMine && alliance.name === 'My Alliance'
+    ? t('castlePoints.mine')
+    : String(alliance?.name || '').replace(/^Alliance (\d+)$/, `${t('castlePoints.alliance')} $1`)
   return (
-    <div className="cp-stepper" aria-label={`${type.label} castles for ${alliance.name}`}>
-      <button type="button" aria-label={`Remove ${type.label} castle`} onClick={() => onChange(type.id, -1)} disabled={value === 0}>-</button>
+    <div className="cp-stepper" aria-label={`${typeLabel} · ${allianceLabel}`}>
+      <button type="button" aria-label={`${t('castlePoints.remove')} ${typeLabel}`} onClick={() => onChange(type.id, -1)} disabled={value === 0}>-</button>
       <input
         type="number"
         min="0"
         inputMode="numeric"
-        aria-label={`${type.label} castle count`}
+        aria-label={`${t('count')}: ${typeLabel}`}
         value={value}
         onChange={event => onChange(type.id, event.target.value, true)}
       />
-      <button type="button" aria-label={`Add ${type.label} castle`} onClick={() => onChange(type.id, 1)}>+</button>
+      <button type="button" aria-label={`${t('castlePoints.add', { defaultValue: 'Add' })} ${typeLabel}`} onClick={() => onChange(type.id, 1)}>+</button>
     </div>
   )
 }
 
 export default function CastlePointsPage(){
+  const { t, i18n } = useTranslation('common')
+  const locale = useLocale()
   const [mode, setMode] = useState('normal')
   const [boards, setBoards] = useState(() => ({
     normal: defaultBoard(),
@@ -114,6 +171,11 @@ export default function CastlePointsPage(){
   const totalCastles = board.reduce((sum, alliance) => (
     sum + clampNumber(alliance.large) + clampNumber(alliance.medium) + clampNumber(alliance.small)
   ), 0)
+  const localizedAllianceName = alliance => {
+    if (alliance?.isMine && (!alliance.name || alliance.name === 'My Alliance')) return t('castlePoints.mine')
+    const match = String(alliance?.name || '').match(/^Alliance (\d+)$/)
+    return match ? `${t('castlePoints.alliance')} ${match[1]}` : alliance?.displayName || alliance?.name
+  }
 
   const updateBoard = updater => {
     setBoards(prev => ({
@@ -151,10 +213,10 @@ export default function CastlePointsPage(){
     <main className="castle-points-page">
       <section className="cp-head">
         <div>
-          <p>Castle War Tool</p>
-          <h1>Castle Points</h1>
+          <p>{t('castlePoints.tool')}</p>
+          <h1>{t('castlePoints.title')}</h1>
         </div>
-        <div className="cp-mode-tabs" role="tablist" aria-label="Castle War mode">
+        <div className="cp-mode-tabs" role="tablist" aria-label={t('castlePoints.mode')}>
           {MODES.map(item => (
             <button
               key={item.id}
@@ -163,7 +225,7 @@ export default function CastlePointsPage(){
               aria-selected={mode === item.id}
               className={mode === item.id ? 'is-active' : ''}
               onClick={() => setMode(item.id)}
-              title={item.id === 'normal' ? 'Version 1.0' : 'Version 2.0'}
+              title={item.id === 'normal' ? t('castlePoints.versionOne') : t('castlePoints.versionTwo')}
             >
               {item.label}
             </button>
@@ -171,19 +233,19 @@ export default function CastlePointsPage(){
         </div>
       </section>
 
-      <section className="cp-score-strip" aria-label="Point values and current summary">
+      <section className="cp-score-strip" aria-label={t('castlePoints.pointSummary')}>
         {CASTLE_TYPES.map(type => (
           <div key={type.id} className={`cp-score-card cp-score-${type.id}`}>
             <img src={type.icon} alt="" aria-hidden="true" />
             <div>
-              <b>{formatNumber(CASTLE_POINT_VALUES[type.id])}</b>
-              <span>{type.label} castle</span>
+              <b>{formatNumber(CASTLE_POINT_VALUES[type.id], locale)}</b>
+              <span>{castleTypeLabel(type.id, t, i18n.language)}</span>
             </div>
           </div>
         ))}
         <div className="cp-score-card cp-score-mine">
-          <b>{me ? `#${me.rank}` : '-'}</b>
-          <span>{me ? `${formatNumber(me.projected)} projected` : 'No board'}</span>
+          <b>{me ? `#${formatNumber(me.rank, locale)}` : '-'}</b>
+          <span>{me ? projectedSummary(me.projected, t, locale) : t('noBoard', { defaultValue: 'No board' })}</span>
         </div>
       </section>
 
@@ -191,28 +253,28 @@ export default function CastlePointsPage(){
         <section className="cp-panel cp-board-panel">
           <div className="cp-panel-head">
             <div>
-              <h2>Alliance Board</h2>
-              <span>{plural(board.length, 'alliance')} / {plural(totalCastles, 'castle')}</span>
+              <h2>{t('castlePoints.board')}</h2>
+              <span>{countLabel(board.length, 'allianceCount', t, locale)} / {countLabel(totalCastles, 'castleCount', t, locale)}</span>
             </div>
-            <button type="button" className="cp-soft-btn" onClick={resetBoard}>Reset</button>
+            <button type="button" className="cp-soft-btn" onClick={resetBoard}>{t('castlePoints.reset')}</button>
           </div>
 
           <div className="cp-table-shell">
             <table className="cp-table">
               <thead>
                 <tr>
-                  <th>Alliance</th>
+                  <th>{t('castlePoints.alliance')}</th>
                   {CASTLE_TYPES.map(type => (
                     <th key={type.id}>
                       <span className="cp-castle-head">
                         <img src={type.icon} alt="" aria-hidden="true" />
-                        <span>{type.short}</span>
+                        <span>{t(`castlePoints.${type.id}Short`, { defaultValue: type.short })}</span>
                       </span>
                     </th>
                   ))}
-                  <th>Today</th>
-                  <th>Current Total</th>
-                  <th>Projected</th>
+                  <th>{t('castlePoints.today')}</th>
+                  <th>{t('castlePoints.currentTotal')}</th>
+                  <th>{t('castlePoints.projected')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -224,20 +286,20 @@ export default function CastlePointsPage(){
                       <td>
                         <div className="cp-name-cell">
                           <input
-                            value={alliance.name}
-                            aria-label="Alliance name"
+                            value={localizedAllianceName(alliance)}
+                            aria-label={t('castlePoints.allianceName')}
                             onChange={event => updateAlliance(alliance.id, () => ({ name: event.target.value }))}
                           />
-                          {alliance.isMine ? <span>Mine</span> : (
-                            <button type="button" onClick={() => removeAlliance(alliance.id)}>Remove</button>
+                          {alliance.isMine ? <span>{t('castlePoints.mine')}</span> : (
+                            <button type="button" onClick={() => removeAlliance(alliance.id)}>{t('castlePoints.remove')}</button>
                           )}
                         </div>
                       </td>
                       {CASTLE_TYPES.map(type => (
-                        <td key={type.id} className="cp-castle-cell" data-label={type.label}>
+                        <td key={type.id} className="cp-castle-cell" data-label={castleTypeLabel(type.id, t, i18n.language)}>
                           <span className="cp-mobile-cell-label">
                             <img src={type.icon} alt="" aria-hidden="true" />
-                            {type.label}
+                            {castleTypeLabel(type.id, t, i18n.language)}
                           </span>
                           <CastleStepper
                             alliance={alliance}
@@ -246,20 +308,20 @@ export default function CastlePointsPage(){
                           />
                         </td>
                       ))}
-                      <td className="cp-num" data-label="Today">{formatNumber(today)}</td>
-                      <td data-label="Current">
+                      <td className="cp-num" data-label={t('castlePoints.today')}>{formatNumber(today, locale)}</td>
+                      <td data-label={t('castlePoints.currentTotal')}>
                         <input
                           className="cp-total-input"
                           type="number"
                           min="0"
                           inputMode="numeric"
-                          aria-label="Current cumulative points"
+                          aria-label={t('castlePoints.currentPoints')}
                           value={alliance.carried || ''}
                           placeholder="0"
                           onChange={event => updateAlliance(alliance.id, () => ({ carried: clampNumber(event.target.value) }))}
                         />
                       </td>
-                      <td className="cp-num cp-projected" data-label="Projected">{formatNumber(projected)}</td>
+                      <td className="cp-num cp-projected" data-label={t('castlePoints.projected')}>{formatNumber(projected, locale)}</td>
                     </tr>
                   )
                 })}
@@ -268,15 +330,15 @@ export default function CastlePointsPage(){
           </div>
 
           <button type="button" className="cp-add-btn" onClick={addAlliance} disabled={board.length >= 7}>
-            Add Alliance
+            {t('castlePoints.addAlliance')}
           </button>
         </section>
 
         <aside className="cp-panel cp-rank-panel">
           <div className="cp-panel-head">
             <div>
-              <h2>Projected Ranking</h2>
-              <span>{formatNumber(totalToday)} points today</span>
+              <h2>{t('castlePoints.ranking')}</h2>
+            <span>{pointsLabel(totalToday, 'pointsToday', t, locale)}</span>
             </div>
           </div>
 
@@ -284,17 +346,17 @@ export default function CastlePointsPage(){
             {ranked.map((alliance, index) => (
               <div key={alliance.id} className={`cp-rank-row${alliance.isMine ? ' is-mine' : ''}`}>
                 {board.length === 7 && index === 5 && (
-                  <div className="cp-drop-line"><span>Bottom two</span></div>
+                  <div className="cp-drop-line"><span>{t('castlePoints.bottomTwo')}</span></div>
                 )}
                 <div className="cp-rank-main">
-                  <span className="cp-rank-badge">{alliance.rank}</span>
+                  <span className="cp-rank-badge">{formatNumber(alliance.rank, locale)}</span>
                   <div className="cp-rank-name">
-                    <b>{alliance.displayName}</b>
-                    {alliance.isMine && <span>Mine</span>}
+                    <b>{localizedAllianceName(alliance)}</b>
+                    {alliance.isMine && <span>{t('castlePoints.mine')}</span>}
                   </div>
                   <div className="cp-rank-points">
-                    <b>{formatNumber(alliance.projected)}</b>
-                    <span>{alliance.today ? `+${formatNumber(alliance.today)}` : '+0'}</span>
+                    <b>{formatNumber(alliance.projected, locale)}</b>
+                    <span>{`+${formatNumber(alliance.today || 0, locale)}`}</span>
                   </div>
                 </div>
               </div>
@@ -302,8 +364,8 @@ export default function CastlePointsPage(){
           </div>
 
           <div className={`cp-gap-box${gapToFirst === 0 ? ' is-leading' : ''}`}>
-            <b>{gapToFirst === 0 ? 'Projected 1st' : `${formatNumber(gapToFirst)} pts behind 1st`}</b>
-            <span>{gapToFirst === 0 ? 'Your alliance is leading this board.' : `Roughly ${castleEquivalent(gapToFirst)}.`}</span>
+            <b>{gapToFirst === 0 ? t('castlePoints.projectedFirst') : pointsLabel(gapToFirst, 'behindFirst', t, locale)}</b>
+            <span>{gapToFirst === 0 ? t('castlePoints.leading') : t('castlePoints.roughly', { count: castleEquivalent(gapToFirst, t, locale) })}</span>
           </div>
         </aside>
       </div>

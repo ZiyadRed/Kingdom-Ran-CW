@@ -8,7 +8,7 @@
         525
       ]
     },
-    "name_en": "Kyoubou",
+    "name_en": "Kyobou",
     "name_jp": "巨暴",
     "country": "chu",
     "rarity": "SR",
@@ -716,7 +716,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Juutekkō",
+            "target": "Ally Wategi",
             "effect": "Confusion Infliction Rate Up 20%",
             "duration": null
           },

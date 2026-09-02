@@ -47,11 +47,18 @@
       }
     ],
     "image": "/persos/yuri.webp",
-    "icon": "/icons/Yuri.webp"
+    "icon": "/icons/Yuri.webp",
+    "source": {
+      "characterId": 228,
+      "generalIds": [
+        444,
+        445
+      ]
+    }
   },
   {
     "id": "toumi",
-    "name_en": "Toumi",
+    "name_en": "Toubi",
     "name_jp": "東美",
     "country": "qin",
     "rarity": "UR",
@@ -97,7 +104,14 @@
       }
     ],
     "image": "/persos/toubi.webp",
-    "icon": "/icons/Toumi.webp"
+    "icon": "/icons/Toumi.webp",
+    "source": {
+      "characterId": 217,
+      "generalIds": [
+        397,
+        398
+      ]
+    }
   },
   {
     "id": "yugi",
@@ -152,7 +166,13 @@
         ]
       }
     ],
-    "icon": "/icons/Yugi.webp"
+    "icon": "/icons/Yugi.webp",
+    "source": {
+      "characterId": 129,
+      "generalIds": [
+        209
+      ]
+    }
   },
   {
     "id": "entei",
@@ -214,7 +234,15 @@
       }
     ],
     "image": "/persos/entei.webp",
-    "icon": "/icons/Entei.webp"
+    "icon": "/icons/Entei.webp",
+    "source": {
+      "characterId": 135,
+      "generalIds": [
+        219,
+        401,
+        402
+      ]
+    }
   },
   {
     "id": "bamyu",
@@ -270,7 +298,15 @@
       }
     ],
     "image": "/persos/bamyu.webp",
-    "icon": "/icons/Bamyu.webp"
+    "icon": "/icons/Bamyu.webp",
+    "source": {
+      "characterId": 172,
+      "generalIds": [
+        265,
+        584,
+        585
+      ]
+    }
   },
   {
     "id": "kakubi",
@@ -326,11 +362,19 @@
       }
     ],
     "image": "/persos/kakubi.webp",
-    "icon": "/icons/Kakubi.webp"
+    "icon": "/icons/Kakubi.webp",
+    "source": {
+      "characterId": 2,
+      "generalIds": [
+        63,
+        416,
+        417
+      ]
+    }
   },
   {
     "id": "kesshi",
-    "name_en": "Kesshi",
+    "name_en": "Ketsushi",
     "name_jp": "竭氏",
     "country": "zhao",
     "rarity": "NR",
@@ -387,7 +431,13 @@
         ]
       }
     ],
-    "icon": "/icons/Kesshi.webp"
+    "icon": "/icons/Kesshi.webp",
+    "source": {
+      "characterId": 88,
+      "generalIds": [
+        10
+      ]
+    }
   },
   {
     "id": "genpo",
@@ -443,7 +493,15 @@
       }
     ],
     "image": "/persos/genpou.webp",
-    "icon": "/icons/Genpo.webp"
+    "icon": "/icons/Genpo.webp",
+    "source": {
+      "characterId": 20,
+      "generalIds": [
+        80,
+        244,
+        358
+      ]
+    }
   },
   {
     "id": "amon",
@@ -504,11 +562,17 @@
         ]
       }
     ],
-    "icon": "/icons/Amon.webp"
+    "icon": "/icons/Amon.webp",
+    "source": {
+      "characterId": 8,
+      "generalIds": [
+        2
+      ]
+    }
   },
   {
     "id": "jiou",
-    "name_en": "Jiou",
+    "name_en": "Koushou",
     "name_jp": "江彰",
     "country": "zhao",
     "rarity": "NR",
@@ -566,6 +630,12 @@
       }
     ],
     "image": null,
-    "icon": "/icons/Jiou.webp"
+    "icon": "/icons/Jiou.webp",
+    "source": {
+      "characterId": 24,
+      "generalIds": [
+        1
+      ]
+    }
   }
 ]

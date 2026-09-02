@@ -77,7 +77,14 @@
       }
     ],
     "image": "/persos/kakukai.webp",
-    "icon": "/icons/Kakukai.webp"
+    "icon": "/icons/Kakukai.webp",
+    "source": {
+      "characterId": 203,
+      "generalIds": [
+        357,
+        493
+      ]
+    }
   },
   {
     "id": "keisha",
@@ -201,7 +208,14 @@
       }
     ],
     "image": "/persos/keisha.webp",
-    "icon": "/icons/Keisha.webp"
+    "icon": "/icons/Keisha.webp",
+    "source": {
+      "characterId": 139,
+      "generalIds": [
+        223,
+        313
+      ]
+    }
   },
   {
     "id": "gakujou",
@@ -275,7 +289,14 @@
       }
     ],
     "image": "/persos/gakujou.webp",
-    "icon": "/icons/Gakujou.webp"
+    "icon": "/icons/Gakujou.webp",
+    "source": {
+      "characterId": 124,
+      "generalIds": [
+        202,
+        412
+      ]
+    }
   },
   {
     "id": "shinseijou",
@@ -381,7 +402,14 @@
       }
     ],
     "image": "/persos/shinseijou.webp",
-    "icon": "/icons/Shinseijou.webp"
+    "icon": "/icons/Shinseijou.webp",
+    "source": {
+      "characterId": 136,
+      "generalIds": [
+        220,
+        320
+      ]
+    }
   },
   {
     "id": "kousonryu",
@@ -437,7 +465,15 @@
       }
     ],
     "image": "/persos/kousonryuu.webp",
-    "icon": "/icons/Kousonryu.webp"
+    "icon": "/icons/Kousonryu.webp",
+    "source": {
+      "characterId": 22,
+      "generalIds": [
+        75,
+        215,
+        422
+      ]
+    }
   },
   {
     "id": "domon",
@@ -492,11 +528,17 @@
         ]
       }
     ],
-    "icon": "/icons/Domon.webp"
+    "icon": "/icons/Domon.webp",
+    "source": {
+      "characterId": 130,
+      "generalIds": [
+        212
+      ]
+    }
   },
   {
     "id": "miyamoto",
-    "name_en": "Miyamoto",
+    "name_en": "Kyuugen",
     "name_jp": "宮元",
     "country": "zhao",
     "rarity": "SR",
@@ -547,7 +589,13 @@
         ]
       }
     ],
-    "icon": "/icons/Miyamoto.webp"
+    "icon": "/icons/Miyamoto.webp",
+    "source": {
+      "characterId": 17,
+      "generalIds": [
+        19
+      ]
+    }
   },
   {
     "id": "saji",
@@ -602,7 +650,13 @@
         ]
       }
     ],
-    "icon": "/icons/Saji.webp"
+    "icon": "/icons/Saji.webp",
+    "source": {
+      "characterId": 27,
+      "generalIds": [
+        34
+      ]
+    }
   },
   {
     "id": "jokan",
@@ -657,7 +711,13 @@
         ]
       }
     ],
-    "icon": "/icons/Jokan.webp"
+    "icon": "/icons/Jokan.webp",
+    "source": {
+      "characterId": 31,
+      "generalIds": [
+        12
+      ]
+    }
   },
   {
     "id": "rihaku",
@@ -713,7 +773,15 @@
       }
     ],
     "image": "/persos/rihaku.webp",
-    "icon": "/icons/Rihaku.webp"
+    "icon": "/icons/Rihaku.webp",
+    "source": {
+      "characterId": 71,
+      "generalIds": [
+        76,
+        204,
+        413
+      ]
+    }
   },
   {
     "id": "shoumou",
@@ -775,7 +843,15 @@
       }
     ],
     "image": "/persos/shoumou.webp",
-    "icon": "/icons/Shoumou.webp"
+    "icon": "/icons/Shoumou.webp",
+    "source": {
+      "characterId": 37,
+      "generalIds": [
+        74,
+        205,
+        360
+      ]
+    }
   },
   {
     "id": "shika",
@@ -837,7 +913,15 @@
       }
     ],
     "image": "/persos/shika.webp",
-    "icon": "/icons/Shika.webp"
+    "icon": "/icons/Shika.webp",
+    "source": {
+      "characterId": 29,
+      "generalIds": [
+        71,
+        250,
+        345
+      ]
+    }
   },
   {
     "id": "kokuou",
@@ -893,6 +977,14 @@
       }
     ],
     "image": "/persos/kokuou.webp",
-    "icon": "/icons/Kokuou.webp"
+    "icon": "/icons/Kokuou.webp",
+    "source": {
+      "characterId": 26,
+      "generalIds": [
+        60,
+        177,
+        372
+      ]
+    }
   }
 ]

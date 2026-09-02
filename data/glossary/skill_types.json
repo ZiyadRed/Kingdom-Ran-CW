@@ -1,10 +1,10 @@
 {
-  "_comment": "Skill type translations. Each skill belongs to one of these three categories.",
+  "_comment": "Skill type translations. Normal skills use three categories; eligible generals can also unlock a Leader or Strategist role skill.",
 
   "戦技": {
     "en": "Combat Skill",
     "short": "Combat",
-    "description": "Active skills used during battle. Deals damage, applies buffs/debuffs, or heals.",
+    "description": "Active skills used during battle to deal damage, apply buffs/debuffs, or heal.",
     "color": "#E74C3C"
   },
   "軍略": {
@@ -18,6 +18,18 @@
     "short": "Internal Affairs",
     "description": "Non-combat skills that provide alliance-wide stat bonuses. Active even when the unit is not deployed.",
     "color": "#27AE60"
+  },
+  "総大将スキル": {
+    "en": "Leader Skill",
+    "short": "Leader",
+    "description": "An optional turn-1 role skill. Only one Leader can be assigned per formation, and losing that general immediately loses the battle.",
+    "color": "#E07F48"
+  },
+  "軍師スキル": {
+    "en": "Strategist Skill",
+    "short": "Strategist",
+    "description": "An optional turn-1 role skill. Only one Strategist can be assigned per formation; losing that general inflicts Confusion on all allies for 1 turn.",
+    "color": "#16A085"
   },
 
   "_base_skill_names": "The attack pattern prefix in skill names (e.g. 猛将一閃【赤象】 = Fierce General Flash [Red Elephant])",

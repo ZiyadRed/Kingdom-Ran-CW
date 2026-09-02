@@ -1,0 +1,2690 @@
+{
+  "_schema": "ranhq.character_source_map/1",
+  "characters": {
+    "akou": {
+      "characterId": 253,
+      "generalIds": [
+        528,
+        529
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "amon": {
+      "characterId": 8,
+      "generalIds": [
+        2
+      ],
+      "rarityIds": [
+        2
+      ],
+      "status": "exact"
+    },
+    "bain": {
+      "characterId": 225,
+      "generalIds": [
+        432,
+        433
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "bajio": {
+      "characterId": 5,
+      "generalIds": [
+        95,
+        123
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "bakan": {
+      "characterId": 230,
+      "generalIds": [
+        455,
+        456,
+        457
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "bakukoshin": {
+      "characterId": 50,
+      "generalIds": [
+        57,
+        200,
+        381
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "bamyu": {
+      "characterId": 172,
+      "generalIds": [
+        265,
+        584,
+        585
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "bananji": {
+      "characterId": 215,
+      "generalIds": [
+        393,
+        394
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "banyou": {
+      "characterId": 52,
+      "generalIds": [
+        16,
+        268
+      ],
+      "rarityIds": [
+        3,
+        4
+      ],
+      "status": "exact"
+    },
+    "batei": {
+      "characterId": 214,
+      "generalIds": [
+        391,
+        392
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "beiman": {
+      "characterId": 191,
+      "generalIds": [
+        324,
+        587
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "bihei": {
+      "characterId": 54,
+      "generalIds": [
+        52,
+        113,
+        446,
+        447
+      ],
+      "rarityIds": [
+        3,
+        2,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "bikou": {
+      "characterId": 53,
+      "generalIds": [
+        25,
+        448,
+        449,
+        450
+      ],
+      "rarityIds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "budai": {
+      "characterId": 236,
+      "generalIds": [
+        479,
+        480
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "chouin": {
+      "characterId": 161,
+      "generalIds": [
+        458,
+        459
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "resolved",
+      "basis": "Name 張印 has candidates characterId 160/161; owner-linked CW skill set and country select 161."
+    },
+    "chouko": {
+      "characterId": 93,
+      "generalIds": [
+        17
+      ],
+      "rarityIds": [
+        1
+      ],
+      "status": "exact"
+    },
+    "choushi": {
+      "characterId": 133,
+      "generalIds": [
+        217,
+        592,
+        593
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "chousou": {
+      "characterId": 94,
+      "generalIds": [
+        73,
+        210,
+        423
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "choutou": {
+      "characterId": 141,
+      "generalIds": [
+        225,
+        337
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "chouyou": {
+      "characterId": 256,
+      "generalIds": [
+        535,
+        536,
+        537
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "chutetsu": {
+      "characterId": 43,
+      "generalIds": [
+        26,
+        326
+      ],
+      "rarityIds": [
+        2,
+        3
+      ],
+      "status": "exact"
+    },
+    "danto": {
+      "characterId": 239,
+      "generalIds": [
+        497,
+        498
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "denei": {
+      "characterId": 44,
+      "generalIds": [
+        54,
+        271,
+        356
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "denrimi": {
+      "characterId": 250,
+      "generalIds": [
+        522,
+        523
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "denyuu": {
+      "characterId": 45,
+      "generalIds": [
+        65,
+        190,
+        334
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "domon": {
+      "characterId": 130,
+      "generalIds": [
+        212
+      ],
+      "rarityIds": [
+        3
+      ],
+      "status": "exact"
+    },
+    "douken": {
+      "characterId": 48,
+      "generalIds": [
+        3
+      ],
+      "rarityIds": [
+        1
+      ],
+      "status": "exact"
+    },
+    "doukin": {
+      "characterId": 47,
+      "generalIds": [
+        42,
+        186,
+        291,
+        478
+      ],
+      "rarityIds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "duke_hyou": {
+      "characterId": 99,
+      "generalIds": [
+        96,
+        124
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "duke_sei": {
+      "characterId": 221,
+      "generalIds": [
+        409,
+        410
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "ei_sei": {
+      "characterId": 98,
+      "generalIds": [
+        29,
+        87,
+        115
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "eiki": {
+      "characterId": 254,
+      "generalIds": [
+        530,
+        531,
+        532
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "en": {
+      "characterId": 86,
+      "generalIds": [
+        64,
+        114,
+        604,
+        605
+      ],
+      "rarityIds": [
+        3,
+        2,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "entei": {
+      "characterId": 135,
+      "generalIds": [
+        219,
+        401,
+        402
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "fuji": {
+      "characterId": 143,
+      "generalIds": [
+        227,
+        489,
+        490
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "futei": {
+      "characterId": 170,
+      "generalIds": [
+        260,
+        261,
+        318
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "resolved",
+      "basis": "RanHQ 傳抵 maps to source 傅抵; owner-linked CW identity selects characterId 170; literal 傳/傅 difference preserved."
+    },
+    "gaimou": {
+      "characterId": 180,
+      "generalIds": [
+        283,
+        284
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "gakuei": {
+      "characterId": 210,
+      "generalIds": [
+        382,
+        383
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "gakujou": {
+      "characterId": 124,
+      "generalIds": [
+        202,
+        412
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "gakuki": {
+      "characterId": 118,
+      "generalIds": [
+        157,
+        163
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "gakurai": {
+      "characterId": 202,
+      "generalIds": [
+        353,
+        354
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "garo": {
+      "characterId": 178,
+      "generalIds": [
+        280,
+        424
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "gekishin": {
+      "characterId": 113,
+      "generalIds": [
+        152,
+        158
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "genpo": {
+      "characterId": 20,
+      "generalIds": [
+        80,
+        244,
+        358
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "gii": {
+      "characterId": 97,
+      "generalIds": [
+        13
+      ],
+      "rarityIds": [
+        1
+      ],
+      "status": "exact"
+    },
+    "gika": {
+      "characterId": 96,
+      "generalIds": [
+        62,
+        245,
+        355
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "gohoumei": {
+      "characterId": 149,
+      "generalIds": [
+        233,
+        292
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "gokei": {
+      "characterId": 21,
+      "generalIds": [
+        90,
+        118
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "gotan": {
+      "characterId": 25,
+      "generalIds": [
+        11
+      ],
+      "rarityIds": [
+        2
+      ],
+      "status": "exact"
+    },
+    "goumasho": {
+      "characterId": 192,
+      "generalIds": [
+        325,
+        586
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "goutoku": {
+      "characterId": 249,
+      "generalIds": [
+        519,
+        520,
+        521
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "hairou": {
+      "characterId": 85,
+      "generalIds": [
+        51,
+        192,
+        420
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "hakuki": {
+      "characterId": 114,
+      "generalIds": [
+        153,
+        159
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "hakukisei": {
+      "characterId": 49,
+      "generalIds": [
+        21
+      ],
+      "rarityIds": [
+        1
+      ],
+      "status": "exact"
+    },
+    "hakurei": {
+      "characterId": 159,
+      "generalIds": [
+        248,
+        249,
+        333
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "hakusui": {
+      "characterId": 188,
+      "generalIds": [
+        303,
+        304
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "hamui": {
+      "characterId": 235,
+      "generalIds": [
+        472,
+        473
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "hanoki": {
+      "characterId": 197,
+      "generalIds": [
+        335,
+        336
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "hanroki": {
+      "characterId": 201,
+      "generalIds": [
+        350,
+        351
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "heirai": {
+      "characterId": 263,
+      "generalIds": [
+        554,
+        555,
+        556
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "heki": {
+      "characterId": 57,
+      "generalIds": [
+        35,
+        81,
+        180,
+        288
+      ],
+      "rarityIds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "hokaku": {
+      "characterId": 234,
+      "generalIds": [
+        469,
+        470,
+        471
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "hoki": {
+      "characterId": 95,
+      "generalIds": [
+        85,
+        216,
+        411
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "houken": {
+      "characterId": 100,
+      "generalIds": [
+        100,
+        128
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "hyou": {
+      "characterId": 55,
+      "generalIds": [
+        70,
+        112
+      ],
+      "rarityIds": [
+        3,
+        2
+      ],
+      "status": "exact"
+    },
+    "hyouki": {
+      "characterId": 145,
+      "generalIds": [
+        229,
+        418,
+        419
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "hyoushiga": {
+      "characterId": 187,
+      "generalIds": [
+        301,
+        302
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "jinou": {
+      "characterId": 189,
+      "generalIds": [
+        321,
+        588
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "jiou": {
+      "characterId": 24,
+      "generalIds": [
+        1
+      ],
+      "rarityIds": [
+        2
+      ],
+      "status": "exact"
+    },
+    "jokan": {
+      "characterId": 31,
+      "generalIds": [
+        12
+      ],
+      "rarityIds": [
+        2
+      ],
+      "status": "exact"
+    },
+    "junso": {
+      "characterId": 185,
+      "generalIds": [
+        297,
+        298
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "ka": {
+      "characterId": 240,
+      "generalIds": [
+        499,
+        500
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kaen": {
+      "characterId": 173,
+      "generalIds": [
+        266,
+        371
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kaine": {
+      "characterId": 1,
+      "generalIds": [
+        68,
+        171,
+        319
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kaioku": {
+      "characterId": 175,
+      "generalIds": [
+        272,
+        342
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kaishibou": {
+      "characterId": 14,
+      "generalIds": [
+        79,
+        243,
+        359
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kakubi": {
+      "characterId": 2,
+      "generalIds": [
+        63,
+        416,
+        417
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "resolved",
+      "basis": "RanHQ 郭備 maps to decoded STBL source ∠備 by owner-linked CW skills [23,286,301]; literal source codepoint preserved."
+    },
+    "kakukai": {
+      "characterId": 203,
+      "generalIds": [
+        357,
+        493
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kakuun": {
+      "characterId": 226,
+      "generalIds": [
+        436,
+        437
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kanjou": {
+      "characterId": 184,
+      "generalIds": [
+        295,
+        296
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kanki": {
+      "characterId": 16,
+      "generalIds": [
+        103,
+        131
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kanmei": {
+      "characterId": 137,
+      "generalIds": [
+        221,
+        307
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kanou": {
+      "characterId": 15,
+      "generalIds": [
+        41,
+        189,
+        306,
+        477
+      ],
+      "rarityIds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kanto": {
+      "characterId": 262,
+      "generalIds": [
+        551,
+        552,
+        553
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "karin": {
+      "characterId": 148,
+      "generalIds": [
+        232,
+        589
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "karyoten": {
+      "characterId": 13,
+      "generalIds": [
+        38,
+        94,
+        122
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "katari": {
+      "characterId": 245,
+      "generalIds": [
+        510,
+        511
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kei": {
+      "characterId": 19,
+      "generalIds": [
+        23
+      ],
+      "rarityIds": [
+        1
+      ],
+      "status": "exact"
+    },
+    "keibin": {
+      "characterId": 125,
+      "generalIds": [
+        203,
+        327
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "keisha": {
+      "characterId": 139,
+      "generalIds": [
+        223,
+        313
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kesshi": {
+      "characterId": 88,
+      "generalIds": [
+        10
+      ],
+      "rarityIds": [
+        1
+      ],
+      "status": "exact"
+    },
+    "kinmou": {
+      "characterId": 211,
+      "generalIds": [
+        385,
+        386
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kishou": {
+      "characterId": 218,
+      "generalIds": [
+        399,
+        400
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kisui": {
+      "characterId": 207,
+      "generalIds": [
+        369,
+        370
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kitari": {
+      "characterId": 237,
+      "generalIds": [
+        481,
+        482
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kokuou": {
+      "characterId": 26,
+      "generalIds": [
+        60,
+        177,
+        372
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "koshou": {
+      "characterId": 116,
+      "generalIds": [
+        155,
+        161
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kou": {
+      "characterId": 132,
+      "generalIds": [
+        214,
+        338
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "koujyun": {
+      "characterId": 257,
+      "generalIds": [
+        538,
+        539,
+        540
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kouretsu": {
+      "characterId": 199,
+      "generalIds": [
+        343,
+        344
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kourigen": {
+      "characterId": 12,
+      "generalIds": [
+        50,
+        201,
+        414
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kousonryu": {
+      "characterId": 22,
+      "generalIds": [
+        75,
+        215,
+        422
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kouyoku": {
+      "characterId": 158,
+      "generalIds": [
+        246,
+        247,
+        332
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kuzen": {
+      "characterId": 64,
+      "generalIds": [
+        22,
+        269
+      ],
+      "rarityIds": [
+        3,
+        4
+      ],
+      "status": "resolved",
+      "basis": "RanHQ 蒙恬のじぃ maps to source 蒙恬のじィ by owner-linked CW skills [74,172,289]; small-kana difference preserved."
+    },
+    "kyomei": {
+      "characterId": 176,
+      "generalIds": [
+        275,
+        276,
+        380
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kyou": {
+      "characterId": 84,
+      "generalIds": [
+        99,
+        127
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kyoubou": {
+      "characterId": 251,
+      "generalIds": [
+        524,
+        525
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kyouen": {
+      "characterId": 83,
+      "generalIds": [
+        78,
+        178,
+        278
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kyougai": {
+      "characterId": 18,
+      "generalIds": [
+        30,
+        182,
+        434,
+        435
+      ],
+      "rarityIds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kyoukai": {
+      "characterId": 90,
+      "generalIds": [
+        36,
+        105,
+        133
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kyourei": {
+      "characterId": 233,
+      "generalIds": [
+        466,
+        467,
+        468
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kyoushou": {
+      "characterId": 89,
+      "generalIds": [
+        37,
+        194,
+        305
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kyuukou": {
+      "characterId": 219,
+      "generalIds": [
+        403,
+        404,
+        405
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "maki": {
+      "characterId": 59,
+      "generalIds": [
+        15
+      ],
+      "rarityIds": [
+        1
+      ],
+      "status": "exact"
+    },
+    "makou": {
+      "characterId": 255,
+      "generalIds": [
+        533,
+        534
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "resolved",
+      "basis": "RanHQ 麻礦 maps to source 麻鉱 by owner-linked CW skills [790,791,792]; 礦/鉱 difference preserved."
+    },
+    "mangoku": {
+      "characterId": 60,
+      "generalIds": [
+        86,
+        196,
+        310
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "maron": {
+      "characterId": 120,
+      "generalIds": [
+        167,
+        270,
+        349
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "miyamoto": {
+      "characterId": 17,
+      "generalIds": [
+        19
+      ],
+      "rarityIds": [
+        1
+      ],
+      "status": "exact"
+    },
+    "moubu": {
+      "characterId": 62,
+      "generalIds": [
+        98,
+        126
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "resolved",
+      "basis": "Name 蒙武 has candidates characterId 62/160; owner-linked CW skill set and country select 62."
+    },
+    "mougou": {
+      "characterId": 65,
+      "generalIds": [
+        91,
+        119
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "resolved",
+      "basis": "Name 蒙驁 has candidates characterId 65/160; owner-linked CW skill set and country select 65."
+    },
+    "mouki": {
+      "characterId": 61,
+      "generalIds": [
+        59,
+        211,
+        474
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "mouten": {
+      "characterId": 63,
+      "generalIds": [
+        77,
+        93,
+        121
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "muta": {
+      "characterId": 6,
+      "generalIds": [
+        48,
+        273,
+        451
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "naki": {
+      "characterId": 204,
+      "generalIds": [
+        363,
+        364
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "nakon": {
+      "characterId": 229,
+      "generalIds": [
+        452,
+        453,
+        454
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "ogiko": {
+      "characterId": 171,
+      "generalIds": [
+        262,
+        263,
+        425
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "ordo": {
+      "characterId": 140,
+      "generalIds": [
+        224,
+        317
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "otaji": {
+      "characterId": 231,
+      "generalIds": [
+        460,
+        461,
+        462
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "ouhon": {
+      "characterId": 11,
+      "generalIds": [
+        82,
+        88,
+        116
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "ouken": {
+      "characterId": 146,
+      "generalIds": [
+        230,
+        348
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "ouki": {
+      "characterId": 9,
+      "generalIds": [
+        97,
+        125
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "resolved",
+      "basis": "Name 王騎 has candidates characterId 9/160; owner-linked CW skill set and country select 9."
+    },
+    "oukotsu": {
+      "characterId": 115,
+      "generalIds": [
+        154,
+        160
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "ousen": {
+      "characterId": 10,
+      "generalIds": [
+        92,
+        120
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "pam": {
+      "characterId": 241,
+      "generalIds": [
+        501,
+        502,
+        503
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "queen_biki": {
+      "characterId": 122,
+      "generalIds": [
+        173,
+        174
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "raido": {
+      "characterId": 69,
+      "generalIds": [
+        44,
+        195,
+        376,
+        377
+      ],
+      "rarityIds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "raiki": {
+      "characterId": 134,
+      "generalIds": [
+        218,
+        594,
+        595
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "ramauji": {
+      "characterId": 144,
+      "generalIds": [
+        228,
+        483,
+        484
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "ranbihaku": {
+      "characterId": 183,
+      "generalIds": [
+        293,
+        294
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "rankai": {
+      "characterId": 7,
+      "generalIds": [
+        55,
+        164,
+        165
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "reiou": {
+      "characterId": 181,
+      "generalIds": [
+        285,
+        286
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "renpa": {
+      "characterId": 78,
+      "generalIds": [
+        104,
+        132
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "riboku": {
+      "characterId": 72,
+      "generalIds": [
+        102,
+        130,
+        176
+      ],
+      "rarityIds": [
+        4,
+        5,
+        4
+      ],
+      "status": "exact"
+    },
+    "rien": {
+      "characterId": 198,
+      "generalIds": [
+        340,
+        341
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "rihaku": {
+      "characterId": 71,
+      "generalIds": [
+        76,
+        204,
+        413
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "rikusen": {
+      "characterId": 119,
+      "generalIds": [
+        166,
+        352
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "rinbou": {
+      "characterId": 77,
+      "generalIds": [
+        40,
+        187,
+        315,
+        476
+      ],
+      "rarityIds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "rinbukun": {
+      "characterId": 138,
+      "generalIds": [
+        222,
+        308
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "ringyoku": {
+      "characterId": 208,
+      "generalIds": [
+        374,
+        375
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "resolved",
+      "basis": "RanHQ リン玉 maps to decoded STBL source Γ玉 by owner-linked CW skills [485,486,487]; source uses Greek Gamma U+0393 and is preserved."
+    },
+    "rinko": {
+      "characterId": 76,
+      "generalIds": [
+        106,
+        134
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "rishi": {
+      "characterId": 70,
+      "generalIds": [
+        47,
+        494,
+        495,
+        496
+      ],
+      "rarityIds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "robin": {
+      "characterId": 227,
+      "generalIds": [
+        438,
+        439
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "roen": {
+      "characterId": 80,
+      "generalIds": [
+        24,
+        606,
+        607,
+        608
+      ],
+      "rarityIds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "rokin": {
+      "characterId": 248,
+      "generalIds": [
+        516,
+        517,
+        518
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "rokuomi": {
+      "characterId": 81,
+      "generalIds": [
+        61,
+        175,
+        384
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "rouai": {
+      "characterId": 200,
+      "generalIds": [
+        346,
+        347
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "rui": {
+      "characterId": 179,
+      "generalIds": [
+        281,
+        282
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "ryofui": {
+      "characterId": 79,
+      "generalIds": [
+        108,
+        136
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "ryuukoku": {
+      "characterId": 73,
+      "generalIds": [
+        39,
+        188,
+        309,
+        475
+      ],
+      "rarityIds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "ryuusen": {
+      "characterId": 74,
+      "generalIds": [
+        67,
+        185,
+        373
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "ryuuto": {
+      "characterId": 213,
+      "generalIds": [
+        389,
+        390
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "ryuyu": {
+      "characterId": 75,
+      "generalIds": [
+        32
+      ],
+      "rarityIds": [
+        3
+      ],
+      "status": "exact"
+    },
+    "saizatsu": {
+      "characterId": 92,
+      "generalIds": [
+        46
+      ],
+      "rarityIds": [
+        2
+      ],
+      "status": "exact"
+    },
+    "saji": {
+      "characterId": 27,
+      "generalIds": [
+        34
+      ],
+      "rarityIds": [
+        2
+      ],
+      "status": "exact"
+    },
+    "seikai": {
+      "characterId": 147,
+      "generalIds": [
+        231,
+        312
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "seikyou": {
+      "characterId": 40,
+      "generalIds": [
+        69,
+        111,
+        287
+      ],
+      "rarityIds": [
+        3,
+        2,
+        4
+      ],
+      "status": "exact"
+    },
+    "seki": {
+      "characterId": 41,
+      "generalIds": [
+        27,
+        199,
+        590,
+        591
+      ],
+      "rarityIds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "shibasaku": {
+      "characterId": 117,
+      "generalIds": [
+        156,
+        162
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "shihaku": {
+      "characterId": 182,
+      "generalIds": [
+        289,
+        290
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "shika": {
+      "characterId": 29,
+      "generalIds": [
+        71,
+        250,
+        345
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "shikika": {
+      "characterId": 186,
+      "generalIds": [
+        299,
+        300
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "shin": {
+      "characterId": 38,
+      "generalIds": [
+        28,
+        72,
+        107,
+        135
+      ],
+      "rarityIds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "shinseijou": {
+      "characterId": 136,
+      "generalIds": [
+        220,
+        320
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "shishi": {
+      "characterId": 91,
+      "generalIds": [
+        20
+      ],
+      "rarityIds": [
+        2
+      ],
+      "status": "exact"
+    },
+    "sho": {
+      "characterId": 35,
+      "generalIds": [
+        83,
+        179,
+        279
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "shoubunkun": {
+      "characterId": 33,
+      "generalIds": [
+        110,
+        138
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "shouheikun": {
+      "characterId": 34,
+      "generalIds": [
+        109,
+        137
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "shoukaku": {
+      "characterId": 32,
+      "generalIds": [
+        58,
+        442,
+        443
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "shoumou": {
+      "characterId": 37,
+      "generalIds": [
+        74,
+        205,
+        360
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "shousa": {
+      "characterId": 36,
+      "generalIds": [
+        53,
+        191,
+        314
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "resolved",
+      "basis": "RanHQ 松佐 maps to source 松左 by owner-linked CW skills [59,226,181]; 佐/左 difference preserved."
+    },
+    "shoutaku": {
+      "characterId": 220,
+      "generalIds": [
+        406,
+        407,
+        408
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "shuki": {
+      "characterId": 30,
+      "generalIds": [
+        14
+      ],
+      "rarityIds": [
+        1
+      ],
+      "status": "exact"
+    },
+    "shunmen": {
+      "characterId": 3,
+      "generalIds": [
+        49,
+        181,
+        486
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "shunpeikun": {
+      "characterId": 222,
+      "generalIds": [
+        426,
+        427
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "shunshinkun": {
+      "characterId": 121,
+      "generalIds": [
+        168,
+        274
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "shunsuiju": {
+      "characterId": 212,
+      "generalIds": [
+        387,
+        388
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "sosui": {
+      "characterId": 42,
+      "generalIds": [
+        66,
+        197,
+        311
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "sougen": {
+      "characterId": 264,
+      "generalIds": [
+        557,
+        558
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "soujin": {
+      "characterId": 261,
+      "generalIds": [
+        549,
+        550
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "soutan": {
+      "characterId": 258,
+      "generalIds": [
+        541,
+        542
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "suugen": {
+      "characterId": 39,
+      "generalIds": [
+        33,
+        183,
+        316,
+        415
+      ],
+      "rarityIds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "taijifu": {
+      "characterId": 4,
+      "generalIds": [
+        56,
+        184,
+        485
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "tairoji": {
+      "characterId": 205,
+      "generalIds": [
+        365,
+        366
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "takukei": {
+      "characterId": 87,
+      "generalIds": [
+        31,
+        198,
+        440,
+        441
+      ],
+      "rarityIds": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "toji": {
+      "characterId": 142,
+      "generalIds": [
+        226,
+        487,
+        488
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "tonkaku": {
+      "characterId": 259,
+      "generalIds": [
+        543,
+        544,
+        545
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "tonkoku": {
+      "characterId": 260,
+      "generalIds": [
+        546,
+        547,
+        548
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "tou": {
+      "characterId": 46,
+      "generalIds": [
+        101,
+        129
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "toumi": {
+      "characterId": 217,
+      "generalIds": [
+        397,
+        398
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "wategi": {
+      "characterId": 190,
+      "generalIds": [
+        322,
+        323
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "yotanwa": {
+      "characterId": 68,
+      "generalIds": [
+        89,
+        117,
+        139
+      ],
+      "rarityIds": [
+        4,
+        5,
+        3
+      ],
+      "status": "exact"
+    },
+    "you": {
+      "characterId": 131,
+      "generalIds": [
+        213,
+        339
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "youka": {
+      "characterId": 238,
+      "generalIds": [
+        491,
+        492
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "yugi": {
+      "characterId": 129,
+      "generalIds": [
+        209
+      ],
+      "rarityIds": [
+        3
+      ],
+      "status": "exact"
+    },
+    "yukii": {
+      "characterId": 174,
+      "generalIds": [
+        361,
+        362
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "resolved",
+      "basis": "Name ユキイ has candidates characterId 160/174; owner-linked CW skill set and country select 174."
+    },
+    "yuri": {
+      "characterId": 228,
+      "generalIds": [
+        444,
+        445
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "yuuren": {
+      "characterId": 66,
+      "generalIds": [
+        45,
+        193,
+        421
+      ],
+      "rarityIds": [
+        3,
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "zenou": {
+      "characterId": 206,
+      "generalIds": [
+        367,
+        368
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
+    "kou2": {
+      "characterId": 23,
+      "generalIds": [
+        18
+      ],
+      "rarityIds": [
+        1
+      ],
+      "status": "exact"
+    }
+  }
+}

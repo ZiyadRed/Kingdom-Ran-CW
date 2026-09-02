@@ -78,7 +78,15 @@
       }
     ],
     "image": "/persos/otaji.webp",
-    "icon": "/icons/Otaji.webp"
+    "icon": "/icons/Otaji.webp",
+    "source": {
+      "characterId": 231,
+      "generalIds": [
+        460,
+        461,
+        462
+      ]
+    }
   },
   {
     "id": "yukii",
@@ -164,7 +172,14 @@
       }
     ],
     "image": "/persos/yukii.webp",
-    "icon": "/icons/Yukii.webp"
+    "icon": "/icons/Yukii.webp",
+    "source": {
+      "characterId": 174,
+      "generalIds": [
+        361,
+        362
+      ]
+    }
   },
   {
     "id": "gakuki",
@@ -258,7 +273,14 @@
       }
     ],
     "image": "/persos/gakuki.webp",
-    "icon": "/icons/Gakuki.webp"
+    "icon": "/icons/Gakuki.webp",
+    "source": {
+      "characterId": 118,
+      "generalIds": [
+        157,
+        163
+      ]
+    }
   },
   {
     "id": "gekishin",
@@ -344,6 +366,13 @@
       }
     ],
     "image": "/persos/gekishin.webp",
-    "icon": "/icons/Gekishin.webp"
+    "icon": "/icons/Gekishin.webp",
+    "source": {
+      "characterId": 113,
+      "generalIds": [
+        152,
+        158
+      ]
+    }
   }
 ]

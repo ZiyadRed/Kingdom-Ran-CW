@@ -104,7 +104,15 @@
       }
     ],
     "image": "/persos/ouhon.webp",
-    "icon": "/icons/Ouhon.webp"
+    "icon": "/icons/Ouhon.webp",
+    "source": {
+      "characterId": 11,
+      "generalIds": [
+        82,
+        88,
+        116
+      ]
+    }
   },
   {
     "id": "ousen",
@@ -223,7 +231,14 @@
       }
     ],
     "image": "/persos/ousen.webp",
-    "icon": "/icons/Ousen.webp"
+    "icon": "/icons/Ousen.webp",
+    "source": {
+      "characterId": 10,
+      "generalIds": [
+        92,
+        120
+      ]
+    }
   },
   {
     "id": "kanki",
@@ -328,7 +343,14 @@
       }
     ],
     "image": "/persos/kanki.webp",
-    "icon": "/icons/Kanki.webp"
+    "icon": "/icons/Kanki.webp",
+    "source": {
+      "characterId": 16,
+      "generalIds": [
+        103,
+        131
+      ]
+    }
   },
   {
     "id": "mouten",
@@ -403,7 +425,15 @@
       }
     ],
     "image": "/persos/mouten.webp",
-    "icon": "/icons/Mouten.webp"
+    "icon": "/icons/Mouten.webp",
+    "source": {
+      "characterId": 63,
+      "generalIds": [
+        77,
+        93,
+        121
+      ]
+    }
   },
   {
     "id": "moubu",
@@ -483,7 +513,14 @@
       }
     ],
     "image": "/persos/moubu.webp",
-    "icon": "/icons/Moubo.webp"
+    "icon": "/icons/Moubo.webp",
+    "source": {
+      "characterId": 62,
+      "generalIds": [
+        98,
+        126
+      ]
+    }
   },
   {
     "id": "shouheikun",
@@ -551,7 +588,14 @@
       }
     ],
     "image": "/persos/shouheikun.webp",
-    "icon": "/icons/Shuheikun.webp"
+    "icon": "/icons/Shuheikun.webp",
+    "source": {
+      "characterId": 34,
+      "generalIds": [
+        109,
+        137
+      ]
+    }
   },
   {
     "id": "shoubunkun",
@@ -637,7 +681,14 @@
       }
     ],
     "image": "/persos/shoubunkun.webp",
-    "icon": "/icons/Shoubunkun.webp"
+    "icon": "/icons/Shoubunkun.webp",
+    "source": {
+      "characterId": 33,
+      "generalIds": [
+        110,
+        138
+      ]
+    }
   },
   {
     "id": "sho",
@@ -749,7 +800,15 @@
       }
     ],
     "image": "/persos/sho.webp",
-    "icon": "/icons/Sho.webp"
+    "icon": "/icons/Sho.webp",
+    "source": {
+      "characterId": 35,
+      "generalIds": [
+        83,
+        179,
+        279
+      ]
+    }
   },
   {
     "id": "ei_sei",
@@ -829,7 +888,15 @@
       }
     ],
     "image": "/persos/sei.webp",
-    "icon": "/icons/Ei Sei.webp"
+    "icon": "/icons/Ei Sei.webp",
+    "source": {
+      "characterId": 98,
+      "generalIds": [
+        29,
+        87,
+        115
+      ]
+    }
   },
   {
     "id": "kyou",
@@ -904,7 +971,14 @@
       }
     ],
     "image": "/persos/kyou.webp",
-    "icon": "/icons/Kyou.webp"
+    "icon": "/icons/Kyou.webp",
+    "source": {
+      "characterId": 84,
+      "generalIds": [
+        99,
+        127
+      ]
+    }
   },
   {
     "id": "raido",
@@ -1011,7 +1085,16 @@
       }
     ],
     "image": "/persos/raido.webp",
-    "icon": "/icons/Raido.webp"
+    "icon": "/icons/Raido.webp",
+    "source": {
+      "characterId": 69,
+      "generalIds": [
+        44,
+        195,
+        376,
+        377
+      ]
+    }
   },
   {
     "id": "kou",
@@ -1079,11 +1162,18 @@
       }
     ],
     "image": "/persos/kou.webp",
-    "icon": "/icons/Kou.webp"
+    "icon": "/icons/Kou.webp",
+    "source": {
+      "characterId": 132,
+      "generalIds": [
+        214,
+        338
+      ]
+    }
   },
   {
     "id": "saizatsu",
-    "name_en": "Saizatsu",
+    "name_en": "Saitaku",
     "name_jp": "蔡沢",
     "country": "qin",
     "rarity": "NR",
@@ -1133,7 +1223,14 @@
           }
         ]
       }
-    ]
+    ],
+    "icon": "/icons/Saizatsu.webp",
+    "source": {
+      "characterId": 92,
+      "generalIds": [
+        46
+      ]
+    }
   },
   {
     "id": "ouki",
@@ -1239,7 +1336,14 @@
         ]
       }
     ],
-    "icon": "/icons/Ouki.webp"
+    "icon": "/icons/Ouki.webp",
+    "source": {
+      "characterId": 9,
+      "generalIds": [
+        97,
+        125
+      ]
+    }
   },
   {
     "id": "tou",
@@ -1357,7 +1461,14 @@
         ]
       }
     ],
-    "icon": "/icons/Tou.webp"
+    "icon": "/icons/Tou.webp",
+    "source": {
+      "characterId": 46,
+      "generalIds": [
+        101,
+        129
+      ]
+    }
   },
   {
     "id": "shoukaku",
@@ -1410,6 +1521,14 @@
       }
     ],
     "image": "/persos/shoukaku.webp",
-    "icon": "/icons/Shoukaku.webp"
+    "icon": "/icons/Shoukaku.webp",
+    "source": {
+      "characterId": 32,
+      "generalIds": [
+        58,
+        442,
+        443
+      ]
+    }
   }
 ]

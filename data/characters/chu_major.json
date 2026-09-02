@@ -98,7 +98,14 @@
       }
     ],
     "image": "/persos/karin.webp",
-    "icon": "/icons/Karin.webp"
+    "icon": "/icons/Karin.webp",
+    "source": {
+      "characterId": 148,
+      "generalIds": [
+        232,
+        589
+      ]
+    }
   },
   {
     "id": "kanmei",
@@ -199,7 +206,14 @@
       }
     ],
     "image": "/persos/kanmei.webp",
-    "icon": "/icons/Kanmei.webp"
+    "icon": "/icons/Kanmei.webp",
+    "source": {
+      "characterId": 137,
+      "generalIds": [
+        221,
+        307
+      ]
+    }
   },
   {
     "id": "rinbukun",
@@ -306,7 +320,14 @@
       }
     ],
     "image": "/persos/rinbukun.webp",
-    "icon": "/icons/Rinbukun.webp"
+    "icon": "/icons/Rinbukun.webp",
+    "source": {
+      "characterId": 138,
+      "generalIds": [
+        222,
+        308
+      ]
+    }
   },
   {
     "id": "renpa",
@@ -395,7 +416,14 @@
       }
     ],
     "image": "/persos/renpa.webp",
-    "icon": "/icons/Renpa.webp"
+    "icon": "/icons/Renpa.webp",
+    "source": {
+      "characterId": 78,
+      "generalIds": [
+        104,
+        132
+      ]
+    }
   },
   {
     "id": "rinko",
@@ -490,7 +518,14 @@
       }
     ],
     "image": "/persos/rinko.webp",
-    "icon": "/icons/Rinko.webp"
+    "icon": "/icons/Rinko.webp",
+    "source": {
+      "characterId": 76,
+      "generalIds": [
+        106,
+        134
+      ]
+    }
   },
   {
     "id": "hakurei",
@@ -565,7 +600,15 @@
       }
     ],
     "image": "/persos/hakurei.webp",
-    "icon": "/icons/Hakurei.webp"
+    "icon": "/icons/Hakurei.webp",
+    "source": {
+      "characterId": 159,
+      "generalIds": [
+        248,
+        249,
+        333
+      ]
+    }
   },
   {
     "id": "kaishibou",
@@ -648,7 +691,15 @@
       }
     ],
     "image": "/persos/kaishibou.webp",
-    "icon": "/icons/Kaishibou.webp"
+    "icon": "/icons/Kaishibou.webp",
+    "source": {
+      "characterId": 14,
+      "generalIds": [
+        79,
+        243,
+        359
+      ]
+    }
   },
   {
     "id": "gohoumei",
@@ -772,7 +823,14 @@
       }
     ],
     "image": "/persos/gohoumei.webp",
-    "icon": "/icons/Gohoumei.webp"
+    "icon": "/icons/Gohoumei.webp",
+    "source": {
+      "characterId": 149,
+      "generalIds": [
+        233,
+        292
+      ]
+    }
   },
   {
     "id": "gokei",
@@ -878,6 +936,13 @@
       }
     ],
     "image": "/persos/gokei.webp",
-    "icon": "/icons/Gokei.webp"
+    "icon": "/icons/Gokei.webp",
+    "source": {
+      "characterId": 21,
+      "generalIds": [
+        90,
+        118
+      ]
+    }
   }
 ]

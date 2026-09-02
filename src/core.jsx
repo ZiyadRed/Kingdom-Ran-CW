@@ -1,4 +1,9 @@
 import { useState, useRef, useEffect, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useLocale, formatNumber as formatLocaleNumber } from './i18n/index.js'
+import { localizedCharacter } from './i18n/data.js'
+import { LEGACY_CHARACTER_NAME_ALIASES, matchesCharacterName } from './i18n/ar-character-names.js'
+import cw6SceneCards from '../data/cw6_scene_cards.json'
 import mountainFolk from '../data/characters/mountain_folk.json'
 import qin          from '../data/characters/qin.json'
 import qinBatch2    from '../data/characters/qin_batch2.json'
@@ -19,6 +24,7 @@ import cwBuffsData  from '../data/cw_buffs.json'
 import cwMaxStats   from '../data/cw_max_stats.json'
 import sceneCardBuffs from '../data/scene_card_cw_buffs.json'
 import rarityData from '../data/character_rarity.json'
+import souhaRoleSkills from '../data/souha_role_skills.json'
 
 // Shared modal behavior: close on Escape and lock background scroll while a
 // modal/overlay is open. `active` gates it so the hook is safe to call
@@ -49,6 +55,7 @@ export const normalizeProgress=(raw={})=>{
       delete buffSources[key]
     }
   }
+  migrateFuukiSiegeOwnership(buffSources)
   migrateNakonBuffOwnership(buffSources)
   return Object.fromEntries(Object.keys(base).map(k=>[k,k==='buffSources'?buffSources:{...(raw[k]||{})}]))
 }
@@ -58,6 +65,7 @@ export const readProgress=()=>{
   catch{return emptyProgress()}
 }
 export function useProgressTracker(){
+  const{t}=useTranslation('common')
   const[progress,setProgress]=useState(readProgress)
   useEffect(()=>{
     try{window.localStorage.setItem(PROGRESS_STORAGE_KEY,JSON.stringify(progress))}
@@ -89,70 +97,94 @@ export function useProgressTracker(){
     const text=JSON.stringify({version:1,exportedAt:new Date().toISOString(),progress},null,2)
     try{
       await navigator.clipboard.writeText(text)
-      window.alert('Progress backup copied.')
+      window.alert(t('progressCopied'))
     }catch{
-      window.prompt('Copy your RanHQ progress backup:',text)
+      window.prompt(t('copyProgress'),text)
     }
   }
   const importProgress=()=>{
-    const text=window.prompt('Paste your RanHQ progress backup:')
+    const text=window.prompt(t('pasteProgress'))
     if(!text) return
     try{
       const parsed=JSON.parse(text)
       setProgress(normalizeProgress(parsed.progress||parsed))
-      window.alert('Progress imported.')
+      window.alert(t('progressImported'))
     }catch{
-      window.alert('That progress backup could not be read.')
+      window.alert(t('progressImportFailed'))
     }
   }
   const clearProgress=()=>{
-    if(window.confirm('Clear all saved RanHQ progress on this browser?')) setProgress(emptyProgress())
+    if(window.confirm(t('clearProgressConfirm'))) setProgress(emptyProgress())
   }
   return{progress,isOwned,toggleOwned,setProgressValue,countOwned,exportProgress,importProgress,clearProgress}
 }
+// `label` is the English default; `key` lets a caller translate it. The
+// catalog already carries all/owned/missing for every locale.
 export const progressFilterItems=[
-  {id:'all',label:'All'},
-  {id:'owned',label:'Owned'},
-  {id:'missing',label:'Missing'},
+  {id:'all',label:'All',key:'all'},
+  {id:'owned',label:'Owned',key:'owned'},
+  {id:'missing',label:'Missing',key:'missing'},
 ]
-export const ProgressTools=({tracker})=>(
-  <div className="progress-tools" aria-label="Progress tools">
-    <span className="progress-tools-note">Saved on this browser</span>
-    <button type="button" onClick={tracker.exportProgress}>Export</button>
-    <button type="button" onClick={tracker.importProgress}>Import</button>
-    <button type="button" onClick={tracker.clearProgress}>Clear</button>
-  </div>
-)
-export const OwnedToggle=({owned,onToggle,label='Owned',className=''})=>(
-  <button
-    type="button"
-    className={`owned-toggle${owned?' owned-toggle-on':''}${className?' '+className:''}`}
-    onClick={onToggle}
-    aria-pressed={owned}
-    title={owned?'Marked owned':'Mark as owned'}
-  >
-    {owned?label:'Own'}
-  </button>
-)
-export const SceneStarControl=({star,onChange})=>(
-  <div className="scene-star-control" aria-label="Scene card buff star level">
-    {[1,2,3,4,5,6].map(level=>(
-      <button
-        key={level}
-        type="button"
-        className={level<=star?'active':''}
-        aria-pressed={level<=star}
-        title={star===level?'Clear scene card stars':`Set to ${level}/6 stars`}
-        onClick={()=>onChange(star===level?0:level)}
-      >
-        {level<=star?'★':'☆'}
-      </button>
-    ))}
-  </div>
-)
+export const ProgressTools=({tracker})=>{
+  const{t}=useTranslation('common')
+  return(
+    <div className="progress-tools" aria-label={t('toolsSummary')}>
+      <span className="progress-tools-note">{t('savedBrowser')}</span>
+      <button type="button" onClick={tracker.exportProgress}>{t('export')}</button>
+      <button type="button" onClick={tracker.importProgress}>{t('import')}</button>
+      <button type="button" onClick={tracker.clearProgress}>{t('clear')}</button>
+    </div>
+  )
+}
+export const OwnedToggle=({owned,onToggle,label,className=''})=>{
+  const{t}=useTranslation('common')
+  const displayLabel=label||t('owned')
+  return(
+    <button
+      type="button"
+      className={`owned-toggle${owned?' owned-toggle-on':''}${className?' '+className:''}`}
+      onClick={onToggle}
+      aria-pressed={owned}
+      title={owned?t('markedOwned'):t('markOwned')}
+    >
+      {owned?displayLabel:t('own')}
+    </button>
+  )
+}
+export const SceneStarControl=({star,onChange})=>{
+  const{t}=useTranslation('common')
+  return(
+    <div className="scene-star-control" aria-label={t('starSkill')}>
+      {[1,2,3,4,5,6].map(level=>(
+        <button
+          key={level}
+          type="button"
+          className={level<=star?'active':''}
+          aria-pressed={level<=star}
+          title={star===level?t('clear'):`${level}/6 ★`}
+          onClick={()=>onChange(star===level?0:level)}
+        >
+          {level<=star?'★':'☆'}
+        </button>
+      ))}
+    </div>
+  )
+}
 export const buffSourceId=(kind,key,stat,e,_i)=>{
   const base=`${kind}:${key}:${stat}:${e.name||''}:${e.name_jp||''}:${e.value||0}:${e.special_label||''}`
   return e.source_id?`${base}:${e.source_id}`:base
+}
+
+// The display-name correction from Hoki to Fuuki changes the stable ownership
+// key for her two siege buffs. Migrate only those entries; other legacy buff
+// rows keep their existing keys until their underlying data is corrected.
+function migrateFuukiSiegeOwnership(buffSources){
+  for(const key of Object.keys(buffSources)){
+    if(!key.startsWith('siege:')||!key.includes(':Hoki:馮忌:')) continue
+    const nextKey=key.replace(':Hoki:馮忌:',':Fuuki:馮忌:')
+    if(!buffSources[nextKey]) buffSources[nextKey]=buffSources[key]
+    delete buffSources[key]
+  }
 }
 
 // Nakon was previously stored as one 10% source. Preserve that ownership by
@@ -169,12 +201,49 @@ function migrateNakonBuffOwnership(buffSources){
   delete buffSources[legacy]
 }
 
+// ── Scene cards that have not gone live in the game yet ──────────────────────
+// The source data carries the card's in-game release timestamp. A card dated in
+// the future is real, verified data we already hold, but showing it early would
+// publish content the game has not released. Gate on the date rather than
+// holding rows out of the dataset, so provenance stays intact and the card
+// appears on its own release day with no code change.
+const cw6Cards=cw6SceneCards.cards||[]
+const isCardPublic=card=>!card?.publicTime||card.publicTime*1000<=Date.now()
+export const PUBLIC_CW6_CARDS=cw6Cards.filter(isCardPublic)
+// Star-6 skills reach a character through the same card, so an unreleased card
+// must also keep its skill off the character page, the builder and Share Team.
+const UNRELEASED_CW_IDS=new Set(
+  cw6Cards.filter(card=>!isCardPublic(card)).flatMap(card=>card.cwIds||[]),
+)
+const withoutUnreleasedStar6=character=>{
+  const skills=(character.skills||[]).filter(
+    skill=>!(skill?.star6&&UNRELEASED_CW_IDS.has(skill.cwId)),
+  )
+  return skills.length===(character.skills||[]).length?character:{...character,skills}
+}
+
+export const SOUHA_ROLE_SKILLS=souhaRoleSkills.skills||[]
+const ROLE_SKILL_BY_OWNER=Object.fromEntries(SOUHA_ROLE_SKILLS.map(entry=>[entry.owner_id,entry]))
+
 export const ALL = [
   ...mountainFolk,...qin,...qinBatch2,...qinMajor,
   ...zhao,...zhaoBatch2,...zhaoMajor,...otherStates,
   ...chu,...chuMajor,...wei,...yan,...qi,
   ...aiYanMajor,...misc,...misc2,
-].filter(c=>c.country!=='unknown')
+].filter(c=>c.country!=='unknown').map(withoutUnreleasedStar6).map(c=>{
+  const entry=ROLE_SKILL_BY_OWNER[c.id]
+  if(!entry) return c
+  return{
+    ...c,
+    roleSkill:{
+      ...entry.skill,
+      role:entry.role,
+      role_jp:entry.role_jp,
+      owner_id:entry.owner_id,
+      characterId:entry.characterId,
+    },
+  }
+})
 
 export const GROUPS={
   'Gyokuhou':           ['ouhon','kanjou','shoutaku','kyuukou'],
@@ -267,8 +336,26 @@ ALL.forEach(c=>{
 })
 
 // Fast lookup by name_en (case-insensitive) — replaces repeated ALL.find() scans
-export const CHAR_BY_NAME = (()=>{const m={};for(const c of ALL){if(!c.name_en) continue;m[c.name_en]=c;m[c.name_en.toLowerCase()]=c}return m})()
-export const findCharByName = n => n && (CHAR_BY_NAME[n] || CHAR_BY_NAME[n.toLowerCase()]) || null
+export const CHAR_BY_NAME = (()=>{
+  const map={}
+  for(const character of ALL){
+    if(!character.name_en) continue
+    map[character.name_en]=character
+    map[character.name_en.toLowerCase()]=character
+  }
+  for(const [legacy,canonical] of Object.entries(LEGACY_CHARACTER_NAME_ALIASES)){
+    const character=map[canonical]||map[canonical.toLowerCase()]
+    if(!character) continue
+    map[legacy]=character
+    map[legacy.toLowerCase()]=character
+  }
+  return map
+})()
+export const findCharByName = name => typeof name==='string'
+  ? CHAR_BY_NAME[name]||CHAR_BY_NAME[name.toLowerCase()]||null
+  : null
+export const CHAR_BY_ID = Object.fromEntries(ALL.map(character=>[character.id,character]))
+export const findCharById = id => typeof id==='string' ? CHAR_BY_ID[id]||null : null
 // Number of browsable characters (those with art) — matches the per-faction
 // sidebar counts. Derived so the Archive tab badge can't drift from the data.
 export const ARCHIVE_CHAR_COUNT = ALL.filter(c=>c.image).length
@@ -331,11 +418,13 @@ export function redCrystalBuffUnlockCost(entry,kind,key,stat){
   return targetStatIdx>=0?costs[targetStatIdx]:null
 }
 export function RedCrystalCostChip({cost,value}){
+  const locale=useLocale()
+  const { t } = useTranslation('common')
   if(!cost) return null
   const efficiency=value?cost/value:null
   const tooltip=efficiency
-    ?`Efficiency: ${Math.round(efficiency).toLocaleString()} red crystals per 1% buff. Lower is better. (${cost.toLocaleString()} cost / ${value.toFixed(1)}% buff)`
-    :`Red Crystal unlock cost: ${cost.toLocaleString()}`
+    ?t('efficiencyTooltip', { value: formatLocaleNumber(Math.round(efficiency),locale), cost: formatLocaleNumber(cost,locale), buff: value.toFixed(1) })
+    :t('redCrystalCostTooltip', { cost: formatLocaleNumber(cost,locale) })
   return(
     <span className="cost-chip" data-tooltip={tooltip} tabIndex={0} aria-label={tooltip} style={{
       display:'inline-flex',alignItems:'center',gap:'3px',
@@ -344,9 +433,9 @@ export function RedCrystalCostChip({cost,value}){
       color:'#6a30c8',fontSize:'.67rem',fontWeight:900,
       whiteSpace:'nowrap',
     }}>
-      <span>Cost</span>
-      <img src="/icons/Red_Crystal.webp" alt="Red Crystal" loading="lazy" decoding="async" style={{width:13,height:13,objectFit:'contain'}}/>
-      <span>{cost.toLocaleString()}</span>
+      <span>{t('costLabel')}</span>
+      <img src="/icons/Red_Crystal.webp" alt={t('redCrystalAlt')} loading="lazy" decoding="async" style={{width:13,height:13,objectFit:'contain'}}/>
+      <span>{formatLocaleNumber(cost,locale)}</span>
     </span>
   )
 }
@@ -378,24 +467,50 @@ export const FACTIONS=[
   {id:'qi',            label:'Qi',            jp:'斉',    color:'#a04020'},
   {id:'mountain_folk', label:'Mountain Folk', jp:'山の民', color:'#5a7a30'},
 ]
+/**
+ * Preset comps built around a unit type rather than a state: their members come
+ * from four different countries, so assigning one would misclassify them.
+ */
+export const MIXED_COUNTRY='mixed'
+
 export const CC=Object.fromEntries(FACTIONS.map(f=>[f.id,f.color]))
+
+/**
+ * Preset teams grouped by country, in the canonical FACTIONS order so the
+ * sections read the same in every locale. Mixed comps come last.
+ */
+export function metaTeamsByCountry(teams=META_TEAMS){
+  const order=[...FACTIONS.map(f=>f.id), MIXED_COUNTRY]
+  const groups=new Map(order.map(id=>[id,[]]))
+  for(const team of teams){
+    if(!groups.has(team.country)) groups.set(team.country,[])
+    groups.get(team.country).push(team)
+  }
+  return order.filter(id=>groups.get(id)?.length).map(id=>({country:id,teams:groups.get(id)}))
+}
 
 // 320px-wide grid thumbnails generated by scripts/gen_optimized_images.py —
 // use for any display ≤ ~200px so phones don't download the full 626×880 art.
 export const persosThumb=img=>img&&img.startsWith('/persos/')?img.replace('/persos/','/persos/thumbs/'):img
 
 // Icon: use c.icon if available, else fall back to c.image cropped, else initials
-export function CharIcon({c,size=40,round=false,className=''}){
+export function CharIcon({c,size=40,round=false,className='',eager=false}){
+  const locale=useLocale()
   const r=round?'50%':'8px'
   const s={width:size,height:size,borderRadius:r,objectFit:'cover',objectPosition:'center top',flexShrink:0,display:'block'}
-  if(c?.icon) return <img src={c.icon} style={s} className={className} alt={c.name_en} loading="lazy" decoding="async"/>
-  if(c?.image) return <img src={persosThumb(c.image)} style={{...s,objectPosition:'top center'}} className={className} alt={c.name_en} loading="lazy" decoding="async"/>
+  const displayName=c?.displayName||localizedCharacter(c,locale).displayName
+  const load=eager?{loading:'eager',fetchPriority:'high'}:{loading:'lazy'}
+  if(c?.icon) return <img src={c.icon} style={s} className={className} alt={displayName} decoding="async" {...load}/>
+  if(c?.image) return <img src={persosThumb(c.image)} style={{...s,objectPosition:'top center'}} className={className} alt={displayName} decoding="async" {...load}/>
   const col=(CC[c?.country]||'#888')
-  return <div style={{...s,background:col+'33',color:col,display:'flex',alignItems:'center',justifyContent:'center',fontWeight:700,fontSize:size*.38+'px'}} className={className}>{c?.name_en?.[0]||'?'}</div>
+  return <div style={{...s,background:col+'33',color:col,display:'flex',alignItems:'center',justifyContent:'center',fontWeight:700,fontSize:size*.38+'px'}} className={className}>{displayName?.[0]||'?'}</div>
 }
 
 
-export const TYPE_COLOR={Combat:'#c0392b',Strategy:'#3d6eb5','Internal Affairs':'#1a8a72'}
+export const ROLE_SKILL_TYPES=new Set(['Leader','Strategist'])
+export const TYPE_COLOR={Combat:'#c0392b',Strategy:'#3d6eb5',Leader:'#e07f48',Strategist:'#16a085','Internal Affairs':'#1a8a72'}
+export const isBuffSummarySkill=(skill,includeCombat=false)=>
+  skill?.type==='Strategy'||ROLE_SKILL_TYPES.has(skill?.type)||(includeCombat&&skill?.type==='Combat')
 
 // ── Tier List + Meta team data ────────────────────────────────────────────────
 // Single source of truth: META_TEAMS. Teams tagged with a `tier` (SS/S/A/B/C)
@@ -403,35 +518,41 @@ export const TYPE_COLOR={Combat:'#c0392b',Strategy:'#3d6eb5','Internal Affairs':
 // extras. TIER_TEAMS is derived from META_TEAMS, so both pages stay in sync.
 export const TIER_COLORS={SS:'#d4a32c',S:'#c0392b',A:'#e07f48',B:'#cc972d',C:'#3d6eb5'}
 export const META_TEAMS=[
+  // Every preset carries its `country`, resolved from the members' own
+  // character records rather than from the team name. `MIXED_COUNTRY` is for
+  // comps built around a unit type rather than a state, whose members come
+  // from four different countries.
   // ── Metawatch tier list (carry a `tier`; order within a tier = display order) ──
-  {tier:'SS',name:'Gyokuhou',       members:['Shoutaku','Ouhon','Kyuukou','Kanjou']},
-  {tier:'S',name:'YTW',             members:['Katari','Yotanwa','Kitari','Ramauji']},
-  {tier:'S',name:'Archers',         members:['Keisha','Seikai','Hakurei','Queen Biki']},
-  {tier:'A',name:'Zhao',            members:['Shunsuiju','Houken','Shinseijou','Riboku']},
-  {tier:'S',name:'Wei',             members:['Ranbihaku','Tairoji','Reiou','Gokei']},
-  {tier:'S',name:'Karin + Kanmei',  members:['Kyoubou','Karin','Kanmei','Shunshinkun']},
-  {tier:'A',name:'Hakuki + Ousen',  members:['Hakuki','Makou','Akou','Ousen']},
-  {tier:'A',name:'Hi Shin',         members:['Garo','Gakurai','Naki','Robin']},
-  {tier:'A',name:'YTW + Triplets',  members:['Yotanwa','Toji','Fuji','Ramauji']},
-  {tier:'B',name:'6GG',             members:['Sho','Ouki','Tou','Kyou']},
-  {tier:'B',name:'Renpa v1',        members:['Rinko','Tairoji','Renpa','Kouretsu']},
-  {tier:'B',name:'Karin Army',      members:['Karin','Kaen','Goutoku','Shunshinkun']},
-  {tier:'B',name:'Han',             members:['Seikai','Chouin','Bakan','Nakon']},
-  {tier:'C',name:'Ai',              members:['Rouai','Hanoki','Ryofui','Hanroki']},
-  {tier:'C',name:'Archer Garrison', members:['Rouai','Queen Biki','Seikai','Keisha']},
-  {tier:'C',name:'Rigan',           members:['Kisui','Kishou','Batei','Duke Sei']},
-  {tier:'C',name:'Kanki',           members:['Zenou','Raido','Kanki','Naki']},
-  {tier:'C',name:'Ousen Army',      members:['Eiki','Makou','Akou','Ousen']},
-  {tier:'C',name:'Yan',             members:['Ordo','Gakuki','Yukii','Otaji']},
+  {tier:'SS',name:'Gyokuhou',       country:'qin',           members:['Shoutaku','Ouhon','Kyuukou','Kanjou']},
+  {tier:'S',name:'YTW',             country:'mountain_folk', members:['Katari','Yotanwa','Kitari','Ramauji']},
+  {tier:'S',name:'Archers',         country:MIXED_COUNTRY,   members:['Keisha','Seikai','Hakurei','Queen Biki']},
+  {tier:'A',name:'Zhao',            country:'zhao',          members:['Shunsuiju','Houken','Shinseijou','Riboku']},
+  {tier:'S',name:'Wei',             country:'wei',           members:['Ranbihaku','Tairoji','Reiou','Gokei']},
+  {tier:'S',name:'Karin + Kanmei',  country:'chu',           members:['Kyoubou','Karin','Kanmei','Shunshinkun']},
+  {tier:'S',name:'Chu Shields',     country:'chu',           members:['Rien','Karin','Goutoku','Shunshinkun']},
+  {tier:'A',name:'Hakuki + Ousen',  country:'qin',           members:['Hakuki','Makou','Akou','Ousen']},
+  {tier:'A',name:'Hi Shin',         country:'qin',           members:['Garo','Gakurai','Naki','Robin']},
+  {tier:'A',name:'YTW + Triplets',  country:'mountain_folk', members:['Yotanwa','Toji','Fuji','Ramauji']},
+  {tier:'A',name:'Chu Cavalry',     country:'chu',           members:['Kyoubou','Rinbukun','Rokin','Kanmei']},
+  {tier:'B',name:'6GG',             country:'qin',           members:['Sho','Ouki','Tou','Kyou']},
+  {tier:'B',name:'Renpa v1',        country:'wei',           members:['Rinko','Tairoji','Renpa','Kouretsu']},
+  {tier:'B',name:'Karin Army',      country:'chu',           members:['Karin','Kaen','Goutoku','Shunshinkun']},
+  {tier:'B',name:'Han',             country:'han',           members:['Seikai','Chouin','Bakan','Nakon']},
+  {tier:'C',name:'Ai',              country:'ai',            members:['Rouai','Hanoki','Ryofui','Hanroki']},
+  {tier:'C',name:'Archer Garrison', country:MIXED_COUNTRY,   members:['Rouai','Queen Biki','Seikai','Keisha']},
+  {tier:'C',name:'Rigan',           country:'zhao',          members:['Kisui','Kishou','Batei','Duke Sei']},
+  {tier:'C',name:'Kanki',           country:'qin',           members:['Zenou','Raido','Kanki','Naki']},
+  {tier:'C',name:'Ousen Army',      country:'qin',           members:['Eiki','Makou','Akou','Ousen']},
+  {tier:'C',name:'Yan',             country:'yan',           members:['Ordo','Gakuki','Yukii','Otaji']},
   // ── Party-Builder-only extras (no `tier`, not on the tier list) ──
-  {name:'Ouhon',          members:['Shoutaku','Ouhon','Kanjou','Gakuki']},
-  {name:'Ousen v3',       members:['Ousen','Akou','Makou','Kyuukou']},
-  {name:'Karin',          members:['Rien','Karin','Kaen','Goutoku']},
-  {name:'Chu',            members:['Kyoubou','Rinbukun','Kanmei','Shunshinkun']},
-  {name:'Renpa v2',       members:['Rinko','Kouretsu','Renpa','Kaishibou']},
-  {name:'Moubo',          members:['Choushi','Moubu','Raiki','Ouken']},
-  {name:'Qin Shields',    members:['Hakuki','Akou','Ousen','Ei Sei']},
-  {name:'Makou Army',     members:['Makou','Koujyun','Chouyou','Denrimi']},
+  {name:'Ouhon',          country:'qin', members:['Shoutaku','Ouhon','Kanjou','Gakuki']},
+  {name:'Ousen v3',       country:'qin', members:['Ousen','Akou','Makou','Kyuukou']},
+  {name:'Karin',          country:'chu', members:['Rien','Karin','Kaen','Goutoku']},
+  {name:'Chu',            country:'chu', members:['Kyoubou','Rinbukun','Kanmei','Shunshinkun']},
+  {name:'Renpa v2',       country:'wei', members:['Rinko','Kouretsu','Renpa','Kaishibou']},
+  {name:'Moubo',          country:'qin', members:['Choushi','Moubu','Raiki','Ouken']},
+  {name:'Qin Shields',    country:'qin', members:['Hakuki','Akou','Ousen','Ei Sei']},
+  {name:'Makou Army',     country:'qin', members:['Makou','Koujyun','Chouyou','Denrimi']},
 ]
 // Tier list = the META_TEAMS that carry a tier, with their colour resolved.
 export const TIER_TEAMS=META_TEAMS.filter(t=>t.tier).map(t=>({...t,color:TIER_COLORS[t.tier]}))
@@ -439,8 +560,11 @@ export const TIER_TEAMS=META_TEAMS.filter(t=>t.tier).map(t=>({...t,color:TIER_CO
 // Simulate
 export function simulate(a,d){
   const st={attack:[],defense:[]}
+  const roles={attack:[],defense:[]}
   for(const g of a){const s=(g.skills||[]).filter(s=>s.type==='Strategy');if(s.length)st.attack.push({general:g,skills:s})}
   for(const g of d){const s=(g.skills||[]).filter(s=>s.type==='Strategy');if(s.length)st.defense.push({general:g,skills:s})}
+  for(const g of a){const s=(g.skills||[]).filter(s=>ROLE_SKILL_TYPES.has(s.type));if(s.length)roles.attack.push({general:g,skills:s})}
+  for(const g of d){const s=(g.skills||[]).filter(s=>ROLE_SKILL_TYPES.has(s.type));if(s.length)roles.defense.push({general:g,skills:s})}
   const aq=a.map(g=>[...(g.skills||[]).filter(s=>s.type==='Combat')].reverse())
   const dq=d.map(g=>[...(g.skills||[]).filter(s=>s.type==='Combat')].reverse())
   const turns=[]
@@ -452,7 +576,7 @@ export function simulate(a,d){
     }
     turns.push({turn:t,entries:e})
   }
-  return{st,turns}
+  return{roles,st,turns}
 }
 
 // ── CW SIMULATION ENGINE ─────────────────────────────────────────────────────
@@ -886,7 +1010,7 @@ export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false,includeCo
   const stats={}
   for(const owner of team){
     for(const skill of(owner.skills||[])){
-      if(skill.type!=='Strategy'&&!(includeCombat&&skill.type==='Combat')) continue
+      if(!isBuffSummarySkill(skill,includeCombat)) continue
       for(const eff of(skill.effects||[])){
         if(!isTargetedBy(eff.target,G,owner,team)) continue
         if(!showAll&&!isCondActive(eff.condition,isDefense)) continue
@@ -1009,7 +1133,7 @@ export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false,isDef
   }
   for(const owner of team){
     for(const sk of(owner.skills||[])){
-      if(sk.type!=='Strategy'&&!(includeCombat&&sk.type==='Combat')) continue
+      if(!isBuffSummarySkill(sk,includeCombat)) continue
       for(const eff of(sk.effects||[])){
         const t=(eff.target||'').trim()
         // Respect the effect's condition: timing (garrison/attacking), per-ally
@@ -1043,6 +1167,8 @@ export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false,isDef
 
 // Picker
 export function Picker({onSelect,onClose,excl=[]}){
+  const locale=useLocale()
+  const{t}=useTranslation('common')
   const[q,setQ]=useState(''),ref=useRef(null)
   useModalDismiss(true,onClose)
   useEffect(()=>{ref.current?.focus()},[])
@@ -1051,10 +1177,14 @@ export function Picker({onSelect,onClose,excl=[]}){
     const ql=q.toLowerCase()
     const factionLabel=c=>FACTIONS.find(f=>f.id===c.country)?.label||''
     return ALL.filter(c=>!excl.includes(c.id)&&(!q||(
-      c.name_en.toLowerCase().includes(ql)||
-      c.name_jp.includes(q)||
+      matchesCharacterName(c,q)||
       (c.unit_type&&c.unit_type.toLowerCase().includes(ql))||
       (c.groups&&c.groups.some(g=>g.toLowerCase().includes(ql)))||
+      (c.roleSkill&&(
+        c.roleSkill.type.toLowerCase().includes(ql)||
+        c.roleSkill.name_en.toLowerCase().includes(ql)||
+        c.roleSkill.name_jp.includes(q)
+      ))||
       factionLabel(c).toLowerCase().includes(ql)||
       (c.country&&c.country.toLowerCase().includes(ql))
     )))
@@ -1063,16 +1193,16 @@ export function Picker({onSelect,onClose,excl=[]}){
   },[q,exclKey])
   return(
     <div className="overlay" onClick={onClose}>
-      <div className="picker" role="dialog" aria-modal="true" aria-label="Select General" onClick={e=>e.stopPropagation()}>
-        <div className="picker-head"><span>Select General</span><button className="x-btn" aria-label="Close" onClick={onClose}>✕</button></div>
-        <div className="picker-filters"><input ref={ref} className="picker-search" placeholder="Search…" value={q} onChange={e=>setQ(e.target.value)}/></div>
+      <div className="picker" role="dialog" aria-modal="true" aria-label={t('archive.searchGenerals')} onClick={e=>e.stopPropagation()}>
+        <div className="picker-head"><span>{t('archive.searchGenerals')}</span><button className="x-btn" aria-label={t('close')} onClick={onClose}>✕</button></div>
+        <div className="picker-filters"><input ref={ref} className="picker-search" aria-label={t('archive.searchGenerals')} placeholder={`${t('search')}…`} value={q} onChange={e=>setQ(e.target.value)}/></div>
         <div className="picker-grid">
           {chars.map(c=>(
             <button key={c.id} className="p-card" style={{borderTopColor:CC[c.country]||'#999'}} onClick={()=>{onSelect(c);onClose()}}>
               <div className="p-ico-wrap">
                 <CharIcon c={c} size={52} round={true} className="p-ico"/>
               </div>
-              <span className="p-name">{c.name_en}</span>
+              <span className="p-name">{localizedCharacter(c,locale).displayName}</span>
             </button>
           ))}
         </div>
@@ -1131,13 +1261,31 @@ export const CHAR_GROUPS={
 // Per-slot skill mask for the Party Builder.
 // n: 0-3 skill-unlock level (cascading — n=2 means S1+S2 enabled, S3 off).
 // s6: independent boolean for the 6★ skill (only matters if character has one).
-export const DEFAULT_SK = {n:3, s6:true}
+// role: optional Leader/Strategist assignment; only one of each role may be on
+// a formation, enforced by updateSkillMasks().
+export const DEFAULT_SK = {n:3, s6:true, role:false}
 export const defaultSks = () => Array.from({length:4}, () => ({...DEFAULT_SK}))
 export function hasStar6(char){ return !!(char?.skills||[]).some(s=>s.star6) }
+export function hasRoleSkill(char){ return !!char?.roleSkill }
+export function updateSkillMasks(masks,party,idx,nextMask){
+  const next=Array.from({length:4},(_,i)=>i===idx
+    ?{...DEFAULT_SK,...nextMask}
+    :{...DEFAULT_SK,...masks?.[i]}
+  )
+  const selectedRole=next[idx]?.role&&party?.[idx]?.roleSkill?.type
+  if(selectedRole){
+    for(let i=0;i<next.length;i++){
+      if(i!==idx&&party?.[i]?.roleSkill?.type===selectedRole) next[i].role=false
+    }
+  }
+  return next
+}
 export function applyMask(char, mask){
   if(!char) return null
   const m = mask || DEFAULT_SK
   const base = (char.skills||[]).filter(s=>!s.star6).slice(0, m.n|0)
   const s6 = (char.skills||[]).find(s=>s.star6)
-  return {...char, skills: (m.s6 && s6) ? [...base, s6] : base}
+  const skills=(m.s6&&s6)?[...base,s6]:base
+  if(m.role&&char.roleSkill) skills.push(char.roleSkill)
+  return {...char, skills}
 }

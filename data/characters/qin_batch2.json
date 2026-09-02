@@ -43,8 +43,8 @@
         ]
       }
     ],
-    "image": "/persos/soutan.png",
-    "icon": "/icons/Soutan.png"
+    "image": "/persos/soutan.webp",
+    "icon": "/icons/Soutan.webp"
   },
   {
     "id": "soujin",
@@ -90,8 +90,8 @@
         ]
       }
     ],
-    "image": "/persos/soujin.png",
-    "icon": "/icons/Soujin.png"
+    "image": "/persos/soujin.webp",
+    "icon": "/icons/Soujin.webp"
   },
   {
     "id": "sougen",
@@ -1310,7 +1310,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Seikyo",
+            "target": "Ally Seikyou",
             "effect": "ATK Up / DEF Up 20%",
             "duration": null
           },
@@ -1589,7 +1589,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Moubo",
+            "target": "Ally Moubu",
             "effect": "DEF Penetration Up 30%",
             "duration": "4 turns"
           },
@@ -1614,7 +1614,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Moubo",
+            "target": "Ally Moubu",
             "effect": "Guard 100%, Sure Hit",
             "duration": "6 times"
           },
@@ -1627,7 +1627,7 @@
         ]
       }
     ],
-    "image": "/persos/choushi.png",
+    "image": "/persos/choushi.webp",
     "icon": "/icons/Choushi.webp"
   },
   {
@@ -1672,7 +1672,7 @@
           },
           {
             "condition": null,
-            "target": "Ally Moubo",
+            "target": "Ally Moubu",
             "effect": "ATK Up 40%",
             "duration": "4 turns"
           },
@@ -1697,7 +1697,7 @@
           },
           {
             "condition": "Enemy [General] alive",
-            "target": "Surviving ally Moubo",
+            "target": "Surviving ally Moubu",
             "effect": "HP Recovery 100%",
             "duration": null
           },
@@ -1710,7 +1710,7 @@
         ]
       }
     ],
-    "image": "/persos/raiki.png",
+    "image": "/persos/raiki.webp",
     "icon": "/icons/Raiki.webp"
   },
   {
@@ -1723,7 +1723,7 @@
         540
       ]
     },
-    "name_en": "Koujyun",
+    "name_en": "Koujun",
     "name_jp": "高順",
     "country": "qin",
     "unit": "Makou Army",
@@ -1965,8 +1965,8 @@
         ]
       }
     ],
-    "image": "/persos/tonkaku.png",
-    "icon": "/icons/Tonkaku.png"
+    "image": "/persos/tonkaku.webp",
+    "icon": "/icons/Tonkaku.webp"
   },
   {
     "id": "tonkoku",
@@ -2066,8 +2066,8 @@
         ]
       }
     ],
-    "image": "/persos/tonkoku.png",
-    "icon": "/icons/Tonkoku.png"
+    "image": "/persos/tonkoku.webp",
+    "icon": "/icons/Tonkoku.webp"
   },
   {
     "id": "kanto",
@@ -2084,7 +2084,7 @@
     "country": "qin",
     "unit": "Hi Shin Unit",
     "rarity": "SR",
-    "image": "/persos/kanto.jpg",
+    "image": "/persos/kanto.webp",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Purple Sheep]",
@@ -2138,7 +2138,7 @@
         ]
       }
     ],
-    "icon": "/icons/Kanto.png"
+    "icon": "/icons/Kanto.webp"
   },
   {
     "id": "heirai",
@@ -2155,7 +2155,7 @@
     "country": "qin",
     "unit": "Hi Shin Unit",
     "rarity": "SR",
-    "image": "/persos/heirai.jpg",
+    "image": "/persos/heirai.webp",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Purple Elephant]",
@@ -2215,6 +2215,6 @@
         ]
       }
     ],
-    "icon": "/icons/Heirai.png"
+    "icon": "/icons/Heirai.webp"
   }
 ]

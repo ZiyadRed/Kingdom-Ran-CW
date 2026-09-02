@@ -9,11 +9,13 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           const normalized = id.replace(/\\/g, '/')
-          // Glossary tables are small, static reference text used only by the
-          // Guide route. Leaving them in the broad 'data' chunk forced /guide to
-          // download the entire character dataset alongside them, so they are
-          // left unassigned and land in whichever route chunk imports them.
-          if (normalized.includes('/data/glossary/')) return undefined
+          // Glossary tables and the 10-row role roster are small Guide inputs.
+          // Leaving either in the broad 'data' chunk forces /guide to download
+          // the entire character dataset, so let Rollup place them normally.
+          if (
+            normalized.includes('/data/glossary/') ||
+            normalized.endsWith('/data/souha_role_skills.json')
+          ) return undefined
           if (normalized.includes('/data/')) return 'data'
           if (normalized.includes('node_modules')) {
             if (

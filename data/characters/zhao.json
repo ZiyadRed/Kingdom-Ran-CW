@@ -782,6 +782,41 @@
             "duration": null
           }
         ]
+      },
+      {
+        "name_en": "Hidden Great General",
+        "name_jp": "隠れた名将☆6",
+        "type": "Strategy",
+        "star6": true,
+        "cwId": 869,
+        "textId": 868,
+        "cwIds": [864, 865, 866, 867, 868, 869],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Kisui Army",
+            "effect": "Morale Consumption Down 30%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Batei is alive",
+            "target": "Ally Kisui Army",
+            "effect": "Anti-[Qin] ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Ryuuto is alive",
+            "target": "Ally Kisui Army",
+            "effect": "ATK Down Resistance 30%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Batei and Ryuuto are alive",
+            "target": "Ally Kisui Army",
+            "effect": "Betrayal Resistance 50%",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "/persos/kisui.webp",
@@ -955,7 +990,7 @@
         411
       ]
     },
-    "name_en": "Hoki",
+    "name_en": "Fuuki",
     "name_jp": "馮忌",
     "country": "zhao",
     "rarity": "SR",

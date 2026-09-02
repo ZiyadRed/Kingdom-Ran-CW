@@ -1,0 +1,71 @@
+{
+  "_schema": "ranhq.provenance/1",
+  "sourceSnapshot": {
+    "snapshotLabel": "v8.6.0_20260826_c23b0a22",
+    "snapshotDate": "2026-08-26",
+    "sourceRoot": "C:\\kingdom_data\\decrypted",
+    "decoder": {
+      "name": "extract_ja_text.py",
+      "version": "1",
+      "rawSchema": "ranhq.stbl_raw/1",
+      "stblLayout": "STBL header + little-endian offset table + NUL-terminated UTF-8 strings",
+      "masterDecoder": "msgpack master packets (masters_001.bin..masters_005.bin)"
+    },
+    "manifestSha256": "59408FDF1D9E5A6B0A18DA30D4175EE90B2D0B2554E7D17D53FFD04B91A931E0",
+    "masterFiles": {
+      "masters_001.bin": "E054EDB9D12229933621BAA2C9D40E5AB2A06DC0859C75FC46ECCA2B08222A8A",
+      "masters_002.bin": "9D98E3326302178D0FBE9348A0D8662B248DFF5FAFE0CC12C6F7D939616CC179",
+      "masters_003.bin": "1BC784A61CD7A6FFB1CE852DA90E88CD1C0FAC2BBD111C37C10722E91A668B04",
+      "masters_004.bin": "5D53C8835C5B2CDDE05FD8B415FBC5EF5FF26A8600E8A2912E047D69A22F73E7",
+      "masters_005.bin": "10C71F47F31FB9AEE74C02C91ADBB232750008FDF4F799E08B3D3E2123766E72"
+    }
+  },
+  "characterMapping": {
+    "inputFileSha256": "E7181DFDF10F6DFECF6637DBE38DA3CA2EA008028AA21E3D956AF9D46758B5CA",
+    "total": 209,
+    "exact": 198,
+    "resolved": 11,
+    "ambiguous": 0,
+    "unresolved": 0
+  },
+  "cwSkillMapping": {
+    "inputFileSha256": "C8FA291C9504047A4B009650CE998FE376D92C51E2F44873FBAD2CB364E30C95",
+    "total": 661,
+    "exact": 618,
+    "resolved": 39,
+    "ambiguous": 4,
+    "unresolved": 0,
+    "deterministic": 657,
+    "pendingSource": 0
+  },
+  "stblTables": {
+    "MsgUnionConquestSkillName.stbl": {
+      "sha256": "D3B5125440EB5C8F1FF59D447038F15795D9B463597C8602A07ECDD2DBF8F501",
+      "entries": 869
+    },
+    "MsgUnionConquestSkillDesc.stbl": {
+      "sha256": "96EDB05B41417D24336EE743D04B929550D1DF1A0C1149B06B3584C178098452",
+      "entries": 869
+    },
+    "MsgUnitGeneralRubyName.stbl": {
+      "sha256": "C37D1BCF3D49CCEBDF50F904634E94B3E891288AC52022E7E054D08C356BFF0A",
+      "entries": 609
+    },
+    "MsgUnitGeneralName.stbl": {
+      "sha256": "2AC16EBA8D8D399B590A65025AF8540B24193C0376BA1F5CD74D5CB3EFB9DB18",
+      "entries": 609
+    },
+    "MsgUnionConquestSkillEffectDesc.stbl": {
+      "sha256": "96A4DD9BD740BD598F6F4080630DBBA096AA13E9DB38ED7E1740764FC186950C",
+      "entries": 1020
+    }
+  },
+  "generatedArtifacts": {
+    "deterministicProjectSkills": 657,
+    "canonicalJapaneseSkills": 600,
+    "ambiguousProjectSkills": 4,
+    "sourceIndexRows": 661,
+    "rubyReadingsAvailable": 188,
+    "rubyReadingsMissing": 21
+  }
+}

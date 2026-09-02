@@ -95,7 +95,15 @@
       }
     ],
     "image": "/persos/riboku.webp",
-    "icon": "/icons/Riboku.webp"
+    "icon": "/icons/Riboku.webp",
+    "source": {
+      "characterId": 72,
+      "generalIds": [
+        102,
+        130,
+        176
+      ]
+    }
   },
   {
     "id": "houken",
@@ -213,7 +221,14 @@
       }
     ],
     "image": "/persos/houken.webp",
-    "icon": "/icons/Houken.webp"
+    "icon": "/icons/Houken.webp",
+    "source": {
+      "characterId": 100,
+      "generalIds": [
+        100,
+        128
+      ]
+    }
   },
   {
     "id": "kaine",
@@ -288,7 +303,15 @@
       }
     ],
     "image": "/persos/kaine.webp",
-    "icon": "/icons/Kaine.webp"
+    "icon": "/icons/Kaine.webp",
+    "source": {
+      "characterId": 1,
+      "generalIds": [
+        68,
+        171,
+        319
+      ]
+    }
   },
   {
     "id": "mangoku",
@@ -382,7 +405,15 @@
       }
     ],
     "image": "/persos/mangoku.webp",
-    "icon": "/icons/Mangoku.webp"
+    "icon": "/icons/Mangoku.webp",
+    "source": {
+      "characterId": 60,
+      "generalIds": [
+        86,
+        196,
+        310
+      ]
+    }
   },
   {
     "id": "chousou",
@@ -432,7 +463,15 @@
       }
     ],
     "image": "/persos/chousou.webp",
-    "icon": "/icons/Chousou.webp"
+    "icon": "/icons/Chousou.webp",
+    "source": {
+      "characterId": 94,
+      "generalIds": [
+        73,
+        210,
+        423
+      ]
+    }
   },
   {
     "id": "chouko",
@@ -488,7 +527,13 @@
       }
     ],
     "image": null,
-    "icon": "/icons/Chouko.webp"
+    "icon": "/icons/Chouko.webp",
+    "source": {
+      "characterId": 93,
+      "generalIds": [
+        17
+      ]
+    }
   },
   {
     "id": "seikai",
@@ -630,6 +675,13 @@
       }
     ],
     "image": "/persos/seikai.webp",
-    "icon": "/icons/Seikai.webp"
+    "icon": "/icons/Seikai.webp",
+    "source": {
+      "characterId": 147,
+      "generalIds": [
+        231,
+        312
+      ]
+    }
   }
 ]

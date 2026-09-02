@@ -84,7 +84,14 @@
       }
     ],
     "image": "/persos/makou.webp",
-    "icon": "/icons/Makou.webp"
+    "icon": "/icons/Makou.webp",
+    "source": {
+      "characterId": 255,
+      "generalIds": [
+        533,
+        534
+      ]
+    }
   },
   {
     "id": "akou",
@@ -165,7 +172,14 @@
       }
     ],
     "image": "/persos/akou.webp",
-    "icon": "/icons/Akou.webp"
+    "icon": "/icons/Akou.webp",
+    "source": {
+      "characterId": 253,
+      "generalIds": [
+        528,
+        529
+      ]
+    }
   },
   {
     "id": "eiki",
@@ -246,7 +260,15 @@
       }
     ],
     "image": "/persos/eiki.webp",
-    "icon": "/icons/Eiki.webp"
+    "icon": "/icons/Eiki.webp",
+    "source": {
+      "characterId": 254,
+      "generalIds": [
+        530,
+        531,
+        532
+      ]
+    }
   },
   {
     "id": "denrimi",
@@ -327,7 +349,14 @@
       }
     ],
     "image": "/persos/denrimi.webp",
-    "icon": "/icons/Denrimi.webp"
+    "icon": "/icons/Denrimi.webp",
+    "source": {
+      "characterId": 250,
+      "generalIds": [
+        522,
+        523
+      ]
+    }
   },
   {
     "id": "youka",
@@ -389,7 +418,14 @@
       }
     ],
     "image": "/persos/youka.webp",
-    "icon": "/icons/Youka.webp"
+    "icon": "/icons/Youka.webp",
+    "source": {
+      "characterId": 238,
+      "generalIds": [
+        491,
+        492
+      ]
+    }
   },
   {
     "id": "kyourei",
@@ -445,7 +481,15 @@
       }
     ],
     "image": "/persos/kyourei.webp",
-    "icon": "/icons/Kyourei.webp"
+    "icon": "/icons/Kyourei.webp",
+    "source": {
+      "characterId": 233,
+      "generalIds": [
+        466,
+        467,
+        468
+      ]
+    }
   },
   {
     "id": "robin",
@@ -525,7 +569,14 @@
       }
     ],
     "image": "/persos/robin.webp",
-    "icon": "/icons/Robin.webp"
+    "icon": "/icons/Robin.webp",
+    "source": {
+      "characterId": 227,
+      "generalIds": [
+        438,
+        439
+      ]
+    }
   },
   {
     "id": "kakuun",
@@ -606,7 +657,14 @@
       }
     ],
     "image": "/persos/kakuun.webp",
-    "icon": "/icons/Kakuun.webp"
+    "icon": "/icons/Kakuun.webp",
+    "source": {
+      "characterId": 226,
+      "generalIds": [
+        436,
+        437
+      ]
+    }
   },
   {
     "id": "bain",
@@ -687,7 +745,14 @@
       }
     ],
     "image": "/persos/bain.webp",
-    "icon": "/icons/Bain.webp"
+    "icon": "/icons/Bain.webp",
+    "source": {
+      "characterId": 225,
+      "generalIds": [
+        432,
+        433
+      ]
+    }
   },
   {
     "id": "shoutaku",
@@ -800,7 +865,15 @@
       }
     ],
     "image": "/persos/shoutaku.webp",
-    "icon": "/icons/Shoutaku.webp"
+    "icon": "/icons/Shoutaku.webp",
+    "source": {
+      "characterId": 220,
+      "generalIds": [
+        406,
+        407,
+        408
+      ]
+    }
   },
   {
     "id": "kyuukou",
@@ -907,7 +980,15 @@
       }
     ],
     "image": "/persos/kyuukou.webp",
-    "icon": "/icons/Kyuukou.webp"
+    "icon": "/icons/Kyuukou.webp",
+    "source": {
+      "characterId": 219,
+      "generalIds": [
+        403,
+        404,
+        405
+      ]
+    }
   },
   {
     "id": "naki",
@@ -988,7 +1069,14 @@
       }
     ],
     "image": "/persos/naki.webp",
-    "icon": "/icons/Naki.webp"
+    "icon": "/icons/Naki.webp",
+    "source": {
+      "characterId": 204,
+      "generalIds": [
+        363,
+        364
+      ]
+    }
   },
   {
     "id": "ringyoku",
@@ -1075,7 +1163,14 @@
       }
     ],
     "image": "/persos/ringyoku.webp",
-    "icon": "/icons/Ringyoku.webp"
+    "icon": "/icons/Ringyoku.webp",
+    "source": {
+      "characterId": 208,
+      "generalIds": [
+        374,
+        375
+      ]
+    }
   },
   {
     "id": "zenou",
@@ -1150,7 +1245,14 @@
       }
     ],
     "image": "/persos/zenou.webp",
-    "icon": "/icons/Zenou.webp"
+    "icon": "/icons/Zenou.webp",
+    "source": {
+      "characterId": 206,
+      "generalIds": [
+        367,
+        368
+      ]
+    }
   },
   {
     "id": "hokaku",
@@ -1230,7 +1332,15 @@
       }
     ],
     "image": "/persos/hokaku.webp",
-    "icon": "/icons/Hokaku.webp"
+    "icon": "/icons/Hokaku.webp",
+    "source": {
+      "characterId": 234,
+      "generalIds": [
+        469,
+        470,
+        471
+      ]
+    }
   },
   {
     "id": "shin",
@@ -1298,7 +1408,16 @@
         ]
       }
     ],
-    "icon": "/icons/Shin.webp"
+    "icon": "/icons/Shin.webp",
+    "source": {
+      "characterId": 38,
+      "generalIds": [
+        28,
+        72,
+        107,
+        135
+      ]
+    }
   },
   {
     "id": "kyoukai",
@@ -1383,6 +1502,14 @@
         ]
       }
     ],
-    "icon": "/icons/Kyoukai.webp"
+    "icon": "/icons/Kyoukai.webp",
+    "source": {
+      "characterId": 90,
+      "generalIds": [
+        36,
+        105,
+        133
+      ]
+    }
   }
 ]

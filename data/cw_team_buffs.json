@@ -763,5 +763,247 @@
       ],
       "Defense": []
     }
+  },
+  "siege": {
+    "Attack Siege Weapons": {
+      "HP": [
+        {
+          "name": "Denei",
+          "name_jp": "田永",
+          "faction": "qin",
+          "type": "SR",
+          "star6": false,
+          "value": 28.3
+        },
+        {
+          "name": "Shoumou",
+          "name_jp": "渉孟",
+          "faction": "zhao",
+          "type": "SR",
+          "star6": false,
+          "value": 28.3
+        },
+        {
+          "name": "Roen",
+          "name_jp": "魯延",
+          "faction": "qin",
+          "type": "SR",
+          "star6": false,
+          "value": 24.8
+        },
+        {
+          "name": "Fuuki",
+          "name_jp": "馮忌",
+          "faction": "zhao",
+          "type": "SR",
+          "star6": false,
+          "value": 12.3
+        },
+        {
+          "name": "Mangoku",
+          "name_jp": "万極",
+          "faction": "zhao",
+          "type": "UR",
+          "star6": false,
+          "value": 12.3
+        }
+      ],
+      "Attack": [
+        {
+          "name": "Muta",
+          "name_jp": "ムタ",
+          "faction": "qin",
+          "type": "SR",
+          "star6": false,
+          "value": 6.4
+        },
+        {
+          "name": "Jokan",
+          "name_jp": "徐完",
+          "faction": "zhao",
+          "type": "SR",
+          "star6": false,
+          "value": 5.8
+        },
+        {
+          "name": "Shuki",
+          "name_jp": "朱鬼",
+          "faction": "mountain_folk",
+          "type": "SR",
+          "star6": false,
+          "value": 4.8
+        },
+        {
+          "name": "Bamyu",
+          "name_jp": "バミュウ",
+          "faction": "chu",
+          "type": "NR",
+          "star6": false,
+          "value": 2.8
+        }
+      ],
+      "Defense": [
+        {
+          "name": "Entei",
+          "name_jp": "燕呈",
+          "faction": "qin",
+          "type": "NR",
+          "star6": false,
+          "value": 6.4
+        },
+        {
+          "name": "En",
+          "name_jp": "渕",
+          "faction": "qin",
+          "type": "SR",
+          "star6": false,
+          "value": 5.8
+        },
+        {
+          "name": "Kei",
+          "name_jp": "慶",
+          "faction": "qin",
+          "type": "SR",
+          "star6": false,
+          "value": 4.8
+        },
+        {
+          "name": "Genpo",
+          "name_jp": "玄峰",
+          "faction": "wei",
+          "type": "NR",
+          "star6": false,
+          "value": 2.8
+        },
+        {
+          "name": "Ryuyu",
+          "name_jp": "竜有",
+          "faction": "qin",
+          "type": "SR",
+          "star6": false,
+          "value": 2.8
+        }
+      ]
+    },
+    "Defense Siege Weapons": {
+      "HP": [
+        {
+          "name": "Fuuki",
+          "name_jp": "馮忌",
+          "faction": "zhao",
+          "type": "SR",
+          "star6": false,
+          "value": 28.3
+        },
+        {
+          "name": "Kakubi",
+          "name_jp": "郭備",
+          "faction": "qin",
+          "type": "SR",
+          "star6": false,
+          "value": 28.3
+        },
+        {
+          "name": "Shishi",
+          "name_jp": "肆氏",
+          "faction": "qin",
+          "type": "NR",
+          "star6": false,
+          "value": 24.8
+        },
+        {
+          "name": "Denyuu",
+          "name_jp": "田有",
+          "faction": "qin",
+          "type": "SR",
+          "star6": false,
+          "value": 12.3
+        },
+        {
+          "name": "Maron",
+          "name_jp": "摩論",
+          "faction": "qin",
+          "type": "NR",
+          "star6": false,
+          "value": 12.3
+        }
+      ],
+      "Attack": [
+        {
+          "name": "Kousonryu",
+          "name_jp": "公孫龍",
+          "faction": "zhao",
+          "type": "SR",
+          "star6": false,
+          "value": 6.4
+        },
+        {
+          "name": "Rishi",
+          "name_jp": "李斯",
+          "faction": "qin",
+          "type": "NR",
+          "star6": false,
+          "value": 5.8
+        },
+        {
+          "name": "Maki",
+          "name_jp": "麻鬼",
+          "faction": "mountain_folk",
+          "type": "SR",
+          "star6": false,
+          "value": 4.8
+        },
+        {
+          "name": "Chutetsu",
+          "name_jp": "中鉄",
+          "faction": "qin",
+          "type": "SR",
+          "star6": false,
+          "value": 2.8
+        },
+        {
+          "name": "Shousa",
+          "name_jp": "松佐",
+          "faction": "qin",
+          "type": "SR",
+          "star6": false,
+          "value": 2.8
+        }
+      ],
+      "Defense": [
+        {
+          "name": "Rihaku",
+          "name_jp": "李白",
+          "faction": "zhao",
+          "type": "SR",
+          "star6": false,
+          "value": 6.4
+        },
+        {
+          "name": "Seki",
+          "name_jp": "石",
+          "faction": "qin",
+          "type": "SR",
+          "star6": false,
+          "value": 5.8
+        },
+        {
+          "name": "Kou",
+          "name_jp": "昂",
+          "faction": "qin",
+          "type": "NR",
+          "star6": false,
+          "value": 4.8
+        },
+        {
+          "name": "Shoukaku",
+          "name_jp": "尚鹿",
+          "faction": "qin",
+          "type": "SR",
+          "star6": false,
+          "value": 2.8
+        }
+      ]
+    }
   }
 }
