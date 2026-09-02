@@ -222,7 +222,7 @@ const GUIDE_LABELS = {
     roles: '武将の役割',
     bandits: '盗賊討伐',
     leaders: '総大将・軍師技能',
-    crystals: '結晶タイプ',
+    crystals: '水晶の種類',
     debuffs: 'デバフ耐性',
     effects: '状態異常',
     matchups: '兵種相性',
