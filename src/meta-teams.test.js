@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest'
+import { readFileSync } from 'node:fs'
 import { META_TEAMS, TIER_TEAMS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, findCharByName } from './core.jsx'
+
+const pagesSource = readFileSync(new URL('./pages.jsx', import.meta.url), 'utf8')
 
 /**
  * Preset comps are defined once in META_TEAMS; the tier list and the Party
@@ -55,6 +58,12 @@ describe('preset team definitions', () => {
       expect(team.country).toBe(source.country)
     }
     expect(TIER_TEAMS).toHaveLength(META_TEAMS.filter((t) => t.tier).length)
+  })
+
+  it('keeps positional member order independent from locale direction', () => {
+    expect(pagesSource.match(/className="(?:meta-members|mw-team-members)" dir="ltr"/g)).toHaveLength(2)
+    expect(pagesSource).toContain('className="meta-member" dir={locale.direction}')
+    expect(pagesSource).toContain('className="mw-member" dir={locale.direction}')
   })
 })
 

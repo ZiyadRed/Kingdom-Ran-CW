@@ -853,9 +853,9 @@ export function MetaTeamCard({team,onLoad}){
       <div className="meta-card-head">
         <span className="meta-name">{localizedTeamName(team.name,locale.code)}</span>
       </div>
-      <div className="meta-members">
+      <div className="meta-members" dir="ltr">
         {chars.map((c,i)=>(
-          <div key={i} className="meta-member">
+          <div key={i} className="meta-member" dir={locale.direction}>
             <CharIcon c={c} size={60} round={true} className="meta-member-img"/>
             <span className="meta-member-name">{localizedCharacter(c,locale).displayName}</span>
           </div>
@@ -2287,11 +2287,11 @@ function TierTeamCard({team,def,ss=false}){
   return(
     <div className={'mw-team'+(ss?' mw-team--ss':'')} style={{borderInlineStartColor:def.accent}}>
       <div className="mw-team-name">{localizedTeamName(team.name,locale.code)}</div>
-      <div className="mw-team-members">
+      <div className="mw-team-members" dir="ltr">
         {chars.map((c,ci)=>{
           const star6=(c.skills||[]).some(s=>s.star6)
           return(
-            <div key={ci} className="mw-member">
+            <div key={ci} className="mw-member" dir={locale.direction}>
               <div className="mw-avatar" style={{borderColor:ss?'#b9912e':def.ring}}>
                 <CharIcon c={c} size={44} round={true} className="mw-avatar-img"/>
               </div>
