@@ -80,7 +80,7 @@
     "name_en": "Mougou",
     "name_jp": "蒙驁",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "DEF Enhancement [Red Tiger]",
@@ -276,7 +276,7 @@
     "name_en": "Rishi",
     "name_jp": "李斯",
     "country": "qin",
-    "rarity": "NR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Heavy Vanguard [Red Sheep]",
@@ -346,8 +346,8 @@
     "id": "douken",
     "name_en": "Douken",
     "name_jp": "道剣",
-    "country": "zhao",
-    "rarity": "NR",
+    "country": "qin",
+    "rarity": "N",
     "skills": [
       {
         "name_en": "Status Infliction Rate Up [Red Sheep]",
@@ -408,7 +408,7 @@
     "name_en": "Shishi",
     "name_jp": "肆氏",
     "country": "qin",
-    "rarity": "NR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Yellow Sheep]",
@@ -468,8 +468,8 @@
     "id": "gii",
     "name_en": "Gikou",
     "name_jp": "魏興",
-    "country": "wei",
-    "rarity": "NR",
+    "country": "qin",
+    "rarity": "N",
     "skills": [
       {
         "name_en": "Status Infliction Rate Up [Red Elephant]",
@@ -530,7 +530,7 @@
     "name_en": "Maron",
     "name_jp": "摩論",
     "country": "qin",
-    "rarity": "NR",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Orange Sheep]",
@@ -594,7 +594,6 @@
     "name_en": "Shunmen",
     "name_jp": "シュンメン",
     "country": "mountain_folk",
-    "unit": "Hi Shin Unit",
     "rarity": "SR",
     "skills": [
       {
@@ -659,7 +658,6 @@
     "name_en": "Rankai",
     "name_jp": "ランカイ",
     "country": "mountain_folk",
-    "unit": "Hi Shin Unit",
     "rarity": "SR",
     "skills": [
       {
@@ -724,7 +722,7 @@
     "name_en": "Kyomei",
     "name_jp": "羌明",
     "country": "qin",
-    "unit": "Hi Shin Unit",
+    "unit": "Qiang Tribe",
     "rarity": "SR",
     "skills": [
       {
@@ -990,7 +988,7 @@
     "name_en": "Ogiko",
     "name_jp": "オギコ",
     "country": "qin",
-    "rarity": "UR",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Yellow Ox]",
@@ -1260,7 +1258,7 @@
     "name_en": "Ryofui",
     "name_jp": "呂不韋",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Heavy Vanguard [Red Elephant]",
@@ -1424,7 +1422,7 @@
     "name_en": "Queen Biki",
     "name_jp": "太后",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Orange Ox]",
@@ -1763,7 +1761,7 @@
     "name_en": "Kei",
     "name_jp": "慶",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "N",
     "skills": [
       {
         "name_en": "Weak Point Flash [Red Sheep]",
@@ -2010,7 +2008,7 @@
     "name_en": "Karyoten",
     "name_jp": "河了貂",
     "country": "qin",
-    "rarity": "R",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Status Resistance [Red Sheep]",
@@ -2074,7 +2072,7 @@
     "name_en": "En",
     "name_jp": "渕",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Status Resistance [Red Turtle]",
@@ -2139,7 +2137,7 @@
     "name_en": "Takukei",
     "name_jp": "澤圭",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Status Resistance [Red Tiger]",
@@ -2394,8 +2392,8 @@
     "id": "hakukisei",
     "name_en": "Hakukisai",
     "name_jp": "白亀西",
-    "country": "qin",
-    "rarity": "SR",
+    "country": "wei",
+    "rarity": "N",
     "skills": [
       {
         "name_en": "DEF Enhancement [Red Turtle]",
@@ -2456,7 +2454,7 @@
     "name_en": "Seki",
     "name_jp": "石",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Weak Point Flash [Red Elephant]",
@@ -2842,7 +2840,7 @@
     "name_en": "Roen",
     "name_jp": "魯延",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Weak Point Flash [Red Tiger]",
@@ -2971,7 +2969,7 @@
     "name_en": "Kou",
     "name_jp": "昂",
     "country": "qin",
-    "rarity": "NR",
+    "rarity": "N",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Red Bull]",

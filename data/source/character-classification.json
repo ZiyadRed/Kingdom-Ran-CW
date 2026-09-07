@@ -1,0 +1,7410 @@
+{
+  "schema": "ranhq.classification-evidence/1",
+  "date": "2026-09-07",
+  "hashes": {
+    "masters_001.bin": "5dfd05438b0cc10507438a171cc83872a421f66dee9d3f3c86d1909abbc3271b",
+    "masters_002.bin": "88f20d04af53e54adca4a85896a1b99490f1067ff2f50f963188f29120418a7f",
+    "masters_003.bin": "83b75c9914fb3068df70fbb456877ef7ac1d67047f8f3f65fa7ce5a212984bda",
+    "masters_004.bin": "557a7d4c687335306c9284cf1ec1405f8f32e6f1fa225fb04b5d7f8b1736f2df",
+    "masters_005.bin": "16ea8564722e8589bf3a2694568ba134a8b757bb7f1463c954fe83bc30574fac",
+    "master\\MsgMstCountry.stbl": "9b5a0039a019f1dcf383bd9fbbbfc730c682af87ce4d63bd45d771fb80f6061c",
+    "master\\MsgMstBelong.stbl": "a68881b8b9aba41e04407cb9f308fc1d801362c13b8e77cd1420e0f6a5eea354",
+    "master\\MsgUnitGeneralName.stbl": "2ac16eba8d8d399b590a65025af8540b24193c0376ba1f5cd74d5cb3efb9db18"
+  },
+  "country_labels": {
+    "0": "null",
+    "1": "秦",
+    "2": "趙",
+    "3": "魏",
+    "4": "楚",
+    "5": "韓",
+    "6": "斉",
+    "7": "燕",
+    "8": "山の民",
+    "9": "民",
+    "10": "毐"
+  },
+  "affiliation_labels": {
+    "0": "null",
+    "1": "中華十弓",
+    "2": "趙の三大天",
+    "3": "趙の新三大天",
+    "4": "秦の六大将軍",
+    "5": "呂氏四柱",
+    "6": "魏火龍",
+    "7": "廉頗四天王",
+    "8": "飛信隊",
+    "9": "王騎軍",
+    "10": "桓騎軍",
+    "11": "玉鳳隊",
+    "12": "楽華隊",
+    "13": "戦士",
+    "14": "蚩尤族",
+    "15": "媧燐軍",
+    "16": "羌族",
+    "17": "汗明軍",
+    "18": "紀彗軍",
+    "19": "合従軍",
+    "20": "廉頗軍",
+    "21": "成恢軍",
+    "22": "メラ族",
+    "23": "犬戎族",
+    "24": "フィゴ族",
+    "25": "王翦軍",
+    "26": "亜光軍",
+    "27": "蒙武軍",
+    "28": "麻鉱軍"
+  },
+  "characters": {
+    "akou": {
+      "characterId": 253,
+      "generals": [
+        {
+          "id": 528,
+          "publicTime": 1772010000,
+          "characterId": 253,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 25,
+          "belong2Id": 26,
+          "belong3Id": 0,
+          "assetId": 632
+        },
+        {
+          "id": 529,
+          "publicTime": 1772010000,
+          "characterId": 253,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 25,
+          "belong2Id": 26,
+          "belong3Id": 0,
+          "assetId": 633
+        }
+      ]
+    },
+    "amon": {
+      "characterId": 8,
+      "generals": [
+        {
+          "id": 2,
+          "publicTime": 1451574000,
+          "characterId": 8,
+          "rarityId": 2,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 2
+        }
+      ]
+    },
+    "bain": {
+      "characterId": 225,
+      "generals": [
+        {
+          "id": 432,
+          "publicTime": 1732870800,
+          "characterId": 225,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 536
+        },
+        {
+          "id": 433,
+          "publicTime": 1732870800,
+          "characterId": 225,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 537
+        }
+      ]
+    },
+    "bajio": {
+      "characterId": 5,
+      "generals": [
+        {
+          "id": 95,
+          "publicTime": 1451574000,
+          "characterId": 5,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 95
+        },
+        {
+          "id": 123,
+          "publicTime": 1650013200,
+          "characterId": 5,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 119
+        }
+      ]
+    },
+    "bakan": {
+      "characterId": 230,
+      "generals": [
+        {
+          "id": 455,
+          "publicTime": 1742968800,
+          "characterId": 230,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 5,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 559
+        },
+        {
+          "id": 456,
+          "publicTime": 1742968800,
+          "characterId": 230,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 5,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 560
+        },
+        {
+          "id": 457,
+          "publicTime": 1755075600,
+          "characterId": 230,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 5,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 561
+        }
+      ]
+    },
+    "bakukoshin": {
+      "characterId": 50,
+      "generals": [
+        {
+          "id": 57,
+          "publicTime": 1451574000,
+          "characterId": 50,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 57
+        },
+        {
+          "id": 200,
+          "publicTime": 1565596800,
+          "characterId": 50,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 277
+        }
+      ]
+    },
+    "bamyu": {
+      "characterId": 172,
+      "generals": [
+        {
+          "id": 265,
+          "publicTime": 1603260000,
+          "characterId": 172,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 15,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 370
+        },
+        {
+          "id": 584,
+          "publicTime": 1768381200,
+          "characterId": 172,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 15,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 688
+        },
+        {
+          "id": 585,
+          "publicTime": 1768381200,
+          "characterId": 172,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 15,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 689
+        }
+      ]
+    },
+    "bananji": {
+      "characterId": 215,
+      "generals": [
+        {
+          "id": 393,
+          "publicTime": 1758693600,
+          "characterId": 215,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 497
+        },
+        {
+          "id": 394,
+          "publicTime": 1758693600,
+          "characterId": 215,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 498
+        }
+      ]
+    },
+    "banyou": {
+      "characterId": 52,
+      "generals": [
+        {
+          "id": 16,
+          "publicTime": 1451574000,
+          "characterId": 52,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 11,
+          "belong1Id": 11,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 16
+        },
+        {
+          "id": 268,
+          "publicTime": 1610874000,
+          "characterId": 52,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 11,
+          "belong1Id": 11,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 372
+        }
+      ]
+    },
+    "batei": {
+      "characterId": 214,
+      "generals": [
+        {
+          "id": 391,
+          "publicTime": 1711702800,
+          "characterId": 214,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 8,
+          "belong1Id": 18,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 495
+        },
+        {
+          "id": 392,
+          "publicTime": 1711702800,
+          "characterId": 214,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 8,
+          "belong1Id": 18,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 496
+        }
+      ]
+    },
+    "beiman": {
+      "characterId": 191,
+      "generals": [
+        {
+          "id": 324,
+          "publicTime": 1676451600,
+          "characterId": 191,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 17,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 427
+        },
+        {
+          "id": 587,
+          "publicTime": 1770714000,
+          "characterId": 191,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 17,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 691
+        }
+      ]
+    },
+    "bihei": {
+      "characterId": 54,
+      "generals": [
+        {
+          "id": 52,
+          "publicTime": 1451574000,
+          "characterId": 54,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 52
+        },
+        {
+          "id": 113,
+          "publicTime": 1451574000,
+          "characterId": 54,
+          "rarityId": 2,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 162
+        },
+        {
+          "id": 446,
+          "publicTime": 1739944800,
+          "characterId": 54,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 550
+        },
+        {
+          "id": 447,
+          "publicTime": 1739944800,
+          "characterId": 54,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 551
+        }
+      ]
+    },
+    "bikou": {
+      "characterId": 53,
+      "generals": [
+        {
+          "id": 25,
+          "publicTime": 1451574000,
+          "characterId": 53,
+          "rarityId": 2,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 25
+        },
+        {
+          "id": 448,
+          "publicTime": 1739944800,
+          "characterId": 53,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 552
+        },
+        {
+          "id": 449,
+          "publicTime": 1739944800,
+          "characterId": 53,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 553
+        },
+        {
+          "id": 450,
+          "publicTime": 1739944800,
+          "characterId": 53,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 554
+        }
+      ]
+    },
+    "budai": {
+      "characterId": 236,
+      "generals": [
+        {
+          "id": 479,
+          "publicTime": 1753250400,
+          "characterId": 236,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 10,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 583
+        },
+        {
+          "id": 480,
+          "publicTime": 1753250400,
+          "characterId": 236,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 10,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 584
+        }
+      ]
+    },
+    "chouin": {
+      "characterId": 161,
+      "generals": [
+        {
+          "id": 458,
+          "publicTime": 1745388000,
+          "characterId": 161,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 5,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 562
+        },
+        {
+          "id": 459,
+          "publicTime": 1745388000,
+          "characterId": 161,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 5,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 563
+        }
+      ]
+    },
+    "chouko": {
+      "characterId": 93,
+      "generals": [
+        {
+          "id": 17,
+          "publicTime": 1451574000,
+          "characterId": 93,
+          "rarityId": 1,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 17
+        }
+      ]
+    },
+    "choushi": {
+      "characterId": 133,
+      "generals": [
+        {
+          "id": 217,
+          "publicTime": 1779858600,
+          "characterId": 133,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 27,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 294
+        },
+        {
+          "id": 592,
+          "publicTime": 1779858600,
+          "characterId": 133,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 27,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 696
+        }
+      ]
+    },
+    "chousou": {
+      "characterId": 94,
+      "generals": [
+        {
+          "id": 73,
+          "publicTime": 1523217600,
+          "characterId": 94,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 73
+        },
+        {
+          "id": 210,
+          "publicTime": 1592978400,
+          "characterId": 94,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 287
+        },
+        {
+          "id": 423,
+          "publicTime": 1715763600,
+          "characterId": 94,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 527
+        }
+      ]
+    },
+    "choutou": {
+      "characterId": 141,
+      "generals": [
+        {
+          "id": 225,
+          "publicTime": 1601445600,
+          "characterId": 141,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 302
+        },
+        {
+          "id": 337,
+          "publicTime": 1697446800,
+          "characterId": 141,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 441
+        }
+      ]
+    },
+    "chouyou": {
+      "characterId": 256,
+      "generals": [
+        {
+          "id": 535,
+          "publicTime": 1782277800,
+          "characterId": 256,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 25,
+          "belong2Id": 28,
+          "belong3Id": 0,
+          "assetId": 639
+        },
+        {
+          "id": 536,
+          "publicTime": 1782277800,
+          "characterId": 256,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 25,
+          "belong2Id": 28,
+          "belong3Id": 0,
+          "assetId": 640
+        }
+      ]
+    },
+    "chutetsu": {
+      "characterId": 43,
+      "generals": [
+        {
+          "id": 326,
+          "publicTime": 1672207200,
+          "characterId": 43,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 429
+        }
+      ]
+    },
+    "danto": {
+      "characterId": 239,
+      "generals": [
+        {
+          "id": 497,
+          "publicTime": 1764136800,
+          "characterId": 239,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 24,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 601
+        },
+        {
+          "id": 498,
+          "publicTime": 1764136800,
+          "characterId": 239,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 24,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 602
+        }
+      ]
+    },
+    "denei": {
+      "characterId": 44,
+      "generals": [
+        {
+          "id": 54,
+          "publicTime": 1451574000,
+          "characterId": 44,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 54
+        },
+        {
+          "id": 271,
+          "publicTime": 1622883600,
+          "characterId": 44,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 375
+        },
+        {
+          "id": 356,
+          "publicTime": 1730268000,
+          "characterId": 44,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 460
+        }
+      ]
+    },
+    "denrimi": {
+      "characterId": 250,
+      "generals": [
+        {
+          "id": 522,
+          "publicTime": 1766556000,
+          "characterId": 250,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 25,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 626
+        },
+        {
+          "id": 523,
+          "publicTime": 1766556000,
+          "characterId": 250,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 25,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 627
+        }
+      ]
+    },
+    "denyuu": {
+      "characterId": 45,
+      "generals": [
+        {
+          "id": 65,
+          "publicTime": 1451574000,
+          "characterId": 45,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 65
+        },
+        {
+          "id": 190,
+          "publicTime": 1570600800,
+          "characterId": 45,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 263
+        },
+        {
+          "id": 334,
+          "publicTime": 1677045600,
+          "characterId": 45,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 438
+        }
+      ]
+    },
+    "domon": {
+      "characterId": 130,
+      "generals": [
+        {
+          "id": 212,
+          "publicTime": 1588050000,
+          "characterId": 130,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 289
+        }
+      ]
+    },
+    "douken": {
+      "characterId": 48,
+      "generals": [
+        {
+          "id": 3,
+          "publicTime": 1451574000,
+          "characterId": 48,
+          "rarityId": 1,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 3
+        }
+      ]
+    },
+    "doukin": {
+      "characterId": 47,
+      "generals": [
+        {
+          "id": 42,
+          "publicTime": 1451574000,
+          "characterId": 47,
+          "rarityId": 2,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 42
+        },
+        {
+          "id": 186,
+          "publicTime": 1554217200,
+          "characterId": 47,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 259
+        },
+        {
+          "id": 291,
+          "publicTime": 1660726800,
+          "characterId": 47,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 394
+        },
+        {
+          "id": 478,
+          "publicTime": 1752051600,
+          "characterId": 47,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 582
+        }
+      ]
+    },
+    "duke_hyou": {
+      "characterId": 99,
+      "generals": [
+        {
+          "id": 96,
+          "publicTime": 1520625600,
+          "characterId": 99,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 96
+        },
+        {
+          "id": 124,
+          "publicTime": 1622451600,
+          "characterId": 99,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 120
+        }
+      ]
+    },
+    "duke_sei": {
+      "characterId": 221,
+      "generals": [
+        {
+          "id": 409,
+          "publicTime": 1727427600,
+          "characterId": 221,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 8,
+          "belong1Id": 18,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 513
+        },
+        {
+          "id": 410,
+          "publicTime": 1727427600,
+          "characterId": 221,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 8,
+          "belong1Id": 18,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 514
+        }
+      ]
+    },
+    "ei_sei": {
+      "characterId": 98,
+      "generals": [
+        {
+          "id": 29,
+          "publicTime": 1451574000,
+          "characterId": 98,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 29
+        },
+        {
+          "id": 87,
+          "publicTime": 1523304000,
+          "characterId": 98,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 87
+        },
+        {
+          "id": 115,
+          "publicTime": 1629871200,
+          "characterId": 98,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 111
+        }
+      ]
+    },
+    "eiki": {
+      "characterId": 254,
+      "generals": [
+        {
+          "id": 530,
+          "publicTime": 1778662800,
+          "characterId": 254,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 25,
+          "belong2Id": 26,
+          "belong3Id": 0,
+          "assetId": 634
+        },
+        {
+          "id": 531,
+          "publicTime": 1778662800,
+          "characterId": 254,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 25,
+          "belong2Id": 26,
+          "belong3Id": 0,
+          "assetId": 635
+        }
+      ]
+    },
+    "en": {
+      "characterId": 86,
+      "generals": [
+        {
+          "id": 64,
+          "publicTime": 1547409600,
+          "characterId": 86,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 64
+        },
+        {
+          "id": 114,
+          "publicTime": 1451574000,
+          "characterId": 86,
+          "rarityId": 2,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 163
+        },
+        {
+          "id": 604,
+          "publicTime": 1779858600,
+          "characterId": 86,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 708
+        },
+        {
+          "id": 605,
+          "publicTime": 1779858600,
+          "characterId": 86,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 709
+        }
+      ]
+    },
+    "entei": {
+      "characterId": 135,
+      "generals": [
+        {
+          "id": 219,
+          "publicTime": 1580882400,
+          "characterId": 135,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 296
+        },
+        {
+          "id": 401,
+          "publicTime": 1712912400,
+          "characterId": 135,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 505
+        },
+        {
+          "id": 402,
+          "publicTime": 1712912400,
+          "characterId": 135,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 506
+        }
+      ]
+    },
+    "fuji": {
+      "characterId": 143,
+      "generals": [
+        {
+          "id": 227,
+          "publicTime": 1759914000,
+          "characterId": 143,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 304
+        },
+        {
+          "id": 489,
+          "publicTime": 1759914000,
+          "characterId": 143,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 593
+        },
+        {
+          "id": 490,
+          "publicTime": 1776243600,
+          "characterId": 143,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 594
+        }
+      ]
+    },
+    "futei": {
+      "characterId": 170,
+      "generals": [
+        {
+          "id": 260,
+          "publicTime": 1597816800,
+          "characterId": 170,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 337
+        },
+        {
+          "id": 261,
+          "publicTime": 1597816800,
+          "characterId": 170,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 338
+        },
+        {
+          "id": 318,
+          "publicTime": 1672498800,
+          "characterId": 170,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 421
+        }
+      ]
+    },
+    "gaimou": {
+      "characterId": 180,
+      "generals": [
+        {
+          "id": 283,
+          "publicTime": 1651039200,
+          "characterId": 180,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 6,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 386
+        },
+        {
+          "id": 284,
+          "publicTime": 1651039200,
+          "characterId": 180,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 6,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 387
+        }
+      ]
+    },
+    "gakuei": {
+      "characterId": 210,
+      "generals": [
+        {
+          "id": 382,
+          "publicTime": 1721984400,
+          "characterId": 210,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 486
+        },
+        {
+          "id": 383,
+          "publicTime": 1721984400,
+          "characterId": 210,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 487
+        }
+      ]
+    },
+    "gakujou": {
+      "characterId": 124,
+      "generals": [
+        {
+          "id": 202,
+          "publicTime": 1571205600,
+          "characterId": 124,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 279
+        },
+        {
+          "id": 412,
+          "publicTime": 1720602000,
+          "characterId": 124,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 516
+        }
+      ]
+    },
+    "gakuki": {
+      "characterId": 118,
+      "generals": [
+        {
+          "id": 157,
+          "publicTime": 1548705600,
+          "characterId": 118,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 7,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 230
+        },
+        {
+          "id": 163,
+          "publicTime": 1622451600,
+          "characterId": 118,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 7,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 236
+        }
+      ]
+    },
+    "gakurai": {
+      "characterId": 202,
+      "generals": [
+        {
+          "id": 353,
+          "publicTime": 1695978000,
+          "characterId": 202,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 457
+        },
+        {
+          "id": 354,
+          "publicTime": 1695978000,
+          "characterId": 202,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 458
+        }
+      ]
+    },
+    "garo": {
+      "characterId": 178,
+      "generals": [
+        {
+          "id": 280,
+          "publicTime": 1647680400,
+          "characterId": 178,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 383
+        },
+        {
+          "id": 424,
+          "publicTime": 1720602000,
+          "characterId": 178,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 528
+        }
+      ]
+    },
+    "gekishin": {
+      "characterId": 113,
+      "generals": [
+        {
+          "id": 152,
+          "publicTime": 1535572800,
+          "characterId": 113,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 7,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 225
+        },
+        {
+          "id": 158,
+          "publicTime": 1683536400,
+          "characterId": 113,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 7,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 231
+        }
+      ]
+    },
+    "genpo": {
+      "characterId": 20,
+      "generals": [
+        {
+          "id": 80,
+          "publicTime": 1524168000,
+          "characterId": 20,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 3,
+          "belongId": 7,
+          "belong1Id": 7,
+          "belong2Id": 20,
+          "belong3Id": 0,
+          "assetId": 80
+        },
+        {
+          "id": 244,
+          "publicTime": 1582833599,
+          "characterId": 20,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 3,
+          "belongId": 7,
+          "belong1Id": 7,
+          "belong2Id": 20,
+          "belong3Id": 0,
+          "assetId": 321
+        },
+        {
+          "id": 358,
+          "publicTime": 1686906000,
+          "characterId": 20,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 3,
+          "belongId": 7,
+          "belong1Id": 7,
+          "belong2Id": 20,
+          "belong3Id": 0,
+          "assetId": 462
+        }
+      ]
+    },
+    "gii": {
+      "characterId": 97,
+      "generals": [
+        {
+          "id": 13,
+          "publicTime": 1451574000,
+          "characterId": 97,
+          "rarityId": 1,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 13
+        }
+      ]
+    },
+    "gika": {
+      "characterId": 96,
+      "generals": [
+        {
+          "id": 62,
+          "publicTime": 1451574000,
+          "characterId": 96,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 1,
+          "belong1Id": 1,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 62
+        },
+        {
+          "id": 245,
+          "publicTime": 1589950800,
+          "characterId": 96,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 1,
+          "belong1Id": 1,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 322
+        },
+        {
+          "id": 355,
+          "publicTime": 1718182800,
+          "characterId": 96,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 1,
+          "belong1Id": 1,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 459
+        }
+      ]
+    },
+    "gohoumei": {
+      "characterId": 149,
+      "generals": [
+        {
+          "id": 233,
+          "publicTime": 1591164000,
+          "characterId": 149,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 310
+        },
+        {
+          "id": 292,
+          "publicTime": 1655283600,
+          "characterId": 149,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 395
+        }
+      ]
+    },
+    "gokei": {
+      "characterId": 21,
+      "generals": [
+        {
+          "id": 90,
+          "publicTime": 1451574000,
+          "characterId": 21,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 6,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 90
+        },
+        {
+          "id": 118,
+          "publicTime": 1632992400,
+          "characterId": 21,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 6,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 114
+        }
+      ]
+    },
+    "gotan": {
+      "characterId": 25,
+      "generals": [
+        {
+          "id": 11,
+          "publicTime": 1588050000,
+          "characterId": 25,
+          "rarityId": 2,
+          "attributeId": 0,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 11
+        }
+      ]
+    },
+    "goumasho": {
+      "characterId": 192,
+      "generals": [
+        {
+          "id": 325,
+          "publicTime": 1678870800,
+          "characterId": 192,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 17,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 428
+        },
+        {
+          "id": 586,
+          "publicTime": 1768381200,
+          "characterId": 192,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 17,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 690
+        }
+      ]
+    },
+    "goutoku": {
+      "characterId": 249,
+      "generals": [
+        {
+          "id": 519,
+          "publicTime": 1762333200,
+          "characterId": 249,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 15,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 623
+        },
+        {
+          "id": 520,
+          "publicTime": 1762333200,
+          "characterId": 249,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 15,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 624
+        },
+        {
+          "id": 521,
+          "publicTime": 1781082000,
+          "characterId": 249,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 15,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 625
+        }
+      ]
+    },
+    "hairou": {
+      "characterId": 85,
+      "generals": [
+        {
+          "id": 51,
+          "publicTime": 1451574000,
+          "characterId": 85,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 51
+        },
+        {
+          "id": 192,
+          "publicTime": 1570600800,
+          "characterId": 85,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 265
+        },
+        {
+          "id": 420,
+          "publicTime": 1724824800,
+          "characterId": 85,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 524
+        }
+      ]
+    },
+    "hakuki": {
+      "characterId": 114,
+      "generals": [
+        {
+          "id": 153,
+          "publicTime": 1546200000,
+          "characterId": 114,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 4,
+          "belong1Id": 4,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 226
+        },
+        {
+          "id": 159,
+          "publicTime": 1640962800,
+          "characterId": 114,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 4,
+          "belong1Id": 4,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 232
+        }
+      ]
+    },
+    "hakukisei": {
+      "characterId": 49,
+      "generals": [
+        {
+          "id": 21,
+          "publicTime": 1451574000,
+          "characterId": 49,
+          "rarityId": 1,
+          "attributeId": 3,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 21
+        }
+      ]
+    },
+    "hakurei": {
+      "characterId": 159,
+      "generals": [
+        {
+          "id": 248,
+          "publicTime": 1586098800,
+          "characterId": 159,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 4,
+          "belongId": 1,
+          "belong1Id": 1,
+          "belong2Id": 15,
+          "belong3Id": 19,
+          "assetId": 325
+        },
+        {
+          "id": 249,
+          "publicTime": 1586509200,
+          "characterId": 159,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 4,
+          "belongId": 1,
+          "belong1Id": 1,
+          "belong2Id": 15,
+          "belong3Id": 19,
+          "assetId": 326
+        },
+        {
+          "id": 333,
+          "publicTime": 1677045600,
+          "characterId": 159,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 4,
+          "belongId": 1,
+          "belong1Id": 1,
+          "belong2Id": 15,
+          "belong3Id": 19,
+          "assetId": 437
+        }
+      ]
+    },
+    "hakusui": {
+      "characterId": 188,
+      "generals": [
+        {
+          "id": 303,
+          "publicTime": 1693375200,
+          "characterId": 188,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 406
+        },
+        {
+          "id": 304,
+          "publicTime": 1693375200,
+          "characterId": 188,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 407
+        }
+      ]
+    },
+    "hamui": {
+      "characterId": 235,
+      "generals": [
+        {
+          "id": 472,
+          "publicTime": 1750831200,
+          "characterId": 235,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 10,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 576
+        },
+        {
+          "id": 473,
+          "publicTime": 1750831200,
+          "characterId": 235,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 10,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 577
+        }
+      ]
+    },
+    "hanoki": {
+      "characterId": 197,
+      "generals": [
+        {
+          "id": 335,
+          "publicTime": 1680253200,
+          "characterId": 197,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 10,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 439
+        },
+        {
+          "id": 336,
+          "publicTime": 1680253200,
+          "characterId": 197,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 10,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 440
+        }
+      ]
+    },
+    "hanroki": {
+      "characterId": 201,
+      "generals": [
+        {
+          "id": 350,
+          "publicTime": 1685523600,
+          "characterId": 201,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 10,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 454
+        },
+        {
+          "id": 351,
+          "publicTime": 1685523600,
+          "characterId": 201,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 10,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 455
+        }
+      ]
+    },
+    "heirai": {
+      "characterId": 263,
+      "generals": [
+        {
+          "id": 554,
+          "publicTime": 1786525200,
+          "characterId": 263,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 658
+        },
+        {
+          "id": 555,
+          "publicTime": 1786525200,
+          "characterId": 263,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 659
+        }
+      ]
+    },
+    "heki": {
+      "characterId": 57,
+      "generals": [
+        {
+          "id": 35,
+          "publicTime": 1451574000,
+          "characterId": 57,
+          "rarityId": 2,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 35
+        },
+        {
+          "id": 81,
+          "publicTime": 1451574000,
+          "characterId": 57,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 81
+        },
+        {
+          "id": 180,
+          "publicTime": 1549432800,
+          "characterId": 57,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 253
+        },
+        {
+          "id": 288,
+          "publicTime": 1652691600,
+          "characterId": 57,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 391
+        }
+      ]
+    },
+    "hokaku": {
+      "characterId": 234,
+      "generals": [
+        {
+          "id": 469,
+          "publicTime": 1754470800,
+          "characterId": 234,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 573
+        },
+        {
+          "id": 470,
+          "publicTime": 1754470800,
+          "characterId": 234,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 574
+        },
+        {
+          "id": 471,
+          "publicTime": 1765357200,
+          "characterId": 234,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 575
+        }
+      ]
+    },
+    "hoki": {
+      "characterId": 95,
+      "generals": [
+        {
+          "id": 85,
+          "publicTime": 1451574000,
+          "characterId": 95,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 85
+        },
+        {
+          "id": 216,
+          "publicTime": 1579672800,
+          "characterId": 95,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 293
+        },
+        {
+          "id": 411,
+          "publicTime": 1718182800,
+          "characterId": 95,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 515
+        }
+      ]
+    },
+    "houken": {
+      "characterId": 100,
+      "generals": [
+        {
+          "id": 100,
+          "publicTime": 1523217600,
+          "characterId": 100,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 2,
+          "belongId": 3,
+          "belong1Id": 3,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 100
+        },
+        {
+          "id": 128,
+          "publicTime": 1655877600,
+          "characterId": 100,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 2,
+          "belongId": 3,
+          "belong1Id": 3,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 124
+        }
+      ]
+    },
+    "hyou": {
+      "characterId": 55,
+      "generals": [
+        {
+          "id": 70,
+          "publicTime": 1451574000,
+          "characterId": 55,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 70
+        },
+        {
+          "id": 112,
+          "publicTime": 1451574000,
+          "characterId": 55,
+          "rarityId": 2,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 161
+        }
+      ]
+    },
+    "hyouki": {
+      "characterId": 145,
+      "generals": [
+        {
+          "id": 229,
+          "publicTime": 1656480600,
+          "characterId": 145,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 306
+        },
+        {
+          "id": 418,
+          "publicTime": 1726045200,
+          "characterId": 145,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 3,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 522
+        },
+        {
+          "id": 419,
+          "publicTime": 1726045200,
+          "characterId": 145,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 3,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 523
+        }
+      ]
+    },
+    "hyoushiga": {
+      "characterId": 187,
+      "generals": [
+        {
+          "id": 301,
+          "publicTime": 1669788000,
+          "characterId": 187,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 404
+        },
+        {
+          "id": 302,
+          "publicTime": 1669788000,
+          "characterId": 187,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 405
+        }
+      ]
+    },
+    "jinou": {
+      "characterId": 189,
+      "generals": [
+        {
+          "id": 321,
+          "publicTime": 1673427600,
+          "characterId": 189,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 17,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 424
+        },
+        {
+          "id": 588,
+          "publicTime": 1770714000,
+          "characterId": 189,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 17,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 692
+        }
+      ]
+    },
+    "jiou": {
+      "characterId": 24,
+      "generals": [
+        {
+          "id": 1,
+          "publicTime": 1451574000,
+          "characterId": 24,
+          "rarityId": 2,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 1
+        }
+      ]
+    },
+    "jokan": {
+      "characterId": 31,
+      "generals": [
+        {
+          "id": 12,
+          "publicTime": 1451574000,
+          "characterId": 31,
+          "rarityId": 2,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 12
+        }
+      ]
+    },
+    "junso": {
+      "characterId": 185,
+      "generals": [
+        {
+          "id": 297,
+          "publicTime": 1664528400,
+          "characterId": 185,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 400
+        },
+        {
+          "id": 298,
+          "publicTime": 1664528400,
+          "characterId": 185,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 401
+        }
+      ]
+    },
+    "ka": {
+      "characterId": 240,
+      "generals": [
+        {
+          "id": 499,
+          "publicTime": 1764136800,
+          "characterId": 240,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 603
+        },
+        {
+          "id": 500,
+          "publicTime": 1764136800,
+          "characterId": 240,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 604
+        }
+      ]
+    },
+    "kaen": {
+      "characterId": 173,
+      "generals": [
+        {
+          "id": 266,
+          "publicTime": 1644397200,
+          "characterId": 173,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 15,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 371
+        },
+        {
+          "id": 371,
+          "publicTime": 1773219600,
+          "characterId": 173,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 15,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 475
+        }
+      ]
+    },
+    "kaine": {
+      "characterId": 1,
+      "generals": [
+        {
+          "id": 68,
+          "publicTime": 1525896000,
+          "characterId": 1,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 68
+        },
+        {
+          "id": 171,
+          "publicTime": 1525896000,
+          "characterId": 1,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 135
+        },
+        {
+          "id": 319,
+          "publicTime": 1672498800,
+          "characterId": 1,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 136
+        }
+      ]
+    },
+    "kaioku": {
+      "characterId": 175,
+      "generals": [
+        {
+          "id": 272,
+          "publicTime": 1611910800,
+          "characterId": 175,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 376
+        },
+        {
+          "id": 342,
+          "publicTime": 1700038800,
+          "characterId": 175,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 446
+        }
+      ]
+    },
+    "kaishibou": {
+      "characterId": 14,
+      "generals": [
+        {
+          "id": 79,
+          "publicTime": 1451574000,
+          "characterId": 14,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 3,
+          "belongId": 7,
+          "belong1Id": 7,
+          "belong2Id": 20,
+          "belong3Id": 0,
+          "assetId": 79
+        },
+        {
+          "id": 243,
+          "publicTime": 1583438399,
+          "characterId": 14,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 3,
+          "belongId": 7,
+          "belong1Id": 7,
+          "belong2Id": 20,
+          "belong3Id": 0,
+          "assetId": 320
+        },
+        {
+          "id": 359,
+          "publicTime": 1694768400,
+          "characterId": 14,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 3,
+          "belongId": 7,
+          "belong1Id": 7,
+          "belong2Id": 20,
+          "belong3Id": 0,
+          "assetId": 463
+        }
+      ]
+    },
+    "kakubi": {
+      "characterId": 2,
+      "generals": [
+        {
+          "id": 63,
+          "publicTime": 1521489600,
+          "characterId": 2,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 63
+        },
+        {
+          "id": 416,
+          "publicTime": 1729069200,
+          "characterId": 2,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 520
+        },
+        {
+          "id": 417,
+          "publicTime": 1729069200,
+          "characterId": 2,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 521
+        }
+      ]
+    },
+    "kakukai": {
+      "characterId": 203,
+      "generals": [
+        {
+          "id": 357,
+          "publicTime": 1690351200,
+          "characterId": 203,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 461
+        },
+        {
+          "id": 493,
+          "publicTime": 1762938000,
+          "characterId": 203,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 597
+        }
+      ]
+    },
+    "kakuun": {
+      "characterId": 226,
+      "generals": [
+        {
+          "id": 436,
+          "publicTime": 1735106400,
+          "characterId": 226,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 540
+        },
+        {
+          "id": 437,
+          "publicTime": 1735106400,
+          "characterId": 226,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 541
+        }
+      ]
+    },
+    "kanjou": {
+      "characterId": 184,
+      "generals": [
+        {
+          "id": 295,
+          "publicTime": 1661925600,
+          "characterId": 184,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 11,
+          "belong2Id": 25,
+          "belong3Id": 0,
+          "assetId": 398
+        },
+        {
+          "id": 296,
+          "publicTime": 1661925600,
+          "characterId": 184,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 11,
+          "belong2Id": 25,
+          "belong3Id": 0,
+          "assetId": 399
+        }
+      ]
+    },
+    "kanki": {
+      "characterId": 16,
+      "generals": [
+        {
+          "id": 103,
+          "publicTime": 1523217600,
+          "characterId": 16,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 10,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 103
+        },
+        {
+          "id": 131,
+          "publicTime": 1638262800,
+          "characterId": 16,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 10,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 127
+        }
+      ]
+    },
+    "kanmei": {
+      "characterId": 137,
+      "generals": [
+        {
+          "id": 221,
+          "publicTime": 1588050000,
+          "characterId": 137,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 17,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 298
+        },
+        {
+          "id": 307,
+          "publicTime": 1660726800,
+          "characterId": 137,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 17,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 410
+        }
+      ]
+    },
+    "kanou": {
+      "characterId": 15,
+      "generals": [
+        {
+          "id": 41,
+          "publicTime": 1451574000,
+          "characterId": 15,
+          "rarityId": 2,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 41
+        },
+        {
+          "id": 189,
+          "publicTime": 1559714400,
+          "characterId": 15,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 262
+        },
+        {
+          "id": 306,
+          "publicTime": 1660726800,
+          "characterId": 15,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 409
+        },
+        {
+          "id": 477,
+          "publicTime": 1752051600,
+          "characterId": 15,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 581
+        }
+      ]
+    },
+    "kanto": {
+      "characterId": 262,
+      "generals": [
+        {
+          "id": 551,
+          "publicTime": 1786525200,
+          "characterId": 262,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 655
+        },
+        {
+          "id": 552,
+          "publicTime": 1786525200,
+          "characterId": 262,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 656
+        }
+      ]
+    },
+    "karin": {
+      "characterId": 148,
+      "generals": [
+        {
+          "id": 232,
+          "publicTime": 1629871200,
+          "characterId": 148,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 15,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 309
+        },
+        {
+          "id": 589,
+          "publicTime": 1771394400,
+          "characterId": 148,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 15,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 693
+        }
+      ]
+    },
+    "karyoten": {
+      "characterId": 13,
+      "generals": [
+        {
+          "id": 38,
+          "publicTime": 1451574000,
+          "characterId": 13,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 38
+        },
+        {
+          "id": 94,
+          "publicTime": 1523304000,
+          "characterId": 13,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 94
+        },
+        {
+          "id": 122,
+          "publicTime": 1651039200,
+          "characterId": 13,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 118
+        }
+      ]
+    },
+    "katari": {
+      "characterId": 245,
+      "generals": [
+        {
+          "id": 510,
+          "publicTime": 1767193200,
+          "characterId": 245,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 22,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 614
+        },
+        {
+          "id": 511,
+          "publicTime": 1767193200,
+          "characterId": 245,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 22,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 615
+        }
+      ]
+    },
+    "kei": {
+      "characterId": 19,
+      "generals": [
+        {
+          "id": 23,
+          "publicTime": 1451574000,
+          "characterId": 19,
+          "rarityId": 1,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 23
+        }
+      ]
+    },
+    "keibin": {
+      "characterId": 125,
+      "generals": [
+        {
+          "id": 203,
+          "publicTime": 1574020799,
+          "characterId": 125,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 280
+        },
+        {
+          "id": 327,
+          "publicTime": 1676019600,
+          "characterId": 125,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 431
+        }
+      ]
+    },
+    "keisha": {
+      "characterId": 139,
+      "generals": [
+        {
+          "id": 223,
+          "publicTime": 1609318800,
+          "characterId": 139,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 300
+        },
+        {
+          "id": 313,
+          "publicTime": 1668589200,
+          "characterId": 139,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 416
+        }
+      ]
+    },
+    "kesshi": {
+      "characterId": 88,
+      "generals": [
+        {
+          "id": 10,
+          "publicTime": 1521489600,
+          "characterId": 88,
+          "rarityId": 1,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 10
+        }
+      ]
+    },
+    "kinmou": {
+      "characterId": 211,
+      "generals": [
+        {
+          "id": 385,
+          "publicTime": 1725008400,
+          "characterId": 211,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 2,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 489
+        },
+        {
+          "id": 386,
+          "publicTime": 1725008400,
+          "characterId": 211,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 2,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 490
+        }
+      ]
+    },
+    "kishou": {
+      "characterId": 218,
+      "generals": [
+        {
+          "id": 399,
+          "publicTime": 1716962400,
+          "characterId": 218,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 2,
+          "belongId": 8,
+          "belong1Id": 18,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 503
+        },
+        {
+          "id": 400,
+          "publicTime": 1716962400,
+          "characterId": 218,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 2,
+          "belongId": 8,
+          "belong1Id": 18,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 504
+        }
+      ]
+    },
+    "kisui": {
+      "characterId": 207,
+      "generals": [
+        {
+          "id": 369,
+          "publicTime": 1713938400,
+          "characterId": 207,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 18,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 473
+        },
+        {
+          "id": 370,
+          "publicTime": 1713938400,
+          "characterId": 207,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 18,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 474
+        }
+      ]
+    },
+    "kitari": {
+      "characterId": 237,
+      "generals": [
+        {
+          "id": 481,
+          "publicTime": 1756274400,
+          "characterId": 237,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 22,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 585
+        },
+        {
+          "id": 482,
+          "publicTime": 1756274400,
+          "characterId": 237,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 22,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 586
+        }
+      ]
+    },
+    "kokuou": {
+      "characterId": 26,
+      "generals": [
+        {
+          "id": 60,
+          "publicTime": 1524168000,
+          "characterId": 26,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 10,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 60
+        },
+        {
+          "id": 177,
+          "publicTime": 1544767200,
+          "characterId": 26,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 10,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 246
+        },
+        {
+          "id": 372,
+          "publicTime": 1710320400,
+          "characterId": 26,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 10,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 476
+        }
+      ]
+    },
+    "koshou": {
+      "characterId": 116,
+      "generals": [
+        {
+          "id": 155,
+          "publicTime": 1541880000,
+          "characterId": 116,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 4,
+          "belong1Id": 4,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 228
+        },
+        {
+          "id": 161,
+          "publicTime": 1632992400,
+          "characterId": 116,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 4,
+          "belong1Id": 4,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 234
+        }
+      ]
+    },
+    "kou": {
+      "characterId": 132,
+      "generals": [
+        {
+          "id": 214,
+          "publicTime": 1577649599,
+          "characterId": 132,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 291
+        },
+        {
+          "id": 338,
+          "publicTime": 1682488800,
+          "characterId": 132,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 442
+        }
+      ]
+    },
+    "kou2": {
+      "characterId": 23,
+      "generals": [
+        {
+          "id": 18,
+          "publicTime": 1451574000,
+          "characterId": 23,
+          "rarityId": 1,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 18
+        }
+      ]
+    },
+    "koujyun": {
+      "characterId": 257,
+      "generals": [
+        {
+          "id": 538,
+          "publicTime": 1782277800,
+          "characterId": 257,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 25,
+          "belong2Id": 28,
+          "belong3Id": 0,
+          "assetId": 642
+        },
+        {
+          "id": 539,
+          "publicTime": 1782277800,
+          "characterId": 257,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 25,
+          "belong2Id": 28,
+          "belong3Id": 0,
+          "assetId": 643
+        }
+      ]
+    },
+    "kouretsu": {
+      "characterId": 199,
+      "generals": [
+        {
+          "id": 343,
+          "publicTime": 1688115600,
+          "characterId": 199,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 447
+        },
+        {
+          "id": 344,
+          "publicTime": 1688115600,
+          "characterId": 199,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 448
+        }
+      ]
+    },
+    "kourigen": {
+      "characterId": 12,
+      "generals": [
+        {
+          "id": 50,
+          "publicTime": 1451574000,
+          "characterId": 12,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 3,
+          "belongId": 1,
+          "belong1Id": 1,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 50
+        },
+        {
+          "id": 201,
+          "publicTime": 1566158399,
+          "characterId": 12,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 3,
+          "belongId": 1,
+          "belong1Id": 1,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 278
+        },
+        {
+          "id": 414,
+          "publicTime": 1733907600,
+          "characterId": 12,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 3,
+          "belongId": 1,
+          "belong1Id": 1,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 518
+        }
+      ]
+    },
+    "kousonryu": {
+      "characterId": 22,
+      "generals": [
+        {
+          "id": 75,
+          "publicTime": 1525896000,
+          "characterId": 22,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 75
+        },
+        {
+          "id": 215,
+          "publicTime": 1579672800,
+          "characterId": 22,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 292
+        },
+        {
+          "id": 422,
+          "publicTime": 1715763600,
+          "characterId": 22,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 526
+        }
+      ]
+    },
+    "kouyoku": {
+      "characterId": 158,
+      "generals": [
+        {
+          "id": 246,
+          "publicTime": 1585839600,
+          "characterId": 158,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 15,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 323
+        },
+        {
+          "id": 247,
+          "publicTime": 1585839600,
+          "characterId": 158,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 15,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 324
+        },
+        {
+          "id": 332,
+          "publicTime": 1677045600,
+          "characterId": 158,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 15,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 436
+        }
+      ]
+    },
+    "kuzen": {
+      "characterId": 64,
+      "generals": [
+        {
+          "id": 22,
+          "publicTime": 1451574000,
+          "characterId": 64,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 12,
+          "belong1Id": 12,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 22
+        },
+        {
+          "id": 269,
+          "publicTime": 1613293200,
+          "characterId": 64,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 12,
+          "belong1Id": 12,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 373
+        }
+      ]
+    },
+    "kyomei": {
+      "characterId": 176,
+      "generals": [
+        {
+          "id": 275,
+          "publicTime": 1628499600,
+          "characterId": 176,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 16,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 378
+        },
+        {
+          "id": 276,
+          "publicTime": 1628499600,
+          "characterId": 176,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 16,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 379
+        },
+        {
+          "id": 380,
+          "publicTime": 1707901200,
+          "characterId": 176,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 16,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 484
+        }
+      ]
+    },
+    "kyou": {
+      "characterId": 84,
+      "generals": [
+        {
+          "id": 99,
+          "publicTime": 1528833600,
+          "characterId": 84,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 4,
+          "belong1Id": 4,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 99
+        },
+        {
+          "id": 127,
+          "publicTime": 1627452000,
+          "characterId": 84,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 4,
+          "belong1Id": 4,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 123
+        }
+      ]
+    },
+    "kyoubou": {
+      "characterId": 251,
+      "generals": [
+        {
+          "id": 524,
+          "publicTime": 1769577000,
+          "characterId": 251,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 17,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 628
+        },
+        {
+          "id": 525,
+          "publicTime": 1769577000,
+          "characterId": 251,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 17,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 629
+        }
+      ]
+    },
+    "kyouen": {
+      "characterId": 83,
+      "generals": [
+        {
+          "id": 78,
+          "publicTime": 1526760000,
+          "characterId": 83,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 3,
+          "belongId": 7,
+          "belong1Id": 7,
+          "belong2Id": 1,
+          "belong3Id": 20,
+          "assetId": 78
+        },
+        {
+          "id": 178,
+          "publicTime": 1549432800,
+          "characterId": 83,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 3,
+          "belongId": 7,
+          "belong1Id": 7,
+          "belong2Id": 1,
+          "belong3Id": 20,
+          "assetId": 251
+        },
+        {
+          "id": 278,
+          "publicTime": 1643619600,
+          "characterId": 83,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 3,
+          "belongId": 7,
+          "belong1Id": 7,
+          "belong2Id": 1,
+          "belong3Id": 20,
+          "assetId": 381
+        }
+      ]
+    },
+    "kyougai": {
+      "characterId": 18,
+      "generals": [
+        {
+          "id": 30,
+          "publicTime": 1451574000,
+          "characterId": 18,
+          "rarityId": 2,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 30
+        },
+        {
+          "id": 182,
+          "publicTime": 1551243600,
+          "characterId": 18,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 255
+        },
+        {
+          "id": 434,
+          "publicTime": 1732687200,
+          "characterId": 18,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 538
+        },
+        {
+          "id": 435,
+          "publicTime": 1732687200,
+          "characterId": 18,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 539
+        }
+      ]
+    },
+    "kyoukai": {
+      "characterId": 90,
+      "generals": [
+        {
+          "id": 36,
+          "publicTime": 1451574000,
+          "characterId": 90,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 16,
+          "belong3Id": 0,
+          "assetId": 36
+        },
+        {
+          "id": 105,
+          "publicTime": 1523304000,
+          "characterId": 90,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 16,
+          "belong3Id": 0,
+          "assetId": 105
+        },
+        {
+          "id": 133,
+          "publicTime": 1619589600,
+          "characterId": 90,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 16,
+          "belong3Id": 0,
+          "assetId": 129
+        }
+      ]
+    },
+    "kyourei": {
+      "characterId": 233,
+      "generals": [
+        {
+          "id": 466,
+          "publicTime": 1748412000,
+          "characterId": 233,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 570
+        },
+        {
+          "id": 467,
+          "publicTime": 1748412000,
+          "characterId": 233,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 571
+        },
+        {
+          "id": 468,
+          "publicTime": 1760518800,
+          "characterId": 233,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 572
+        }
+      ]
+    },
+    "kyoushou": {
+      "characterId": 89,
+      "generals": [
+        {
+          "id": 37,
+          "publicTime": 1536300000,
+          "characterId": 89,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 16,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 37
+        },
+        {
+          "id": 194,
+          "publicTime": 1568318399,
+          "characterId": 89,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 16,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 267
+        },
+        {
+          "id": 305,
+          "publicTime": 1657875600,
+          "characterId": 89,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 16,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 408
+        }
+      ]
+    },
+    "kyuukou": {
+      "characterId": 219,
+      "generals": [
+        {
+          "id": 403,
+          "publicTime": 1719824400,
+          "characterId": 219,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 11,
+          "belong2Id": 25,
+          "belong3Id": 0,
+          "assetId": 507
+        },
+        {
+          "id": 404,
+          "publicTime": 1736931600,
+          "characterId": 219,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 11,
+          "belong2Id": 25,
+          "belong3Id": 0,
+          "assetId": 508
+        },
+        {
+          "id": 405,
+          "publicTime": 1736931600,
+          "characterId": 219,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 11,
+          "belong2Id": 25,
+          "belong3Id": 0,
+          "assetId": 509
+        }
+      ]
+    },
+    "maki": {
+      "characterId": 59,
+      "generals": [
+        {
+          "id": 15,
+          "publicTime": 1451574000,
+          "characterId": 59,
+          "rarityId": 1,
+          "attributeId": 0,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 15
+        }
+      ]
+    },
+    "makou": {
+      "characterId": 255,
+      "generals": [
+        {
+          "id": 533,
+          "publicTime": 1777353000,
+          "characterId": 255,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 25,
+          "belong2Id": 28,
+          "belong3Id": 0,
+          "assetId": 637
+        },
+        {
+          "id": 534,
+          "publicTime": 1777353000,
+          "characterId": 255,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 25,
+          "belong2Id": 28,
+          "belong3Id": 0,
+          "assetId": 638
+        }
+      ]
+    },
+    "mangoku": {
+      "characterId": 60,
+      "generals": [
+        {
+          "id": 86,
+          "publicTime": 1524168000,
+          "characterId": 60,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 86
+        },
+        {
+          "id": 196,
+          "publicTime": 1559551200,
+          "characterId": 60,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 273
+        },
+        {
+          "id": 310,
+          "publicTime": 1663318800,
+          "characterId": 60,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 413
+        }
+      ]
+    },
+    "maron": {
+      "characterId": 120,
+      "generals": [
+        {
+          "id": 167,
+          "publicTime": 1548219600,
+          "characterId": 120,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 10,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 240
+        },
+        {
+          "id": 270,
+          "publicTime": 1618650000,
+          "characterId": 120,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 10,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 374
+        },
+        {
+          "id": 349,
+          "publicTime": 1702630800,
+          "characterId": 120,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 10,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 453
+        }
+      ]
+    },
+    "miyamoto": {
+      "characterId": 17,
+      "generals": [
+        {
+          "id": 19,
+          "publicTime": 1451574000,
+          "characterId": 17,
+          "rarityId": 1,
+          "attributeId": 3,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 19
+        }
+      ]
+    },
+    "moubu": {
+      "characterId": 62,
+      "generals": [
+        {
+          "id": 98,
+          "publicTime": 1451574000,
+          "characterId": 62,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 5,
+          "belong1Id": 5,
+          "belong2Id": 27,
+          "belong3Id": 0,
+          "assetId": 98
+        },
+        {
+          "id": 126,
+          "publicTime": 1625032800,
+          "characterId": 62,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 5,
+          "belong1Id": 5,
+          "belong2Id": 27,
+          "belong3Id": 0,
+          "assetId": 122
+        }
+      ]
+    },
+    "mougou": {
+      "characterId": 65,
+      "generals": [
+        {
+          "id": 91,
+          "publicTime": 1526760000,
+          "characterId": 65,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 91
+        },
+        {
+          "id": 119,
+          "publicTime": 1625032800,
+          "characterId": 65,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 115
+        }
+      ]
+    },
+    "mouki": {
+      "characterId": 61,
+      "generals": [
+        {
+          "id": 59,
+          "publicTime": 1451574000,
+          "characterId": 61,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 59
+        },
+        {
+          "id": 211,
+          "publicTime": 1600286399,
+          "characterId": 61,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 288
+        },
+        {
+          "id": 474,
+          "publicTime": 1747213200,
+          "characterId": 61,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 578
+        }
+      ]
+    },
+    "mouten": {
+      "characterId": 63,
+      "generals": [
+        {
+          "id": 77,
+          "publicTime": 1451574000,
+          "characterId": 63,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 12,
+          "belong1Id": 12,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 77
+        },
+        {
+          "id": 93,
+          "publicTime": 1523304000,
+          "characterId": 63,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 12,
+          "belong1Id": 12,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 93
+        },
+        {
+          "id": 121,
+          "publicTime": 1645507800,
+          "characterId": 63,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 12,
+          "belong1Id": 12,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 117
+        }
+      ]
+    },
+    "muta": {
+      "characterId": 6,
+      "generals": [
+        {
+          "id": 48,
+          "publicTime": 1451574000,
+          "characterId": 6,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 48
+        },
+        {
+          "id": 273,
+          "publicTime": 1620550800,
+          "characterId": 6,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 377
+        },
+        {
+          "id": 451,
+          "publicTime": 1741770000,
+          "characterId": 6,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 555
+        }
+      ]
+    },
+    "naki": {
+      "characterId": 204,
+      "generals": [
+        {
+          "id": 363,
+          "publicTime": 1709110800,
+          "characterId": 204,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 10,
+          "belong2Id": 8,
+          "belong3Id": 0,
+          "assetId": 467
+        },
+        {
+          "id": 364,
+          "publicTime": 1709110800,
+          "characterId": 204,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 10,
+          "belong2Id": 8,
+          "belong3Id": 0,
+          "assetId": 468
+        }
+      ]
+    },
+    "nakon": {
+      "characterId": 229,
+      "generals": [
+        {
+          "id": 452,
+          "publicTime": 1742968800,
+          "characterId": 229,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 5,
+          "belongId": 0,
+          "belong1Id": 21,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 556
+        },
+        {
+          "id": 453,
+          "publicTime": 1742968800,
+          "characterId": 229,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 5,
+          "belongId": 0,
+          "belong1Id": 21,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 557
+        },
+        {
+          "id": 454,
+          "publicTime": 1755075600,
+          "characterId": 229,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 5,
+          "belongId": 0,
+          "belong1Id": 21,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 558
+        }
+      ]
+    },
+    "ogiko": {
+      "characterId": 171,
+      "generals": [
+        {
+          "id": 262,
+          "publicTime": 1629871200,
+          "characterId": 171,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 10,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 339
+        },
+        {
+          "id": 263,
+          "publicTime": 1629871200,
+          "characterId": 171,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 10,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 340
+        },
+        {
+          "id": 425,
+          "publicTime": 1721800800,
+          "characterId": 171,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 10,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 529
+        }
+      ]
+    },
+    "ordo": {
+      "characterId": 140,
+      "generals": [
+        {
+          "id": 224,
+          "publicTime": 1596607200,
+          "characterId": 140,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 7,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 301
+        },
+        {
+          "id": 317,
+          "publicTime": 1671008400,
+          "characterId": 140,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 7,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 420
+        }
+      ]
+    },
+    "otaji": {
+      "characterId": 231,
+      "generals": [
+        {
+          "id": 460,
+          "publicTime": 1748412000,
+          "characterId": 231,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 7,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 564
+        },
+        {
+          "id": 461,
+          "publicTime": 1748412000,
+          "characterId": 231,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 7,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 565
+        },
+        {
+          "id": 462,
+          "publicTime": 1760518800,
+          "characterId": 231,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 7,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 566
+        }
+      ]
+    },
+    "ouhon": {
+      "characterId": 11,
+      "generals": [
+        {
+          "id": 82,
+          "publicTime": 1451574000,
+          "characterId": 11,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 11,
+          "belong1Id": 11,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 82
+        },
+        {
+          "id": 88,
+          "publicTime": 1523304000,
+          "characterId": 11,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 11,
+          "belong1Id": 11,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 88
+        },
+        {
+          "id": 116,
+          "publicTime": 1645507800,
+          "characterId": 11,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 11,
+          "belong1Id": 11,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 112
+        }
+      ]
+    },
+    "ouken": {
+      "characterId": 146,
+      "generals": [
+        {
+          "id": 230,
+          "publicTime": 1603863000,
+          "characterId": 146,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 6,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 307
+        },
+        {
+          "id": 348,
+          "publicTime": 1692176400,
+          "characterId": 146,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 6,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 452
+        }
+      ]
+    },
+    "ouki": {
+      "characterId": 9,
+      "generals": [
+        {
+          "id": 97,
+          "publicTime": 1451574000,
+          "characterId": 9,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 4,
+          "belong1Id": 4,
+          "belong2Id": 9,
+          "belong3Id": 0,
+          "assetId": 97
+        },
+        {
+          "id": 125,
+          "publicTime": 1627452000,
+          "characterId": 9,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 4,
+          "belong1Id": 4,
+          "belong2Id": 9,
+          "belong3Id": 0,
+          "assetId": 121
+        }
+      ]
+    },
+    "oukotsu": {
+      "characterId": 115,
+      "generals": [
+        {
+          "id": 154,
+          "publicTime": 1539201600,
+          "characterId": 115,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 4,
+          "belong1Id": 4,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 227
+        },
+        {
+          "id": 160,
+          "publicTime": 1638262800,
+          "characterId": 115,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 4,
+          "belong1Id": 4,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 233
+        }
+      ]
+    },
+    "ousen": {
+      "characterId": 10,
+      "generals": [
+        {
+          "id": 92,
+          "publicTime": 1530216000,
+          "characterId": 10,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 25,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 92
+        },
+        {
+          "id": 120,
+          "publicTime": 1678870800,
+          "characterId": 10,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 25,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 116
+        }
+      ]
+    },
+    "pam": {
+      "characterId": 241,
+      "generals": [
+        {
+          "id": 501,
+          "publicTime": 1775034000,
+          "characterId": 241,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 24,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 605
+        },
+        {
+          "id": 502,
+          "publicTime": 1775034000,
+          "characterId": 241,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 24,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 606
+        }
+      ]
+    },
+    "queen_biki": {
+      "characterId": 122,
+      "generals": [
+        {
+          "id": 173,
+          "publicTime": 1543176000,
+          "characterId": 122,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 243
+        },
+        {
+          "id": 174,
+          "publicTime": 1617170400,
+          "characterId": 122,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 244
+        }
+      ]
+    },
+    "raido": {
+      "characterId": 69,
+      "generals": [
+        {
+          "id": 44,
+          "publicTime": 1451574000,
+          "characterId": 69,
+          "rarityId": 2,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 10,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 44
+        },
+        {
+          "id": 195,
+          "publicTime": 1557736800,
+          "characterId": 69,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 10,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 268
+        },
+        {
+          "id": 376,
+          "publicTime": 1708495200,
+          "characterId": 69,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 10,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 480
+        },
+        {
+          "id": 377,
+          "publicTime": 1708495200,
+          "characterId": 69,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 10,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 481
+        }
+      ]
+    },
+    "raiki": {
+      "characterId": 134,
+      "generals": [
+        {
+          "id": 218,
+          "publicTime": 1779858600,
+          "characterId": 134,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 27,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 295
+        },
+        {
+          "id": 594,
+          "publicTime": 1779858600,
+          "characterId": 134,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 27,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 698
+        }
+      ]
+    },
+    "ramauji": {
+      "characterId": 144,
+      "generals": [
+        {
+          "id": 228,
+          "publicTime": 1757494800,
+          "characterId": 144,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 305
+        },
+        {
+          "id": 483,
+          "publicTime": 1757494800,
+          "characterId": 144,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 587
+        },
+        {
+          "id": 484,
+          "publicTime": 1773219600,
+          "characterId": 144,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 588
+        }
+      ]
+    },
+    "ranbihaku": {
+      "characterId": 183,
+      "generals": [
+        {
+          "id": 293,
+          "publicTime": 1656579600,
+          "characterId": 183,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 396
+        },
+        {
+          "id": 294,
+          "publicTime": 1656579600,
+          "characterId": 183,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 397
+        }
+      ]
+    },
+    "rankai": {
+      "characterId": 7,
+      "generals": [
+        {
+          "id": 55,
+          "publicTime": 1525896000,
+          "characterId": 7,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 55
+        },
+        {
+          "id": 164,
+          "publicTime": 1615712400,
+          "characterId": 7,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 237
+        },
+        {
+          "id": 165,
+          "publicTime": 1705482000,
+          "characterId": 7,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 238
+        }
+      ]
+    },
+    "reiou": {
+      "characterId": 181,
+      "generals": [
+        {
+          "id": 285,
+          "publicTime": 1653987600,
+          "characterId": 181,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 6,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 388
+        },
+        {
+          "id": 286,
+          "publicTime": 1653987600,
+          "characterId": 181,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 6,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 389
+        }
+      ]
+    },
+    "renpa": {
+      "characterId": 78,
+      "generals": [
+        {
+          "id": 104,
+          "publicTime": 1532808000,
+          "characterId": 78,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 3,
+          "belongId": 2,
+          "belong1Id": 2,
+          "belong2Id": 20,
+          "belong3Id": 0,
+          "assetId": 104
+        },
+        {
+          "id": 132,
+          "publicTime": 1613973600,
+          "characterId": 78,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 3,
+          "belongId": 2,
+          "belong1Id": 2,
+          "belong2Id": 20,
+          "belong3Id": 0,
+          "assetId": 128
+        }
+      ]
+    },
+    "riboku": {
+      "characterId": 72,
+      "generals": [
+        {
+          "id": 102,
+          "publicTime": 1542571200,
+          "characterId": 72,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 2,
+          "belongId": 3,
+          "belong1Id": 3,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 102
+        },
+        {
+          "id": 130,
+          "publicTime": 1636534800,
+          "characterId": 72,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 2,
+          "belongId": 3,
+          "belong1Id": 3,
+          "belong2Id": 19,
+          "belong3Id": 0,
+          "assetId": 126
+        }
+      ]
+    },
+    "rien": {
+      "characterId": 198,
+      "generals": [
+        {
+          "id": 340,
+          "publicTime": 1701237600,
+          "characterId": 198,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 444
+        },
+        {
+          "id": 341,
+          "publicTime": 1701237600,
+          "characterId": 198,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 445
+        }
+      ]
+    },
+    "rihaku": {
+      "characterId": 71,
+      "generals": [
+        {
+          "id": 76,
+          "publicTime": 1522440000,
+          "characterId": 71,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 76
+        },
+        {
+          "id": 204,
+          "publicTime": 1574625599,
+          "characterId": 71,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 281
+        },
+        {
+          "id": 413,
+          "publicTime": 1723626000,
+          "characterId": 71,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 517
+        }
+      ]
+    },
+    "rikusen": {
+      "characterId": 119,
+      "generals": [
+        {
+          "id": 166,
+          "publicTime": 1550952000,
+          "characterId": 119,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 12,
+          "belong1Id": 12,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 239
+        },
+        {
+          "id": 352,
+          "publicTime": 1681462800,
+          "characterId": 119,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 12,
+          "belong1Id": 12,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 456
+        }
+      ]
+    },
+    "rinbou": {
+      "characterId": 77,
+      "generals": [
+        {
+          "id": 40,
+          "publicTime": 1533758400,
+          "characterId": 77,
+          "rarityId": 2,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 40
+        },
+        {
+          "id": 187,
+          "publicTime": 1554713700,
+          "characterId": 77,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 260
+        },
+        {
+          "id": 315,
+          "publicTime": 1667984400,
+          "characterId": 77,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 418
+        },
+        {
+          "id": 476,
+          "publicTime": 1749632400,
+          "characterId": 77,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 580
+        }
+      ]
+    },
+    "rinbukun": {
+      "characterId": 138,
+      "generals": [
+        {
+          "id": 222,
+          "publicTime": 1599026400,
+          "characterId": 138,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 299
+        },
+        {
+          "id": 308,
+          "publicTime": 1660726800,
+          "characterId": 138,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 411
+        }
+      ]
+    },
+    "ringyoku": {
+      "characterId": 208,
+      "generals": [
+        {
+          "id": 374,
+          "publicTime": 1706680800,
+          "characterId": 208,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 478
+        },
+        {
+          "id": 375,
+          "publicTime": 1706680800,
+          "characterId": 208,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 479
+        }
+      ]
+    },
+    "rinko": {
+      "characterId": 76,
+      "generals": [
+        {
+          "id": 106,
+          "publicTime": 1531425600,
+          "characterId": 76,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 3,
+          "belongId": 7,
+          "belong1Id": 7,
+          "belong2Id": 20,
+          "belong3Id": 0,
+          "assetId": 106
+        },
+        {
+          "id": 134,
+          "publicTime": 1643619600,
+          "characterId": 76,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 3,
+          "belongId": 7,
+          "belong1Id": 7,
+          "belong2Id": 20,
+          "belong3Id": 0,
+          "assetId": 130
+        }
+      ]
+    },
+    "rishi": {
+      "characterId": 70,
+      "generals": [
+        {
+          "id": 47,
+          "publicTime": 1524168000,
+          "characterId": 70,
+          "rarityId": 2,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 5,
+          "belong1Id": 5,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 47
+        },
+        {
+          "id": 494,
+          "publicTime": 1762938000,
+          "characterId": 70,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 5,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 598
+        },
+        {
+          "id": 495,
+          "publicTime": 1762938000,
+          "characterId": 70,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 5,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 599
+        },
+        {
+          "id": 496,
+          "publicTime": 1762938000,
+          "characterId": 70,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 5,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 600
+        }
+      ]
+    },
+    "robin": {
+      "characterId": 227,
+      "generals": [
+        {
+          "id": 438,
+          "publicTime": 1738130400,
+          "characterId": 227,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 10,
+          "belong2Id": 8,
+          "belong3Id": 0,
+          "assetId": 542
+        },
+        {
+          "id": 439,
+          "publicTime": 1738130400,
+          "characterId": 227,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 10,
+          "belong2Id": 8,
+          "belong3Id": 0,
+          "assetId": 543
+        }
+      ]
+    },
+    "roen": {
+      "characterId": 80,
+      "generals": [
+        {
+          "id": 24,
+          "publicTime": 1451574000,
+          "characterId": 80,
+          "rarityId": 2,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 24
+        }
+      ]
+    },
+    "rokin": {
+      "characterId": 248,
+      "generals": [
+        {
+          "id": 516,
+          "publicTime": 1762333200,
+          "characterId": 248,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 620
+        },
+        {
+          "id": 517,
+          "publicTime": 1762333200,
+          "characterId": 248,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 621
+        },
+        {
+          "id": 518,
+          "publicTime": 1781082000,
+          "characterId": 248,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 622
+        }
+      ]
+    },
+    "rokuomi": {
+      "characterId": 81,
+      "generals": [
+        {
+          "id": 61,
+          "publicTime": 1522440000,
+          "characterId": 81,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 61
+        },
+        {
+          "id": 175,
+          "publicTime": 1543827000,
+          "characterId": 81,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 245
+        },
+        {
+          "id": 384,
+          "publicTime": 1747213200,
+          "characterId": 81,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 488
+        }
+      ]
+    },
+    "rouai": {
+      "characterId": 200,
+      "generals": [
+        {
+          "id": 346,
+          "publicTime": 1690351200,
+          "characterId": 200,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 10,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 450
+        },
+        {
+          "id": 347,
+          "publicTime": 1690351200,
+          "characterId": 200,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 10,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 451
+        }
+      ]
+    },
+    "rui": {
+      "characterId": 179,
+      "generals": [
+        {
+          "id": 281,
+          "publicTime": 1648717200,
+          "characterId": 179,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 384
+        },
+        {
+          "id": 282,
+          "publicTime": 1648717200,
+          "characterId": 179,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 385
+        }
+      ]
+    },
+    "ryofui": {
+      "characterId": 79,
+      "generals": [
+        {
+          "id": 108,
+          "publicTime": 1451574000,
+          "characterId": 79,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 108
+        },
+        {
+          "id": 136,
+          "publicTime": 1635498000,
+          "characterId": 79,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 132
+        }
+      ]
+    },
+    "ryuukoku": {
+      "characterId": 73,
+      "generals": [
+        {
+          "id": 39,
+          "publicTime": 1520625600,
+          "characterId": 73,
+          "rarityId": 2,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 39
+        },
+        {
+          "id": 188,
+          "publicTime": 1559714400,
+          "characterId": 73,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 261
+        },
+        {
+          "id": 309,
+          "publicTime": 1666170000,
+          "characterId": 73,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 412
+        },
+        {
+          "id": 475,
+          "publicTime": 1749632400,
+          "characterId": 73,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 579
+        }
+      ]
+    },
+    "ryuusen": {
+      "characterId": 74,
+      "generals": [
+        {
+          "id": 67,
+          "publicTime": 1451574000,
+          "characterId": 74,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 67
+        },
+        {
+          "id": 185,
+          "publicTime": 1557736800,
+          "characterId": 74,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 258
+        },
+        {
+          "id": 373,
+          "publicTime": 1727254800,
+          "characterId": 74,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 477
+        }
+      ]
+    },
+    "ryuuto": {
+      "characterId": 213,
+      "generals": [
+        {
+          "id": 389,
+          "publicTime": 1719565200,
+          "characterId": 213,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 2,
+          "belongId": 8,
+          "belong1Id": 18,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 493
+        },
+        {
+          "id": 390,
+          "publicTime": 1719565200,
+          "characterId": 213,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 2,
+          "belongId": 8,
+          "belong1Id": 18,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 494
+        }
+      ]
+    },
+    "ryuyu": {
+      "characterId": 75,
+      "generals": [
+        {
+          "id": 32,
+          "publicTime": 1687932000,
+          "characterId": 75,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 430
+        }
+      ]
+    },
+    "saizatsu": {
+      "characterId": 92,
+      "generals": [
+        {
+          "id": 46,
+          "publicTime": 1451574000,
+          "characterId": 92,
+          "rarityId": 2,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 5,
+          "belong1Id": 5,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 46
+        }
+      ]
+    },
+    "saji": {
+      "characterId": 27,
+      "generals": [
+        {
+          "id": 34,
+          "publicTime": 1451574000,
+          "characterId": 27,
+          "rarityId": 2,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 34
+        }
+      ]
+    },
+    "seikai": {
+      "characterId": 147,
+      "generals": [
+        {
+          "id": 231,
+          "publicTime": 1593583200,
+          "characterId": 147,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 5,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 21,
+          "belong3Id": 0,
+          "assetId": 308
+        },
+        {
+          "id": 312,
+          "publicTime": 1665738000,
+          "characterId": 147,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 5,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 21,
+          "belong3Id": 0,
+          "assetId": 415
+        }
+      ]
+    },
+    "seikyou": {
+      "characterId": 40,
+      "generals": [
+        {
+          "id": 69,
+          "publicTime": 1546804800,
+          "characterId": 40,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 69
+        },
+        {
+          "id": 111,
+          "publicTime": 1451574000,
+          "characterId": 40,
+          "rarityId": 2,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 159
+        },
+        {
+          "id": 287,
+          "publicTime": 1649062800,
+          "characterId": 40,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 390
+        }
+      ]
+    },
+    "seki": {
+      "characterId": 41,
+      "generals": [
+        {
+          "id": 27,
+          "publicTime": 1451574000,
+          "characterId": 41,
+          "rarityId": 2,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 27
+        },
+        {
+          "id": 199,
+          "publicTime": 1563343200,
+          "characterId": 41,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 276
+        },
+        {
+          "id": 590,
+          "publicTime": 1779858600,
+          "characterId": 41,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 694
+        },
+        {
+          "id": 591,
+          "publicTime": 1779858600,
+          "characterId": 41,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 695
+        }
+      ]
+    },
+    "shibasaku": {
+      "characterId": 117,
+      "generals": [
+        {
+          "id": 156,
+          "publicTime": 1536868800,
+          "characterId": 117,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 4,
+          "belong1Id": 4,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 229
+        },
+        {
+          "id": 162,
+          "publicTime": 1635498000,
+          "characterId": 117,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 4,
+          "belong1Id": 4,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 235
+        }
+      ]
+    },
+    "shihaku": {
+      "characterId": 182,
+      "generals": [
+        {
+          "id": 289,
+          "publicTime": 1659085200,
+          "characterId": 182,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 6,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 392
+        },
+        {
+          "id": 290,
+          "publicTime": 1659085200,
+          "characterId": 182,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 6,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 393
+        }
+      ]
+    },
+    "shika": {
+      "characterId": 29,
+      "generals": [
+        {
+          "id": 71,
+          "publicTime": 1524168000,
+          "characterId": 29,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 71
+        },
+        {
+          "id": 250,
+          "publicTime": 1594583999,
+          "characterId": 29,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 327
+        },
+        {
+          "id": 345,
+          "publicTime": 1689325200,
+          "characterId": 29,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 449
+        }
+      ]
+    },
+    "shikika": {
+      "characterId": 186,
+      "generals": [
+        {
+          "id": 299,
+          "publicTime": 1667206800,
+          "characterId": 186,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 402
+        },
+        {
+          "id": 300,
+          "publicTime": 1667206800,
+          "characterId": 186,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 403
+        }
+      ]
+    },
+    "shin": {
+      "characterId": 38,
+      "generals": [
+        {
+          "id": 28,
+          "publicTime": 1451574000,
+          "characterId": 38,
+          "rarityId": 2,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 28
+        },
+        {
+          "id": 72,
+          "publicTime": 1451574000,
+          "characterId": 38,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 72
+        },
+        {
+          "id": 107,
+          "publicTime": 1451574000,
+          "characterId": 38,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 107
+        },
+        {
+          "id": 135,
+          "publicTime": 1645507800,
+          "characterId": 38,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 131
+        }
+      ]
+    },
+    "shinseijou": {
+      "characterId": 136,
+      "generals": [
+        {
+          "id": 220,
+          "publicTime": 1606284000,
+          "characterId": 136,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 297
+        },
+        {
+          "id": 320,
+          "publicTime": 1673859600,
+          "characterId": 136,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 423
+        }
+      ]
+    },
+    "shishi": {
+      "characterId": 91,
+      "generals": [
+        {
+          "id": 20,
+          "publicTime": 1451574000,
+          "characterId": 91,
+          "rarityId": 2,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 20
+        }
+      ]
+    },
+    "sho": {
+      "characterId": 35,
+      "generals": [
+        {
+          "id": 83,
+          "publicTime": 1532808000,
+          "characterId": 35,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 83
+        },
+        {
+          "id": 179,
+          "publicTime": 1545804000,
+          "characterId": 35,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 252
+        },
+        {
+          "id": 279,
+          "publicTime": 1640962800,
+          "characterId": 35,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 382
+        }
+      ]
+    },
+    "shoubunkun": {
+      "characterId": 33,
+      "generals": [
+        {
+          "id": 110,
+          "publicTime": 1451574000,
+          "characterId": 33,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 110
+        },
+        {
+          "id": 138,
+          "publicTime": 1630400400,
+          "characterId": 33,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 134
+        }
+      ]
+    },
+    "shouheikun": {
+      "characterId": 34,
+      "generals": [
+        {
+          "id": 109,
+          "publicTime": 1525896000,
+          "characterId": 34,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 5,
+          "belong1Id": 5,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 109
+        },
+        {
+          "id": 137,
+          "publicTime": 1630400400,
+          "characterId": 34,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 5,
+          "belong1Id": 5,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 133
+        }
+      ]
+    },
+    "shoukaku": {
+      "characterId": 32,
+      "generals": [
+        {
+          "id": 58,
+          "publicTime": 1451574000,
+          "characterId": 32,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 58
+        },
+        {
+          "id": 442,
+          "publicTime": 1739350800,
+          "characterId": 32,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 546
+        },
+        {
+          "id": 443,
+          "publicTime": 1739350800,
+          "characterId": 32,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 547
+        }
+      ]
+    },
+    "shoumou": {
+      "characterId": 37,
+      "generals": [
+        {
+          "id": 74,
+          "publicTime": 1521489600,
+          "characterId": 37,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 74
+        },
+        {
+          "id": 205,
+          "publicTime": 1574625599,
+          "characterId": 37,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 282
+        },
+        {
+          "id": 360,
+          "publicTime": 1723626000,
+          "characterId": 37,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 464
+        }
+      ]
+    },
+    "shousa": {
+      "characterId": 36,
+      "generals": [
+        {
+          "id": 53,
+          "publicTime": 1451574000,
+          "characterId": 36,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 53
+        },
+        {
+          "id": 191,
+          "publicTime": 1563343200,
+          "characterId": 36,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 264
+        },
+        {
+          "id": 314,
+          "publicTime": 1687932000,
+          "characterId": 36,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 417
+        }
+      ]
+    },
+    "shoutaku": {
+      "characterId": 220,
+      "generals": [
+        {
+          "id": 406,
+          "publicTime": 1719824400,
+          "characterId": 220,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 11,
+          "belong2Id": 25,
+          "belong3Id": 0,
+          "assetId": 510
+        },
+        {
+          "id": 407,
+          "publicTime": 1736931600,
+          "characterId": 220,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 11,
+          "belong2Id": 25,
+          "belong3Id": 0,
+          "assetId": 511
+        },
+        {
+          "id": 408,
+          "publicTime": 1736931600,
+          "characterId": 220,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 11,
+          "belong2Id": 25,
+          "belong3Id": 0,
+          "assetId": 512
+        }
+      ]
+    },
+    "shuki": {
+      "characterId": 30,
+      "generals": [
+        {
+          "id": 14,
+          "publicTime": 1451574000,
+          "characterId": 30,
+          "rarityId": 1,
+          "attributeId": 0,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 14
+        }
+      ]
+    },
+    "shunmen": {
+      "characterId": 3,
+      "generals": [
+        {
+          "id": 49,
+          "publicTime": 1520625600,
+          "characterId": 3,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 49
+        },
+        {
+          "id": 181,
+          "publicTime": 1551848400,
+          "characterId": 3,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 254
+        },
+        {
+          "id": 486,
+          "publicTime": 1757494800,
+          "characterId": 3,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 590
+        }
+      ]
+    },
+    "shunpeikun": {
+      "characterId": 222,
+      "generals": [
+        {
+          "id": 426,
+          "publicTime": 1730268000,
+          "characterId": 222,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 530
+        },
+        {
+          "id": 427,
+          "publicTime": 1730268000,
+          "characterId": 222,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 531
+        }
+      ]
+    },
+    "shunshinkun": {
+      "characterId": 121,
+      "generals": [
+        {
+          "id": 168,
+          "publicTime": 1540756800,
+          "characterId": 121,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 241
+        },
+        {
+          "id": 274,
+          "publicTime": 1619589600,
+          "characterId": 121,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 4,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 242
+        }
+      ]
+    },
+    "shunsuiju": {
+      "characterId": 212,
+      "generals": [
+        {
+          "id": 387,
+          "publicTime": 1735657200,
+          "characterId": 212,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 491
+        },
+        {
+          "id": 388,
+          "publicTime": 1735657200,
+          "characterId": 212,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 2,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 492
+        }
+      ]
+    },
+    "sosui": {
+      "characterId": 42,
+      "generals": [
+        {
+          "id": 66,
+          "publicTime": 1451574000,
+          "characterId": 42,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 66
+        },
+        {
+          "id": 197,
+          "publicTime": 1563343200,
+          "characterId": 42,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 274
+        },
+        {
+          "id": 311,
+          "publicTime": 1664344800,
+          "characterId": 42,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 414
+        }
+      ]
+    },
+    "sougen": {
+      "characterId": 264,
+      "generals": [
+        {
+          "id": 557,
+          "publicTime": 1774415400,
+          "characterId": 264,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 1,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 661
+        },
+        {
+          "id": 558,
+          "publicTime": 1774415400,
+          "characterId": 264,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 1,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 662
+        }
+      ]
+    },
+    "soujin": {
+      "characterId": 261,
+      "generals": [
+        {
+          "id": 549,
+          "publicTime": 1785315600,
+          "characterId": 261,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 653
+        },
+        {
+          "id": 550,
+          "publicTime": 1785315600,
+          "characterId": 261,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 654
+        }
+      ]
+    },
+    "soutan": {
+      "characterId": 258,
+      "generals": [
+        {
+          "id": 541,
+          "publicTime": 1787721000,
+          "characterId": 258,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 645
+        },
+        {
+          "id": 542,
+          "publicTime": 1787721000,
+          "characterId": 258,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 646
+        }
+      ]
+    },
+    "suugen": {
+      "characterId": 39,
+      "generals": [
+        {
+          "id": 33,
+          "publicTime": 1451574000,
+          "characterId": 39,
+          "rarityId": 2,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 33
+        },
+        {
+          "id": 183,
+          "publicTime": 1551848400,
+          "characterId": 39,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 256
+        },
+        {
+          "id": 316,
+          "publicTime": 1729069200,
+          "characterId": 39,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 419
+        },
+        {
+          "id": 415,
+          "publicTime": 1729069200,
+          "characterId": 39,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 519
+        }
+      ]
+    },
+    "taijifu": {
+      "characterId": 4,
+      "generals": [
+        {
+          "id": 56,
+          "publicTime": 1524168000,
+          "characterId": 4,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 56
+        },
+        {
+          "id": 184,
+          "publicTime": 1554108900,
+          "characterId": 4,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 257
+        },
+        {
+          "id": 485,
+          "publicTime": 1757494800,
+          "characterId": 4,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 589
+        }
+      ]
+    },
+    "tairoji": {
+      "characterId": 205,
+      "generals": [
+        {
+          "id": 365,
+          "publicTime": 1704034800,
+          "characterId": 205,
+          "rarityId": 4,
+          "attributeId": 3,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 6,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 469
+        },
+        {
+          "id": 366,
+          "publicTime": 1704034800,
+          "characterId": 205,
+          "rarityId": 5,
+          "attributeId": 3,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 6,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 470
+        }
+      ]
+    },
+    "takukei": {
+      "characterId": 87,
+      "generals": [
+        {
+          "id": 31,
+          "publicTime": 1451574000,
+          "characterId": 87,
+          "rarityId": 2,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 31
+        },
+        {
+          "id": 198,
+          "publicTime": 1563343200,
+          "characterId": 87,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 275
+        },
+        {
+          "id": 440,
+          "publicTime": 1738130400,
+          "characterId": 87,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 544
+        },
+        {
+          "id": 441,
+          "publicTime": 1738130400,
+          "characterId": 87,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 545
+        }
+      ]
+    },
+    "toji": {
+      "characterId": 142,
+      "generals": [
+        {
+          "id": 226,
+          "publicTime": 1759914000,
+          "characterId": 142,
+          "rarityId": 3,
+          "attributeId": 2,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 303
+        },
+        {
+          "id": 487,
+          "publicTime": 1759914000,
+          "characterId": 142,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 591
+        },
+        {
+          "id": 488,
+          "publicTime": 1776243600,
+          "characterId": 142,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 592
+        }
+      ]
+    },
+    "tonkaku": {
+      "characterId": 259,
+      "generals": [
+        {
+          "id": 543,
+          "publicTime": 1783501200,
+          "characterId": 259,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 647
+        },
+        {
+          "id": 544,
+          "publicTime": 1783501200,
+          "characterId": 259,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 648
+        }
+      ]
+    },
+    "tonkoku": {
+      "characterId": 260,
+      "generals": [
+        {
+          "id": 546,
+          "publicTime": 1783501200,
+          "characterId": 260,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 650
+        },
+        {
+          "id": 547,
+          "publicTime": 1783501200,
+          "characterId": 260,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 651
+        }
+      ]
+    },
+    "tou": {
+      "characterId": 46,
+      "generals": [
+        {
+          "id": 101,
+          "publicTime": 1451574000,
+          "characterId": 46,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 101
+        },
+        {
+          "id": 129,
+          "publicTime": 1617170400,
+          "characterId": 46,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 1,
+          "belongId": 9,
+          "belong1Id": 9,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 125
+        }
+      ]
+    },
+    "toumi": {
+      "characterId": 217,
+      "generals": [
+        {
+          "id": 397,
+          "publicTime": 1708495200,
+          "characterId": 217,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 501
+        },
+        {
+          "id": 398,
+          "publicTime": 1739944800,
+          "characterId": 217,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 502
+        }
+      ]
+    },
+    "wategi": {
+      "characterId": 190,
+      "generals": [
+        {
+          "id": 322,
+          "publicTime": 1675155600,
+          "characterId": 190,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 10,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 425
+        },
+        {
+          "id": 323,
+          "publicTime": 1675155600,
+          "characterId": 190,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 10,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 426
+        }
+      ]
+    },
+    "yotanwa": {
+      "characterId": 68,
+      "generals": [
+        {
+          "id": 89,
+          "publicTime": 1521489600,
+          "characterId": 68,
+          "rarityId": 4,
+          "attributeId": 1,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 89
+        },
+        {
+          "id": 117,
+          "publicTime": 1613973600,
+          "characterId": 68,
+          "rarityId": 5,
+          "attributeId": 1,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 113
+        },
+        {
+          "id": 139,
+          "publicTime": 1521489600,
+          "characterId": 68,
+          "rarityId": 3,
+          "attributeId": 1,
+          "countryId": 8,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 219
+        }
+      ]
+    },
+    "you": {
+      "characterId": 131,
+      "generals": [
+        {
+          "id": 213,
+          "publicTime": 1577649599,
+          "characterId": 131,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 290
+        },
+        {
+          "id": 339,
+          "publicTime": 1682488800,
+          "characterId": 131,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 443
+        }
+      ]
+    },
+    "youka": {
+      "characterId": 238,
+      "generals": [
+        {
+          "id": 491,
+          "publicTime": 1761728400,
+          "characterId": 238,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 595
+        },
+        {
+          "id": 492,
+          "publicTime": 1761728400,
+          "characterId": 238,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 596
+        }
+      ]
+    },
+    "yugi": {
+      "characterId": 129,
+      "generals": [
+        {
+          "id": 209,
+          "publicTime": 1702134000,
+          "characterId": 129,
+          "rarityId": 3,
+          "attributeId": 3,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 8,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 286
+        }
+      ]
+    },
+    "yukii": {
+      "characterId": 174,
+      "generals": [
+        {
+          "id": 361,
+          "publicTime": 1698656400,
+          "characterId": 174,
+          "rarityId": 4,
+          "attributeId": 2,
+          "countryId": 7,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 465
+        },
+        {
+          "id": 362,
+          "publicTime": 1698656400,
+          "characterId": 174,
+          "rarityId": 5,
+          "attributeId": 2,
+          "countryId": 7,
+          "belongId": 0,
+          "belong1Id": 19,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 466
+        }
+      ]
+    },
+    "yuri": {
+      "characterId": 228,
+      "generals": [
+        {
+          "id": 444,
+          "publicTime": 1739944800,
+          "characterId": 228,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 548
+        },
+        {
+          "id": 445,
+          "publicTime": 1739944800,
+          "characterId": 228,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 549
+        }
+      ]
+    },
+    "yuuren": {
+      "characterId": 66,
+      "generals": [
+        {
+          "id": 45,
+          "publicTime": 1536300000,
+          "characterId": 66,
+          "rarityId": 3,
+          "attributeId": 0,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 45
+        },
+        {
+          "id": 193,
+          "publicTime": 1568318399,
+          "characterId": 66,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 3,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 266
+        },
+        {
+          "id": 421,
+          "publicTime": 1731488400,
+          "characterId": 66,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 3,
+          "belongId": 8,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 525
+        }
+      ]
+    },
+    "zenou": {
+      "characterId": 206,
+      "generals": [
+        {
+          "id": 367,
+          "publicTime": 1704034800,
+          "characterId": 206,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 471
+        },
+        {
+          "id": 368,
+          "publicTime": 1704034800,
+          "characterId": 206,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 1,
+          "belongId": 0,
+          "belong1Id": 10,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 472
+        }
+      ]
+    }
+  }
+}

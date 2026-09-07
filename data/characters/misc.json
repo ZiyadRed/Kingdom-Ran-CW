@@ -179,7 +179,7 @@
     "name_en": "Entei",
     "name_jp": "燕呈",
     "country": "qin",
-    "rarity": "NR",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Yellow Tiger]",
@@ -249,7 +249,7 @@
     "name_en": "Bamyu",
     "name_jp": "バミュウ",
     "country": "chu",
-    "rarity": "NR",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Weak General Flash [Red Tiger]",
@@ -376,8 +376,8 @@
     "id": "kesshi",
     "name_en": "Ketsushi",
     "name_jp": "竭氏",
-    "country": "zhao",
-    "rarity": "NR",
+    "country": "qin",
+    "rarity": "N",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Orange Tiger]",
@@ -444,7 +444,7 @@
     "name_en": "Genpo",
     "name_jp": "玄峰",
     "country": "wei",
-    "rarity": "NR",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Red Elephant]",
@@ -507,8 +507,8 @@
     "id": "amon",
     "name_en": "Amon",
     "name_jp": "亜門",
-    "country": "qin",
-    "rarity": "NR",
+    "country": "zhao",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Fierce General Flash [Red Turtle]",
@@ -575,7 +575,7 @@
     "name_en": "Koushou",
     "name_jp": "江彰",
     "country": "zhao",
-    "rarity": "NR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Weak General Flash [Red Sheep]",

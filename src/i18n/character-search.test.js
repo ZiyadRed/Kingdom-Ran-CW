@@ -20,8 +20,8 @@ describe('localized content search over the actual roster', () => {
     }
   }, 15_000)
   it('keeps existing hidden group phrases searchable', () => {
-    for (const [tag,names] of Object.entries(CHAR_GROUPS)) {
-      const expected = ALL.filter(c=>names.includes(c.name_en)).map(c=>c.id)
+    for (const [tag,ids] of Object.entries(CHAR_GROUPS)) {
+      const expected = ALL.filter(c=>ids.includes(c.id)).map(c=>c.id)
       expect(matches(`${tag} team`, 'en')).toEqual(expect.arrayContaining(expected))
     }
   })

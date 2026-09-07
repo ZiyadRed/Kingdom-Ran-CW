@@ -153,7 +153,6 @@
     "name_en": "Ranbihaku",
     "name_jp": "乱美迫",
     "country": "wei",
-    "unit": "Wei Fire Dragon",
     "rarity": "UR",
     "skills": [
       {
@@ -291,7 +290,6 @@
     "name_en": "Shikika",
     "name_jp": "紫季歌",
     "country": "wei",
-    "unit": "Wei Fire Dragon",
     "rarity": "UR",
     "skills": [
       {
@@ -560,8 +558,7 @@
     "name_en": "Junso",
     "name_jp": "荀早",
     "country": "wei",
-    "unit": "Wei Fire Dragon",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [White Elephant]",

@@ -4,7 +4,7 @@
     "name_en": "Otaji",
     "name_jp": "オタジ",
     "country": "yan",
-    "unit": "Ordo Army",
+    "unit": "Coalition Army",
     "rarity": "SR",
     "skills": [
       {
@@ -93,7 +93,7 @@
     "name_en": "Yukii",
     "name_jp": "ユキイ",
     "country": "yan",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Green Bull]",
@@ -287,7 +287,7 @@
     "name_en": "Gekishin",
     "name_jp": "劇辛",
     "country": "yan",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Blue Tiger]",

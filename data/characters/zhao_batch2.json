@@ -91,7 +91,7 @@
     "name_en": "Keisha",
     "name_jp": "慶舎",
     "country": "zhao",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Green Sheep]",
@@ -222,7 +222,7 @@
     "name_en": "Gakujou",
     "name_jp": "楽乗",
     "country": "zhao",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Weak General Flash [Red Turtle]",
@@ -303,7 +303,7 @@
     "name_en": "Shinseijou",
     "name_jp": "晋成常",
     "country": "zhao",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Purple Elephant]",
@@ -479,7 +479,7 @@
     "id": "domon",
     "name_en": "Domon",
     "name_jp": "土門",
-    "country": "zhao",
+    "country": "qin",
     "rarity": "SR",
     "skills": [
       {
@@ -540,8 +540,8 @@
     "id": "miyamoto",
     "name_en": "Kyuugen",
     "name_jp": "宮元",
-    "country": "zhao",
-    "rarity": "SR",
+    "country": "wei",
+    "rarity": "N",
     "skills": [
       {
         "name_en": "DEF Enhancement [Red Sheep]",
@@ -601,7 +601,7 @@
     "id": "saji",
     "name_en": "Saji",
     "name_jp": "左慈",
-    "country": "zhao",
+    "country": "qin",
     "rarity": "R",
     "skills": [
       {
@@ -662,8 +662,8 @@
     "id": "jokan",
     "name_en": "Jokan",
     "name_jp": "徐完",
-    "country": "zhao",
-    "rarity": "SR",
+    "country": "qin",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Red Turtle]",

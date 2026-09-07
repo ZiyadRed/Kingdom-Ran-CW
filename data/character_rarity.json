@@ -5,8 +5,8 @@
                  "name_jp":  "亜光"
              },
     "Amon":  {
-                 "rarity":  "SR",
-                 "faction":  "Qin",
+                 "rarity":  "R",
+                 "faction":  "Zhao",
                  "name_jp":  "亜門"
              },
     "Bain":  {
@@ -75,8 +75,8 @@
                    "name_jp":  "張印"
                },
     "Chouko":  {
-                   "rarity":  "SR",
-                   "faction":  "Zhao",
+                   "rarity":  "N",
+                   "faction":  "Qin",
                    "name_jp":  "趙高"
                },
     "Choushi":  {
@@ -126,12 +126,12 @@
                },
     "Domon":  {
                   "rarity":  "SR",
-                  "faction":  "Zhao",
+                  "faction":  "Qin",
                   "name_jp":  "土門"
               },
     "Douken":  {
-                   "rarity":  "SR",
-                   "faction":  "Zhao",
+                   "rarity":  "N",
+                   "faction":  "Qin",
                    "name_jp":  "道剣"
                },
     "Doukin":  {
@@ -160,7 +160,7 @@
                   "name_jp":  "燕呈"
               },
     "En":  {
-               "rarity":  "SR",
+               "rarity":  "R",
                "faction":  "Qin",
                "name_jp":  "渕"
            },
@@ -185,7 +185,7 @@
                    "name_jp":  "岳嬰"
                },
     "Gakujou":  {
-                    "rarity":  "SR",
+                    "rarity":  "UR",
                     "faction":  "Zhao",
                     "name_jp":  "楽乗"
                 },
@@ -215,13 +215,13 @@
                   "name_jp":  "玄峰"
               },
     "Gikou":  {
-                "rarity":  "SR",
-                "faction":  "Wei",
+                "rarity":  "N",
+                "faction":  "Qin",
                 "name_jp":  "魏興"
             },
     "Gika":  {
                  "rarity":  "SR",
-                 "faction":  "Wei",
+                 "faction":  "Zhao",
                  "name_jp":  "魏加"
              },
     "Gohoumei":  {
@@ -236,7 +236,7 @@
               },
     "Gotan":  {
                   "rarity":  "R",
-                  "faction":  "Mountain Folk",
+                  "faction":  "Wei",
                   "name_jp":  "剛炭"
               },
     "Goumasho":  {
@@ -265,8 +265,8 @@
                    "name_jp":  "白起"
                },
     "Hakukisai":  {
-                      "rarity":  "SR",
-                      "faction":  "Qin",
+                      "rarity":  "N",
+                      "faction":  "Wei",
                       "name_jp":  "白亀西"
                   },
     "Hakurei":  {
@@ -306,7 +306,7 @@
                },
     "Fuuki":  {
                  "rarity":  "SR",
-                 "faction":  "Wei",
+                 "faction":  "Zhao",
                  "name_jp":  "馮忌"
              },
     "Houken":  {
@@ -335,13 +335,13 @@
                   "name_jp":  "仁凹"
               },
     "Koushou":  {
-                 "rarity":  "SR",
+                 "rarity":  "R",
                  "faction":  "Zhao",
                  "name_jp":  "江彰"
              },
     "Jokan":  {
-                  "rarity":  "SR",
-                  "faction":  "Zhao",
+                  "rarity":  "R",
+                  "faction":  "Qin",
                   "name_jp":  "徐完"
               },
     "Junso":  {
@@ -430,7 +430,7 @@
                    "name_jp":  "カタリ"
                },
     "Kei":  {
-                "rarity":  "SR",
+                "rarity":  "N",
                 "faction":  "Qin",
                 "name_jp":  "慶"
             },
@@ -445,8 +445,8 @@
                    "name_jp":  "慶舎"
                },
     "Ketsushi":  {
-                   "rarity":  "SR",
-                   "faction":  "Zhao",
+                   "rarity":  "N",
+                   "faction":  "Qin",
                    "name_jp":  "竭氏"
                },
     "Kinmou":  {
@@ -560,8 +560,8 @@
                     "name_jp":  "宮康"
                 },
     "Maki":  {
-                 "rarity":  "SR",
-                 "faction":  "Mountain Folk",
+                 "rarity":  "N",
+                 "faction":  "Wei",
                  "name_jp":  "麻鬼"
              },
     "Makou":  {
@@ -580,8 +580,8 @@
                   "name_jp":  "摩論"
               },
     "Kyuugen":  {
-                     "rarity":  "SR",
-                     "faction":  "Zhao",
+                     "rarity":  "N",
+                     "faction":  "Wei",
                      "name_jp":  "宮元"
                  },
     "Moubu":  {
@@ -755,7 +755,7 @@
                   "name_jp":  "呂敏"
               },
     "Roen":  {
-                 "rarity":  "SR",
+                 "rarity":  "R",
                  "faction":  "Qin",
                  "name_jp":  "魯延"
              },
@@ -805,13 +805,13 @@
                   "name_jp":  "竜有"
               },
     "Saitaku":  {
-                     "rarity":  "SR",
+                     "rarity":  "R",
                      "faction":  "Qin",
                      "name_jp":  "蔡沢"
                  },
     "Saji":  {
                  "rarity":  "R",
-                 "faction":  "Zhao",
+                 "faction":  "Qin",
                  "name_jp":  "左慈"
              },
     "Seikai":  {
@@ -825,7 +825,7 @@
                     "name_jp":  "成蟜"
                 },
     "Seki":  {
-                 "rarity":  "SR",
+                 "rarity":  "R",
                  "faction":  "Qin",
                  "name_jp":  "石"
              },
@@ -850,7 +850,7 @@
                     "name_jp":  "紫季歌"
                 },
     "Shin":  {
-                 "rarity":  "SR",
+                 "rarity":  "R",
                  "faction":  "Qin",
                  "name_jp":  "信"
              },
@@ -860,13 +860,13 @@
                        "name_jp":  "晋成常"
                    },
     "Shishi":  {
-                   "rarity":  "SR",
+                   "rarity":  "R",
                    "faction":  "Qin",
                    "name_jp":  "肆氏"
                },
     "Shoka":  {
                   "rarity":  "SR",
-                  "faction":  "Zhao",
+                  "faction":  "Qin",
                   "name_jp":  "尚鹿"
               },
     "Sho":  {
@@ -900,8 +900,8 @@
                      "name_jp":  "松琢"
                  },
     "Shuki":  {
-                  "rarity":  "SR",
-                  "faction":  "Mountain Folk",
+                  "rarity":  "N",
+                  "faction":  "Wei",
                   "name_jp":  "朱鬼"
               },
     "Shunmen":  {
@@ -950,7 +950,7 @@
                     "name_jp":  "太呂慈"
                 },
     "Takukei":  {
-                    "rarity":  "SR",
+                    "rarity":  "R",
                     "faction":  "Qin",
                     "name_jp":  "澤圭"
                 },
@@ -1025,7 +1025,7 @@
                   "name_jp":  "ゼノウ"
               },
     "Kou (昂)":  {
-                 "rarity":  "UR",
+                 "rarity":  "N",
                  "faction":  "Qin",
                  "name_jp":  "昂"
              },
@@ -1033,5 +1033,7 @@
                  "rarity":  "SR",
                  "faction":  "Qin",
                  "name_jp":  "英紀"
-             }
+             },
+    "Soujin": {"rarity": "UR", "faction": "Qin", "name_jp": "蒼仁"},
+    "Soutan": {"rarity": "UR", "faction": "Qin", "name_jp": "蒼淡"}
 }

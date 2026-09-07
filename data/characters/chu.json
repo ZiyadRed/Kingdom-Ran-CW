@@ -12,7 +12,7 @@
     "name_jp": "仁凹",
     "country": "chu",
     "unit": "Kanmei Army",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Green Sheep]",
@@ -100,7 +100,7 @@
     "name_jp": "剛摩諸",
     "country": "chu",
     "unit": "Kanmei Army",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [White Tiger]",
@@ -206,7 +206,7 @@
     "name_jp": "貝満",
     "country": "chu",
     "unit": "Kanmei Army",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Master General Sweep [Red Sheep]",
@@ -294,7 +294,7 @@
     "name_jp": "媧偃",
     "country": "chu",
     "unit": "Karin Army",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Purple Tiger]",
@@ -468,8 +468,7 @@
     "name_en": "Hakusui",
     "name_jp": "白翠",
     "country": "chu",
-    "unit": "Rinbukun Army",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Green Elephant]",
@@ -645,8 +644,7 @@
     "name_en": "Bananji",
     "name_jp": "馬南慈",
     "country": "zhao",
-    "unit": "Coalition Army",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Annihilation [Red Elephant]",

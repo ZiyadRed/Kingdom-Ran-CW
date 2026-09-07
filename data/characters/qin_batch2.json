@@ -105,7 +105,7 @@
     "name_en": "Sougen",
     "name_jp": "蒼源",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Navy Elephant]",
@@ -204,8 +204,8 @@
     "name_en": "Gakurai",
     "name_jp": "岳雷",
     "country": "qin",
-    "unit": "Hyoukou Army / Hi Shin Unit",
-    "rarity": "SR",
+    "unit": "Hi Shin Unit",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Strike from Behind",
@@ -292,7 +292,7 @@
     "name_en": "Choutou",
     "name_jp": "張唐",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Purple Bull]",
@@ -385,7 +385,7 @@
     "name_en": "Shibasaku",
     "name_jp": "司馬錯",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "ATK Enhancement [Red Turtle]",
@@ -454,7 +454,7 @@
     "name_en": "Hyoushiga",
     "name_jp": "豹司牙",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [White Bull]",
@@ -684,7 +684,7 @@
     "name_en": "Oukotsu",
     "name_jp": "王齕",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Fortified Equipment Double Smash [Red Sheep]",
@@ -753,8 +753,7 @@
     "name_en": "Kaioku",
     "name_jp": "介億",
     "country": "qin",
-    "unit": "Shouheikun Army",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Orange Sheep]",
@@ -853,7 +852,7 @@
     "name_en": "Koshou",
     "name_jp": "胡傷",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "DEF Enhancement [Orange Elephant]",
@@ -929,7 +928,7 @@
     "name_jp": "我呂",
     "country": "qin",
     "unit": "Hi Shin Unit",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "ATK Enhancement [Orange Elephant]",
@@ -1011,7 +1010,7 @@
     "name_jp": "陸仙",
     "country": "qin",
     "unit": "Gakuka Unit",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Master General Flash [Orange Turtle]",
@@ -1086,8 +1085,8 @@
     "name_en": "Kanjou",
     "name_jp": "関常",
     "country": "qin",
-    "unit": "Gyokuhou Unit",
-    "rarity": "SR",
+    "unit": "Gyokuhou",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "DEF Reduction [Red Sheep]",

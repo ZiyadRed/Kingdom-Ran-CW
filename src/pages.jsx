@@ -5,7 +5,7 @@ import { Link, useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import {
-  useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, ALL, findCharById, findCharByName, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, simulate, calcCharBuffs, calcTeamEnemyDebuffs, Picker, RARITY_DATA, INVERSE_STATS, SPECIAL_STATS, statSortKey, DEFAULT_SK, hasStar6, hasRoleSkill, updateSkillMasks, applyMask, PUBLIC_CW6_CARDS, matchCharacterSearch, searchCharacters
+  useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, ALL, findCharById, findCharByName, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, simulate, calcCharBuffs, calcTeamEnemyDebuffs, Picker, characterInitialRarity, INVERSE_STATS, SPECIAL_STATS, statSortKey, DEFAULT_SK, hasStar6, hasRoleSkill, updateSkillMasks, applyMask, PUBLIC_CW6_CARDS, matchCharacterSearch, searchCharacters
 } from './core.jsx'
 import { characterSeo, routeSeo, setSeo } from './seo.js'
 import { classifyConditionParts } from './skillConditions.js'
@@ -1452,7 +1452,7 @@ export function TierPage(){
 }
 
 // ── TEAM COST PAGE ────────────────────────────────────────────────────────────
-const COST_CHARACTERS=ALL.map(c=>({ ...c, rarity:RARITY_DATA[c.name_en]?.rarity||c.rarity||'SR' })).filter(c=>RARITY_DATA[c.name_en]||c.image)
+const COST_CHARACTERS=ALL.map(c=>({ ...c, rarity:characterInitialRarity(c) }))
 const COST_CHARACTER_BY_ID=new Map(COST_CHARACTERS.map(c=>[c.id,c]))
 const normalizeCostDraft=value=>normalizeTeamCostDraft(value,COST_CHARACTER_BY_ID)
 
@@ -1469,7 +1469,7 @@ export function TeamCostPage(){
 
   const COST=RED_CRYSTAL_TOTAL_COST
   const SKILL_COSTS=RED_CRYSTAL_SKILL_COSTS
-  const RCOL={R:'#3d9970',SR:'#3d6eb5',UR:'#c0392b'}
+  const RCOL={N:'#68704a',R:'#3d9970',SR:'#3d6eb5',UR:'#c0392b'}
 
   const remainingCost=(rarity,done)=>SKILL_COSTS[rarity||'SR'].slice(done).reduce((s,v)=>s+v,0)
 
@@ -1488,10 +1488,11 @@ export function TeamCostPage(){
   const toggleSkill=(idx,n)=>setDraft(p=>({ ...p, skillsDone:p.skillsDone.map((done,i)=>i===idx?(done>=n?n-1:n):done) }))
 
   const filled=slots.filter(Boolean)
-  const total=slots.reduce((s,c,idx)=>{if(!c)return s;const r=RARITY_DATA[c.name_en]?.rarity||'SR';return s+remainingCost(r,skillsDone[idx])},0)
-  const urCount=filled.filter(c=>RARITY_DATA[c.name_en]?.rarity==='UR').length
-  const srCount=filled.filter(c=>RARITY_DATA[c.name_en]?.rarity==='SR').length
-  const rCount=filled.filter(c=>RARITY_DATA[c.name_en]?.rarity==='R').length
+  const total=slots.reduce((s,c,idx)=>{if(!c)return s;const r=characterInitialRarity(c);return s+remainingCost(r,skillsDone[idx])},0)
+  const urCount=filled.filter(c=>characterInitialRarity(c)==='UR').length
+  const srCount=filled.filter(c=>characterInitialRarity(c)==='SR').length
+  const rCount=filled.filter(c=>characterInitialRarity(c)==='R').length
+  const nCount=filled.filter(c=>characterInitialRarity(c)==='N').length
 
   return(
     <div className="team-cost-page">
@@ -1515,6 +1516,7 @@ export function TeamCostPage(){
           {urCount>0&&<span style={{'--rarity-color':RCOL.UR}}><b>{urCount}</b> UR</span>}
           {srCount>0&&<span style={{'--rarity-color':RCOL.SR}}><b>{srCount}</b> SR</span>}
           {rCount>0&&<span style={{'--rarity-color':RCOL.R}}><b>{rCount}</b> R</span>}
+          {nCount>0&&<span style={{'--rarity-color':RCOL.N}}><b>{nCount}</b> N</span>}
           {filled.length===0&&<span className="tc-summary-empty">{t('teamCost.chooseSlot')}</span>}
           {filled.length>0&&<button type="button" className="tc-clear-all" onClick={clearAll}>{t('teamCost.clearAll')}</button>}
         </div>
@@ -1527,7 +1529,7 @@ export function TeamCostPage(){
       </div>
       <section className="tc-slots" aria-label={t('teamCost.team')}>
         {slots.map((char,idx)=>{
-          const rarity=char?RARITY_DATA[char.name_en]?.rarity||'SR':null
+          const rarity=char?characterInitialRarity(char):null
           const displayName=char?localizedCharacter(char, locale).displayName:''
           const fc=char?(CC[char.country]||'#888'):null
           const rc=rarity?RCOL[rarity]:'#888'
@@ -1617,7 +1619,7 @@ export function TeamCostPage(){
             </tr>
           </thead>
           <tbody>
-            {(['R','SR','UR']).map(r=>(
+            {(['N','R','SR','UR']).map(r=>(
               <tr key={r} style={{'--rarity-color':RCOL[r]}}>
                 <th scope="row">{r}</th>
                  {SKILL_COSTS[r].map((value,index)=><td key={index}>{formatLocaleNumber(value,locale)}</td>)}
@@ -1648,7 +1650,7 @@ export function TeamCostPage(){
               {!filtered.length&&<p className="search-empty" role="status">{t('stats.noCharacterMatches',{query:search})}</p>}
               <div className="tc-picker-grid" style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(110px,1fr))',gap:'8px'}}>
                 {filtered.map(c=>{
-                  const rarity=RARITY_DATA[c.name_en]?.rarity||'SR'
+                  const rarity=characterInitialRarity(c)
                   const rc=RCOL[rarity]
                   const isSelected=slots.some(s=>s?.id===c.id)
                   const displayName=localizedCharacter(c, locale).displayName

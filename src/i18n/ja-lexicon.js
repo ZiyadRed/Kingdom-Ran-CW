@@ -186,6 +186,15 @@ export const TAGS = {
  * are translated in full.
  */
 export const GROUPS = {
+  'Mera Tribe': 'メラ族',
+  'Figo Tribe': 'フィゴ族',
+  'Akou Army': '亜光軍',
+  'Gyokuhou': '玉鳳隊',
+  'Qiang Tribe': '羌族',
+  'Chinese Ten Bows': '中華十弓',
+  "Zhao's New Three Great Heavens": '趙の新三大天',
+  "Zhao's Three Great Heavens": '趙の三大天',
+  'Seikai Army': '成恢軍',
   'Kanki Army': '桓騎軍',
   'Ousen Army': '王翦軍',
   'Karin Army': '媧燐軍',

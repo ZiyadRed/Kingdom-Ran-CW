@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ALL, CharIcon, RARITY_DATA, searchCharacters } from './core.jsx'
+import { ALL, CharIcon, characterInitialRarity, searchCharacters } from './core.jsx'
 import { useLocale } from './i18n/LocaleContext.jsx'
 import { localizedCharacter, localizedText } from './i18n/data.js'
 import { formatNumber as formatLocaleNumber } from './i18n/format.js'
@@ -143,10 +143,9 @@ const readStoredCwStats = () => {
 
 const formatNumber = (value, locale) => formatLocaleNumber(Math.round(numberOrZero(value)), locale)
 const formatPower = (value, locale) => formatNumber(value, locale)
-// Team Cost's rarity file is the authoritative assignment for calculator labels.
-// The general archive data contains historical/raw rarity values for some units.
+// Same verified initial rarity as Team Cost, joined by stable character ID.
 export const cwStatsCharacterRarity = (character = {}) => (
-  RARITY_DATA[character.name_en]?.rarity || character.rarity || '—'
+  character.id ? characterInitialRarity(character) : character.rarity || '—'
 )
 
 const characterById = Object.fromEntries(ALL.map((character) => [

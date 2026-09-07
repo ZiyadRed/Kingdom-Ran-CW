@@ -217,6 +217,14 @@ export const TAGS = {
  * an established phrase are translated in full.
  */
 export const GROUPS = {
+  'Mera Tribe': 'قبيلة ميرا',
+  'Figo Tribe': 'قبيلة فيغو',
+  'Akou Army': 'جيش آكو',
+  'Qiang Tribe': 'قبيلة كيانغ',
+  'Chinese Ten Bows': 'رماة الصين العشرة',
+  "Zhao's New Three Great Heavens": 'سماوات تشاو الثلاث العظيمة الجديدة',
+  "Zhao's Three Great Heavens": 'سماوات تشاو الثلاث العظيمة',
+  'Seikai Army': 'جيش سيكاي',
   'Kanki Army': 'جيش كانكي',
   'Ousen Army': 'جيش أوسن',
   'Karin Army': 'جيش كارين',

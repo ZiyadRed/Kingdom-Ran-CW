@@ -1,0 +1,1306 @@
+[
+  {
+    "id": "akou",
+    "characterId": 253,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "amon",
+    "characterId": 8,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "bain",
+    "characterId": 225,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "bajio",
+    "characterId": 5,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "bakan",
+    "characterId": 230,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "bakukoshin",
+    "characterId": 50,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "bamyu",
+    "characterId": 172,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "bananji",
+    "characterId": 215,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "banyou",
+    "characterId": 52,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "batei",
+    "characterId": 214,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "beiman",
+    "characterId": 191,
+    "roles": [
+      {
+        "role": "Strategist",
+        "cwId": 858
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "bihei",
+    "characterId": 54,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "bikou",
+    "characterId": 53,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "budai",
+    "characterId": 236,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "chouin",
+    "characterId": 161,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "chouko",
+    "characterId": 93,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "choushi",
+    "characterId": 133,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "chousou",
+    "characterId": 94,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "choutou",
+    "characterId": 141,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "chouyou",
+    "characterId": 256,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "chutetsu",
+    "characterId": 43,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "danto",
+    "characterId": 239,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "denei",
+    "characterId": 44,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "denrimi",
+    "characterId": 250,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "denyuu",
+    "characterId": 45,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "domon",
+    "characterId": 130,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "douken",
+    "characterId": 48,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "doukin",
+    "characterId": 47,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "duke_hyou",
+    "characterId": 99,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "duke_sei",
+    "characterId": 221,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "ei_sei",
+    "characterId": 98,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "eiki",
+    "characterId": 254,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "en",
+    "characterId": 86,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "entei",
+    "characterId": 135,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "fuji",
+    "characterId": 143,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "futei",
+    "characterId": 170,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "gaimou",
+    "characterId": 180,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "gakuei",
+    "characterId": 210,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "gakujou",
+    "characterId": 124,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "gakuki",
+    "characterId": 118,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "gakurai",
+    "characterId": 202,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "garo",
+    "characterId": 178,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "gekishin",
+    "characterId": 113,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "genpo",
+    "characterId": 20,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "gii",
+    "characterId": 97,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "gika",
+    "characterId": 96,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "gohoumei",
+    "characterId": 149,
+    "roles": [
+      {
+        "role": "Strategist",
+        "cwId": 857
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "gokei",
+    "characterId": 21,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "gotan",
+    "characterId": 25,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "goumasho",
+    "characterId": 192,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "goutoku",
+    "characterId": 249,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "hairou",
+    "characterId": 85,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "hakuki",
+    "characterId": 114,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "hakukisei",
+    "characterId": 49,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "hakurei",
+    "characterId": 159,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "hakusui",
+    "characterId": 188,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "hamui",
+    "characterId": 235,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "hanoki",
+    "characterId": 197,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "hanroki",
+    "characterId": 201,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "heirai",
+    "characterId": 263,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "heki",
+    "characterId": 57,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "hokaku",
+    "characterId": 234,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "hoki",
+    "characterId": 95,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "houken",
+    "characterId": 100,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "hyou",
+    "characterId": 55,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "hyouki",
+    "characterId": 145,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "hyoushiga",
+    "characterId": 187,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "jinou",
+    "characterId": 189,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "jiou",
+    "characterId": 24,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "jokan",
+    "characterId": 31,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "junso",
+    "characterId": 185,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "ka",
+    "characterId": 240,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kaen",
+    "characterId": 173,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kaine",
+    "characterId": 1,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kaioku",
+    "characterId": 175,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kaishibou",
+    "characterId": 14,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kakubi",
+    "characterId": 2,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kakukai",
+    "characterId": 203,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kakuun",
+    "characterId": 226,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kanjou",
+    "characterId": 184,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kanki",
+    "characterId": 16,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kanmei",
+    "characterId": 137,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kanou",
+    "characterId": 15,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kanto",
+    "characterId": 262,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "karin",
+    "characterId": 148,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "karyoten",
+    "characterId": 13,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "katari",
+    "characterId": 245,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kei",
+    "characterId": 19,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "keibin",
+    "characterId": 125,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "keisha",
+    "characterId": 139,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kesshi",
+    "characterId": 88,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kinmou",
+    "characterId": 211,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kishou",
+    "characterId": 218,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kisui",
+    "characterId": 207,
+    "roles": [
+      {
+        "role": "Leader",
+        "cwId": 854
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "kitari",
+    "characterId": 237,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kokuou",
+    "characterId": 26,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "koshou",
+    "characterId": 116,
+    "roles": [
+      {
+        "role": "Strategist",
+        "cwId": 859
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "kou",
+    "characterId": 132,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kou2",
+    "characterId": 23,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "koujyun",
+    "characterId": 257,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kouretsu",
+    "characterId": 199,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kourigen",
+    "characterId": 12,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kousonryu",
+    "characterId": 22,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kouyoku",
+    "characterId": 158,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kuzen",
+    "characterId": 64,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kyomei",
+    "characterId": 176,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kyou",
+    "characterId": 84,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kyoubou",
+    "characterId": 251,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kyouen",
+    "characterId": 83,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kyougai",
+    "characterId": 18,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kyoukai",
+    "characterId": 90,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kyourei",
+    "characterId": 233,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kyoushou",
+    "characterId": 89,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "kyuukou",
+    "characterId": 219,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "maki",
+    "characterId": 59,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "makou",
+    "characterId": 255,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "mangoku",
+    "characterId": 60,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "maron",
+    "characterId": 120,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "miyamoto",
+    "characterId": 17,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "moubu",
+    "characterId": 62,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "mougou",
+    "characterId": 65,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "mouki",
+    "characterId": 61,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "mouten",
+    "characterId": 63,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "muta",
+    "characterId": 6,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "naki",
+    "characterId": 204,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "nakon",
+    "characterId": 229,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "ogiko",
+    "characterId": 171,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "ordo",
+    "characterId": 140,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "otaji",
+    "characterId": 231,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "ouhon",
+    "characterId": 11,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "ouken",
+    "characterId": 146,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "ouki",
+    "characterId": 9,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "oukotsu",
+    "characterId": 115,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "ousen",
+    "characterId": 10,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "pam",
+    "characterId": 241,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "queen_biki",
+    "characterId": 122,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "raido",
+    "characterId": 69,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "raiki",
+    "characterId": 134,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "ramauji",
+    "characterId": 144,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "ranbihaku",
+    "characterId": 183,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "rankai",
+    "characterId": 7,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "reiou",
+    "characterId": 181,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "renpa",
+    "characterId": 78,
+    "roles": [
+      {
+        "role": "Leader",
+        "cwId": 851
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "riboku",
+    "characterId": 72,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "rien",
+    "characterId": 198,
+    "roles": [
+      {
+        "role": "Leader",
+        "cwId": 853
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "rihaku",
+    "characterId": 71,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "rikusen",
+    "characterId": 119,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "rinbou",
+    "characterId": 77,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "rinbukun",
+    "characterId": 138,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "ringyoku",
+    "characterId": 208,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "rinko",
+    "characterId": 76,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "rishi",
+    "characterId": 70,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "robin",
+    "characterId": 227,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "roen",
+    "characterId": 80,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "rokin",
+    "characterId": 248,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "rokuomi",
+    "characterId": 81,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "rouai",
+    "characterId": 200,
+    "roles": [
+      {
+        "role": "Leader",
+        "cwId": 855
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "rui",
+    "characterId": 179,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "ryofui",
+    "characterId": 79,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "ryuukoku",
+    "characterId": 73,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "ryuusen",
+    "characterId": 74,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "ryuuto",
+    "characterId": 213,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "ryuyu",
+    "characterId": 75,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "saizatsu",
+    "characterId": 92,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "saji",
+    "characterId": 27,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "seikai",
+    "characterId": 147,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "seikyou",
+    "characterId": 40,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "seki",
+    "characterId": 41,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "shibasaku",
+    "characterId": 117,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "shihaku",
+    "characterId": 182,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "shika",
+    "characterId": 29,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "shikika",
+    "characterId": 186,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "shin",
+    "characterId": 38,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "shinseijou",
+    "characterId": 136,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "shishi",
+    "characterId": 91,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "sho",
+    "characterId": 35,
+    "roles": [
+      {
+        "role": "Leader",
+        "cwId": 852
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "shoubunkun",
+    "characterId": 33,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "shouheikun",
+    "characterId": 34,
+    "roles": [
+      {
+        "role": "Strategist",
+        "cwId": 856
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "shoukaku",
+    "characterId": 32,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "shoumou",
+    "characterId": 37,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "shousa",
+    "characterId": 36,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "shoutaku",
+    "characterId": 220,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "shuki",
+    "characterId": 30,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "shunmen",
+    "characterId": 3,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "shunpeikun",
+    "characterId": 222,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "shunshinkun",
+    "characterId": 121,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "shunsuiju",
+    "characterId": 212,
+    "roles": [
+      {
+        "role": "Strategist",
+        "cwId": 860
+      }
+    ],
+    "status": "verified"
+  },
+  {
+    "id": "sosui",
+    "characterId": 42,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "sougen",
+    "characterId": 264,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "soujin",
+    "characterId": 261,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "soutan",
+    "characterId": 258,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "suugen",
+    "characterId": 39,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "taijifu",
+    "characterId": 4,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "tairoji",
+    "characterId": 205,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "takukei",
+    "characterId": 87,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "toji",
+    "characterId": 142,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "tonkaku",
+    "characterId": 259,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "tonkoku",
+    "characterId": 260,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "tou",
+    "characterId": 46,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "toumi",
+    "characterId": 217,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "wategi",
+    "characterId": 190,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "yotanwa",
+    "characterId": 68,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "you",
+    "characterId": 131,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "youka",
+    "characterId": 238,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "yugi",
+    "characterId": 129,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "yukii",
+    "characterId": 174,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "yuri",
+    "characterId": 228,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "yuuren",
+    "characterId": 66,
+    "roles": [],
+    "status": "verified"
+  },
+  {
+    "id": "zenou",
+    "characterId": 206,
+    "roles": [],
+    "status": "verified"
+  }
+]

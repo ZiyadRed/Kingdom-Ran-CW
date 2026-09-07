@@ -189,7 +189,7 @@
     "name_en": "Hanoki",
     "name_jp": "樊於期",
     "country": "ai",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Master General Flash [Orange Tiger]",
@@ -287,7 +287,7 @@
     "name_en": "Hanruki",
     "name_jp": "樊琉期",
     "country": "ai",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Green Turtle]",
@@ -391,7 +391,7 @@
     "name_en": "Ordo",
     "name_jp": "オルド",
     "country": "yan",
-    "unit": "Ordo Army",
+    "unit": "Coalition Army",
     "rarity": "UR",
     "skills": [
       {
@@ -484,8 +484,8 @@
     "name_en": "Futei",
     "name_jp": "傳抵",
     "country": "zhao",
-    "unit": "Riboku Army",
-    "rarity": "UR",
+    "unit": "Coalition Army",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Green Sheep]",
@@ -606,7 +606,7 @@
     "name_en": "Kouyoku",
     "name_jp": "項翼",
     "country": "chu",
-    "unit": "Wei Fire Dragon",
+    "unit": "Coalition Army",
     "rarity": "SR",
     "skills": [
       {

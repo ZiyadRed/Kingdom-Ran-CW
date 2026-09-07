@@ -245,7 +245,7 @@
       {
         "name": "Hyouki",
         "name_jp": "氷鬼",
-        "faction": "chu",
+        "faction": "wei",
         "type": "SR",
         "star6": false,
         "value": 7.9,
@@ -264,7 +264,7 @@
         "name": "Jiou",
         "name_jp": "江彰",
         "faction": "zhao",
-        "type": "SR",
+        "type": "R",
         "star6": false,
         "value": 15.9,
         "ownership_id": "buff_7a58b414000d430182a85c070dca2df0"
@@ -273,7 +273,7 @@
         "name": "Takukei",
         "name_jp": "澤圭",
         "faction": "qin",
-        "type": "SR",
+        "type": "R",
         "star6": false,
         "value": 5.0,
         "ownership_id": "buff_a4f77a6679214157b89ca64e0d95a0a6"
@@ -301,7 +301,7 @@
       {
         "name": "Gika",
         "name_jp": "魏加",
-        "faction": "wei",
+        "faction": "zhao",
         "type": "SR",
         "star6": false,
         "value": 9.9,
@@ -319,7 +319,7 @@
       {
         "name": "Hyouki",
         "name_jp": "氷鬼",
-        "faction": "chu",
+        "faction": "wei",
         "type": "SR",
         "star6": false,
         "value": 5.0,
@@ -438,7 +438,7 @@
       {
         "name": "Domon",
         "name_jp": "土門",
-        "faction": "zhao",
+        "faction": "qin",
         "type": "SR",
         "star6": false,
         "value": 4.3,
@@ -447,8 +447,8 @@
       {
         "name": "Amon",
         "name_jp": "亜門",
-        "faction": "qin",
-        "type": "SR",
+        "faction": "zhao",
+        "type": "R",
         "star6": false,
         "value": 3.8,
         "ownership_id": "buff_b927298565b945818cf2313e3ddff261"
@@ -550,7 +550,7 @@
       {
         "name": "Gotan",
         "name_jp": "剛炭",
-        "faction": "mountain_folk",
+        "faction": "wei",
         "type": "R",
         "star6": false,
         "value": 6.9,
@@ -683,7 +683,7 @@
       {
         "name": "Saji",
         "name_jp": "左慈",
-        "faction": "zhao",
+        "faction": "qin",
         "type": "R",
         "star6": false,
         "value": 3.8,
@@ -954,7 +954,7 @@
       {
         "name": "Shoukaku",
         "name_jp": "尚鹿",
-        "faction": "zhao",
+        "faction": "qin",
         "type": "SR",
         "star6": false,
         "value": 5.0,

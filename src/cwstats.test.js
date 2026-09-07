@@ -72,9 +72,11 @@ describe('CW Stats calculator formula', () => {
 })
 
 describe('CW Stats calculator rarity labels', () => {
-  it('uses the Team Cost assignments instead of raw archive rarity values', () => {
-    expect(cwStatsCharacterRarity({ name_en: 'Ouhon', rarity: 'UR' })).toBe('SR')
-    expect(cwStatsCharacterRarity({ name_en: 'Kanjou', rarity: 'SR' })).toBe('UR')
+  it('uses stable-ID Team Cost assignments instead of stale raw rarity or ambiguous names', () => {
+    expect(cwStatsCharacterRarity({ id: 'ouhon', name_en: 'Ouhon', rarity: 'UR' })).toBe('SR')
+    expect(cwStatsCharacterRarity({ id: 'kanjou', name_en: 'Kanjou', rarity: 'SR' })).toBe('UR')
+    expect(cwStatsCharacterRarity({ id: 'kou', name_en: 'Kou' })).toBe('UR')
+    expect(cwStatsCharacterRarity({ id: 'kou2', name_en: 'Kou' })).toBe('N')
   })
 })
 

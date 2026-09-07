@@ -25,6 +25,7 @@ import cwBuffsData  from '../data/cw_buffs.json'
 import cwMaxStats   from '../data/cw_max_stats.json'
 import sceneCardBuffs from '../data/scene_card_cw_buffs.json'
 import rarityData from '../data/character_rarity.json'
+import classification from '../data/character_classification.json'
 import souhaRoleSkills from '../data/souha_role_skills.json'
 import { PROGRESS_STORAGE_KEY, emptyProgress, readProgressSnapshot, replaceProgressFromBackup } from './progress-storage.js'
 import { useHydratedState } from './use-hydrated-state.js'
@@ -211,95 +212,20 @@ export const ALL = [
   }
 })
 
-export const GROUPS={
-  'Gyokuhou':           ['ouhon','kanjou','shoutaku','kyuukou'],
-  'Chinese Ten Bows':   ['gika','kyouen','kourigen','sougen','hakurei'],
-  "Zhao's Three Great Heavens": ['renpa'],
-  "Zhao's New Three Great Heavens": ['houken','riboku'],
-  'Six Great Generals': ['hakuki','ouki','kyou','shibasaku','koshou','oukotsu'],
-  'Wei Fire Dragon':    ['ranbihaku','tairoji','reiou','gokei','gaimou','gohoumei','shihaku'],
-  'Renpa Army':       ['renpa','rinko','genpo','kyouen','kaishibou'],
-  "Renpa's Four Heavenly Kings": ['rinko','genpo','kyouen','kaishibou'],
-  'Kanmei Army':      ['kanmei','beiman','goumasho','jinou','kyoubou'],
-  'Karin Army':       ['karin','kaen','goutoku','bamyu','kouyoku','hakurei'],
-  'Ouki Army':        ['ouki','tou'],
-  'Hi Shin Unit':       ['shin','naki','robin','garo','gakurai','tonkaku','tonkoku'],
-  'Kanki Army':       ['kanki','naki','robin','zenou','raido','ogiko','maron','kokuou','bain','kakuun'],
-  'Kisui Army':       ['kisui','batei','ryuuto','duke_sei','kishou'],
-  'Ousen Army':       ['akou','denrimi','kanjou','shoutaku','kyuukou','makou','koujyun','chouyou'],
-  'Moubo Army':       ['moubu','choushi','raiki'],
-  'Coalition Army':   ['karin','kanmei','riboku','houken','seikai','rinbukun','gohoumei','mangoku'],
-  'Ryofui Four Pillars': ['ryofui','mougou','saizatsu','shouheikun','moubu','rishi'],
-  'Qiang Tribe':        ['kyoukai','kyourei','kyoushou'],
-  'Mera Tribe':         ['katari','kitari'],
-  'Figo Tribe':         ['danto','pam'],
-  'Akou Army':          ['akou','eiki'],
+// Verified game affiliations and unit types. Evidence and the full roster audit
+// live in data/source/character-classification.json and docs/character-integrity.
+// Do not infer game targeting memberships from story associations or `unit` copy.
+export const UNIT_TYPES=Object.fromEntries(Object.entries(classification).map(([id,c])=>[id,c.unit_type]))
+export const GROUPS={}
+for(const c of ALL){
+  const verified=classification[c.id]
+  c.unit_type=verified?.unit_type||null
+  c.groups=[...(verified?.groups||[])]
+  for(const group of c.groups){
+    if(!GROUPS[group]) GROUPS[group]=[]
+    GROUPS[group].push(c.id)
+  }
 }
-export const UNIT_TYPES={
-  // Cavalry
-  akou:'Cavalry',bajio:'Cavalry',bakan:'Cavalry',bakukoshin:'Cavalry',bananji:'Cavalry',
-  batei:'Cavalry',beiman:'Cavalry',chouko:'Cavalry',chousou:'Cavalry',danto:'Cavalry',
-  denyuu:'Cavalry',doukin:'Cavalry',douken:'Cavalry',futei:'Cavalry',gaimou:'Cavalry',
-  gakuei:'Cavalry',gakuki:'Cavalry',gakurai:'Cavalry',garo:'Cavalry',gekishin:'Cavalry',
-  hamui:'Cavalry',hanoki:'Cavalry',hyou:'Cavalry',hyoushiga:'Cavalry',duke_hyou:'Cavalry',
-  kaen:'Cavalry',kaine:'Cavalry',kaishibou:'Cavalry',kanjou:'Cavalry',kanki:'Cavalry',
-  kanmei:'Cavalry',kanou:'Cavalry',katari:'Cavalry',kisui:'Cavalry',kitari:'Cavalry',
-  kouyoku:'Cavalry',kyou:'Cavalry',kyoubou:'Cavalry',kyoukai:'Cavalry',mangoku:'Cavalry',
-  moubu:'Cavalry',mouten:'Cavalry',naki:'Cavalry',nakon:'Cavalry',ordo:'Cavalry',
-  ouhon:'Cavalry',ouki:'Cavalry',renpa:'Cavalry',rikusen:'Cavalry',
-  rinbou:'Cavalry',rinbukun:'Cavalry',ringyoku:'Cavalry',rinko:'Cavalry',shin:'Cavalry',
-  shinseijou:'Cavalry',shihaku:'Cavalry',sho:'Cavalry',shouheikun:'Cavalry',shoumou:'Cavalry',
-  shunsuiju:'Cavalry',sosui:'Cavalry',tou:'Cavalry',wategi:'Cavalry',yotanwa:'Cavalry',
-  rokuomi:'Cavalry',makou:'Cavalry',
-  // Archer
-  amon:'Archer',budai:'Archer',denrimi:'Archer',domon:'Archer',duke_sei:'Archer',
-  fuji:'Archer',gakujou:'Archer',genpo:'Archer',gii:'Archer',gika:'Archer',
-  gohoumei:'Archer',goutoku:'Archer',hakukisei:'Archer',hakurei:'Archer',hakusui:'Archer',
-  hanroki:'Archer',hoki:'Archer',hyouki:'Archer',jinou:'Archer',jiou:'Archer',
-  kaioku:'Archer',karyoten:'Archer',keisha:'Archer',kesshi:'Archer',kou:'Archer',
-  kourigen:'Archer',koshou:'Archer',kyouen:'Archer',kyougai:'Archer',maki:'Archer',
-  ogiko:'Archer',otaji:'Archer',queen_biki:'Archer',ramauji:'Archer',reiou:'Archer',
-  rishi:'Archer',robin:'Archer',roen:'Archer',rokin:'Archer',ryofui:'Archer',
-  saizatsu:'Archer',seikai:'Archer',seikyou:'Archer',seki:'Archer',shibasaku:'Archer',
-  shika:'Archer',shishi:'Archer',shoubunkun:'Archer',sougen:'Archer',soujin:'Archer',soutan:'Archer',
-  takukei:'Archer',
-  toji:'Archer',you:'Archer',yukii:'Archer',kokuou:'Archer',
-  // Infantry
-  bain:'Infantry',bamyu:'Infantry',bihei:'Infantry',chutetsu:'Infantry',entei:'Infantry',
-  choushi:'Infantry',
-  en:'Infantry',gotan:'Infantry',hairou:'Infantry',hokaku:'Infantry',houken:'Infantry',
-  jokan:'Infantry',ka:'Infantry',kakukai:'Infantry',kei:'Infantry',kyomei:'Infantry',
-  kyourei:'Infantry',kyoushou:'Infantry',maron:'Infantry',
-  muta:'Infantry',oukotsu:'Infantry',pam:'Infantry',raiki:'Infantry',rankai:'Infantry',rui:'Infantry',
-  ryuusen:'Infantry',ryuuto:'Infantry',ryuyu:'Infantry',saji:'Infantry',shikika:'Infantry',
-  shousa:'Infantry',shoutaku:'Infantry',shuki:'Infantry',shunmen:'Infantry',shunpeikun:'Infantry',
-  suugen:'Infantry',toumi:'Infantry',youka:'Infantry',yuri:'Infantry',yuuren:'Infantry',
-  zenou:'Infantry',koujyun:'Infantry',tonkaku:'Infantry',tonkoku:'Infantry',kanto:'Infantry',heirai:'Infantry',
-  // Shield
-  banyou:'Shield',bikou:'Shield',chouin:'Shield',choutou:'Shield',denei:'Shield',
-  ei_sei:'Shield',gokei:'Shield',goumasho:'Shield',hakuki:'Shield',heki:'Shield',
-  junso:'Shield',kakubi:'Shield',kakuun:'Shield',karin:'Shield',keibin:'Shield',
-  kinmou:'Shield',kishou:'Shield',kousonryu:'Shield',kouretsu:'Shield',kuzen:'Shield',
-  miyamoto:'Shield',mougou:'Shield',mouki:'Shield',ouken:'Shield',ousen:'Shield',
-  raido:'Shield',ranbihaku:'Shield',riboku:'Shield',rien:'Shield',rihaku:'Shield',
-  rouai:'Shield',ryuukoku:'Shield',shoukaku:'Shield',shunshinkun:'Shield',taijifu:'Shield',
-  tairoji:'Shield',yugi:'Shield',chouyou:'Shield',kyuukou:'Shield',
-}
-// Extend GROUPS from each character's `unit` field so JSON data is the source of truth.
-// Any char with `"unit": "X Army"` is auto-added to GROUPS['X Army'] (creating it if absent).
-ALL.forEach(c=>{
-  if(!c.unit) return
-  const u=c.unit.trim()
-  if(!u) return
-  if(['Infantry','Cavalry','Archer','Shield'].includes(u)) return
-  if(!GROUPS[u]) GROUPS[u]=[]
-  if(!GROUPS[u].includes(c.id)) GROUPS[u].push(c.id)
-})
-
-ALL.forEach(c=>{
-  c.unit_type=UNIT_TYPES[c.id]||null
-  c.groups=Object.entries(GROUPS).filter(([,ids])=>ids.includes(c.id)).map(([gn])=>gn)
-})
 
 // Fast lookup by name_en (case-insensitive) — replaces repeated ALL.find() scans
 export const CHAR_BY_NAME = (()=>{
@@ -326,8 +252,10 @@ export const findCharById = id => typeof id==='string' && Object.hasOwn(CHAR_BY_
 // Derived so the Archive tab badge can't drift from the valid roster.
 export const ARCHIVE_CHAR_COUNT = ALL.length
 
-export const RED_CRYSTAL_TOTAL_COST={R:595,SR:800,UR:1750,LG:1750}
-export const RED_CRYSTAL_SKILL_COSTS={R:[70,175,350],SR:[80,240,480],UR:[100,550,1100],LG:[100,550,1100]}
+// Unlock costs use initial game rarity, not the currently awakened card rank.
+// Evidence: docs/character-integrity/CLASSIFICATION-AUDIT.md.
+export const RED_CRYSTAL_TOTAL_COST={N:485,R:595,SR:800,UR:1750,LG:1750}
+export const RED_CRYSTAL_SKILL_COSTS={N:[70,175,240],R:[70,175,350],SR:[80,240,480],UR:[100,550,1100],LG:[100,550,1100]}
 export const RED_CRYSTAL_UNLOCK_COSTS=Object.fromEntries(
   Object.entries(RED_CRYSTAL_SKILL_COSTS).map(([rarity,costs])=>[
     rarity,
@@ -362,7 +290,7 @@ export const buffTargetMatches=(skill,effect,kind,key)=>{
 }
 export function redCrystalBuffUnlockCost(entry,kind,key,stat){
   if(!entry||entry.special_icon||entry.special_label||Number(entry.value)===5) return null
-  const char=findCharByName(entry.name)||ALL.find(c=>c.name_jp===entry.name_jp)
+  const char=entry.name_jp?ALL.find(c=>c.name_jp===entry.name_jp):findCharByName(entry.name)
   if(!char) return null
   const rarity=buffEntryRarity(entry)||char.rarity||'SR'
   const costs=RED_CRYSTAL_UNLOCK_COSTS[rarity]
@@ -601,8 +529,9 @@ export const SCENE_CARD=sceneCardBuffs.totals
 // Return fully-buffed CW stats for a character at max enhancement.
 // Applies unit-type % buffs from the CW Buffs page + scene card flat bonuses.
 export function calcCwStats(char){
-  const M=CW_MAX[char.id]||CW_DEF_MAX[char.rarity||'SR']||CW_DEF_MAX.SR
-  const unitType=M.unitType||'Cavalry'   // unitType set per-char in cw_max_stats.json
+  const fallbackTier=classification[char.id]?.stats_fallback_rarity||char.rarity||'SR'
+  const M=CW_MAX[char.id]||CW_DEF_MAX[fallbackTier]||CW_DEF_MAX.SR
+  const unitType=char.unit_type||M.unitType||'Cavalry'
   const tb=CW_TYPE_BUFFS[unitType]||CW_TYPE_BUFFS.Cavalry
   const hp =Math.round(M.hp *(1+tb.hp /100)+SCENE_CARD.hp)
   const atk=Math.round(M.atk*(1+tb.atk/100)+SCENE_CARD.atk)
@@ -1156,7 +1085,9 @@ export function matchCharacterSearch(character, query, locale) {
   if (!String(query ?? '').trim()) return { hint: null }
   if (!searchTerms.has(character)) {
     const faction = FACTIONS.find(f => f.id === character.country)
-    const groups = Object.entries(CHAR_GROUPS).filter(([, names]) => names.includes(character.name_en)).map(([tag]) => tag)
+    const groups = [...(character.groups||[])]
+    if(groups.includes('Hi Shin Unit')) groups.push('HiShin')
+    if(groups.includes('Gakuka Unit')) groups.push('Gakuka')
     searchTerms.set(character, { groups, terms: [faction?.label, faction?.jp, ...groups].filter(Boolean) })
   }
   const { groups, terms } = searchTerms.get(character)
@@ -1210,19 +1141,20 @@ export function Picker({onSelect,onClose,excl=[],returnFocus}){
 
 // ── TEAM COST ─────────────────────────────────────────────────────────────────
 export const RARITY_COST=RED_CRYSTAL_TOTAL_COST
-export const RARITY_COLOR={R:'#3d9970',SR:'#3d6eb5',UR:'#c0392b',LG:'#d4af37'}
+export const RARITY_COLOR={N:'#68704a',R:'#3d9970',SR:'#3d6eb5',UR:'#c0392b',LG:'#d4af37'}
 
 export const RARITY_DATA=rarityData
+// Never join cost categories by display name: 向 and 昂 both display as Kou.
+export const characterInitialRarity=c=>classification[c?.id]?.initial_rarity||c?.rarity||'SR'
 
 // Authoritative rarity lookup for buff entries. character_rarity.json is the
 // single source of truth; the `type` field hand-coded on buff entries had
 // drifted (and even held an invalid "SSR"). Match ONLY by Japanese name — it is
 // unique, whereas a few romanizations collide (e.g. 昂 and 向 both romanize to
-// "Kou", so matching by English name would mix them up). Fall back to the
-// entry's own `type` only for the handful of minor generals not yet in the
-// rarity file (currently 昂 and 英紀).
+// "Kou", so matching by English name would mix them up). Preserve the entry's
+// own `type` as a defensive fallback for records outside the mapped roster.
 const RARITY_BY_JP=Object.fromEntries(
-  Object.values(rarityData).filter(v=>v&&v.name_jp).map(v=>[v.name_jp,v.rarity])
+  Object.values(RARITY_DATA).filter(v=>v&&v.name_jp).map(v=>[v.name_jp,v.rarity])
 )
 export function buffEntryRarity(entry){
   if(!entry) return null
@@ -1239,21 +1171,12 @@ export function statSortKey(s){const i=STAT_ORDER.indexOf(s);return i===-1?STAT_
 
 // ----- party-builder skill masks + hidden search tags (shared) -----
 // Hidden search tags — searching these strings finds the listed characters
-export const CHAR_GROUPS={
-  'Hi Shin Unit':['Shin','Garo','Gakurai','Kyoukai','Tonkaku','Tonkoku','Kanto','Heirai','Soujin','Soutan'],
-  'HiShin':['Shin','Garo','Gakurai','Kyoukai','Tonkaku','Tonkoku','Kanto','Heirai','Soujin','Soutan'],
-  'Gakuka':['Mouten','Rikusen'],
-  'Moubo Army':['Moubu','Choushi','Raiki'],
-  'Gyokuhou':['Ouhon','Kanjou','Shoutaku','Kyuukou'],
-  'Chinese Ten Bows':['Gika','Kyouen','Kourigen','Sougen','Hakurei'],
-  "Zhao's Three Great Heavens":['Renpa'],
-  "Zhao's New Three Great Heavens":['Houken','Riboku'],
-  'Qiang Tribe':['Kyoukai','Kyourei','Kyoushou'],
-  'Mera Tribe':['Katari','Kitari'],
-  'Figo Tribe':['Danto','Pam'],
-  'Akou Army':['Akou','Eiki'],
-  'Ryofui Four Pillars':['Ryofui','Mougou','Saizatsu','Shouheikun','Moubu','Rishi'],
-}
+export const CHAR_GROUPS=Object.fromEntries(Object.entries(GROUPS).map(([group,ids])=>[
+  group,[...ids],
+]))
+CHAR_GROUPS.HiShin=CHAR_GROUPS['Hi Shin Unit']
+CHAR_GROUPS.Gakuka=CHAR_GROUPS['Gakuka Unit']
+
 
 // Per-slot skill mask for the Party Builder.
 // n: 0-3 skill-unlock level (cascading — n=2 means S1+S2 enabled, S3 off).

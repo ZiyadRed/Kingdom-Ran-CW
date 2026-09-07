@@ -1009,7 +1009,7 @@
   "adSlay": 13342,
   "daSlay": 7069,
   "defPen": 547,
-  "unitType": "Cavalry"
+  "unitType": "Archer"
  },
  "hakukisei": {
   "cid": 49,
@@ -1032,7 +1032,7 @@
   "adSlay": 12342,
   "daSlay": 8069,
   "defPen": 547,
-  "unitType": "Archer"
+  "unitType": "Shield"
  },
  "bakukoshin": {
   "cid": 50,
@@ -1193,7 +1193,7 @@
   "adSlay": 15342,
   "daSlay": 5069,
   "defPen": 547,
-  "unitType": "Archer"
+  "unitType": "Infantry"
  },
  "mangoku": {
   "cid": 60,
@@ -1285,7 +1285,7 @@
   "adSlay": 11375,
   "daSlay": 9075,
   "defPen": 600,
-  "unitType": "Shield"
+  "unitType": "Cavalry"
  },
  "mougou": {
   "cid": 65,
@@ -1630,7 +1630,7 @@
   "adSlay": 12342,
   "daSlay": 8069,
   "defPen": 547,
-  "unitType": "Archer"
+  "unitType": "Shield"
  },
  "rokuomi": {
   "cid": 81,
@@ -1745,7 +1745,7 @@
   "adSlay": 12342,
   "daSlay": 8069,
   "defPen": 547,
-  "unitType": "Infantry"
+  "unitType": "Shield"
  },
  "takukei": {
   "cid": 87,
@@ -1906,7 +1906,7 @@
   "adSlay": 13342,
   "daSlay": 7069,
   "defPen": 547,
-  "unitType": "Cavalry"
+  "unitType": "Archer"
  },
  "chousou": {
   "cid": 94,
@@ -3792,7 +3792,7 @@
   "adSlay": 12375,
   "daSlay": 8075,
   "defPen": 600,
-  "unitType": "Infantry"
+  "unitType": "Shield"
  },
  "shoutaku": {
   "cid": 220,

@@ -235,7 +235,7 @@
     "name_en": "Kaine",
     "name_jp": "カイネ",
     "country": "zhao",
-    "unit": "Riboku Army",
+    "unit": "Coalition Army",
     "rarity": "SR",
     "skills": [
       {
@@ -318,7 +318,7 @@
     "name_en": "Mangoku",
     "name_jp": "万極",
     "country": "zhao",
-    "rarity": "UR",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Orange Bull]",
@@ -477,8 +477,8 @@
     "id": "chouko",
     "name_en": "Chouko",
     "name_jp": "趙高",
-    "country": "zhao",
-    "rarity": "NR",
+    "country": "qin",
+    "rarity": "N",
     "skills": [
       {
         "name_en": "ATK Enhancement [Red Bull]",

@@ -11,7 +11,7 @@
     "name_en": "Ka",
     "name_jp": "太子嘉",
     "country": "zhao",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Morale Recovery [Red Sheep]",
@@ -80,8 +80,7 @@
     "name_en": "Shunsuiju",
     "name_jp": "舜水樹",
     "country": "zhao",
-    "unit": "Riboku Army",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Yellow Elephant]",
@@ -256,7 +255,7 @@
     "name_jp": "青公",
     "country": "zhao",
     "unit": "Kisui Army",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Orange Tiger]",
@@ -343,7 +342,7 @@
     "name_en": "Kinmou",
     "name_jp": "金毛",
     "country": "zhao",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Gray Elephant]",
@@ -442,7 +441,7 @@
     "name_en": "Gakuei",
     "name_jp": "岳嬰",
     "country": "zhao",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Master General Flash [Yellow Turtle]",
@@ -535,8 +534,8 @@
     "name_en": "Ryuuto",
     "name_jp": "劉冬",
     "country": "zhao",
-    "unit": "Rigan",
-    "rarity": "SR",
+    "unit": "Kisui Army",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Master General Attack [Red Elephant]",
@@ -629,7 +628,7 @@
     "name_en": "Kishou",
     "name_jp": "紀昌",
     "country": "zhao",
-    "unit": "Rigan",
+    "unit": "Kisui Army",
     "rarity": "UR",
     "skills": [
       {
@@ -711,7 +710,7 @@
     "name_en": "Kisui",
     "name_jp": "紀彗",
     "country": "zhao",
-    "unit": "Kisui Army / Rigan",
+    "unit": "Kisui Army",
     "rarity": "UR",
     "skills": [
       {
@@ -834,7 +833,7 @@
     "name_en": "Batei",
     "name_jp": "馬呈",
     "country": "zhao",
-    "unit": "Rigan",
+    "unit": "Kisui Army",
     "rarity": "UR",
     "skills": [
       {

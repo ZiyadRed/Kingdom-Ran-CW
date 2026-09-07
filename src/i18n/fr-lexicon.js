@@ -235,6 +235,15 @@ export const TAGS = {
  * `de` is the complement form used after "alliés"/"ennemis".
  */
 export const GROUPS = {
+  'Mera Tribe': { name: 'tribu Mera', de: 'de la tribu Mera' },
+  'Figo Tribe': { name: 'tribu Figo', de: 'de la tribu Figo' },
+  'Akou Army': { name: 'armée d’Akou', de: 'de l’armée d’Akou' },
+  'Gyokuhou': { name: 'unité Gyokuhou', de: 'de l’unité Gyokuhou' },
+  'Qiang Tribe': { name: 'tribu Qiang', de: 'de la tribu Qiang' },
+  'Chinese Ten Bows': { name: 'Dix Arcs de Chine', de: 'des Dix Arcs de Chine' },
+  "Zhao's New Three Great Heavens": { name: 'Trois Nouveaux Grands Cieux de Zhao', de: 'des Trois Nouveaux Grands Cieux de Zhao' },
+  "Zhao's Three Great Heavens": { name: 'Trois Grands Cieux de Zhao', de: 'des Trois Grands Cieux de Zhao' },
+  'Seikai Army': { name: 'armée de Seikai', de: 'de l’armée de Seikai' },
   'Kanki Army': { name: 'armée de Kanki', de: 'de l’armée de Kanki' },
   'Ousen Army': { name: 'armée d’Ousen', de: 'de l’armée d’Ousen' },
   'Karin Army': { name: 'armée de Karin', de: 'de l’armée de Karin' },

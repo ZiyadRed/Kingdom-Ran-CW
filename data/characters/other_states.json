@@ -11,7 +11,7 @@
     "name_en": "Kyobou",
     "name_jp": "巨暴",
     "country": "chu",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Enemy General Sweep [Red Elephant]",
@@ -175,7 +175,7 @@
     "name_en": "Rien",
     "name_jp": "李園",
     "country": "chu",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Black Sheep]",
@@ -295,7 +295,7 @@
     "name_en": "Rokin",
     "name_jp": "魯近",
     "country": "chu",
-    "unit": "Rinbukun Army (Coalition)",
+    "unit": "Coalition Army",
     "rarity": "SR",
     "skills": [
       {
@@ -371,7 +371,7 @@
     "name_en": "Chouin",
     "name_jp": "張印",
     "country": "han",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Yellow Turtle]",
@@ -682,7 +682,7 @@
     "name_en": "Budai",
     "name_jp": "ブダイ",
     "country": "ai",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Green Tiger]",
@@ -775,7 +775,7 @@
     "name_en": "Hamui",
     "name_jp": "ハムイ",
     "country": "ai",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Gray Bull]",

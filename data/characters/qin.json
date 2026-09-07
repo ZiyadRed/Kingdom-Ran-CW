@@ -99,7 +99,7 @@
     "name_jp": "亜光",
     "country": "qin",
     "unit": "Ousen Army",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Blue Sheep]",
@@ -276,7 +276,7 @@
     "name_jp": "田里弥",
     "country": "qin",
     "unit": "Ousen Army",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Blue Sheep]",
@@ -363,7 +363,7 @@
     "name_en": "Youka",
     "name_jp": "姚賈",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Defense Reduction [Red Elephant]",
@@ -432,7 +432,7 @@
     "name_en": "Kyourei",
     "name_jp": "京令",
     "country": "qin",
-    "rarity": "NR",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "HP Recovery [Red Sheep]",
@@ -496,7 +496,7 @@
     "name_en": "Robin",
     "name_jp": "呂敏",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Weak General Flash",
@@ -584,7 +584,7 @@
     "name_jp": "角雲",
     "country": "qin",
     "unit": "Kanki Army",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Attack Reduction [Red Bull]",
@@ -672,7 +672,7 @@
     "name_jp": "馬印",
     "country": "qin",
     "unit": "Kanki Army",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Weak Point Flash [Yellow Sheep]",
@@ -759,7 +759,7 @@
     "name_en": "Shoutaku",
     "name_jp": "松琢",
     "country": "qin",
-    "unit": "Gyokuhou Unit",
+    "unit": "Gyokuhou",
     "rarity": "SR",
     "skills": [
       {
@@ -880,7 +880,7 @@
     "name_en": "Kyuukou",
     "name_jp": "宮康",
     "country": "qin",
-    "unit": "Gyokuhou Unit",
+    "unit": "Gyokuhou",
     "rarity": "SR",
     "skills": [
       {
@@ -996,7 +996,7 @@
     "name_jp": "那貴",
     "country": "qin",
     "unit": "Kanki Army",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Master General Flash [Yellow Sheep]",
@@ -1084,7 +1084,7 @@
     "name_jp": "リン玉",
     "country": "qin",
     "unit": "Kanki Army",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Heavy Pursuit [Green Tiger]",
@@ -1347,7 +1347,7 @@
     "name_en": "Shin",
     "name_jp": "信",
     "country": "qin",
-    "rarity": "UR",
+    "rarity": "R",
     "image": "/persos/shin.webp",
     "skills": [
       {
@@ -1424,6 +1424,7 @@
     "name_en": "Kyoukai",
     "name_jp": "羌瘣",
     "country": "qin",
+    "rarity": "SR",
     "image": "/persos/kyoukai.webp",
     "skills": [
       {

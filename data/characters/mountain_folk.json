@@ -4,7 +4,7 @@
     "name_en": "Yotanwa",
     "name_jp": "楊端和",
     "country": "mountain_folk",
-    "rarity": "UR",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Master General Flash [Orange Sheep]",
@@ -137,7 +137,7 @@
     "name_en": "Kitari",
     "name_jp": "キタリ",
     "country": "mountain_folk",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Master General Attack [Red Bull]",
@@ -329,7 +329,7 @@
     "name_en": "Katari",
     "name_jp": "カタリ",
     "country": "mountain_folk",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Double Flash [Red Sheep]",
@@ -844,7 +844,7 @@
     "name_en": "Bajio",
     "name_jp": "バジオウ",
     "country": "mountain_folk",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Red Sheep]",
@@ -924,7 +924,7 @@
     "id": "gotan",
     "name_en": "Gotan",
     "name_jp": "剛炭",
-    "country": "mountain_folk",
+    "country": "wei",
     "rarity": "R",
     "skills": [
       {
@@ -985,8 +985,8 @@
     "id": "shuki",
     "name_en": "Shuki",
     "name_jp": "朱鬼",
-    "country": "mountain_folk",
-    "rarity": "SR",
+    "country": "wei",
+    "rarity": "N",
     "skills": [
       {
         "name_en": "ATK Enhancement [Red Sheep]",
@@ -1046,8 +1046,8 @@
     "id": "maki",
     "name_en": "Maki",
     "name_jp": "麻鬼",
-    "country": "mountain_folk",
-    "rarity": "SR",
+    "country": "wei",
+    "rarity": "N",
     "skills": [
       {
         "name_en": "Fierce General Flash [Red Elephant]",

@@ -4,8 +4,8 @@
     "name_en": "Ouhon",
     "name_jp": "王賁",
     "country": "qin",
-    "unit": "Gyokuhou Unit",
-    "rarity": "UR",
+    "unit": "Gyokuhou",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Master General Flash [Red Elephant]",
@@ -358,7 +358,7 @@
     "name_jp": "蒙恬",
     "country": "qin",
     "unit": "Gakuka Unit",
-    "rarity": "UR",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Master General Flash [Red Tiger]",
@@ -602,7 +602,7 @@
     "name_en": "Shoubunkun",
     "name_jp": "昌文君",
     "country": "qin",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Yellow Bull]",
@@ -695,7 +695,7 @@
     "name_en": "Sho",
     "name_jp": "昭王",
     "country": "qin",
-    "rarity": "UR",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Orange Elephant]",
@@ -815,7 +815,7 @@
     "name_en": "Ei Sei",
     "name_jp": "嬴政",
     "country": "qin",
-    "rarity": "UR",
+    "rarity": "SR",
     "skills": [
       {
         "name_en": "Fierce General Flash [Blue Bull]",
@@ -903,7 +903,7 @@
     "name_en": "Kyou",
     "name_jp": "摎",
     "country": "qin",
-    "unit": "Ouki Army",
+    "unit": "Six Great Generals",
     "rarity": "UR",
     "skills": [
       {
@@ -1176,7 +1176,7 @@
     "name_en": "Saitaku",
     "name_jp": "蔡沢",
     "country": "qin",
-    "rarity": "NR",
+    "rarity": "R",
     "skills": [
       {
         "name_en": "Iron Wall Attack [Red Sheep]",

@@ -63,7 +63,7 @@
           "name": "Fuji",
           "name_jp": "フゥヂ",
           "faction": "mountain_folk",
-          "type": "UR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_e7b682ce833145a78329e15854bc46b0"
         },
@@ -71,7 +71,7 @@
           "name": "Ramauji",
           "name_jp": "ラマウジ",
           "faction": "mountain_folk",
-          "type": "UR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_1c8f4f309c7e40ef8262e070eb2e8a63"
         },
@@ -79,7 +79,7 @@
           "name": "Shunmen",
           "name_jp": "シュンメン",
           "faction": "mountain_folk",
-          "type": "UR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_9fe90fc2099f4a63bb553af8f9dd2f54"
         },
@@ -87,7 +87,7 @@
           "name": "Toji",
           "name_jp": "トッヂ",
           "faction": "mountain_folk",
-          "type": "UR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_6fcee9b61582467cb5fdd111520949d6"
         },
@@ -95,7 +95,7 @@
           "name": "Yotanwa",
           "name_jp": "楊端和",
           "faction": "mountain_folk",
-          "type": "UR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_1ab0be05813a42deaf89ef36134997e6"
         }
@@ -105,7 +105,7 @@
           "name": "Ramauji",
           "name_jp": "ラマウジ",
           "faction": "mountain_folk",
-          "type": "UR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_a4b597bfa07840c1b9b8c1d4b3891e3e"
         },
@@ -113,7 +113,7 @@
           "name": "Taijifu",
           "name_jp": "タジフ",
           "faction": "mountain_folk",
-          "type": "UR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_d87c8b36d8c4435aa88d000fb82dc574"
         }
@@ -168,7 +168,7 @@
           "name": "Hanoki",
           "name_jp": "樊於期",
           "faction": "ai",
-          "type": "SR",
+          "type": "UR",
           "value": 5.0,
           "ownership_id": "buff_635dca82eda34485bf9812a1edd61ff6"
         }
@@ -181,7 +181,7 @@
           "name": "Bamyu",
           "name_jp": "バミュウ",
           "faction": "chu",
-          "type": "UR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_206ad4e40f6e4c83ae5963015ff9c243"
         },
@@ -197,7 +197,7 @@
           "name": "Goutoku",
           "name_jp": "豪徳",
           "faction": "chu",
-          "type": "SSR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_03d9aa2182ac4c159c5bf5a7cfcad846"
         },
@@ -272,7 +272,7 @@
           "name": "Beiman",
           "name_jp": "貝満",
           "faction": "chu",
-          "type": "SR",
+          "type": "UR",
           "value": 5.0,
           "ownership_id": "buff_6b4c5313675f430db8ec9c24d5360b3e"
         },
@@ -280,7 +280,7 @@
           "name": "Hakusui",
           "name_jp": "白翠",
           "faction": "chu",
-          "type": "SR",
+          "type": "UR",
           "value": 5.0,
           "ownership_id": "buff_85bb29169cec4231ae84aa2d24f225e3"
         },
@@ -288,7 +288,7 @@
           "name": "Rien",
           "name_jp": "李園",
           "faction": "chu",
-          "type": "SR",
+          "type": "UR",
           "value": 5.0,
           "ownership_id": "buff_646e4b0d17d2444ca19b48e5fa67b8dc"
         },
@@ -296,7 +296,7 @@
           "name": "Rokin",
           "name_jp": "魯近",
           "faction": "chu",
-          "type": "SSR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_7189ed6bccff409694478d85a29a3d60"
         },
@@ -403,7 +403,7 @@
           "name": "Kyourei",
           "name_jp": "京令",
           "faction": "qin",
-          "type": "UR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_15ef4334573f4c2c9320118b2aa54a51"
         },
@@ -439,7 +439,7 @@
           "name": "Oukotsu",
           "name_jp": "王齕",
           "faction": "qin",
-          "type": "SR",
+          "type": "UR",
           "value": 5.0,
           "ownership_id": "buff_a150f094969545d0bd70d5962c79229e"
         },
@@ -465,7 +465,7 @@
           "name": "Kyourei",
           "name_jp": "京令",
           "faction": "qin",
-          "type": "UR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_3b34aeb24eae4546be8ec2983f1ca208"
         },
@@ -481,7 +481,7 @@
           "name": "Rishi",
           "name_jp": "李斯",
           "faction": "qin",
-          "type": "UR",
+          "type": "R",
           "value": 5.0,
           "ownership_id": "buff_f4cefe0b0edd4e0194f5f166797b9bd6"
         },
@@ -503,7 +503,7 @@
           "name": "Shoutaku",
           "name_jp": "松琢",
           "faction": "qin",
-          "type": "UR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_903bfa37836945bfa5730e164d485eba"
         }
@@ -514,7 +514,7 @@
           "name": "Kyuukou",
           "name_jp": "宮康",
           "faction": "qin",
-          "type": "UR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_464408b34b464070a58cce0ea37d11b6"
         }
@@ -534,7 +534,7 @@
           "name": "Toumi",
           "name_jp": "東美",
           "faction": "qin",
-          "type": "NR",
+          "type": "UR",
           "value": 5.0,
           "ownership_id": "buff_55c16b40342f462991b657106472bf62"
         }
@@ -568,7 +568,7 @@
           "name": "Seki",
           "name_jp": "石",
           "faction": "qin",
-          "type": "UR",
+          "type": "R",
           "value": 5.0,
           "ownership_id": "buff_6702ae77325e41e195e2b3ca83a15287"
         },
@@ -576,7 +576,7 @@
           "name": "Suugen",
           "name_jp": "崇原",
           "faction": "qin",
-          "type": "NR",
+          "type": "R",
           "value": 5.0,
           "ownership_id": "buff_b0f9c6c5e18f488c8ea4ca57b7071ff7"
         },
@@ -642,7 +642,7 @@
           "name": "Seki",
           "name_jp": "石",
           "faction": "qin",
-          "type": "UR",
+          "type": "R",
           "value": 5.0,
           "ownership_id": "buff_44064ec7b9b746fbb58cd398bf79b573"
         }
@@ -663,7 +663,7 @@
           "name": "Naki",
           "name_jp": "那貴",
           "faction": "qin",
-          "type": "SR",
+          "type": "UR",
           "value": 5.0,
           "ownership_id": "buff_ec437424a60c4bae8832face9b9fd9ad"
         }
@@ -702,7 +702,7 @@
           "name": "Kouyoku",
           "name_jp": "項翼",
           "faction": "chu",
-          "type": "UR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_6ef1cbd9ecae4f0eacef47c3550c6405"
         }
@@ -712,7 +712,7 @@
           "name": "Bamyu",
           "name_jp": "バミュウ",
           "faction": "chu",
-          "type": "UR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_3e5415fbbfdf4cb88c9b9c8e6de1a130"
         }
@@ -726,7 +726,7 @@
           "name": "Eiki",
           "name_jp": "英紀",
           "faction": "qin",
-          "type": "SSR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_6c98859f2bb94afa87d41f6bc39b0f0f"
         },
@@ -762,7 +762,7 @@
           "name": "Kanou",
           "name_jp": "干央",
           "faction": "qin",
-          "type": "SR",
+          "type": "R",
           "value": 5.0,
           "ownership_id": "buff_459314c8861e4b6ebec348fa8e11cd22"
         }
@@ -772,7 +772,7 @@
           "name": "Doukin",
           "name_jp": "同金",
           "faction": "qin",
-          "type": "UR",
+          "type": "R",
           "value": 5.0,
           "ownership_id": "buff_a5355eac858f42ae82d945d817f9ae22"
         },
@@ -849,7 +849,7 @@
           "name": "Sho",
           "name_jp": "昭王",
           "faction": "qin",
-          "type": "UR",
+          "type": "SR",
           "value": 5.0,
           "ownership_id": "buff_c3aa9c3fd2b7456a9f87da10118ac221"
         }
@@ -882,7 +882,7 @@
           "name": "Roen",
           "name_jp": "魯延",
           "faction": "qin",
-          "type": "SR",
+          "type": "R",
           "star6": false,
           "value": 24.8,
           "ownership_id": "buff_1599f10f61fd42549b9193fa6aab1aad"
@@ -900,7 +900,7 @@
           "name": "Mangoku",
           "name_jp": "万極",
           "faction": "zhao",
-          "type": "UR",
+          "type": "SR",
           "star6": false,
           "value": 12.3,
           "ownership_id": "buff_5c92d96c5d6a469bb7d8a340bae60eb5"
@@ -919,8 +919,8 @@
         {
           "name": "Jokan",
           "name_jp": "徐完",
-          "faction": "zhao",
-          "type": "SR",
+          "faction": "qin",
+          "type": "R",
           "star6": false,
           "value": 5.8,
           "ownership_id": "buff_29bcc7f1be3a420e97c7d6e6fdd5420a"
@@ -928,8 +928,8 @@
         {
           "name": "Shuki",
           "name_jp": "朱鬼",
-          "faction": "mountain_folk",
-          "type": "SR",
+          "faction": "wei",
+          "type": "N",
           "star6": false,
           "value": 4.8,
           "ownership_id": "buff_2c193df97bc2498a9f3429fd3b653b4e"
@@ -938,7 +938,7 @@
           "name": "Bamyu",
           "name_jp": "バミュウ",
           "faction": "chu",
-          "type": "NR",
+          "type": "SR",
           "star6": false,
           "value": 2.8,
           "ownership_id": "buff_5438b126269f4497bc81b33a6c01f560"
@@ -949,7 +949,7 @@
           "name": "Entei",
           "name_jp": "燕呈",
           "faction": "qin",
-          "type": "NR",
+          "type": "SR",
           "star6": false,
           "value": 6.4,
           "ownership_id": "buff_0839503e5eb04bf4a3b052bf80c57389"
@@ -958,7 +958,7 @@
           "name": "En",
           "name_jp": "渕",
           "faction": "qin",
-          "type": "SR",
+          "type": "R",
           "star6": false,
           "value": 5.8,
           "ownership_id": "buff_853c9f0e15c947fb8dc6c4ff726f3f2c"
@@ -967,7 +967,7 @@
           "name": "Kei",
           "name_jp": "慶",
           "faction": "qin",
-          "type": "SR",
+          "type": "N",
           "star6": false,
           "value": 4.8,
           "ownership_id": "buff_8b6b8f6b07fa46769d526da45c01a92c"
@@ -976,7 +976,7 @@
           "name": "Genpo",
           "name_jp": "玄峰",
           "faction": "wei",
-          "type": "NR",
+          "type": "SR",
           "star6": false,
           "value": 2.8,
           "ownership_id": "buff_81919e211c0e4443b25200fea2041fa9"
@@ -1016,7 +1016,7 @@
           "name": "Shishi",
           "name_jp": "肆氏",
           "faction": "qin",
-          "type": "NR",
+          "type": "R",
           "star6": false,
           "value": 24.8,
           "ownership_id": "buff_fdf32ce10281415f82b2418a6558aa59"
@@ -1034,7 +1034,7 @@
           "name": "Maron",
           "name_jp": "摩論",
           "faction": "qin",
-          "type": "NR",
+          "type": "SR",
           "star6": false,
           "value": 12.3,
           "ownership_id": "buff_fd0c0dfdecff4f999f4affc7b80f5458"
@@ -1054,7 +1054,7 @@
           "name": "Rishi",
           "name_jp": "李斯",
           "faction": "qin",
-          "type": "NR",
+          "type": "R",
           "star6": false,
           "value": 5.8,
           "ownership_id": "buff_c81d6ef9c4b94df7b4a8df5c9395f5a1"
@@ -1062,8 +1062,8 @@
         {
           "name": "Maki",
           "name_jp": "麻鬼",
-          "faction": "mountain_folk",
-          "type": "SR",
+          "faction": "wei",
+          "type": "N",
           "star6": false,
           "value": 4.8,
           "ownership_id": "buff_013856175eca4bc5896e890b0ef23053"
@@ -1101,7 +1101,7 @@
           "name": "Seki",
           "name_jp": "石",
           "faction": "qin",
-          "type": "SR",
+          "type": "R",
           "star6": false,
           "value": 5.8,
           "ownership_id": "buff_d47a1125a735469dac2fd7acea6515c9"
@@ -1110,7 +1110,7 @@
           "name": "Kou",
           "name_jp": "昂",
           "faction": "qin",
-          "type": "NR",
+          "type": "N",
           "star6": false,
           "value": 4.8,
           "ownership_id": "buff_7ce9f49c71664468b02df3d3f0791275"

@@ -431,7 +431,7 @@
     "name_jp": "輪虎",
     "country": "wei",
     "unit": "Renpa Army",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Red Tiger]",
@@ -532,7 +532,7 @@
     "name_en": "Hakurei",
     "name_jp": "白麗",
     "country": "chu",
-    "unit": "Rinbukun Army",
+    "unit": "Chinese Ten Bows",
     "rarity": "SR",
     "skills": [
       {
@@ -706,7 +706,7 @@
     "name_en": "Gohoumei",
     "name_jp": "呉鳳明",
     "country": "wei",
-    "rarity": "SR",
+    "rarity": "UR",
     "skills": [
       {
         "name_en": "Iron Wall Flash [Yellow Elephant]",
