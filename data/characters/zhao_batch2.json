@@ -529,6 +529,7 @@
       }
     ],
     "icon": "/icons/Domon.webp",
+    "image": "/persos/domon.webp",
     "source": {
       "characterId": 130,
       "generalIds": [

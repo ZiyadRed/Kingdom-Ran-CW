@@ -1,0 +1,1117 @@
+{
+  "schema": 1,
+  "date": "2026-09-07",
+  "classification_commit": "47d5cbea89730800b27c1e35ad8ffd55b71bbd0f",
+  "rejected_banner_commit": "64130e797d51ca479342e368924d2e425d3a6841",
+  "safety_branch": "archive/unacceptable-banner-64130e7",
+  "visual_contract": {
+    "accepted_inventory_count": 188,
+    "normal_dimensions": {
+      "626x880": 170,
+      "213x300": 8,
+      "313x440": 7,
+      "426x600": 3
+    },
+    "aspect_ratio_median": 0.71136,
+    "usual_full_size": [
+      626,
+      880
+    ],
+    "thumbnail_rule": "626x880 and 426x600 sources use 320px-wide optimized thumbnails; sources already at 313px or 213px keep byte-identical full and thumbnail files.",
+    "visual_style": "Finished in-game character cards with a complete action/environment scene, deliberate face/body framing, readable name and rarity, and transparent ornate outer corners.",
+    "edge_treatment": "No opaque rectangular matte around the irregular frame. Accepted sources preserve transparency at the outer corners.",
+    "background_treatment": "Scene art or a character-specific environment with depth; plain low-rarity patterned fields are not accepted for new replacements.",
+    "quality": "Sharp at the gallery render size, authentic, free of watermarks and unrelated variants, and losslessly prepared when no resize is needed.",
+    "accepted_outer4_dark_fraction": {
+      "median": 0.06977,
+      "p90": 0.34848,
+      "max": 0.4875
+    },
+    "rejected_attempt_outer4_dark_fraction": {
+      "min": 0.82611,
+      "median": 0.87618,
+      "max": 0.96102
+    }
+  },
+  "source_search": {
+    "priority_checked": [
+      "Local decrypted official game character, background, rectangle, icon, and name assets",
+      "Official Kingdom Ran news pages and CDN overview images",
+      "Official site sitemap covering 5,902 info URLs",
+      "Exact-character preserved database pages for identity and rejection review"
+    ],
+    "rejected_source_classes": [
+      "RGB renditions with flattened black corners",
+      "Static low-rarity portraits on plain patterned fields",
+      "120x120 icons and 126x330 rectangle strips",
+      "Raw transparent character layers that would require an invented composite"
+    ]
+  },
+  "counts": {
+    "attempted": 21,
+    "accepted_new_banner": 2,
+    "accepted_improved_crop": 0,
+    "keep_fallback_unresolved": 19
+  },
+  "visual_review": {
+    "locales": [
+      "en",
+      "ja",
+      "ar",
+      "fr"
+    ],
+    "viewports": [
+      "390x844",
+      "820x900",
+      "1440x900"
+    ],
+    "captures": 24,
+    "result": "Yugi and Domon match adjacent accepted Qin cards without black edge artifacts or responsive overflow. Unresolved characters retain the existing icon/initial fallback presentation.",
+    "external_evidence": [
+      "before-after-evidence.png",
+      "site-review-390.jpg",
+      "site-review-820.jpg",
+      "site-review-1440.jpg"
+    ]
+  },
+  "validation": {
+    "full_release_gate": "PASS",
+    "lint": "PASS",
+    "source_validation": "PASS: 209/209 characters, 661/661 CW skills, 10/10 role-skill rows",
+    "tests": "PASS: 489 tests in 38 files",
+    "build_prerender_seo": "PASS: 132 modules, 1,149 route documents plus 404.html, 936 canonical URLs",
+    "browser": "PASS: 80 Chromium cases across EN/JA/AR/FR, including banner alpha, 390/820/1440 layout, and fallback recovery",
+    "git_diff_check": "PASS"
+  },
+  "characters": [
+    {
+      "id": "yugi",
+      "character": "Yugi",
+      "name_jp": "有義",
+      "characterId": 129,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728563",
+        "source_url": "https://img.game8.jp/11803244/42334bd78e7494222abf6caf5a0dd430.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.9585,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds the ornate frame. The action composition is potentially suitable, but the flattened RGB rendition is not."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. The matte follows the irregular outer frame; a rectangular crop would cut the frame and cannot restore the transparent corners."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 209,
+          "assetId": 286,
+          "designNo": 32,
+          "image": 1,
+          "local_art": "character/chara/cg032_i01.png",
+          "exists": true,
+          "sha256": "af9bfe7a712a3e21737b019a9f37ff767d145c0833797f940a6a677d0cf15960"
+        }
+      ],
+      "outcome": "ACCEPTED NEW BANNER",
+      "accepted_banner": {
+        "source_page": "https://www.kingdomran.jp/info/231208multipoint",
+        "source_url": "https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/73ef67fa7f4cc452f93a278c7803c401.png",
+        "source_sha256": "764c9c86135c55294a4279a1d8b9f782a6146ce3c7dd388a2f2e722c2759fb6f",
+        "webp_sha256": "4cbd60370394f8493e9c78b4f1369412cabf573b6c212a30d9868d8d5e0321f9",
+        "bytes": 70316,
+        "rationale": "Official SR overview art uses a complete outdoor action scene, intentional subject framing, and transparent ornate corners consistent with accepted RanHQ banners.",
+        "source_type": "Official Kingdom Ran site/CDN character overview PNG",
+        "source_dimensions": [
+          313,
+          440
+        ],
+        "source_alpha_range": [
+          0,
+          255
+        ],
+        "final_path": "public/persos/yugi.webp",
+        "thumbnail_path": "public/persos/thumbs/yugi.webp",
+        "final_dimensions": [
+          313,
+          440
+        ],
+        "final_alpha": true,
+        "processing": "Decoded the official palette PNG to RGBA and encoded it as lossless WebP. No crop, resize, stretch, retouch, compositing, painting, or generative fill. Decoded RGBA pixels were verified byte-identical."
+      }
+    },
+    {
+      "id": "kesshi",
+      "character": "Ketsushi",
+      "name_jp": "竭氏",
+      "characterId": 88,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728527",
+        "source_url": "https://img.game8.jp/11804075/4016f6f6ef4cae33b19e65cfe1757c8c.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.87483,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 10,
+          "assetId": 10,
+          "designNo": 52,
+          "image": 1,
+          "local_art": "character/chara/cg052_i01.png",
+          "exists": true,
+          "sha256": "328e608ebd0eec60efe4749d05283371f79324f62738ad436288fcdd28403426"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      },
+      "rejected_official_candidate": {
+        "source_page": "https://www.kingdomran.jp/info/uraskill_ketsushi",
+        "source_url": "https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/b4a87b2e985df8ae6d8035c9fba22ca1.png",
+        "source_sha256": "49d2fc8256388937cf29858af127a58bb4976219042e3e2dc2144f0d39f33811",
+        "dimensions": [
+          313,
+          440
+        ],
+        "reason": "The official PNG restores transparent corners, but the static full-body N portrait on a plain patterned rarity field still clashes with the accepted action-scene banner presentation."
+      }
+    },
+    {
+      "id": "amon",
+      "character": "Amon",
+      "name_jp": "亜門",
+      "characterId": 8,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728243",
+        "source_url": "https://img.game8.jp/11801101/333b0d7c31963fc50b2997b1785588fd.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.83165,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 2,
+          "assetId": 2,
+          "designNo": 21,
+          "image": 1,
+          "local_art": "character/chara/cg021_i01.png",
+          "exists": true,
+          "sha256": "3a961340b3496520f57c84b8cbc3ec6cb11ae990a181689c0f5f316e6ce7451e"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    },
+    {
+      "id": "jiou",
+      "character": "Koushou",
+      "name_jp": "江彰",
+      "characterId": 24,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728252",
+        "source_url": "https://img.game8.jp/11801440/e0162ad6de83115d2804851364579306.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.82611,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 1,
+          "assetId": 1,
+          "designNo": 20,
+          "image": 1,
+          "local_art": "character/chara/cg020_i01.png",
+          "exists": true,
+          "sha256": "638e79fb7dbb3a1b63e16437de55b1ac82480a20ad8ed2b1b107e380fd693f4c"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    },
+    {
+      "id": "douken",
+      "character": "Douken",
+      "name_jp": "道剣",
+      "characterId": 48,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/729405",
+        "source_url": "https://img.game8.jp/11855500/d5299edd333cf112945f904a9ca6707b.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.87618,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 3,
+          "assetId": 3,
+          "designNo": 22,
+          "image": 1,
+          "local_art": "character/chara/cg022_i01.png",
+          "exists": true,
+          "sha256": "0c8056f5d040026f34e022e66c15529f299d810fdf7459b35110b77e2d916e42"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    },
+    {
+      "id": "shishi",
+      "character": "Shishi",
+      "name_jp": "肆氏",
+      "characterId": 91,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728531",
+        "source_url": "https://img.game8.jp/11804133/68cb8c1ea701cc09c8c1c1f7a0b3d20c.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.85064,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 20,
+          "assetId": 20,
+          "designNo": 61,
+          "image": 1,
+          "local_art": "character/chara/cg061_i01.png",
+          "exists": true,
+          "sha256": "abbe012fbb0afb5ec3dc58b343b75a740be8f397125c729c6219fe5caf033254"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    },
+    {
+      "id": "gii",
+      "character": "Gikou",
+      "name_jp": "魏興",
+      "characterId": 97,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728534",
+        "source_url": "https://img.game8.jp/11804211/f8a3c47dfc0d43cc25e393fb7d5d8344.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.87618,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 13,
+          "assetId": 13,
+          "designNo": 62,
+          "image": 1,
+          "local_art": "character/chara/cg062_i01.png",
+          "exists": true,
+          "sha256": "9bede41ef69790318c110c2a86a66d5673c3c6143518c9340be1abdcd148630d"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    },
+    {
+      "id": "hyou",
+      "character": "Hyou",
+      "name_jp": "漂",
+      "characterId": 55,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728518",
+        "source_url": "https://img.game8.jp/11803168/eb66de8b34e8bbcd24bf0d4f642dea9e.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.92406,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds the ornate frame. The action composition is potentially suitable, but the flattened RGB rendition is not."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. The matte follows the irregular outer frame; a rectangular crop would cut the frame and cannot restore the transparent corners."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 70,
+          "assetId": 70,
+          "designNo": 125,
+          "image": 1,
+          "local_art": "character/chara/cg125_i01.png",
+          "exists": true,
+          "sha256": "e916380de5d0541ac56cfbf9310266f02b056953d7f864369103c601fadefe9e"
+        },
+        {
+          "generalId": 112,
+          "assetId": 161,
+          "designNo": 125,
+          "image": 2,
+          "local_art": "character/chara/cg125_i02.png",
+          "exists": true,
+          "sha256": "b2ea8241a48d411bf545ab830727f2d46340a7df7617c72e993e6c6f5404b153"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "The only action-scene rendition found was the black-flattened third-party copy; no clean official finished banner was located."
+      }
+    },
+    {
+      "id": "kei",
+      "character": "Kei",
+      "name_jp": "慶",
+      "characterId": 19,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728538",
+        "source_url": "https://img.game8.jp/11801346/c8222fc77618544817867c1d741375d0.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.91902,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 23,
+          "assetId": 23,
+          "designNo": 47,
+          "image": 1,
+          "local_art": "character/chara/cg047_i01.png",
+          "exists": true,
+          "sha256": "a187e9fc9987e223ea2b7b6d81165bcbb18b045f251947b60b9ee5c82af1137c"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    },
+    {
+      "id": "hakukisei",
+      "character": "Hakukisai",
+      "name_jp": "白亀西",
+      "characterId": 49,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728322",
+        "source_url": "https://img.game8.jp/11803071/7db453262d18b10098bfb42b2da0b61a.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.91801,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 21,
+          "assetId": 21,
+          "designNo": 65,
+          "image": 1,
+          "local_art": "character/chara/cg065_i01.png",
+          "exists": true,
+          "sha256": "895d316e7ea56b3e029656935aac46296a924d8bf182282a99e91e39f27ecf03"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    },
+    {
+      "id": "roen",
+      "character": "Roen",
+      "name_jp": "魯延",
+      "characterId": 80,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728576",
+        "source_url": "https://img.game8.jp/11803501/d2cc3e3961e61860e8ea7685ab817046.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.85837,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 24,
+          "assetId": 24,
+          "designNo": 33,
+          "image": 1,
+          "local_art": "character/chara/cg033_i01.png",
+          "exists": true,
+          "sha256": "991efcc58a69b451bb729054828721499bcc42bd77dcf92ad1baf7ba32170c89"
+        },
+        {
+          "generalId": 606,
+          "assetId": 710,
+          "designNo": 33,
+          "image": 2,
+          "local_art": "character/chara/cg033_i02.png",
+          "exists": false,
+          "sha256": null
+        },
+        {
+          "generalId": 607,
+          "assetId": 711,
+          "designNo": 33,
+          "image": 3,
+          "local_art": "character/chara/cg033_i03.png",
+          "exists": false,
+          "sha256": null
+        },
+        {
+          "generalId": 608,
+          "assetId": 712,
+          "designNo": 33,
+          "image": 4,
+          "local_art": "character/chara/cg033_i04.png",
+          "exists": false,
+          "sha256": null
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    },
+    {
+      "id": "kou2",
+      "character": "Kou",
+      "name_jp": "昂",
+      "characterId": 23,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728541",
+        "source_url": "https://img.game8.jp/11801437/34ef69929fe09bd0d0cd2668a227f72f.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.91767,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 18,
+          "assetId": 18,
+          "designNo": 46,
+          "image": 1,
+          "local_art": "character/chara/cg046_i01.png",
+          "exists": true,
+          "sha256": "86e9e7415b47406283059fc9bdbfc012d19e185d9608c266835b4746265337fc"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    },
+    {
+      "id": "gotan",
+      "character": "Gotan",
+      "name_jp": "剛炭",
+      "characterId": 25,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728317",
+        "source_url": "https://img.game8.jp/11801466/f527c6522ca2cebfe925311ddeb60009.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.83417,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 11,
+          "assetId": 11,
+          "designNo": 56,
+          "image": 1,
+          "local_art": "character/chara/cg056_i01.png",
+          "exists": true,
+          "sha256": "fef380e80733e5568a287fdf18772cfa9d84848478d0cc432d07a0142251217d"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    },
+    {
+      "id": "shuki",
+      "character": "Shuki",
+      "name_jp": "朱鬼",
+      "characterId": 30,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728320",
+        "source_url": "https://img.game8.jp/11801571/ca56ebc0df1a0992e488a94236cfa177.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.87618,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 14,
+          "assetId": 14,
+          "designNo": 66,
+          "image": 1,
+          "local_art": "character/chara/cg066_i01.png",
+          "exists": true,
+          "sha256": "aaecf55f7483968a1c48dbb4bb41ea35ca1a55638115412af114e52421652587"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    },
+    {
+      "id": "maki",
+      "character": "Maki",
+      "name_jp": "麻鬼",
+      "characterId": 59,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728324",
+        "source_url": "https://img.game8.jp/11803196/b9fbe83fd1b0adf663ad5310fcf29c24.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.87584,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 15,
+          "assetId": 15,
+          "designNo": 67,
+          "image": 1,
+          "local_art": "character/chara/cg067_i01.png",
+          "exists": true,
+          "sha256": "f3a356da73782f00ed8c6c2c001e00cf99a40d1185a8515ce363a9abfb718b9f"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    },
+    {
+      "id": "saizatsu",
+      "character": "Saitaku",
+      "name_jp": "蔡沢",
+      "characterId": 92,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728532",
+        "source_url": "https://img.game8.jp/11804150/00e4ad579d58d01accd58fb7617611e2.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.86173,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 46,
+          "assetId": 46,
+          "designNo": 113,
+          "image": 1,
+          "local_art": "character/chara/cg113_i01.png",
+          "exists": true,
+          "sha256": "f4d94e3534d5cc4a92642015caa1077f73a62a2c47204ba8451abff52a4db552"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    },
+    {
+      "id": "domon",
+      "character": "Domon",
+      "name_jp": "土門",
+      "characterId": 130,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728507",
+        "source_url": "https://img.game8.jp/11802945/8eac9d666cc04fbf9d2c823277c89a09.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.96102,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds the ornate frame. The action composition is potentially suitable, but the flattened RGB rendition is not."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. The matte follows the irregular outer frame; a rectangular crop would cut the frame and cannot restore the transparent corners."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 212,
+          "assetId": 289,
+          "designNo": 150,
+          "image": 1,
+          "local_art": "character/chara/cg150_i01.png",
+          "exists": true,
+          "sha256": "f129bb4ee8dc93a59a5533872140e23f5ad4c655a8836f9c5ab8becc5939e89e"
+        }
+      ],
+      "outcome": "ACCEPTED NEW BANNER",
+      "accepted_banner": {
+        "source_page": "https://www.kingdomran.jp/info/uraskill_domon",
+        "source_url": "https://dxqkr1fuhva1u.cloudfront.net/wp-content/uploads/2cc9868c061e6374c40da69707c93b7b.png",
+        "source_sha256": "f1d8ba404a3bcdb5dceed6719458bc26cb33c54d6faea6fa1479f0d998ff0ed3",
+        "webp_sha256": "f71b038ae8722163f6ac0a75df5e4a969cb5d972662255669f847e1d8f3db230",
+        "bytes": 67424,
+        "rationale": "Official SR overview art uses a complete outdoor cavalry action scene, intentional subject framing, and transparent ornate corners consistent with accepted RanHQ banners.",
+        "source_type": "Official Kingdom Ran site/CDN character overview PNG",
+        "source_dimensions": [
+          313,
+          440
+        ],
+        "source_alpha_range": [
+          0,
+          255
+        ],
+        "final_path": "public/persos/domon.webp",
+        "thumbnail_path": "public/persos/thumbs/domon.webp",
+        "final_dimensions": [
+          313,
+          440
+        ],
+        "final_alpha": true,
+        "processing": "Decoded the official palette PNG to RGBA and encoded it as lossless WebP. No crop, resize, stretch, retouch, compositing, painting, or generative fill. Decoded RGBA pixels were verified byte-identical."
+      }
+    },
+    {
+      "id": "miyamoto",
+      "character": "Kyuugen",
+      "name_jp": "宮元",
+      "characterId": 17,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728312",
+        "source_url": "https://img.game8.jp/11801308/2230ddce73eaa5c11052959f088c829b.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.91835,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 19,
+          "assetId": 19,
+          "designNo": 97,
+          "image": 1,
+          "local_art": "character/chara/cg097_i01.png",
+          "exists": true,
+          "sha256": "9964fd2e3cce7e7a7f52e6624a2f0a81490a60c9cf49ca27286cbf7be5ce82a9"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    },
+    {
+      "id": "saji",
+      "character": "Saji",
+      "name_jp": "左慈",
+      "characterId": 27,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728543",
+        "source_url": "https://img.game8.jp/11801486/7c04d2577c144ba7c26445e0c626c634.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.86862,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 34,
+          "assetId": 34,
+          "designNo": 94,
+          "image": 1,
+          "local_art": "character/chara/cg094_i01.png",
+          "exists": true,
+          "sha256": "9c6175eedbb8fd17436f74ac79c2d89b28ff92dac58abb7ef5c11da174a8de8e"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    },
+    {
+      "id": "jokan",
+      "character": "Jokan",
+      "name_jp": "徐完",
+      "characterId": 31,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728545",
+        "source_url": "https://img.game8.jp/11801598/c5a227186f577e8adf085e97ef894217.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.84493,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 12,
+          "assetId": 12,
+          "designNo": 58,
+          "image": 1,
+          "local_art": "character/chara/cg058_i01.png",
+          "exists": true,
+          "sha256": "6cb67cef6b00c31e946c8e9d99b2c2f818b1d91b80c8f8e39bf9e9782afbbd55"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    },
+    {
+      "id": "chouko",
+      "character": "Chouko",
+      "name_jp": "趙高",
+      "characterId": 93,
+      "rejected_attempt": {
+        "commit": "64130e797d51ca479342e368924d2e425d3a6841",
+        "source_page": "https://game8.jp/kingdomran/728533",
+        "source_url": "https://img.game8.jp/11804167/f1ac4c5553b3b067c22e3f62223ba596.webp/show",
+        "dimensions": [
+          312,
+          440
+        ],
+        "format": "WEBP",
+        "mode": "RGB",
+        "outer4_dark_fraction": 0.91868,
+        "outer4_transparent_fraction": 0.0,
+        "black_edges": true,
+        "framed_presentation_mismatch": true,
+        "decision": "REJECTED",
+        "reason": "Opaque black matte surrounds a fully rectangular low-rarity frame, and the static character-on-patterned-field composition is visibly flatter than accepted RanHQ action-scene banners."
+      },
+      "same_source_crop": {
+        "salvageable": false,
+        "reason": "No. Cropping cannot restore the irregular transparent corners and would not correct the flat low-rarity presentation."
+      },
+      "authentic_identity": [
+        {
+          "generalId": 17,
+          "assetId": 17,
+          "designNo": 79,
+          "image": 1,
+          "local_art": "character/chara/cg079_i01.png",
+          "exists": true,
+          "sha256": "ce3205653b52255ebcdfab7a456b0040367637b56026cefe4b3a41bfcb11942f"
+        }
+      ],
+      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "source_result": {
+        "better_authentic_finished_banner_required": true,
+        "finished_banner_found": false,
+        "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+      }
+    }
+  ]
+}
