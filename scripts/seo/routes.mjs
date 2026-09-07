@@ -1,9 +1,10 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { GUIDE_SECTION_IDS } from '../../src/seo.js'
 
 export const SITE_URL = 'https://ranhq.vercel.app'
-export const SEO_LOCALES = ['en', 'ja', 'ar']
+export const SEO_LOCALES = ['en', 'ja', 'ar', 'fr']
 
 export const STATIC_INDEXABLE_PATHS = [
   '/',
@@ -19,22 +20,7 @@ export const STATIC_INDEXABLE_PATHS = [
   '/cw-stats',
 ]
 
-export const GUIDE_SECTIONS = [
-  'basics',
-  'stats-screen',
-  'stats',
-  'roles',
-  'bandits',
-  'leaders',
-  'crystals',
-  'debuffs',
-  'effects',
-  'matchups',
-  'terrain',
-  'types',
-  'interactions',
-  'targeting',
-]
+export const GUIDE_SECTIONS = GUIDE_SECTION_IDS
 
 // Personalized application states should keep working on direct load, but do
 // not belong in the sitemap or index.
@@ -105,4 +91,3 @@ export function htmlOutputPath(outputDir, routePath) {
   if (routePath === '/') return path.join(outputDir, 'index.html')
   return path.join(outputDir, `${routePath.replace(/^\//, '')}.html`)
 }
-

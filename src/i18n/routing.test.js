@@ -9,6 +9,7 @@ import {
 
 const en = getLocale('en')
 const ja = getLocale('ja')
+const fr = getLocale('fr')
 
 describe('localeFromPathname', () => {
   it('resolves English for unprefixed routes and root', () => {
@@ -37,6 +38,18 @@ describe('localeFromPathname', () => {
     expect(localeFromPathname('/ar').code).toBe('ar')
   })
 
+  it('resolves the first-class French locale for the exact /fr segment', () => {
+    expect(localeFromPathname('/fr/archive').code).toBe('fr')
+    expect(localeFromPathname('/fr').code).toBe('fr')
+    expect(localeFromPathname('/fr/').code).toBe('fr')
+    expect(localeFromPathname('/fr/archive/characters/ka').code).toBe('fr')
+  })
+
+  it('does NOT treat /france as French (exact segment match)', () => {
+    expect(localeFromPathname('/france').code).toBe('en')
+    expect(localeFromPathname('/fr-fr/archive').code).toBe('en')
+  })
+
   it('falls back to the default locale for empty/unknown input', () => {
     expect(localeFromPathname('').code).toBe('en')
     expect(localeFromPathname(null).code).toBe('en')
@@ -47,6 +60,7 @@ describe('localeFromPathname', () => {
 describe('localeBasename', () => {
   it('returns the route prefix for Japanese and empty for English', () => {
     expect(localeBasename(ja)).toBe('/ja')
+    expect(localeBasename(fr)).toBe('/fr')
     expect(localeBasename(en)).toBe('')
   })
 
@@ -62,6 +76,9 @@ describe('stripLocalePrefix', () => {
     expect(stripLocalePrefix('/ja', ja)).toBe('/')
     expect(stripLocalePrefix('/jamaica', ja)).toBe('/jamaica')
     expect(stripLocalePrefix('/archive', en)).toBe('/archive')
+    expect(stripLocalePrefix('/fr/archive', fr)).toBe('/archive')
+    expect(stripLocalePrefix('/fr', fr)).toBe('/')
+    expect(stripLocalePrefix('/france', fr)).toBe('/france')
   })
 })
 
@@ -72,5 +89,7 @@ describe('localePrefixedPath', () => {
     expect(localePrefixedPath('/builder', ja)).toBe('/ja/builder')
     expect(localePrefixedPath('/archive', en)).toBe('/archive')
     expect(localePrefixedPath('/', ja)).toBe('/ja')
+    expect(localePrefixedPath('/archive', fr)).toBe('/fr/archive')
+    expect(localePrefixedPath('/', fr)).toBe('/fr')
   })
 })

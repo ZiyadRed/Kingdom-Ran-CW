@@ -8,7 +8,7 @@ export * from './locales.js'
 export * from './routing.js'
 export { default as i18n, initI18n, CATALOGS } from './i18n.js'
 export { LocaleContext, LocaleProvider, useLocale } from './LocaleContext.jsx'
-export { formatNumber, pluralSuffix } from './format.js'
+export { formatNumber, formatFixedNumber, pluralSuffix } from './format.js'
 export {
   LOCALE_STORAGE_KEY,
   readLocalePreference,

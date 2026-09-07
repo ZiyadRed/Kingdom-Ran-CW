@@ -5,6 +5,8 @@ import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useLocale } from './i18n/index.js'
 import { localizedCharacterName } from './i18n/ar-character-names.js'
+import { isGuideSection } from './seo.js'
+import NotFoundPage from './NotFoundPage.jsx'
 import statusEffects from '../data/glossary/status_effects.json'
 import unitMatchups  from '../data/glossary/unit_matchups.json'
 import skillTypesGlossary from '../data/glossary/skill_types.json'
@@ -538,6 +540,277 @@ const GUIDE_COPY = {
       },
     },
   },
+  fr: {
+    basicsIntro: 'La Conquête d’Alliance est un combat de territoire entre alliances. Le but n’est pas seulement de gagner des combats isolés, mais de choisir les bons châteaux, de bien placer ses défenses et de dépenser au bon moment un nombre limité d’actions.',
+    coreLoop: 'Déroulement de base',
+    coreLoopItems: [
+      'Un groupe réunit 7 alliances qui se disputent des châteaux.',
+      'Votre alliance déclare les châteaux à attaquer, puis les membres placent leurs équipes d’attaque ou de défense.',
+      'Les défenseurs protègent les châteaux occupés, tandis que les attaquants tentent de prendre les cibles déclarées pendant la phase d’invasion.',
+      'Remporter la carte exige avant tout une bonne coordination de l’alliance : la puissance des généraux ne suffit pas.',
+    ],
+    dailyTiming: 'Horaires de la journée',
+    dailyTimingItems: [
+      'Le placement en garnison est possible du début de la déclaration jusqu’à la fin de l’invasion.',
+      'Les attaques réservées sont programmées avant la phase d’invasion et se lancent automatiquement à son ouverture.',
+      'Les équipes d’invasion directe se placent pendant la phase d’invasion.',
+      'Dans la mesure du possible, réglez la participation et choisissez les rôles avant le début de cette phase.',
+    ],
+    actions: 'Actions et sorties',
+    actionsItems: [
+      'Chaque général engagé dans une équipe consomme des actions ou des ressources de sortie, selon l’activité.',
+      'Une équipe de 4 généraux coûte plus cher qu’une équipe partielle, mais elle est bien plus sûre en combat réel.',
+      'Les ressources de sortie se régénèrent chaque jour, et certaines recharges coûtent des joyaux.',
+      'Ne dépensez pas vos meilleures équipes trop tôt : le château et le moment doivent en valoir la peine.',
+    ],
+    priority: 'Priorité simple : défendre les châteaux clés → attaquer les cibles déclarées → dépenser le reste efficacement',
+    priorityNote: 'Si vous débutez, cherchez d’abord à savoir où l’alliance a besoin de renforts avant d’optimiser chaque affrontement individuel.',
+    statsScreen: {
+      intro: 'L’écran des stats CW affiche les statistiques propres à la Conquête d’Alliance d’un général. Ces valeurs diffèrent de celles de sa fiche habituelle et ne servent qu’en Conquête.',
+      openTitle: 'Comment l’ouvrir',
+      openBody: 'Ouvrez la page d’un personnage, puis touchez l’icône de château sur le côté droit de l’écran.',
+      accessAlt: 'Page de personnage avec l’icône des stats de Conquête',
+      screenAlt: 'Écran des stats de Conquête avec les lignes numérotées',
+      markers: {
+        '1': { title: 'PV', body: 'PV maximum en Conquête d’Alliance.' },
+        '2': { title: 'Moral', body: 'Moral maximum. Les compétences de moral se calculent sur ce plafond.' },
+        '3': { title: 'Attaque max', body: 'Valeur d’attaque haute utilisée dans le calcul des dégâts.' },
+        '4': { title: 'Attaque min', body: 'Valeur d’attaque basse utilisée dans le calcul des dégâts.' },
+        '5': { title: 'Dégâts en avantage', body: 'Bonus de dégâts appliqué lorsque l’unité bénéficie d’une affinité favorable.' },
+        '6': { title: 'Dégâts en désavantage', body: 'Malus de dégâts appliqué lorsque l’unité subit une affinité défavorable.' },
+        '7': { title: 'Précision', body: 'Aide les attaques à toucher au lieu de manquer.' },
+        '8': { title: 'Taux critique', body: 'Probabilité qu’une attaque inflige un coup critique.' },
+        '9': { title: 'Dégâts critiques', body: 'Dégâts supplémentaires appliqués lors d’un coup critique.' },
+        '10': { title: 'Pénétration de défense', body: 'Permet d’ignorer une partie de la défense adverse. Ce n’est pas la même chose que l’attaque.' },
+        '11': { title: 'Défense', body: 'Réduit les dégâts subis.' },
+        '12': { title: 'Esquive', body: 'Chance d’esquiver les attaques reçues.' },
+      },
+      notesTitle: 'Notes sur l’écran',
+      notes: [
+        'Les valeurs vertes entre parenthèses indiquent le bonus actuellement ajouté à la stat ou à l’effet.',
+        'L’attaque max et l’attaque min comptent toutes les deux, car la valeur d’attaque utilisée peut se situer n’importe où entre les deux.',
+      ],
+      notesMatchups: { before: 'L’avantage de type suit les affinités entre unités. Voir le guide ', label: 'Affinités des unités', after: ' pour le tableau complet.' },
+      relatedTitle: 'Pages liées',
+      related: { before: 'Voir ', stats: 'Augmenter ses stats CW', middle: ' pour les sources de progression, et ', buffs: 'Buffs', after: ' pour les références de buffs de Conquête.' },
+    },
+    stats: {
+      intro: 'Les stats CW dépendent de plusieurs systèmes de progression, pas seulement de la page Buffs. Les buffs jouent un rôle important, mais la valeur finale dépend aussi du général, des troupes, des armes et des petits bonus accordés par les cartes scène.',
+      affectsTitle: 'Ce qui influence les stats CW',
+      affectsItems: [
+        'Le niveau du personnage. Le niveau 85 est le maximum.',
+        'La progression en étoiles. Terminer la page 1 accorde le bonus de stats maximal ; terminer la page 2 n’ajoute rien aux stats CW.',
+        'Le niveau LG.',
+        'Le niveau des troupes.',
+        'Le niveau et la rareté de l’arme.',
+        'Les cartes scène du personnage, qui apportent un petit gain de stats pour les joueurs qui optimisent à fond.',
+      ],
+    },
+    roles: {
+      intro: 'Les rôles sont des affectations personnelles de Conquête d’Alliance. Leurs bonus ne profitent qu’au joueur qui les choisit : prenez donc le rôle correspondant à ce que vous comptez réellement faire ce jour-là.',
+      items: {
+        'Assault Captain': { name: 'Capitaine d’assaut', trigger: 'En invasion', effect: 'Augmente l’attaque de vos propres généraux.' },
+        'Defense Captain': { name: 'Capitaine de défense', trigger: 'En garnison', effect: 'Augmente la défense de vos propres généraux.' },
+        'Support Captain': { name: 'Capitaine de soutien', trigger: 'En invasion ou en garnison', effect: 'Augmente le plafond de moral de vos propres généraux.' },
+        'Bandit Hunt Captain': { name: 'Capitaine de chasse aux bandits', trigger: 'Pendant la Chasse aux bandits', effect: 'Augmente l’attaque et la défense de vos propres généraux.' },
+      },
+      costTitle: 'Règles de coût',
+      costItems: [
+        'Deux rôles sont gratuits et deux rôles coûtent des joyaux chaque jour.',
+        'La répartition entre rôles gratuits et payants change chaque jour et reste la même pour toutes les alliances.',
+        'Le premier jour, tous les rôles sont gratuits.',
+        'Quitter un rôle payant ne rembourse pas les joyaux.',
+      ],
+      lockTitle: 'Verrouillage',
+      lockItems: [
+        'Vous pouvez changer de rôle librement avant le début de la phase d’invasion.',
+        'Si vous avez oublié de choisir un rôle, vous pouvez encore le faire pendant la phase d’invasion.',
+        'Une fois l’invasion commencée, un rôle déjà choisi ne peut plus être changé.',
+        'La liste des rôles gratuits est mise à jour chaque jour à 8 h 00.',
+      ],
+    },
+    bandits: {
+      intro: 'La Chasse aux bandits est un objectif annexe de la Conquête d’Alliance : l’alliance affronte des équipes de bandits contrôlées par le jeu pour obtenir des récompenses de classement. Elle consomme les mêmes actions limitées que les attaques de châteaux.',
+      whatTitle: 'Ce que c’est',
+      whatItems: [
+        'La Chasse aux bandits est disponible pendant la phase d’invasion de la Conquête normale.',
+        'L’alliance est classée sur le nombre total de chasses de la saison.',
+        'Elle rapporte des récompenses de classement d’alliance et des points de classement personnels.',
+        'Les armes de guerre sélectionnées ne peuvent pas servir à la Chasse aux bandits.',
+      ],
+      runsTitle: 'Comment ça se déroule',
+      runsItems: [
+        'Choisissez « Chasse aux bandits », sélectionnez une équipe, puis lancez la série.',
+        'L’équipe enchaîne les combats tant qu’elle gagne.',
+        'Si plusieurs joueurs lancent une chasse, les séries s’enchaînent dans l’ordre.',
+        'Une équipe en combat ou en attente ne peut pas servir à l’invasion ni à la garnison avant son retour.',
+      ],
+      useTitle: 'Quand l’utiliser',
+      useItems: [
+        'Lorsque l’alliance vise le classement de la Chasse aux bandits ou qu’il vous reste des ressources d’action.',
+        'Évitez d’immobiliser des généraux importants si un combat de château a encore besoin d’eux.',
+        'Le rôle Capitaine de chasse aux bandits est le meilleur choix pour les joueurs assignés à cette tâche.',
+        'Si la phase d’invasion se termine en pleine série, seuls les combats déjà achevés sont comptabilisés.',
+      ],
+    },
+    debuffs: {
+      intro: 'La résistance aux débuffs réduit certains effets négatifs avant leur application. Elle détermine si une baisse d’attaque, une baisse de défense ou une pénétration de défense prend effectivement effet.',
+      coversTitle: 'Ce que couvre la résistance',
+      coversItems: [
+        'La résistance à la baisse d’attaque réduit les effets qui abaissent l’attaque.',
+        'La résistance à la baisse de défense réduit les effets qui abaissent la défense.',
+        'La résistance à la pénétration de défense réduit les effets de pénétration.',
+        'Elle agit aussi bien contre les compétences de combat que contre celles de stratégie.',
+      ],
+      notesTitle: 'Points importants',
+      notesItems: [
+        'La pénétration de défense est traitée comme un débuff dans ce calcul de résistance.',
+        'Si la résistance dépasse le débuff, le débuff final tombe à 0%.',
+        'Les baisses d’attaque s’appliquent quand même aux attaques critiques.',
+        'Plusieurs débuffs sont additionnés avant que la résistance ne soit soustraite.',
+      ],
+      formula: 'Débuff final % = max(0 ; total des débuffs % - total des résistances %)',
+      examples: [
+        'Exemple 1 : 40% de baisse d’attaque contre 50% de résistance donne 0%.',
+        'Exemple 2 : 40% + 30% de baisse d’attaque contre 50% de résistance donne 20%.',
+      ],
+    },
+    terrain: {
+      intro: 'Les effets de terrain sont des débuffs associés aux routes d’invasion entre les châteaux. Ils peuvent réduire vos dégâts, augmenter les dégâts subis ou faire commencer votre unité avec moins de PV.',
+      noTerrain: 'Aucun terrain',
+      items: {
+        slope: { name: 'Pente', effect: 'Dégâts infligés -50%', detail: 'Votre unité attaquante inflige 50% de dégâts en moins si elle envahit par une route en pente.', mitigatedBy: 'L’Aptitude Pente réduit cette perte de dégâts.' },
+        forest: { name: 'Forêt', effect: 'Dégâts infligés -50%', detail: 'Votre unité attaquante inflige 50% de dégâts en moins si elle envahit par une route en forêt.', mitigatedBy: 'L’Aptitude Forêt réduit cette perte de dégâts.' },
+        river: { name: 'Rivière', effect: 'Dégâts subis +50%', detail: 'Votre unité attaquante subit 50% de dégâts en plus si elle emprunte une voie d’eau.', mitigatedBy: 'L’Aptitude Voie d’eau réduit cette hausse des dégâts subis.' },
+        swamp: { name: 'Marais', effect: 'Dégâts subis +50%', detail: 'Votre unité attaquante subit 50% de dégâts en plus si elle emprunte une route marécageuse.', mitigatedBy: 'L’Aptitude Boue réduit cette hausse des dégâts subis.' },
+        checkpoint: { name: 'Poste de garde', effect: 'PV au départ -30%', detail: 'Votre unité attaquante commence le combat avec 30% de PV en moins si elle emprunte une route avec un poste de garde.', mitigatedBy: 'L’Éclaireur réduit cette perte de PV au départ.' },
+        ambush: { name: 'Embuscade', effect: 'PV au départ -30%', detail: 'Votre unité attaquante commence le combat avec 30% de PV en moins si elle emprunte une route exposée aux embuscades.', mitigatedBy: 'La Protection d’unité réduit cette perte de PV au départ.' },
+      },
+      routeText: 'Quand plusieurs routes mènent au même château, le jeu préfère une route sans débuff de terrain. Si toutes les routes en ont un, il choisit celle dont la pénalité restante est la plus faible une fois vos buffs de résistance au terrain appliqués. À pénalité égale, l’ordre de priorité est {{priority}}. Les terrains peuvent changer d’un événement de Conquête à l’autre.',
+    },
+    crystals: {
+      intro: 'Quatre types de cristaux permettent de débloquer des compétences. Ils ne sont pas interchangeables : chacun a un usage précis.',
+      items: {
+        red: { name: 'Cristal rouge', unlocks: 'Compétences de Conquête', body: 'Le cristal standard. Il débloque les trois compétences de Conquête de n’importe quel général.', cost: '1 750 pour débloquer entièrement un général UR (100 / 550 / 1 100 par compétence). SR : 800, R : 595.' },
+        blue: { name: 'Cristal bleu', unlocks: 'Unité Hi Shin uniquement', body: 'Fonctionne exactement comme un cristal rouge, mais ne peut servir que pour les généraux de l’unité Hi Shin.', cost: 'Mêmes coûts que le rouge. Utilisez-les d’abord sur les membres Hi Shin et gardez vos rouges pour tous les autres.' },
+        orange: { name: 'Cristal orange', unlocks: 'Compétence de Leader', body: 'Débloque la compétence de Leader d’un général qui peut tenir ce rôle.', cost: '1 000 par général.' },
+        green: { name: 'Cristal vert', unlocks: 'Compétence de Stratège', body: 'Débloque la compétence de Stratège d’un général qui peut tenir ce rôle.', cost: '1 000 par général.' },
+      },
+      spendTitle: 'Quels cristaux utiliser en priorité',
+      spendItems: [
+        'Le bleu est le plus limité : utilisez-le sur les généraux de l’unité Hi Shin avant d’y mettre du rouge.',
+        'Le rouge est celui qui manquera toujours — un seul général UR coûte 1 750.',
+        'L’orange et le vert ne servent que si vous avez un général capable de tenir le rôle de Leader ou de Stratège. Voir Leader et Stratège.',
+      ],
+    },
+    leaders: {
+      intro: 'Ces deux compétences facultatives se déclenchent au tour 1 et vous pénalisent si leur porteur meurt.',
+      roles: {
+        leader: { label: 'Leader', stone: 'Cristaux orange', riskLabel: 'Si votre Leader meurt', risk: 'Vous perdez la bataille immédiatement, même si toutes vos autres unités sont encore en vie.' },
+        strategist: { label: 'Stratège', stone: 'Cristaux verts', riskLabel: 'Si votre Stratège meurt', risk: 'Toutes vos unités alliées subissent la Confusion pendant 1 tour.' },
+      },
+      unlock: 'Déblocage : ',
+      generalsLabel: 'Généraux',
+      howTitle: 'Comment ça marche',
+      howItems: [
+        'La compétence se déclenche au tour 1, dès qu’un général portant le rôle est placé dans votre formation.',
+        'Un seul Leader et un seul Stratège par formation. Vous pouvez avoir les deux, mais pas deux fois le même.',
+        'L’effet change d’un général à l’autre : le choix du porteur compte autant que le fait de remplir la case.',
+        'Les deux pénalités n’ont pas la même gravité. Perdre le Stratège coûte un tour ; perdre le Leader coûte la bataille. Confiez donc ce rôle à un général rarement pris pour cible.',
+      ],
+    },
+    interactions: {
+      intro: 'Quand deux effets se contredisent, ces règles déterminent lequel l’emporte ou si les deux restent actifs.',
+      labels: { overwrite: 'L’un remplace l’autre', stack: 'Cumul avec ordre de priorité', guard_overwrite: 'La Garde est remplacée selon sa valeur' },
+      notes: {
+        overwrite: 'Seul le dernier effet appliqué reste actif. Appliquer l’un retire l’autre.',
+        stack: 'Les deux peuvent être actifs en même temps. L’Annulation d’attaque agit en premier et réduit les dégâts à 0 — mais les deux effets consomment quand même une charge.',
+        guard_overwrite: 'Appliquer une Garde à un général qui en possède déjà une ne remplace pas toujours l’effet actif. Le système compare la valeur de priorité de chaque Garde : % de réduction × charges restantes. La plus élevée l’emporte. Si le nouvel effet a la valeur la plus faible, la Garde existante reste inchangée.',
+      },
+      formula: 'Valeur de priorité = % de réduction × charges restantes',
+      example: '30% × 2 charges = 60  contre  70% × 1 charge = 70  →  70% remplace',
+      effects: { Provoke: 'Provocation', 'Less Likely to be Targeted': 'Ciblage réduit', Confusion: 'Confusion', Betrayal: 'Trahison', Rampage: 'Furie', 'Attack Nullification': 'Annulation d’attaque', Guard: 'Garde' },
+    },
+    targeting: {
+      intro: 'Ces règles expliquent comment les compétences choisissent leur cible et comment les effets d’état influencent ce choix.',
+      rules: {
+        'Skill Target Selection Priority': {
+          title: 'Priorité de sélection des cibles',
+          body: 'Quand une cible porte un effet d’état particulier, la sélection suit cet ordre :',
+          list: ['Présence d’un effet d’état (par exemple Provocation ou Confusion)', 'Priorité indiquée par la compétence (attaque la plus élevée, défense la plus faible…)'],
+        },
+        'Unmet Target Conditions': {
+          title: 'Conditions de cible non remplies',
+          body: 'Si une compétence vise une cible absente du terrain (par exemple « général Qin ennemi » alors qu’aucun général Qin n’est présent), l’effet ne se déclenche tout simplement pas.',
+        },
+        'Random Targeting': {
+          title: 'Ciblage aléatoire',
+          body: 'Les compétences qui visent un « général ennemi aléatoire » choisissent sans restriction et ignorent la Provocation.',
+        },
+        Provocation: {
+          title: 'Provocation',
+          bullets: [
+            'Concentre les attaques de dégâts ennemies sur l’unité provoquée.',
+            'N’influence pas le ciblage des compétences sans dégâts.',
+            'Ne se cumule pas — une nouvelle application remplace l’état existant.',
+          ],
+        },
+        Confusion: {
+          title: 'Confusion',
+          bullets: [
+            'L’unité touchée attaque ses alliés et ses ennemis sans distinction.',
+            'Elle utilise ses compétences si elles sont disponibles, sinon ses attaques normales.',
+            'S’il ne reste aucun allié en vie, elle attaque normalement les ennemis.',
+            'Ne se cumule pas : une nouvelle application conserve simplement la durée la plus longue.',
+            'Ne peut pas s’appliquer à une unité déjà sous Trahison ou Furie (ces états sont prioritaires) ; en revanche, une Trahison ou une Furie appliquée à une unité sous Confusion remplace la Confusion.',
+          ],
+        },
+      },
+    },
+    effects: {
+      intro: 'Liste des buffs et débuffs pouvant être appliqués pendant les batailles de Conquête d’Alliance.',
+      buffsTitle: 'Buffs',
+      debuffsTitle: 'Débuffs',
+      items: {
+        'Less Likely to be Targeted': { name: 'Ciblage réduit', description: 'L’unité est exclue du ciblage des attaques normales et des attaques de compétence ennemies.' },
+        Reckless: { name: 'Témérité', description: 'Augmente fortement la puissance d’attaque, mais les dégâts subis augmentent aussi.' },
+        'Evasion (Dodge Chance)': { name: 'Esquive', description: 'Chance d’esquiver les attaques reçues.' },
+        Guard: { name: 'Garde', description: 'Réduit les dégâts d’une attaque. L’effet disparaît après un nombre défini de déclenchements.' },
+        'Attack Nullification': { name: 'Annulation d’attaque', description: 'Réduit à 0 les dégâts d’une attaque. L’effet disparaît après un nombre défini de déclenchements.' },
+        'Sure Hit': { name: 'Coup assuré', description: 'Les attaques touchent toujours, quelles que soient la précision et l’esquive.' },
+        'Status Effect Immunity': { name: 'Immunité aux altérations d’état', description: 'Bloque l’application des débuffs, à l’exception de la Provocation. L’effet disparaît après un nombre défini de déclenchements.' },
+        Provoke: { name: 'Provocation', description: 'Concentre sur soi les attaques de dégâts ennemies.' },
+        Poison: { name: 'Poison', description: 'Inflige un pourcentage des PV max en dégâts au début de chaque tour.' },
+        'Severe Poison': { name: 'Poison violent', description: 'Inflige un pourcentage des PV max en dégâts au début de chaque tour, plus élevé que le Poison.' },
+        Burn: { name: 'Brûlure', description: 'Inflige un pourcentage des PV max en dégâts au début de chaque tour.' },
+        Illusion: { name: 'Illusion', description: 'Réduit la précision.' },
+        Paralysis: { name: 'Paralysie', description: 'Risque, à chaque tour, d’empêcher d’agir (attaque normale et attaque de compétence).' },
+        Confusion: { name: 'Confusion', description: 'Attaque alliés et ennemis sans distinction.' },
+        Betrayal: { name: 'Trahison', description: 'Attaque les généraux alliés tant que l’effet est actif.' },
+        Rampage: { name: 'Furie', description: 'La puissance d’attaque augmente, mais l’unité risque d’attaquer des généraux alliés.' },
+        Fear: { name: 'Peur', description: 'Le regain de moral est désactivé.' },
+        'Attack Seal': { name: 'Sceau d’attaque', description: 'Désactive l’action visée. Variantes : sceau d’attaque normale, sceau d’attaque de compétence, sceau d’attaque (les deux).' },
+        'HP Seal': { name: 'Sceau de soin', description: 'Le soin des PV est désactivé.' },
+      },
+    },
+    matchups: {
+      intro: 'Les dégâts entre types d’unités suivent un principe de pierre-papier-ciseaux.',
+      chartAlt: 'Tableau des affinités entre unités',
+      strongVs: 'fort contre',
+      units: { Cavalry: 'Cavaliers', Archer: 'Archers', Shield: 'Boucliers', Infantry: 'Fantassins', 'Siege Weapon / Gate': 'Engins de siège / Portes' },
+      mutualNote: 'Les fantassins et les engins de siège ou portes bénéficient mutuellement d’un bonus de dégâts.',
+    },
+    types: {
+      intro: 'Les compétences normales se répartissent en trois catégories. Les généraux éligibles peuvent en plus débloquer l’un des deux rôles de formation.',
+      items: {
+        '戦技': { label: 'Compétence de combat', description: 'Compétences actives utilisées en bataille pour infliger des dégâts, appliquer des buffs ou des débuffs, ou soigner.' },
+        '軍略': { label: 'Stratégie militaire', description: 'Compétences passives qui accordent à votre équipe des buffs permanents ou des effets conditionnels.' },
+        '内政': { label: 'Affaires intérieures', description: 'Compétences hors combat qui accordent des bonus de stats à toute l’alliance. Ces bonus restent actifs même lorsque l’unité n’est pas déployée.' },
+        '総大将スキル': { label: 'Compétence de Leader', description: 'Compétence de rôle facultative au tour 1. Une formation ne peut avoir qu’un seul Leader ; la mort de ce général entraîne immédiatement la défaite.' },
+        '軍師スキル': { label: 'Compétence de Stratège', description: 'Compétence de rôle facultative au tour 1. Une formation ne peut avoir qu’un seul Stratège ; sa mort inflige la Confusion à tous les alliés pendant 1 tour.' },
+      },
+    },
+  },
 }
 
 function guideCopy(locale, key, fallback) {
@@ -557,7 +830,7 @@ export function GuideCard({title,children,accent='var(--terra)'}) {
       borderRadius:'12px',background:'var(--sur)',border:'1px solid var(--bdr)',
       borderTop:`4px solid ${accent}`,padding:'1rem',boxShadow:'0 2px 8px rgba(6,38,76,.05)',
     }}>
-      <h3 style={{fontSize:'.96rem',fontWeight:900,color:'var(--txt)',margin:'0 0 .5rem'}}>{title}</h3>
+      <h2 style={{fontSize:'.96rem',fontWeight:900,color:'var(--txt)',margin:'0 0 .5rem'}}>{title}</h2>
       <div style={{fontSize:'.82rem',lineHeight:1.58,color:'var(--txt2)'}}>{children}</div>
     </div>
   )
@@ -652,6 +925,17 @@ export function GuideImages({images}) {
       'Bandit Hunt start screen': 'شاشة بدء مطاردة قطاع الطرق',
       'Bandit Hunt team setup': 'إعداد فريق مطاردة قطاع الطرق',
       'Bandit Hunt results': 'نتائج مطاردة قطاع الطرق',
+    },
+    fr: {
+      'Castle War map overview': 'Vue d’ensemble de la carte de Conquête',
+      'Castle War flow screen': 'Écran de déroulement de la Conquête',
+      'Role selection screen': 'Écran de sélection du rôle',
+      'Role button on battle map': 'Bouton de rôle sur la carte de bataille',
+      'Role effect view': 'Vue des effets du rôle',
+      'Bandit Hunt button': 'Bouton Chasse aux bandits',
+      'Bandit Hunt start screen': 'Écran de départ de la Chasse aux bandits',
+      'Bandit Hunt team setup': 'Composition d’équipe pour la Chasse aux bandits',
+      'Bandit Hunt results': 'Résultats de la Chasse aux bandits',
     },
   }
   return (
@@ -1070,7 +1354,7 @@ export function CrystalTypesSection(){
               <img src={c.img} alt={item.name || c.name} width="48" height="48" loading="lazy" decoding="async"
                 style={{width:48,height:48,flexShrink:0,objectFit:'contain'}}/>
               <div style={{minWidth:0}}>
-                <h3 style={{fontSize:'.96rem',fontWeight:900,color:'var(--txt)',margin:0}}>{item.name || c.name}</h3>
+                <h2 style={{fontSize:'.96rem',fontWeight:900,color:'var(--txt)',margin:0}}>{item.name || c.name}</h2>
                 <div style={{fontSize:'.75rem',fontWeight:700,color:c.accent}}>{item.unlocks || c.unlocks}</div>
               </div>
             </div>
@@ -1158,7 +1442,7 @@ export function LeaderStrategistSection(){
               <img src={role.stoneImg} alt={roleCopy.stone || role.stone} width="52" height="52" loading="lazy" decoding="async"
                 style={{width:52,height:52,flexShrink:0,objectFit:'contain'}}/>
               <div style={{minWidth:0}}>
-                <h3 style={{fontSize:'1rem',fontWeight:900,color:'var(--txt)',margin:0}}>{roleCopy.label || role.label}</h3>
+                <h2 style={{fontSize:'1rem',fontWeight:900,color:'var(--txt)',margin:0}}>{roleCopy.label || role.label}</h2>
                 <div style={{fontSize:'.75rem',color:'var(--txt3)',marginTop:'.2rem'}}>
                   {copy.unlock || 'Unlock: '}<strong style={{color:'var(--gold2)'}}>1,000</strong> &times; {roleCopy.stone || role.stone}
                 </div>
@@ -1221,19 +1505,45 @@ export function LeaderStrategistSection(){
   )
 }
 
+export function GuideHubPage(){
+  const {t}=useTranslation('common')
+  return(
+    <div className="reference-hub guide-hub">
+      <header className="reference-hub-head">
+        <h1>{t('guide.title')}</h1>
+        <p>{t('guide.hubIntro')}</p>
+      </header>
+      <nav className="reference-hub-grid" aria-label={t('guide.contents')}>
+        {GUIDE_GROUPS.map(group=>(
+          <section className="reference-hub-group" key={group}>
+            <h2>{t(`guide.${group.toLowerCase()}`)}</h2>
+            <p>{t(`guide.hub${group}`)}</p>
+            <ul>
+              {GUIDE_SECTIONS.filter(section=>section.category===group).map(section=>(
+                <li key={section.id}><Link to={`/guide/${section.id}`}>{t(`guide.sections.${section.id}`)}</Link></li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </nav>
+    </div>
+  )
+}
+
 export function CWGuidePage(){
   const { t } = useTranslation('common')
   const locale=useLocale()
   const {section}=useParams()
-  const active=GUIDE_SECTIONS.find(s=>s.id===section)?.id || 'basics'
+  const active=section || 'basics'
   const[contentsOpen,setContentsOpen]=useState(false)
+  if(!isGuideSection(active)) return <NotFoundPage/>
   const activeLabel=t(`guide.sections.${active}`, { defaultValue: GUIDE_SECTIONS.find(s=>s.id===active)?.label||'Basics' })
-  const homeLabel=locale.code==='ja'?'ホーム':locale.code==='ar'?'الرئيسية':'Home'
-  const guideLabel=locale.code==='ja'?'同盟争覇戦攻略':locale.code==='ar'?'دليل حرب القلاع':'Castle War Guide'
+  const homeLabel=locale.code==='ja'?'ホーム':locale.code==='ar'?'الرئيسية':locale.code==='fr'?'Accueil':'Home'
+  const guideLabel=locale.code==='ja'?'同盟争覇戦攻略':locale.code==='ar'?'دليل حرب القلاع':locale.code==='fr'?'Guide de la Conquête d’Alliance':'Castle War Guide'
   return(
-    <main className="guide-page">
+    <div className="guide-page">
       {section&&(
-        <nav className="seo-breadcrumbs guide-breadcrumbs" aria-label={locale.code==='ar'?'مسار التنقل':'Breadcrumbs'}>
+        <nav className="seo-breadcrumbs guide-breadcrumbs" aria-label={locale.code==='ar'?'مسار التنقل':locale.code==='fr'?'Fil d’Ariane':'Breadcrumbs'}>
           <ol>
             <li><Link to="/">{homeLabel}</Link></li>
             <li><Link to="/guide">{guideLabel}</Link></li>
@@ -1278,7 +1588,7 @@ export function CWGuidePage(){
       {active==='crystals' && <CrystalTypesSection/>}
       {active==='interactions' && <EffectInteractionsSection/>}
       {active==='targeting' && <TargetingRulesSection/>}
-    </main>
+    </div>
   )
 }
 
@@ -1462,7 +1772,7 @@ export function TargetingRulesSection(){
           }}>
             <div style={{display:'flex',alignItems:'center',gap:'.5rem',marginBottom:'.4rem'}}>
               {r.icon && <img src={r.icon} alt={title} style={{width:24,height:24}}/>}
-              <h3 style={{fontSize:'.95rem',fontWeight:800,color:'var(--txt)',margin:0}}>{title}</h3>
+              <h2 style={{fontSize:'.95rem',fontWeight:800,color:'var(--txt)',margin:0}}>{title}</h2>
             </div>
             {body && <p style={{fontSize:'.82rem',color:'var(--txt2)',margin:'0 0 .5rem',lineHeight:1.5}}>{body}</p>}
             {list &&(
@@ -1516,19 +1826,19 @@ export function StatusEffectsSection(){
       </p>
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',gap:'1.25rem'}}>
         <div>
-          <h3 style={{fontSize:'1rem',fontWeight:800,color:'#27ae60',marginBottom:'.75rem',display:'flex',alignItems:'center',gap:'.5rem'}}>
+          <h2 style={{fontSize:'1rem',fontWeight:800,color:'#27ae60',marginBottom:'.75rem',display:'flex',alignItems:'center',gap:'.5rem'}}>
             <span style={{display:'inline-block',width:8,height:8,borderRadius:'50%',background:'#27ae60'}}/>
             {copy.buffsTitle || 'Buffs'} ({statusEffects.buffs.length})
-          </h3>
+          </h2>
           <div style={{display:'flex',flexDirection:'column',gap:'.5rem'}}>
             {statusEffects.buffs.map(e=><EffectCard key={e.name_en} entry={e} accent="#27ae60"/>)}
           </div>
         </div>
         <div>
-          <h3 style={{fontSize:'1rem',fontWeight:800,color:'#c0392b',marginBottom:'.75rem',display:'flex',alignItems:'center',gap:'.5rem'}}>
+          <h2 style={{fontSize:'1rem',fontWeight:800,color:'#c0392b',marginBottom:'.75rem',display:'flex',alignItems:'center',gap:'.5rem'}}>
             <span style={{display:'inline-block',width:8,height:8,borderRadius:'50%',background:'#c0392b'}}/>
             {copy.debuffsTitle || 'Debuffs'} ({statusEffects.debuffs.length})
-          </h3>
+          </h2>
           <div style={{display:'flex',flexDirection:'column',gap:'.5rem'}}>
             {statusEffects.debuffs.map(e=><EffectCard key={e.name_en} entry={e} accent="#c0392b"/>)}
           </div>

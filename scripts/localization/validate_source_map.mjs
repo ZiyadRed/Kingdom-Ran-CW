@@ -29,8 +29,6 @@ const EXPECTED_RESOLVED = 11
 
 // ── Phase 2 CW-skill expectations ────────────────────────────────────────────
 const EXPECTED_SKILLS = 661
-const EXPECTED_SKILL_EXACT = 618
-const EXPECTED_SKILL_RESOLVED = 39
 const EXPECTED_SKILL_AMBIGUOUS = 4
 const EXPECTED_SKILL_DETERMINISTIC = 657
 const EXPECTED_BASE = 627
@@ -44,7 +42,6 @@ const PENDING_KEYS = []
 const EXPECTED_ROLE_SKILLS = 10
 
 const errors = []
-const warn = (msg) => console.warn('  WARN: ' + msg)
 const err = (msg) => errors.push(msg)
 
 // ── Load character data (all batch files under data/characters) ─────────────

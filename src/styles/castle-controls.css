@@ -1,0 +1,134 @@
+/* Castle count controls. Loaded after globals and before presentation/locale
+   layers. Keep sizing, state rules and the two layout breakpoints together.
+   The surrounding board, scores and ranking remain in globals.css. */
+.cp-mobile-cell-label {
+  display: none;
+}
+.cp-stepper {
+  --cp-button-width: 34px;
+  --cp-control-height: 34px;
+  --cp-entry-min: 44px;
+  display: grid;
+  grid-template-columns: var(--cp-button-width) minmax(var(--cp-entry-min), 1fr) var(--cp-button-width);
+  gap: 0;
+  align-items: center;
+  justify-self: center;
+  /* Includes the two 1.5px borders as well as all three control tracks. */
+  width: 115px;
+  max-width: 100%;
+  border: 1.5px solid var(--bdr);
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(255,255,255,.8);
+}
+.cp-stepper button {
+  width: var(--cp-button-width);
+  height: var(--cp-control-height);
+  min-height: var(--cp-control-height);
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(180deg, #fff, var(--sur2));
+  color: var(--navy);
+  font-size: 1rem;
+  font-weight: 950;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.cp-stepper button:hover:not(:disabled) {
+  background: rgba(224,127,72,.14);
+  color: var(--terra2);
+}
+.cp-stepper button:disabled {
+  opacity: .42;
+  cursor: default;
+}
+/* Preserve the accepted physical dividers and inherited RTL grid order. */
+.cp-stepper button:first-child {
+  border-right: 1px solid var(--bdr);
+}
+.cp-stepper button:last-child {
+  border-left: 1px solid var(--bdr);
+}
+.cp-stepper input {
+  width: 100%;
+  min-width: 0;
+  height: var(--cp-control-height);
+  padding: .2rem .25rem;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  color: var(--txt);
+  font: inherit;
+  text-align: center;
+  font-size: .82rem;
+  font-weight: 950;
+}
+.cp-stepper input:focus {
+  outline: none;
+  border-color: var(--terra);
+  box-shadow: 0 0 0 2px rgba(224,127,72,.15);
+}
+.cp-stepper button:focus-visible,
+.cp-stepper input:focus-visible {
+  outline: 2px solid var(--terra);
+  outline-offset: 2px;
+}
+
+@media (max-width: 620px) {
+  .cp-castle-cell {
+    display: grid;
+    gap: .2rem;
+  }
+  .cp-mobile-cell-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .16rem;
+    min-width: 0;
+    color: var(--navy);
+    font-size: .68rem;
+    font-weight: 950;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  .cp-mobile-cell-label img {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    object-fit: contain;
+    object-position: center bottom;
+    filter: drop-shadow(0 2px 2px rgba(6,38,76,.14));
+  }
+  .cp-stepper {
+    --cp-button-width: 40px;
+    --cp-control-height: 42px;
+    --cp-entry-min: 24px;
+    width: 100%;
+    border-radius: 6px;
+  }
+  .cp-stepper button {
+    font-size: .95rem;
+  }
+  .cp-stepper input {
+    padding: .1rem .08rem;
+  }
+}
+
+@media (max-width: 380px) {
+  /* Three complete 104px steppers cannot fit here. Preserve full controls on
+     labeled rows above the three score cells. Specificity beats table cells. */
+  .cp-table .cp-castle-cell {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(104px, 1.4fr);
+    align-items: center;
+    gap: .5rem;
+  }
+  .cp-mobile-cell-label {
+    justify-content: flex-start;
+  }
+}

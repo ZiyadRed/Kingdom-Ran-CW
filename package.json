@@ -1,11 +1,11 @@
 {
   "name": "kingdom-ran-en",
   "version": "0.1.0",
-  "description": "Kingdom Ran (Kingdom Ran: Road to Unification) – English Souha Skill Simulator",
+  "description": "RanHQ – multilingual Kingdom Ran archive, team planning and Castle War tools",
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=20.19.0"
+    "node": "^20.19.0 || >=22.12.0"
   },
   "scripts": {
     "dev": "vite",
@@ -18,7 +18,11 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "validate:seo": "node scripts/validate_seo.mjs",
-    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0"
+    "lint": "eslint src scripts tests/browser *.config.js .eslintrc.cjs --ext js,jsx,mjs,cjs --report-unused-disable-directives --max-warnings 0",
+    "validate:source": "node scripts/localization/validate_source_map.mjs && node scripts/localization/validate_locale_artifacts.mjs",
+    "preview:built": "node scripts/serve-built.mjs",
+    "test:browser": "playwright test",
+    "check:release": "npm run lint && npm run validate:source && npm test && npm run build && npm run test:browser"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -26,9 +30,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^17.0.11",
-    "react-router-dom": "^7.14.1"
+    "react-router-dom": "7.18.3"
   },
   "devDependencies": {
+    "@playwright/test": "1.63.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@vitejs/plugin-react": "^6.0.2",
@@ -36,7 +41,7 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "vite": "^8.0.13",
+    "vite": "8.0.16",
     "vitest": "^4.1.7"
   }
 }

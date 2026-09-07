@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { ARABIC_TERMS, localizedCharacter, localizedSkill, localizedText, japaneseSkillSource } from './data.js'
 import { AR_CHARACTER_NAMES, LEGACY_CHARACTER_NAME_ALIASES, matchesCharacterName, missingArabicCharacterNames } from './ar-character-names.js'
-import { ALL } from '../core.jsx'
+import { ALL, parseBuffEffect } from '../core.jsx'
 
 describe('localized source data', () => {
   it('joins a deterministic project row to the current Japanese source artifact', () => {
@@ -55,6 +55,29 @@ describe('localized source data', () => {
     expect(localizedText('Infantry', 'ar')).toBe('مشاة')
   })
 
+  it('routes French game text through the semantic renderer', () => {
+    expect(localizedText('When Garrisoning', 'fr')).toBe('En garnison')
+    expect(localizedText('4 turns', 'fr')).toBe('4 tours')
+    expect(localizedText('Evasion (Dodge Chance) Up 20%', 'fr')).toBe('+20% d’esquive')
+    expect(localizedText('DEF Down Resistance 30%', 'fr')).toBe('+30% de résistance à la baisse de défense')
+    expect(localizedText('Infantry', 'fr')).toBe('Fantassins')
+  })
+
+  it('localizes every stat label emitted by the team-buff parser', () => {
+    const parsedStats = new Set()
+    for (const character of ALL) {
+      for (const skill of [...(character.skills || []), ...(character.roleSkill ? [character.roleSkill] : [])]) {
+        for (const row of skill.effects || []) {
+          for (const entry of parseBuffEffect(row.effect || '')) parsedStats.add(entry.stat)
+        }
+      }
+    }
+    const untranslated = [...parsedStats]
+      .filter((stat) => localizedText(stat, 'fr') === stat)
+      .sort()
+    expect(untranslated).toEqual([])
+  })
+
   it('leaves an unrecognised string in English instead of half-translating it', () => {
     // The old word-substitution pipeline produced things like "Way من Great
     // جنرال". Returning English is the designed fallback.
@@ -80,6 +103,23 @@ describe('localized source data', () => {
     expect(rendered.duration).toBe('جولتان')
   })
 
+  it('renders French effects per field without mutating the source row', () => {
+    const original = {
+      condition: 'When enemy [Archer] [General] is alive',
+      target: '1 enemy [General]',
+      effect: 'HP Recovery 2.7%',
+      duration: '2 turns',
+    }
+    const skill = localizedSkill({ name_en: 'Test', effects: [original] }, 'unknown', 0, 'fr')
+    expect(skill.displayEffects[0]).toMatchObject({
+      condition: 'Quand un archer ennemi est en vie',
+      target: '1 général ennemi',
+      effect: 'Soin de 2,7% de PV',
+      duration: '2 tours',
+    })
+    expect(original.effect).toBe('HP Recovery 2.7%')
+  })
+
   it('shows every character name in the locale’s own script', () => {
     // Owner policy 2026-08-30: Romaji for English, Japanese for Japanese,
     // Arabic for Arabic. Audit AR-005 was about a PARTIAL set alternating
@@ -87,6 +127,7 @@ describe('localized source data', () => {
     const ouhon = { id: 'ouhon', name_en: 'Ouhon', name_jp: '王賁', skills: [] }
     expect(localizedCharacter(ouhon, 'ar').displayName).toBe('أوهون')
     expect(localizedCharacter(ouhon, 'ja').displayName).toBe('王賁')
+    expect(localizedCharacter(ouhon, 'fr').displayName).toBe('Ouhon')
     expect(localizedCharacter(ouhon, 'en').displayName).toBe('Ouhon')
   })
 

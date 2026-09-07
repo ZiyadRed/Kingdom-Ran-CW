@@ -1,9 +1,13 @@
-import { useState, useEffect, lazy, Suspense } from 'react'
+import { useState, useEffect, lazy, Suspense, startTransition } from 'react'
 import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { canonicalPath, routeSeo, setSeo } from './seo.js'
+import { canonicalPath, characterRouteId, routeSeo, setSeo } from './seo.js'
 import { enabledLocales, localePrefixedPath, stripLocalePrefix, useLocale, writeLocalePreference } from './i18n/index.js'
 import { builderStateHasSetup, DEFAULT_BUILDER_SKILL_MASK, usePersistedBuilderState } from './builder-storage.js'
+import RouteErrorBoundary from './RouteErrorBoundary.jsx'
+import Dialog from './Dialog.jsx'
+import NotFoundPage from './NotFoundPage.jsx'
+import { ROUTE_MODULES } from './route-modules.js'
 
 // Inlined here (no data import) so the shell — and the Home route — never pull
 // in the character data / engine chunk. Pages resolve their own data lazily.
@@ -12,18 +16,19 @@ const defaultSks = () => Array.from({length:4}, () => ({...DEFAULT_SK}))
 
 // Route pages are code-split: the page bundle (and the data/engine it pulls)
 // loads on first navigation instead of blocking the initial Home render.
-const ArchiveTabs = lazy(() => import('./pages.jsx').then(m => ({ default: m.ArchiveTabs })))
-const ArchiveHubPage = lazy(() => import('./pages.jsx').then(m => ({ default: m.ArchiveHubPage })))
-const CW6SceneCardsPage = lazy(() => import('./pages.jsx').then(m => ({ default: m.CW6SceneCardsPage })))
-const ArchivePage = lazy(() => import('./pages.jsx').then(m => ({ default: m.ArchivePage })))
-const BuilderPage = lazy(() => import('./pages.jsx').then(m => ({ default: m.BuilderPage })))
-const SimPage = lazy(() => import('./pages.jsx').then(m => ({ default: m.SimPage })))
-const BuffsPage = lazy(() => import('./pages.jsx').then(m => ({ default: m.BuffsPage })))
-const TierPage = lazy(() => import('./pages.jsx').then(m => ({ default: m.TierPage })))
-const TeamCostPage = lazy(() => import('./pages.jsx').then(m => ({ default: m.TeamCostPage })))
-const CWStatsPage = lazy(() => import('./cwstats.jsx').then(m => ({ default: m.CWStatsPage })))
-const CWGuidePage = lazy(() => import('./guide.jsx').then(m => ({ default: m.CWGuidePage })))
-const CastlePointsPage = lazy(() => import('./castlepoints.jsx'))
+const ArchiveTabs = lazy(() => ROUTE_MODULES.pages.load().then(m => ({ default: m.ArchiveTabs })))
+const ArchiveHubPage = lazy(() => ROUTE_MODULES.pages.load().then(m => ({ default: m.ArchiveHubPage })))
+const CW6SceneCardsPage = lazy(() => ROUTE_MODULES.pages.load().then(m => ({ default: m.CW6SceneCardsPage })))
+const ArchivePage = lazy(() => ROUTE_MODULES.pages.load().then(m => ({ default: m.ArchivePage })))
+const BuilderPage = lazy(() => ROUTE_MODULES.pages.load().then(m => ({ default: m.BuilderPage })))
+const SimPage = lazy(() => ROUTE_MODULES.pages.load().then(m => ({ default: m.SimPage })))
+const BuffsPage = lazy(() => ROUTE_MODULES.buffs.load().then(m => ({ default: m.BuffsPage })))
+const TierPage = lazy(() => ROUTE_MODULES.pages.load().then(m => ({ default: m.TierPage })))
+const TeamCostPage = lazy(() => ROUTE_MODULES.pages.load().then(m => ({ default: m.TeamCostPage })))
+const CWStatsPage = lazy(() => ROUTE_MODULES.stats.load().then(m => ({ default: m.CWStatsPage })))
+const CWGuidePage = lazy(() => ROUTE_MODULES.guide.load().then(m => ({ default: m.CWGuidePage })))
+const GuideHubPage = lazy(() => ROUTE_MODULES.guide.load().then(m => ({ default: m.GuideHubPage })))
+const CastlePointsPage = lazy(() => ROUTE_MODULES.castle.load())
 
 const PAGES=['Home','Archive','Guide','Party Builder','Battle Order','Castle Points','Buffs','Tier List','Team Cost','Stats Calculator']
 const PAGE_TO_ROUTE={
@@ -166,7 +171,7 @@ export default function App(){
   const[moreOpen,setMoreOpen]=useState(false)
   // Storage-derived UI must not render on the hydration pass; see nav-count below.
   const[mounted,setMounted]=useState(false)
-  useEffect(()=>{setMounted(true)},[])
+  useEffect(()=>{startTransition(()=>setMounted(true))},[])
   const rm=(char,side)=>{
     const isAtk=side==='attack'
     const team=isAtk?atk:def
@@ -201,27 +206,31 @@ export default function App(){
     if(!hasBuilderSetup||!needsBuilderRegistry) return
     let active=true
     import('./core.jsx').then(({ALL})=>{if(active)reconcileBuilder(ALL)})
+      .catch(error=>console.error('RanHQ could not load the Builder registry:',error))
     return()=>{active=false}
   },[hasBuilderSetup,needsBuilderRegistry,reconcileBuilder])
   // Scroll to top when switching top-level tab (not on character deep-link changes within Archive)
   useEffect(()=>{window.scrollTo(0,0)},[page])
-  // Close the mobile "More" sheet on any navigation and lock scroll / allow Escape while it's open.
+  // Close the mobile Tools dialog when navigation or a desktop layout hides its trigger.
   useEffect(()=>{setMoreOpen(false)},[location.pathname])
   useEffect(()=>{
     if(!moreOpen) return
-    const onKey=e=>{if(e.key==='Escape')setMoreOpen(false)}
-    document.addEventListener('keydown',onKey)
-    const prev=document.body.style.overflow
-    document.body.style.overflow='hidden'
-    return()=>{document.removeEventListener('keydown',onKey);document.body.style.overflow=prev}
+    const desktop=window.matchMedia('(min-width: 769px)')
+    const closeOnDesktop=()=>{if(desktop.matches)setMoreOpen(false)}
+    closeOnDesktop()
+    desktop.addEventListener('change',closeOnDesktop)
+    return()=>desktop.removeEventListener('change',closeOnDesktop)
   },[moreOpen])
   // Keep route-level SEO tags in sync for crawlers that render the SPA.
   useEffect(()=>{
+    // The character route resolves exact IDs and owns its detailed or 404 SEO.
+    if(characterRouteId(location.pathname)) return
     setSeo(routeSeo(location.pathname,locale))
   },[location.pathname,locale])
   const selectedCount=atk.filter(Boolean).length+def.filter(Boolean).length
   return(
     <div className="app" data-locale={locale.code}>
+      <a className="skip-link" href="#main-content">{t('skipToContent')}</a>
       <header className="hdr">
         <div className="hdr-in">
           <Link className="logo" to="/" aria-label={t('nav.home')}>
@@ -259,7 +268,8 @@ export default function App(){
           <LocaleSwitcher/>
         </div>
       </header>
-      <div className="app-body">
+      <main id="main-content" className="app-body" tabIndex={-1}>
+        <RouteErrorBoundary resetKey={location.pathname}>
         <Suspense fallback={<RouteFallback/>}>
           <Routes>
           <Route path="/" element={<HomePage/>}/>
@@ -275,12 +285,13 @@ export default function App(){
           <Route path="/tiers" element={<TierPage/>}/>
           <Route path="/cost" element={<TeamCostPage/>}/>
           <Route path="/cw-stats" element={<CWStatsPage/>}/>
-          <Route path="/guide" element={<CWGuidePage/>}/>
+          <Route path="/guide" element={<GuideHubPage/>}/>
           <Route path="/guide/:section" element={<CWGuidePage/>}/>
           <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
         </Suspense>
-      </div>
+        </RouteErrorBoundary>
+      </main>
       <footer className="foot">
         <div className="foot-inner">
           <div className="foot-primary">
@@ -313,8 +324,9 @@ export default function App(){
         </button>
       </nav>
       {moreOpen&&(
-        <div className="bn-sheet-overlay" onClick={()=>setMoreOpen(false)}>
-          <div className="bn-sheet" role="dialog" aria-modal="true" aria-label={`${t('appName')} ${navText(t,'Tools')}`} onClick={e=>e.stopPropagation()}>
+        <Dialog className="bn-sheet-overlay" onClose={()=>setMoreOpen(false)} aria-label={`${t('appName')} ${navText(t,'Tools')}`}
+          returnFocus={()=>{const trigger=document.querySelector('.bottom-nav button[aria-haspopup="dialog"]');return trigger?.getClientRects().length?trigger:document.querySelector('.locale-switcher select')}}>
+          <div className="bn-sheet" onClick={e=>e.stopPropagation()}>
             <div className="bn-sheet-grip"/>
             <div className="bn-sheet-head">
               <div><strong>{navText(t,'Tools')}</strong><span>{t('toolsSummary')}</span></div>
@@ -328,7 +340,7 @@ export default function App(){
               </Link>
             ))}
           </div>
-        </div>
+        </Dialog>
       )}
     </div>
   )
@@ -371,12 +383,12 @@ function HomePage(){
     },
   ]
   const guideLinks=[
-    {label:t('home.guideBasics'),route:'/guide/basics',image:'/guide/basics-map-en.webp'},
-    {label:t('home.guideRoles'),route:'/guide/roles',image:'/guide/roles-selection.webp'},
-    {label:t('home.guideStats'),route:'/guide/stats-screen',image:'/guide/cw-stats-screen.webp'},
+    {label:t('home.guideBasics'),route:'/guide/basics',image:'/guide/previews/basics-map-en.webp'},
+    {label:t('home.guideRoles'),route:'/guide/roles',image:'/guide/previews/roles-selection.webp'},
+    {label:t('home.guideStats'),route:'/guide/stats-screen',image:'/guide/previews/cw-stats-screen.webp'},
   ]
   return(
-    <main className="home-page">
+    <div className="home-page">
       <section className="home-hero">
         <img
           src="/ranhq-home-banner-1200.webp"
@@ -385,7 +397,7 @@ function HomePage(){
           alt="" className="home-hero-img" width="1881" height="836" decoding="async"/>
         <div className="home-hero-shade"/>
         <div className="home-hero-content">
-          <h1>{locale.code==='ja' ? 'RanHQ — キングダム乱 同盟争覇戦攻略' : locale.code==='ar' ? 'RanHQ — دليل حرب القلاع في Kingdom Ran' : 'RanHQ — Kingdom Ran Castle War Guide'}</h1>
+          <h1>{locale.code==='ja' ? 'RanHQ — キングダム乱 同盟争覇戦攻略' : locale.code==='ar' ? 'RanHQ — دليل حرب القلاع في Kingdom Ran' : locale.code==='fr' ? 'RanHQ — Guide de la Conquête d’Alliance de Kingdom Ran' : 'RanHQ — Kingdom Ran Castle War Guide'}</h1>
           <p>{t('home.heroDescription')}</p>
           <div className="home-actions">
             <Link className="home-primary" to="/archive">{t('home.openArchive')}</Link>
@@ -400,7 +412,7 @@ function HomePage(){
             <article key={lane.title} className="home-task-lane">
               <div className="home-task-head">
                 <span className="home-task-icon"><UiIcon name={lane.icon} size={24}/></span>
-                <div><h3>{lane.title}</h3><p>{lane.description}</p></div>
+                <div><h2>{lane.title}</h2><p>{lane.description}</p></div>
               </div>
               <div className="home-task-links">
                 {lane.links.map(link=>(
@@ -427,26 +439,6 @@ function HomePage(){
           ))}
         </div>
       </section>
-    </main>
-  )
-}
-
-function NotFoundPage(){
-  const locale=useLocale()
-  const copy=locale.code==='ja'
-    ? {title:'ページが見つかりません',body:'指定されたRanHQのページは存在しないか、移動した可能性があります。',home:'ホームへ戻る',archive:'武将一覧を見る'}
-    : locale.code==='ar'
-      ? {title:'الصفحة غير موجودة',body:'صفحة RanHQ المطلوبة غير موجودة أو ربما تم نقلها.',home:'العودة إلى الرئيسية',archive:'عرض قائمة الجنرالات'}
-      : {title:'Page not found',body:'The requested RanHQ page does not exist or may have moved.',home:'Return home',archive:'Browse generals'}
-  return(
-    <main className="not-found-page">
-      <p className="not-found-code">404</p>
-      <h1>{copy.title}</h1>
-      <p>{copy.body}</p>
-      <div className="not-found-actions">
-        <Link to="/">{copy.home}</Link>
-        <Link to="/archive/characters">{copy.archive}</Link>
-      </div>
-    </main>
+    </div>
   )
 }

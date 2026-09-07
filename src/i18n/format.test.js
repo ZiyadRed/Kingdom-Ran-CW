@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { getLocale } from './locales.js'
-import { formatNumber } from './format.js'
+import { formatNumber, formatFixedNumber } from './format.js'
 
 const en = getLocale('en')
 const ja = getLocale('ja')
@@ -40,5 +40,16 @@ describe('formatNumber', () => {
     const bogus = { code: 'xx', numberLocale: 'xx-XX' }
     expect(formatNumber(1234.5, bogus)).toBe('1,234.5')
   })
-})
 
+  it('localizes fixed decimals without changing existing buff rounding or Arabic digits', () => {
+    for (const locale of [en, ja, ar]) {
+      expect(formatFixedNumber(20, locale, 2)).toBe('20.00')
+      expect(formatFixedNumber(2.55, locale)).toBe('2.5')
+      expect(formatFixedNumber(1234.5, locale)).toBe('1234.5')
+    }
+    const fr = getLocale('fr')
+    expect(formatFixedNumber(20, fr, 2)).toBe('20,00')
+    expect(formatFixedNumber(2.55, fr)).toBe('2,5')
+    expect(formatFixedNumber(0, fr)).toBe('0,0')
+  })
+})

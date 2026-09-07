@@ -10,8 +10,8 @@ import {
 } from './locales.js'
 
 describe('locale registry', () => {
-  it('declares en, ja, and ar with full metadata', () => {
-    expect(LOCALES.map((l) => l.code)).toEqual(['en', 'ja', 'ar'])
+  it('declares en, ja, ar, and fr with full metadata', () => {
+    expect(LOCALES.map((l) => l.code)).toEqual(['en', 'ja', 'ar', 'fr'])
   })
 
   it('describes English as enabled, default, unprefixed, ltr', () => {
@@ -60,6 +60,21 @@ describe('locale registry', () => {
     })
   })
 
+  it('describes French as enabled, non-default, /fr-prefixed, ltr', () => {
+    const fr = getLocale('fr')
+    expect(fr).toMatchObject({
+      code: 'fr',
+      bcp47: 'fr',
+      direction: 'ltr',
+      nativeLabel: 'Français',
+      enabled: true,
+      default: false,
+      routePrefix: '/fr',
+      numberLocale: 'fr-FR',
+      ogLocale: 'fr_FR',
+    })
+  })
+
   it('pins Arabic to the Latin numbering system', () => {
     const ar = getLocale('ar')
     expect(new Intl.NumberFormat(ar.numberLocale).resolvedOptions().numberingSystem).toBe('latn')
@@ -77,14 +92,15 @@ describe('locale registry', () => {
     expect(getLocale(null)).toBeNull()
   })
 
-  it('enabledLocales includes the first-class Arabic locale', () => {
-    expect(enabledLocales().map((l) => l.code)).toEqual(['en', 'ja', 'ar'])
+  it('enabledLocales includes the first-class Arabic and French locales', () => {
+    expect(enabledLocales().map((l) => l.code)).toEqual(['en', 'ja', 'ar', 'fr'])
   })
 
   it('isLocaleEnabled matches the registry flags', () => {
     expect(isLocaleEnabled('en')).toBe(true)
     expect(isLocaleEnabled('ja')).toBe(true)
     expect(isLocaleEnabled('ar')).toBe(true)
+    expect(isLocaleEnabled('fr')).toBe(true)
     expect(isLocaleEnabled('xx')).toBe(false)
   })
 })

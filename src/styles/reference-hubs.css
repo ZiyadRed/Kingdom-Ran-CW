@@ -1,0 +1,25 @@
+/* Archive/Guide overview pages share the existing palette and navigation scale. */
+.reference-hub { width: min(1080px, 100%); margin-inline: auto; padding: 36px 24px 48px; }
+.reference-hub-head { margin-block-end: 28px; }
+.reference-hub h1 { color: var(--navy); font-family: 'Oswald', sans-serif; font-size: clamp(28px, 4vw, 38px); line-height: 1.2; }
+.reference-hub-head p { max-width: 75ch; margin-block-start: 12px; color: var(--txt2); line-height: 1.6; }
+.reference-hub-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.reference-hub-card, .reference-hub-group { min-width: 0; padding: 24px; border: 1px solid var(--bdr); border-block-start: 3px solid var(--terra); border-radius: 8px; background: var(--sur); }
+.reference-hub-card { display: block; color: var(--navy); text-decoration: none; }
+.reference-hub h2 { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; color: var(--navy); font-family: 'Oswald', sans-serif; font-size: 23px; line-height: 1.35; }
+.reference-hub-count { padding: 3px 8px; border-radius: 4px; background: var(--bg2); color: var(--txt2); font-family: 'Barlow', sans-serif; font-size: 14px; }
+.reference-hub-card p, .reference-hub-group > p { margin-block-start: 12px; color: var(--txt2); line-height: 1.6; }
+.reference-hub-arrow { display: inline-block; margin-block-start: 16px; color: var(--navy); font-size: 24px; }
+html[dir='rtl'] .reference-hub-arrow { transform: rotate(180deg); }
+.reference-hub-card:hover { background: var(--sur2); border-color: var(--navy); }
+.reference-hub-group ul { margin-block-start: 18px; padding: 0; list-style: none; }
+.reference-hub-group li + li { border-block-start: 1px solid var(--bdr); }
+.reference-hub-group a, .reference-hub-more { display: flex; align-items: center; min-height: 44px; padding: 10px 8px; color: var(--navy); line-height: 1.5; text-decoration: underline; text-underline-offset: 3px; }
+.reference-hub-group a:hover { background: var(--bg2); }
+.reference-hub-more { width: fit-content; margin-block-start: 20px; }
+.reference-hub a:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; }
+@media (max-width: 620px) {
+  .reference-hub { padding: 26px 16px 36px; }
+  .reference-hub-grid { grid-template-columns: 1fr; gap: 16px; }
+  .reference-hub-card, .reference-hub-group { padding: 20px; }
+}

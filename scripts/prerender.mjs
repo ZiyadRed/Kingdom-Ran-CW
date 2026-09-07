@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { createServer } from 'vite'
+import { routePreloads } from './route-preloads.mjs'
 import {
   htmlOutputPath,
   legacyCharacterRoutes,
@@ -11,7 +12,9 @@ const repoRoot = process.cwd()
 const outputDir = path.join(repoRoot, 'dist')
 const templatePath = path.join(outputDir, 'index.html')
 const template = fs.readFileSync(templatePath, 'utf8')
-const ogLocales = { en: 'en_US', ja: 'ja_JP', ar: 'ar_EG' }
+const manifest = JSON.parse(fs.readFileSync(path.join(outputDir, '.vite', 'manifest.json'), 'utf8'))
+const templateAssets = [...template.matchAll(/(?:src|href)=["'](\/assets\/[^"']+)["']/g)].map(match => match[1])
+const ogLocales = { en: 'en_US', ja: 'ja_JP', ar: 'ar_EG', fr: 'fr_FR' }
 
 const escapeHtml = (value) => String(value)
   .replaceAll('&', '&amp;')
@@ -119,14 +122,19 @@ function stripHeroPreload(document) {
   }
 }
 
-function buildDocument(appHtml, seo) {
+function buildDocument(appHtml, seo, { notFound = false } = {}) {
   const direction = seo.locale === 'ar' ? 'rtl' : 'ltr'
   const isHome = seo.canonicalPath === '/'
   let document = stripManagedHead(template)
   if (!isHome) document = stripHeroPreload(document)
-  document = document.replace(/<html\b[^>]*>/i, `<html lang="${seo.locale}" dir="${direction}">`)
+  document = document.replace(/<html\b[^>]*>/i, `<html lang="${seo.locale}" dir="${direction}"${notFound ? ' data-ranhq-document="not-found"' : ''}>`)
   document = document.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`)
-  document = document.replace('</head>', `${managedHead(seo)}\n  </head>`)
+  const preloads = routePreloads(manifest, seo.canonicalPath, templateAssets)
+  const preloadHead = [
+    ...preloads.scripts.map(href => `    <link rel="modulepreload" crossorigin fetchpriority="low" href="${escapeHtml(href)}" />`),
+    ...preloads.styles.map(href => `    <link rel="stylesheet" href="${escapeHtml(href)}" />`),
+  ].join('\n')
+  document = document.replace('</head>', `${managedHead(seo)}\n${preloadHead}\n  </head>`)
   return document
 }
 
@@ -157,7 +165,7 @@ try {
   }
 
   const notFoundHtml = await render('/404')
-  writeRoute('/404', buildDocument(notFoundHtml, seoForUrl('/404')))
+  writeRoute('/404', buildDocument(notFoundHtml, seoForUrl('/404'), { notFound: true }))
   console.log(`prerender: wrote ${routes.length} route documents plus 404.html`)
 } finally {
   await vite.close()

@@ -3,7 +3,7 @@
 // This is a deterministic maintenance migration: it only adds a missing
 // `source` block or verifies that an existing block is byte-for-byte equal to
 // data/source/characters.map.json. It never invents IDs and refuses conflicts.
-import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync, readdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 

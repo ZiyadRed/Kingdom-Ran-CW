@@ -262,8 +262,8 @@ describe('progress migrations', () => {
     }})
 
     expect(normalized.buffSources).toMatchObject({
-      'siege:Attack Siege Weapons:HP:Fuuki:馮忌:12.3:':true,
-      'siege:Defense Siege Weapons:HP:Fuuki:馮忌:28.3:':'owned',
+      'buff_44427c57a7cb40c48eaa8b68aa81a9de':true,
+      'buff_a87ad564253f42fe8d2ea30588f547fa':'owned',
       [unrelatedLegacy]:true,
     })
     expect(normalized.buffSources[attackLegacy]).toBeUndefined()

@@ -103,7 +103,7 @@ const entries = skillMap?.skills || {}
 // the app actually ships (not a stale snapshot of it).
 const projectKeys = []
 for (const c of characters) {
-  ;(Array.isArray(c.skills) ? c.skills : []).forEach((_, i) => projectKeys.push(`${c.id}#${i}`))
+  (Array.isArray(c.skills) ? c.skills : []).forEach((_, i) => projectKeys.push(`${c.id}#${i}`))
 }
 
 if (projectKeys.length !== EXPECTED.skills) {

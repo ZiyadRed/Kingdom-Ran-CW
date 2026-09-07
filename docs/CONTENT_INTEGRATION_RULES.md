@@ -12,7 +12,7 @@ A change is not "done" because the English archive card renders.
 
 ## 0. The one-line rule
 
-> New user-facing content ships in **EN, JA and AR** or it does not ship.
+> New user-facing content ships in **EN, JA, AR and FR** or it does not ship.
 
 Adding content only to English is the single most common way this project has
 regressed. Every rule below exists because that happened.
@@ -28,8 +28,10 @@ Owner policy — each locale shows names in its own script:
 | English | canonical Romaji |
 | Japanese | canonical Japanese |
 | Arabic | canonical Arabic |
+| French | canonical Romaji |
 
-A new character needs **all three**. Arabic coverage must stay **complete**.
+A new character needs all three source-script forms; French reuses the verified
+canonical Romaji name. Arabic coverage must stay **complete**.
 
 The Romaji policy that preceded this existed to prevent a *partial* Arabic set
 alternating scripts mid-roster. That failure mode is still the thing to avoid —
@@ -114,10 +116,14 @@ Unknown ids **fail closed**: leave the token visible. Never guess, never delete.
 
 ---
 
-## 6. Arabic game effects
+## 6. Arabic and French game effects
 
 Arabic mechanic text is produced by a **semantic renderer**
 (`src/i18n/ar-render.js`), not substitution.
+
+French mechanic text follows the same structural rule through
+`src/i18n/fr-render.js`. It must render natural French word order, agreement,
+elision, and number formatting rather than replacing English words in place.
 
 Forbidden:
 
@@ -153,16 +159,16 @@ Proportional changes take `بنسبة`: `زيادة الهجوم بنسبة 20%`
 terse: `ضرر 150%`.
 
 **If a mechanic genuinely cannot be modelled, return the complete English
-source.** A safe English fallback beats an invented Arabic mechanic. Never
-partially translate.
+source.** A safe English fallback beats an invented mechanic. Never partially
+translate.
 
-**Enforced by:** `src/i18n/corpus-coverage.test.js`. Arabic is held at **zero
-fallback** — a new unmodelled mechanic fails the build rather than shipping
-English. Japanese is held to its current coverage level.
+**Enforced by:** `src/i18n/corpus-coverage.test.js`. Arabic and French are held
+at **zero fallback** — a new unmodelled mechanic fails the build rather than
+shipping English. Japanese is held to its current coverage level.
 
 ---
 
-## 7. Arabic must look human
+## 7. Arabic and French must look human
 
 Arabic is not complete merely because Arabic characters are present. The
 standard is:
@@ -171,10 +177,18 @@ standard is:
 natural · gaming-friendly · grammatically correct · RTL-aware · not machine-looking
 ```
 
+French is likewise not complete merely because the English source was replaced;
+it must read as text written for French players.
+
 Watch specifically for: gender and number agreement, the `zero` plural
 category (Arabic has one — `لا جنرالات`, not `0 جنرالًا`), iḍāfa correctness
 (`لعدو` + definite noun is not a valid construct), and bare adjectives after
 `عند`.
+
+For French, watch gender and number agreement, contractions and elision,
+decimal commas, narrow no-break spaces in grouped numbers, selector
+singular/plural, and natural placement of values, targets, conditions, and
+durations.
 
 ---
 
@@ -195,6 +209,10 @@ the glossary. Do not re-ask about a settled term.
 Countries in UI must reuse the existing `FACTIONS` entries (`label` for
 English, `jp` for Japanese) and the Arabic `TAGS` in `ar-lexicon.js`. Never
 introduce a second name for a country.
+
+French mechanic terminology is centralized in `src/i18n/fr-lexicon.js` and
+must remain consistent with the French guide. Established community vocabulary
+is preferred when it does not conflict with verified source meaning.
 
 ---
 
@@ -218,7 +236,7 @@ introduce a second name for a country.
 5. tri-script search verified
 6. source/provenance metadata + `characters.map.json` entry
 7. skills mapped to source by stable ID
-8. Arabic semantic rendering for every effect row
+8. Arabic and French semantic rendering for every effect row
 9. CW/CW6 relationships if applicable
 10. images/assets (`/persos` + `thumbs/` twin)
 11. archive
@@ -233,7 +251,7 @@ introduce a second name for a country.
 2. preserve original game data and provenance
 3. wire character identity by stable ID
 4. add/verify Japanese source data
-5. Arabic semantic rendering for any new mechanic
+5. Arabic and French semantic rendering for any new mechanic
 6. all display labels respect the active locale
 7. searches/pickers still work
 8. verify Share Team where the card can surface
@@ -254,7 +272,7 @@ Each preset carries `{ name, country, members, tier? }`:
   `src/i18n/team-names.js` and is what tests and share URLs use.
 - `country` must be resolved from the **members' own character records**, never
   from the team name. Comps whose members span four states use `MIXED_COUNTRY`.
-- Every preset needs an entry in `team-names.js` for JA and AR.
+- Every preset needs an entry in `team-names.js` for JA, AR, and FR.
 
 **Enforced by:** `src/meta-teams.test.js` and `src/i18n/team-names.test.js`.
 
@@ -275,9 +293,10 @@ python scripts/localization/extract_ja_text.py --verify
 git diff --check
 ```
 
-Then smoke-test EN, JA and AR at desktop **and** 390×844.
+Then smoke-test EN, JA, AR and FR at desktop **and** 390×844.
 
-A green build is not native-quality acceptance. Read the rendered Arabic.
+A green build is not native-quality acceptance. Read the rendered Arabic and
+French.
 
 ---
 
@@ -290,3 +309,10 @@ Bad: *"there are exactly 208 characters"*
 
 The second makes a legitimate character 209 look like corruption. Same
 philosophy for CW cards and corpus size.
+
+## 15. Buff ownership metadata
+
+Keep each selectable buff source's authored `ownership_id` unchanged through
+content corrections, insertion and reorder. Preserve it when regenerating data;
+it is distinct from the game's source IDs. Follow [Buff ownership identity](BUFF_OWNERSHIP.md)
+for new IDs, frozen legacy aliases, independent shard flags and migration tests.

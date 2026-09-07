@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import teamBuffs from '../data/cw_team_buffs.json'
 import { ALL } from './core.jsx'
-import { BUFF_SIEGE, SIEGE_META } from './pages.jsx'
+import { BUFF_SIEGE, SIEGE_META } from './features/buffs/data.js'
 import { matchesCharacterName } from './i18n/ar-character-names.js'
 import { renderArabicText } from './i18n/ar-render.js'
 import { renderJapaneseText } from './i18n/ja-render.js'
@@ -61,7 +61,17 @@ const siege = teamBuffs.siege
 
 describe('siege-weapon buffs', () => {
   it('matches what the character data actually grants', () => {
-    expect(siege).toEqual(deriveFromCharacters())
+    // RanHQ ownership IDs are authored persistence metadata, not game effects.
+    // Compare every source payload field after removing only that metadata.
+    const sourcePayload = Object.fromEntries(Object.entries(siege).map(([category, stats]) => [category,
+      Object.fromEntries(Object.entries(stats).map(([stat, entries]) => [stat,
+        entries.map(({ ownership_id, ...entry }) => {
+          expect(ownership_id).toMatch(/^buff_[a-f0-9]{32}$/)
+          return entry
+        }),
+      ])),
+    ]))
+    expect(sourcePayload).toEqual(deriveFromCharacters())
   })
 
   it('covers every category the page renders, with all three stats', () => {

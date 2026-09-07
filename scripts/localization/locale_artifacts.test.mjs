@@ -106,7 +106,7 @@ describe('source index', () => {
   it('covers every current project skill row exactly once', () => {
     const projectKeys = []
     for (const c of characters) {
-      ;(c.skills || []).forEach((_, i) => projectKeys.push(`${c.id}#${i}`))
+      (c.skills || []).forEach((_, i) => projectKeys.push(`${c.id}#${i}`))
     }
     expect(projectKeys).toHaveLength(661)
     expect(Object.keys(index.skills).sort()).toEqual(projectKeys.sort())

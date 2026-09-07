@@ -57,3 +57,12 @@ html[dir="rtl"] .foot,
 html[dir="rtl"] .foot-inner,
 html[dir="rtl"] .guide-contents-toggle { text-align: right; }
 html[dir="rtl"] .foot-discord { margin-left: 0; margin-right: auto; }
+
+/* The archive's faction rail is a five-column grid on phones, sized for labels
+   that wrap in two ("Mountain Folk", جيش الجبال, 山の民). French condenses the
+   same faction to one unbreakable word, "Montagne", which clipped at the shared
+   size. A slightly smaller label keeps the name whole; the other three locales
+   are untouched. */
+@media (max-width: 768px) {
+  html[lang="fr"] .fac-name { font-size: .62rem; }
+}

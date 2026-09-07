@@ -8,11 +8,11 @@
 
 ## Localization contract
 
-- Supported locales are English (`/`), Japanese (`/ja`), and Arabic (`/ar`). Existing English URLs must continue to work.
+- Supported locales are English (`/`), Japanese (`/ja`), Arabic (`/ar`), and French (`/fr`). Existing English URLs must continue to work.
 - For Kingdom Ran game-originated text, use exact stable-ID joins from `C:\kingdom_data\decrypted` and preserve the original Japanese string. Do not guess from translated English, names, array positions, or `skillId - 1` arithmetic. Leave ambiguous rows explicitly unassigned.
 - RanHQ-authored UI and guide copy may be translated naturally. Keep provenance distinct from game text (`VERIFIED_ORIGINAL`, `EVIDENCE_INFORMED`, `COMPATIBLE_RECONSTRUCTION`, `UNKNOWN`).
 - Arabic must set `lang="ar"` and `dir="rtl"`; prefer logical CSS properties and test mixed Arabic, Japanese, Latin identifiers, and numbers.
-- Maintain `data/glossary/localization_terms.json` for shared English/Japanese/Arabic terminology. Do not invent costs, odds, rewards, packet semantics, or combat formulas.
+- Maintain `data/glossary/localization_terms.json` for shared English/Japanese/Arabic terminology and `src/i18n/fr-lexicon.js` for French mechanic terminology. Do not invent costs, odds, rewards, packet semantics, or combat formulas.
 
 ## NEW CHARACTER / CW CARD INTEGRATION CONTRACT
 
@@ -20,10 +20,10 @@
 mechanic, read `docs/CONTENT_INTEGRATION_RULES.md`. It is the detailed contract;
 this is the non-negotiable summary.
 
-- **Ship EN + JA + AR or do not ship.** No new user-facing concept lands in
+- **Ship EN + JA + AR + FR or do not ship.** No new user-facing concept lands in
   English only. No hard-coded visible English in shared UI unless it is
   source-verbatim under an established policy.
-- **Character names**: English = canonical Romaji, Japanese = canonical
+- **Character names**: English/French = canonical Romaji, Japanese = canonical
   Japanese, Arabic = canonical Arabic (`src/i18n/ar-character-names.js`).
   Arabic coverage must stay **complete** — never 207 names plus one Romaji
   fallback.
@@ -40,8 +40,13 @@ this is the non-negotiable summary.
   replacement, no English grammar, no mixed fragments, no parser tokens. If a
   mechanic cannot be modelled, return the **complete** English source — never a
   partial translation.
+- **French mechanics** go through the French semantic renderer and must keep
+  natural French word order, agreement, elision, and number formatting. Like
+  Arabic, unmodelled mechanic shapes fail closed and fail the corpus gate.
 - **Arabic must read as human**: natural, gaming-friendly, grammatically
   correct, RTL-aware. Arabic characters being present is not completion.
+- **French must read as human**: natural, gaming-friendly, grammatically
+  correct, and consistent with the guide and established community terms.
 - **Check the glossary before inventing a translation**
   (`RANHQ_ARABIC_TERMINOLOGY.md`). Owner-approved terms win. Ask once about a
   genuinely new recurring term, then record it. Do not re-ask settled terms.
@@ -69,7 +74,7 @@ npm.cmd run lint
 npm.cmd run build
 ```
 
-For UI changes, smoke-test English, Japanese, and Arabic desktop plus 390x844 mobile. Record remaining fallback or native-Flash boundaries honestly; a successful build is not native Flash acceptance.
+For UI changes, smoke-test English, Japanese, Arabic, and French desktop plus 390x844 mobile. Record remaining fallback or native-Flash boundaries honestly; a successful build is not native Flash acceptance.
 
 ## Ownership and handoff
 

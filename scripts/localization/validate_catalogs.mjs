@@ -26,7 +26,7 @@ function pluralStem(key) {
 const baseline = flatten(CATALOGS.en)
 const baselineStems = new Set([...baseline].map(pluralStem))
 const errors = []
-for (const code of ['ja', 'ar']) {
+for (const code of ['ja', 'ar', 'fr']) {
   const current = flatten(CATALOGS[code])
   const currentStems = new Set([...current].map(pluralStem))
   for (const key of baseline) {
@@ -48,4 +48,4 @@ if (errors.length) {
   process.exit(1)
 }
 
-console.log(`Locale catalog validation passed (${baseline.size} semantic keys across en/ja/ar).`)
+console.log(`Locale catalog validation passed (${baseline.size} semantic keys across en/ja/ar/fr).`)

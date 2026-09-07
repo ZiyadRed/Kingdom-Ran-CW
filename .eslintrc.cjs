@@ -25,8 +25,13 @@ module.exports = {
   overrides: [
     {
       // Node-run build scripts and tooling.
-      files: ['scripts/**/*.{js,mjs}', '*.config.{js,mjs}', '.eslintrc.cjs'],
+      files: ['scripts/**/*.{js,mjs}', 'tests/browser/**/*.js', '*.config.{js,mjs}', '.eslintrc.cjs'],
       env: { node: true, browser: false },
+    },
+    {
+      // Browser callbacks in acceptance tests execute inside disposable pages.
+      files: ['tests/browser/**/*.js'],
+      env: { browser: true },
     },
     {
       // Vitest test files.

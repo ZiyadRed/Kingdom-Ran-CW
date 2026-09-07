@@ -15,6 +15,7 @@ describe('locale-aware SEO helpers', () => {
       en: 'https://ranhq.vercel.app/guide/terrain',
       ja: 'https://ranhq.vercel.app/ja/guide/terrain',
       ar: 'https://ranhq.vercel.app/ar/guide/terrain',
+      fr: 'https://ranhq.vercel.app/fr/guide/terrain',
       'x-default': 'https://ranhq.vercel.app/guide/terrain',
     })
   })
@@ -53,12 +54,14 @@ describe('locale-aware SEO helpers', () => {
     expect(canonicalPath('/guide/terrain/?ref=top#stats')).toBe('/guide/terrain')
     expect(canonicalPath('/ja/archive/characters/ousen?lang=ja#skills')).toBe('/archive/characters/ousen')
     expect(canonicalPath('/ar/guide/basics/')).toBe('/guide/basics')
+    expect(canonicalPath('/fr/guide/basics/')).toBe('/guide/basics')
     expect(canonicalPath('/ja')).toBe('/')
     expect(absoluteUrl('/ar/guide/terrain?x=1#y', 'en')).toBe('https://ranhq.vercel.app/guide/terrain')
     expect(alternateUrls('/ja/archive/characters/ousen?tab=skills')).toEqual({
       en: 'https://ranhq.vercel.app/archive/characters/ousen',
       ja: 'https://ranhq.vercel.app/ja/archive/characters/ousen',
       ar: 'https://ranhq.vercel.app/ar/archive/characters/ousen',
+      fr: 'https://ranhq.vercel.app/fr/archive/characters/ousen',
       'x-default': 'https://ranhq.vercel.app/archive/characters/ousen',
     })
   })
@@ -75,6 +78,7 @@ describe('locale-aware SEO helpers', () => {
       en: 'https://ranhq.vercel.app/guide',
       ja: 'https://ranhq.vercel.app/ja/guide',
       ar: 'https://ranhq.vercel.app/ar/guide',
+      fr: 'https://ranhq.vercel.app/fr/guide',
       'x-default': 'https://ranhq.vercel.app/guide',
     })
     expect(seo.alternates['x-default']).toBe(seo.alternates.en)
@@ -86,7 +90,7 @@ describe('locale-aware SEO helpers', () => {
   })
 
   it('falls back to noindex for /sim and unknown routes in every locale', () => {
-    for (const locale of ['en', 'ja', 'ar']) {
+    for (const locale of ['en', 'ja', 'ar', 'fr']) {
       expect(routeSeo('/sim', locale).robots).toContain('noindex')
       expect(routeSeo('/not-a-real-page', locale).robots).toContain('noindex')
       expect(routeSeo('/guide/unknown-section', locale).robots).toContain('noindex')
@@ -95,6 +99,23 @@ describe('locale-aware SEO helpers', () => {
     expect(routeSeo('/ar/guide/unknown-section', 'ar').robots).toContain('noindex')
     expect(routeSeo('/not-a-real-page', 'ja').title).toContain('見つかりません')
     expect(routeSeo('/not-a-real-page', 'ar').title).toContain('غير موجودة')
+    expect(routeSeo('/not-a-real-page', 'fr').title).toContain('introuvable')
+  })
+
+  it('builds natural French character metadata with singular agreement', () => {
+    const seo = characterSeo({
+      id: 'ousen',
+      name_en: 'Ousen',
+      name_jp: '王翦',
+      skills: [{ name_en: 'Iron Wall', name_jp: '鉄壁', effects: [] }],
+    }, { locale: 'fr', factionName: 'Qin' })
+
+    expect(seo.locale).toBe('fr')
+    expect(seo.url).toBe('https://ranhq.vercel.app/fr/archive/characters/ousen')
+    expect(seo.description).toContain('1 compétence de Conquête d’Alliance')
+    expect(seo.description).toContain('avec son effet détaillé')
+    expect(seo.description).not.toContain('1 compétences')
+    expect(seo.alternates.fr).toBe(seo.url)
   })
 
   it('builds Arabic character metadata with a stable ID and safe Thing structured data', () => {

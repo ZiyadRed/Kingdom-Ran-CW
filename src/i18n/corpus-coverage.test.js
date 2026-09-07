@@ -13,9 +13,15 @@ import {
   renderJapaneseEffect,
   renderJapaneseTarget,
 } from './ja-render.js'
+import {
+  renderFrenchCondition,
+  renderFrenchDuration,
+  renderFrenchEffect,
+  renderFrenchTarget,
+} from './fr-render.js'
 
 /**
- * Whole-corpus gate for the two semantic renderers.
+ * Whole-corpus gate for the three semantic renderers.
  *
  * The unit tests above pin individual phrasings; this one guards the thing that
  * actually regressed historically — overall coverage, and the absence of hybrid
@@ -66,6 +72,17 @@ const RENDERERS = {
     condition: renderJapaneseCondition,
     duration: renderJapaneseDuration,
   },
+  // French shares the Latin script with the source, so "did this row get
+  // translated?" cannot be answered by a script test. A row counts as done
+  // when the renderer changed it, or when nothing English is left to change
+  // (a bare canonical general name such as "Riboku").
+  fr: {
+    script: null,
+    effect: renderFrenchEffect,
+    target: renderFrenchTarget,
+    condition: renderFrenchCondition,
+    duration: renderFrenchDuration,
+  },
 }
 
 /**
@@ -73,7 +90,9 @@ const RENDERERS = {
  * Proper names are excluded on purpose — a Latin character or army name is the
  * documented fallback, not a defect.
  */
-const FUNCTION_WORDS = /(^|[^A-Za-z])(and|or|are|is|both|the|of|with|when|per|from|by|to|in|on|for|other|than|self|alive|present|each|besides|while|has|have|highest|lowest|Up|Down|Damage|Resistance|Immunity|turns?|times?)([^A-Za-z]|$)/
+// Accented letters are word characters too: without them in the boundary
+// class, French "forêt" would read as the English word "for".
+const FUNCTION_WORDS = /(^|[^A-Za-zÀ-ÖØ-öø-ÿ])(and|or|are|is|both|the|of|with|when|per|from|by|to|in|on|for|other|than|self|alive|present|each|besides|while|has|have|highest|lowest|Up|Down|Damage|Resistance|Immunity|turns?|times?)([^A-Za-zÀ-ÖØ-öø-ÿ]|$)/
 
 function measure(code) {
   const { script, ...renderers } = RENDERERS[code]
@@ -85,7 +104,8 @@ function measure(code) {
     for (const [source, count] of CORPUS[field]) {
       total += count
       const out = renderers[field](source)
-      if (out !== source && script.test(out)) {
+      const translated = script ? out !== source && script.test(out) : out !== source || !FUNCTION_WORDS.test(out)
+      if (translated) {
         localized += count
         if (FUNCTION_WORDS.test(out)) hybrids.push(`${source}  =>  ${out}`)
       } else {
@@ -96,7 +116,7 @@ function measure(code) {
   return { total, localized, hybrids, untouched }
 }
 
-describe.each(['ar', 'ja'])('%s effect corpus', (code) => {
+describe.each(['ar', 'ja', 'fr'])('%s effect corpus', (code) => {
   const result = measure(code)
 
   it('never emits hybrid English/translated output', () => {
@@ -106,14 +126,14 @@ describe.each(['ar', 'ja'])('%s effect corpus', (code) => {
   })
 
   it('localizes the corpus to the level this locale has reached', () => {
-    // Arabic reached full semantic coverage, so any new mechanic the renderer
-    // cannot model must surface here rather than quietly shipping English.
-    // Japanese still has a small set of unmodelled compound shapes, so it is
-    // held to its coverage level instead of to zero.
+    // Arabic and French reached full semantic coverage, so any new mechanic a
+    // renderer cannot model must surface here rather than quietly shipping
+    // English. Japanese still has a small set of unmodelled compound shapes,
+    // so it is held to its coverage level instead of to zero.
     //
-    // Both are asserted as properties of whatever data is present — adding
-    // character 209 must not look like corruption.
-    if (code === 'ar') {
+    // All three are asserted as properties of whatever data is present —
+    // adding character 209 must not look like corruption.
+    if (code === 'ar' || code === 'fr') {
       expect(result.untouched).toEqual([])
       expect(result.localized).toBe(result.total)
       return

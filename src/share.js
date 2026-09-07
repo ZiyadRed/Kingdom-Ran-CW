@@ -54,6 +54,9 @@ export const DEFAULT_SHARE_LABELS={
   noRelevantBuffs:'No relevant buffs.',
   enemyDebuffOn:'Enemy debuff on',
   sceneCardSkill:'CW6 Card Skill',
+  unknown:'Unknown',
+  truncated:'...truncated for Discord.',
+  fullDetails:'Full details',
   // Base paragraph direction for canvas text. The page's dir="rtl" does NOT
   // reach a detached canvas, so bidi inside each fillText call would otherwise
   // resolve left-to-right and misorder mixed Arabic/number/Latin strings.
@@ -211,7 +214,7 @@ export function formatCharacterSkillsShare(character,{url=characterShareUrl(char
   const skills=characterSkillsWithRole(character)
   const faction=[term(L,factionLabel(character?.country)), term(L,character?.unit_type)].filter(Boolean).join(' / ')
   const lines=[
-    `**RanHQ Skills: ${displayName(character)||'Unknown'}**`,
+    `**${L.skillCard} — ${displayName(character)||L.unknown}**`,
     [sourceLine(displayName(character),character?.name_jp), faction].filter(Boolean).join(' - '),
     `<${url}>`,
     '',
@@ -227,12 +230,12 @@ export function formatCharacterSkillsShare(character,{url=characterShareUrl(char
       if(skillSource) lines.push(`_${skillSource}_`)
       const effects=skillEffects(skill)
       if(!effects.length) lines.push(`- ${L.noEffects}`)
-      effects.forEach(effect=>lines.push(`- ${formatEffectForShare(effect)}`))
+      effects.forEach(effect=>lines.push(`- ${formatEffectForShare(effect,L)}`))
       lines.push('')
     })
   }
 
-  return limitDiscordMessage(lines.join('\n').trim(),url,maxLength)
+  return limitDiscordMessage(lines.join('\n').trim(),url,maxLength,L)
 }
 
 export function formatSceneCardShare(card,{url=sceneCardShareUrl(),maxLength=DISCORD_MESSAGE_LIMIT,labels}={}){
@@ -242,7 +245,7 @@ export function formatSceneCardShare(card,{url=sceneCardShareUrl(),maxLength=DIS
   const skillJp=sourceLine(skillName,skill.name_jp||card?.skill_jp)
   const details=[card?.ownerName,term(L,skill.type),skill.star6&&L.star6].filter(Boolean).join(' - ')
   const lines=[
-    `**RanHQ CW6 Scene Card: ${skillName}**`,
+    `**${L.sceneCardSkill} — ${skillName}**`,
     details,
     `<${url}>`,
     '',
@@ -251,8 +254,8 @@ export function formatSceneCardShare(card,{url=sceneCardShareUrl(),maxLength=DIS
   if(skillJp) lines.push(`_${skillJp}_`)
   const effects=skillEffects(skill)
   if(!effects.length) lines.push(`- ${L.noEffects}`)
-  effects.forEach(effect=>lines.push(`- ${formatEffectForShare(effect)}`))
-  return limitDiscordMessage(lines.join('\n').trim(),url,maxLength)
+  effects.forEach(effect=>lines.push(`- ${formatEffectForShare(effect,L)}`))
+  return limitDiscordMessage(lines.join('\n').trim(),url,maxLength,L)
 }
 
 export function formatTeamBuffShare({
@@ -279,7 +282,7 @@ export function formatTeamBuffShare({
     '',
     ...formatBuffSideForShare(L.defendingFormation,def,defBuffs,defEnemyDebuffs,{specialStats,statSortKey,labels:L}),
   ]
-  return limitDiscordMessage(lines.join('\n').trim(),url,maxLength)
+  return limitDiscordMessage(lines.join('\n').trim(),url,maxLength,L)
 }
 
 export function formatEffectForShare(effect,labels){
@@ -287,7 +290,7 @@ export function formatEffectForShare(effect,labels){
   const target=effect?.target||L.effect
   const value=effect?.effect||L.translationPending
   const duration=effect?.duration?` (${effect.duration})`:''
-  const qualifiers=formatQualifiers(effect?.condition)
+  const qualifiers=formatQualifiers(effect?.condition,L)
   // '->' is left as ASCII on purpose: '>' is bidi-mirrored, so the same string
   // reads as a left arrow inside an RTL run without per-locale branching, and
   // English output is unchanged.
@@ -299,9 +302,10 @@ export function formatQualifiers(condition,labels){
   return classifyConditionParts(condition).map(chip=>`${chipLabel(L,chip)}: ${chip.text}`).join('; ')
 }
 
-export function limitDiscordMessage(text,url,maxLength=DISCORD_MESSAGE_LIMIT){
+export function limitDiscordMessage(text,url,maxLength=DISCORD_MESSAGE_LIMIT,labels){
   if(text.length<=maxLength) return text
-  const suffix=`\n\n...truncated for Discord. Full details: <${url}>`
+  const L=withLabels(labels)
+  const suffix=`\n\n${L.truncated} ${L.fullDetails}: <${url}>`
   const limit=Math.max(0,maxLength-suffix.length)
   const kept=[]
   let length=0
@@ -510,7 +514,7 @@ async function drawCharacterSkillsImage(ctx,layout,character,url,L=DEFAULT_SHARE
   roundedRect(ctx,margin,34,86,86,16)
   ctx.stroke()
 
-  drawText(ctx,displayName(character)||'Unknown',margin+108,64,'950 38px Segoe UI, Meiryo, sans-serif','#fff')
+  drawText(ctx,displayName(character)||L.unknown,margin+108,64,'950 38px Segoe UI, Meiryo, sans-serif','#fff')
   drawText(ctx,sourceLine(displayName(character),character?.name_jp),margin+108,94,'700 21px Segoe UI, Meiryo, sans-serif','rgba(255,255,255,.68)')
   drawText(ctx,[term(L,factionLabel(character?.country)),term(L,character?.unit_type)].filter(Boolean).join(' / '),margin+108,120,'800 18px Segoe UI, sans-serif',factionColor)
   drawText(ctx,L.skillCard,width-margin,54,'900 20px Segoe UI, sans-serif','rgba(255,255,255,.86)','right')
@@ -595,7 +599,7 @@ async function drawTeamMemberColumn(ctx,layout){
   ctx.stroke()
 
   const nameWidth=width-112
-  const nameLines=wrapText(ctx,displayName(member)||'Unknown',nameWidth,'950 19px Segoe UI, Meiryo, sans-serif').slice(0,2)
+  const nameLines=wrapText(ctx,displayName(member)||L.unknown,nameWidth,'950 19px Segoe UI, Meiryo, sans-serif').slice(0,2)
   const nameX=rtl?x+width-94:x+94
   const textAlign=rtl?'right':'left'
   nameLines.forEach((line,index)=>drawText(ctx,line,nameX,y+38+(index*22),'950 19px Segoe UI, Meiryo, sans-serif','#fff',textAlign))

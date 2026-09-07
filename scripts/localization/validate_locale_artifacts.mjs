@@ -135,7 +135,7 @@ for (const f of readdirSync(join(root, 'data/characters'))) {
 
 const projectKeys = []
 for (const c of characters) {
-  ;(Array.isArray(c.skills) ? c.skills : []).forEach((_, i) => projectKeys.push(`${c.id}#${i}`))
+  (Array.isArray(c.skills) ? c.skills : []).forEach((_, i) => projectKeys.push(`${c.id}#${i}`))
 }
 if (projectKeys.length !== EXPECTED_PROJECT_SKILLS) {
   err(`project skill rows are ${projectKeys.length}, expected ${EXPECTED_PROJECT_SKILLS}`)

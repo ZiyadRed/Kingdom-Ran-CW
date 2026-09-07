@@ -149,7 +149,7 @@ pass(vercel.cleanUrls === true, 'vercel.json cleanUrls must be true')
 pass(vercel.trailingSlash === false, 'vercel.json trailingSlash must be false')
 pass(!vercel.rewrites?.some((rule) => rule.source === '/(.*)'), 'vercel.json still has the soft-404 catch-all rewrite')
 
-pass(SEO_LOCALES.length === 3, 'SEO locale registry unexpectedly changed')
+pass(SEO_LOCALES.length === 4, 'SEO locale registry unexpectedly changed')
 
 if (failures.length) {
   console.error(`validate_seo: FAIL (${failures.length})`)

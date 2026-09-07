@@ -7,7 +7,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 18.2
+        "value": 18.2,
+        "ownership_id": "buff_a3734d62c7434ef898229b2e4548c760"
       },
       {
         "name": "Chousou",
@@ -15,7 +16,8 @@
         "faction": "zhao",
         "type": "SR",
         "star6": false,
-        "value": 18.2
+        "value": 18.2,
+        "ownership_id": "buff_c0d3367080ca48f0b53e5724d16c2d0c"
       },
       {
         "name": "Hyou",
@@ -23,7 +25,8 @@
         "faction": "qin",
         "type": "R",
         "star6": false,
-        "value": 15.9
+        "value": 15.9,
+        "ownership_id": "buff_00593f5211f64bd5a05ba640eb70470a"
       },
       {
         "name": "Kaishibou",
@@ -31,7 +34,8 @@
         "faction": "wei",
         "type": "SR",
         "star6": false,
-        "value": 7.9
+        "value": 7.9,
+        "ownership_id": "buff_5fac513d668a43d0a800d7e84a87b861"
       },
       {
         "name": "Shoumou",
@@ -39,7 +43,8 @@
         "faction": "zhao",
         "type": "SR",
         "star6": false,
-        "value": 7.9
+        "value": 7.9,
+        "ownership_id": "buff_65dff2bd8edd4915aa14bf52afdd40c0"
       },
       {
         "name": "Kanou",
@@ -47,7 +52,8 @@
         "faction": "qin",
         "type": "R",
         "star6": false,
-        "value": 6.9
+        "value": 6.9,
+        "ownership_id": "buff_16263fe692d542cda44fd480dfe8cf09"
       },
       {
         "name": "Bakan",
@@ -55,7 +61,8 @@
         "faction": "han",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_a8aff77049314f21ae7bd6dc3000d0b5"
       }
     ],
     "Attack": [
@@ -65,7 +72,8 @@
         "faction": "han",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_d90d8f38fbaa4fc39875f42aa224c978"
       },
       {
         "name": "Gakuei",
@@ -73,7 +81,8 @@
         "faction": "zhao",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_90a326f471704adfa04978c1d9ba2ed2"
       },
       {
         "name": "Gekishin",
@@ -81,7 +90,8 @@
         "faction": "yan",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_c1a6b808946149f1b5753d31266e4dc5"
       },
       {
         "name": "Ringyoku",
@@ -89,7 +99,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_4ac4611335cd47c1af5b6651a9d716ad"
       },
       {
         "name": "Wategi",
@@ -97,7 +108,8 @@
         "faction": "ai",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_01bdfbd580224c0fb016bf0dd20fa2e2"
       },
       {
         "name": "Ordo",
@@ -107,7 +119,8 @@
         "star6": false,
         "value": 5.0,
         "special_icon": "/icons/Shard.webp",
-        "special_label": "Shard upgrade"
+        "special_label": "Shard upgrade",
+        "ownership_id": "buff_8ee42830039e40df92f625962fdd53db"
       },
       {
         "name": "Rokuomi",
@@ -115,7 +128,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 4.3
+        "value": 4.3,
+        "ownership_id": "buff_02f2ced82e0f412f960b74441534e4e7"
       },
       {
         "name": "Doukin",
@@ -123,7 +137,8 @@
         "faction": "qin",
         "type": "R",
         "star6": false,
-        "value": 3.8
+        "value": 3.8,
+        "ownership_id": "buff_58862d984dc4417a8d9d5ad379f68803"
       }
     ],
     "Defense": [
@@ -136,7 +151,8 @@
         "value": 5.0,
         "source_id": "nakon-defense-1",
         "special_icon": "/icons/Shard.webp",
-        "special_label": "Shard upgrade"
+        "special_label": "Shard upgrade",
+        "ownership_id": "buff_d693c0ad13cf468a93abe7deba8258a2"
       },
       {
         "name": "Nakon",
@@ -147,7 +163,8 @@
         "value": 5.0,
         "source_id": "nakon-defense-2",
         "special_icon": "/icons/Shard.webp",
-        "special_label": "Shard upgrade"
+        "special_label": "Shard upgrade",
+        "ownership_id": "buff_3eae6dbaf1f14c0b90fda1ae7f5c3f91"
       },
       {
         "name": "Denyuu",
@@ -155,7 +172,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 9.9
+        "value": 9.9,
+        "ownership_id": "buff_ac964422453744be85c4f1c974a754b9"
       },
       {
         "name": "Kaen",
@@ -163,7 +181,8 @@
         "faction": "chu",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_389ee1531f724311b097bed95946f974"
       },
       {
         "name": "Sosui",
@@ -171,7 +190,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 4.3
+        "value": 4.3,
+        "ownership_id": "buff_3d8b454c7bdb4bfaaa6a397da0ba481a"
       },
       {
         "name": "Rinbou",
@@ -179,7 +199,8 @@
         "faction": "qin",
         "type": "R",
         "star6": false,
-        "value": 3.8
+        "value": 3.8,
+        "ownership_id": "buff_d1a60ca76c5b4ac6b657852adfe8b28d"
       }
     ]
   },
@@ -191,7 +212,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": false,
-        "value": 22.8
+        "value": 22.8,
+        "ownership_id": "buff_5cb912e1d97647939ace7ccb26264a16"
       },
       {
         "name": "Karyoten",
@@ -199,7 +221,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 18.2
+        "value": 18.2,
+        "ownership_id": "buff_fb5787fbf60c41538309ba4f7b870880"
       },
       {
         "name": "Ogiko",
@@ -207,7 +230,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 18.2
+        "value": 18.2,
+        "ownership_id": "buff_02cb16e1c7ff45788711aafa481adfff"
       },
       {
         "name": "Seikyou",
@@ -215,7 +239,8 @@
         "faction": "qin",
         "type": "R",
         "star6": false,
-        "value": 15.9
+        "value": 15.9,
+        "ownership_id": "buff_437800436b2a4d48885d11f6add7f73d"
       },
       {
         "name": "Hyouki",
@@ -223,7 +248,8 @@
         "faction": "chu",
         "type": "SR",
         "star6": false,
-        "value": 7.9
+        "value": 7.9,
+        "ownership_id": "buff_6173f7b293aa413b855034b78de96a26"
       },
       {
         "name": "Kokuou",
@@ -231,7 +257,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 7.9
+        "value": 7.9,
+        "ownership_id": "buff_f733c4dabf164ca19705d7985d7e8f92"
       },
       {
         "name": "Jiou",
@@ -239,7 +266,8 @@
         "faction": "zhao",
         "type": "SR",
         "star6": false,
-        "value": 15.9
+        "value": 15.9,
+        "ownership_id": "buff_7a58b414000d430182a85c070dca2df0"
       },
       {
         "name": "Takukei",
@@ -247,7 +275,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_a4f77a6679214157b89ca64e0d95a0a6"
       }
     ],
     "Attack": [
@@ -257,7 +286,8 @@
         "faction": "chu",
         "type": "UR",
         "star6": false,
-        "value": 12.4
+        "value": 12.4,
+        "ownership_id": "buff_988504b4aa3041658d974737a1335df2"
       },
       {
         "name": "Kou",
@@ -265,7 +295,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": false,
-        "value": 12.4
+        "value": 12.4,
+        "ownership_id": "buff_fbc9ed824fb448a588cd091db0027196"
       },
       {
         "name": "Gika",
@@ -273,7 +304,8 @@
         "faction": "wei",
         "type": "SR",
         "star6": false,
-        "value": 9.9
+        "value": 9.9,
+        "ownership_id": "buff_09adfde21642419e8d1f789d3f310605"
       },
       {
         "name": "Hanroki",
@@ -281,7 +313,8 @@
         "faction": "ai",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_609e46724d19437dbb2a9b010f8ce615"
       },
       {
         "name": "Hyouki",
@@ -289,7 +322,8 @@
         "faction": "chu",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_e4b31373ff444f079c41ade44319f6f9"
       },
       {
         "name": "Otaji",
@@ -297,7 +331,8 @@
         "faction": "yan",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_e1f7c067019d469e8a8eba56edbdb98b"
       },
       {
         "name": "Queen Biki",
@@ -305,7 +340,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": true,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_677da48b40b64f2e8b87b8b95e99179e"
       },
       {
         "name": "Robin",
@@ -313,7 +349,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_5a321002a983448db41e0a32246d46fb"
       },
       {
         "name": "KyouEn",
@@ -321,7 +358,8 @@
         "faction": "wei",
         "type": "SR",
         "star6": false,
-        "value": 4.3
+        "value": 4.3,
+        "ownership_id": "buff_c395e2fc7f634ac5a57e2aa05e276314"
       },
       {
         "name": "Kyougai",
@@ -329,7 +367,8 @@
         "faction": "qin",
         "type": "R",
         "star6": false,
-        "value": 3.8
+        "value": 3.8,
+        "ownership_id": "buff_87e646530612478dbc336253e3578292"
       }
     ],
     "Defense": [
@@ -339,7 +378,8 @@
         "faction": "zhao",
         "type": "SR",
         "star6": false,
-        "value": 9.9
+        "value": 9.9,
+        "ownership_id": "buff_6927f5208970481db85a774937be3bf5"
       },
       {
         "name": "Budai",
@@ -347,7 +387,8 @@
         "faction": "ai",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_c0627c1e1cbb49df93fafca12645c4e9"
       },
       {
         "name": "Duke Sei",
@@ -355,7 +396,8 @@
         "faction": "zhao",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_a89753d9bd6643d88d36b7a1dc2a1d65"
       },
       {
         "name": "Otaji",
@@ -363,7 +405,8 @@
         "faction": "yan",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_00794a765f1d4a71b4601a556cf1772c"
       },
       {
         "name": "Yukii",
@@ -371,7 +414,8 @@
         "faction": "yan",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_ebd301ef1f7f4443be3941a508d34058"
       },
       {
         "name": "Toji",
@@ -379,7 +423,8 @@
         "faction": "mountain_folk",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_e24fd95d99ec4a499ac8bd3e993b8ffb"
       },
       {
         "name": "Fuji",
@@ -387,7 +432,8 @@
         "faction": "mountain_folk",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_49c8729f66ec406cad12b1e689186568"
       },
       {
         "name": "Domon",
@@ -395,7 +441,8 @@
         "faction": "zhao",
         "type": "SR",
         "star6": false,
-        "value": 4.3
+        "value": 4.3,
+        "ownership_id": "buff_673ccf2196984a8fbb39ddda696c2f01"
       },
       {
         "name": "Amon",
@@ -403,7 +450,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 3.8
+        "value": 3.8,
+        "ownership_id": "buff_b927298565b945818cf2313e3ddff261"
       }
     ]
   },
@@ -415,7 +463,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": false,
-        "value": 22.8
+        "value": 22.8,
+        "ownership_id": "buff_30c9b5b653be41738fbfe0b43bcbfe20"
       },
       {
         "name": "Shikika",
@@ -423,7 +472,8 @@
         "faction": "wei",
         "type": "UR",
         "star6": false,
-        "value": 22.8
+        "value": 22.8,
+        "ownership_id": "buff_0f50ed3d55394f74b570ae139915b7ff"
       },
       {
         "name": "Toumi",
@@ -431,7 +481,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": false,
-        "value": 22.8
+        "value": 22.8,
+        "ownership_id": "buff_56ba7f1eeabb46c2a2594eb1ddc1c913"
       },
       {
         "name": "Yuri",
@@ -439,7 +490,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": false,
-        "value": 22.8
+        "value": 22.8,
+        "ownership_id": "buff_fe8d26a2a8674f2bbb324711fc9b81e6"
       },
       {
         "name": "Kakukai",
@@ -447,7 +499,8 @@
         "faction": "zhao",
         "type": "UR",
         "star6": false,
-        "value": 22.8
+        "value": 22.8,
+        "ownership_id": "buff_8510c65e60dc4d8ab1cfa6100bde5fa4"
       },
       {
         "name": "Kyomei",
@@ -455,7 +508,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 18.2
+        "value": 18.2,
+        "ownership_id": "buff_3b3a61ee9f2844dbb10931b0ba5bdb35"
       },
       {
         "name": "Kyoushou",
@@ -463,7 +517,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 18.2
+        "value": 18.2,
+        "ownership_id": "buff_970f240186db49b79d4007fc0a597943"
       },
       {
         "name": "Bihei",
@@ -471,7 +526,8 @@
         "faction": "qin",
         "type": "R",
         "star6": false,
-        "value": 15.9
+        "value": 15.9,
+        "ownership_id": "buff_c0bec6847fa14fb99f41cd72ff87bbe5"
       },
       {
         "name": "Ryuusen",
@@ -479,7 +535,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 7.9
+        "value": 7.9,
+        "ownership_id": "buff_536b8ef1bf4a4efb8e9d12860c124044"
       },
       {
         "name": "Shunmen",
@@ -487,7 +544,8 @@
         "faction": "mountain_folk",
         "type": "SR",
         "star6": false,
-        "value": 7.9
+        "value": 7.9,
+        "ownership_id": "buff_da4604dcf889445c9b5d940acbdb13a0"
       },
       {
         "name": "Gotan",
@@ -495,7 +553,8 @@
         "faction": "mountain_folk",
         "type": "R",
         "star6": false,
-        "value": 6.9
+        "value": 6.9,
+        "ownership_id": "buff_5ead40630c03469f94d5e6ad52919b89"
       },
       {
         "name": "Ryuuto",
@@ -503,7 +562,8 @@
         "faction": "zhao",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_0a57eab2f1a047a1b7d469d3b3a86ec7"
       }
     ],
     "Attack": [
@@ -513,7 +573,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": false,
-        "value": 12.4
+        "value": 12.4,
+        "ownership_id": "buff_0fcbd3736e234b40ade1f9c0eb6e907e"
       },
       {
         "name": "Hokaku",
@@ -522,7 +583,8 @@
         "type": "SR",
         "star6": false,
         "value": 9.9,
-        "shard_bonus": true
+        "shard_bonus": true,
+        "ownership_id": "buff_0c29bba4944a418ea58f8d077f11b31a"
       },
       {
         "name": "Chutetsu",
@@ -530,7 +592,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 9.9
+        "value": 9.9,
+        "ownership_id": "buff_050927dd9b934fccb663b1d952d65cda"
       },
       {
         "name": "Yuuren",
@@ -538,7 +601,8 @@
         "faction": "wei",
         "type": "SR",
         "star6": false,
-        "value": 9.9
+        "value": 9.9,
+        "ownership_id": "buff_23a92ba5fa1a46d1b3b3c971713bca0b"
       },
       {
         "name": "Toumi",
@@ -546,7 +610,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": false,
-        "value": 5.4
+        "value": 5.4,
+        "ownership_id": "buff_ca3e5acb90ff4f6e9307114af81b116f"
       },
       {
         "name": "Bain",
@@ -554,7 +619,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_59d606fae3bc448db0af2cf9f9ef8735"
       },
       {
         "name": "Koujyun",
@@ -562,7 +628,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_ea70d874520f47dca3e9ee4856b77c39"
       },
       {
         "name": "Oukotsu",
@@ -570,7 +637,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_fba2dc8a551e419a85d3ca1ed3d1e5d2"
       },
       {
         "name": "Eiki",
@@ -578,7 +646,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_51b2e0e2874f486bb63db57bca78efb9"
       },
       {
         "name": "Choushi",
@@ -588,7 +657,8 @@
         "star6": false,
         "value": 5.0,
         "special_icon": "/icons/Shard.webp",
-        "special_label": "Shard upgrade"
+        "special_label": "Shard upgrade",
+        "ownership_id": "buff_1cabfb7a9d054147aa2bea8c12ef57bc"
       },
       {
         "name": "Pam",
@@ -598,7 +668,8 @@
         "star6": false,
         "value": 5.0,
         "special_icon": "/icons/Shard.webp",
-        "special_label": "Shard upgrade"
+        "special_label": "Shard upgrade",
+        "ownership_id": "buff_8670bebe1d9449a080c331229370d46c"
       },
       {
         "name": "Rankai",
@@ -606,7 +677,8 @@
         "faction": "mountain_folk",
         "type": "SR",
         "star6": false,
-        "value": 4.3
+        "value": 4.3,
+        "ownership_id": "buff_c36621fc83b44dc7bbd8c668ac912ac8"
       },
       {
         "name": "Saji",
@@ -614,7 +686,8 @@
         "faction": "zhao",
         "type": "R",
         "star6": false,
-        "value": 3.8
+        "value": 3.8,
+        "ownership_id": "buff_b7d489d43b0947d19f613c7133f6bc93"
       },
       {
         "name": "Yuri",
@@ -622,7 +695,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": false,
-        "value": 1.0
+        "value": 1.0,
+        "ownership_id": "buff_46371a0dcd3d495581733d00c0a7155f"
       },
       {
         "name": "Tonkoku",
@@ -630,7 +704,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_cb259c964d084a54a83c2a293d80242b"
       },
       {
         "name": "Tonkaku",
@@ -638,7 +713,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_609d44a557c2410cbef8d6bd0d4eec6d"
       }
     ],
     "Defense": [
@@ -648,7 +724,8 @@
         "faction": "zhao",
         "type": "UR",
         "star6": false,
-        "value": 12.4
+        "value": 12.4,
+        "ownership_id": "buff_4f22ae9cef7d47a797724a14a1331641"
       },
       {
         "name": "Kyourei",
@@ -657,7 +734,8 @@
         "type": "SR",
         "star6": false,
         "value": 9.9,
-        "shard_bonus": true
+        "shard_bonus": true,
+        "ownership_id": "buff_699aaed25bf8481ab2e2807e0e7c7869"
       },
       {
         "name": "Ryuyu",
@@ -665,7 +743,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 9.9
+        "value": 9.9,
+        "ownership_id": "buff_07a92101205742219c1e4a35aab53048"
       },
       {
         "name": "Shunmen",
@@ -673,7 +752,8 @@
         "faction": "mountain_folk",
         "type": "SR",
         "star6": false,
-        "value": 9.9
+        "value": 9.9,
+        "ownership_id": "buff_e7eeda3437bf41b99f70331e37514d50"
       },
       {
         "name": "Yuri",
@@ -681,7 +761,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": false,
-        "value": 5.4
+        "value": 5.4,
+        "ownership_id": "buff_c7000573d3d5420597e39eb56c646a1a"
       },
       {
         "name": "Hokaku",
@@ -689,7 +770,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_f01651b570df4912bb71de5f0a51d206"
       },
       {
         "name": "Koujyun",
@@ -697,7 +779,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_63a57c285f544b228d30c0f5c27e6698"
       },
       {
         "name": "Kakukai",
@@ -705,7 +788,8 @@
         "faction": "zhao",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_68ed41d34d034162a1eea867484ce010"
       },
       {
         "name": "Eiki",
@@ -713,7 +797,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_7d21fdf42aba48d6a1e7c11ca8e09a19"
       },
       {
         "name": "Raiki",
@@ -723,7 +808,8 @@
         "star6": false,
         "value": 5.0,
         "special_icon": "/icons/Shard.webp",
-        "special_label": "Shard upgrade"
+        "special_label": "Shard upgrade",
+        "ownership_id": "buff_57fcd019e98741d78cef73ed949e6adc"
       },
       {
         "name": "Hairou",
@@ -731,7 +817,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 4.3
+        "value": 4.3,
+        "ownership_id": "buff_4e497a9f5c364d9f841785934a2d3a2b"
       },
       {
         "name": "Suugen",
@@ -739,7 +826,8 @@
         "faction": "qin",
         "type": "R",
         "star6": false,
-        "value": 3.8
+        "value": 3.8,
+        "ownership_id": "buff_b8b05e012a4e4d31833082ca90080fec"
       },
       {
         "name": "Toumi",
@@ -747,7 +835,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": false,
-        "value": 1.0
+        "value": 1.0,
+        "ownership_id": "buff_8a825fc15f404db285fb79975f824db0"
       },
       {
         "name": "Tonkoku",
@@ -755,7 +844,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_3fa6ee88dd31437eb5bf240a53467aa6"
       },
       {
         "name": "Tonkaku",
@@ -763,7 +853,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_014cfa33f2c9424cba6d9d4baae5429e"
       },
       {
         "name": "Heirai",
@@ -771,7 +862,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_ee796d1db9ad42f0883f62be0474e7a3"
       }
     ]
   },
@@ -783,7 +875,8 @@
         "faction": "wei",
         "type": "UR",
         "star6": false,
-        "value": 22.8
+        "value": 22.8,
+        "ownership_id": "buff_1ae2d99fb02242c9964016653a4ad221"
       },
       {
         "name": "Ouken",
@@ -791,7 +884,8 @@
         "faction": "qi",
         "type": "UR",
         "star6": false,
-        "value": 22.8
+        "value": 22.8,
+        "ownership_id": "buff_83710303633f4f0e9c88404633541bec"
       },
       {
         "name": "Kuzen",
@@ -799,7 +893,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 18.2
+        "value": 18.2,
+        "ownership_id": "buff_4be5223fc26c437882dee82b1c18c397"
       },
       {
         "name": "Mouki",
@@ -808,7 +903,8 @@
         "type": "SR",
         "star6": false,
         "value": 18.2,
-        "shard_bonus": true
+        "shard_bonus": true,
+        "ownership_id": "buff_048026f95ef3409089cb71fc7e69256d"
       },
       {
         "name": "Bikou",
@@ -816,7 +912,8 @@
         "faction": "qin",
         "type": "R",
         "star6": false,
-        "value": 15.9
+        "value": 15.9,
+        "ownership_id": "buff_3873cbc4b35f4a748385798196cef01d"
       },
       {
         "name": "Banyou",
@@ -824,7 +921,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 7.9
+        "value": 7.9,
+        "ownership_id": "buff_9721e8c795a4466e9154ba99371c5459"
       },
       {
         "name": "Kakubi",
@@ -832,7 +930,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 7.9
+        "value": 7.9,
+        "ownership_id": "buff_f7dc0f618fbc4b98b4f59b37121d426e"
       },
       {
         "name": "Heki",
@@ -840,7 +939,8 @@
         "faction": "qin",
         "type": "R",
         "star6": false,
-        "value": 6.9
+        "value": 6.9,
+        "ownership_id": "buff_cd0f790e60c34be08fbe06c593ac7ca7"
       },
       {
         "name": "Kishou",
@@ -848,7 +948,8 @@
         "faction": "zhao",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_609ab0c677a2405d9578b52e58fa3a61"
       },
       {
         "name": "Shoukaku",
@@ -856,7 +957,8 @@
         "faction": "zhao",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_26386f1757714f4cb102909dc2fa1cec"
       }
     ],
     "Attack": [
@@ -866,7 +968,8 @@
         "faction": "mountain_folk",
         "type": "SR",
         "star6": false,
-        "value": 9.9
+        "value": 9.9,
+        "ownership_id": "buff_e00ca2f2270547c5a7f4645f7c3312a3"
       },
       {
         "name": "Hakuki",
@@ -874,7 +977,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": true,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_12c5e1485cc44797b061c83e26817337"
       },
       {
         "name": "Kakubi",
@@ -882,7 +986,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_21d2f0bc1c8a42248cb05ac4224a02c7"
       },
       {
         "name": "Chouyou",
@@ -890,7 +995,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_4877ee3d6aea4b56b453086eb8dcca14"
       },
       {
         "name": "Kousonryu",
@@ -898,7 +1004,8 @@
         "faction": "zhao",
         "type": "SR",
         "star6": false,
-        "value": 4.3
+        "value": 4.3,
+        "ownership_id": "buff_212ac490378743ac80729d26de9c18fa"
       },
       {
         "name": "Yugi",
@@ -906,7 +1013,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 4.3
+        "value": 4.3,
+        "ownership_id": "buff_fa13c4eb02be47ea9413f1c16fe62280"
       },
       {
         "name": "Raido",
@@ -915,7 +1023,8 @@
         "type": "R",
         "star6": false,
         "value": 3.8,
-        "shard_bonus": true
+        "shard_bonus": true,
+        "ownership_id": "buff_b2c4a77f2bbf4511bf69c6f96a5d1f01"
       }
     ],
     "Defense": [
@@ -925,7 +1034,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 9.9
+        "value": 9.9,
+        "ownership_id": "buff_7ed6f861442146b2bc7c671bd9a1fca6"
       },
       {
         "name": "Yugi",
@@ -933,7 +1043,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 9.9
+        "value": 9.9,
+        "ownership_id": "buff_04c2e363dae946c29cce8db40230e642"
       },
       {
         "name": "Kakuun",
@@ -941,7 +1052,8 @@
         "faction": "qin",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_f52cfed1656041d5b056b99a35aa7b54"
       },
       {
         "name": "Chouyou",
@@ -949,7 +1061,8 @@
         "faction": "qin",
         "type": "SR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_69e7afe29ffc4a619d06042b5d06fb4b"
       },
       {
         "name": "Rouai",
@@ -957,7 +1070,8 @@
         "faction": "ai",
         "type": "UR",
         "star6": false,
-        "value": 5.0
+        "value": 5.0,
+        "ownership_id": "buff_f0bbb1197b1e4a87b4f65a26948cd5e4"
       },
       {
         "name": "Chouin",
@@ -967,7 +1081,8 @@
         "star6": false,
         "value": 5.0,
         "special_icon": "/icons/Shard.webp",
-        "special_label": "Shard upgrade"
+        "special_label": "Shard upgrade",
+        "ownership_id": "buff_2ae97bf43712428faea93b5f7a2faa64"
       },
       {
         "name": "Rihaku",
@@ -975,7 +1090,8 @@
         "faction": "zhao",
         "type": "SR",
         "star6": false,
-        "value": 4.3
+        "value": 4.3,
+        "ownership_id": "buff_305c359950f241aba2d688e28c5e9095"
       },
       {
         "name": "Ryuukoku",
@@ -983,7 +1099,8 @@
         "faction": "qin",
         "type": "R",
         "star6": false,
-        "value": 3.8
+        "value": 3.8,
+        "ownership_id": "buff_748d97a788ea4b45bddc057eeaa4e7f6"
       }
     ]
   }

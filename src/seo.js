@@ -1,10 +1,10 @@
 export const SITE_URL = 'https://ranhq.vercel.app'
 export const SITE_NAME = 'RanHQ'
 export const DEFAULT_IMAGE = `${SITE_URL}/ranhq-og.jpg`
-export const SEO_LOCALE_CODES = ['en', 'ja', 'ar']
+export const SEO_LOCALE_CODES = ['en', 'ja', 'ar', 'fr']
 
-const OG_LOCALES = { en: 'en_US', ja: 'ja_JP', ar: 'ar_EG' }
-const DIRECTIONS = { en: 'ltr', ja: 'ltr', ar: 'rtl' }
+const OG_LOCALES = { en: 'en_US', ja: 'ja_JP', ar: 'ar_EG', fr: 'fr_FR' }
+const DIRECTIONS = { en: 'ltr', ja: 'ltr', ar: 'rtl', fr: 'ltr' }
 
 const BASE_ROUTE_SEO = {
   en: {
@@ -15,7 +15,7 @@ const BASE_ROUTE_SEO = {
     },
     '/archive': {
       title: 'Kingdom Ran Archive: Generals & CW6 Cards | RanHQ',
-      description: 'Explore the RanHQ Kingdom Ran archive for generals, Japanese names, translated Castle War skills, factions, and CW6 scene cards.',
+      description: "Choose the general database or the CW6★ scene-card collection. Search names or skill effects, filter by faction, and inspect each general’s skills.",
       pageType: 'CollectionPage',
     },
     '/archive/characters': {
@@ -30,7 +30,7 @@ const BASE_ROUTE_SEO = {
     },
     '/guide': {
       title: 'Kingdom Ran Castle War Guide | RanHQ',
-      description: 'A factual Kingdom Ran Castle War guide covering roles, stats, buffs, debuffs, terrain, targeting, status effects, and unit matchups.',
+      description: "Find Castle War articles by topic, from battle basics and general development to leader skills, status effects, terrain, and targeting.",
       pageType: 'WebPage',
     },
     '/builder': {
@@ -78,7 +78,7 @@ const BASE_ROUTE_SEO = {
     },
     '/archive': {
       title: 'キングダム乱 武将・追想カードアーカイブ | RanHQ',
-      description: 'キングダム乱の武将名、争覇スキル、勢力、兵種、CW6★追想カードを確認できる日本語アーカイブです。',
+      description: "武将データベース、またはCW6★追想カード一覧を選んでください。 武将名や技能効果で検索し、勢力で絞り込んで、各武将の技能を確認できます。",
       pageType: 'CollectionPage',
     },
     '/archive/characters': {
@@ -93,7 +93,7 @@ const BASE_ROUTE_SEO = {
     },
     '/guide': {
       title: 'キングダム乱 同盟争覇戦攻略ガイド | RanHQ',
-      description: 'キングダム乱の同盟争覇戦について、役割、ステータス、バフ、デバフ、地形、対象選択、兵種相性を確認できます。',
+      description: "まず基本を読むか、目次から確認したい同盟争覇戦の項目を選んでください。 戦闘の流れとステータス画面の見方を確認し、武将の育成計画に役立てましょう。",
       pageType: 'WebPage',
     },
     '/builder': {
@@ -141,7 +141,7 @@ const BASE_ROUTE_SEO = {
     },
     '/archive': {
       title: 'أرشيف جنرالات وبطاقات Kingdom Ran | RanHQ',
-      description: 'تصفّح جنرالات Kingdom Ran وأسماءهم ومهاراتهم وفصائلهم وبطاقات CW6 في أرشيف عربي واضح.',
+      description: "اختر قاعدة بيانات الجنرالات أو مجموعة بطاقات CW6★. ابحث بالأسماء أو تأثيرات المهارات، وصفِّ النتائج حسب الفصيل، ثم افتح مهارات أي جنرال.",
       pageType: 'CollectionPage',
     },
     '/archive/characters': {
@@ -156,7 +156,7 @@ const BASE_ROUTE_SEO = {
     },
     '/guide': {
       title: 'دليل حرب القلاع في Kingdom Ran | RanHQ',
-      description: 'دليل عربي لأدوار وإحصاءات وتعزيزات وإضعافات وتضاريس واستهداف ومواجهات حرب القلاع في Kingdom Ran.',
+      description: "ابدأ بالأساسيات، أو انتقل مباشرةً من الفهرس إلى موضوع حرب القلاع الذي تحتاجه. تعلّم سير المعركة وقراءة شاشة الخصائص، وخطّط لتطوير جنرالاتك.",
       pageType: 'WebPage',
     },
     '/builder': {
@@ -192,6 +192,69 @@ const BASE_ROUTE_SEO = {
     '/sim': {
       title: 'ترتيب إطلاق مهارات Kingdom Ran | RanHQ',
       description: 'راجع ترتيب إطلاق المهارات لتشكيلتي الهجوم والدفاع المحفوظتين في منشئ الفرق.',
+      pageType: 'WebPage',
+      robots: 'noindex,follow',
+    },
+  },
+  fr: {
+    '/': {
+      title: 'RanHQ — Guide de la Conquête d’Alliance et base de données | Kingdom Ran',
+      description: 'RanHQ est un site de fans dédié à Kingdom Ran : base de données des généraux et de leurs compétences, guides de Conquête d’Alliance, création d’équipes, buffs et outils de calcul.',
+      pageType: 'WebPage',
+    },
+    '/archive': {
+      title: 'Archive des généraux et cartes CW6 de Kingdom Ran | RanHQ',
+      description: "Accédez aux généraux et aux cartes scène CW6★ : recherche par nom ou effet, compétences, illustrations d’origine et suivi de possession.",
+      pageType: 'CollectionPage',
+    },
+    '/archive/characters': {
+      title: 'Généraux et compétences de Kingdom Ran | RanHQ',
+      description: 'Cherchez les généraux de Kingdom Ran par nom romanisé ou japonais et comparez leur faction, leur type d’unité et leurs compétences de Conquête d’Alliance traduites.',
+      pageType: 'CollectionPage',
+    },
+    '/archive/cw6-scene-cards': {
+      title: 'Cartes scène CW6 et leurs compétences | Kingdom Ran | RanHQ',
+      description: 'Parcourez les cartes scène CW6 de Kingdom Ran avec leurs détenteurs, le nom japonais de la compétence, les effets traduits et les données de Conquête d’Alliance.',
+      pageType: 'CollectionPage',
+    },
+    '/guide': {
+      title: 'Guide de la Conquête d’Alliance | Kingdom Ran | RanHQ',
+      description: "Consultez le sommaire de la Conquête d’Alliance : bases, progression des généraux, compétences, effets d’état, terrains et ciblage.",
+      pageType: 'WebPage',
+    },
+    '/builder': {
+      title: 'Créateur d’équipe pour la Conquête d’Alliance | Kingdom Ran | RanHQ',
+      description: 'Composez vos équipes d’attaque et de défense de Conquête d’Alliance, ajustez les compétences débloquées et vérifiez les buffs d’équipe et l’ordre d’activation.',
+      pageType: 'WebPage',
+    },
+    '/castle-points': {
+      title: 'Calculateur de points de château | Kingdom Ran | RanHQ',
+      description: 'Calculez les points d’alliance de la Conquête d’Alliance à partir de vos grands, moyens et petits châteaux, puis comparez le classement prévu.',
+      pageType: 'WebPage',
+    },
+    '/buffs': {
+      title: 'Suivi des buffs de Conquête d’Alliance | Kingdom Ran | RanHQ',
+      description: 'Suivez les buffs de Conquête d’Alliance de Kingdom Ran par stat, source, type d’unité, condition de ciblage, terrain et carte scène.',
+      pageType: 'WebPage',
+    },
+    '/tiers': {
+      title: 'Tier list et compos du moment | Kingdom Ran | RanHQ',
+      description: 'Consultez la tier list RanHQ de la Conquête d’Alliance et les compositions d’équipe les plus vues pour l’attaque, la défense, les buffs et les contres.',
+      pageType: 'WebPage',
+    },
+    '/cost': {
+      title: 'Calculateur de coût d’équipe | Kingdom Ran | RanHQ',
+      description: 'Calculez le coût en cristaux rouges des généraux de Kingdom Ran et planifiez les ressources nécessaires pour maximiser une équipe de quatre généraux.',
+      pageType: 'WebPage',
+    },
+    '/cw-stats': {
+      title: 'Calculateur de stats de Conquête | Kingdom Ran | RanHQ',
+      description: 'Calculez votre puissance de Conquête d’Alliance à partir des valeurs de l’écran CW, des buffs déjà actifs, des buffs ajoutés et des cartes scène.',
+      pageType: 'WebPage',
+    },
+    '/sim': {
+      title: 'Ordre d’activation des compétences | Kingdom Ran | RanHQ',
+      description: 'Consultez l’ordre d’activation des compétences des équipes d’attaque et de défense enregistrées dans le créateur d’équipe RanHQ.',
       pageType: 'WebPage',
       robots: 'noindex,follow',
     },
@@ -247,7 +310,27 @@ const GUIDE_LABELS = {
     interactions: 'تداخلات التأثيرات',
     targeting: 'قواعد الاستهداف',
   },
+  fr: {
+    basics: 'Bases de la Conquête d’Alliance',
+    'stats-screen': 'Écran des stats de Conquête',
+    stats: 'Augmenter ses stats de Conquête',
+    roles: 'Rôles des généraux',
+    bandits: 'Chasse aux bandits',
+    leaders: 'Compétences de Leader et de Stratège',
+    crystals: 'Types de cristaux',
+    debuffs: 'Résistance aux débuffs',
+    effects: 'Effets d’état',
+    matchups: 'Affinités des unités',
+    terrain: 'Effets de terrain',
+    types: 'Types de compétences',
+    interactions: 'Interactions d’effets',
+    targeting: 'Règles de ciblage',
+  },
 }
+
+// One Guide validity inventory feeds metadata, client routing and sitemap output.
+export const GUIDE_SECTION_IDS = Object.freeze(Object.keys(GUIDE_LABELS.en))
+export const isGuideSection = id => GUIDE_SECTION_IDS.includes(id)
 
 function localeCode(locale) {
   const code = typeof locale === 'string' ? locale : locale?.code
@@ -257,7 +340,7 @@ function localeCode(locale) {
 export function canonicalPath(pathname) {
   if (!pathname || pathname === '/') return '/'
   let clean = String(pathname).split('?')[0].split('#')[0].replace(/\/+$/, '') || '/'
-  clean = clean.replace(/^\/(?:ja|ar)(?=\/|$)/, '') || '/'
+  clean = clean.replace(/^\/(?:ja|ar|fr)(?=\/|$)/, '') || '/'
   const segments = clean.split('/').filter(Boolean)
   if (
     segments.length === 2
@@ -267,6 +350,10 @@ export function canonicalPath(pathname) {
     return `/archive/characters/${segments[1]}`
   }
   return clean
+}
+
+export function characterRouteId(pathname) {
+  return /^\/archive\/characters\/([^/]+)$/.exec(canonicalPath(pathname))?.[1] || null
 }
 
 export function absoluteUrl(pathname, locale = 'en') {
@@ -283,12 +370,14 @@ export function alternateUrls(pathname) {
     en: absoluteUrl(path, 'en'),
     ja: absoluteUrl(path, 'ja'),
     ar: absoluteUrl(path, 'ar'),
+    fr: absoluteUrl(path, 'fr'),
     'x-default': absoluteUrl(path, 'en'),
   }
 }
 
 function guideSectionSeo(path, code) {
-  const section = path.split('/').filter(Boolean)[1]
+  const section = /^\/guide\/([^/]+)$/.exec(path)?.[1]
+  if (!isGuideSection(section)) return null
   const label = GUIDE_LABELS[code]?.[section]
   if (!label) return null
   if (code === 'ja') return {
@@ -298,6 +387,16 @@ function guideSectionSeo(path, code) {
     breadcrumbs: [
       { name: 'ホーム', path: '/' },
       { name: '同盟争覇戦攻略', path: '/guide' },
+      { name: label, path },
+    ],
+  }
+  if (code === 'fr') return {
+    title: `${label} — Guide de la Conquête d’Alliance | RanHQ`,
+    description: `Guide de la Conquête d’Alliance dans Kingdom Ran : ${label.toLowerCase()}, mécaniques visibles, exemples et données factuelles sur RanHQ.`,
+    pageType: 'WebPage',
+    breadcrumbs: [
+      { name: 'Accueil', path: '/' },
+      { name: 'Guide de la Conquête d’Alliance', path: '/guide' },
       { name: label, path },
     ],
   }
@@ -398,21 +497,11 @@ export function routeSeo(pathname, locale = 'en') {
   const staticMeta = guideMeta || BASE_ROUTE_SEO[code]?.[path]
   if (staticMeta) return finalizeSeo(staticMeta, path, code)
 
-  if (path.startsWith('/archive/characters/')) {
-    return finalizeSeo({
-      title: code === 'ja'
-        ? 'キングダム乱 武将データ | RanHQ'
-        : code === 'ar'
-          ? 'بيانات جنرال Kingdom Ran | RanHQ'
-          : 'Kingdom Ran General Data | RanHQ',
-      description: BASE_ROUTE_SEO[code]['/archive/characters'].description,
-      pageType: 'WebPage',
-    }, path, code)
-  }
-
+  // Character metadata requires an actual record via characterSeo. A URL-shaped
+  // string alone must not turn an unknown ID into an indexable character page.
   return finalizeSeo({
-    title: code === 'ja' ? 'ページが見つかりません | RanHQ' : code === 'ar' ? 'الصفحة غير موجودة | RanHQ' : 'Page Not Found | RanHQ',
-    description: code === 'ja' ? '指定されたRanHQのページは見つかりませんでした。' : code === 'ar' ? 'تعذر العثور على صفحة RanHQ المطلوبة.' : 'The requested RanHQ page could not be found.',
+    title: code === 'ja' ? 'ページが見つかりません | RanHQ' : code === 'ar' ? 'الصفحة غير موجودة | RanHQ' : code === 'fr' ? 'Page introuvable | RanHQ' : 'Page Not Found | RanHQ',
+    description: code === 'ja' ? '指定されたRanHQのページは見つかりませんでした。' : code === 'ar' ? 'تعذر العثور على صفحة RanHQ المطلوبة.' : code === 'fr' ? 'La page RanHQ demandée est introuvable.' : 'The requested RanHQ page could not be found.',
     pageType: 'WebPage',
     robots: 'noindex,follow',
   }, path, code)
@@ -456,6 +545,19 @@ export function characterSeo(character, options = {}) {
       { name: 'الأرشيف', path: '/archive' },
       { name: 'الجنرالات', path: '/archive/characters' },
       { name: localizedName, path },
+    ]
+  } else if (code === 'fr') {
+    const example = englishSkills.length ? `, notamment ${englishSkills.slice(0, 2).join(' et ')}` : ''
+    const identity = `${englishName}${japaneseName ? ` (${japaneseName})` : ''}`
+    const skillNoun = skillCount === 1 ? 'compétence' : 'compétences'
+    const effectWords = skillCount === 1 ? 'son effet détaillé' : 'leurs effets détaillés'
+    title = `${identity} — Compétences et données du général | Kingdom Ran | RanHQ`
+    description = `${identity} dans Kingdom Ran : ${skillCount} ${skillNoun} de Conquête d’Alliance${example}, avec ${effectWords}${faction ? ` et sa faction (${faction})` : ''}.`
+    breadcrumbs = [
+      { name: 'Accueil', path: '/' },
+      { name: 'Archive', path: '/archive' },
+      { name: 'Généraux', path: '/archive/characters' },
+      { name: englishName, path },
     ]
   } else {
     const example = englishSkills.length ? `, including ${englishSkills.slice(0, 2).join(' and ')}` : ''

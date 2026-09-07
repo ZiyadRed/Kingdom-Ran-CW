@@ -69,6 +69,7 @@ export const STATS = {
   'Squad Damage': { def: 'ضرر الوحدة', ind: 'ضرر وحدة' },
   'Damage Taken Increase': { def: 'ارتفاع الضرر المتلقى', ind: 'ارتفاع ضرر متلقى' },
   'Damage Dealt Reduction': { def: 'تقليل الضرر المُلحق', ind: 'تقليل ضرر مُلحق' },
+  'Starting Troop HP Loss': { def: 'فقدان الصحة عند البدء', ind: 'فقدان صحة عند البدء' },
   'Squad Damage Reduction': { def: 'تقليل ضرر الوحدة', ind: 'تقليل ضرر وحدة' },
   'Damage Reduction Effect': { def: 'تأثير تقليل الضرر', ind: 'تأثير تقليل ضرر' },
   'Poison Damage': { def: 'ضرر السم', ind: 'ضرر سم' },

@@ -70,3 +70,12 @@ export function formatNumber(value, locale = DEFAULT_LOCALE, options) {
   }
   return formatter.format(value)
 }
+
+/** Keep existing fixed-decimal rounding/precision while localizing separators. */
+export function formatFixedNumber(value, locale = DEFAULT_LOCALE, digits = 1) {
+  return formatNumber(Number(value.toFixed(digits)), locale, {
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits,
+    useGrouping: false,
+  })
+}

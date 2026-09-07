@@ -59,7 +59,9 @@ describe('redesign progress-storage contract', () => {
         'state:Chu:Attack:Kyoubou:巨暴:5::9:shard': true,
       },
     }).buffSources).toEqual({
-      'state:Chu:Attack:Kyoubou:巨暴:5:': true,
+      'buff_dc504d4d246d406d837bccacb3490cf8': true,
+      // There was no independent Kyoubou shard toggle: retain this unknown key.
+      'state:Chu:Attack:Kyoubou:巨暴:5::9:shard': true,
     })
   })
 
@@ -69,8 +71,8 @@ describe('redesign progress-storage contract', () => {
 
     const ids = entries.map((entry, index) => buffSourceId('state', 'Chu', 'Attack', entry, index))
     expect(new Set(ids).size).toBe(2)
-    expect(ids).toContain('state:Chu:Attack:Kyoubou:巨暴:5::kyoubou-attack-1')
-    expect(ids).toContain('state:Chu:Attack:Kyoubou:巨暴:5:')
+    expect(ids).toEqual(entries.map(entry => entry.ownership_id))
+    expect(ids.every(id => /^buff_[a-f0-9]{32}$/.test(id))).toBe(true)
   })
 
   it('splits Nakon Defense into two independent 5% sources and migrates old ownership', () => {
@@ -80,8 +82,8 @@ describe('redesign progress-storage contract', () => {
 
     const ids = entries.map((entry, index) => buffSourceId('unit', 'Cavalry', 'Defense', entry, index))
     expect(new Set(ids).size).toBe(2)
-    expect(ids[0]).toContain(':nakon-defense-1')
-    expect(ids[1]).toContain(':nakon-defense-2')
+    expect(ids).toEqual(entries.map(entry => entry.ownership_id))
+    expect(entries.map(entry => entry.source_id)).toEqual(['nakon-defense-1', 'nakon-defense-2'])
 
     const legacyId = `unit:Cavalry:Defense:${entries[0].name}:${entries[0].name_jp}:10:${entries[0].special_label}`
     expect(normalizeProgress({ buffSources: { [legacyId]: true } }).buffSources).toEqual({

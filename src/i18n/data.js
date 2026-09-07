@@ -14,6 +14,13 @@ import {
   renderArabicText,
 } from './ar-render.js'
 import { GROUPS, PHRASES, STATUSES, TAGS } from './ar-lexicon.js'
+import {
+  renderFrenchCondition,
+  renderFrenchDuration,
+  renderFrenchEffect,
+  renderFrenchTarget,
+  renderFrenchText,
+} from './fr-render.js'
 import { resolveJapaneseEntities } from './ja-source.js'
 import {
   renderJapaneseCondition,
@@ -121,13 +128,16 @@ export function localizedSkill(skill, characterId, skillIndex, localeOrCode = 'e
     ? (source?.name || skill?.name_jp || skill?.name_en || '名称未設定')
     : code === 'ar'
       ? (skill?.name_en || source?.name || 'مهارة بلا اسم')
-      : (skill?.name_en || skill?.name || 'Unnamed skill')
+      : code === 'fr'
+        ? (skill?.name_en || skill?.name || 'Compétence sans nom')
+        : (skill?.name_en || skill?.name || 'Unnamed skill')
   // Each field gets its own renderer: a target, a condition and an effect have
   // different grammar even when they share vocabulary. Skill names and
   // descriptions are never rendered here — those stay source-verbatim.
   const RENDERERS = {
     ar: [renderArabicCondition, renderArabicTarget, renderArabicEffect, renderArabicDuration],
     ja: [renderJapaneseCondition, renderJapaneseTarget, renderJapaneseEffect, renderJapaneseDuration],
+    fr: [renderFrenchCondition, renderFrenchTarget, renderFrenchEffect, renderFrenchDuration],
   }
   const renderers = RENDERERS[code]
   if (renderers) {
@@ -153,11 +163,15 @@ export function localizedCharacter(character, localeOrCode = 'en') {
   const roleSkill = character?.roleSkill
     ? localizedSkill(character.roleSkill, character?.id, -1, code)
     : character?.roleSkill
+  // French, like English, shows the canonical Latin name — the same spelling
+  // TouranKo uses — so a general is searchable and recognisable in both.
   const displayName = code === 'ja'
     ? (character?.name_jp || character?.name_en || '名称未設定')
     : code === 'ar'
       ? (AR_CHARACTER_NAMES[character?.name_en] || character?.name_en || 'جنرال غير معروف')
-      : (character?.name_en || character?.name_jp || 'Unknown')
+      : code === 'fr'
+        ? (character?.name_en || character?.name_jp || 'Inconnu')
+        : (character?.name_en || character?.name_jp || 'Unknown')
   return {
     ...character,
     skills,
@@ -177,6 +191,7 @@ export function localizedText(value, localeOrCode = 'en') {
   const code = typeof localeOrCode === 'string' ? localeOrCode : localeOrCode?.code || 'en'
   if (code === 'ar') return renderArabicText(value)
   if (code === 'ja') return renderJapaneseText(value)
+  if (code === 'fr') return renderFrenchText(value)
   return value
 }
 
@@ -185,6 +200,7 @@ export function localizedTarget(value, localeOrCode = 'en') {
   const code = typeof localeOrCode === 'string' ? localeOrCode : localeOrCode?.code || 'en'
   if (code === 'ar') return renderArabicTarget(value)
   if (code === 'ja') return renderJapaneseTarget(value)
+  if (code === 'fr') return renderFrenchTarget(value)
   return value
 }
 
@@ -193,6 +209,7 @@ export function localizedDuration(value, localeOrCode = 'en') {
   const code = typeof localeOrCode === 'string' ? localeOrCode : localeOrCode?.code || 'en'
   if (code === 'ar') return renderArabicDuration(value)
   if (code === 'ja') return renderJapaneseDuration(value)
+  if (code === 'fr') return renderFrenchDuration(value)
   return value
 }
 

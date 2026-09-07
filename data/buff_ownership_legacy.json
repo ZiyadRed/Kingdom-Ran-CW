@@ -1,0 +1,844 @@
+{
+  "version": 1,
+  "description": "RanHQ-authored ownership identity. Frozen exact legacy aliases captured before F17; IDs are not game source IDs. Preserve these aliases when correcting content. Only the previously evidenced Nakon 10 percent split intentionally maps one key to two IDs.",
+  "legacyKeys": {
+    "unit:Cavalry:HP:Bakukoshin:縛虎申:18.2:": [
+      "buff_a3734d62c7434ef898229b2e4548c760"
+    ],
+    "unit:Cavalry:HP:Chousou:趙荘:18.2:": [
+      "buff_c0d3367080ca48f0b53e5724d16c2d0c"
+    ],
+    "unit:Cavalry:HP:Hyou:漂:15.9:": [
+      "buff_00593f5211f64bd5a05ba640eb70470a"
+    ],
+    "unit:Cavalry:HP:Kaishibou:介子坊:7.9:": [
+      "buff_5fac513d668a43d0a800d7e84a87b861"
+    ],
+    "unit:Cavalry:HP:Shoumou:渉孟:7.9:": [
+      "buff_65dff2bd8edd4915aa14bf52afdd40c0"
+    ],
+    "unit:Cavalry:HP:Kanou:干央:6.9:": [
+      "buff_16263fe692d542cda44fd480dfe8cf09"
+    ],
+    "unit:Cavalry:HP:Bakan:馬関:5:": [
+      "buff_a8aff77049314f21ae7bd6dc3000d0b5"
+    ],
+    "unit:Cavalry:Attack:Bakan:馬関:5:": [
+      "buff_d90d8f38fbaa4fc39875f42aa224c978"
+    ],
+    "unit:Cavalry:Attack:Gakuei:岳嬰:5:": [
+      "buff_90a326f471704adfa04978c1d9ba2ed2"
+    ],
+    "unit:Cavalry:Attack:Gekishin:劇辛:5:": [
+      "buff_c1a6b808946149f1b5753d31266e4dc5"
+    ],
+    "unit:Cavalry:Attack:Ringyoku:リン玉:5:": [
+      "buff_4ac4611335cd47c1af5b6651a9d716ad"
+    ],
+    "unit:Cavalry:Attack:Wategi:戎翟公:5:": [
+      "buff_01bdfbd580224c0fb016bf0dd20fa2e2"
+    ],
+    "unit:Cavalry:Attack:Ordo:オルド:5:Shard upgrade": [
+      "buff_8ee42830039e40df92f625962fdd53db"
+    ],
+    "unit:Cavalry:Attack:Rokuomi:録嗚未:4.3:": [
+      "buff_02f2ced82e0f412f960b74441534e4e7"
+    ],
+    "unit:Cavalry:Attack:Doukin:同金:3.8:": [
+      "buff_58862d984dc4417a8d9d5ad379f68803"
+    ],
+    "unit:Cavalry:Defense:Nakon:奈棍:5:Shard upgrade:nakon-defense-1": [
+      "buff_d693c0ad13cf468a93abe7deba8258a2"
+    ],
+    "unit:Cavalry:Defense:Nakon:奈棍:5:Shard upgrade:nakon-defense-2": [
+      "buff_3eae6dbaf1f14c0b90fda1ae7f5c3f91"
+    ],
+    "unit:Cavalry:Defense:Denyuu:田有:9.9:": [
+      "buff_ac964422453744be85c4f1c974a754b9"
+    ],
+    "unit:Cavalry:Defense:Kaen:媧偃:5:": [
+      "buff_389ee1531f724311b097bed95946f974"
+    ],
+    "unit:Cavalry:Defense:Sosui:楚水:4.3:": [
+      "buff_3d8b454c7bdb4bfaaa6a397da0ba481a"
+    ],
+    "unit:Cavalry:Defense:Rinbou:鱗坊:3.8:": [
+      "buff_d1a60ca76c5b4ac6b657852adfe8b28d"
+    ],
+    "unit:Archer:HP:You:陽:22.8:": [
+      "buff_5cb912e1d97647939ace7ccb26264a16"
+    ],
+    "unit:Archer:HP:Karyoten:河了貂:18.2:": [
+      "buff_fb5787fbf60c41538309ba4f7b870880"
+    ],
+    "unit:Archer:HP:Ogiko:オギコ:18.2:": [
+      "buff_02cb16e1c7ff45788711aafa481adfff"
+    ],
+    "unit:Archer:HP:Seikyou:成蟜:15.9:": [
+      "buff_437800436b2a4d48885d11f6add7f73d"
+    ],
+    "unit:Archer:HP:Hyouki:氷鬼:7.9:": [
+      "buff_6173f7b293aa413b855034b78de96a26"
+    ],
+    "unit:Archer:HP:Kokuou:黒桜:7.9:": [
+      "buff_f733c4dabf164ca19705d7985d7e8f92"
+    ],
+    "unit:Archer:HP:Jiou:江彰:15.9:": [
+      "buff_7a58b414000d430182a85c070dca2df0"
+    ],
+    "unit:Archer:HP:Takukei:澤圭:5:": [
+      "buff_a4f77a6679214157b89ca64e0d95a0a6"
+    ],
+    "unit:Archer:Attack:Hakusui:白翠:12.4:": [
+      "buff_988504b4aa3041658d974737a1335df2"
+    ],
+    "unit:Archer:Attack:Kou:向:12.4:": [
+      "buff_fbc9ed824fb448a588cd091db0027196"
+    ],
+    "unit:Archer:Attack:Gika:魏加:9.9:": [
+      "buff_09adfde21642419e8d1f789d3f310605"
+    ],
+    "unit:Archer:Attack:Hanroki:樊琉期:5:": [
+      "buff_609e46724d19437dbb2a9b010f8ce615"
+    ],
+    "unit:Archer:Attack:Hyouki:氷鬼:5:": [
+      "buff_e4b31373ff444f079c41ade44319f6f9"
+    ],
+    "unit:Archer:Attack:Otaji:オタジ:5:": [
+      "buff_e1f7c067019d469e8a8eba56edbdb98b"
+    ],
+    "unit:Archer:Attack:Queen Biki:太后:5:": [
+      "buff_677da48b40b64f2e8b87b8b95e99179e"
+    ],
+    "unit:Archer:Attack:Robin:呂敏:5:": [
+      "buff_5a321002a983448db41e0a32246d46fb"
+    ],
+    "unit:Archer:Attack:KyouEn:姜燕:4.3:": [
+      "buff_c395e2fc7f634ac5a57e2aa05e276314"
+    ],
+    "unit:Archer:Attack:Kyougai:去亥:3.8:": [
+      "buff_87e646530612478dbc336253e3578292"
+    ],
+    "unit:Archer:Defense:Shika:紫夏:9.9:": [
+      "buff_6927f5208970481db85a774937be3bf5"
+    ],
+    "unit:Archer:Defense:Budai:ブダイ:5:": [
+      "buff_c0627c1e1cbb49df93fafca12645c4e9"
+    ],
+    "unit:Archer:Defense:Duke Sei:青公:5:": [
+      "buff_a89753d9bd6643d88d36b7a1dc2a1d65"
+    ],
+    "unit:Archer:Defense:Otaji:オタジ:5:": [
+      "buff_00794a765f1d4a71b4601a556cf1772c"
+    ],
+    "unit:Archer:Defense:Yukii:ユキイ:5:": [
+      "buff_ebd301ef1f7f4443be3941a508d34058"
+    ],
+    "unit:Archer:Defense:Toji:トッヂ:5:": [
+      "buff_e24fd95d99ec4a499ac8bd3e993b8ffb"
+    ],
+    "unit:Archer:Defense:Fuji:フゥヂ:5:": [
+      "buff_49c8729f66ec406cad12b1e689186568"
+    ],
+    "unit:Archer:Defense:Domon:土門:4.3:": [
+      "buff_673ccf2196984a8fbb39ddda696c2f01"
+    ],
+    "unit:Archer:Defense:Amon:亜門:3.8:": [
+      "buff_b927298565b945818cf2313e3ddff261"
+    ],
+    "unit:Infantry:HP:Rui:瑠衣:22.8:": [
+      "buff_30c9b5b653be41738fbfe0b43bcbfe20"
+    ],
+    "unit:Infantry:HP:Shikika:紫季歌:22.8:": [
+      "buff_0f50ed3d55394f74b570ae139915b7ff"
+    ],
+    "unit:Infantry:HP:Toumi:東美:22.8:": [
+      "buff_56ba7f1eeabb46c2a2594eb1ddc1c913"
+    ],
+    "unit:Infantry:HP:Yuri:友里:22.8:": [
+      "buff_fe8d26a2a8674f2bbb324711fc9b81e6"
+    ],
+    "unit:Infantry:HP:Kakukai:郭開:22.8:": [
+      "buff_8510c65e60dc4d8ab1cfa6100bde5fa4"
+    ],
+    "unit:Infantry:HP:Kyomei:羌明:18.2:": [
+      "buff_3b3a61ee9f2844dbb10931b0ba5bdb35"
+    ],
+    "unit:Infantry:HP:Kyoushou:羌象:18.2:": [
+      "buff_970f240186db49b79d4007fc0a597943"
+    ],
+    "unit:Infantry:HP:Bihei:尾平:15.9:": [
+      "buff_c0bec6847fa14fb99f41cd72ff87bbe5"
+    ],
+    "unit:Infantry:HP:Ryuusen:竜川:7.9:": [
+      "buff_536b8ef1bf4a4efb8e9d12860c124044"
+    ],
+    "unit:Infantry:HP:Shunmen:シュンメン:7.9:": [
+      "buff_da4604dcf889445c9b5d940acbdb13a0"
+    ],
+    "unit:Infantry:HP:Gotan:剛炭:6.9:": [
+      "buff_5ead40630c03469f94d5e6ad52919b89"
+    ],
+    "unit:Infantry:HP:Ryuuto:劉冬:5:": [
+      "buff_0a57eab2f1a047a1b7d469d3b3a86ec7"
+    ],
+    "unit:Infantry:Attack:Youka:姚賈:12.4:": [
+      "buff_0fcbd3736e234b40ade1f9c0eb6e907e"
+    ],
+    "unit:Infantry:Attack:Hokaku:蒲鶮:9.9:": [
+      "buff_0c29bba4944a418ea58f8d077f11b31a"
+    ],
+    "unit:Infantry:Attack:Hokaku:蒲鶮:9.9::shard": [
+      "buff_0c29bba4944a418ea58f8d077f11b31a:shard"
+    ],
+    "unit:Infantry:Attack:Chutetsu:中鉄:9.9:": [
+      "buff_050927dd9b934fccb663b1d952d65cda"
+    ],
+    "unit:Infantry:Attack:Yuuren:幽連:9.9:": [
+      "buff_23a92ba5fa1a46d1b3b3c971713bca0b"
+    ],
+    "unit:Infantry:Attack:Toumi:東美:5.4:": [
+      "buff_ca3e5acb90ff4f6e9307114af81b116f"
+    ],
+    "unit:Infantry:Attack:Bain:馬印:5:": [
+      "buff_59d606fae3bc448db0af2cf9f9ef8735"
+    ],
+    "unit:Infantry:Attack:Koujyun:高順:5:": [
+      "buff_ea70d874520f47dca3e9ee4856b77c39"
+    ],
+    "unit:Infantry:Attack:Oukotsu:王齕:5:": [
+      "buff_fba2dc8a551e419a85d3ca1ed3d1e5d2"
+    ],
+    "unit:Infantry:Attack:Eiki:英紀:5:": [
+      "buff_51b2e0e2874f486bb63db57bca78efb9"
+    ],
+    "unit:Infantry:Attack:Choushi:丁之:5:Shard upgrade": [
+      "buff_1cabfb7a9d054147aa2bea8c12ef57bc"
+    ],
+    "unit:Infantry:Attack:Pam:パム:5:Shard upgrade": [
+      "buff_8670bebe1d9449a080c331229370d46c"
+    ],
+    "unit:Infantry:Attack:Rankai:ランカイ:4.3:": [
+      "buff_c36621fc83b44dc7bbd8c668ac912ac8"
+    ],
+    "unit:Infantry:Attack:Saji:左慈:3.8:": [
+      "buff_b7d489d43b0947d19f613c7133f6bc93"
+    ],
+    "unit:Infantry:Attack:Yuri:友里:1:": [
+      "buff_46371a0dcd3d495581733d00c0a7155f"
+    ],
+    "unit:Infantry:Attack:Tonkoku:惇告:5:": [
+      "buff_cb259c964d084a54a83c2a293d80242b"
+    ],
+    "unit:Infantry:Attack:Tonkaku:惇角:5:": [
+      "buff_609d44a557c2410cbef8d6bd0d4eec6d"
+    ],
+    "unit:Infantry:Defense:Shunpeikun:春平君:12.4:": [
+      "buff_4f22ae9cef7d47a797724a14a1331641"
+    ],
+    "unit:Infantry:Defense:Kyourei:京令:9.9:": [
+      "buff_699aaed25bf8481ab2e2807e0e7c7869"
+    ],
+    "unit:Infantry:Defense:Kyourei:京令:9.9::shard": [
+      "buff_699aaed25bf8481ab2e2807e0e7c7869:shard"
+    ],
+    "unit:Infantry:Defense:Ryuyu:竜有:9.9:": [
+      "buff_07a92101205742219c1e4a35aab53048"
+    ],
+    "unit:Infantry:Defense:Shunmen:シュンメン:9.9:": [
+      "buff_e7eeda3437bf41b99f70331e37514d50"
+    ],
+    "unit:Infantry:Defense:Yuri:友里:5.4:": [
+      "buff_c7000573d3d5420597e39eb56c646a1a"
+    ],
+    "unit:Infantry:Defense:Hokaku:蒲鶮:5:": [
+      "buff_f01651b570df4912bb71de5f0a51d206"
+    ],
+    "unit:Infantry:Defense:Koujyun:高順:5:": [
+      "buff_63a57c285f544b228d30c0f5c27e6698"
+    ],
+    "unit:Infantry:Defense:Kakukai:郭開:5:": [
+      "buff_68ed41d34d034162a1eea867484ce010"
+    ],
+    "unit:Infantry:Defense:Eiki:英紀:5:": [
+      "buff_7d21fdf42aba48d6a1e7c11ca8e09a19"
+    ],
+    "unit:Infantry:Defense:Raiki:来輝:5:Shard upgrade": [
+      "buff_57fcd019e98741d78cef73ed949e6adc"
+    ],
+    "unit:Infantry:Defense:Hairou:沛浪:4.3:": [
+      "buff_4e497a9f5c364d9f841785934a2d3a2b"
+    ],
+    "unit:Infantry:Defense:Suugen:崇原:3.8:": [
+      "buff_b8b05e012a4e4d31833082ca90080fec"
+    ],
+    "unit:Infantry:Defense:Toumi:東美:1:": [
+      "buff_8a825fc15f404db285fb79975f824db0"
+    ],
+    "unit:Infantry:Defense:Tonkoku:惇告:5:": [
+      "buff_3fa6ee88dd31437eb5bf240a53467aa6"
+    ],
+    "unit:Infantry:Defense:Tonkaku:惇角:5:": [
+      "buff_014cfa33f2c9424cba6d9d4baae5429e"
+    ],
+    "unit:Infantry:Defense:Heirai:平来:5:": [
+      "buff_ee796d1db9ad42f0883f62be0474e7a3"
+    ],
+    "unit:Shield:HP:Keibin:景湣王:22.8:": [
+      "buff_1ae2d99fb02242c9964016653a4ad221"
+    ],
+    "unit:Shield:HP:Ouken:王建王:22.8:": [
+      "buff_83710303633f4f0e9c88404633541bec"
+    ],
+    "unit:Shield:HP:Kuzen:蒙恬のじぃ:18.2:": [
+      "buff_4be5223fc26c437882dee82b1c18c397"
+    ],
+    "unit:Shield:HP:Mouki:蒙毅:18.2:": [
+      "buff_048026f95ef3409089cb71fc7e69256d"
+    ],
+    "unit:Shield:HP:Mouki:蒙毅:18.2::shard": [
+      "buff_048026f95ef3409089cb71fc7e69256d:shard"
+    ],
+    "unit:Shield:HP:Bikou:尾到:15.9:": [
+      "buff_3873cbc4b35f4a748385798196cef01d"
+    ],
+    "unit:Shield:HP:Banyou:番陽:7.9:": [
+      "buff_9721e8c795a4466e9154ba99371c5459"
+    ],
+    "unit:Shield:HP:Kakubi:郭備:7.9:": [
+      "buff_f7dc0f618fbc4b98b4f59b37121d426e"
+    ],
+    "unit:Shield:HP:Heki:壁:6.9:": [
+      "buff_cd0f790e60c34be08fbe06c593ac7ca7"
+    ],
+    "unit:Shield:HP:Kishou:紀昌:5:": [
+      "buff_609ab0c677a2405d9578b52e58fa3a61"
+    ],
+    "unit:Shield:HP:Shoukaku:尚鹿:5:": [
+      "buff_26386f1757714f4cb102909dc2fa1cec"
+    ],
+    "unit:Shield:Attack:Taijifu:タジフ:9.9:": [
+      "buff_e00ca2f2270547c5a7f4645f7c3312a3"
+    ],
+    "unit:Shield:Attack:Hakuki:白起:5:": [
+      "buff_12c5e1485cc44797b061c83e26817337"
+    ],
+    "unit:Shield:Attack:Kakubi:郭備:5:": [
+      "buff_21d2f0bc1c8a42248cb05ac4224a02c7"
+    ],
+    "unit:Shield:Attack:Chouyou:丁陽:5:": [
+      "buff_4877ee3d6aea4b56b453086eb8dcca14"
+    ],
+    "unit:Shield:Attack:Kousonryu:公孫龍:4.3:": [
+      "buff_212ac490378743ac80729d26de9c18fa"
+    ],
+    "unit:Shield:Attack:Yugi:有義:4.3:": [
+      "buff_fa13c4eb02be47ea9413f1c16fe62280"
+    ],
+    "unit:Shield:Attack:Raido:雷土:3.8:": [
+      "buff_b2c4a77f2bbf4511bf69c6f96a5d1f01"
+    ],
+    "unit:Shield:Attack:Raido:雷土:3.8::shard": [
+      "buff_b2c4a77f2bbf4511bf69c6f96a5d1f01:shard"
+    ],
+    "unit:Shield:Defense:Banyou:番陽:9.9:": [
+      "buff_7ed6f861442146b2bc7c671bd9a1fca6"
+    ],
+    "unit:Shield:Defense:Yugi:有義:9.9:": [
+      "buff_04c2e363dae946c29cce8db40230e642"
+    ],
+    "unit:Shield:Defense:Kakuun:角雲:5:": [
+      "buff_f52cfed1656041d5b056b99a35aa7b54"
+    ],
+    "unit:Shield:Defense:Chouyou:丁陽:5:": [
+      "buff_69e7afe29ffc4a619d06042b5d06fb4b"
+    ],
+    "unit:Shield:Defense:Rouai:嫪毐:5:": [
+      "buff_f0bbb1197b1e4a87b4f65a26948cd5e4"
+    ],
+    "unit:Shield:Defense:Chouin:張印:5:Shard upgrade": [
+      "buff_2ae97bf43712428faea93b5f7a2faa64"
+    ],
+    "unit:Shield:Defense:Rihaku:李白:4.3:": [
+      "buff_305c359950f241aba2d688e28c5e9095"
+    ],
+    "unit:Shield:Defense:Ryuukoku:隆国:3.8:": [
+      "buff_748d97a788ea4b45bddc057eeaa4e7f6"
+    ],
+    "state:Zhao:HP:Shunpeikun:春平君:5:": [
+      "buff_4ff5b3772e9a4f3e8aaeb1e661e11421"
+    ],
+    "state:Zhao:Attack:Ka:太子嘉:5:": [
+      "buff_86b3d8d4b593403b8679adf42deeb2ae"
+    ],
+    "state:Zhao:Defense:Duke Sei:青公:5:": [
+      "buff_74ca97f19a8f46b0830fc7e94d17df16"
+    ],
+    "state:Zhao:Defense:Ka:太子嘉:5:": [
+      "buff_7dedd01d96c640029c71450424490b25"
+    ],
+    "state:Zhao:Defense:Kinmou:金毛:5:": [
+      "buff_a624677322eb4dce9ef056dbffc525e0"
+    ],
+    "state:Zhao:Defense:Shunpeikun:春平君:5:": [
+      "buff_750cc11aa734448f980dbe91dd96ce86"
+    ],
+    "state:Mountain Folk:Attack:Fuji:フゥヂ:5:": [
+      "buff_e7b682ce833145a78329e15854bc46b0"
+    ],
+    "state:Mountain Folk:Attack:Ramauji:ラマウジ:5:": [
+      "buff_1c8f4f309c7e40ef8262e070eb2e8a63"
+    ],
+    "state:Mountain Folk:Attack:Shunmen:シュンメン:5:": [
+      "buff_9fe90fc2099f4a63bb553af8f9dd2f54"
+    ],
+    "state:Mountain Folk:Attack:Toji:トッヂ:5:": [
+      "buff_6fcee9b61582467cb5fdd111520949d6"
+    ],
+    "state:Mountain Folk:Attack:Yotanwa:楊端和:5:": [
+      "buff_1ab0be05813a42deaf89ef36134997e6"
+    ],
+    "state:Mountain Folk:Defense:Ramauji:ラマウジ:5:": [
+      "buff_a4b597bfa07840c1b9b8c1d4b3891e3e"
+    ],
+    "state:Mountain Folk:Defense:Taijifu:タジフ:5:": [
+      "buff_d87c8b36d8c4435aa88d000fb82dc574"
+    ],
+    "state:Ai:Attack:Hamui:ハムイ:5:": [
+      "buff_58297bc4e249449aae1f155c52f18f8c"
+    ],
+    "state:Ai:Attack:Hanroki:樊琉期:5:": [
+      "buff_24d54c6b418b44b283d08b91acae41bc"
+    ],
+    "state:Ai:Attack:Queen Biki:太后:5:": [
+      "buff_37d025b7a91140199e8dd822de37b037"
+    ],
+    "state:Ai:Attack:Wategi:戎翟公:5:": [
+      "buff_e3f4dc76d53e42a4827d3bc61936f487"
+    ],
+    "state:Ai:Defense:Budai:ブダイ:5:": [
+      "buff_b53f1b926cbd47878d1b3dfb102c98a7"
+    ],
+    "state:Ai:Defense:Hanoki:樊於期:5:": [
+      "buff_635dca82eda34485bf9812a1edd61ff6"
+    ],
+    "state:Chu:Attack:Bamyu:バミュウ:5:": [
+      "buff_206ad4e40f6e4c83ae5963015ff9c243"
+    ],
+    "state:Chu:Attack:Goumasho:剛摩諸:5:": [
+      "buff_1040fc449cc64a1f81232408d7eb5723"
+    ],
+    "state:Chu:Attack:Goutoku:豪徳:5:": [
+      "buff_03d9aa2182ac4c159c5bf5a7cfcad846"
+    ],
+    "state:Chu:Attack:Jinou:仁凹:5:": [
+      "buff_5a7727b0b2bb43ad8c96045df0b72436"
+    ],
+    "state:Chu:Attack:Kaen:媧偃:5:": [
+      "buff_53092c110f364db3ae4dbee07bc3c33e"
+    ],
+    "state:Chu:Attack:Kouretsu:考烈王:5:": [
+      "buff_63abcdfd697843cc974e0f3439ee71b4"
+    ],
+    "state:Chu:Attack:Kyoubou:巨暴:5::kyoubou-attack-1": [
+      "buff_9ead3d9c0766467fbad58b97105c5cc6"
+    ],
+    "state:Chu:Attack:Kyoubou:巨暴:5:": [
+      "buff_dc504d4d246d406d837bccacb3490cf8"
+    ],
+    "state:Chu:Attack:Rinbukun:臨武君:5:": [
+      "buff_7ec93b836f98416ca04cca36aca33986"
+    ],
+    "state:Chu:Attack:Shunshinkun:春申君:5:": [
+      "buff_adf1892bc1104f18b3bf984354cbd88e"
+    ],
+    "state:Chu:Defense:Kyoubou:巨暴:5:": [
+      "buff_872abb24c0f7428e916f7bfd20e999f9"
+    ],
+    "state:Chu:Defense:Beiman:貝満:5:": [
+      "buff_6b4c5313675f430db8ec9c24d5360b3e"
+    ],
+    "state:Chu:Defense:Hakusui:白翠:5:": [
+      "buff_85bb29169cec4231ae84aa2d24f225e3"
+    ],
+    "state:Chu:Defense:Rien:李園:5:": [
+      "buff_646e4b0d17d2444ca19b48e5fa67b8dc"
+    ],
+    "state:Chu:Defense:Rokin:魯近:5:": [
+      "buff_7189ed6bccff409694478d85a29a3d60"
+    ],
+    "state:Chu:Defense:Shunshinkun:春申君:5:": [
+      "buff_0b024697252d4e4c98bf4018706aeaee"
+    ],
+    "state:Han:Attack:Chouin:張印:5:": [
+      "buff_a0cbaed228bb4f36853d11b16a1de29e"
+    ],
+    "state:Han:Attack:Seikai:成恢:5:": [
+      "buff_aeb1280c5fd343d69ddbce736bb2db61"
+    ],
+    "state:Han:Defense:Chouin:張印:5:": [
+      "buff_ad6a074766ca471f9c3674f4e2bf9f45"
+    ],
+    "state:Wei:HP:Junso:荀早:5:": [
+      "buff_a4689b18fef84e8b89a3cb7217f9d0fb"
+    ],
+    "state:Wei:HP:Ranbihaku:乱美迫:5:": [
+      "buff_ab197e62bdcf40e783dd2d391735aa22"
+    ],
+    "state:Wei:Attack:Keibin:景湣王:5:": [
+      "buff_53459a3b48e74b72aaf623908847f20b"
+    ],
+    "state:Wei:Attack:Reiou:霊凰:5:": [
+      "buff_41e80f9c59324f8ab9942477209f579f"
+    ],
+    "state:Wei:Attack:Tairoji:太呂慈:5:": [
+      "buff_339a0fde7e5b42068cd1426005b7497f"
+    ],
+    "state:Wei:Defense:Tairoji:太呂慈:5:": [
+      "buff_5bc979b37c7546b18da8dd044d4274f0"
+    ],
+    "state:Qin:HP:Kyourei:京令:5:": [
+      "buff_15ef4334573f4c2c9320118b2aa54a51"
+    ],
+    "state:Qin:HP:Yuri:友里:5:": [
+      "buff_adc0edf6464148ef95409c54a4839a4c"
+    ],
+    "state:Qin:HP:Toumi:東美:8:Special Qin HP condition": [
+      "buff_2d3833a45f4a4b0490fa392fecf44305"
+    ],
+    "state:Qin:Attack:Gakurai:岳雷:5:": [
+      "buff_4d58fadfa449456eb28f7c6bd4272cca"
+    ],
+    "state:Qin:Attack:Oukotsu:王齕:5:": [
+      "buff_a150f094969545d0bd70d5962c79229e"
+    ],
+    "state:Qin:Attack:Rikusen:陸仙:5:": [
+      "buff_ccefc25614f745ae9ba5e68df55f61f5"
+    ],
+    "state:Qin:Defense:Kakuun:角雲:5:": [
+      "buff_d516bbc215574db99728cd38a29dd27d"
+    ],
+    "state:Qin:Defense:Kyourei:京令:5:": [
+      "buff_3b34aeb24eae4546be8ec2983f1ca208"
+    ],
+    "state:Qin:Defense:Rikusen:陸仙:5:": [
+      "buff_dc1d465ca3884229a23954cae84f3ee6"
+    ],
+    "state:Qin:Defense:Rishi:李斯:5:": [
+      "buff_f4cefe0b0edd4e0194f5f166797b9bd6"
+    ],
+    "state:Qin:Defense:Youka:姚賈:5:": [
+      "buff_ff8544ee566d4040bbc7e58c9bc536fb"
+    ],
+    "army:Gyokuhou Squad:HP:Shoutaku:松琢:5:": [
+      "buff_903bfa37836945bfa5730e164d485eba"
+    ],
+    "army:Gyokuhou Squad:Defense:Kyuukou:宮康:5:": [
+      "buff_464408b34b464070a58cce0ea37d11b6"
+    ],
+    "army:Hishin Unit:HP:Robin:呂敏:5:": [
+      "buff_1aaeb01c22e44beb9c89742f289592a4"
+    ],
+    "army:Hishin Unit:HP:Toumi:東美:5:": [
+      "buff_55c16b40342f462991b657106472bf62"
+    ],
+    "army:Hishin Unit:Attack:Gakurai:岳雷:5:": [
+      "buff_9bcc3ea3f6804729a665dd249b8023e1"
+    ],
+    "army:Hishin Unit:Attack:Garo:我呂:5:": [
+      "buff_93945834bd64463abdb9b21169737593"
+    ],
+    "army:Hishin Unit:Attack:Ryuusen:竜川:5:": [
+      "buff_b6c20b53332b49a0b843e4afdebbd3cb"
+    ],
+    "army:Hishin Unit:Attack:Seki:石:5:": [
+      "buff_6702ae77325e41e195e2b3ca83a15287"
+    ],
+    "army:Hishin Unit:Attack:Suugen:崇原:5:": [
+      "buff_b0f9c6c5e18f488c8ea4ca57b7071ff7"
+    ],
+    "army:Hishin Unit:Attack:Tonkaku:惇角:5:": [
+      "buff_5ebf586a8551413394cb23f5f4fd9523"
+    ],
+    "army:Hishin Unit:Attack:Kanto:干斗:5:": [
+      "buff_a924e71762cf489d8f49bcf605661308"
+    ],
+    "army:Hishin Unit:Attack:Robin:呂敏:5:": [
+      "buff_7d2e5ddc32e041309c34ecef7c03e1d1"
+    ],
+    "army:Hishin Unit:Defense:Tonkoku:惇告:5:": [
+      "buff_d83d0cabae7a4ec5987657e5db263eca"
+    ],
+    "army:Hishin Unit:Defense:Denei:田永:5:": [
+      "buff_735a6f05069a49d386896006006b24c8"
+    ],
+    "army:Hishin Unit:Defense:Gakurai:岳雷:5:": [
+      "buff_63565983e5824692b929ad46b2cbf97e"
+    ],
+    "army:Hishin Unit:Defense:Garo:我呂:5:": [
+      "buff_2f7a6e13564b4868bcbe835bfc7453b1"
+    ],
+    "army:Hishin Unit:Defense:Seki:石:5:": [
+      "buff_44064ec7b9b746fbb58cd398bf79b573"
+    ],
+    "army:Kanki Army:Attack:Bain:馬印:5:": [
+      "buff_af337b028ec04349842bcfb78eb93d43"
+    ],
+    "army:Kanki Army:Attack:Naki:那貴:5:": [
+      "buff_ec437424a60c4bae8832face9b9fd9ad"
+    ],
+    "army:Kanki Army:Defense:Bain:馬印:5:": [
+      "buff_a43f54d830084354bf7fe461d01b623c"
+    ],
+    "army:Kanki Army:Defense:Kakuun:角雲:5:": [
+      "buff_f8c3c9539a52457190c9387ec6ef60f4"
+    ],
+    "army:Karin Army:Attack:Kaen:媧偃:5:": [
+      "buff_ea60f9c9ca284c83b4dff015fe333a29"
+    ],
+    "army:Karin Army:Attack:Kouyoku:項翼:5:": [
+      "buff_6ef1cbd9ecae4f0eacef47c3550c6405"
+    ],
+    "army:Karin Army:Defense:Bamyu:バミュウ:5:": [
+      "buff_3e5415fbbfdf4cb88c9b9c8e6de1a130"
+    ],
+    "army:Ousen Army:Defense:Eiki:英紀:5:": [
+      "buff_6c98859f2bb94afa87d41f6bc39b0f0f"
+    ],
+    "army:Ousen Army:Defense:Ousen:王翦:5:": [
+      "buff_e93ce40de521418b974dff36d1f9e05f"
+    ],
+    "army:Ousen Army:Defense:Koujyun:高順:5:": [
+      "buff_e7d786f388c74e1ca7adfc281acc10bd"
+    ],
+    "army:Ousen Army:Defense:Chouyou:丁陽:5:": [
+      "buff_48208c4b5df549acb119b3b5a4ac6d14"
+    ],
+    "army:Ouki Army:HP:Kanou:干央:5:": [
+      "buff_459314c8861e4b6ebec348fa8e11cd22"
+    ],
+    "army:Ouki Army:Attack:Doukin:同金:5:": [
+      "buff_a5355eac858f42ae82d945d817f9ae22"
+    ],
+    "army:Ouki Army:Attack:Ouki:王騎:5:": [
+      "buff_0c9757f5a0fe4ff5a85f9ce540c061fc"
+    ],
+    "army:Ouki Army:Attack:Tou:騰:5:": [
+      "buff_faa3005783bf469cb0ce072a59b02b03"
+    ],
+    "army:Gakuka Unit:Attack:Rikusen:陸仙:5:": [
+      "buff_1e9069c32ada4940a4efdcf87d065cec"
+    ],
+    "army:Gakuka Unit:Defense:Rikusen:陸仙:5:": [
+      "buff_c4b5a314ba564289b55adefe81b6966a"
+    ],
+    "army:Six Great Generals:Attack:Hakuki:白起:5:": [
+      "buff_a1dcacd5341340558aec63de1477fd92"
+    ],
+    "army:Six Great Generals:Attack:Kyou:摎:5:": [
+      "buff_6e14339c9fc24b47afbc89ddfa5b7042"
+    ],
+    "army:Six Great Generals:Attack:Shibasaku:司馬錯:5:": [
+      "buff_6a75a2cb886c438bb6b9f010840480e9"
+    ],
+    "army:Six Great Generals:Attack:Sho:昭王:5:": [
+      "buff_c3aa9c3fd2b7456a9f87da10118ac221"
+    ],
+    "siege:Attack Siege Weapons:HP:Denei:田永:28.3:": [
+      "buff_61ee7bc4552140eeb6c8c9be13e12cfb"
+    ],
+    "siege:Attack Siege Weapons:HP:Shoumou:渉孟:28.3:": [
+      "buff_cc7ab9939bdb4825b1c3d403b2a5efd7"
+    ],
+    "siege:Attack Siege Weapons:HP:Roen:魯延:24.8:": [
+      "buff_1599f10f61fd42549b9193fa6aab1aad"
+    ],
+    "siege:Attack Siege Weapons:HP:Fuuki:馮忌:12.3:": [
+      "buff_44427c57a7cb40c48eaa8b68aa81a9de"
+    ],
+    "siege:Attack Siege Weapons:HP:Hoki:馮忌:12.3:": [
+      "buff_44427c57a7cb40c48eaa8b68aa81a9de"
+    ],
+    "siege:Attack Siege Weapons:HP:Mangoku:万極:12.3:": [
+      "buff_5c92d96c5d6a469bb7d8a340bae60eb5"
+    ],
+    "siege:Attack Siege Weapons:Attack:Muta:ムタ:6.4:": [
+      "buff_8892ca42b2cc450189732c0db81bbbef"
+    ],
+    "siege:Attack Siege Weapons:Attack:Jokan:徐完:5.8:": [
+      "buff_29bcc7f1be3a420e97c7d6e6fdd5420a"
+    ],
+    "siege:Attack Siege Weapons:Attack:Shuki:朱鬼:4.8:": [
+      "buff_2c193df97bc2498a9f3429fd3b653b4e"
+    ],
+    "siege:Attack Siege Weapons:Attack:Bamyu:バミュウ:2.8:": [
+      "buff_5438b126269f4497bc81b33a6c01f560"
+    ],
+    "siege:Attack Siege Weapons:Defense:Entei:燕呈:6.4:": [
+      "buff_0839503e5eb04bf4a3b052bf80c57389"
+    ],
+    "siege:Attack Siege Weapons:Defense:En:渕:5.8:": [
+      "buff_853c9f0e15c947fb8dc6c4ff726f3f2c"
+    ],
+    "siege:Attack Siege Weapons:Defense:Kei:慶:4.8:": [
+      "buff_8b6b8f6b07fa46769d526da45c01a92c"
+    ],
+    "siege:Attack Siege Weapons:Defense:Genpo:玄峰:2.8:": [
+      "buff_81919e211c0e4443b25200fea2041fa9"
+    ],
+    "siege:Attack Siege Weapons:Defense:Ryuyu:竜有:2.8:": [
+      "buff_7402a2c91893496a9827ab07307ba9f1"
+    ],
+    "siege:Defense Siege Weapons:HP:Fuuki:馮忌:28.3:": [
+      "buff_a87ad564253f42fe8d2ea30588f547fa"
+    ],
+    "siege:Defense Siege Weapons:HP:Hoki:馮忌:28.3:": [
+      "buff_a87ad564253f42fe8d2ea30588f547fa"
+    ],
+    "siege:Defense Siege Weapons:HP:Kakubi:郭備:28.3:": [
+      "buff_bdd1313fc9a947849462269d3a0c61b8"
+    ],
+    "siege:Defense Siege Weapons:HP:Shishi:肆氏:24.8:": [
+      "buff_fdf32ce10281415f82b2418a6558aa59"
+    ],
+    "siege:Defense Siege Weapons:HP:Denyuu:田有:12.3:": [
+      "buff_4c0ce6f128674429b0d0a2cb2fa9cb28"
+    ],
+    "siege:Defense Siege Weapons:HP:Maron:摩論:12.3:": [
+      "buff_fd0c0dfdecff4f999f4affc7b80f5458"
+    ],
+    "siege:Defense Siege Weapons:Attack:Kousonryu:公孫龍:6.4:": [
+      "buff_0094d7ce6b9b4ed0b84b986edb8d1bff"
+    ],
+    "siege:Defense Siege Weapons:Attack:Rishi:李斯:5.8:": [
+      "buff_c81d6ef9c4b94df7b4a8df5c9395f5a1"
+    ],
+    "siege:Defense Siege Weapons:Attack:Maki:麻鬼:4.8:": [
+      "buff_013856175eca4bc5896e890b0ef23053"
+    ],
+    "siege:Defense Siege Weapons:Attack:Chutetsu:中鉄:2.8:": [
+      "buff_99ec284602cd4fec81ca73877d49b412"
+    ],
+    "siege:Defense Siege Weapons:Attack:Shousa:松佐:2.8:": [
+      "buff_cb40da5075b2419390ea25248593b091"
+    ],
+    "siege:Defense Siege Weapons:Defense:Rihaku:李白:6.4:": [
+      "buff_1175501c02bc46edbf244cac0cb2f9c7"
+    ],
+    "siege:Defense Siege Weapons:Defense:Seki:石:5.8:": [
+      "buff_d47a1125a735469dac2fd7acea6515c9"
+    ],
+    "siege:Defense Siege Weapons:Defense:Kou:昂:4.8:": [
+      "buff_7ce9f49c71664468b02df3d3f0791275"
+    ],
+    "siege:Defense Siege Weapons:Defense:Shoukaku:尚鹿:2.8:": [
+      "buff_e5d1dbb83a624f4d9689a4d58e3aa51a"
+    ],
+    "terrain:Slope:terrain:Maki:麻鬼:5.4:": [
+      "buff_56336c6d677c4dbd90aabe5616060232"
+    ],
+    "terrain:Slope:terrain:Bihei:尾平:6.3:": [
+      "buff_69eafbce7a3f40a28411f4e0262466cb"
+    ],
+    "terrain:Slope:terrain:Kourigen:黄離弦:7.2:": [
+      "buff_196141978a1a43f48c2b67506d1953dd"
+    ],
+    "terrain:Slope:terrain:Rinbou:鱗坊:14.5:": [
+      "buff_bbc3356197e04374be2d3792bd3cc108"
+    ],
+    "terrain:Slope:terrain:Domon:土門:16.6:": [
+      "buff_5d3fccf49e90472ab7afd5f576e83399"
+    ],
+    "terrain:Forest:terrain:Douken:道剣:5.4:": [
+      "buff_71b0a47da3d54ea6bd3d33cd55d095aa"
+    ],
+    "terrain:Forest:terrain:Bikou:尾到:6.3:": [
+      "buff_8c546c2bf89945bd8e8142a9fcc2d0ac"
+    ],
+    "terrain:Forest:terrain:Kyomei:羌明:7.2:": [
+      "buff_f9f4c302426041808bcc8d96e8afe8db"
+    ],
+    "terrain:Forest:terrain:Heki:壁:14.5:": [
+      "buff_d95c3363b660436c85cce54956f33e1c"
+    ],
+    "terrain:Forest:terrain:Kokuou:黒桜:16.6:": [
+      "buff_2443a363d2ea4b379c11e2ebef86645a"
+    ],
+    "terrain:River:terrain:Kei:慶:5.4:": [
+      "buff_b36f965a0caf4121a215c19e04ec2e6f"
+    ],
+    "terrain:River:terrain:En:渕:6.3:": [
+      "buff_7b96f475392d459cbc108fecef81f278"
+    ],
+    "terrain:River:terrain:Kyoushou:羌象:7.2:": [
+      "buff_f56eacea6c7e4b8c931ed06ca6cbbf1f"
+    ],
+    "terrain:River:terrain:Doukin:同金:14.5:": [
+      "buff_17947b4e37d4456689126f6287bacfdd"
+    ],
+    "terrain:River:terrain:Ryuusen:竜川:16.6:": [
+      "buff_234006f5c8a54a0b83c55428b1b74e9f"
+    ],
+    "terrain:Swamp:terrain:Kou:昂:5.4:": [
+      "buff_77fdd51ed19e46ce88e2cd4637f1384a"
+    ],
+    "terrain:Swamp:terrain:Jokan:徐完:6.3:": [
+      "buff_afe75cbc632942d19fcf6bd01d39eb08"
+    ],
+    "terrain:Swamp:terrain:Yuuren:幽連:7.2:": [
+      "buff_62464f8598f14af09b99589f9b095937"
+    ],
+    "terrain:Swamp:terrain:Saji:左慈:14.5:": [
+      "buff_91ecedaa42ac4cc6848e7c7893407028"
+    ],
+    "terrain:Swamp:terrain:Mangoku:万極:16.6:": [
+      "buff_9415bde0f1c84794ae9149621245efbe"
+    ],
+    "terrain:Ambush:terrain:Gii:魏興:2:": [
+      "buff_038247295e4541febf97a44f8cdf6084"
+    ],
+    "terrain:Ambush:terrain:Seki:石:2.4:": [
+      "buff_021a1ef1eb6b41179f6d88b6e4a830ec"
+    ],
+    "terrain:Ambush:terrain:Chousou:趙荘:2.7:": [
+      "buff_091f59ba04a44d3ea53a9c68c271e912"
+    ],
+    "terrain:Ambush:terrain:Douken:道剣:4.6:": [
+      "buff_35b39a2a83db45118252390c1d4db6c5"
+    ],
+    "terrain:Ambush:terrain:Ryuukoku:隆国:5.5:": [
+      "buff_4e6dbf901e5d497c8bb6406b0eaa3f50"
+    ],
+    "terrain:Ambush:terrain:Kaishibou:介子坊:6.2:": [
+      "buff_1ab3a844f35747bbafee67f7a32145d5"
+    ],
+    "terrain:Ambush:terrain:Ka:太子嘉:7.8:": [
+      "buff_e62e71d858a442849172e166eb5207fa"
+    ],
+    "terrain:Checkpoint:terrain:Shuki:朱鬼:2:": [
+      "buff_3c7f448141984d2fb1d0de1640249818"
+    ],
+    "terrain:Checkpoint:terrain:Hyou:漂:2.4:": [
+      "buff_0174ea92aa4541be843185bb2239901b"
+    ],
+    "terrain:Checkpoint:terrain:Bakukoshin:縛虎申:2.7:": [
+      "buff_c7894092d5444d959d3ea20ed1c5f95b"
+    ],
+    "terrain:Checkpoint:terrain:Gii:魏興:4.6:": [
+      "buff_7b57d2f725ef4dfca02648329230f872"
+    ],
+    "terrain:Checkpoint:terrain:Kyougai:去亥:5.5:": [
+      "buff_392b3952a8e547c2b3fdbb49442742be"
+    ],
+    "terrain:Checkpoint:terrain:Jiou:江彰:5.5:": [
+      "buff_fcb4231404ff49718ad5e68ecdefae88"
+    ],
+    "terrain:Checkpoint:terrain:Rankai:ランカイ:6.2:": [
+      "buff_38317cfa80d94b46b8b80d10d43d5ee9"
+    ],
+    "unit:Cavalry:Defense:Nakon:奈棍:10:Shard upgrade": [
+      "buff_d693c0ad13cf468a93abe7deba8258a2",
+      "buff_3eae6dbaf1f14c0b90fda1ae7f5c3f91"
+    ]
+  }
+}

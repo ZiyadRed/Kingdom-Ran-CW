@@ -18,3 +18,7 @@ __pycache__/
 
 # Local agent orchestration state
 .ai-team/
+
+# Disposable Playwright reports and traces
+playwright-report/
+test-results/

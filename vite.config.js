@@ -4,7 +4,12 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
+  test: {
+    // Playwright owns tests/browser/*.spec.js; retain all existing unit/source tests.
+    include: ['src/**/*.test.{js,jsx}', 'scripts/**/*.test.mjs'],
+  },
   build: {
+    manifest: true,
     rollupOptions: {
       output: {
         manualChunks(id) {
@@ -14,7 +19,9 @@ export default defineConfig({
           // the entire character dataset, so let Rollup place them normally.
           if (
             normalized.includes('/data/glossary/') ||
-            normalized.endsWith('/data/souha_role_skills.json')
+            normalized.endsWith('/data/souha_role_skills.json') ||
+            // This table belongs only to Buff Tracker; bundle it with that route.
+            normalized.endsWith('/data/cw_team_buffs.json')
           ) return undefined
           if (normalized.includes('/data/')) return 'data'
           if (normalized.includes('node_modules')) {

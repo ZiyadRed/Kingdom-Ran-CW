@@ -6,8 +6,8 @@
  * metadata across the app — import from here.
  *
  * Locale metadata is intentionally centralized here. English keeps the
- * existing unprefixed URLs; Japanese and Arabic use exact URL prefixes so
- * bookmarks and shared links remain unambiguous.
+ * existing unprefixed URLs; Japanese, Arabic and French use exact URL
+ * prefixes so bookmarks and shared links remain unambiguous.
  */
 export const LOCALES = [
   {
@@ -47,6 +47,21 @@ export const LOCALES = [
     // pins `latn` explicitly rather than relying on a CLDR default.
     numberLocale: 'ar-EG-u-nu-latn',
     ogLocale: 'ar_EG',
+  },
+  {
+    code: 'fr',
+    bcp47: 'fr',
+    direction: 'ltr',
+    nativeLabel: 'Français',
+    enabled: true,
+    default: false,
+    routePrefix: '/fr',
+    // fr-FR groups thousands with a narrow no-break space (2 700) and uses a
+    // comma as the decimal separator, which is what French players expect
+    // from every other French site — the game client's own numbers are
+    // unformatted, so there is nothing to clash with.
+    numberLocale: 'fr-FR',
+    ogLocale: 'fr_FR',
   },
 ]
 

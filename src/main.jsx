@@ -10,6 +10,8 @@ import {
   LocaleProvider,
 } from './i18n/index.js'
 import './styles/globals.css'
+import './styles/castle-controls.css'
+import './styles/reference-hubs.css'
 import './styles/redesign.css'
 import './styles/localization.css'
 
@@ -38,5 +40,9 @@ const app = (
   </React.StrictMode>
 )
 
-if (root.hasChildNodes()) hydrateRoot(root, app)
+// The CDN serves the one English 404 artifact at arbitrary paths/locales. It is
+// useful static error content, but cannot be the requested router snapshot.
+// Mount that error document in its requested locale; valid route HTML hydrates.
+const genericNotFound = document.documentElement.dataset.ranhqDocument === 'not-found'
+if (root.hasChildNodes() && !genericNotFound) hydrateRoot(root, app)
 else createRoot(root).render(app)

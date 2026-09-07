@@ -5,6 +5,7 @@ import { i18n, initI18n } from './i18n.js'
 const en = getLocale('en')
 const ja = getLocale('ja')
 const ar = getLocale('ar')
+const fr = getLocale('fr')
 
 describe('i18next initialization', () => {
   it('initializes synchronously with English and serves the common catalog', () => {
@@ -34,6 +35,29 @@ describe('i18next initialization', () => {
     expect(i18n.language).toBe('ja')
     expect(i18n.t('common:appName')).toBe('RanHQ')
     expect(i18n.t('common:nav.archive')).toBe('アーカイブ')
+  })
+
+  it('initializing with French selects the French catalog with English fallback', async () => {
+    initI18n(fr)
+    await i18n.changeLanguage('fr')
+    expect(i18n.language).toBe('fr')
+    expect(i18n.t('common:appName')).toBe('RanHQ')
+    expect(i18n.t('common:nav.archive')).toBe('Archive')
+    expect(i18n.t('common:guide.title')).toBe('Guide de la Conquête d’Alliance')
+  })
+
+  it('uses the French singular for 0 and 1, and the plural above', async () => {
+    initI18n(fr)
+    await i18n.changeLanguage('fr')
+    // French CLDR puts 0 and 1 in the same `one` category.
+    expect(i18n.t('common:generalCount', { count: 0 })).toBe('0 général')
+    expect(i18n.t('common:generalCount', { count: 1 })).toBe('1 général')
+    expect(i18n.t('common:generalCount', { count: 4 })).toBe('4 généraux')
+    expect(i18n.t('common:selectedGenerals', { count: 1 })).toBe('1 général sélectionné')
+    expect(i18n.t('common:castlePoints.castleCount', { count: 1 })).toBe('1 château')
+    expect(i18n.t('common:castlePoints.castleCount', { count: 3 })).toBe('3 châteaux')
+    expect(i18n.t('common:castlePoints.largeCastleCount', { count: 1 })).toBe('1 grand château')
+    expect(i18n.t('common:castlePoints.pointsToday', { count: 1 })).toBe('1 point aujourd’hui')
   })
 
   it('uses explicit Arabic zero forms on every counted surface', async () => {

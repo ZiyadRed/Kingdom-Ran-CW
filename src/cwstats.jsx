@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ALL, CharIcon, RARITY_DATA } from './core.jsx'
+import { ALL, CharIcon, RARITY_DATA, searchCharacters } from './core.jsx'
 import { useLocale } from './i18n/LocaleContext.jsx'
 import { localizedCharacter, localizedText } from './i18n/data.js'
 import { formatNumber as formatLocaleNumber } from './i18n/format.js'
-import { matchesCharacterName } from './i18n/ar-character-names.js'
+import { useHydratedState } from './use-hydrated-state.js'
 
 export const CW_STATS_STORAGE_KEY = 'ranhq-cw-stats-v1'
 export const CW_POWER_WEIGHTS = { hp: 0.2, atk: 0.64102, def: 1 }
@@ -287,11 +287,10 @@ function CharacterSlot({ character, slotIndex, values, onChange, onChangeBaseBuf
 function CharacterSearch({ team, teamIndex, query, open, activeSlot, inputRef, onFocus, onChange, onSelect }) {
   const { t } = useTranslation('common')
   const locale = useLocale()
+  const searchInput = useRef(null)
   const normalizedQuery = query.trim().toLowerCase()
   const results = normalizedQuery
-    ? characterList
-      .filter((character) => matchesCharacterName(character, query))
-      .slice(0, 24)
+    ? searchCharacters(characterList, query, locale).slice(0, 24)
     : []
   const emptySlots = team.filter(Boolean).length < CW_STATS_SLOTS
   const hasTargetSlot = activeSlot?.teamIndex === teamIndex
@@ -304,7 +303,7 @@ function CharacterSearch({ team, teamIndex, query, open, activeSlot, inputRef, o
         <SearchIcon />
         <input
           id={`cwstats-search-${teamIndex}`}
-          ref={inputRef}
+          ref={element=>{searchInput.current=element;inputRef(element)}}
           className="cwstats-search-input"
           type="search"
           value={query}
@@ -313,6 +312,7 @@ function CharacterSearch({ team, teamIndex, query, open, activeSlot, inputRef, o
           onFocus={onFocus}
           onChange={(event) => onChange(event.target.value)}
         />
+        {query&&<button type="button" onClick={()=>{onChange('');searchInput.current?.focus()}}>{t('clear')}</button>}
       </div>
 
       {open && (
@@ -460,7 +460,7 @@ function TeamSection({ team, teamIndex, characters, query, open, activeSlot, edi
 
 export function CWStatsPage() {
   const { t } = useTranslation('common')
-  const [state, setState] = useState(readStoredCwStats)
+  const [state, setState, changed] = useHydratedState(createDefaultCwStatsState, readStoredCwStats)
   const [queries, setQueries] = useState({})
   const [openTeam, setOpenTeam] = useState(null)
   const [activeSlot, setActiveSlot] = useState(null)
@@ -468,12 +468,14 @@ export function CWStatsPage() {
   const searchRefs = useRef([])
 
   useEffect(() => {
+    if (!changed) return
     try {
-      window.localStorage.setItem(CW_STATS_STORAGE_KEY, JSON.stringify(state))
+      const serialized = JSON.stringify(state)
+      if (window.localStorage.getItem(CW_STATS_STORAGE_KEY) !== serialized) window.localStorage.setItem(CW_STATS_STORAGE_KEY, serialized)
     } catch {
       // Local storage may be unavailable in private browsing; the calculator still works for the session.
     }
-  }, [state])
+  }, [state, changed])
 
   useEffect(() => {
     if (openTeam === null) return
@@ -637,7 +639,7 @@ export function CWStatsPage() {
   }
 
   return (
-    <main className="cwstats-page">
+    <div className="cwstats-page">
       <header className="cwstats-page-head">
         <div>
           <h1>{t('stats.title')}</h1>
@@ -684,6 +686,6 @@ export function CWStatsPage() {
         <span aria-hidden="true">+</span>
         {state.teams.length >= CW_STATS_MAX_TEAMS ? t('stats.maxTeams') : t('stats.addTeam')}
       </button>
-    </main>
+    </div>
   )
 }

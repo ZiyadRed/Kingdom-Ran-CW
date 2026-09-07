@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect, useMemo } from 'react'
+import { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useLocale, formatNumber as formatLocaleNumber } from './i18n/index.js'
+import { useLocale, formatNumber as formatLocaleNumber, formatFixedNumber } from './i18n/index.js'
 import { localizedCharacter } from './i18n/data.js'
-import { LEGACY_CHARACTER_NAME_ALIASES, matchesCharacterName } from './i18n/ar-character-names.js'
+import { LEGACY_CHARACTER_NAME_ALIASES } from './i18n/ar-character-names.js'
+import { characterContentMatch } from './i18n/character-search.js'
 import cw6SceneCards from '../data/cw6_scene_cards.json'
 import mountainFolk from '../data/characters/mountain_folk.json'
 import qin          from '../data/characters/qin.json'
@@ -25,39 +26,15 @@ import cwMaxStats   from '../data/cw_max_stats.json'
 import sceneCardBuffs from '../data/scene_card_cw_buffs.json'
 import rarityData from '../data/character_rarity.json'
 import souhaRoleSkills from '../data/souha_role_skills.json'
+import { PROGRESS_STORAGE_KEY, emptyProgress, readProgressSnapshot, replaceProgressFromBackup } from './progress-storage.js'
+import { useHydratedState } from './use-hydrated-state.js'
+import Dialog from './Dialog.jsx'
+import { buffOwnershipId, migrateBuffOwnership } from './buff-ownership.js'
+export { PROGRESS_STORAGE_KEY, emptyProgress } from './progress-storage.js'
 
-// Shared modal behavior: close on Escape and lock background scroll while a
-// modal/overlay is open. `active` gates it so the hook is safe to call
-// unconditionally (rules-of-hooks) even when the modal is closed.
-export function useModalDismiss(active,onClose){
-  useEffect(()=>{
-    if(!active) return
-    const onKey=e=>{if(e.key==='Escape')onClose()}
-    document.addEventListener('keydown',onKey)
-    const prev=document.body.style.overflow
-    document.body.style.overflow='hidden'
-    return()=>{document.removeEventListener('keydown',onKey);document.body.style.overflow=prev}
-  },[active,onClose])
-}
-
-export const PROGRESS_STORAGE_KEY='ranhq-progress-v3'
-export const emptyProgress=()=>({cw6Cards:{},sceneBuffCards:{},sceneBuffStars:{},buffSources:{}})
 export const normalizeProgress=(raw={})=>{
   const base=emptyProgress()
-  const buffSources={...(raw.buffSources||{})}
-  // Buff ownership used to include the array index in its key. Migrate those
-  // legacy keys once so inserting/reordering contributors can never change
-  // what a player owns again.
-  for(const key of Object.keys(buffSources)){
-    const stable=key.replace(/:\d+(?::shard)?$/,'')
-    if(stable!==key){
-      if(buffSources[key] && !buffSources[stable]) buffSources[stable]=buffSources[key]
-      delete buffSources[key]
-    }
-  }
-  migrateFuukiSiegeOwnership(buffSources)
-  migrateNakonBuffOwnership(buffSources)
-  return Object.fromEntries(Object.keys(base).map(k=>[k,k==='buffSources'?buffSources:{...(raw[k]||{})}]))
+  return Object.fromEntries(Object.keys(base).map(k=>[k,k==='buffSources'?migrateBuffOwnership(raw[k]||{}):{...(raw[k]||{})}]))
 }
 export const readProgress=()=>{
   if(typeof window==='undefined') return emptyProgress()
@@ -66,11 +43,19 @@ export const readProgress=()=>{
 }
 export function useProgressTracker(){
   const{t}=useTranslation('common')
-  const[progress,setProgress]=useState(readProgress)
+  const[progress,setProgress,changed]=useHydratedState(emptyProgress,readProgress)
+  const[previousAvailable,setPreviousAvailable]=useState(false)
   useEffect(()=>{
-    try{window.localStorage.setItem(PROGRESS_STORAGE_KEY,JSON.stringify(progress))}
+    try{setPreviousAvailable(readProgressSnapshot(window.localStorage)!==null)}catch{ /* storage unavailable */ }
+  },[])
+  useEffect(()=>{
+    if(!changed) return
+    try{
+      const serialized=JSON.stringify(progress)
+      if(window.localStorage.getItem(PROGRESS_STORAGE_KEY)!==serialized) window.localStorage.setItem(PROGRESS_STORAGE_KEY,serialized)
+    }
     catch{ /* localStorage unavailable (private mode / quota) — ignore */ }
-  },[progress])
+  },[progress,changed])
   const isOwned=(bucket,id)=>!!progress[bucket]?.[id]
   const toggleOwned=(bucket,id)=>{
     setProgress(prev=>{
@@ -105,18 +90,27 @@ export function useProgressTracker(){
   const importProgress=()=>{
     const text=window.prompt(t('pasteProgress'))
     if(!text) return
+    replaceBackup(text)
+  }
+  const replaceBackup=text=>{
     try{
-      const parsed=JSON.parse(text)
-      setProgress(normalizeProgress(parsed.progress||parsed))
-      window.alert(t('progressImported'))
-    }catch{
-      window.alert(t('progressImportFailed'))
+      const result=replaceProgressFromBackup(text,window.localStorage,normalizeProgress)
+      setProgress(result.progress)
+      setPreviousAvailable(true)
+      window.alert(`${t('progressImported')} ${t('progressImportSummary',result.counts)}`)
+    }catch(error){
+      window.alert(t(error.code==='storage'?'progressStorageFailed':'progressImportFailed'))
     }
+  }
+  const restoreProgress=()=>{
+    let previous
+    try{previous=readProgressSnapshot(window.localStorage)}catch{ /* storage unavailable */ }
+    if(previous!==null&&previous!==undefined&&window.confirm(t('restoreProgressConfirm'))) replaceBackup(previous)
   }
   const clearProgress=()=>{
     if(window.confirm(t('clearProgressConfirm'))) setProgress(emptyProgress())
   }
-  return{progress,isOwned,toggleOwned,setProgressValue,countOwned,exportProgress,importProgress,clearProgress}
+  return{progress,isOwned,toggleOwned,setProgressValue,countOwned,exportProgress,importProgress,clearProgress,previousAvailable,restoreProgress}
 }
 // `label` is the English default; `key` lets a caller translate it. The
 // catalog already carries all/owned/missing for every locale.
@@ -132,6 +126,7 @@ export const ProgressTools=({tracker})=>{
       <span className="progress-tools-note">{t('savedBrowser')}</span>
       <button type="button" onClick={tracker.exportProgress}>{t('export')}</button>
       <button type="button" onClick={tracker.importProgress}>{t('import')}</button>
+      {tracker.previousAvailable&&<button type="button" onClick={tracker.restoreProgress}>{t('restoreProgress')}</button>}
       <button type="button" onClick={tracker.clearProgress}>{t('clear')}</button>
     </div>
   )
@@ -170,36 +165,7 @@ export const SceneStarControl=({star,onChange})=>{
     </div>
   )
 }
-export const buffSourceId=(kind,key,stat,e,_i)=>{
-  const base=`${kind}:${key}:${stat}:${e.name||''}:${e.name_jp||''}:${e.value||0}:${e.special_label||''}`
-  return e.source_id?`${base}:${e.source_id}`:base
-}
-
-// The display-name correction from Hoki to Fuuki changes the stable ownership
-// key for her two siege buffs. Migrate only those entries; other legacy buff
-// rows keep their existing keys until their underlying data is corrected.
-function migrateFuukiSiegeOwnership(buffSources){
-  for(const key of Object.keys(buffSources)){
-    if(!key.startsWith('siege:')||!key.includes(':Hoki:馮忌:')) continue
-    const nextKey=key.replace(':Hoki:馮忌:',':Fuuki:馮忌:')
-    if(!buffSources[nextKey]) buffSources[nextKey]=buffSources[key]
-    delete buffSources[key]
-  }
-}
-
-// Nakon was previously stored as one 10% source. Preserve that ownership by
-// marking both new 5% sources when an existing visitor has the old key.
-function migrateNakonBuffOwnership(buffSources){
-  const entries=(cwBuffsData.Cavalry?.Defense||[]).filter(e=>e.name==='Nakon')
-  if(entries.length!==2) return
-  const legacy=`unit:Cavalry:Defense:${entries[0].name}:${entries[0].name_jp}:10:${entries[0].special_label||''}`
-  if(!buffSources[legacy]) return
-  entries.forEach((entry,index)=>{
-    const id=buffSourceId('unit','Cavalry','Defense',entry,index)
-    if(!buffSources[id]) buffSources[id]=buffSources[legacy]
-  })
-  delete buffSources[legacy]
-}
+export const buffSourceId=(_kind,_key,_stat,entry,_i)=>buffOwnershipId(entry)
 
 // ── Scene cards that have not gone live in the game yet ──────────────────────
 // The source data carries the card's in-game release timestamp. A card dated in
@@ -355,10 +321,10 @@ export const findCharByName = name => typeof name==='string'
   ? CHAR_BY_NAME[name]||CHAR_BY_NAME[name.toLowerCase()]||null
   : null
 export const CHAR_BY_ID = Object.fromEntries(ALL.map(character=>[character.id,character]))
-export const findCharById = id => typeof id==='string' ? CHAR_BY_ID[id]||null : null
-// Number of browsable characters (those with art) — matches the per-faction
-// sidebar counts. Derived so the Archive tab badge can't drift from the data.
-export const ARCHIVE_CHAR_COUNT = ALL.filter(c=>c.image).length
+export const findCharById = id => typeof id==='string' && Object.hasOwn(CHAR_BY_ID,id) ? CHAR_BY_ID[id] : null
+// Every published general is browsable, including those with an icon only.
+// Derived so the Archive tab badge can't drift from the valid roster.
+export const ARCHIVE_CHAR_COUNT = ALL.length
 
 export const RED_CRYSTAL_TOTAL_COST={R:595,SR:800,UR:1750,LG:1750}
 export const RED_CRYSTAL_SKILL_COSTS={R:[70,175,350],SR:[80,240,480],UR:[100,550,1100],LG:[100,550,1100]}
@@ -423,7 +389,7 @@ export function RedCrystalCostChip({cost,value}){
   if(!cost) return null
   const efficiency=value?cost/value:null
   const tooltip=efficiency
-    ?t('efficiencyTooltip', { value: formatLocaleNumber(Math.round(efficiency),locale), cost: formatLocaleNumber(cost,locale), buff: value.toFixed(1) })
+    ?t('efficiencyTooltip', { value: formatLocaleNumber(Math.round(efficiency),locale), cost: formatLocaleNumber(cost,locale), buff: formatFixedNumber(value,locale) })
     :t('redCrystalCostTooltip', { cost: formatLocaleNumber(cost,locale) })
   return(
     <span className="cost-chip" data-tooltip={tooltip} tabIndex={0} aria-label={tooltip} style={{
@@ -440,6 +406,7 @@ export function RedCrystalCostChip({cost,value}){
   )
 }
 export function BuffValueCluster({value,color,cost,icon,iconLabel,iconTitle,fontSize='1.1rem',minWidth='52px'}){
+  const locale=useLocale()
   return(
     <div className="buff-value-cluster" style={{display:'flex',alignItems:'center',justifyContent:'flex-end',gap:'8px',minWidth:'150px',flexShrink:0}}>
       {icon&&!cost&&<img
@@ -451,7 +418,7 @@ export function BuffValueCluster({value,color,cost,icon,iconLabel,iconTitle,font
         style={{width:20,height:20,objectFit:'contain',flexShrink:0}}
       />}
       <RedCrystalCostChip cost={cost} value={value}/>
-      <div style={{fontWeight:900,fontSize,color,minWidth,textAlign:'right',fontVariantNumeric:'tabular-nums'}}>+{value.toFixed(1)}%</div>
+      <div style={{fontWeight:900,fontSize,color,minWidth,textAlign:'right',fontVariantNumeric:'tabular-nums'}}>+{formatFixedNumber(value,locale)}%</div>
     </div>
   )
 }
@@ -493,17 +460,35 @@ export function metaTeamsByCountry(teams=META_TEAMS){
 // use for any display ≤ ~200px so phones don't download the full 626×880 art.
 export const persosThumb=img=>img&&img.startsWith('/persos/')?img.replace('/persos/','/persos/thumbs/'):img
 
-// Icon: use c.icon if available, else fall back to c.image cropped, else initials
+// One attempt per distinct source, then initials. Keep state inside this keyed
+// instance so changing character/source resets recovery without touching callers.
+function CharacterIconImage({sources,displayName,style,className,load,color,size}){
+  const[failed,setFailed]=useState([])
+  const src=sources.find(source=>!failed.includes(source))
+  const fail=useCallback(()=>{
+    if(src) setFailed(previous=>previous.includes(src)?previous:[...previous,src])
+  },[src])
+  // An eager SSR image can fail before hydration attaches onError. Also handles
+  // a cached failed thumbnail without retrying either URL on unrelated renders.
+  const imageRef=useCallback(image=>{
+    if(image?.getAttribute('src')&&image.complete&&image.naturalWidth===0) fail()
+  },[fail])
+  if(src) return <img key={src} ref={imageRef} src={src} style={style} className={className} alt={displayName} decoding="async" onError={fail} {...load}/>
+  // Use an opaque parchment base so faction tint stays readable on dark headers.
+  return <div role="img" aria-label={displayName} style={{...style,maxWidth:'100%',maxHeight:'100%',backgroundColor:'var(--sur)',backgroundImage:`linear-gradient(${color}33,${color}33)`,color:'var(--navy)',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:700,fontSize:size*.38+'px'}} className={className}>{Array.from(displayName.trim())[0]||'?'}</div>
+}
+
+// Icon -> existing banner thumbnail -> initial; never invent replacement art.
 export function CharIcon({c,size=40,round=false,className='',eager=false}){
   const locale=useLocale()
+  const{t}=useTranslation('common')
   const r=round?'50%':'8px'
   const s={width:size,height:size,borderRadius:r,objectFit:'cover',objectPosition:'center top',flexShrink:0,display:'block'}
-  const displayName=c?.displayName||localizedCharacter(c,locale).displayName
-  const load=eager?{loading:'eager',fetchPriority:'high'}:{loading:'lazy'}
-  if(c?.icon) return <img src={c.icon} style={s} className={className} alt={displayName} decoding="async" {...load}/>
-  if(c?.image) return <img src={persosThumb(c.image)} style={{...s,objectPosition:'top center'}} className={className} alt={displayName} decoding="async" {...load}/>
-  const col=(CC[c?.country]||'#888')
-  return <div style={{...s,background:col+'33',color:col,display:'flex',alignItems:'center',justifyContent:'center',fontWeight:700,fontSize:size*.38+'px'}} className={className}>{displayName?.[0]||'?'}</div>
+  const displayName=c?.displayName||localizedCharacter(c,locale).displayName||t('unknown')
+  const load=eager?{loading:'eager',fetchpriority:'high'}:{loading:'lazy'}
+  const sources=[...new Set([c?.icon,c?.image&&persosThumb(c.image)].filter(Boolean))]
+  const col=(CC[c?.country]||'#888888')
+  return <CharacterIconImage key={JSON.stringify([c?.id,...sources])} sources={sources} displayName={displayName} style={c?.icon?s:{...s,objectPosition:'top center'}} className={className} load={load} color={col} size={size}/>
 }
 
 
@@ -1166,36 +1151,48 @@ export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false,isDef
 }
 
 // Picker
-export function Picker({onSelect,onClose,excl=[]}){
+const searchTerms = new WeakMap()
+export function matchCharacterSearch(character, query, locale) {
+  if (!String(query ?? '').trim()) return { hint: null }
+  if (!searchTerms.has(character)) {
+    const faction = FACTIONS.find(f => f.id === character.country)
+    const groups = Object.entries(CHAR_GROUPS).filter(([, names]) => names.includes(character.name_en)).map(([tag]) => tag)
+    searchTerms.set(character, { groups, terms: [faction?.label, faction?.jp, ...groups].filter(Boolean) })
+  }
+  const { groups, terms } = searchTerms.get(character)
+  const match = characterContentMatch(character, query, locale, terms)
+  if (match) return match
+  // Keep the existing hidden-tag phrase search, e.g. "HiShin team".
+  return groups.some(tag => String(query).toLowerCase().includes(tag.toLowerCase())) ? { hint: null } : null
+}
+
+export function searchCharacters(characters, query, locale) {
+  const exactNames = [], partialNames = [], content = []
+  for (const character of characters) {
+    const match = matchCharacterSearch(character, query, locale)
+    if (match) (match.nameMatch === 'exact' ? exactNames : match.nameMatch ? partialNames : content).push(character)
+  }
+  // A general's name comes before skills that mention that general. This also
+  // keeps name matches reachable in the Stats picker's bounded result list.
+  return [...exactNames, ...partialNames, ...content]
+}
+
+export function Picker({onSelect,onClose,excl=[],returnFocus}){
   const locale=useLocale()
   const{t}=useTranslation('common')
   const[q,setQ]=useState(''),ref=useRef(null)
-  useModalDismiss(true,onClose)
-  useEffect(()=>{ref.current?.focus()},[])
   const exclKey=excl.join('|')
   const chars=useMemo(()=>{
-    const ql=q.toLowerCase()
-    const factionLabel=c=>FACTIONS.find(f=>f.id===c.country)?.label||''
-    return ALL.filter(c=>!excl.includes(c.id)&&(!q||(
-      matchesCharacterName(c,q)||
-      (c.unit_type&&c.unit_type.toLowerCase().includes(ql))||
-      (c.groups&&c.groups.some(g=>g.toLowerCase().includes(ql)))||
-      (c.roleSkill&&(
-        c.roleSkill.type.toLowerCase().includes(ql)||
-        c.roleSkill.name_en.toLowerCase().includes(ql)||
-        c.roleSkill.name_jp.includes(q)
-      ))||
-      factionLabel(c).toLowerCase().includes(ql)||
-      (c.country&&c.country.toLowerCase().includes(ql))
-    )))
+    return searchCharacters(ALL.filter(c=>!excl.includes(c.id)),q,locale)
   // exclKey is the stable representation of `excl`; ESLint can't see that.
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[q,exclKey])
+  },[q,exclKey,locale])
   return(
-    <div className="overlay" onClick={onClose}>
-      <div className="picker" role="dialog" aria-modal="true" aria-label={t('archive.searchGenerals')} onClick={e=>e.stopPropagation()}>
+    <Dialog className="overlay" onClose={onClose} aria-label={t('archive.searchGenerals')} initialFocus={()=>ref.current} returnFocus={returnFocus}>
+      <div className="picker" onClick={e=>e.stopPropagation()}>
         <div className="picker-head"><span>{t('archive.searchGenerals')}</span><button className="x-btn" aria-label={t('close')} onClick={onClose}>✕</button></div>
-        <div className="picker-filters"><input ref={ref} className="picker-search" aria-label={t('archive.searchGenerals')} placeholder={`${t('search')}…`} value={q} onChange={e=>setQ(e.target.value)}/></div>
+        <div className="picker-filters"><input ref={ref} type="search" className="picker-search" aria-label={t('archive.searchGenerals')} placeholder={`${t('search')}…`} value={q} onChange={e=>setQ(e.target.value)}/>{q&&<button type="button" onClick={()=>{setQ('');ref.current?.focus()}}>{t('clear')}</button>}</div>
+        {!chars.length&&<p className="search-empty" role="status">{t('stats.noCharacterMatches',{query:q})}</p>}
         <div className="picker-grid">
           {chars.map(c=>(
             <button key={c.id} className="p-card" style={{borderTopColor:CC[c.country]||'#999'}} onClick={()=>{onSelect(c);onClose()}}>
@@ -1207,7 +1204,7 @@ export function Picker({onSelect,onClose,excl=[]}){
           ))}
         </div>
       </div>
-    </div>
+    </Dialog>
   )
 }
 

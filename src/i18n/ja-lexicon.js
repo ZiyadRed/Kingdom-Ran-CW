@@ -64,6 +64,7 @@ export const STATS = {
   'Squad Damage': '部隊ダメージ',
   'Damage Taken Increase': '被ダメージ上昇',
   'Damage Dealt Reduction': '与ダメージ軽減',
+  'Starting Troop HP Loss': '初期兵力減少',
   'Squad Damage Reduction': '部隊ダメージ軽減',
   'Damage Reduction Effect': 'ダメージ軽減効果',
   'Poison Damage': '毒ダメージ',

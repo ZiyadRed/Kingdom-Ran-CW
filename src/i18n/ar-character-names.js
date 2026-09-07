@@ -57,6 +57,10 @@ export function legacyCharacterNames(name) {
   return LEGACY_NAMES_BY_CANONICAL[canonicalCharacterName(name)] || []
 }
 
+export function correctedCharacterSearchTarget(query) {
+  return CORRECTED_NAME_TARGET_BY_LOWER[String(query ?? '').trim().toLowerCase()] || null
+}
+
 export const AR_CHARACTER_NAMES = {
   'Rouai': 'رواي',
   'Wategi': 'واتيغي',
@@ -301,14 +305,14 @@ export function normalizeCharacterSearchText(value) {
 }
 
 /** Match one general by Romaji, Arabic, or Japanese on every search surface. */
-export function matchesCharacterName(character, query) {
+export function matchesCharacterName(character, query, { exact = false } = {}) {
   if (!query || !String(query).trim()) return true
   const rawQuery = String(query).trim()
   const lowerQuery = rawQuery.toLowerCase()
   // Exact corrected/legacy spellings should resolve to their one intended
   // general before fuzzy long-vowel matching. Otherwise Jiou also matched
   // Bajio and Koushou also matched the distinct Koshou.
-  const correctedTarget = CORRECTED_NAME_TARGET_BY_LOWER[lowerQuery]
+  const correctedTarget = correctedCharacterSearchTarget(rawQuery)
   if (correctedTarget) {
     return canonicalCharacterName(character?.name_en)?.toLowerCase() === correctedTarget.toLowerCase()
   }
@@ -322,9 +326,9 @@ export function matchesCharacterName(character, query) {
 
   return candidates.some((candidate) => {
     const text = String(candidate)
-    if (text.toLowerCase().includes(lowerQuery)) return true
+    if (exact ? text.toLowerCase() === lowerQuery : text.toLowerCase().includes(lowerQuery)) return true
     const normalized = normalizeCharacterSearchText(text)
-    return Boolean(normalizedQuery && normalized.includes(normalizedQuery))
+    return Boolean(normalizedQuery && (exact ? normalized === normalizedQuery : normalized.includes(normalizedQuery)))
   })
 }
 

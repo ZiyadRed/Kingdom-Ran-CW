@@ -2,7 +2,7 @@ import { PassThrough } from 'node:stream'
 import { renderToPipeableStream } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import App from './App.jsx'
-import { ALL, FACTIONS } from './core.jsx'
+import { findCharById, FACTIONS } from './core.jsx'
 import {
   initI18n,
   localeBasename,
@@ -10,22 +10,22 @@ import {
   LocaleProvider,
 } from './i18n/index.js'
 import { localizedCharacter, localizedText } from './i18n/data.js'
-import { canonicalPath, characterSeo, routeSeo } from './seo.js'
+import { characterRouteId, characterSeo, routeSeo } from './seo.js'
 
 function factionDisplay(faction, locale) {
   if (!faction) return ''
   if (locale.code === 'ja') return faction.jp || faction.label
-  if (locale.code === 'ar') return localizedText(faction.label, 'ar')
-  return faction.label
+  // Arabic and French both name the factions through their own lexicon; every
+  // other locale keeps the English label.
+  return localizedText(faction.label, locale)
 }
 
 export function seoForUrl(url) {
   const locale = localeFromPathname(url)
-  const appPath = canonicalPath(url)
-  const match = /^\/archive\/characters\/([^/]+)$/.exec(appPath)
-  if (match) {
-    const character = ALL.find((item) => item.id === match[1])
-    if (!character) return { ...routeSeo(url, locale), robots: 'noindex,follow' }
+  const id = characterRouteId(url)
+  if (id) {
+    const character = findCharById(id)
+    if (!character) return routeSeo(url, locale)
     const localized = localizedCharacter(character, locale)
     return characterSeo(character, {
       locale,

@@ -1,6 +1,8 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocale, formatNumber as formatLocaleNumber, pluralSuffix } from './i18n/index.js'
+import { useStoredDraft } from './use-stored-draft.js'
+import { CASTLE_DRAFT_KEY, createCastleDraft, normalizeCastleDraft, defaultBoard, makeAlliance, defaultAllianceName, allianceDisplayName } from './castle-draft.js'
 
 export const CASTLE_POINT_VALUES = {
   large: 2700,
@@ -18,22 +20,6 @@ const CASTLE_TYPES = [
   { id: 'medium', label: 'Mid', short: 'M', icon: '/icons/castle-points/castle-medium.png' },
   { id: 'small', label: 'Small', short: 'S', icon: '/icons/castle-points/castle-small.png' },
 ]
-
-function makeAlliance(index, isMine = false){
-  return {
-    id: isMine ? 'mine' : `alliance-${Date.now()}-${index}`,
-    name: isMine ? 'My Alliance' : `Alliance ${index + 1}`,
-    large: 0,
-    medium: 0,
-    small: 0,
-    carried: 0,
-    isMine,
-  }
-}
-
-function defaultBoard(){
-  return [makeAlliance(0, true)]
-}
 
 function clampNumber(value){
   const parsed = Number.parseInt(value, 10)
@@ -110,6 +96,8 @@ function projectedSummary(value, t, locale){
   // Arabic and Japanese both name the quantity before the value — 「予測 1,234」,
   // not 「1,234 予測」, which reads as a stray noun after the number.
   if(locale.direction === 'rtl' || locale.code === 'ja') return `${label} ${number}`
+  // A labelled value is clearer in French than the fragment "1 234 projection".
+  if(locale.code === 'fr') return `${label} : ${number}`
   return `${number} ${locale.code === 'en' ? label.toLowerCase() : label}`
 }
 
@@ -117,8 +105,10 @@ function castleTypeLabel(typeId, t, language){
   const typeLabel = t(`castlePoints.${typeId}`, { defaultValue: typeId })
   const noun = t('castlePoints.castle')
   // Only English names the size and the noun separately ("Large" + "castle").
-  // 大城 and قلعة كبيرة are already whole nouns, so appending gives 「大城 城」.
-  if(language === 'ar' || (noun && typeLabel.includes(noun))) return typeLabel
+  // 大城, قلعة كبيرة and "Grand château" are already whole nouns, so appending
+  // would give 「大城 城」. The comparison is case-insensitive because French
+  // capitalises the label ("Château moyen") but not the bare noun.
+  if(language === 'ar' || (noun && typeLabel.toLowerCase().includes(noun.toLowerCase()))) return typeLabel
   return `${typeLabel} ${noun}`
 }
 
@@ -134,9 +124,7 @@ function CastleStepper({ alliance, type, onChange }){
   const locale = useLocale()
   const value = clampNumber(alliance[type.id])
   const typeLabel = castleTypeLabel(type.id, t, locale.code)
-  const allianceLabel = alliance?.isMine && alliance.name === 'My Alliance'
-    ? t('castlePoints.mine')
-    : String(alliance?.name || '').replace(/^Alliance (\d+)$/, `${t('castlePoints.alliance')} $1`)
+  const allianceLabel = allianceDisplayName(alliance, t)
   return (
     <div className="cp-stepper" aria-label={`${typeLabel} · ${allianceLabel}`}>
       <button type="button" aria-label={`${t('castlePoints.remove')} ${typeLabel}`} onClick={() => onChange(type.id, -1)} disabled={value === 0}>-</button>
@@ -156,11 +144,9 @@ function CastleStepper({ alliance, type, onChange }){
 export default function CastlePointsPage(){
   const { t, i18n } = useTranslation('common')
   const locale = useLocale()
-  const [mode, setMode] = useState('normal')
-  const [boards, setBoards] = useState(() => ({
-    normal: defaultBoard(),
-    selection: defaultBoard(),
-  }))
+  const [draft, setDraft] = useStoredDraft(CASTLE_DRAFT_KEY, createCastleDraft, normalizeCastleDraft)
+  const { mode, boards } = draft
+  const setMode = mode => setDraft(current => ({ ...current, mode }))
 
   const board = boards[mode]
   const ranked = useMemo(() => rankCastlePointBoard(board), [board])
@@ -171,16 +157,12 @@ export default function CastlePointsPage(){
   const totalCastles = board.reduce((sum, alliance) => (
     sum + clampNumber(alliance.large) + clampNumber(alliance.medium) + clampNumber(alliance.small)
   ), 0)
-  const localizedAllianceName = alliance => {
-    if (alliance?.isMine && (!alliance.name || alliance.name === 'My Alliance')) return t('castlePoints.mine')
-    const match = String(alliance?.name || '').match(/^Alliance (\d+)$/)
-    return match ? `${t('castlePoints.alliance')} ${match[1]}` : alliance?.displayName || alliance?.name
-  }
+  const localizedAllianceName = alliance => allianceDisplayName(alliance, t)
 
   const updateBoard = updater => {
-    setBoards(prev => ({
+    setDraft(prev => ({
       ...prev,
-      [mode]: updater(prev[mode]),
+      boards: { ...prev.boards, [prev.mode]: updater(prev.boards[prev.mode]) },
     }))
   }
 
@@ -198,7 +180,12 @@ export default function CastlePointsPage(){
   }
 
   const addAlliance = () => {
-    updateBoard(current => current.length >= 7 ? current : [...current, makeAlliance(current.length)])
+    updateBoard(current => {
+      if (current.length >= 7) return current
+      let nextNumber = 2
+      while (current.some(alliance => alliance.id === `alliance-${nextNumber}` || alliance.defaultNumber === nextNumber)) nextNumber += 1
+      return [...current, makeAlliance(nextNumber - 1)]
+    })
   }
 
   const removeAlliance = id => {
@@ -210,7 +197,7 @@ export default function CastlePointsPage(){
   }
 
   return (
-    <main className="castle-points-page">
+    <div className="castle-points-page">
       <section className="cp-head">
         <div>
           <p>{t('castlePoints.tool')}</p>
@@ -286,7 +273,8 @@ export default function CastlePointsPage(){
                       <td>
                         <div className="cp-name-cell">
                           <input
-                            value={localizedAllianceName(alliance)}
+                            value={alliance.name ?? defaultAllianceName(alliance, t)}
+                            placeholder={defaultAllianceName(alliance, t)}
                             aria-label={t('castlePoints.allianceName')}
                             onChange={event => updateAlliance(alliance.id, () => ({ name: event.target.value }))}
                           />
@@ -369,6 +357,6 @@ export default function CastlePointsPage(){
           </div>
         </aside>
       </div>
-    </main>
+    </div>
   )
 }

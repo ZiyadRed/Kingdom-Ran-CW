@@ -1,6 +1,9 @@
 import { describe, it, expect } from 'vitest'
 import { DEFAULT_SHARE_LABELS, builderShareUrl, characterShareUrl, formatCharacterSkillsShare, formatSceneCardShare, formatTeamBuffShare, limitDiscordMessage, sceneCardShareUrl, teamImagePresentationLayout } from './share.js'
 import { renderArabicText } from './i18n/ar-render.js'
+import { localizedSkill } from './i18n/data.js'
+import { renderFrenchText } from './i18n/fr-render.js'
+import { CATALOGS } from './i18n/i18n.js'
 
 describe('Discord share formatting', () => {
   it('mirrors Arabic team columns and header anchors without changing logical slot order', () => {
@@ -17,6 +20,7 @@ describe('Discord share formatting', () => {
     expect(characterShareUrl({ id: 'ouhon' }, 'ja')).toBe('https://ranhq.vercel.app/ja/archive/characters/ouhon')
     expect(builderShareUrl('ar')).toBe('https://ranhq.vercel.app/ar/builder')
     expect(sceneCardShareUrl('ja')).toBe('https://ranhq.vercel.app/ja/archive/cw6-scene-cards')
+    expect(characterShareUrl({ id: 'ouhon' }, 'fr')).toBe('https://ranhq.vercel.app/fr/archive/characters/ouhon')
   })
 
   it('formats character skills with condition labels instead of IF text', () => {
@@ -38,7 +42,7 @@ describe('Discord share formatting', () => {
         }],
       }],
     })
-    expect(text).toContain('**RanHQ Skills: Test General**')
+    expect(text).toContain('**RanHQ Skill Card — Test General**')
     expect(text).toContain('1 enemy [General] -> 150% Damage | When: Attacking; Target: enemy [General] with highest ATK')
     expect(text).not.toContain('IF')
   })
@@ -122,7 +126,7 @@ describe('Discord share formatting', () => {
         effects:[{target:'Self',effect:'ATK Up 30%',duration:null}],
       },
     })
-    expect(text).toContain('**RanHQ CW6 Scene Card: Building a Strong Nation**')
+    expect(text).toContain('**CW6 Card Skill — Building a Strong Nation**')
     expect(text).toContain('Rien - Strategy - 6-star')
     expect(text).toContain('<https://ranhq.vercel.app/archive/cw6-scene-cards>')
     expect(text).toContain('- Self -> ATK Up 30%')
@@ -158,6 +162,34 @@ describe('Discord share formatting', () => {
     expect(team).toContain(labels.attackingFormation)
     expect(team).toContain(labels.noGenerals)
     expect(team).not.toContain('Attacking Formation')
+  })
+
+  it('keeps French Discord output and truncation chrome in French', () => {
+    const labels = {
+      ...DEFAULT_SHARE_LABELS,
+      ...CATALOGS.fr.shareOutput,
+      translationPending: CATALOGS.fr.translationPending,
+      noRelevantBuffs: CATALOGS.fr.noRelevantBuffs,
+      team: CATALOGS.fr.teamCost.team,
+      unknown: CATALOGS.fr.unknown,
+      conditions: { Requires: 'Condition' },
+      localizeTerm: renderFrenchText,
+    }
+    const skill = localizedSkill({
+      name_en: 'Test',
+      type: 'Combat',
+      effects: [{ condition: 'When Garrisoning', target: 'Self', effect: 'HP Recovery 2.7%', duration: '2 turns' }],
+    }, 'unknown', 0, 'fr')
+    const text = formatCharacterSkillsShare({ id: 'ousen', name_en: 'Ousen', skills: [skill] }, { labels })
+
+    expect(text).toContain('**Fiche de compétences RanHQ — Ousen**')
+    expect(text).toContain('Soi-même -> Soin de 2,7% de PV (2 tours) | Condition: En garnison')
+    expect(text).not.toMatch(/RanHQ Skills|Requires:/)
+
+    const shortened = limitDiscordMessage('Une ligne très longue '.repeat(20), 'https://ranhq.vercel.app/fr', 140, labels)
+    expect(shortened).toContain('Contenu abrégé pour Discord')
+    expect(shortened).toContain('Détails complets: <https://ranhq.vercel.app/fr>')
+    expect(shortened).not.toContain('Full details')
   })
 
   it('prefers the localized displayName and displayEffects when present', () => {

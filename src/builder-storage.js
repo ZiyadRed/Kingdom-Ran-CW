@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
+import { useHydratedState } from './use-hydrated-state.js'
 
 export const BUILDER_STORAGE_KEY = 'ranhq:party-builder'
 export const BUILDER_SCHEMA_VERSION = 1
@@ -137,18 +138,18 @@ export function writeBuilderState(value) {
 }
 
 export function usePersistedBuilderState() {
-  const [state, setState] = useState(readBuilderState)
+  const [state, setState, changed] = useHydratedState(createDefaultBuilderState, readBuilderState)
 
   useEffect(() => {
-    writeBuilderState(state)
-  }, [state])
+    if (changed) writeBuilderState(state)
+  }, [state, changed])
 
   const reconcile = useCallback((characters) => {
     setState((current) => {
       const next = reconcileBuilderState(current, characters)
       return JSON.stringify(next) === JSON.stringify(current) ? current : next
     })
-  }, [])
+  }, [setState])
 
   return [state, setState, reconcile]
 }
