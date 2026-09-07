@@ -81,3 +81,20 @@ test('new banners join the existing icon recovery while unresolved characters re
   expect(await storage(page)).toEqual(saved)
   expect(await page.evaluate(() => window.__storageWrites)).toEqual([])
 })
+
+test('bannerless generals appear through search but not faction browsing', async ({ page, path, locale }) => {
+  for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 }]) {
+    await page.setViewportSize(viewport)
+    await page.goto(path('/archive/characters'))
+    await expectLocale(page, locale)
+    const hiddenCard = page.locator(`.banner-card[href="${path('/archive/characters/hyou')}"]`)
+    await expect(hiddenCard).toHaveCount(0)
+
+    const search = page.locator('input[type="search"]:visible').first()
+    await search.fill('Hyou')
+    await expect(hiddenCard).toBeVisible()
+    await page.locator('.mobile-search-clear:visible, .fac-search-wrap .search-clear:visible').click()
+    await expect(search).toHaveValue('')
+    await expect(hiddenCard).toHaveCount(0)
+  }
+})

@@ -5,7 +5,7 @@ import { Link, useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import {
-  useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, ALL, findCharById, findCharByName, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, simulate, calcCharBuffs, calcTeamEnemyDebuffs, Picker, characterInitialRarity, INVERSE_STATS, SPECIAL_STATS, statSortKey, DEFAULT_SK, hasStar6, hasRoleSkill, updateSkillMasks, applyMask, PUBLIC_CW6_CARDS, matchCharacterSearch, searchCharacters
+  useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, ALL, ARCHIVE_BROWSE_CHARACTERS, findCharById, findCharByName, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, simulate, calcCharBuffs, calcTeamEnemyDebuffs, Picker, characterInitialRarity, INVERSE_STATS, SPECIAL_STATS, statSortKey, DEFAULT_SK, hasStar6, hasRoleSkill, updateSkillMasks, applyMask, PUBLIC_CW6_CARDS, matchCharacterSearch, searchCharacters
 } from './core.jsx'
 import { characterSeo, routeSeo, setSeo } from './seo.js'
 import { classifyConditionParts } from './skillConditions.js'
@@ -274,13 +274,16 @@ export function ArchivePage(){
     }
   },[selected,charId,location.pathname,locale])
   const clearSelection=()=>navigate('/archive/characters')
-  // Defer + memoize the search scan (211 chars × every skill string) so typing
+  // Defer + memoize the full-roster search scan so typing
   // stays responsive on slower phones.
   const deferredSearch=useDeferredValue(search)
+  const deferredQuery=deferredSearch.trim()
+  const hasSearch=Boolean(search.trim())
   const filtered=useMemo(()=>{
-    const alphabetical=ALL.slice().sort((a,b)=>a.name_en.localeCompare(b.name_en))
-    return deferredSearch?searchCharacters(alphabetical,deferredSearch,locale):alphabetical.filter(c=>c.country===activeFac)
-  },[deferredSearch,activeFac,locale])
+    const source=deferredQuery?ALL:ARCHIVE_BROWSE_CHARACTERS
+    const alphabetical=source.slice().sort((a,b)=>a.name_en.localeCompare(b.name_en))
+    return deferredQuery?searchCharacters(alphabetical,deferredQuery,locale):alphabetical.filter(c=>c.country===activeFac)
+  },[deferredQuery,activeFac,locale])
   const localizedSelected=useMemo(()=>selected?localizedCharacter(selected,locale):null,[selected,locale])
   const localizedFiltered=useMemo(()=>filtered.map(character=>localizedCharacter(character,locale)),[filtered,locale])
   const galleryVisible=useArchiveGalleryVisible(!!selected)
@@ -298,11 +301,11 @@ export function ArchivePage(){
         </div>
         <div className="fac-nav">
           {FACTIONS.map(f=>{
-            const n=ALL.filter(c=>c.country===f.id).length
+            const n=ARCHIVE_BROWSE_CHARACTERS.filter(c=>c.country===f.id).length
             if(!n) return null
             return(
-              <button key={f.id} className={`fac-item${activeFac===f.id&&!search?' fac-active':''}`}
-                style={activeFac===f.id&&!search?{'--fc':f.color}:{}} onClick={()=>handleFacClick(f.id)}>
+              <button key={f.id} className={`fac-item${activeFac===f.id&&!hasSearch?' fac-active':''}`}
+                style={activeFac===f.id&&!hasSearch?{'--fc':f.color}:{}} onClick={()=>handleFacClick(f.id)}>
                 <span className="fac-stripe" style={{background:f.color}}/>
                 <span className="fac-name">{factionRailLabel(f,locale)}</span>
                 {secondaryName(factionRailLabel(f,locale),f.jp)&&<span className="fac-jp">{f.jp}</span>}
@@ -328,13 +331,13 @@ export function ArchivePage(){
           {search&&<button className="mobile-search-clear" type="button" aria-label={t('clear')} onClick={()=>setSearch('')}>✕</button>}
         </div>
         <div className="gallery-header">
-          <GalleryHeading className="gallery-title">{search?t('resultCount',{count:filtered.length}):t('archive.roster',{faction:factionDisplay(FACTIONS.find(f=>f.id===activeFac),locale)})}</GalleryHeading>
+          <GalleryHeading className="gallery-title">{hasSearch?t('resultCount',{count:filtered.length}):t('archive.roster',{faction:factionDisplay(FACTIONS.find(f=>f.id===activeFac),locale)})}</GalleryHeading>
           <span className="gallery-count">{t('generalCount',{count:filtered.length})}</span>
         </div>
         <div className="gallery-grid">
           {!filtered.length&&<p className="search-empty" role="status">{t('stats.noCharacterMatches',{query:search})}</p>}
           {localizedFiltered.map((c,index)=>{
-            const skillTag=deferredSearch?matchCharacterSearch(c,deferredSearch,locale)?.hint:null
+            const skillTag=deferredQuery?matchCharacterSearch(c,deferredQuery,locale)?.hint:null
             return(
             <Link key={c.id}
               to={`/archive/characters/${c.id}`}

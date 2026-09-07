@@ -248,9 +248,10 @@ export const findCharByName = name => typeof name==='string'
   : null
 export const CHAR_BY_ID = Object.fromEntries(ALL.map(character=>[character.id,character]))
 export const findCharById = id => typeof id==='string' && Object.hasOwn(CHAR_BY_ID,id) ? CHAR_BY_ID[id] : null
-// Every published general is browsable, including those with an icon only.
-// Derived so the Archive tab badge can't drift from the valid roster.
-export const ARCHIVE_CHAR_COUNT = ALL.length
+// Keep icon-only generals in the complete roster for direct links and search,
+// while the default Archive browse view shows only finished banner cards.
+export const ARCHIVE_BROWSE_CHARACTERS = ALL.filter(character=>Boolean(character.image))
+export const ARCHIVE_CHAR_COUNT = ARCHIVE_BROWSE_CHARACTERS.length
 
 // Unlock costs use initial game rarity, not the currently awakened card rank.
 // Evidence: docs/character-integrity/CLASSIFICATION-AUDIT.md.

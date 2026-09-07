@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import crypto from 'node:crypto'
 import fs from 'node:fs'
 import audit from '../docs/character-integrity/banner-rework.json'
-import { ALL } from './core.jsx'
+import { ALL, ARCHIVE_BROWSE_CHARACTERS, ARCHIVE_CHAR_COUNT, searchCharacters } from './core.jsx'
 
 const expectedIds = [
   'yugi', 'kesshi', 'amon', 'jiou', 'douken', 'shishi', 'gii',
@@ -80,6 +80,20 @@ describe('strict replacement-banner acceptance', () => {
       expect(character.image ?? null, entry.id).toBe(null)
       expect(fs.existsSync(`public/persos/${entry.id}.webp`), entry.id).toBe(false)
       expect(fs.existsSync(`public/persos/thumbs/${entry.id}.webp`), entry.id).toBe(false)
+    }
+  })
+
+  it('keeps bannerless generals out of browsing but available through search', () => {
+    const unresolved = audit.characters.filter(entry => entry.outcome === 'KEEP FALLBACK / UNRESOLVED')
+    const browseIds = new Set(ARCHIVE_BROWSE_CHARACTERS.map(character => character.id))
+    expect(ARCHIVE_CHAR_COUNT).toBe(ARCHIVE_BROWSE_CHARACTERS.length)
+    expect(ARCHIVE_BROWSE_CHARACTERS.every(character => Boolean(character.image))).toBe(true)
+    for (const entry of unresolved) {
+      const character = ALL.find(candidate => candidate.id === entry.id)
+      expect(browseIds.has(entry.id), entry.id).toBe(false)
+      for (const locale of ['en', 'ja', 'ar', 'fr']) {
+        expect(searchCharacters(ALL, character.name_en, locale).map(candidate => candidate.id), `${entry.id} in ${locale}`).toContain(entry.id)
+      }
     }
   })
 })
