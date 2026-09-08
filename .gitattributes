@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Provenance records hash the exact source artifact bytes. Windows checkouts
+# must reproduce the committed LF representation, including under autocrlf.
+data/source/** text eol=lf
