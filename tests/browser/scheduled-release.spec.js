@@ -55,7 +55,7 @@ async function loadSnapshot(page, url) {
 async function expectRelease(page, route, released) {
   if (route === '/archive') await expect(page.locator('.reference-hub-card').nth(1).locator('.reference-hub-count')).toHaveText(released ? '34' : '33')
   if (route === '/archive/cw6-scene-cards') {
-    const card = page.locator('.cw6-card').filter({ has: page.locator('img[src*="Kisui-CW6"]') })
+    const card = page.locator('.cw6-card').filter({ has: page.locator('[data-detail-id="42004"]') })
     await expect(card).toHaveCount(released ? 1 : 0)
     if (released) await expect(card.locator('.owned-toggle')).toHaveAttribute('aria-pressed', 'true')
   }

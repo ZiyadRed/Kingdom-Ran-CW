@@ -16,9 +16,9 @@ const MODES = [
 ]
 
 const CASTLE_TYPES = [
-  { id: 'large', label: 'Large', short: 'L', icon: '/icons/castle-points/castle-large.png' },
-  { id: 'medium', label: 'Mid', short: 'M', icon: '/icons/castle-points/castle-medium.png' },
-  { id: 'small', label: 'Small', short: 'S', icon: '/icons/castle-points/castle-small.png' },
+  { id: 'large', label: 'Large', short: 'L', icon: '/icons/castle-points/controls/castle-large.webp' },
+  { id: 'medium', label: 'Mid', short: 'M', icon: '/icons/castle-points/controls/castle-medium.webp' },
+  { id: 'small', label: 'Small', short: 'S', icon: '/icons/castle-points/controls/castle-small.webp' },
 ]
 
 function clampNumber(value){

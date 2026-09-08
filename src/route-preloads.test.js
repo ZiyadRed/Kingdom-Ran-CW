@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { routePreloads } from '../scripts/route-preloads.mjs'
 
 const manifest = {
+  'src/ArchiveHubPage.jsx': { file: 'assets/archive-hub.js', imports: ['react'] },
   'src/pages.jsx': { file: 'assets/pages.js', imports: ['core', 'react'], dynamicImports: ['unrelated'] },
   'src/features/buffs/BuffsPage.jsx': { file: 'assets/buffs.js', imports: ['core'] },
   'src/guide.jsx': { file: 'assets/guide.js', imports: ['react'] },
@@ -23,6 +24,9 @@ describe('selected-route build preloads', () => {
   })
   it('keeps Guide outside the character data graph', () => {
     expect(routePreloads(manifest, '/guide/basics', ['/assets/react.js']).scripts).toEqual(['/assets/guide.js'])
+  })
+  it('keeps the Archive overview outside the character data graph', () => {
+    expect(routePreloads(manifest, '/archive', ['/assets/react.js']).scripts).toEqual(['/assets/archive-hub.js'])
   })
   it('preloads Buff Tracker without downloading unrelated archive/tool pages', () => {
     expect(routePreloads(manifest, '/buffs', ['/assets/react.js']).scripts).toEqual(['/assets/buffs.js', '/assets/core.js', '/assets/data.js'])

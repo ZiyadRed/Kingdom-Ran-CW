@@ -14,7 +14,7 @@ import { BUFF_UNIT_CATS, BUFF_STAT_COLORS, CAT_COLOR, TERRAIN_BUFFS, BUFF_STATES
 
 export function UnitCatIcon({cat,size=80}){
   const locale=useLocale()
-  const imgs={'Infantry':'/icons/unit_infantry.webp','Cavalry':'/icons/unit_cavalry.webp','Archer':'/icons/unit_archer.webp','Shield':'/icons/unit_shield.webp'}
+  const imgs={'Infantry':'/icons/controls/unit_infantry.webp','Cavalry':'/icons/controls/unit_cavalry.webp','Archer':'/icons/controls/unit_archer.webp','Shield':'/icons/controls/unit_shield.webp'}
   const s=Math.round(size*( UNIT_ICON_SCALE[cat]||1))
   return <img src={imgs[cat]} alt={localizedText(cat,locale)} loading="lazy" decoding="async" style={{width:s,height:s,objectFit:'contain',flexShrink:0}}/>
 }

@@ -18,10 +18,13 @@ export function useArchiveGalleryVisible(hasSelection) {
 // lazy-loading alone starts too many offscreen requests on slow connections.
 // Remember revealed art across detail/back navigation, but withhold sources
 // while the mobile detail panel covers the gallery.
-export function ArchiveImage({ src, srcSet, sizes, alt, enabled, eager = false, className = 'banner-img' }) {
+export function ArchiveImage({ src, srcSet, sizes, alt, title, enabled, eager = false, fade = false, style, className = 'banner-img' }) {
   const ref = useRef(null)
   const [revealed, setRevealed] = useState(false)
   const active = enabled && (eager || revealed)
+  useEffect(() => {
+    if (fade && active && ref.current?.complete && ref.current.naturalWidth > 0) ref.current.classList.add('is-loaded')
+  }, [active, fade, src])
   // React 18 passes this newer HTML attribute through in lowercase; its
   // camelCase form logs an unknown-property warning in development.
   const priority = eager ? { fetchpriority: 'high' } : {}
@@ -54,6 +57,7 @@ export function ArchiveImage({ src, srcSet, sizes, alt, enabled, eager = false, 
   }, [enabled, eager, revealed])
 
   return <img ref={ref} src={active ? src : undefined} srcSet={active ? srcSet : undefined}
-    sizes={sizes} alt={alt} className={className} style={active ? undefined : { visibility: 'hidden' }}
+    sizes={sizes} alt={alt} title={title} className={`${fade ? 'fade-img ' : ''}${className}`} style={{...style, ...(!active ? { visibility: 'hidden' } : {})}}
+    onLoad={fade ? event => event.currentTarget.classList.add('is-loaded') : undefined}
     loading={eager ? 'eager' : 'lazy'} {...priority} decoding="async" />
 }

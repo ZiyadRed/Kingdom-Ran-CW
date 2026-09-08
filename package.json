@@ -8,11 +8,12 @@
     "node": "^20.19.0 || >=22.12.0"
   },
   "scripts": {
+    "predev": "node scripts/generate_archive_overview.mjs",
     "dev": "vite",
     "sync:star6": "node scripts/sync_star6.mjs",
     "validate:cw6": "node scripts/validate_cw6.mjs",
     "validate:i18n": "node scripts/localization/validate_catalogs.mjs",
-    "prebuild": "node scripts/generate_sitemap.mjs && node scripts/sync_star6.mjs && node scripts/validate_cw6.mjs && node scripts/localization/validate_catalogs.mjs",
+    "prebuild": "node scripts/generate_sitemap.mjs && node scripts/sync_star6.mjs && node scripts/validate_cw6.mjs && node scripts/generate_archive_overview.mjs && node scripts/localization/validate_catalogs.mjs",
     "build": "vite build && node scripts/prerender.mjs && node scripts/validate_seo.mjs",
     "preview": "vite preview",
     "test": "vitest run",

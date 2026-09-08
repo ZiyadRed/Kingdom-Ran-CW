@@ -17,7 +17,7 @@ const defaultSks = () => Array.from({length:4}, () => ({...DEFAULT_SK}))
 // Route pages are code-split: the page bundle (and the data/engine it pulls)
 // loads on first navigation instead of blocking the initial Home render.
 const ArchiveTabs = lazy(() => ROUTE_MODULES.pages.load().then(m => ({ default: m.ArchiveTabs })))
-const ArchiveHubPage = lazy(() => ROUTE_MODULES.pages.load().then(m => ({ default: m.ArchiveHubPage })))
+const ArchiveHubPage = lazy(ROUTE_MODULES.archive.load)
 const CW6SceneCardsPage = lazy(() => ROUTE_MODULES.pages.load().then(m => ({ default: m.CW6SceneCardsPage })))
 const ArchivePage = lazy(() => ROUTE_MODULES.pages.load().then(m => ({ default: m.ArchivePage })))
 const BuilderPage = lazy(() => ROUTE_MODULES.pages.load().then(m => ({ default: m.BuilderPage })))

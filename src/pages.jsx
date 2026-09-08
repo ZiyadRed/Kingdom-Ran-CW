@@ -91,40 +91,13 @@ const SKILL_LEVEL_ICON={
 
 const CW6_SKILL_ICON='/icons/neon_cw6_hexagon_badge.webp'
 
-export function ArchiveHubPage(){
-  const {PUBLIC_CW6_CARDS}=useReleaseData()
-  const {t}=useTranslation('common')
-  const locale=useLocale()
-  const collections=[
-    {route:'/archive/characters',title:'nav.characters',description:'archive.hubCharacters',count:ALL.length},
-    {route:'/archive/cw6-scene-cards',title:'nav.sceneCards',description:'archive.hubCards',count:PUBLIC_CW6_CARDS.length},
-  ]
-  return(
-    <div className="reference-hub archive-hub">
-      <header className="reference-hub-head">
-        <h1>{t('archive.title')}</h1>
-        <p>{t('archive.hubIntro')}</p>
-      </header>
-      <nav className="reference-hub-grid" aria-label={t('archive.sections')}>
-        {collections.map(collection=>(
-          <Link className="reference-hub-card" key={collection.route} to={collection.route}>
-            <h2>{t(collection.title)} <span className="reference-hub-count">{formatLocaleNumber(collection.count,locale)}</span></h2>
-            <p>{t(collection.description)}</p>
-            <span className="reference-hub-arrow" aria-hidden="true">→</span>
-          </Link>
-        ))}
-      </nav>
-      <Link className="reference-hub-more" to="/guide">{t('guide.contents')}</Link>
-    </div>
-  )
-}
-
 export function CW6SceneCardsPage(){
   const {PUBLIC_CW6_CARDS}=useReleaseData()
   const shareLabels=useShareLabels()
   const locale=useLocale()
   const{t}=useTranslation('common')
   const[selected,setSelected]=useState(null)
+  const galleryVisible=useArchiveGalleryVisible(!!selected)
   const detailLayoutRef=useMobileDetailFocus(selected?.id)
   const[artSrc,setArtSrc]=useState(null)
   const[progressFilter,setProgressFilter]=useState('all')
@@ -178,7 +151,7 @@ export function CW6SceneCardsPage(){
                 onClick={()=>pickCard(card)}
               />
               <div className="cw6-card-art">
-                <FadeImg src={card.thumb||card.image} alt={sceneCardAccessibleName(card)} title={sceneCardAccessibleName(card)} loading={i<7?'eager':'lazy'} decoding="async" style={{width:'100%',height:'100%',objectFit:'contain'}}/>
+                <ArchiveImage src={card.thumb||card.image} alt={sceneCardAccessibleName(card)} title={sceneCardAccessibleName(card)} enabled={galleryVisible} eager={!selected&&i<2} fade className="" style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'contain'}}/>
                 {card.image&&<ViewArtButton onClick={()=>setArtSrc(card.image)} style={{left:7,right:'auto'}}/>}
                 <OwnedToggle
                   owned={tracker.isOwned('cw6Cards',card.id)}
@@ -193,7 +166,7 @@ export function CW6SceneCardsPage(){
                 </div>
                 {card.ownerName&&(
                   <div className="cw6-card-owner">
-                    {card.ownerIcon&&<img className="cw6-card-owner-ico" src={card.ownerIcon} alt="" loading="lazy" decoding="async"/>}
+                    {card.ownerIcon&&<ArchiveImage className="cw6-card-owner-ico" src={card.ownerIcon} alt="" enabled={galleryVisible}/>}
                     <span className="cw6-card-owner-name">{localizedCharacterName(locale.code==='ja'?(card.ownerNameJp||card.ownerName):card.ownerName, locale)}</span>
                   </div>
                 )}
