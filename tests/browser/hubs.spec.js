@@ -50,7 +50,7 @@ test('Archive overview and collections retain distinct crawlable pages and saved
   // Browse counts cover accepted banners; search and direct routes retain the
   // full roster, independently of the hub's total-record count.
   expect((await page.locator('.fac-n').allTextContents()).reduce((sum, count) => sum + Number(count), 0)).toBe(190)
-  await expect(page.locator('.archive-tabs [aria-current=page]')).toHaveAttribute('href', path('/archive/characters'))
+  await expect(page.locator('.archive-tabs [aria-current=page]')).toHaveAttribute('href', path('/archive/characters')+'?faction=qin')
   await page.goBack()
   await expect(page.locator('.archive-hub')).toBeVisible()
   await cards.last().click()
@@ -73,12 +73,14 @@ test('all search-only records retain searchable cards and direct detail document
   for (const character of searchOnly) {
     await search.fill(character.name_en)
     const detailPath = path(`/archive/characters/${character.id}`)
-    await expect(page.locator(`.banner-card[href="${detailPath}"]`)).toBeVisible()
+    const card=page.locator(`.banner-card[data-detail-id="${character.id}"]`)
+    await expect(card).toBeVisible()
+    await expect(card).toHaveAttribute('href',detailPath+'?'+new URLSearchParams({faction:'qin',q:character.name_en}))
     const detail = await staticPage(page, detailPath)
     expect(detail.heading, character.id).toBeTruthy()
     expect(detail.canonical).toBe('https://ranhq.vercel.app' + detailPath)
   }
-  await page.locator(`.banner-card[href="${path('/archive/characters/' + searchOnly.at(-1).id)}"]`).click()
+  await page.locator(`.banner-card[data-detail-id="${searchOnly.at(-1).id}"]`).click()
   await expect(page.locator('.detail-info h1')).toBeVisible()
 })
 

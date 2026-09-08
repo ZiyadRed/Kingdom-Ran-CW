@@ -1,8 +1,10 @@
 import { ArtLightbox, ViewArtButton } from './art-preview.jsx'
 import './buff-summary.css'
 import { useMobileDetailFocus } from './use-mobile-detail-focus.js'
+import { useArchiveUrlState } from './use-archive-url-state.js'
+import { ARCHIVE_QUERY_LIMIT } from './archive-url-state.js'
 import { secondaryName } from './display-names.js'
-import { useState, useEffect, useMemo, useDeferredValue, useRef, useId } from 'react'
+import { startTransition, useState, useEffect, useMemo, useDeferredValue, useRef, useId } from 'react'
 import { Link, useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -23,6 +25,9 @@ import { localizedCharacter, localizedDuration, localizedSkill, localizedTarget,
 import { builderShareUrl, characterShareUrl, createCharacterSkillsImage, createTeamSkillsImage, downloadBlob, formatCharacterSkillsShare, formatSceneCardShare, formatTeamBuffShare, sceneCardShareUrl, shareImageBlob, shareText } from './share.js'
 
 export function ArchiveTabs({active}){
+  const location=useLocation()
+  const[hydrated,setHydrated]=useState(false)
+  useEffect(()=>{startTransition(()=>setHydrated(true))},[])
   const {PUBLIC_CW6_CARDS}=useReleaseData()
   const{t}=useTranslation('common')
   const tabs=[
@@ -34,7 +39,7 @@ export function ArchiveTabs({active}){
       {tabs.map(tab=>{
         const on=active===tab.id
         return(
-          <Link key={tab.id} to={tab.route} className={`archive-tab${on?' archive-tab-active':''}`} aria-current={on?'page':undefined}>
+          <Link key={tab.id} to={tab.route+(hydrated&&on&&active==='characters'?location.search:'')} className={`archive-tab${on?' archive-tab-active':''}`} aria-current={on?'page':undefined}>
             {tab.label}
             <span>{tab.count}</span>
           </Link>
@@ -248,6 +253,8 @@ export function CW6SceneCardsPage(){
   )
 }
 
+const ARCHIVE_FACTION_IDS=FACTIONS.map(faction=>faction.id)
+
 export function ArchivePage(){
   const {ALL,ARCHIVE_BROWSE_CHARACTERS,findCharById}=useReleaseData()
   const shareLabels=useShareLabels()
@@ -258,15 +265,7 @@ export function ArchivePage(){
   const{t}=useTranslation('common')
   const selected=useMemo(()=>findCharById(charId),[charId,findCharById])
   const detailLayoutRef=useMobileDetailFocus(selected?.id)
-  const[activeFac,setActiveFac]=useState(()=>selected?.country||'qin')
-  const[search,setSearch]=useState('')
-  // Keep the faction rail aligned when direct-loading a character. Selection
-  // itself is derived synchronously from the URL so prerendered detail pages
-  // contain the character on the first HTML response rather than after an
-  // effect-only second render.
-  useEffect(()=>{
-    if(selected?.country) setActiveFac(selected.country)
-  },[selected])
+  const{faction:activeFac,query:search,setQuery:setSearch,setFaction:handleFacClick,returnSearch}=useArchiveUrlState(ARCHIVE_FACTION_IDS,selected)
   // Refine route metadata with source-backed character names/readings.
   useEffect(()=>{
     if(selected){
@@ -283,7 +282,7 @@ export function ArchivePage(){
       setSeo(charId?{...seo,robots:'noindex,follow'}:seo)
     }
   },[selected,charId,location.pathname,locale])
-  const clearSelection=()=>navigate('/archive/characters')
+  const clearSelection=()=>navigate('/archive/characters'+returnSearch)
   // Defer + memoize the full-roster search scan so typing
   // stays responsive on slower phones.
   const deferredSearch=useDeferredValue(search)
@@ -297,7 +296,6 @@ export function ArchivePage(){
   const localizedSelected=useMemo(()=>selected?localizedCharacter(selected,locale):null,[selected,locale])
   const localizedFiltered=useMemo(()=>filtered.map(character=>localizedCharacter(character,locale)),[filtered,locale])
   const galleryVisible=useArchiveGalleryVisible(!!selected)
-  const handleFacClick=(fid)=>{setActiveFac(fid);if(selected)navigate('/archive/characters');setSearch('')}
 
   const GalleryHeading=selected?'h2':'h1'
   if(charId&&!selected) return <NotFoundPage/>
@@ -306,7 +304,7 @@ export function ArchivePage(){
       {/* Sidebar */}
       <aside className="fac-sidebar">
         <div className="fac-search-wrap">
-          <input className="fac-search" type="search" aria-label={t('archive.searchGenerals')} placeholder={`${t('archive.searchGenerals')}…`} value={search} onChange={e=>{setSearch(e.target.value);if(selected)navigate('/archive/characters')}}/>
+          <input className="fac-search" type="search" maxLength={ARCHIVE_QUERY_LIMIT} aria-label={t('archive.searchGenerals')} placeholder={`${t('archive.searchGenerals')}…`} value={search} onChange={e=>setSearch(e.target.value)}/>
           {search&&<button className="search-clear" type="button" onClick={()=>setSearch('')}>{t('clear')}</button>}
         </div>
         <div className="fac-nav">
@@ -334,10 +332,11 @@ export function ArchivePage(){
           <input
             className="mobile-search-input"
             type="search"
+            maxLength={ARCHIVE_QUERY_LIMIT}
             aria-label={t('archive.searchGenerals')}
             placeholder={`${t('archive.searchGenerals')}…`}
             value={search}
-            onChange={e=>{setSearch(e.target.value);if(selected)navigate('/archive/characters')}}/>
+            onChange={e=>setSearch(e.target.value)}/>
           {search&&<button className="mobile-search-clear" type="button" aria-label={t('clear')} onClick={()=>setSearch('')}>✕</button>}
         </div>
         <div className="gallery-header">
@@ -351,9 +350,9 @@ export function ArchivePage(){
             return(
             <Link key={c.id}
               data-detail-id={c.id}
-              to={`/archive/characters/${c.id}`}
+              to={`/archive/characters/${c.id}${returnSearch}`}
               className={`banner-card${selected?.id===c.id?' banner-selected':''}`}
-              onClick={e=>{if(selected?.id===c.id){e.preventDefault();navigate('/archive/characters')}}}
+              onClick={e=>{if(selected?.id===c.id){e.preventDefault();clearSelection()}}}
               style={selected?.id===c.id?{outline:`3px solid ${CC[c.country]||'#999'}`}:{}}>
               <div className="banner-faction-tag" style={{background:CC[c.country]||'#666'}}>
                 {FACTIONS.find(f=>f.id===c.country)?.jp||c.country}
@@ -384,7 +383,7 @@ export function ArchivePage(){
             <span aria-hidden="true">›</span>
             <Link to="/archive">{t('nav.archive')}</Link>
             <span aria-hidden="true">›</span>
-            <Link to="/archive/characters">{t('nav.characters')}</Link>
+            <Link to={'/archive/characters'+returnSearch}>{t('nav.characters')}</Link>
             <span aria-hidden="true">›</span>
             <span aria-current="page">{localizedSelected?.displayName||selected.name_en}</span>
           </nav>

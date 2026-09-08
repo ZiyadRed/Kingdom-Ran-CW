@@ -53,7 +53,7 @@ test('accepted banners render with clean transparent edges in all target viewpor
       await expectLocale(page, locale)
       await expect(page.locator('.detail-info h1')).toBeVisible()
       await page.locator('.detail-close').click()
-      const card = page.locator(`.banner-card[href$="/characters/${entry.id}"]`)
+      const card = page.locator(`.banner-card[data-detail-id="${entry.id}"]`)
       await card.scrollIntoViewIfNeeded()
       const image = card.locator('img')
       await expect(image).toHaveAttribute('src', `/persos/thumbs/${entry.id}.webp`)
@@ -87,7 +87,7 @@ test('bannerless generals appear through search but not faction browsing', async
     await page.setViewportSize(viewport)
     await page.goto(path('/archive/characters'))
     await expectLocale(page, locale)
-    const hiddenCard = page.locator(`.banner-card[href="${path('/archive/characters/hyou')}"]`)
+    const hiddenCard = page.locator('.banner-card[data-detail-id="hyou"]')
     await expect(hiddenCard).toHaveCount(0)
 
     const search = page.locator('input[type="search"]:visible').first()

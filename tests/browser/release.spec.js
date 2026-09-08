@@ -113,7 +113,7 @@ test('localized search finds effects and stable IDs; the picker traps focus and 
   await expect(page.locator('.banner-card').first()).toBeVisible()
   for (const name of ['Moubu', '蒙武', 'موبو']) {
     await search.fill(name)
-    await expect(page.locator(`.banner-card[href="${path('/archive/characters/moubu')}"]`)).toBeVisible()
+    await expect(page.locator('.banner-card[data-detail-id="moubu"]')).toBeVisible()
   }
   await search.fill('zzzz-unmatched-fixture')
   await expect(page.locator('.gallery-grid .search-empty')).toContainText('zzzz-unmatched-fixture')
