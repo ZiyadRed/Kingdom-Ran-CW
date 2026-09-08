@@ -24,6 +24,8 @@ describe('guide leader/strategist roster', () => {
     // If a character's artwork is renamed, this fails instead of the guide
     // silently rendering a broken avatar.
     expect(general.icon).toBe(char.icon)
+    expect(general.ownerId).toBe(char.id)
+    expect(general.nameJp).toBe(char.name_jp)
     expect(general.skillName).toBe(char.roleSkill?.name_en)
     expect(general.skillNameJp).toBe(char.roleSkill?.name_jp)
     expect(general.cwId).toBe(char.roleSkill?.cwId)

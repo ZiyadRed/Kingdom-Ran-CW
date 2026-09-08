@@ -45,7 +45,9 @@ const CHARACTER_NAMES = characterNamesDocument.names || {}
 /** Resolve a character name to Japanese, or null when it is not a known one. */
 function lookupCharacter(raw) {
   const text = String(raw == null ? '' : raw).trim().replace(/^"|"$/g, '')
-  return CHARACTER_NAMES[text] || null
+  // Reiou's source-backed CW6 description names 呉鳳明; GHM is the existing
+  // structured row's abbreviation, also resolved in the AR/FR renderers.
+  return CHARACTER_NAMES[text==='GHM'?'Gohoumei':text] || null
 }
 
 const SLASH = '／'
@@ -342,6 +344,12 @@ function renderEffectClause(text) {
 export function renderJapaneseEffect(value) {
   const raw = clean(value)
   if (!raw) return value
+  const namedStatus=/^Enemy ((?:"[^"]+"\s*,\s*)*"[^"]+") "([^"]+)" (\d+%)$/.exec(raw)
+  if(namedStatus){
+    const names=namedStatus[1].match(/"[^"]+"/g).map(lookupCharacter)
+    const status=lookupStatus(namedStatus[2])
+    if(names.every(Boolean)&&status) return `${namedStatus[3]}の確率で敵${names.map(name=>`「${name}」`).join('')}に「${status}」状態を付与`
+  }
 
   const segments = splitClauses(raw)
   if (segments.length === 1) return renderEffectClause(raw) ?? value
@@ -366,6 +374,8 @@ export function renderJapaneseEffect(value) {
 function renderTargetClause(text) {
   const raw = clean(text)
   if (!raw) return null
+  const named=lookupCharacter(raw)
+  if(named) return named
 
   const phrase = PHRASE_INDEX.get(raw.toLowerCase())
   if (phrase) return phrase
@@ -484,6 +494,26 @@ function renderTargetTail(text) {
 }
 
 function renderTargetExpression(raw) {
+  const survivingNames=/^Surviving ally ((?:"[^"]+"\s*,\s*)+)(?:and )(.+?) \[General\]$/.exec(raw)
+  if(survivingNames){
+    const names=survivingNames[1].match(/"[^"]+"/g).map(lookupCharacter)
+    const group=lookupGroup(survivingNames[2])
+    if(names.every(Boolean)&&group) return `生存している味方${names.map(name=>`「${name}」`).join('、')}、${group}武将`
+  }
+  const versusList=/^(.+?)\s+vs\s+(.+?)\s*\/\s*vs\s+(.+)$/i.exec(raw)
+  if(versusList){
+    const parts=[`${versusList[1]} vs ${versusList[2]}`,`${versusList[1]} vs ${versusList[3]}`].map(renderTargetExpression)
+    if(parts.every(Boolean)) return parts.join(SLASH)
+  }
+  const each=/^(\d+) each of ((?:\[[^\]]+\]\s*\/?\s*)+)enemy$/i.exec(raw)
+  if(each){
+    const tags=each[2].match(/\[[^\]]+\]/g)
+    if(tags.every(tag=>TAG_INDEX.has(tag.slice(1,-1).toLowerCase()))) return `敵${tags.map(renderTags).join('・')}各${each[1]}名`
+  }
+  const paired=/^(\d+) (\[[^\]]+\])\s*\/\s*(\d+) (\[[^\]]+\]) enemy (\[General\])$/i.exec(raw)
+  if(paired) return `敵${renderTags(paired[2]+paired[5])}${paired[1]}名${SLASH}敵${renderTags(paired[4]+paired[5])}${paired[3]}名`
+  const groupMember=/^(\d+) enemy (.+?) member$/i.exec(raw)
+  if(groupMember&&lookupGroup(groupMember[2])) return `敵${lookupGroup(groupMember[2])}武将${groupMember[1]}名`
   const excluded = /^(.*?)\s+other than self$/i.exec(raw)
   if (excluded) {
     const inner = renderTargetExpression(excluded[1])
@@ -494,7 +524,7 @@ function renderTargetExpression(raw) {
   if (versus) {
     const inner = renderTargetExpression(versus[1])
     const target = clean(versus[2])
-    const against = TAG_INDEX.get(target.toLowerCase()) || lookupGroup(target) ||
+    const against = TAG_INDEX.get(target.toLowerCase()) || lookupGroup(target) || renderTargetClause(target) ||
       (/^\[[^\]]+\]$/.test(target) ? renderTags(target) : null)
     if (inner && against) return `${against}に対する${inner}`
   }
@@ -598,6 +628,24 @@ function renderConditionBody(body) {
   if (phrase) return phrase
 
   let match
+  match=/^(.+?)\s+besides self$/i.exec(body)
+  if(match){
+    const inner=renderConditionBody(match[1])
+    if(inner) return `${inner}（自身を除く）`
+  }
+  match=/^own HP is (\d+%) or higher$/i.exec(body)
+  if(match) return `自身の体力が${match[1]}以上`
+  match=/^(first|last) (.+?) in formation$/i.exec(body)
+  if(match){
+    const who=selector(match[2])
+    if(who) return `編成順が最も${match[1].toLowerCase()==='first'?'早い':'遅い'}${who}`
+  }
+  match=/^(.+?) enemy with (highest|lowest) (.+)$/i.exec(body)
+  if(match&&lookupGroup(match[1])&&lookupStat(match[3])) return `${lookupStat(match[3])}が${SUPERLATIVE[match[2].toLowerCase()]}敵${lookupGroup(match[1])}武将`
+  match=/^Surviving (.+?) when enemies are alive$/i.exec(body)
+  if(match&&selector(match[1])) return `敵が生存している場合の生存している${selector(match[1])}`
+  match=/^(Other ally|Enemy) (\[[^\]]+\]) or (\[[^\]]+\]) alive$/i.exec(body)
+  if(match) return `${PHRASE_INDEX.get(match[1].toLowerCase())}${renderTags(match[2])}または${renderTags(match[3])}が生存している場合`
 
   // "When X" adds the conditional ending only when the inner clause does not
   // already carry one — several rules end in 時 or 場合 by themselves.
@@ -648,10 +696,14 @@ function renderConditionBody(body) {
     if (owner) return `${owner}の${match[2] ? '残り' : ''}体力が${match[4]}${/[<≤]/.test(match[3]) ? '未満' : '以上'}`
   }
 
-  match = new RegExp(`^From the\\s+(${VALUE})\\s+Damage(?:\\s+above)?$`, 'i').exec(body)
+  match = new RegExp(`^From (?:the\\s+)?(${VALUE})\\s+Damage(?:\\s+above)?$`, 'i').exec(body)
   if (match) return `上記${match[1]}ダメージから`
   if (/^From (?:the )?% HP Damage(?:\s+above)?$/i.test(body)) return '残り体力割合ダメージから'
   if (/^% HP Damage triggered$/i.test(body)) return '残り体力割合ダメージ発生時'
+  if (/^upon % Damage activation$/i.test(body)) return '割合ダメージ発生時'
+  if (/^gate has HP remaining$/i.test(body)) return '城門の体力が残っている場合'
+  match=/^Damage dealt by (.+)$/i.exec(body)
+  if(match&&lookupCharacter(match[1])) return `${lookupCharacter(match[1])}が与えたダメージ`
   if (/^from damage$/i.test(body)) return 'ダメージから'
 
   // "Enemy [General] with highest ATK" -> 攻撃力が最も高い敵武将
@@ -758,8 +810,20 @@ function renderConditionClause(text) {
 }
 
 function renderConditionExpression(raw) {
+  const sharedSelector=/^(enemy \[[^\]]+\])\s*\/\s*(enemy \[[^\]]+\]) with (highest|lowest) (.+)$/i.exec(raw)
+  if(sharedSelector){
+    const stat=lookupStat(sharedSelector[4])
+    const subjects=[selector(sharedSelector[1]),selector(sharedSelector[2])]
+    if(stat&&subjects.every(Boolean)) return subjects.map(subject=>`${stat}が${SUPERLATIVE[sharedSelector[3].toLowerCase()]}${subject}`).join(SLASH)
+  }
   const direct = renderConditionClause(raw)
   if (direct) return direct
+  if(raw.includes('/')&&!raw.includes(',')){
+    const parts=raw.split('/').map(part=>part.trim())
+    const prefix=/^(Per (?:other )?ally)\s+/i.exec(parts[0])
+    const rendered=parts.map((part,index)=>renderConditionExpression(index&&prefix&&!/^per\b/i.test(part)?`${prefix[1]} ${part}`:part))
+    if(rendered.every(Boolean)) return rendered.join(SLASH)
+  }
 
   if (raw.includes(',')) {
     const parts = raw.split(',').map((s) => s.trim()).filter(Boolean).map(renderConditionExpression)

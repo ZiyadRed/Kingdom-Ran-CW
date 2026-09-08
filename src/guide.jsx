@@ -1415,6 +1415,8 @@ export const SOUHA_LEADER_ROLES=SOUHA_LEADER_ROLE_META.map(role=>({
     .filter(entry=>entry.role===role.label)
     .map(entry=>({
       name:entry.ownerName,
+      nameJp:entry.ownerNameJp,
+      ownerId:entry.owner_id,
       icon:entry.ownerIcon,
       skillName:entry.skill.name_en,
       skillNameJp:entry.skill.name_jp,
@@ -1471,15 +1473,16 @@ export function LeaderStrategistSection(){
             </div>
             <div style={{display:'flex',flexWrap:'wrap',gap:'.4rem'}}>
               {role.generals.map(g=>{
+                const displayName=locale?.code==='ja'?g.nameJp:localizedCharacterName(g.name,locale)
                 const localizedSkillName = locale?.code === 'ja' ? g.skillNameJp : g.skillName
-                return <div key={g.name} title={g.skillName + ' / ' + g.skillNameJp} style={{
+                return <div key={g.ownerId} data-role-owner={g.ownerId} title={g.skillName + ' / ' + g.skillNameJp} style={{
                   display:'flex',alignItems:'center',gap:'.35rem',padding:'.25rem .5rem .25rem .25rem',
                   borderRadius:'10px',background:'var(--bg2)',border:'1px solid var(--bdr)',
                 }}>
-                  <img src={g.icon} alt={localizedCharacterName(g.name, locale)} width="22" height="22" loading="lazy" decoding="async"
+                  <img src={g.icon} alt={displayName} width="22" height="22" loading="lazy" decoding="async"
                     style={{width:22,height:22,borderRadius:'50%',objectFit:'cover',objectPosition:'center top',flexShrink:0,display:'block'}}/>
                   <span style={{display:'grid',gap:'1px',minWidth:0}}>
-                    <span style={{fontSize:'.78rem',fontWeight:800,color:'var(--txt2)'}}>{localizedCharacterName(g.name, locale)}</span>
+                    <span style={{fontSize:'.78rem',fontWeight:800,color:'var(--txt2)'}}>{displayName}</span>
                     <span style={{fontSize:'.64rem',color:'var(--txt3)',whiteSpace:'nowrap'}}>{localizedSkillName}</span>
                   </span>
                 </div>

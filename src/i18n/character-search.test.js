@@ -8,7 +8,16 @@ const skills = character => [...(character.skills || []), ...(character.roleSkil
 
 describe('localized content search over the actual roster', () => {
   it.each(['en', 'ja', 'ar', 'fr'])('preserves tri-script names on %s', locale => {
-    for (const query of ['Moubu', '蒙武', 'موبو']) expect(matches(query, locale)).toContain('moubu')
+    for (const query of ['Moubu', '蒙武', 'موبو','مُوبُو','مـوبـو']) {
+      expect(matches(query, locale)).toContain('moubu')
+      expect(matchesCharacterName(ALL.find(c=>c.id==='moubu'),query,{exact:true})).toBe(true)
+    }
+  })
+  it('maps authored French infantry forms to the same complete result population',()=>{
+    const expected=matches('infanterie','fr')
+    expect(expected.length).toBeGreaterThan(0)
+    expect(matches('fantassin','fr')).toEqual(expected)
+    expect(matches('fantassins','fr')).toEqual(expected)
   })
   // This exhaustive corpus check sorts the full roster for three names per
   // general. Its timeout is a runner guard, not a search latency assertion.

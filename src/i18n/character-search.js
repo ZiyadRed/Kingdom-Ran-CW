@@ -1,4 +1,4 @@
-import { correctedCharacterSearchTarget, matchesCharacterName } from './ar-character-names.js'
+import { correctedCharacterSearchTarget, matchesCharacterName, normalizeArabicSearchText } from './ar-character-names.js'
 import { localizedCharacter, localizedText } from './data.js'
 import { TAGS as AR_TAGS } from './ar-lexicon.js'
 import { TAGS as FR_TAGS } from './fr-lexicon.js'
@@ -6,9 +6,8 @@ import { TAGS as FR_TAGS } from './fr-lexicon.js'
 // Fold French accents and Arabic vowel marks, retaining Japanese dakuten.
 // The existing Romaji/alias normalizer remains owned by matchesCharacterName.
 export function normalizeContentSearch(value) {
-  return String(value ?? '').normalize('NFKC').toLowerCase().normalize('NFD')
+  return normalizeArabicSearchText(value).toLowerCase().normalize('NFD')
     .replace(/(\p{Script=Latin})\p{M}+/gu, '$1')
-    .replace(/\u0640|[\u064b-\u065f]|\u0670|[\u06d6-\u06ed]/g, '')
     .normalize('NFC').replace(/\s+/g, ' ').trim()
 }
 
@@ -22,7 +21,7 @@ function termForms(value, code) {
 // unit badges (e.g. French "infanterie" and the site's "fantassins").
 const queryAliases = new Map(['ar', 'fr'].map(code => [code, new Map(
   Object.entries(code === 'ar' ? AR_TAGS : FR_TAGS).flatMap(([term, tag]) =>
-    (tag.searchAliases || []).map(alias => [normalizeContentSearch(alias), termForms(term, code).filter(Boolean).map(normalizeContentSearch)]),
+    (tag.searchAliases?.length?termForms(term,code).filter(Boolean):[]).map(alias => [normalizeContentSearch(alias), termForms(term, code).filter(Boolean).map(normalizeContentSearch)]),
   ),
 )]))
 

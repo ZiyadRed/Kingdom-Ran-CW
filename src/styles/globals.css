@@ -345,7 +345,7 @@ img { display: block; max-width: 100%; height: auto }
 .fac-stripe     { width: 4px; height: 18px; border-radius: 2px; flex-shrink: 0 }
 .fac-name       { flex: 1; font-size: .8rem }
 .fac-jp         { font-size: .65rem; color: rgba(255,255,255,.38) }
-.fac-n          { font-size: .64rem; background: rgba(255,255,255,.12); border-radius: 10px; padding: 1px 6px; color: rgba(255,255,255,.5) }
+.fac-n          { font-size: .64rem; background: rgba(255,255,255,.12); border-radius: 10px; padding: 1px 6px; color: #fff }
 
 /* Mobile search bar - hidden on desktop, visible on mobile */
 .mobile-search-bar { display: none }
@@ -365,7 +365,7 @@ img { display: block; max-width: 100%; height: auto }
 }
 .cw6-scene-page .gallery-header { position: static; top: auto; z-index: auto }
 .gallery-title { font-size: .95rem; font-weight: 800; color: var(--navy) }
-.gallery-count { font-size: .72rem; color: var(--txt3); background: var(--bg2); border: 1px solid var(--bdr); border-radius: 20px; padding: 2px 9px }
+.gallery-count { font-size: .72rem; color: var(--txt2); background: var(--bg2); border: 1px solid var(--bdr); border-radius: 20px; padding: 2px 9px }
 .progress-tools { display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; justify-content: center }
 .progress-tools-note { font-size: .65rem; color: var(--txt3); margin-right: 4px }
 .progress-tools button,
@@ -1007,7 +1007,7 @@ html[dir="rtl"] .buff-siege-card { text-align: right; padding: 8px 10px 8px 14px
 .mw-badge { position: absolute; top: -4px; right: 7px; background: linear-gradient(180deg,#f7da7e,#d49a2a); color: #3a2a08; font-family: 'Barlow',sans-serif; font-weight: 700; font-size: 10px; padding: 1px 5px; border-radius: 6px; box-shadow: 0 1px 2px rgba(0,0,0,.3); line-height: 1.3 }
 .mw-mem-name { font-size: 11px; color: #6a5d4a; text-align: center; line-height: 1.1; max-width: 58px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
 .mw-team--ss .mw-mem-name { color: #cbb98c }
-.mw-source { font-size: 11px; color: #8a7c63; margin-top: 22px; text-align: center; line-height: 1.5 }
+.mw-source { font-size: 11px; color: var(--txt2); margin-top: 22px; text-align: center; line-height: 1.5 }
 
 /* ============================================================
    CW6 SCENE CARDS — grid + card (class-based so it stays responsive)

@@ -8,6 +8,29 @@ import {
 } from './ja-render.js'
 import { localizedSkill } from './data.js'
 
+describe('audited compound Japanese conditions and targets',()=>{
+  it('preserves damage thresholds, activation and formation selectors',()=>{
+    expect(renderJapaneseCondition('When Garrisoning, upon % Damage activation')).toBe('駐屯時、割合ダメージ発生時')
+    expect(renderJapaneseCondition('Own remaining HP < 90%, from 170% Damage above')).toBe('自身の残り体力が90%未満、上記170%ダメージから')
+    expect(renderJapaneseCondition('When Garrisoning, While gate has HP remaining')).toBe('駐屯時、城門の体力が残っている場合')
+    expect(renderJapaneseCondition('When Garrisoning, enemy [Infantry] / enemy [Siege Weapon] with highest ATK')).toBe('駐屯時、攻撃力が最も高い敵歩兵／攻撃力が最も高い敵兵器')
+    expect(renderJapaneseCondition('Other ally [Qin] or [Mountain Folk] alive, first enemy in formation')).toBe('自身以外の味方秦国または山の民が生存している場合、編成順が最も早い敵')
+  })
+  it('keeps separate counted targets and per-ally categories',()=>{
+    expect(renderJapaneseTarget('1 each of [Zhao]/[Wei]/[Chu]/[Qi] enemy')).toBe('敵趙国・魏国・楚国・斉国各1名')
+    expect(renderJapaneseTarget('1 [Infantry] / 1 [Cavalry] enemy [General]')).toBe('敵歩兵武将1名／敵騎兵武将1名')
+    expect(renderJapaneseCondition('Per ally [Infantry] / per other ally [Archer] [General]')).toBe('味方歩兵ごと／自身以外の味方弓兵武将ごと')
+  })
+  it('resolves named operands through known Japanese names and fails closed for unknown names',()=>{
+    expect(renderJapaneseTarget('Shikika')).toBe('紫季歌')
+    expect(renderJapaneseTarget('Riboku')).toBe('李牧')
+    expect(renderJapaneseTarget('Surviving ally "Ranbihaku", "GHM", and Wei Fire Dragon [General]')).toBe('生存している味方「乱美迫」、「呉鳳明」、魏火竜武将')
+    expect(renderJapaneseEffect('Enemy "Riboku", "Ei Sei", "Queen Biki" "Attack Seal" 70%')).toBe('70%の確率で敵「李牧」「嬴政」「太后」に「攻撃封印」状態を付与')
+    const unknown='Enemy "Invented Name", "Riboku" "Attack Seal" 70%'
+    expect(renderJapaneseEffect(unknown)).toBe(unknown)
+  })
+})
+
 /**
  * Every input is a verbatim string from data/characters/*.json, and the
  * expected Japanese uses the game's own vocabulary — mined from

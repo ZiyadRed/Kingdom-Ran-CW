@@ -305,10 +305,14 @@ export function normalizeCharacterSearchText(value) {
 }
 
 /** Match one general by Romaji, Arabic, or Japanese on every search surface. */
+export function normalizeArabicSearchText(value){
+  return String(value??'').normalize('NFKC').replace(/\u0640|[\u064b-\u065f]|\u0670|[\u06d6-\u06ed]/g,'')
+}
+
 export function matchesCharacterName(character, query, { exact = false } = {}) {
   if (!query || !String(query).trim()) return true
   const rawQuery = String(query).trim()
-  const lowerQuery = rawQuery.toLowerCase()
+  const lowerQuery = normalizeArabicSearchText(rawQuery).toLowerCase()
   // Exact corrected/legacy spellings should resolve to their one intended
   // general before fuzzy long-vowel matching. Otherwise Jiou also matched
   // Bajio and Koushou also matched the distinct Koshou.
@@ -325,7 +329,7 @@ export function matchesCharacterName(character, query, { exact = false } = {}) {
   ].filter(Boolean)
 
   return candidates.some((candidate) => {
-    const text = String(candidate)
+    const text = normalizeArabicSearchText(candidate)
     if (exact ? text.toLowerCase() === lowerQuery : text.toLowerCase().includes(lowerQuery)) return true
     const normalized = normalizeCharacterSearchText(text)
     return Boolean(normalizedQuery && (exact ? normalized === normalizedQuery : normalized.includes(normalizedQuery)))

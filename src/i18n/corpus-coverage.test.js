@@ -31,6 +31,8 @@ import {
 
 const CHARACTERS_DIR = join(process.cwd(), 'data/characters')
 const FIELDS = ['effect', 'target', 'condition', 'duration']
+const ROLE_SKILLS=JSON.parse(readFileSync(join(process.cwd(),'data/souha_role_skills.json'),'utf8')).skills
+const ROLES_BY_OWNER=new Map(ROLE_SKILLS.map(entry=>[entry.owner_id,entry.skill]))
 
 function buildCorpus() {
   const counts = Object.fromEntries(FIELDS.map((f) => [f, new Map()]))
@@ -39,7 +41,8 @@ function buildCorpus() {
     const doc = JSON.parse(readFileSync(join(CHARACTERS_DIR, file), 'utf8'))
     for (const character of Array.isArray(doc) ? doc : Object.values(doc)) {
       if (!character || typeof character !== 'object') continue
-      const skills = [...(character.skills || []), ...(character.roleSkill ? [character.roleSkill] : [])]
+      const roleSkill=ROLES_BY_OWNER.get(character.id)||character.roleSkill
+      const skills = [...(character.skills || []), ...(roleSkill ? [roleSkill] : [])]
       for (const skill of skills) {
         for (const row of skill?.effects || []) {
           for (const field of FIELDS) {
@@ -126,20 +129,10 @@ describe.each(['ar', 'ja', 'fr'])('%s effect corpus', (code) => {
   })
 
   it('localizes the corpus to the level this locale has reached', () => {
-    // Arabic and French reached full semantic coverage, so any new mechanic a
-    // renderer cannot model must surface here rather than quietly shipping
-    // English. Japanese still has a small set of unmodelled compound shapes,
-    // so it is held to its coverage level instead of to zero.
-    //
-    // All three are asserted as properties of whatever data is present —
-    // adding character 209 must not look like corruption.
-    if (code === 'ar' || code === 'fr') {
-      expect(result.untouched).toEqual([])
-      expect(result.localized).toBe(result.total)
-      return
-    }
-    const pct = (100 * result.localized) / result.total
-    expect(pct).toBeGreaterThan(99)
+    // Every runtime character and merged role field must be modelled. New
+    // unrecognised mechanics fail closed in production and fail this gate.
+    expect(result.untouched).toEqual([])
+    expect(result.localized).toBe(result.total)
   })
 
 })

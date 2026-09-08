@@ -394,7 +394,7 @@ export function ArchivePage(){
               {secondaryName(localizedSelected?.displayName||selected.name_en,localizedSelected?.displaySecondaryName||selected.name_jp)&&(
                 <div className="detail-jp">{localizedSelected?.displaySecondaryName||selected.name_jp}</div>
               )}
-              <div className="detail-faction" style={{color:CC[selected.country]||'#999'}}>
+              <div className="detail-faction" style={{color:'var(--salmon)'}}>
                 {factionDisplay(FACTIONS.find(f=>f.id===selected.country),locale)}
               </div>
               {characterSkillsWithRole(selected).some(skill=>skill.star6)&&(
