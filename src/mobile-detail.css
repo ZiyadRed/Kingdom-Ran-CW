@@ -1,0 +1,9 @@
+@media (max-width: 768px) {
+  .app:has(.archive-layout.has-selection .detail-panel) > :is(.hdr, .foot, .bottom-nav, .skip-link),
+  .app:has(.archive-layout.has-selection .detail-panel) .archive-tabs,
+  .archive-layout.has-selection > :is(.fac-sidebar, .gallery-wrap) { display: none; }
+  /* The existing phone faction rail uses display:block!important. */
+  .archive-layout.has-selection > .fac-sidebar { display: none !important; }
+  body:has(.archive-layout.has-selection .detail-panel) { overflow: hidden; }
+  .detail-panel .detail-name:focus { outline: 2px solid currentColor; outline-offset: 4px; }
+}

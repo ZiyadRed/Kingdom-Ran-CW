@@ -1,5 +1,6 @@
 import { ArtLightbox, ViewArtButton } from './art-preview.jsx'
 import './buff-summary.css'
+import { useMobileDetailFocus } from './use-mobile-detail-focus.js'
 import { secondaryName } from './display-names.js'
 import { useState, useEffect, useMemo, useDeferredValue, useRef, useId } from 'react'
 import { Link, useNavigate, useLocation, useParams } from 'react-router-dom'
@@ -119,6 +120,7 @@ export function CW6SceneCardsPage(){
   const locale=useLocale()
   const{t}=useTranslation('common')
   const[selected,setSelected]=useState(null)
+  const detailLayoutRef=useMobileDetailFocus(selected?.id)
   const[artSrc,setArtSrc]=useState(null)
   const[progressFilter,setProgressFilter]=useState('all')
   const tracker=useProgressTracker()
@@ -128,6 +130,7 @@ export function CW6SceneCardsPage(){
     return progressFilter==='all'||(progressFilter==='owned'?owned:!owned)
   })
   const ownedCount=tracker.countOwned('cw6Cards',cards.map(c=>c.id))
+  const GalleryHeading=selected?'h2':'h1'
   const pickCard=card=>setSelected(selected?.id===card.id?null:card)
   const clearSelection=()=>setSelected(null)
   const sceneCardFileName=card=>card.name_en||`${card.ownerName||'Scene'} CW6 star`
@@ -139,11 +142,11 @@ export function CW6SceneCardsPage(){
   return(
     <>
     <ArchiveTabs active="cw6"/>
-    <div className={'archive-layout cw6-scene-page' + (selected?' has-selection':'')}>
+    <div ref={detailLayoutRef} className={'archive-layout cw6-scene-page' + (selected?' has-selection':'')}>
       <div className="gallery-wrap">
         <div className="gallery-header" style={{alignItems:'flex-start',gap:'12px',flexWrap:'wrap'}}>
           <div>
-            <h1 className="gallery-title">{t('nav.sceneCards')}</h1>
+            <GalleryHeading className="gallery-title">{t('nav.sceneCards')}</GalleryHeading>
             <div style={{fontSize:'.72rem',color:'var(--txt3)',marginTop:'3px'}}>{t('archive.sceneSubtitle')}</div>
           </div>
           <div style={{display:'flex',alignItems:'center',gap:'9px',flexWrap:'wrap',marginLeft:'auto'}}>
@@ -164,6 +167,7 @@ export function CW6SceneCardsPage(){
               <button
                 type="button"
                 className="cw6-card-detail"
+                data-detail-id={card.id}
                 aria-label={sceneCardAccessibleName(card)}
                 aria-pressed={selected?.id===card.id}
                 onClick={()=>pickCard(card)}
@@ -194,11 +198,11 @@ export function CW6SceneCardsPage(){
         </div>
       </div>
       {selected&&(
-        <aside className="detail-panel">
+        <article className="detail-panel">
           <div className="detail-header">
             <FadeImg src={selected.image} alt={sceneCardAccessibleName(selected)} className="detail-portrait" loading="eager" decoding="async" style={{objectFit:'contain',background:'rgba(255,255,255,.08)',objectPosition:'center'}}/>
             <div className="detail-info">
-              <div className="detail-name">{locale.code==='ja'?(selected.skill_jp||selected.skill_en):selected.skill_en}</div>
+              <h1 tabIndex={-1} className="detail-name">{locale.code==='ja'?(selected.skill_jp||selected.skill_en):selected.skill_en}</h1>
               {secondaryName(locale.code==='ja'?(selected.skill_jp||selected.skill_en):selected.skill_en,selected.skill_jp)&&(
                 <div className="detail-jp">{selected.skill_jp}</div>
               )}
@@ -236,7 +240,7 @@ export function CW6SceneCardsPage(){
             />
             {selected.skill?<SkillCard skill={localizedSkill({...selected.skill,cwId:selected.cwIds?.[5]},selected.owner_id,5,locale)}/>:<p className="no-skills">{t('translationPending')}</p>}
           </div>
-        </aside>
+        </article>
       )}
     </div>
     <ArtLightbox src={artSrc} alt={t('archive.cardArt')} onClose={()=>setArtSrc(null)}/>
@@ -253,6 +257,7 @@ export function ArchivePage(){
   const locale=useLocale()
   const{t}=useTranslation('common')
   const selected=useMemo(()=>findCharById(charId),[charId,findCharById])
+  const detailLayoutRef=useMobileDetailFocus(selected?.id)
   const[activeFac,setActiveFac]=useState(()=>selected?.country||'qin')
   const[search,setSearch]=useState('')
   // Keep the faction rail aligned when direct-loading a character. Selection
@@ -297,7 +302,7 @@ export function ArchivePage(){
   const GalleryHeading=selected?'h2':'h1'
   if(charId&&!selected) return <NotFoundPage/>
   return(
-    <div className={`archive-layout${selected?' has-selection':''}`}>
+    <div ref={detailLayoutRef} className={`archive-layout${selected?' has-selection':''}`}>
       {/* Sidebar */}
       <aside className="fac-sidebar">
         <div className="fac-search-wrap">
@@ -345,6 +350,7 @@ export function ArchivePage(){
             const skillTag=deferredQuery?matchCharacterSearch(c,deferredQuery,locale)?.hint:null
             return(
             <Link key={c.id}
+              data-detail-id={c.id}
               to={`/archive/characters/${c.id}`}
               className={`banner-card${selected?.id===c.id?' banner-selected':''}`}
               onClick={e=>{if(selected?.id===c.id){e.preventDefault();navigate('/archive/characters')}}}
@@ -370,7 +376,7 @@ export function ArchivePage(){
         </div>
       </div>
 
-      {/* Skills panel — desktop: right column, mobile: bottom sheet */}
+      {/* Skills panel — desktop: right column, mobile: complete detail page */}
       {selected&&(
         <article className="detail-panel">
           <nav className="seo-breadcrumbs" aria-label={t('archive.breadcrumbs',{defaultValue:'Breadcrumbs'})}>
@@ -385,7 +391,7 @@ export function ArchivePage(){
           <div className="detail-header">
             <CharIcon c={selected} size={64} round={false} className="detail-portrait" eager/>
             <div className="detail-info">
-              <h1 className="detail-name">{localizedSelected?.displayName||selected.name_en}</h1>
+              <h1 tabIndex={-1} className="detail-name">{localizedSelected?.displayName||selected.name_en}</h1>
               {secondaryName(localizedSelected?.displayName||selected.name_en,localizedSelected?.displaySecondaryName||selected.name_jp)&&(
                 <div className="detail-jp">{localizedSelected?.displaySecondaryName||selected.name_jp}</div>
               )}

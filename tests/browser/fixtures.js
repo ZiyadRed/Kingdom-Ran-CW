@@ -72,5 +72,9 @@ export async function expectLocale(page, locale) {
   await expect(page.locator('html')).toHaveAttribute('lang', locale)
   await expect(page.locator('html')).toHaveAttribute('dir', locale === 'ar' ? 'rtl' : 'ltr')
   await expect(page.getByRole('main')).toHaveCount(1)
-  await expect(page.getByRole('banner')).toHaveCount(1)
+  await expect(page.locator('header.hdr')).toHaveCount(1)
+  if(page.viewportSize().width<=768&&await page.locator('.archive-layout.has-selection .detail-panel').count()){
+    await expect(page.locator('header.hdr')).toBeHidden()
+    await expect(page.getByRole('banner')).toHaveCount(0)
+  }else await expect(page.getByRole('banner')).toHaveCount(1)
 }
