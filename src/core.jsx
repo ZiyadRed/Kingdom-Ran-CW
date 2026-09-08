@@ -29,6 +29,7 @@ import classification from '../data/character_classification.json'
 import souhaRoleSkills from '../data/souha_role_skills.json'
 import { PROGRESS_STORAGE_KEY, emptyProgress, readProgressSnapshot, replaceProgressFromBackup } from './progress-storage.js'
 import { useHydratedState } from './use-hydrated-state.js'
+import { getDocumentReleaseSnapshot, releaseStage, useReleaseStage } from './release-snapshot.js'
 import Dialog from './Dialog.jsx'
 import { buffOwnershipId, migrateBuffOwnership } from './buff-ownership.js'
 export { PROGRESS_STORAGE_KEY, emptyProgress } from './progress-storage.js'
@@ -175,16 +176,13 @@ export const buffSourceId=(_kind,_key,_stat,entry,_i)=>buffOwnershipId(entry)
 // holding rows out of the dataset, so provenance stays intact and the card
 // appears on its own release day with no code change.
 const cw6Cards=cw6SceneCards.cards||[]
-const isCardPublic=card=>!card?.publicTime||card.publicTime*1000<=Date.now()
-export const PUBLIC_CW6_CARDS=cw6Cards.filter(isCardPublic)
+const releaseTimes=[...new Set(cw6Cards.map(card=>card.publicTime*1000).filter(time=>Number.isFinite(time)&&time>0))].sort((a,b)=>a-b)
+const isCardPublic=(card,time)=>!card?.publicTime||card.publicTime*1000<=time
 // Star-6 skills reach a character through the same card, so an unreleased card
 // must also keep its skill off the character page, the builder and Share Team.
-const UNRELEASED_CW_IDS=new Set(
-  cw6Cards.filter(card=>!isCardPublic(card)).flatMap(card=>card.cwIds||[]),
-)
-const withoutUnreleasedStar6=character=>{
+const withoutUnreleasedStar6=(character,unreleasedIds)=>{
   const skills=(character.skills||[]).filter(
-    skill=>!(skill?.star6&&UNRELEASED_CW_IDS.has(skill.cwId)),
+    skill=>!(skill?.star6&&unreleasedIds.has(skill.cwId)),
   )
   return skills.length===(character.skills||[]).length?character:{...character,skills}
 }
@@ -192,12 +190,12 @@ const withoutUnreleasedStar6=character=>{
 export const SOUHA_ROLE_SKILLS=souhaRoleSkills.skills||[]
 const ROLE_SKILL_BY_OWNER=Object.fromEntries(SOUHA_ROLE_SKILLS.map(entry=>[entry.owner_id,entry]))
 
-export const ALL = [
+const completeRoster = [
   ...mountainFolk,...qin,...qinBatch2,...qinMajor,
   ...zhao,...zhaoBatch2,...zhaoMajor,...otherStates,
   ...chu,...chuMajor,...wei,...yan,...qi,
   ...aiYanMajor,...misc,...misc2,
-].filter(c=>c.country!=='unknown').map(withoutUnreleasedStar6).map(c=>{
+].filter(c=>c.country!=='unknown').map(c=>{
   const entry=ROLE_SKILL_BY_OWNER[c.id]
   if(!entry) return c
   return{
@@ -217,7 +215,7 @@ export const ALL = [
 // Do not infer game targeting memberships from story associations or `unit` copy.
 export const UNIT_TYPES=Object.fromEntries(Object.entries(classification).map(([id,c])=>[id,c.unit_type]))
 export const GROUPS={}
-for(const c of ALL){
+for(const c of completeRoster){
   const verified=classification[c.id]
   c.unit_type=verified?.unit_type||null
   c.groups=[...(verified?.groups||[])]
@@ -228,9 +226,9 @@ for(const c of ALL){
 }
 
 // Fast lookup by name_en (case-insensitive) — replaces repeated ALL.find() scans
-export const CHAR_BY_NAME = (()=>{
+const namesForRoster=roster=>{
   const map={}
-  for(const character of ALL){
+  for(const character of roster){
     if(!character.name_en) continue
     map[character.name_en]=character
     map[character.name_en.toLowerCase()]=character
@@ -242,15 +240,36 @@ export const CHAR_BY_NAME = (()=>{
     map[legacy.toLowerCase()]=character
   }
   return map
-})()
-export const findCharByName = name => typeof name==='string'
-  ? CHAR_BY_NAME[name]||CHAR_BY_NAME[name.toLowerCase()]||null
-  : null
-export const CHAR_BY_ID = Object.fromEntries(ALL.map(character=>[character.id,character]))
-export const findCharById = id => typeof id==='string' && Object.hasOwn(CHAR_BY_ID,id) ? CHAR_BY_ID[id] : null
+}
+const releaseDataCache=new Map()
+export function getReleaseData(time){
+  const stage=releaseStage(releaseTimes,time)
+  if(releaseDataCache.has(stage)) return releaseDataCache.get(stage)
+  const cards=cw6Cards.filter(card=>isCardPublic(card,stage))
+  const unreleasedIds=new Set(cw6Cards.filter(card=>!isCardPublic(card,stage)).flatMap(card=>card.cwIds||[]))
+  const roster=completeRoster.map(character=>withoutUnreleasedStar6(character,unreleasedIds))
+  const byId=Object.fromEntries(roster.map(character=>[character.id,character]))
+  const byName=namesForRoster(roster)
+  const data={
+    ALL:roster,
+    PUBLIC_CW6_CARDS:cards,
+    ARCHIVE_BROWSE_CHARACTERS:roster.filter(character=>Boolean(character.image)),
+    CHAR_BY_ID:byId,
+    CHAR_BY_NAME:byName,
+    findCharById:id=>typeof id==='string'&&Object.hasOwn(byId,id)?byId[id]:null,
+    findCharByName:name=>typeof name==='string'?byName[name]||byName[name.toLowerCase()]||null:null,
+  }
+  releaseDataCache.set(stage,data)
+  return data
+}
+// Pure consumers and SSR share the document's immutable data. Reactive UI uses
+// the hook, so released skills receive new identities and invalidate text caches.
+export const {ALL,PUBLIC_CW6_CARDS,CHAR_BY_NAME,CHAR_BY_ID,findCharByName,findCharById,ARCHIVE_BROWSE_CHARACTERS}=getReleaseData(getDocumentReleaseSnapshot())
+export function useReleaseData(){
+  return getReleaseData(useReleaseStage(releaseTimes))
+}
 // Keep icon-only generals in the complete roster for direct links and search,
 // while the default Archive browse view shows only finished banner cards.
-export const ARCHIVE_BROWSE_CHARACTERS = ALL.filter(character=>Boolean(character.image))
 export const ARCHIVE_CHAR_COUNT = ARCHIVE_BROWSE_CHARACTERS.length
 
 // Unlock costs use initial game rarity, not the currently awakened card rank.
@@ -471,7 +490,8 @@ export const META_TEAMS=[
 // Tier list = the META_TEAMS that carry a tier, with their colour resolved.
 export const TIER_TEAMS=META_TEAMS.filter(t=>t.tier).map(t=>({...t,color:TIER_COLORS[t.tier]}))
 
-// Simulate
+// Formation order advances first-to-last; only each general's combat skill
+// slots reverse. Official FAQ evidence and scope: docs/BATTLE_ORDER_EVIDENCE.md.
 export function simulate(a,d){
   const st={attack:[],defense:[]}
   const roles={attack:[],defense:[]}
@@ -951,19 +971,19 @@ export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false,includeCo
           if(SPECIAL_STATS.has(stat)){
             const times=(parseInt(eff.duration)||1)*mult
             stats[stat].up+=times
-            stats[stat].sources.push({owner,contribution:times,dir:'up'})
+            stats[stat].sources.push({owner,skill,effect:eff,contribution:times,dir:'up'})
           } else if(stat==='Guard'&&dir==='Up'){
             // Guard doesn't stack — only the highest is active. Track instances separately.
             if(!stats[stat].instances) stats[stat].instances=[]
-            stats[stat].instances.push({val:val*mult,duration:eff.duration||null,owner})
+            stats[stat].instances.push({val:val*mult,duration:eff.duration||null,owner,skill,effect:eff})
             stats[stat].up=Math.max(stats[stat].up,val*mult)
-            stats[stat].sources.push({owner,contribution:val*mult,dir:'up',duration:eff.duration||null})
+            stats[stat].sources.push({owner,skill,effect:eff,contribution:val*mult,dir:'up',duration:eff.duration||null})
           } else if(dir==='Up'){
             stats[stat].up+=val*mult
-            stats[stat].sources.push({owner,contribution:val*mult,dir:'up'})
+            stats[stat].sources.push({owner,skill,effect:eff,contribution:val*mult,dir:'up'})
           } else {
             stats[stat].down+=val*mult
-            stats[stat].sources.push({owner,contribution:val*mult,dir:'down'})
+            stats[stat].sources.push({owner,skill,effect:eff,contribution:val*mult,dir:'down'})
           }
         }
       }
@@ -1021,7 +1041,7 @@ export function enemyDebuffFactor(cond,isDefense,owner,team,enemyTeam=[]){
 }
 export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false,isDefense=false){
   const byTarget={}
-  function addToTarget(key,parsed,owner,factor=1){
+  function addToTarget(key,parsed,owner,factor=1,skill,effect){
     if(!parsed.length) return
     if(enemyTeam.length>0){
       const ut=UNIT_TYPE_LIST.find(u=>key===`Enemy ${u}`)
@@ -1043,7 +1063,7 @@ export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false,isDef
       byTarget[key][d][stat]=(byTarget[key][d][stat]||0)+v
       const skey=`${d}|${stat}`
       if(!byTarget[key].sources[skey]) byTarget[key].sources[skey]=[]
-      byTarget[key].sources[skey].push({owner,contribution:v,dir:d})
+      byTarget[key].sources[skey].push({owner,skill,effect,contribution:v,dir:d})
     }
   }
   for(const owner of team){
@@ -1061,7 +1081,7 @@ export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false,isDef
           if(cm){const raw=cm[1].toLowerCase();const ut=raw.startsWith('arch')?'Archer':raw.startsWith('cav')?'Cavalry':raw.startsWith('inf')?'Infantry':'Shield';if(!enemyTeam.some(g=>g.unit_type===ut)) continue}
         }
         if(/^enemy|^all\s+enemy/i.test(t)){
-          addToTarget(normalizeEnemyTarget(t),parseBuffEffect(eff.effect),owner,factor)
+          addToTarget(normalizeEnemyTarget(t),parseBuffEffect(eff.effect),owner,factor,sk,eff)
         } else {
           // collect embedded "Enemy [X] Stat Dir Val" parts from ally-target effects
           for(const part of (eff.effect||'').split(/[,、]/)){
@@ -1071,7 +1091,7 @@ export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false,isDef
             if(!m) continue
             const targetType=m[1].trim()
             const key=UNIT_TYPE_LIST.includes(targetType)?`Enemy ${targetType}`:`Enemy ${targetType[0].toUpperCase()+targetType.slice(1)}`
-            addToTarget(key,[{stat:m[2].trim(),dir:m[3],val:parseFloat(m[4])}],owner,factor)
+            addToTarget(key,[{stat:m[2].trim(),dir:m[3],val:parseFloat(m[4])}],owner,factor,sk,eff)
           }
         }
       }
@@ -1110,6 +1130,7 @@ export function searchCharacters(characters, query, locale) {
 }
 
 export function Picker({onSelect,onClose,excl=[],returnFocus}){
+  const {ALL}=useReleaseData()
   const locale=useLocale()
   const{t}=useTranslation('common')
   const[q,setQ]=useState(''),ref=useRef(null)
@@ -1118,7 +1139,7 @@ export function Picker({onSelect,onClose,excl=[],returnFocus}){
     return searchCharacters(ALL.filter(c=>!excl.includes(c.id)),q,locale)
   // exclKey is the stable representation of `excl`; ESLint can't see that.
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[q,exclKey,locale])
+  },[q,exclKey,locale,ALL])
   return(
     <Dialog className="overlay" onClose={onClose} aria-label={t('archive.searchGenerals')} initialFocus={()=>ref.current} returnFocus={returnFocus}>
       <div className="picker" onClick={e=>e.stopPropagation()}>

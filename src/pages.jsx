@@ -1,11 +1,12 @@
 import { ArtLightbox, ViewArtButton } from './art-preview.jsx'
+import './buff-summary.css'
 import { secondaryName } from './display-names.js'
 import { useState, useEffect, useMemo, useDeferredValue, useRef } from 'react'
 import { Link, useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import {
-  useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, ALL, ARCHIVE_BROWSE_CHARACTERS, findCharById, findCharByName, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, simulate, calcCharBuffs, calcTeamEnemyDebuffs, Picker, characterInitialRarity, INVERSE_STATS, SPECIAL_STATS, statSortKey, DEFAULT_SK, hasStar6, hasRoleSkill, updateSkillMasks, applyMask, PUBLIC_CW6_CARDS, matchCharacterSearch, searchCharacters
+  useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, ALL, useReleaseData, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, simulate, calcCharBuffs, calcTeamEnemyDebuffs, Picker, characterInitialRarity, INVERSE_STATS, SPECIAL_STATS, statSortKey, DEFAULT_SK, hasStar6, hasRoleSkill, updateSkillMasks, applyMask, matchCharacterSearch, searchCharacters
 } from './core.jsx'
 import { characterSeo, routeSeo, setSeo } from './seo.js'
 import { classifyConditionParts } from './skillConditions.js'
@@ -21,6 +22,7 @@ import { localizedCharacter, localizedDuration, localizedSkill, localizedTarget,
 import { builderShareUrl, characterShareUrl, createCharacterSkillsImage, createTeamSkillsImage, downloadBlob, formatCharacterSkillsShare, formatSceneCardShare, formatTeamBuffShare, sceneCardShareUrl, shareImageBlob, shareText } from './share.js'
 
 export function ArchiveTabs({active}){
+  const {PUBLIC_CW6_CARDS}=useReleaseData()
   const{t}=useTranslation('common')
   const tabs=[
     {id:'characters',label:t('nav.characters'),count:String(ARCHIVE_CHAR_COUNT),route:'/archive/characters'},
@@ -84,10 +86,11 @@ const SKILL_LEVEL_ICON={
 const CW6_SKILL_ICON='/icons/neon_cw6_hexagon_badge.webp'
 
 export function ArchiveHubPage(){
+  const {PUBLIC_CW6_CARDS}=useReleaseData()
   const {t}=useTranslation('common')
   const locale=useLocale()
   const collections=[
-    {route:'/archive/characters',title:'nav.characters',description:'archive.hubCharacters',count:ARCHIVE_CHAR_COUNT},
+    {route:'/archive/characters',title:'nav.characters',description:'archive.hubCharacters',count:ALL.length},
     {route:'/archive/cw6-scene-cards',title:'nav.sceneCards',description:'archive.hubCards',count:PUBLIC_CW6_CARDS.length},
   ]
   return(
@@ -111,6 +114,7 @@ export function ArchiveHubPage(){
 }
 
 export function CW6SceneCardsPage(){
+  const {PUBLIC_CW6_CARDS}=useReleaseData()
   const shareLabels=useShareLabels()
   const locale=useLocale()
   const{t}=useTranslation('common')
@@ -241,13 +245,14 @@ export function CW6SceneCardsPage(){
 }
 
 export function ArchivePage(){
+  const {ALL,ARCHIVE_BROWSE_CHARACTERS,findCharById}=useReleaseData()
   const shareLabels=useShareLabels()
   const{charId}=useParams()
   const navigate=useNavigate()
   const location=useLocation()
   const locale=useLocale()
   const{t}=useTranslation('common')
-  const selected=useMemo(()=>findCharById(charId),[charId])
+  const selected=useMemo(()=>findCharById(charId),[charId,findCharById])
   const[activeFac,setActiveFac]=useState(()=>selected?.country||'qin')
   const[search,setSearch]=useState('')
   // Keep the faction rail aligned when direct-loading a character. Selection
@@ -283,7 +288,7 @@ export function ArchivePage(){
     const source=deferredQuery?ALL:ARCHIVE_BROWSE_CHARACTERS
     const alphabetical=source.slice().sort((a,b)=>a.name_en.localeCompare(b.name_en))
     return deferredQuery?searchCharacters(alphabetical,deferredQuery,locale):alphabetical.filter(c=>c.country===activeFac)
-  },[deferredQuery,activeFac,locale])
+  },[deferredQuery,activeFac,locale,ALL,ARCHIVE_BROWSE_CHARACTERS])
   const localizedSelected=useMemo(()=>selected?localizedCharacter(selected,locale):null,[selected,locale])
   const localizedFiltered=useMemo(()=>filtered.map(character=>localizedCharacter(character,locale)),[filtered,locale])
   const galleryVisible=useArchiveGalleryVisible(!!selected)
@@ -737,6 +742,7 @@ export function useShareLabels(){
     teamBuffSummary:t('shareOutput.teamBuffSummary'),
     withCombat:t('shareOutput.withCombat'),
     strategyOnly:t('shareOutput.strategyOnly'),
+    summaryConditions:t('buffs.summaryConditions'),
     noRelevantBuffs:t('noRelevantBuffs'),
     unknown:t('unknown'),
     truncated:t('shareOutput.truncated'),
@@ -775,6 +781,7 @@ export function SkillConditionChips({condition}){
 
 // Meta team card
 export function MetaTeamCard({team,onLoad}){
+  const {findCharByName}=useReleaseData()
   const locale=useLocale()
   const{t}=useTranslation('common')
   const chars=team.members.map(findCharByName).filter(Boolean)
@@ -802,6 +809,7 @@ export function MetaTeamCard({team,onLoad}){
 
 // ── PARTY BUILDER ─────────────────────────────────────────────────────────────
 export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk,setSlot,rm,goSim,loadMetaTeam}){
+  const {findCharById,findCharByName}=useReleaseData()
   const{t}=useTranslation('common')
   const locale=useLocale()
   const[picker,setPicker]=useState(null)
@@ -966,6 +974,7 @@ export function SkillToggles({char,mask,onChange}){
 
 // ── ACTIVATION ORDER ──────────────────────────────────────────────────────────
 export function SimPage({atk:atkIds,def:defIds,atkSk,defSk,goBuilder}){
+  const {findCharById}=useReleaseData()
   const locale=useLocale()
   const{t}=useTranslation('common')
   const atk=atkIds.map(findCharById)
@@ -1169,14 +1178,16 @@ export function BuffTable({atk,def}){
   const{t}=useTranslation('common')
   const[includeCombat,setIncludeCombat]=useState(false)
   if(!atk.length&&!def.length) return null
-  const atkBuffs=atk.map(g=>({general:g,buffs:calcCharBuffs(g,atk,def,false,true,includeCombat)}))
-  const defBuffs=def.map(g=>({general:g,buffs:calcCharBuffs(g,def,atk,true,true,includeCombat)}))
+  // Formation totals use the actual side; unresolved battle conditions remain
+  // potential contributions, disclosed below and beside their source effects.
+  const atkBuffs=atk.map(g=>({general:g,buffs:calcCharBuffs(g,atk,def,false,false,includeCombat)}))
+  const defBuffs=def.map(g=>({general:g,buffs:calcCharBuffs(g,def,atk,true,false,includeCombat)}))
   const atkEnemyDebuffs=calcTeamEnemyDebuffs(atk,def,includeCombat,false)
   const defEnemyDebuffs=calcTeamEnemyDebuffs(def,atk,includeCombat,true)
   const hasAny=arr=>arr.some(({buffs})=>Object.keys(buffs).length>0)
   if(!hasAny(atkBuffs)&&!hasAny(defBuffs)&&!Object.keys(atkEnemyDebuffs).length&&!Object.keys(defEnemyDebuffs).length) return null
   return(
-    <div className="sim-sec">
+    <div className="sim-sec buff-summary">
       <div className="sec-hd sec-buff" style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:'1rem',flexWrap:'wrap'}}>
          <span>⚡ {t('buffs.teamSummary')}</span>
         <div className="sec-actions">
@@ -1203,12 +1214,26 @@ export function BuffTable({atk,def}){
           </label>
         </div>
       </div>
+      <p className="buff-summary-note">{t('buffs.summaryConditions')}</p>
       <div className="strat-cols">
         <BuffSideTable label={`⚔ ${t('buffs.attackingFormation')}`} entries={atkBuffs} side="attack" enemyDebuffs={atkEnemyDebuffs}/>
         <BuffSideTable label={`🛡 ${t('buffs.defendingFormation')}`} entries={defBuffs} side="defense" enemyDebuffs={defEnemyDebuffs}/>
       </div>
     </div>
   )
+}
+export function BuffSourceEvidence({source}){
+  const {findCharById}=useReleaseData()
+  const locale=useLocale()
+  if(!source.skill||!source.effect) return null
+  const skillIndex=findCharById(source.owner.id)?.skills.indexOf(source.skill)
+  const skill=localizedSkill(source.skill,source.owner.id,skillIndex,locale)
+  const effect=skill.displayEffects[source.skill.effects.indexOf(source.effect)]
+  return <div className="buff-source-evidence">
+    <span className="buff-source-skill">{skill.displayName}</span>
+    {effect?.condition&&<span className="buff-source-condition">{effect.condition}</span>}
+    <span>{effect?.target} → {effect?.effect}{effect?.duration?` · ${effect.duration}`:''}</span>
+  </div>
 }
 export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
   const{t}=useTranslation('common')
@@ -1224,7 +1249,7 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
        {!hasAny?<p className="scol-none">{t('noRelevantBuffs')}</p>:entries.map(({general:g,buffs})=>{
         const stats=Object.entries(buffs).filter(([,v])=>v.up>0||v.down>0).sort(([a],[b])=>statSortKey(a)-statSortKey(b))
         return(
-          <div key={g.id} className="scol-gen">
+          <div key={g.id} className="scol-gen" data-buff-general={g.id}>
             <div className="scol-gen-hdr" style={{color:ac}}>
               <CharIcon c={g} size={26} round={true}/>
               <b>{localizedCharacter(g,locale).displayName}</b>
@@ -1245,7 +1270,7 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
                     const key=`${g.id}|Guard`
                     const isOpen=expanded===key
                     return(
-                      <div key={stat}>
+                      <div key={stat} data-buff-stat={stat}>
                         <div className={`buff-row buff-row-click${isOpen?' buff-row-open':''}`}
                              onClick={()=>extra>0&&setExpanded(isOpen?null:key)}>
                           <span className="buff-stat-name">{localizedText('Guard',locale)}</span>
@@ -1259,10 +1284,13 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
                         {isOpen&&extra>0&&(
                           <div className="buff-sources">
                             {sorted.map((inst,idx)=>(
-                              <div key={idx} className="buff-source-row">
+                              <div key={idx} className="buff-source-contribution">
+                              <div className="buff-source-row">
                                 <CharIcon c={inst.owner} size={16} round={true}/>
                                 <span className="buff-source-name">{localizedCharacter(inst.owner,locale).displayName}</span>
                                 <span className="buff-up">+{fmt(inst.val)}%{inst.duration?` · ${localizedDuration(inst.duration,locale)}`:''}</span>
+                              </div>
+                              <BuffSourceEvidence source={inst}/>
                               </div>
                             ))}
                              <div className="buff-guard-note">{t('buffs.guardNote')}</div>
@@ -1274,7 +1302,7 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
                   const key=`${g.id}|${stat}`
                   const isOpen=expanded===key
                   return(
-                    <div key={stat}>
+                    <div key={stat} data-buff-stat={stat}>
                       <div className={`buff-row buff-row-click${isOpen?' buff-row-open':''}`}
                            onClick={()=>setExpanded(isOpen?null:key)}>
                         <span className="buff-stat-name">{localizedText(stat,locale)}</span>
@@ -1290,12 +1318,15 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
                       {isOpen&&sources.length>0&&(
                         <div className="buff-sources">
                           {sources.map((s,i)=>(
-                            <div key={i} className="buff-source-row">
+                            <div key={i} className="buff-source-contribution">
+                            <div className="buff-source-row">
                               <CharIcon c={s.owner} size={16} round={true}/>
                               <span className="buff-source-name">{localizedCharacter(s.owner,locale).displayName}</span>
                               <span className={s.dir==='up'?(inv?'buff-down':'buff-up'):(inv?'buff-up':'buff-down')}>
                                 {isFlag?`${s.contribution}×`:`${s.dir==='up'?'+':'−'}${fmt(s.contribution)}%`}
                               </span>
+                            </div>
+                            <BuffSourceEvidence source={s}/>
                             </div>
                           ))}
                         </div>
@@ -1339,10 +1370,13 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
                     {isOpen&&srcs.length>0&&(
                       <div className="buff-sources">
                         {srcs.map((x,i)=>(
-                          <div key={i} className="buff-source-row">
+                          <div key={i} className="buff-source-contribution">
+                          <div className="buff-source-row">
                             <CharIcon c={x.owner} size={16} round={true}/>
                             <span className="buff-source-name">{localizedCharacter(x.owner,locale).displayName}</span>
                             <span className="buff-down">{x.dir==='down'?'−':'+'}{fmt(x.contribution)}%</span>
+                          </div>
+                          <BuffSourceEvidence source={x}/>
                           </div>
                         ))}
                       </div>
@@ -1373,6 +1407,7 @@ export const TIER_DEFS={
 const SS_STAR='M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z'
 
 function TierTeamCard({team,def,ss=false}){
+  const {findCharByName}=useReleaseData()
   const locale = useLocale()
   const chars=team.members.map(findCharByName).filter(Boolean)
   return(
@@ -1460,6 +1495,8 @@ const COST_CHARACTER_BY_ID=new Map(COST_CHARACTERS.map(c=>[c.id,c]))
 const normalizeCostDraft=value=>normalizeTeamCostDraft(value,COST_CHARACTER_BY_ID)
 
 export function TeamCostPage(){
+  const {ALL}=useReleaseData()
+  const allChars=useMemo(()=>ALL.map(c=>({...c,rarity:characterInitialRarity(c)})),[ALL])
   const { t } = useTranslation('common')
   const locale = useLocale()
   const[draft,setDraft]=useStoredDraft(TEAM_COST_DRAFT_KEY,createTeamCostDraft,normalizeCostDraft)
@@ -1476,7 +1513,6 @@ export function TeamCostPage(){
 
   const remainingCost=(rarity,done)=>SKILL_COSTS[rarity||'SR'].slice(done).reduce((s,v)=>s+v,0)
 
-  const allChars=COST_CHARACTERS
 
   const filtered=searchCharacters(allChars.slice().sort((a,b)=>a.name_en.localeCompare(b.name_en)),search,locale)
 

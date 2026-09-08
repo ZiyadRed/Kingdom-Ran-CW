@@ -219,10 +219,49 @@ describe('calcTeamEnemyDebuffs condition gating', () => {
   })
 })
 
-// Combat skills fire in REVERSE slot order, one per turn, Normal Attack when
-// a general runs out (see NOTES_FOR_CLAUDE.md). Strategy skills are skipped.
+// The official FAQ distinguishes forward formation order from reverse skill
+// slots within one general. See docs/BATTLE_ORDER_EVIDENCE.md for primary evidence.
 describe('simulate turn ordering', () => {
   const g = (id, skills) => ({ id, name_en: id, skills })
+
+  it('preserves explicit formation slots across both sides and empty slots', () => {
+    const combat = (name) => ({ type: 'Combat', name })
+    const member = (id, formationSlot) => ({ ...g(id, [
+      combat(`${id}-1`), { type: 'Strategy', name: `${id}-passive` },
+      combat(`${id}-3`),
+    ]), formationSlot })
+    // Four physical slots per side, matching Builder. Empty slots are removed
+    // by the page before simulate(), retaining the original member order.
+    const attackSlots = [member('A1', 1), null, member('A3', 3), member('A4', 4)]
+    const defenseSlots = [null, member('D2', 2), null, member('D4', 4)]
+    const { turns } = simulate(attackSlots.filter(Boolean), defenseSlots.filter(Boolean))
+    const expectedMembers = [
+      ['attack', 'A1', 1], ['defense', 'D2', 2], ['attack', 'A3', 3],
+      ['defense', 'D4', 4], ['attack', 'A4', 4],
+    ]
+    expect(turns).toHaveLength(4)
+    for (const turn of turns) {
+      expect(turn.entries.map(({ side, general }) => [side, general.id, general.formationSlot]))
+        .toEqual(expectedMembers)
+    }
+    expect(turns.map(({ entries }) => entries.map(({ skill }) => skill?.name ?? 'Normal')))
+      .toEqual([
+        ['A1-3', 'D2-3', 'A3-3', 'D4-3', 'A4-3'],
+        ['A1-1', 'D2-1', 'A3-1', 'D4-1', 'A4-1'],
+        ['Normal', 'Normal', 'Normal', 'Normal', 'Normal'],
+        ['Normal', 'Normal', 'Normal', 'Normal', 'Normal'],
+      ])
+  })
+
+  it('keeps the audited Ousen, Moubu, Renpa, Ouki formation before Kyou interleaving', () => {
+    const attackSlots = ['Ousen', 'Moubu', 'Renpa', 'Ouki'].map(findCharByName)
+    const defenseSlots = [null, null, findCharByName('Kyou'), null]
+    expect(attackSlots.every(Boolean)).toBe(true)
+    expect(defenseSlots[2]).toBeTruthy()
+    const { turns } = simulate(attackSlots, defenseSlots.filter(Boolean))
+    expect(turns[0].entries.map(({ general }) => general.name_en))
+      .toEqual(['Ousen', 'Kyou', 'Moubu', 'Renpa', 'Ouki'])
+  })
 
   it('fires combat skills last-first and falls back to Normal Attack', () => {
     const a = [g('A', [

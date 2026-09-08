@@ -51,6 +51,7 @@ export const DEFAULT_SHARE_LABELS={
   teamBuffSummary:'RanHQ Team Buff Summary',
   withCombat:'Strategy + combat skill effects included.',
   strategyOnly:'Strategy skills only.',
+  summaryConditions:'Side conditions are applied. HP and other battle conditions remain potential effects; they are not simulated.',
   noRelevantBuffs:'No relevant buffs.',
   enemyDebuffOn:'Enemy debuff on',
   sceneCardSkill:'CW6 Card Skill',
@@ -276,6 +277,7 @@ export function formatTeamBuffShare({
   const lines=[
     `**${L.teamBuffSummary}**`,
     includeCombat?L.withCombat:L.strategyOnly,
+    L.summaryConditions,
     `<${url}>`,
     '',
     ...formatBuffSideForShare(L.attackingFormation,atk,atkBuffs,atkEnemyDebuffs,{specialStats,statSortKey,labels:L}),

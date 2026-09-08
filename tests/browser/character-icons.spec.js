@@ -19,6 +19,10 @@ async function clientNavigate(page, url) {
 
 test('an icon that failed before hydration recovers to its existing thumbnail without replacing the page', async ({ page, path }) => {
   await instrumentStorage(page, saved)
+  // This deliberately pauses JavaScript while the SSR image fails. A stalled
+  // third-party font stylesheet must not also hold Vite's route-CSS readiness;
+  // exercise the supported system-font fallback deterministically here.
+  await page.route('https://fonts.googleapis.com/**', route => route.abort('failed'))
   let releaseScripts, iconRequests = 0, thumbnailRequests = 0
   const scripts = new Promise(resolve => { releaseScripts = resolve })
   await page.route(/\/assets\/.*\.js$/, async route => { await scripts; await route.continue() })

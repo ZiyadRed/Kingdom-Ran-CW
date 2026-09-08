@@ -38,12 +38,18 @@ test('Archive overview and collections retain distinct crawlable pages and saved
   await expect(page.locator('.gallery-grid,.archive-tabs')).toHaveCount(0)
   const cards = page.locator('.archive-hub .reference-hub-card')
   await expect(cards).toHaveCount(2)
-  await expect(cards.first().locator('.reference-hub-count')).toHaveText(String(readCharacters().length))
+  const roster = readCharacters()
+  expect(roster).toHaveLength(209)
+  expect(roster.filter(character => character.image)).toHaveLength(190)
+  await expect(cards.first().locator('.reference-hub-count')).toHaveText('209')
   const cardCount = Number(await cards.last().locator('.reference-hub-count').textContent())
   await cards.first().focus()
   await expect(cards.first()).toBeFocused()
   await page.keyboard.press('Enter')
   await expect(page.locator('.gallery-grid')).toBeVisible()
+  // Browse counts cover accepted banners; search and direct routes retain the
+  // full roster, independently of the hub's total-record count.
+  expect((await page.locator('.fac-n').allTextContents()).reduce((sum, count) => sum + Number(count), 0)).toBe(190)
   await expect(page.locator('.archive-tabs [aria-current=page]')).toHaveAttribute('href', path('/archive/characters'))
   await page.goBack()
   await expect(page.locator('.archive-hub')).toBeVisible()
@@ -57,6 +63,23 @@ test('Archive overview and collections retain distinct crawlable pages and saved
   await settle(page)
   expect(await storage(page)).toEqual(saved)
   expect(await page.evaluate(() => window.__storageWrites)).toEqual([])
+})
+
+test('all search-only records retain searchable cards and direct detail documents', async ({ page, path }) => {
+  const searchOnly = readCharacters().filter(character => !character.image)
+  expect(searchOnly).toHaveLength(19)
+  await page.goto(path('/archive/characters'))
+  const search = page.locator('input[type="search"]:visible').first()
+  for (const character of searchOnly) {
+    await search.fill(character.name_en)
+    const detailPath = path(`/archive/characters/${character.id}`)
+    await expect(page.locator(`.banner-card[href="${detailPath}"]`)).toBeVisible()
+    const detail = await staticPage(page, detailPath)
+    expect(detail.heading, character.id).toBeTruthy()
+    expect(detail.canonical).toBe('https://ranhq.vercel.app' + detailPath)
+  }
+  await page.locator(`.banner-card[href="${path('/archive/characters/' + searchOnly.at(-1).id)}"]`).click()
+  await expect(page.locator('.detail-info h1')).toBeVisible()
 })
 
 test('Guide contents link every preserved article and return through its breadcrumb', async ({ page, path, locale }) => {

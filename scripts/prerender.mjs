@@ -15,6 +15,11 @@ const template = fs.readFileSync(templatePath, 'utf8')
 const manifest = JSON.parse(fs.readFileSync(path.join(outputDir, '.vite', 'manifest.json'), 'utf8'))
 const templateAssets = [...template.matchAll(/(?:src|href)=["'](\/assets\/[^"']+)["']/g)].map(match => match[1])
 const ogLocales = { en: 'en_US', ja: 'ja_JP', ar: 'ar_EG', fr: 'fr_FR' }
+// One instant for the entire document batch, including legacy/localized routes.
+// An explicit timestamp also permits reproducible scheduled-release regressions.
+const releaseSnapshot = process.env.RANHQ_RELEASE_SNAPSHOT === undefined
+  ? Date.now() : Number(process.env.RANHQ_RELEASE_SNAPSHOT)
+if (!Number.isSafeInteger(releaseSnapshot) || releaseSnapshot < 0) throw new Error('Invalid RANHQ_RELEASE_SNAPSHOT')
 
 const escapeHtml = (value) => String(value)
   .replaceAll('&', '&amp;')
@@ -127,7 +132,7 @@ function buildDocument(appHtml, seo, { notFound = false } = {}) {
   const isHome = seo.canonicalPath === '/'
   let document = stripManagedHead(template)
   if (!isHome) document = stripHeroPreload(document)
-  document = document.replace(/<html\b[^>]*>/i, `<html lang="${seo.locale}" dir="${direction}"${notFound ? ' data-ranhq-document="not-found"' : ''}>`)
+  document = document.replace(/<html\b[^>]*>/i, `<html lang="${seo.locale}" dir="${direction}" data-ranhq-release-time="${releaseSnapshot}"${notFound ? ' data-ranhq-document="not-found"' : ''}>`)
   document = document.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`)
   const preloads = routePreloads(manifest, seo.canonicalPath, templateAssets)
   const preloadHead = [
@@ -152,6 +157,8 @@ const vite = await createServer({
 })
 
 try {
+  const { setDocumentReleaseSnapshot } = await vite.ssrLoadModule('/src/release-snapshot.js')
+  setDocumentReleaseSnapshot(releaseSnapshot)
   const { render, seoForUrl } = await vite.ssrLoadModule('/src/entry-server.jsx')
   const routes = [...renderRoutes(), ...legacyCharacterRoutes()]
   for (let index = 0; index < routes.length; index += 1) {
