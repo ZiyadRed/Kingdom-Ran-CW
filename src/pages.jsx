@@ -1,7 +1,7 @@
 import { ArtLightbox, ViewArtButton } from './art-preview.jsx'
 import './buff-summary.css'
 import { secondaryName } from './display-names.js'
-import { useState, useEffect, useMemo, useDeferredValue, useRef } from 'react'
+import { useState, useEffect, useMemo, useDeferredValue, useRef, useId } from 'react'
 import { Link, useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -1236,6 +1236,7 @@ export function BuffSourceEvidence({source}){
   </div>
 }
 export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
+  const disclosureId=useId()
   const{t}=useTranslation('common')
   const locale=useLocale()
   const[expanded,setExpanded]=useState(null)
@@ -1271,18 +1272,18 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
                     const isOpen=expanded===key
                     return(
                       <div key={stat} data-buff-stat={stat}>
-                        <div className={`buff-row buff-row-click${isOpen?' buff-row-open':''}`}
-                             onClick={()=>extra>0&&setExpanded(isOpen?null:key)}>
+                        <button type="button" aria-expanded={isOpen} aria-controls={`${disclosureId}-${encodeURIComponent(key)}`} className={`buff-row buff-row-click${isOpen?' buff-row-open':''}`}
+                             onClick={()=>setExpanded(isOpen?null:key)}>
                           <span className="buff-stat-name">{localizedText('Guard',locale)}</span>
                           <span className="buff-vals">
                             <span className="buff-up">+{fmt(top.val)}%</span>
                             {top.duration&&<span className="buff-dur">{localizedDuration(top.duration,locale)}</span>}
                             {extra>0&&<span className="buff-more">+{extra}</span>}
-                            <span className="buff-chevron" style={extra>0?undefined:{opacity:.25}}>{isOpen?'▴':'▾'}</span>
+                            <span className="buff-chevron" aria-hidden="true">{isOpen?'▴':'▾'}</span>
                           </span>
-                        </div>
-                        {isOpen&&extra>0&&(
-                          <div className="buff-sources">
+                        </button>
+                        {(
+                          <div id={`${disclosureId}-${encodeURIComponent(key)}`} hidden={!isOpen} className="buff-sources">
                             {sorted.map((inst,idx)=>(
                               <div key={idx} className="buff-source-contribution">
                               <div className="buff-source-row">
@@ -1303,7 +1304,7 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
                   const isOpen=expanded===key
                   return(
                     <div key={stat} data-buff-stat={stat}>
-                      <div className={`buff-row buff-row-click${isOpen?' buff-row-open':''}`}
+                      <button type="button" aria-expanded={isOpen} aria-controls={`${disclosureId}-${encodeURIComponent(key)}`} className={`buff-row buff-row-click${isOpen?' buff-row-open':''}`}
                            onClick={()=>setExpanded(isOpen?null:key)}>
                         <span className="buff-stat-name">{localizedText(stat,locale)}</span>
                         <span className="buff-vals">
@@ -1312,11 +1313,11 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
                             :<>{up>0&&<span className={inv?'buff-down':'buff-up'}>+{fmt(up)}%</span>}
                                {down>0&&<span className={inv?'buff-up':'buff-down'}>−{fmt(down)}%</span>}</>
                           }
-                          <span className="buff-chevron">{isOpen?'▴':'▾'}</span>
+                          <span className="buff-chevron" aria-hidden="true">{isOpen?'▴':'▾'}</span>
                         </span>
-                      </div>
-                      {isOpen&&sources.length>0&&(
-                        <div className="buff-sources">
+                      </button>
+                      {(
+                        <div id={`${disclosureId}-${encodeURIComponent(key)}`} hidden={!isOpen} className="buff-sources">
                           {sources.map((s,i)=>(
                             <div key={i} className="buff-source-contribution">
                             <div className="buff-source-row">
@@ -1358,17 +1359,17 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
                 const isOpen=expanded===rowKey
                 return(
                   <div key={s}>
-                    <div className={`buff-row buff-row-click${isOpen?' buff-row-open':''}`}
+                    <button type="button" aria-expanded={isOpen} aria-controls={`${disclosureId}-${encodeURIComponent(rowKey)}`} className={`buff-row buff-row-click${isOpen?' buff-row-open':''}`}
                          style={{background:'rgba(176,80,0,.07)',borderColor:'rgba(176,80,0,.22)'}}
                          onClick={()=>setExpanded(isOpen?null:rowKey)}>
                       <span className="buff-stat-name" style={{color:'#b05000',fontWeight:700,fontSize:'.75rem'}}>{localizedText(s,locale)}</span>
                       <span className="buff-vals">
                         <span className="buff-down">{d==='down'?'−':'+'}{fmt(v)}%</span>
-                        <span className="buff-chevron">{isOpen?'▴':'▾'}</span>
+                        <span className="buff-chevron" aria-hidden="true">{isOpen?'▴':'▾'}</span>
                       </span>
-                    </div>
-                    {isOpen&&srcs.length>0&&(
-                      <div className="buff-sources">
+                    </button>
+                    {(
+                      <div id={`${disclosureId}-${encodeURIComponent(rowKey)}`} hidden={!isOpen} className="buff-sources">
                         {srcs.map((x,i)=>(
                           <div key={i} className="buff-source-contribution">
                           <div className="buff-source-row">

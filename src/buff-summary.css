@@ -2,3 +2,6 @@
 .buff-summary .buff-source-contribution { padding-block: .25rem; }
 .buff-summary .buff-source-evidence { display: flex; flex-direction: column; gap: .15rem; margin-inline-start: 22px; font-size: .7rem; line-height: 1.45; overflow-wrap: anywhere; color: var(--txt2); }
 .buff-summary .buff-source-skill, .buff-summary .buff-source-condition { font-weight: 600; }
+.buff-row-click { width: 100%; font: inherit; color: inherit; text-align: start; }
+.buff-row-click:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.buff-sources[hidden] { display: none; }

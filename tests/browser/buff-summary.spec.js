@@ -1,6 +1,52 @@
 import { test, expect, instrumentStorage, settle } from './fixtures.js'
 import { CATALOGS } from '../../src/i18n/i18n.js'
 
+test('buff, Guard alternative and enemy disclosures support keyboard activation', async ({ page, path }) => {
+  const mask={n:3,s6:true,role:false}
+  await instrumentStorage(page, {'ranhq:party-builder':JSON.stringify({
+    version:1, attack:['ouhon','ousen','renpa',null], defense:['duke_hyou',null,null,null],
+    attackSkills:[mask,mask,mask,mask], defenseSkills:[mask,mask,mask,mask],
+  })})
+  await page.goto(path('/builder'))
+  await settle(page)
+  const summaryToggle=page.locator('.builder-buff-toggle')
+  if(await summaryToggle.getAttribute('aria-expanded')==='false') await summaryToggle.click()
+  const summary=page.locator('.buff-summary')
+  await summary.locator('input[type="checkbox"]').check()
+  const attack=summary.locator('.scol.atk')
+  const rows=[
+    attack.locator('[data-buff-general="ouhon"] [data-buff-stat]:not([data-buff-stat="Guard"]) .buff-row').first(),
+    attack.locator('[data-buff-general="ouhon"] [data-buff-stat="Guard"] .buff-row'),
+    attack.locator('.scol-gen:not([data-buff-general]) .buff-row').first(),
+  ]
+  for(const row of rows){
+    await expect(row).toHaveJSProperty('tagName','BUTTON')
+    await row.focus()
+    await page.keyboard.press('Shift+Tab')
+    await page.keyboard.press('Tab')
+    await expect(row).toBeFocused()
+    expect(await row.evaluate(node=>getComputedStyle(node).outlineStyle)).not.toBe('none')
+    await expect(row).toHaveAttribute('aria-expanded','false')
+    const id=await row.getAttribute('aria-controls')
+    const sources=page.locator(`[id="${id}"]`)
+    await expect(sources).toHaveCount(1)
+    await expect(sources).toBeHidden()
+    await page.keyboard.press('Enter')
+    await expect(row).toHaveAttribute('aria-expanded','true')
+    await expect(sources).toBeVisible()
+    await expect(sources.locator('.buff-source-skill').first()).not.toBeEmpty()
+    if(await row.locator('.buff-more').count()) expect(await sources.locator('.buff-source-contribution').count()).toBeGreaterThan(1)
+    await page.keyboard.press('Space')
+    await expect(row).toHaveAttribute('aria-expanded','false')
+    await expect(sources).toBeHidden()
+    await expect(row).toBeFocused()
+  }
+  const singleGuard=attack.locator('[data-buff-general="renpa"] [data-buff-stat="Guard"] .buff-row')
+  await singleGuard.focus()
+  await page.keyboard.press('Space')
+  await expect(singleGuard).toHaveAttribute('aria-expanded','true')
+})
+
 test('formation summaries, contribution evidence and shared totals respect attack and defense', async ({ page, path, locale }) => {
   const mask={ n:3, s6:false, role:false }
   await instrumentStorage(page, { 'ranhq:party-builder': JSON.stringify({
