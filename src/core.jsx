@@ -640,28 +640,83 @@ export const STATUS_EFFECTS=['Confusion','Poison','Paralysis','Betrayal','Burn',
 export const STATUS_RE=new RegExp('^('+STATUS_EFFECTS.join('|')+')','i')
 export const TARGET_NAME_ALIASES={moubo:'moubu',ghm:'gohoumei'}
 export const normalizeBuffStat=s=>/^Evasion Rate$/i.test(s)?'Evasion':s
+export const BUFF_APPLICABILITY=Object.freeze({
+  APPLICABLE:'applicable',
+  IMPOSSIBLE:'impossible',
+  CONDITIONAL:'conditional',
+  UNSUPPORTED:'unsupported',
+})
+
+// Extract a matchup qualifier without throwing its meaning away.  The old
+// parser deleted `vs X` before it built the numeric modifier, which made a
+// restricted bonus indistinguishable from an unconditional one.
+export function extractOpponentQualifier(value){
+  const text=String(value||'').trim()
+  const match=text.match(/(?:^|\s)\b(?:vs\.?|versus|against)\s+(.+?)(?=\s+(?:Up|Down)\s+\d+(?:\.\d+)?[%％]|\s+\d+(?:\.\d+)?[%％](?:\s|$)|$)/i)
+  if(!match) return{text,raw:null}
+  const start=match.index||0
+  const end=start+match[0].length
+  return{
+    text:`${text.slice(0,start)} ${text.slice(end)}`.replace(/\s+/g,' ').trim(),
+    raw:match[1].trim(),
+  }
+}
+
+const decorateBuffQualifier=entry=>{
+  const opponentRaw=entry.opponentRaw||entry.antiEnemy||null
+  return{
+    ...entry,
+    recipientCriteria:entry.recipientRaw?parseCriterionExpression(entry.recipientRaw):null,
+    opponentRaw,
+    opponentCriteria:opponentRaw?parseCriterionExpression(opponentRaw):null,
+  }
+}
+const mergeEquivalentOpponentModifiers=modifiers=>{
+  const merged=[]
+  const byMechanicalValue=new Map()
+  for(const modifier of modifiers){
+    if(!modifier.opponentRaw){
+      merged.push(modifier)
+      continue
+    }
+    const key=[modifier.stat,modifier.dir,modifier.val,modifier.recipientRaw||'',modifier.ownerType||''].join('|')
+    const prior=byMechanicalValue.get(key)
+    if(!prior){
+      const copy={...modifier}
+      copy.opponentAlternatives=[modifier.opponentRaw]
+      byMechanicalValue.set(key,copy)
+      merged.push(copy)
+      continue
+    }
+    if(!prior.opponentAlternatives.includes(modifier.opponentRaw)) prior.opponentAlternatives.push(modifier.opponentRaw)
+    prior.opponentRaw=prior.opponentAlternatives.join(' / ')
+    prior.opponentCriteria=parseCriterionExpression(prior.opponentRaw)
+    prior.antiEnemy=null
+  }
+  return merged
+}
 export function parseBuffEffect(str){
   if(!str) return []
-  const results=[];let deferred=[]
+  const results=[];let deferred=[],inheritedRecipientRaw=null
   for(let part of str.split(/[,、/]/)){
     part=part.trim().replace(/\\/g,'').replace(/["\u201C\u201D\u300C\u300D]/g,'').trim()
-    part=part.replace(/^and\s+/i,'').replace(/\s*\(Dodge Chance\)/gi,'').replace(/\s+additional\b/gi,'').replace(/\s+vs\s+\S+/gi,'').trim()
+    part=part.replace(/^and\s+/i,'').replace(/\s*\(Dodge Chance\)/gi,'').replace(/\s+additional\b/gi,'').trim()
     if(!part) continue
     if(/^enemy/i.test(part)) continue
     if(/\d+[%％]\s*Damage|^%\s*(?:of\s+|Damage)|HP Drain|Stun Rate/i.test(part)) continue
     if(/^Provoke$/i.test(part)) continue
     if(/^Normal Attack(?!\s+Seal)/i.test(part)) continue
-    // strip embedded "Ally [X]" target prefix from effect strings
-    part=part.replace(/^Ally\s+\[[^\]]+\]\s*/i,'')
-    if(!part) continue
-    let ownerType=null,antiEnemy=null,m
+    let ownerType=null,antiEnemy=null,recipientRaw=inheritedRecipientRaw,m
+    const versus=extractOpponentQualifier(part)
+    part=versus.text
+    const opponentRaw=versus.raw
     // "Ally [X] Anti-[Y] ..." — owner unit type + anti enemy type
     m=part.match(/^(?:Ally\s+)\[([A-Za-z]+)\]\s+Anti-\[([^\]]+)\]\s+(.+)/i)
-    if(m){ownerType=m[1];antiEnemy=m[2].trim();part=m[3]}
+    if(m){ownerType=m[1];recipientRaw=m[1].trim();antiEnemy=m[2].trim();part=m[3]}
     // "[X] Anti-[Y] ..." — owner unit type + anti enemy type
     if(!ownerType){
       m=part.match(/^\[([A-Za-z]+)\]\s+Anti-\[([^\]]+)\]\s+(.+)/i)
-      if(m){ownerType=m[1];antiEnemy=m[2].trim();part=m[3]}
+      if(m){ownerType=m[1];recipientRaw=m[1].trim();antiEnemy=m[2].trim();part=m[3]}
     }
     // "Anti-[X] ..." — bracketed anti target
     if(!antiEnemy){
@@ -676,14 +731,21 @@ export function parseBuffEffect(str){
         if(m){antiEnemy=gn;part=m[1];break}
       }
     }
+    // Some derived rows repeat a recipient scope inside the effect string.
+    // Preserve it as a mechanical criterion instead of deleting it.
+    m=part.match(/^Ally\s+\[([^\]]+)\]\s+(.+)/i)
+    if(m){recipientRaw=m[1].trim();part=m[2]}
+    if(recipientRaw) inheritedRecipientRaw=recipientRaw
+    if(!part) continue
+    const qualify=r=>decorateBuffQualifier({...r,ownerType,antiEnemy,recipientRaw,opponentRaw})
     const flush=r=>{
-      results.push(r)
+      results.push(qualify(r))
       for(const d of deferred){
         if(d.statusPrefix!==undefined){
           const suffix=r.stat.replace(/^[A-Za-z]+\s*/,'')
-          if(suffix) results.push({stat:d.statusPrefix+' '+suffix,dir:r.dir,val:r.val,ownerType:d.ownerType,antiEnemy:d.antiEnemy})
+          if(suffix) results.push(decorateBuffQualifier({...d,stat:d.statusPrefix+' '+suffix,dir:r.dir,val:r.val}))
         } else if(d.dir===r.dir){
-          results.push({...d,val:r.val})
+          results.push(decorateBuffQualifier({...d,val:r.val}))
         }
       }
       deferred=[]
@@ -704,7 +766,7 @@ export function parseBuffEffect(str){
     if(m){flush({stat:normalizeBuffStat(m[1].trim()),dir:m[2],val:parseFloat(m[3]),ownerType,antiEnemy});continue}
     // "Stat Up/Down" (no value) — deferred
     m=part.match(/^(.+?)\s+(Up|Down)\s*$/)
-    if(m){deferred.push({stat:normalizeBuffStat(m[1].trim()),dir:m[2],ownerType,antiEnemy});continue}
+    if(m){deferred.push(qualify({stat:normalizeBuffStat(m[1].trim()),dir:m[2]}));continue}
     // "DEF Penetration [Resistance] X%"
     m=part.match(/^(DEF Penetration(?:\s+Resistance)?)\s+(\d+(?:\.\d+)?)[%％]$/)
     if(m){flush({stat:m[1],dir:'Up',val:parseFloat(m[2]),ownerType,antiEnemy});continue}
@@ -719,16 +781,20 @@ export function parseBuffEffect(str){
     if(m){flush({stat:m[1]+' Resistance',dir:'Up',val:parseFloat(m[2]),ownerType,antiEnemy});continue}
     // "StatusEffect Resistance" (no value) — deferred
     m=part.match(new RegExp('^('+STATUS_EFFECTS.join('|')+')\\s+Resistance$','i'))
-    if(m){deferred.push({stat:m[1]+' Resistance',dir:'Up',ownerType,antiEnemy});continue}
+    if(m){deferred.push(qualify({stat:m[1]+' Resistance',dir:'Up'}));continue}
     // bare status name (e.g. "Confusion" from "Confusion / Poison / Paralysis Infliction Rate Up 40%")
     m=part.match(STATUS_RE)
-    if(m&&part.trim()===m[1].trim()){deferred.push({statusPrefix:m[1],ownerType,antiEnemy});continue}
+    if(m&&part.trim()===m[1].trim()){deferred.push(qualify({statusPrefix:m[1]}));continue}
     // "Normal Attack Seal X%" / "Skill Attack Seal X%"
-    m=part.match(/^(Normal|Skill)\s+Attack\s+Seal(?:\s+Infliction)?\s+(\d+(?:\.\d+)?)[%％]$/i)
+    m=part.match(/^(Normal|Skill)\s+Attack\s+Seal(?:\s+Infliction)?\s*(\d+(?:\.\d+)?)[%％]$/i)
     if(m){flush({stat:m[1]+' Attack Seal',dir:'Up',val:parseFloat(m[2]),ownerType,antiEnemy});continue}
     // "Attack Seal Infliction X%"
     m=part.match(/^Attack\s+Seal\s+Infliction\s+(\d+(?:\.\d+)?)[%％]$/i)
     if(m){flush({stat:'Attack Seal',dir:'Up',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
+    // Source text calls 体力回復無効 "HP Seal" in four derived rows. It is
+    // the same mechanical state as the existing HP Recovery Nullification stat.
+    m=part.match(/^HP\s+Seal\s*(\d+(?:\.\d+)?)[%％]$/i)
+    if(m){flush({stat:'HP Recovery Nullification',dir:'Up',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
     // Simple rate buffs
     m=part.match(/^(Guard|Hit Rate|Critical Rate|HP Recovery)\s+(\d+(?:\.\d+)?)[%％]$/)
     if(m){flush({stat:m[1],dir:'Up',val:parseFloat(m[2]),ownerType,antiEnemy});continue}
@@ -760,7 +826,7 @@ export function parseBuffEffect(str){
     m=part.match(/^(Damage\s+(?:Taken Increase|Dealt Reduction|Reduction Effect)\s+Resistance)\s+(\d+(?:\.\d+)?)[%％]$/i)
     if(m){flush({stat:m[1].replace(/\s+/g,' '),dir:'Up',val:parseFloat(m[2]),ownerType,antiEnemy});continue}
   }
-  return results
+  return mergeEquivalentOpponentModifiers(results)
 }
 export const normalizeRosterLabel=s=>(s||'').toLowerCase().replace(/[^a-z]/g,'')
 export function groupMatchesLabel(groupName,label){
@@ -772,42 +838,162 @@ export function inGroup(c,groupName){
   return(c.groups||[]).some(gn=>groupMatchesLabel(gn,groupName))
 }
 export function cleanRosterCriterion(label){
-  return(label||'')
+  const normalized=(label||'')
     .replace(/[[\]"“”「」]/g,' ')
     .replace(/\bother\s+than\s+self\b/gi,'')
     .replace(/\bbesides\s+self\b/gi,'')
     .replace(/\bsurviving\b/gi,'')
+    .replace(/^(?:when\s+)?(?:other\s+)?(?:ally|enemy)\b/gi,'')
     .replace(/\bally\b/gi,'')
     .replace(/\btroops?\b|\bsoldiers?\b|\bmembers?\b/gi,'')
-    .replace(/\bgenerals?\b$/gi,'')
-    .replace(/\bunit\b$/gi,'')
     .replace(/\s+/g,' ')
     .trim()
+  // Suffix removal must happen after bracket/whitespace normalization.  With
+  // the old order, `[Qin] [General]` became `Qin General` too late for the
+  // end-anchored rule and therefore meant something different from prose.
+  return normalized
+    .replace(/^(.+)\s+generals?$/i,'$1')
+    .replace(/^(.+)\s+unit$/i,'$1')
+    .trim()
 }
-export function rosterCriterionMatches(c,label,owner,forceOther=false){
-  if(!c) return false
-  const other=forceOther||/\bother(?:\s+ally)?\b|\bother\s+than\s+self\b|\bbesides\s+self\b/i.test(label||'')
-  if(other&&owner&&c.id===owner.id) return false
-  const raw=cleanRosterCriterion(label)
-  if(!raw) return false
+export function parseRosterCriterion(label){
+  if(label&&typeof label==='object'&&label.kind) return label
+  const original=String(label||'').trim()
+  if(!original) return null
+
+  // Multiple bracket tags describe one mechanical recipient, e.g.
+  // `[Qin] [Cavalry] [General]`.  General is the universal tag; the remaining
+  // tags are an intersection on the same roster member.
+  const bracketTags=[...original.matchAll(/\[([^\]]+)\]/g)].map(m=>m[1].trim())
+  const meaningfulTags=bracketTags.filter(tag=>!/^generals?$/i.test(tag))
+  if(meaningfulTags.length>1){
+    const criteria=meaningfulTags.map(tag=>parseRosterCriterion(tag))
+    if(criteria.every(Boolean)) return{kind:'allOf',criteria,raw:original}
+    return null
+  }
+  if(meaningfulTags.length===1){
+    const outside=cleanRosterCriterion(original.replace(/\[[^\]]+\]/g,' '))
+    if(!outside||/^generals?$/i.test(outside)) return parseRosterCriterion(meaningfulTags[0])
+  }
+
+  const raw=cleanRosterCriterion(original)
+  if(!raw) return null
   const norm=normalizeRosterLabel(raw)
-  if(/^(?:general|generals|generalattackcount|attackcount)$/.test(norm)) return !other||!owner||c.id!==owner.id
+  if(/^(?:general|generals)$/.test(norm)) return{kind:'all',id:'general',raw:original}
   const unit=UNIT_TYPE_LIST.find(u=>{
     const n=normalizeRosterLabel(u)
     return norm===n||norm===`${n}s`||(u==='Archer'&&norm==='archers')
   })
-  if(unit) return c.unit_type===unit
+  if(unit) return{kind:'unitType',id:unit,raw:original}
   for(const [labelText,code] of Object.entries(FACTION_MAP)){
-    if(norm===normalizeRosterLabel(labelText)) return c.country===code
+    if(norm===normalizeRosterLabel(labelText)) return{kind:'faction',id:code,raw:original}
   }
-  for(const gn of Object.keys(GROUPS)){
-    if(groupMatchesLabel(gn,raw)) return inGroup(c,gn)
-  }
+  // Exact stable character names win over fuzzy group aliases. "Renpa"
+  // means the named general; "Renpa Army" means the group.
   const aliasId=TARGET_NAME_ALIASES[norm]
-  if(aliasId) return c.id===aliasId&&(!owner||c.id!==owner.id)
-  const named=findCharByName(raw)
-  if(named) return c.id===named.id&&(!owner||c.id!==owner.id)
+  if(aliasId) return{kind:'character',id:aliasId,raw:original}
+  const named=ALL.filter(character=>normalizeRosterLabel(character.name_en)===norm)
+  if(named.length===1) return{kind:'character',id:named[0].id,raw:original}
+  const groups=Object.keys(GROUPS).filter(groupName=>groupMatchesLabel(groupName,raw))
+  if(groups.length===1) return{kind:'group',id:groups[0],raw:original}
+  return null
+}
+export function parseCriterionExpression(value,operator='any'){
+  const raw=String(value||'').trim()
+  if(!raw) return null
+  const parts=raw
+    .replace(/\bor\b/gi,'/')
+    .split('/')
+    .map(part=>part.trim())
+    .filter(Boolean)
+  const criteria=parts.map(parseRosterCriterion)
+  if(!criteria.length||criteria.some(criterion=>!criterion)) return null
+  return{kind:'expression',operator,criteria,raw}
+}
+export function rosterCriterionMatches(c,label,owner,forceOther=false){
+  if(!c) return false
+  const source=typeof label==='string'?label:label?.raw||''
+  const other=forceOther||/\bother(?:\s+ally)?\b|\bother\s+than\s+self\b|\bbesides\s+self\b/i.test(source)
+  if(other&&owner&&c.id===owner.id) return false
+  const criterion=parseRosterCriterion(label)
+  if(!criterion) return false
+  if(criterion.kind==='expression'){
+    const checks=criterion.criteria.map(part=>rosterCriterionMatches(c,part,owner,other))
+    return criterion.operator==='all'?checks.every(Boolean):checks.some(Boolean)
+  }
+  if(criterion.kind==='allOf') return criterion.criteria.every(part=>rosterCriterionMatches(c,part,owner,other))
+  if(criterion.kind==='all') return true
+  if(criterion.kind==='unitType') return c.unit_type===criterion.id
+  if(criterion.kind==='faction') return c.country===criterion.id
+  if(criterion.kind==='group') return inGroup(c,criterion.id)
+  if(criterion.kind==='character') return c.id===criterion.id&&(!owner||c.id!==owner.id)
   return false
+}
+
+export function rosterHasCriterion(roster,expression,owner=null,forceOther=false){
+  return(roster||[]).some(character=>rosterCriterionMatches(character,expression,owner,forceOther))
+}
+
+// Target wording can carry a matchup restriction as well as a recipient, e.g.
+// `Self vs cavalry` or `Ally [Shield] vs cavalry`.  Keep those as two separate
+// mechanical fields so recipient matching never has to discard the opponent.
+export function parseTargetMechanics(target){
+  const raw=String(target||'').trim()
+  if(!raw) return{target:raw,opponentRaw:null,opponentCriteria:null}
+  const bases=[]
+  const opponentParts=[]
+  for(const segment of raw.split('/')){
+    const parsed=extractOpponentQualifier(segment)
+    if(parsed.raw) opponentParts.push(parsed.raw)
+    if(parsed.text) bases.push(parsed.text)
+  }
+  if(!opponentParts.length) return{target:raw,opponentRaw:null,opponentCriteria:null}
+  const opponentRaw=opponentParts.join(' / ')
+  return{
+    target:bases.join(' / ').trim(),
+    opponentRaw,
+    opponentCriteria:parseCriterionExpression(opponentRaw),
+  }
+}
+export function parseEnemyTargetState(target){
+  const mechanics=parseTargetMechanics(target)
+  const match=mechanics.target.match(/^((?:\d+\s+|all\s+|other\s+)?)(poisoned|burned|feared|confused|paralysed|paralyzed)\s+enemy\b(.*)$/i)
+  if(!match) return null
+  const statusLabel=match[2].toLowerCase()==='paralyzed'?'Paralysed':match[2][0].toUpperCase()+match[2].slice(1).toLowerCase()
+  return{
+    statusLabel,
+    target:`${match[1]}enemy${match[3]}`.replace(/\s+/g,' ').trim(),
+    raw:mechanics.target,
+  }
+}
+export function parseEnemyTargetCriteria(target){
+  const stateTarget=parseEnemyTargetState(target)
+  const base=parseTargetMechanics(stateTarget?.target||target).target.trim()
+  if(!/^(?:\d+\s+|all\s+|other\s+)?enemy\b/i.test(base)) return null
+  const parts=base
+    .replace(/\s+and\s+(?=\[)/gi,'/')
+    .split('/')
+    .map(part=>part
+      .replace(/^\s*(?:\d+\s+|all\s+|other\s+)?enemy\s*/i,'')
+      .replace(/\s+with\s+(?:the\s+)?(?:highest|lowest|earliest|latest)\b.*$/i,'')
+      .replace(/\s+(?:earliest|latest|first|last)\s+in\s+formation(?:\s+order)?\b.*$/i,'')
+      .replace(/\s+(?:in|at)\s+formation\b.*$/i,'')
+      .trim())
+    .filter(Boolean)
+  if(!parts.length) return{restricted:false,criteria:null,unsupported:[],raw:base}
+  const criteria=[]
+  const unsupported=[]
+  for(const part of parts){
+    const criterion=parseRosterCriterion(part)
+    if(!criterion) unsupported.push(part)
+    else if(criterion.kind!=='all') criteria.push(criterion)
+  }
+  return{
+    restricted:criteria.length>0||unsupported.length>0,
+    criteria:criteria.length?{kind:'expression',operator:'any',criteria,raw:parts.join(' / ')}:null,
+    unsupported,
+    raw:base,
+  }
 }
 export function matchAllyRosterListTarget(t,G,owner){
   if(!/^(?:surviving\s+)?(?:other\s+)?ally\b/i.test(t)) return null
@@ -837,7 +1023,7 @@ export function matchAllyRosterListTarget(t,G,owner){
 }
 export function isTargetedBy(target,G,owner,team){
   if(!target) return false
-  const t=target.trim()
+  const t=parseTargetMechanics(target).target.trim()
   if(/^enemy|^1\s*enemy|^other\s+enemy|^siege\s+weapon|^ally\s+siege|^gate|^\d+\s+enemy|^Enemy\s*\[/i.test(t)) return false
   // "Self and/or ally X"
   const selfAnd=/^self(?:\s+and|\s*[/,])\s*ally\s+(.+)/i.exec(t)
@@ -898,108 +1084,388 @@ export function isTargetedBy(target,G,owner,team){
   }
   return false
 }
-export function getMultiplier(cond,owner,team){
-  if(!cond) return 1
-  // Count forms like "Per ally cavalry", "Per other ally Qin",
-  // "Per other ally Qin / Mountain Folk", and named/group variants.
-  const perIdx=cond.search(/\bper\s+(?:other\s+)?ally\b/i)
-  if(perIdx>=0){
-    const parts=cond.slice(perIdx)
-      .replace(/、/g,'/')
-      .split('/')
-      .map(p=>p.trim())
-      .filter(Boolean)
-    let inheritedOther=false
-    let total=0
-    let sawCriterion=false
-    for(let part of parts){
-      let other=inheritedOther
-      const explicit=/\bper\s+(other\s+)?ally\s+(.+)/i.exec(part)
-      if(explicit){
-        other=!!explicit[1]
-        inheritedOther=other
-        part=explicit[2]
-      }
-      part=part
-        .replace(/\s+besides\s+self\b/gi,'')
-        .replace(/\s+(?:members?|generals?)\b.*$/i,'')
-        .trim()
-      if(!part) continue
-      total+=team.filter(m=>rosterCriterionMatches(m,part,owner,other)).length
-      sawCriterion=true
+export function parseAllyCountCondition(cond){
+  const text=String(cond||'')
+  const perIdx=text.search(/\bper\s+(?:other\s+)?ally\b/i)
+  if(perIdx<0) return null
+  const tail=text.slice(perIdx)
+  // Attack-event counts are battle state, not roster size.  Ordo's
+  // "Per ally [General] attack count" previously scaled with team members.
+  if(/\battack\s+count\b/i.test(tail)) return{kind:'battleCount',supported:true,terms:[],raw:tail}
+  const parts=tail
+    .replace(/、/g,'/')
+    .split('/')
+    .map(part=>part.trim())
+    .filter(Boolean)
+  const terms=[]
+  let inheritedOther=false
+  for(let part of parts){
+    let excludeSelf=inheritedOther
+    const explicit=/\bper\s+(other\s+)?ally\s+(.+)/i.exec(part)
+    if(explicit){
+      excludeSelf=!!explicit[1]
+      inheritedOther=excludeSelf
+      part=explicit[2]
     }
-    return sawCriterion?total:0
+    if(/\b(?:besides\s+self|other\s+than\s+self)\b/i.test(part)) excludeSelf=true
+    part=part
+      .replace(/\b(?:besides\s+self|other\s+than\s+self)\b/gi,'')
+      .replace(/\s*\((?:max(?:imum)?|up to)\b[^)]*\)\s*$/i,'')
+      .trim()
+    if(!part) continue
+    terms.push({raw:part,excludeSelf,criteria:parseCriterionExpression(part)})
   }
-  const perNameM=/per\s+ally\s+"?([A-Za-z]+)"?/i.exec(cond)
-  if(perNameM){const nm=perNameM[1].toLowerCase();return team.some(m=>m.name_en.toLowerCase()===nm)?1:0}
-  return 1
+  return{
+    kind:'rosterCount',
+    supported:terms.length>0&&terms.every(term=>term.criteria),
+    terms,
+    raw:tail,
+  }
+}
+export function getMultiplier(cond,owner,team){
+  const count=parseAllyCountCondition(cond)
+  if(!count||count.kind==='battleCount') return 1
+  if(!count.supported) return 0
+  const matched=new Set()
+  for(const term of count.terms){
+    for(const member of team||[]){
+      if(rosterCriterionMatches(member,term.criteria,owner,term.excludeSelf)) matched.add(member.id)
+    }
+  }
+  return matched.size
 }
 export function isCondActive(cond,isDefense){
   if(!cond) return true
   const c=cond.toLowerCase()
   if(c.includes('garrison')) return isDefense
+  if(c.includes('when defending')) return isDefense
   if(c.includes('when attacking')) return !isDefense
   return true
 }
+
+function parsePresenceExpression(raw){
+  const text=String(raw||'').replace(/\bboth\b/gi,'').trim()
+  if(!text) return{kind:'presence',operator:'any',criteria:[{kind:'all',id:'general',raw:'General'}],raw:text}
+  if(/\s+and\s+/i.test(text)){
+    const criteria=text.split(/\s+and\s+/i).map(parseRosterCriterion)
+    return criteria.every(Boolean)?{kind:'presence',operator:'all',criteria,raw:text}:null
+  }
+  const expression=parseCriterionExpression(text)
+  return expression?{kind:'presence',operator:expression.operator,criteria:expression.criteria,raw:text}:null
+}
+export function parsePresenceRequirements(cond){
+  const text=String(cond||'')
+  const requirements=[]
+  const seen=new Set()
+  const add=(side,raw,excludeSelf,stateWord)=>{
+    const cleaned=String(raw||'')
+      .replace(/^when\s+/i,'')
+      .replace(/\b(?:other\s+than\s+self|besides\s+self)\b/gi,'')
+      .trim()
+    const forceOther=excludeSelf||/\b(?:other\s+than\s+self|besides\s+self)\b/i.test(String(raw||''))
+    const key=`${side}|${cleaned}|${forceOther}|${stateWord}`
+    if(seen.has(key)) return
+    seen.add(key)
+    requirements.push({side,raw:cleaned,excludeSelf:forceOther,stateWord,criteria:parsePresenceExpression(cleaned)})
+  }
+  // Presence conditions in the corpus are short clauses. Parse each clause
+  // once, in specificity order, so "enemy [Archer] is alive" cannot also be
+  // re-read as a bogus criterion named "[Archer] is".
+  const clauses=text
+    .replace(/\s+when\s+(?=(?:allies|enemies)\b)/gi,', ')
+    .split(',')
+    .map(clause=>clause.trim().replace(/^when\s+/i,''))
+    .filter(Boolean)
+  for(const clause of clauses){
+    let match
+    // "Surviving ally [Zhao]" / "surviving ally [Cavalry]".
+    match=clause.match(/\bsurviving\s+(other\s+)?(ally|enemy)\s*(.*?)(?=\s+when\b|$)/i)
+    if(match){
+      const side=match[2].toLowerCase()
+      add(side,match[3],!!match[1]||(side==='ally'&&!match[3].trim()),'surviving')
+      continue
+    }
+    // "Other [Zhao] ally alive" (tag appears before the ally noun).
+    match=clause.match(/\bother\s+(.+?)\s+ally\s+(?:is\s+|are(?:\s+both)?\s+)?(alive|present)\b/i)
+    if(match){add('ally',match[1],true,match[2].toLowerCase());continue}
+    // HP-qualified surviving ally forms put "surviving" at the end.
+    match=clause.match(/\bother\s+ally\s+(.+?)(?:'s|')?\s+HP\b.*\band\s+surviving\b/i)
+    if(match){add('ally',match[1],true,'surviving');continue}
+    // "Other [Mountain Folk] alive" omits the ally noun.
+    match=clause.match(/\bother\s+(\[[^\]]+\]|[A-Za-z][A-Za-z ]+?)\s+(alive|present)\b/i)
+    if(match){add('ally',match[1],true,match[2].toLowerCase());continue}
+    // Generic singular/plural clauses: "ally is alive", "enemies are alive".
+    match=clause.match(/\b(ally|enemy)\s+(?:is\s+)?(alive|present)\b/i)
+    if(match){add(match[1].toLowerCase(),'',match[1].toLowerCase()==='ally',match[2].toLowerCase());continue}
+    match=clause.match(/\b(allies|enemies)\s+(?:are\s+)?(alive|present)\b/i)
+    if(match){add(match[1].toLowerCase()==='allies'?'ally':'enemy','',match[1].toLowerCase()==='allies',match[2].toLowerCase());continue}
+    // Named/tagged copular and terse forms.
+    match=clause.match(/\b(other\s+)?(ally|enemy)\s+(.+?)\s+(?:is|are)(?:\s+both)?\s+(alive|present)\b/i)
+    if(match){add(match[2].toLowerCase(),match[3],!!match[1],match[4].toLowerCase());continue}
+    match=clause.match(/\b(other\s+)?(ally|enemy)\s+(.+?)\s+(alive|present)\b/i)
+    if(match) add(match[2].toLowerCase(),match[3],!!match[1],match[4].toLowerCase())
+  }
+  return requirements
+}
+function rosterSatisfiesPresence(roster,requirement,owner){
+  const criteria=requirement.criteria?.criteria||[]
+  const checks=criteria.map(criterion=>rosterHasCriterion(roster,criterion,owner,requirement.excludeSelf))
+  return requirement.criteria?.operator==='all'?checks.every(Boolean):checks.some(Boolean)
+}
+function raiseApplicability(current,next){
+  const rank={
+    [BUFF_APPLICABILITY.APPLICABLE]:0,
+    [BUFF_APPLICABILITY.CONDITIONAL]:1,
+    [BUFF_APPLICABILITY.IMPOSSIBLE]:2,
+    [BUFF_APPLICABILITY.UNSUPPORTED]:3,
+  }
+  return rank[next]>rank[current]?next:current
+}
+const DYNAMIC_CONDITION_RE=/\b(?:hp|morale|turn|damage|attack\s+count|defeated|alive|surviving|poison(?:ed)?|burn(?:ed)?|fear(?:ed)?|confus(?:ed|ion)|paralys(?:ed|is)|paraly(?:zed|sis)|illusion|betrayal|reckless|while|upon|after|highest|lowest|random|death|dies|remaining|afflicted|status)\b/i
+const DYNAMIC_MULTIPLIER_RE=/\b(?:per|for\s+each)\b[^,]*(?:attack|turn|defeat|defeated|damage)|\b(?:attack|skill)\s+count\b/i
+const PASSIVE_CONTEXT_RE=/^CW\s+battle\s*\(active\s+even\s+(?:when|if)\s+not\s+deployed\)$/i
+
+// Evaluate formation knowledge before aggregation.  A known mismatch is
+// impossible, a battle-state dependency remains potential, and a recognized
+// formation grammar we cannot resolve is unsupported (fail closed).
+export function evaluateBuffApplicability(effect,modifier,owner,team,enemyTeam,isDefense,showAll=false){
+  const cond=String(effect?.condition||'').trim()
+  let state=BUFF_APPLICABILITY.APPLICABLE
+  let multiplier=1
+  let recognized=false
+  const reasons=[]
+  if(cond&&/garrison|when attacking|when defending/i.test(cond)){
+    recognized=true
+    if(!isCondActive(cond,isDefense)){
+      if(!showAll) return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:['side']}
+    }
+  }
+  const count=parseAllyCountCondition(cond)
+  if(count){
+    recognized=true
+    if(count.kind==='battleCount'){
+      state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+      multiplier=null
+      reasons.push('battle-count')
+    }else if(!count.supported){
+      return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:['ally-count-criterion']}
+    }else{
+      multiplier=getMultiplier(cond,owner,team)
+      if(multiplier===0) return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:['ally-count-zero']}
+    }
+  }
+  if(DYNAMIC_MULTIPLIER_RE.test(cond)&&count?.kind!=='rosterCount'){
+    recognized=true
+    state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+    multiplier=null
+    if(!reasons.includes('battle-count')) reasons.push('dynamic-multiplier')
+  }
+  for(const requirement of parsePresenceRequirements(cond)){
+    recognized=true
+    if(!requirement.criteria) return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:['presence-criterion']}
+    const roster=requirement.side==='enemy'?(enemyTeam||[]):(team||[])
+    if(requirement.side==='enemy'&&!roster.length){
+      state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+      reasons.push('enemy-roster-unknown')
+      continue
+    }
+    if(!rosterSatisfiesPresence(roster,requirement,owner))
+      return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:[`${requirement.side}-presence`]}
+    if(requirement.stateWord!=='present'||new RegExp(`(?:${STATUS_EFFECTS.join('|')})\\s+enemy`,'i').test(cond)){
+      state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+      reasons.push(`${requirement.side}-${requirement.stateWord}`)
+    }
+  }
+
+  const bareRoster=cond.match(/^(?:(other)\s+)?(ally|enemy)\s+(.+)$/i)
+  if(bareRoster&&!/\b(?:alive|present|status|highest|lowest|remaining)\b/i.test(cond)){
+    const criteria=parseCriterionExpression(bareRoster[3])
+    if(criteria){
+      recognized=true
+      const roster=bareRoster[2].toLowerCase()==='enemy'?(enemyTeam||[]):(team||[])
+      if(bareRoster[2].toLowerCase()==='enemy'&&!roster.length){
+        state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+        reasons.push('enemy-roster-unknown')
+      }else if(!rosterHasCriterion(roster,criteria,owner,!!bareRoster[1])){
+        return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:[`${bareRoster[2].toLowerCase()}-roster`]}
+      }
+    }
+  }
+
+  if(modifier?.recipientRaw){
+    recognized=true
+    if(!modifier.recipientCriteria) return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:['recipient-criterion']}
+  }
+
+  const targetState=parseEnemyTargetState(effect?.target)
+  if(targetState){
+    recognized=true
+    state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+    reasons.push(`target-status:${targetState.statusLabel.toLowerCase()}`)
+  }
+  const targetMechanics=parseTargetMechanics(targetState?.target||effect?.target)
+  const enemyTarget=parseEnemyTargetCriteria(effect?.target)
+  if(enemyTarget?.restricted){
+    recognized=true
+    const hasKnownMatch=enemyTarget.criteria&&rosterHasCriterion(enemyTeam||[],enemyTarget.criteria)
+    if(hasKnownMatch){
+      // A supported alternative is enough for an OR target even if another
+      // alternative is a siege weapon the Builder cannot represent.
+    }else if(enemyTarget.unsupported.length){
+      return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:[`enemy-target:${enemyTarget.unsupported.join(' / ')}`]}
+    }else if(!(enemyTeam||[]).length){
+      state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+      reasons.push('enemy-target-roster-unknown')
+    }else{
+      return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:['enemy-target']}
+    }
+  }
+  const conditionMechanics=/\b(?:vs\.?|versus|against)\b/i.test(cond)?parseTargetMechanics(cond):null
+  const opponentQualifiers=[
+    modifier?.opponentRaw?{raw:modifier.opponentRaw,criteria:modifier.opponentCriteria}:null,
+    targetMechanics.opponentRaw?{raw:targetMechanics.opponentRaw,criteria:targetMechanics.opponentCriteria}:null,
+    conditionMechanics?.opponentRaw?{raw:conditionMechanics.opponentRaw,criteria:conditionMechanics.opponentCriteria}:null,
+  ].filter(Boolean)
+  const versusRoster=parseEnemyTargetCriteria(effect?.target)?(team||[]):(enemyTeam||[])
+  for(const qualifier of opponentQualifiers){
+    recognized=true
+    if(!qualifier.criteria) return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:[`opponent:${qualifier.raw}`]}
+    if(!versusRoster.length){
+      state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+      reasons.push('opponent-roster-unknown')
+    }else if(!rosterHasCriterion(versusRoster,qualifier.criteria)){
+      return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:[`opponent:${qualifier.raw}`]}
+    }
+  }
+  if(cond&&PASSIVE_CONTEXT_RE.test(cond)) recognized=true
+  if(cond&&!recognized&&DYNAMIC_CONDITION_RE.test(cond)){
+    recognized=true
+    state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+    reasons.push('battle-state')
+  }else if(cond&&recognized&&DYNAMIC_CONDITION_RE.test(cond)){
+    state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+    if(!reasons.some(reason=>reason.includes('alive')||reason==='battle-count'||reason==='dynamic-multiplier')) reasons.push('battle-state')
+  }
+  if(cond&&!recognized)
+    return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:['condition-grammar']}
+  return{state,multiplier,reasons}
+}
+
+const newBuffMeta=()=>({conditionalUnquantified:[],unsupported:[]})
+const attachBuffMeta=(result,meta)=>{
+  Object.defineProperty(result,'meta',{value:meta,enumerable:false})
+  return result
+}
+const pushBuffMeta=(meta,key,source)=>{
+  const list=meta[key]
+  if(!list.some(item=>item.owner===source.owner&&item.skill===source.skill&&item.effect===source.effect&&item.stat===source.stat)) list.push(source)
+}
+const ensureBuffStat=(stats,stat)=>{
+  if(!stats[stat]) stats[stat]={up:0,down:0,potentialUp:0,potentialDown:0,sources:[],potentialSources:[]}
+  return stats[stat]
+}
+const buffSource=(owner,skill,effect,modifier,application,contribution=null,dir=null)=>({
+  owner,skill,effect,stat:modifier?.stat||null,contribution,dir,
+  applicability:application.state,reasons:application.reasons,
+})
+const parseUnsupportedBuffEffect=effect=>{
+  const match=String(effect||'').trim().match(/^(.+?)\s+(?:significantly|greatly)\s+(Up|Down)$/i)
+  return match?{stat:normalizeBuffStat(match[1].trim()),dir:match[2],val:null}:null
+}
+
 export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false,includeCombat=false){
   const stats={}
+  const meta=newBuffMeta()
   for(const owner of team){
     for(const skill of(owner.skills||[])){
       if(!isBuffSummarySkill(skill,includeCombat)) continue
       for(const eff of(skill.effects||[])){
-        if(!isTargetedBy(eff.target,G,owner,team)) continue
-        if(!showAll&&!isCondActive(eff.condition,isDefense)) continue
-        const mult=getMultiplier(eff.condition,owner,team)
-        if(mult===0) continue
-        for(const{stat,dir,val,ownerType,antiEnemy} of parseBuffEffect(eff.effect)){
-          // ownerType: G must be that unit type (from effect string like "[Archer] Anti-...")
-          if(ownerType&&G.unit_type!==ownerType) continue
-          // antiEnemy: if enemy team has chars, check match; if empty show all (max mode)
-          if(antiEnemy&&enemyTeam.length>0){
-            const ae=antiEnemy.toLowerCase()
-            const fcode=FACTION_MAP[ae]
-            const inEnemyTeam=enemyTeam.some(e=>{
-              if(UNIT_TYPE_LIST.map(x=>x.toLowerCase()).includes(ae))
-                return e.unit_type&&e.unit_type.toLowerCase()===ae
-              for(const [gn,ids] of Object.entries(GROUPS))
-                if(gn.toLowerCase()===ae&&ids.includes(e.id)) return true
-              return e.country&&(e.country.toLowerCase()===ae||(fcode&&e.country===fcode))
-            })
-            if(!inEnemyTeam) continue
+        const baseTargeted=isTargetedBy(eff.target,G,owner,team)
+        const modifiers=parseBuffEffect(eff.effect)
+        const bareNamedTarget=findCharByName(String(eff.target||'').replace(/["“”]/g,'').trim())
+        const qualitativeTargeted=bareNamedTarget?.id===G.id
+        if(!modifiers.length&&(baseTargeted||qualitativeTargeted)){
+          const unsupported=parseUnsupportedBuffEffect(eff.effect)
+          if(unsupported) pushBuffMeta(meta,'unsupported',buffSource(owner,skill,eff,unsupported,{state:BUFF_APPLICABILITY.UNSUPPORTED,reasons:['effect-value']}))
+        }
+        for(const modifier of modifiers){
+          const{stat,dir,val}=modifier
+          const additionalTargeted=modifier.recipientRaw&&modifier.recipientCriteria&&rosterCriterionMatches(G,modifier.recipientCriteria,owner,false)
+          // In the derived corpus an effect-level `Ally [X]` supplements the
+          // row target; it does not narrow it.  Examples such as target
+          // `Self`, effect `Ally [Cavalry] DEF Up` represent self + cavalry.
+          if(!baseTargeted&&!additionalTargeted) continue
+          const application=evaluateBuffApplicability(eff,modifier,owner,team,enemyTeam,isDefense,showAll)
+          if(application.state===BUFF_APPLICABILITY.IMPOSSIBLE) continue
+          const source=buffSource(owner,skill,eff,modifier,application)
+          if(application.state===BUFF_APPLICABILITY.UNSUPPORTED){
+            pushBuffMeta(meta,'unsupported',source)
+            continue
           }
-          if(!stats[stat]) stats[stat]={up:0,down:0,sources:[]}
+          if(application.multiplier===null){
+            pushBuffMeta(meta,'conditionalUnquantified',source)
+            continue
+          }
+          const mult=application.multiplier
+          const bucket=ensureBuffStat(stats,stat)
+          const potential=application.state===BUFF_APPLICABILITY.CONDITIONAL
+          const sourceList=potential?bucket.potentialSources:bucket.sources
           if(SPECIAL_STATS.has(stat)){
             const times=(parseInt(eff.duration)||1)*mult
-            stats[stat].up+=times
-            stats[stat].sources.push({owner,skill,effect:eff,contribution:times,dir:'up'})
+            if(potential) bucket.potentialUp+=times
+            else bucket.up+=times
+            sourceList.push({...source,contribution:times,dir:'up'})
           } else if(stat==='Guard'&&dir==='Up'){
             // Guard doesn't stack — only the highest is active. Track instances separately.
-            if(!stats[stat].instances) stats[stat].instances=[]
-            stats[stat].instances.push({val:val*mult,duration:eff.duration||null,owner,skill,effect:eff})
-            stats[stat].up=Math.max(stats[stat].up,val*mult)
-            stats[stat].sources.push({owner,skill,effect:eff,contribution:val*mult,dir:'up',duration:eff.duration||null})
+            const instanceKey=potential?'potentialInstances':'instances'
+            if(!bucket[instanceKey]) bucket[instanceKey]=[]
+            bucket[instanceKey].push({val:val*mult,duration:eff.duration||null,owner,skill,effect:eff,applicability:application.state,reasons:application.reasons})
+            if(potential) bucket.potentialUp=Math.max(bucket.potentialUp,val*mult)
+            else bucket.up=Math.max(bucket.up,val*mult)
+            sourceList.push({...source,contribution:val*mult,dir:'up',duration:eff.duration||null})
           } else if(dir==='Up'){
-            stats[stat].up+=val*mult
-            stats[stat].sources.push({owner,skill,effect:eff,contribution:val*mult,dir:'up'})
+            if(potential) bucket.potentialUp+=val*mult
+            else bucket.up+=val*mult
+            sourceList.push({...source,contribution:val*mult,dir:'up'})
           } else {
-            stats[stat].down+=val*mult
-            stats[stat].sources.push({owner,skill,effect:eff,contribution:val*mult,dir:'down'})
+            if(potential) bucket.potentialDown+=val*mult
+            else bucket.down+=val*mult
+            sourceList.push({...source,contribution:val*mult,dir:'down'})
           }
         }
       }
     }
   }
-  return stats
+  return attachBuffMeta(stats,meta)
 }
 
 export function normalizeEnemyTarget(t){
-  const tl=t.toLowerCase().replace(/[[\]]/g,'')
-  if(/^enemy\s+generals?\s+vs\b/.test(tl)) return 'Enemy generals'
+  const stateTarget=parseEnemyTargetState(t)
+  if(stateTarget) return stateTarget.raw
+  const mechanics=parseTargetMechanics(stateTarget?.target||t)
+  const tl=mechanics.target.toLowerCase().replace(/[[\]]/g,'')
   if(/all\s+enemy|all\s+generals/i.test(tl)) return 'All enemies'
-  const ut=UNIT_TYPE_LIST.find(u=>tl.includes(u.toLowerCase()))
-  if(ut) return `Enemy ${ut}`
-  for(const [label] of Object.entries(FACTION_MAP))
-    if(tl.includes(label)) return `Enemy ${label[0].toUpperCase()+label.slice(1)}`
+  if(/^enemy\s+generals\b/.test(tl)||/^enemy\s+\[general\](?:\s|$)/i.test(mechanics.target)) return 'Enemy generals'
+  const parsed=parseEnemyTargetCriteria(t)
+  if(parsed&&(parsed.restricted||parsed.unsupported.length)){
+    const criteria=parsed.criteria?.criteria||[]
+    const tokens=[
+      ...criteria.map(criterion=>{
+        if(criterion.kind==='unitType') return `[${criterion.id}]`
+        if(criterion.kind==='faction') return `[${cleanRosterCriterion(criterion.raw)}]`
+        if(criterion.kind==='group') return `${criterion.id} [General]`
+        if(criterion.kind==='character') return findCharById(criterion.id)?.name_en||cleanRosterCriterion(criterion.raw)
+        if(criterion.kind==='allOf') return criterion.criteria.map(part=>`[${cleanRosterCriterion(part.raw)}]`).join(' ')
+        return cleanRosterCriterion(criterion.raw)
+      }),
+      ...parsed.unsupported.map(value=>`[${cleanRosterCriterion(value)}]`),
+    ].filter(Boolean)
+    if(tokens.length>1) return `Enemy ${tokens.join(' / ')}`
+    if(criteria[0]?.kind==='group') return `Enemy ${tokens[0]}`
+    if(criteria[0]?.kind==='allOf') return `Enemy ${tokens[0]}`
+    if(tokens.length) return `Enemy ${cleanRosterCriterion(tokens[0])}`
+  }
+  if(/^enemy\s+general\b/i.test(tl)||/^\d+\s+enemy\s+generals?\b/i.test(tl)) return 'Enemy General'
   return 'Enemies'
 }
 // Is `crit` a real roster criterion (unit type, faction, group, or named general)?
@@ -1013,57 +1479,44 @@ export function isRosterCriterion(crit){
 // Mirrors the timing/per-ally gating calcCharBuffs applies to ally buffs, and
 // additionally respects ally/enemy *presence* conditions.
 export function enemyDebuffFactor(cond,isDefense,owner,team,enemyTeam=[]){
-  if(!cond) return 1
-  // Timing — "When Garrisoning" applies only on the garrison (defending) side,
-  // "When Attacking" only on offense.
-  if(!isCondActive(cond,isDefense)) return 0
-  // Per-ally scaling — "Per (other) ally X" multiplies by the matching ally count.
-  if(/\bper\s+(?:other\s+)?ally\b/i.test(cond)){
-    const m=getMultiplier(cond,owner,team)
-    return m>0?m:0
-  }
-  // Ally presence — "When ally Makou is alive", "Other ally [Chu] alive", …
-  const allyM=cond.match(/\b(other\s+)?ally\b(.*?)\b(?:alive|present)\b/i)
-  if(allyM){
-    const crit=(allyM[2]||'').replace(/\b(?:is|are)\b/gi,'').trim()
-    if(isRosterCriterion(crit))
-      return team.some(c=>rosterCriterionMatches(c,crit,owner,!!allyM[1]))?1:0
-  }
-  // Enemy presence — "Enemy [Qin] present", "When enemy Kanki Army are alive".
-  // Only filter when the enemy team is known; otherwise show the potential.
-  const enemyM=cond.match(/\benemy\b(.*?)\b(?:alive|present)\b/i)
-  if(enemyM&&enemyTeam.length>0){
-    const crit=(enemyM[1]||'').replace(/\b(?:is|are)\b/gi,'').trim()
-    if(isRosterCriterion(crit))
-      return enemyTeam.some(c=>rosterCriterionMatches(c,crit,null,false))?1:0
-  }
-  return 1
+  const application=evaluateBuffApplicability(
+    {condition:cond,target:'All enemy [General]'},
+    null,owner,team,enemyTeam,isDefense,false,
+  )
+  if(application.state===BUFF_APPLICABILITY.IMPOSSIBLE||application.state===BUFF_APPLICABILITY.UNSUPPORTED||application.multiplier===null) return 0
+  return application.multiplier
 }
 export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false,isDefense=false){
   const byTarget={}
-  function addToTarget(key,parsed,owner,factor=1,skill,effect){
+  const meta=newBuffMeta()
+  function addToTarget(key,parsed,owner,skill,effect,evaluationEffect=effect){
     if(!parsed.length) return
-    if(enemyTeam.length>0){
-      const ut=UNIT_TYPE_LIST.find(u=>key===`Enemy ${u}`)
-      if(ut&&!enemyTeam.some(g=>g.unit_type===ut)) return
-      for(const[label] of Object.entries(FACTION_MAP)){
-        const cap=label[0].toUpperCase()+label.slice(1)
-        if(key===`Enemy ${cap}`&&!enemyTeam.some(g=>g.country===FACTION_MAP[label])) return
+    for(const modifier of parsed){
+      const{stat,dir,val}=modifier
+      let application=evaluateBuffApplicability(evaluationEffect,modifier,owner,team,enemyTeam,isDefense,false)
+      if(application.state===BUFF_APPLICABILITY.IMPOSSIBLE) continue
+      if(!enemyTeam.length&&parseEnemyTargetCriteria(evaluationEffect.target)?.restricted){
+        application={...application,state:raiseApplicability(application.state,BUFF_APPLICABILITY.CONDITIONAL),reasons:[...application.reasons,'enemy-target-roster-unknown']}
       }
-    }
-    if(!byTarget[key]) byTarget[key]={up:{},down:{},sources:{}}
-    for(const{stat,dir,val,antiEnemy} of parsed){
-      if(antiEnemy&&enemyTeam.length>0){
-        const isUT=UNIT_TYPE_LIST.includes(antiEnemy)
-        if(isUT&&!enemyTeam.some(g=>g.unit_type===antiEnemy)) continue
-        if(!isUT&&FACTION_MAP[antiEnemy.toLowerCase()]&&!enemyTeam.some(g=>g.country===FACTION_MAP[antiEnemy.toLowerCase()])) continue
+      const source=buffSource(owner,skill,effect,modifier,application)
+      if(application.state===BUFF_APPLICABILITY.UNSUPPORTED){
+        pushBuffMeta(meta,'unsupported',source)
+        continue
       }
+      if(application.multiplier===null){
+        pushBuffMeta(meta,'conditionalUnquantified',source)
+        continue
+      }
+      if(!byTarget[key]) byTarget[key]={up:{},down:{},potentialUp:{},potentialDown:{},sources:{},potentialSources:{}}
       const d=dir==='Up'?'up':'down'
-      const v=val*factor
-      byTarget[key][d][stat]=(byTarget[key][d][stat]||0)+v
+      const potential=application.state===BUFF_APPLICABILITY.CONDITIONAL
+      const values=potential?(d==='up'?byTarget[key].potentialUp:byTarget[key].potentialDown):byTarget[key][d]
+      const v=val*application.multiplier
+      values[stat]=(values[stat]||0)+v
       const skey=`${d}|${stat}`
-      if(!byTarget[key].sources[skey]) byTarget[key].sources[skey]=[]
-      byTarget[key].sources[skey].push({owner,skill,effect,contribution:v,dir:d})
+      const sourceMap=potential?byTarget[key].potentialSources:byTarget[key].sources
+      if(!sourceMap[skey]) sourceMap[skey]=[]
+      sourceMap[skey].push({...source,contribution:v,dir:d})
     }
   }
   for(const owner of team){
@@ -1071,18 +1524,30 @@ export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false,isDef
       if(!isBuffSummarySkill(sk,includeCombat)) continue
       for(const eff of(sk.effects||[])){
         const t=(eff.target||'').trim()
-        // Respect the effect's condition: timing (garrison/attacking), per-ally
-        // scaling, and ally/enemy presence. factor 0 ⇒ condition unmet → skip.
-        const factor=enemyDebuffFactor(eff.condition,isDefense,owner,team,enemyTeam)
-        if(!factor) continue
-        // skip effects whose condition requires an enemy unit type not present
-        if(enemyTeam.length>0){
-          const cm=(eff.condition||'').match(/enemy\s+\[?(infantry|cavalr\w*|archers?|shield)\]?/i)
-          if(cm){const raw=cm[1].toLowerCase();const ut=raw.startsWith('arch')?'Archer':raw.startsWith('cav')?'Cavalry':raw.startsWith('inf')?'Infantry':'Shield';if(!enemyTeam.some(g=>g.unit_type===ut)) continue}
-        }
-        if(/^enemy|^all\s+enemy/i.test(t)){
-          addToTarget(normalizeEnemyTarget(t),parseBuffEffect(eff.effect),owner,factor,sk,eff)
+        if(parseEnemyTargetCriteria(t)){
+          addToTarget(normalizeEnemyTarget(t),parseBuffEffect(eff.effect),owner,sk,eff)
         } else {
+          const bareNamedTarget=findCharByName(t.replace(/["“”]/g,'').trim())
+          if(bareNamedTarget&&/\b(?:Infliction|Seal)\b/i.test(String(eff.effect||''))){
+            const namedTarget=`Enemy ${bareNamedTarget.name_en}`
+            addToTarget(normalizeEnemyTarget(namedTarget),parseBuffEffect(eff.effect),owner,sk,eff,{...eff,target:namedTarget})
+            continue
+          }
+          // One exact source row carries a named enemy list inside a Self-target
+          // effect. Preserve those stable names as an OR target.
+          const namedAttackSeal=[...String(eff.effect||'').matchAll(/["“”]([^"“”]+)["“”]/g)]
+            .map(match=>match[1].trim())
+            .filter(name=>!/^Attack Seal$/i.test(name))
+          const attackSealValue=String(eff.effect||'').match(/["“”]Attack Seal["“”]\s*(\d+(?:\.\d+)?)[%％]/i)
+          if(/^Enemy\b/i.test(String(eff.effect||''))&&namedAttackSeal.length&&attackSealValue){
+            const namedTarget=`Enemy ${namedAttackSeal.join(' / ')}`
+            addToTarget(
+              normalizeEnemyTarget(namedTarget),
+              [decorateBuffQualifier({stat:'Attack Seal',dir:'Up',val:parseFloat(attackSealValue[1])})],
+              owner,sk,eff,{...eff,target:namedTarget},
+            )
+            continue
+          }
           // collect embedded "Enemy [X] Stat Dir Val" parts from ally-target effects
           for(const part of (eff.effect||'').split(/[,、]/)){
             const p=part.trim()
@@ -1091,13 +1556,13 @@ export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false,isDef
             if(!m) continue
             const targetType=m[1].trim()
             const key=UNIT_TYPE_LIST.includes(targetType)?`Enemy ${targetType}`:`Enemy ${targetType[0].toUpperCase()+targetType.slice(1)}`
-            addToTarget(key,[{stat:m[2].trim(),dir:m[3],val:parseFloat(m[4])}],owner,factor,sk,eff)
+            addToTarget(key,[decorateBuffQualifier({stat:m[2].trim(),dir:m[3],val:parseFloat(m[4])})],owner,sk,eff,{...eff,target:`Enemy [${targetType}]`})
           }
         }
       }
     }
   }
-  return byTarget
+  return attachBuffMeta(byTarget,meta)
 }
 
 // Picker

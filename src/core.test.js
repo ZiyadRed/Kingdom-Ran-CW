@@ -207,15 +207,19 @@ describe('calcTeamEnemyDebuffs condition gating', () => {
     ] }])
     expect(Object.keys(calcTeamEnemyDebuffs([owner], [], false, false)).length).toBe(0)
     const ouhon = mk('ouhon', 'qin', 'Cavalry', [])
-    expect(calcTeamEnemyDebuffs([owner, ouhon], [], false, false)['All enemies'].down.ATK).toBe(30)
+    const withOuhon=calcTeamEnemyDebuffs([owner, ouhon], [], false, false)['All enemies']
+    expect(withOuhon.down.ATK).toBeUndefined()
+    expect(withOuhon.potentialDown.ATK).toBe(30)
   })
 
   it('keeps dynamic-state conditions (e.g. "Confused enemy present") as potential', () => {
     const owner = mk('hanoki', 'qin', 'Cavalry', [{ type: 'Combat', effects: [
       { condition: 'Confused enemy [General] present', target: 'All enemy [General]', effect: 'ATK Down 15%', duration: null },
     ] }])
-    // not a composition gate → still shown when combat skills are included
-    expect(calcTeamEnemyDebuffs([owner], [], true, false)['All enemies'].down.ATK).toBe(15)
+    // not a composition gate → disclosed separately, never added to guaranteed totals
+    const result=calcTeamEnemyDebuffs([owner], [], true, false)['All enemies']
+    expect(result.down.ATK).toBeUndefined()
+    expect(result.potentialDown.ATK).toBe(15)
   })
 })
 

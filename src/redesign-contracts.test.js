@@ -13,10 +13,12 @@ import {
 
 const compactStats = (stats) => Object.fromEntries(
   Object.entries(stats)
-    .filter(([, value]) => value.up || value.down)
+    .filter(([, value]) => value.up || value.down || value.potentialUp || value.potentialDown)
     .map(([stat, value]) => [stat, {
       up: value.up,
       down: value.down,
+      potentialUp: value.potentialUp,
+      potentialDown: value.potentialDown,
       ...(value.instances ? {
         instances: value.instances.map((instance) => ({
           val: instance.val,
@@ -31,6 +33,8 @@ const compactEnemyDebuffs = (groups) => Object.fromEntries(
   Object.entries(groups).map(([target, values]) => [target, {
     up: values.up,
     down: values.down,
+    potentialUp: values.potentialUp,
+    potentialDown: values.potentialDown,
   }]),
 )
 
@@ -113,6 +117,29 @@ describe('redesign Team Buff calculation contract', () => {
       defenseEnemyDebuffs: compactEnemyDebuffs(calcTeamEnemyDebuffs(defense, attack, false, true)),
     }
 
-    expect(JSON.stringify(result)).toBe('{"attack":[["Shoutaku",{"HP Recovery":{"up":40,"down":0},"Hit Rate":{"up":60,"down":0},"ATK":{"up":60,"down":0},"Confusion Resistance":{"up":100,"down":0},"Max HP":{"up":100,"down":0},"DEF":{"up":70,"down":0},"Guard":{"up":100,"down":0,"instances":[{"val":100,"duration":"1 time","owner":"Ouhon"}]},"Betrayal Resistance":{"up":30,"down":0},"Critical Damage":{"up":30,"down":0},"Morale Consumption":{"up":0,"down":30},"Evasion":{"up":30,"down":0},"Attack Down Resistance":{"up":40,"down":0},"HP Recovery Rate":{"up":30,"down":0}}],["Ouhon",{"Max HP":{"up":200,"down":0},"HP Recovery":{"up":40,"down":0},"Hit Rate":{"up":60,"down":0},"ATK":{"up":60,"down":0},"Confusion Resistance":{"up":100,"down":0},"DEF":{"up":70,"down":0},"Guard":{"up":100,"down":0,"instances":[{"val":100,"duration":"1 time","owner":"Ouhon"}]},"Critical Rate":{"up":30,"down":0},"Betrayal Resistance":{"up":30,"down":0},"Critical Damage":{"up":30,"down":0},"Morale Consumption":{"up":0,"down":50},"Evasion":{"up":30,"down":0},"Attack Down Resistance":{"up":40,"down":0},"HP Recovery Rate":{"up":30,"down":0}}],["Kyuukou",{"HP Recovery":{"up":40,"down":0},"Hit Rate":{"up":60,"down":0},"ATK":{"up":60,"down":0},"Confusion Resistance":{"up":100,"down":0},"Max HP":{"up":100,"down":0},"DEF":{"up":70,"down":0},"Guard":{"up":100,"down":0,"instances":[{"val":100,"duration":"1 time","owner":"Ouhon"}]},"Betrayal Resistance":{"up":30,"down":0},"Critical Damage":{"up":30,"down":0},"Morale Consumption":{"up":0,"down":50},"Evasion":{"up":30,"down":0},"Attack Down Resistance":{"up":40,"down":0},"HP Recovery Rate":{"up":30,"down":0}}],["Kanjou",{"HP Recovery":{"up":40,"down":0},"Hit Rate":{"up":60,"down":0},"ATK":{"up":60,"down":0},"Confusion Resistance":{"up":100,"down":0},"Max HP":{"up":100,"down":0},"DEF":{"up":70,"down":0},"Guard":{"up":100,"down":0,"instances":[{"val":100,"duration":"1 time","owner":"Ouhon"}]},"Betrayal Resistance":{"up":30,"down":0},"Critical Damage":{"up":30,"down":0},"Evasion":{"up":30,"down":0},"Attack Down Resistance":{"up":40,"down":0},"HP Recovery Rate":{"up":30,"down":0}}]],"defense":[["Katari",{"Evasion":{"up":30,"down":0},"DEF Penetration":{"up":20,"down":0},"Max HP":{"up":100,"down":0},"Morale Recovery":{"up":20,"down":0},"Fear Resistance":{"up":60,"down":0},"Betrayal Resistance":{"up":60,"down":0},"ATK":{"up":30,"down":0},"Critical Rate":{"up":30,"down":0}}],["Yotanwa",{"DEF Penetration":{"up":20,"down":0},"Max HP":{"up":100,"down":0},"Morale Recovery":{"up":20,"down":0},"Fear Resistance":{"up":60,"down":0},"Betrayal Resistance":{"up":60,"down":0},"ATK":{"up":30,"down":0},"Critical Rate":{"up":50,"down":0},"Sure Hit":{"up":1,"down":0}}],["Kitari",{"DEF Penetration":{"up":20,"down":0},"Max HP":{"up":100,"down":0},"Morale Recovery":{"up":20,"down":0},"Fear Resistance":{"up":60,"down":0},"Betrayal Resistance":{"up":60,"down":0},"ATK":{"up":30,"down":0},"Evasion":{"up":30,"down":0},"Critical Rate":{"up":30,"down":0}}],["Ramauji",{"DEF Penetration":{"up":20,"down":0},"Max HP":{"up":100,"down":0},"Morale Recovery":{"up":20,"down":0},"Fear Resistance":{"up":60,"down":0},"Betrayal Resistance":{"up":60,"down":0},"ATK":{"up":30,"down":0},"Critical Rate":{"up":30,"down":0}}]],"attackEnemyDebuffs":{"Enemy General":{"up":{},"down":{"ATK":40}},"Enemy generals":{"up":{},"down":{"DEF":40}}},"defenseEnemyDebuffs":{"All enemies":{"up":{},"down":{"ATK":30}}}}')
+    const attackByName = Object.fromEntries(result.attack)
+    const defenseByName = Object.fromEntries(result.defense)
+
+    expect(result.attack.map(([name]) => name)).toEqual(['Shoutaku', 'Ouhon', 'Kyuukou', 'Kanjou'])
+    expect(result.defense.map(([name]) => name)).toEqual(['Katari', 'Yotanwa', 'Kitari', 'Ramauji'])
+
+    // Formation-known values remain guaranteed. Effect-level Ally [Cavalry]
+    // recipients supplement a Self target, so Ouhon receives both DEF buffs.
+    expect(attackByName.Shoutaku.ATK).toMatchObject({ up: 60, down: 0, potentialUp: 0 })
+    expect(attackByName.Ouhon.DEF).toMatchObject({ up: 100, down: 0, potentialUp: 0 })
+    expect(attackByName.Shoutaku.Guard.instances).toEqual([
+      { val: 100, duration: '1 time', owner: 'Ouhon' },
+    ])
+
+    // HP/alive/status-dependent effects are no longer presented as guaranteed.
+    expect(attackByName.Shoutaku['HP Recovery']).toMatchObject({ up: 0, potentialUp: 40 })
+    expect(attackByName.Shoutaku['HP Recovery Rate']).toMatchObject({ up: 0, potentialUp: 30 })
+    expect(defenseByName.Yotanwa['Morale Recovery']).toMatchObject({ up: 0, potentialUp: 20 })
+
+    // Opponent composition is known here: Kanjou's Qin/cavalry/Gyokuhou
+    // clauses stack, while battle-state conditions stay in the potential lane.
+    expect(result.attackEnemyDebuffs['Enemy generals'].down.DEF).toBe(40)
+    expect(result.attackEnemyDebuffs['Enemy General'].potentialDown.ATK).toBe(40)
+    expect(result.defenseEnemyDebuffs['All enemies'].potentialDown.ATK).toBe(30)
   })
 })
