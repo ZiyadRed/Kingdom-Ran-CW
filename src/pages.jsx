@@ -9,7 +9,7 @@ import { Link, useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import {
-  useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, ALL, useReleaseData, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, simulate, calcCharBuffs, calcTeamEnemyDebuffs, Picker, characterInitialRarity, INVERSE_STATS, SPECIAL_STATS, statSortKey, DEFAULT_SK, hasStar6, hasRoleSkill, updateSkillMasks, applyMask, matchCharacterSearch, searchCharacters
+  useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, ALL, useReleaseData, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, simulate, calcCharBuffs, calcTeamEnemyDebuffs, Picker, characterInitialRarity, INVERSE_STATS, SPECIAL_STATS, statSortKey, DEFAULT_SK, hasStar6, hasRoleSkill, updateSkillMasks, applyMask, matchCharacterSearch, searchCharacters, BUFF_APPLICABILITY
 } from './core.jsx'
 import { characterSeo, routeSeo, setSeo } from './seo.js'
 import { classifyConditionParts } from './skillConditions.js'
@@ -721,6 +721,9 @@ export function useShareLabels(){
     withCombat:t('shareOutput.withCombat'),
     strategyOnly:t('shareOutput.strategyOnly'),
     summaryConditions:t('buffs.summaryConditions'),
+    potential:t('buffs.potential'),
+    conditionalOmitted:t('buffs.conditionalOmitted'),
+    unsupportedOmitted:t('buffs.unsupportedOmitted'),
     noRelevantBuffs:t('noRelevantBuffs'),
     unknown:t('unknown'),
     truncated:t('shareOutput.truncated'),
@@ -1162,8 +1165,9 @@ export function BuffTable({atk,def}){
   const defBuffs=def.map(g=>({general:g,buffs:calcCharBuffs(g,def,atk,true,false,includeCombat)}))
   const atkEnemyDebuffs=calcTeamEnemyDebuffs(atk,def,includeCombat,false)
   const defEnemyDebuffs=calcTeamEnemyDebuffs(def,atk,includeCombat,true)
-  const hasAny=arr=>arr.some(({buffs})=>Object.keys(buffs).length>0)
-  if(!hasAny(atkBuffs)&&!hasAny(defBuffs)&&!Object.keys(atkEnemyDebuffs).length&&!Object.keys(defEnemyDebuffs).length) return null
+  const hasAny=arr=>arr.some(({buffs})=>Object.keys(buffs).length>0||buffs.meta?.conditionalUnquantified.length||buffs.meta?.unsupported.length)
+  const hasEnemyOutput=debuffs=>Object.keys(debuffs).length>0||debuffs.meta?.conditionalUnquantified.length||debuffs.meta?.unsupported.length
+  if(!hasAny(atkBuffs)&&!hasAny(defBuffs)&&!hasEnemyOutput(atkEnemyDebuffs)&&!hasEnemyOutput(defEnemyDebuffs)) return null
   return(
     <div className="sim-sec buff-summary">
       <div className="sec-hd sec-buff" style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:'1rem',flexWrap:'wrap'}}>
@@ -1203,14 +1207,52 @@ export function BuffTable({atk,def}){
 export function BuffSourceEvidence({source}){
   const {findCharById}=useReleaseData()
   const locale=useLocale()
+  const{t}=useTranslation('common')
   if(!source.skill||!source.effect) return null
   const skillIndex=findCharById(source.owner.id)?.skills.indexOf(source.skill)
   const skill=localizedSkill(source.skill,source.owner.id,skillIndex,locale)
   const effect=skill.displayEffects[source.skill.effects.indexOf(source.effect)]
   return <div className="buff-source-evidence">
-    <span className="buff-source-skill">{skill.displayName}</span>
+    <span className="buff-source-skill">{skill.displayName}{source.applicability===BUFF_APPLICABILITY.CONDITIONAL&&<span className="buff-source-state"> · {t('buffs.potential')}</span>}{source.applicability===BUFF_APPLICABILITY.UNSUPPORTED&&<span className="buff-source-state"> · {t('buffs.unsupported')}</span>}</span>
     {effect?.condition&&<span className="buff-source-condition">{effect.condition}</span>}
     <span>{effect?.target} → {effect?.effect}{effect?.duration?` · ${effect.duration}`:''}</span>
+  </div>
+}
+function uniqueBuffMetaSources(entries,enemyDebuffs,key){
+  const all=[
+    ...entries.flatMap(({buffs})=>buffs.meta?.[key]||[]),
+    ...(enemyDebuffs.meta?.[key]||[]),
+  ]
+  const seen=new Set()
+  return all.filter(source=>{
+    const id=[source.owner?.id,source.skill?.name_en,source.effect?.condition,source.effect?.target,source.effect?.effect,source.stat].join('|')
+    if(seen.has(id)) return false
+    seen.add(id)
+    return true
+  })
+}
+export function BuffApplicabilityNotices({entries,enemyDebuffs}){
+  const{t}=useTranslation('common')
+  const locale=useLocale()
+  const conditional=uniqueBuffMetaSources(entries,enemyDebuffs,'conditionalUnquantified')
+  const unsupported=uniqueBuffMetaSources(entries,enemyDebuffs,'unsupported')
+  if(!conditional.length&&!unsupported.length) return null
+  const notice=(kind,sources,label)=><details className={`buff-applicability-notice ${kind}`}>
+    <summary>{label}</summary>
+    <div className="buff-sources">
+      {sources.map((source,index)=><div key={`${source.owner?.id}|${source.skill?.name_en}|${source.stat}|${index}`} className="buff-source-contribution">
+        <div className="buff-source-row">
+          <CharIcon c={source.owner} size={16} round={true}/>
+          <span className="buff-source-name">{localizedCharacter(source.owner,locale).displayName}</span>
+          {source.stat&&<span className="buff-source-state">{localizedText(source.stat,locale)}</span>}
+        </div>
+        <BuffSourceEvidence source={source}/>
+      </div>)}
+    </div>
+  </details>
+  return <div className="buff-applicability-notices">
+    {conditional.length>0&&notice('conditional',conditional,t('buffs.conditionalOmittedCount',{count:conditional.length}))}
+    {unsupported.length>0&&notice('unsupported',unsupported,t('buffs.unsupportedOmittedCount',{count:unsupported.length}))}
   </div>
 }
 export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
@@ -1219,14 +1261,15 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
   const locale=useLocale()
   const[expanded,setExpanded]=useState(null)
   const ac=side==='attack'?'var(--red)':'var(--blue)'
+  const hasNotices=entries.some(({buffs})=>buffs.meta?.conditionalUnquantified.length||buffs.meta?.unsupported.length)||enemyDebuffs.meta?.conditionalUnquantified.length||enemyDebuffs.meta?.unsupported.length
   const hasAny=entries.some(({buffs})=>Object.keys(buffs).length>0)
   const hasEnemyDebuffs=Object.keys(enemyDebuffs).length>0
   const fmt=v=>Number.isInteger(v)?v:v.toFixed(1)
   return(
     <div className={`scol ${side==='attack'?'atk':'def'}`}>
       <div className="scol-lbl" style={{color:ac,borderBottomColor:ac+'44'}}>{label}</div>
-       {!hasAny?<p className="scol-none">{t('noRelevantBuffs')}</p>:entries.map(({general:g,buffs})=>{
-        const stats=Object.entries(buffs).filter(([,v])=>v.up>0||v.down>0).sort(([a],[b])=>statSortKey(a)-statSortKey(b))
+       {!hasAny&&!hasEnemyDebuffs?<p className="scol-none">{t('noRelevantBuffs')}</p>:entries.map(({general:g,buffs})=>{
+        const stats=Object.entries(buffs).filter(([,v])=>v.up>0||v.down>0||v.potentialUp>0||v.potentialDown>0).sort(([a],[b])=>statSortKey(a)-statSortKey(b))
         return(
           <div key={g.id} className="scol-gen" data-buff-general={g.id}>
             <div className="scol-gen-hdr" style={{color:ac}}>
@@ -1237,15 +1280,17 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
             {!stats.length?<div className="buff-none-row">—</div>:(
               <div className="buff-stats">
                 {stats.map(([stat,buff])=>{
-                  const{up,down,sources=[],instances}=buff
+                  const{up,down,potentialUp=0,potentialDown=0,sources=[],potentialSources=[],instances,potentialInstances}=buff
                   const inv=INVERSE_STATS.has(stat)
                   const isFlag=SPECIAL_STATS.has(stat)
                   // Guard doesn't stack — show one row for the active (highest) instance,
                   // with the alternatives revealed on expand.
-                  if(stat==='Guard'&&instances&&instances.length){
-                    const sorted=[...instances].sort((a,b)=>b.val-a.val)
+                  if(stat==='Guard'&&(instances?.length||potentialInstances?.length)){
+                    const sorted=[...(instances||[])].sort((a,b)=>b.val-a.val)
+                    const potentialSorted=[...(potentialInstances||[])].sort((a,b)=>b.val-a.val)
                     const top=sorted[0]
-                    const extra=sorted.length-1
+                    const potentialTop=potentialSorted[0]
+                    const extra=sorted.length+potentialSorted.length-1
                     const key=`${g.id}|Guard`
                     const isOpen=expanded===key
                     return(
@@ -1254,20 +1299,21 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
                              onClick={()=>setExpanded(isOpen?null:key)}>
                           <span className="buff-stat-name">{localizedText('Guard',locale)}</span>
                           <span className="buff-vals">
-                            <span className="buff-up">+{fmt(top.val)}%</span>
-                            {top.duration&&<span className="buff-dur">{localizedDuration(top.duration,locale)}</span>}
+                            {top&&<span className="buff-up">+{fmt(top.val)}%</span>}
+                            {top?.duration&&<span className="buff-dur">{localizedDuration(top.duration,locale)}</span>}
+                            {potentialTop&&<span className="buff-potential">{t('buffs.potential')} +{fmt(potentialTop.val)}%</span>}
                             {extra>0&&<span className="buff-more">+{extra}</span>}
                             <span className="buff-chevron" aria-hidden="true">{isOpen?'▴':'▾'}</span>
                           </span>
                         </button>
                         {(
                           <div id={`${disclosureId}-${encodeURIComponent(key)}`} hidden={!isOpen} className="buff-sources">
-                            {sorted.map((inst,idx)=>(
+                            {[...sorted,...potentialSorted].map((inst,idx)=>(
                               <div key={idx} className="buff-source-contribution">
                               <div className="buff-source-row">
                                 <CharIcon c={inst.owner} size={16} round={true}/>
                                 <span className="buff-source-name">{localizedCharacter(inst.owner,locale).displayName}</span>
-                                <span className="buff-up">+{fmt(inst.val)}%{inst.duration?` · ${localizedDuration(inst.duration,locale)}`:''}</span>
+                                <span className={inst.applicability===BUFF_APPLICABILITY.CONDITIONAL?'buff-potential':'buff-up'}>{inst.applicability===BUFF_APPLICABILITY.CONDITIONAL?`${t('buffs.potential')} `:''}+{fmt(inst.val)}%{inst.duration?` · ${localizedDuration(inst.duration,locale)}`:''}</span>
                               </div>
                               <BuffSourceEvidence source={inst}/>
                               </div>
@@ -1287,22 +1333,24 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
                         <span className="buff-stat-name">{localizedText(stat,locale)}</span>
                         <span className="buff-vals">
                           {isFlag
-                            ?<span className="buff-up" style={{fontSize:'.75rem',letterSpacing:'.02em'}}>● {up}×</span>
+                            ?<><span className="buff-up" style={{fontSize:'.75rem',letterSpacing:'.02em'}}>● {up}×</span>{potentialUp>0&&<span className="buff-potential">{t('buffs.potential')} {potentialUp}×</span>}</>
                             :<>{up>0&&<span className={inv?'buff-down':'buff-up'}>+{fmt(up)}%</span>}
-                               {down>0&&<span className={inv?'buff-up':'buff-down'}>−{fmt(down)}%</span>}</>
+                               {down>0&&<span className={inv?'buff-up':'buff-down'}>−{fmt(down)}%</span>}
+                               {potentialUp>0&&<span className="buff-potential">{t('buffs.potential')} +{fmt(potentialUp)}%</span>}
+                               {potentialDown>0&&<span className="buff-potential">{t('buffs.potential')} −{fmt(potentialDown)}%</span>}</>
                           }
                           <span className="buff-chevron" aria-hidden="true">{isOpen?'▴':'▾'}</span>
                         </span>
                       </button>
                       {(
                         <div id={`${disclosureId}-${encodeURIComponent(key)}`} hidden={!isOpen} className="buff-sources">
-                          {sources.map((s,i)=>(
+                          {[...sources,...potentialSources].map((s,i)=>(
                             <div key={i} className="buff-source-contribution">
                             <div className="buff-source-row">
                               <CharIcon c={s.owner} size={16} round={true}/>
                               <span className="buff-source-name">{localizedCharacter(s.owner,locale).displayName}</span>
-                              <span className={s.dir==='up'?(inv?'buff-down':'buff-up'):(inv?'buff-up':'buff-down')}>
-                                {isFlag?`${s.contribution}×`:`${s.dir==='up'?'+':'−'}${fmt(s.contribution)}%`}
+                              <span className={s.applicability===BUFF_APPLICABILITY.CONDITIONAL?'buff-potential':s.dir==='up'?(inv?'buff-down':'buff-up'):(inv?'buff-up':'buff-down')}>
+                                {s.applicability===BUFF_APPLICABILITY.CONDITIONAL?`${t('buffs.potential')} `:''}{isFlag?`${s.contribution}×`:`${s.dir==='up'?'+':'−'}${fmt(s.contribution)}%`}
                               </span>
                             </div>
                             <BuffSourceEvidence source={s}/>
@@ -1318,11 +1366,11 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
           </div>
         )
       })}
-      {hasEnemyDebuffs&&Object.entries(enemyDebuffs).map(([target,{up,down,sources={}}])=>{
+      {hasEnemyDebuffs&&Object.entries(enemyDebuffs).map(([target,{up,down,potentialUp={},potentialDown={},sources={},potentialSources={}}])=>{
         const allStats=[
-          ...Object.entries(down).map(([s,v])=>({s,v,d:'down'})),
-          ...Object.entries(up).map(([s,v])=>({s,v,d:'up'})),
-        ].filter(x=>x.v>0)
+          ...[...new Set([...Object.keys(down),...Object.keys(potentialDown)])].map(s=>({s,v:down[s]||0,pv:potentialDown[s]||0,d:'down'})),
+          ...[...new Set([...Object.keys(up),...Object.keys(potentialUp)])].map(s=>({s,v:up[s]||0,pv:potentialUp[s]||0,d:'up'})),
+        ].filter(x=>x.v>0||x.pv>0)
         if(!allStats.length) return null
         return(
           <div key={target} className="scol-gen" style={{marginTop:'.5rem',borderColor:'rgba(176,80,0,.35)'}}>
@@ -1330,9 +1378,9 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
               <span style={{fontSize:'.85rem'}}>↓</span> {localizedTarget(target,locale)}
             </div>
             <div className="buff-stats">
-              {allStats.map(({s,v,d})=>{
+              {allStats.map(({s,v,pv,d})=>{
                 const skey=`${d}|${s}`
-                const srcs=sources[skey]||[]
+                const srcs=[...(sources[skey]||[]),...(potentialSources[skey]||[])]
                 const rowKey=`deb|${target}|${skey}`
                 const isOpen=expanded===rowKey
                 return(
@@ -1342,7 +1390,8 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
                          onClick={()=>setExpanded(isOpen?null:rowKey)}>
                       <span className="buff-stat-name" style={{color:'#b05000',fontWeight:700,fontSize:'.75rem'}}>{localizedText(s,locale)}</span>
                       <span className="buff-vals">
-                        <span className="buff-down">{d==='down'?'−':'+'}{fmt(v)}%</span>
+                        {v>0&&<span className="buff-down">{d==='down'?'−':'+'}{fmt(v)}%</span>}
+                        {pv>0&&<span className="buff-potential">{t('buffs.potential')} {d==='down'?'−':'+'}{fmt(pv)}%</span>}
                         <span className="buff-chevron" aria-hidden="true">{isOpen?'▴':'▾'}</span>
                       </span>
                     </button>
@@ -1353,7 +1402,7 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
                           <div className="buff-source-row">
                             <CharIcon c={x.owner} size={16} round={true}/>
                             <span className="buff-source-name">{localizedCharacter(x.owner,locale).displayName}</span>
-                            <span className="buff-down">{x.dir==='down'?'−':'+'}{fmt(x.contribution)}%</span>
+                            <span className={x.applicability===BUFF_APPLICABILITY.CONDITIONAL?'buff-potential':'buff-down'}>{x.applicability===BUFF_APPLICABILITY.CONDITIONAL?`${t('buffs.potential')} `:''}{x.dir==='down'?'−':'+'}{fmt(x.contribution)}%</span>
                           </div>
                           <BuffSourceEvidence source={x}/>
                           </div>
@@ -1367,6 +1416,7 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
           </div>
         )
       })}
+      {hasNotices&&<BuffApplicabilityNotices entries={entries} enemyDebuffs={enemyDebuffs}/>}
     </div>
   )
 }

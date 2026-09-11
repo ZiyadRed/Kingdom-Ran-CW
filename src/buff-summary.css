@@ -2,6 +2,12 @@
 .buff-summary .buff-source-contribution { padding-block: .25rem; }
 .buff-summary .buff-source-evidence { display: flex; flex-direction: column; gap: .15rem; margin-inline-start: 22px; font-size: .7rem; line-height: 1.45; overflow-wrap: anywhere; color: var(--txt2); }
 .buff-summary .buff-source-skill, .buff-summary .buff-source-condition { font-weight: 600; }
+.buff-summary .buff-potential, .buff-summary .buff-source-state { color: #a55a00; font-size: .68rem; font-weight: 700; }
+.buff-summary .buff-applicability-notices { display: grid; gap: .35rem; margin-top: .65rem; }
+.buff-summary .buff-applicability-notice { border: 1px solid rgba(165,90,0,.3); border-radius: 6px; background: rgba(255,171,64,.08); font-size: .72rem; }
+.buff-summary .buff-applicability-notice.unsupported { border-color: rgba(145,74,60,.35); background: rgba(145,74,60,.07); }
+.buff-summary .buff-applicability-notice > summary { cursor: pointer; padding: .45rem .55rem; color: var(--txt2); font-weight: 700; }
+.buff-summary .buff-applicability-notice > .buff-sources { margin: 0 .45rem .45rem; }
 .buff-row-click { width: 100%; font: inherit; color: inherit; text-align: start; }
 .buff-row-click:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
 .buff-sources[hidden] { display: none; }

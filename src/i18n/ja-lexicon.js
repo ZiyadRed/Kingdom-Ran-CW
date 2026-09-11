@@ -70,6 +70,7 @@ export const STATS = {
   'Poison Damage': '毒ダメージ',
 
   'HP Recovery': '体力回復',
+  'HP Recovery Nullification': '体力回復無効',
   'Morale Recovery': '士気回復',
   'HP Recovery Rate': '体力回復量',
   'Continuous HP Recovery': '体力継続回復',

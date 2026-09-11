@@ -51,7 +51,10 @@ export const DEFAULT_SHARE_LABELS={
   teamBuffSummary:'RanHQ Team Buff Summary',
   withCombat:'Strategy + combat skill effects included.',
   strategyOnly:'Strategy skills only.',
-  summaryConditions:'Side conditions are applied. HP and other battle conditions remain potential effects; they are not simulated.',
+  summaryConditions:'Guaranteed totals include only effects proven by the selected formations. Battle-state effects are shown separately as potential, or omitted when their value cannot be determined.',
+  potential:'Potential',
+  conditionalOmitted:'conditional effects omitted from totals',
+  unsupportedOmitted:'unsupported effects omitted from totals',
   noRelevantBuffs:'No relevant buffs.',
   enemyDebuffOn:'Enemy debuff on',
   sceneCardSkill:'CW6 Card Skill',
@@ -328,7 +331,25 @@ function formatBuffSideForShare(title,team,entries,enemyDebuffs,opts){
   const debuffLines=formatEnemyDebuffs(enemyDebuffs,opts)
   if(!buffLines.length&&!debuffLines.length) lines.push(`- ${L.noRelevantBuffs}`)
   else lines.push(...buffLines,...debuffLines)
+  const conditional=uniqueApplicabilitySources(entries,enemyDebuffs,'conditionalUnquantified')
+  const unsupported=uniqueApplicabilitySources(entries,enemyDebuffs,'unsupported')
+  if(conditional.length) lines.push(`- ${conditional.length} ${L.conditionalOmitted}`)
+  if(unsupported.length) lines.push(`- ${unsupported.length} ${L.unsupportedOmitted}`)
   return lines
+}
+
+function uniqueApplicabilitySources(entries,enemyDebuffs,key){
+  const sources=[
+    ...(entries||[]).flatMap(({buffs})=>buffs?.meta?.[key]||[]),
+    ...(enemyDebuffs?.meta?.[key]||[]),
+  ]
+  const ids=new Set()
+  return sources.filter(source=>{
+    const id=[source.owner?.id,source.skill?.name_en,source.effect?.condition,source.effect?.target,source.effect?.effect,source.stat].join('|')
+    if(ids.has(id)) return false
+    ids.add(id)
+    return true
+  })
 }
 
 function formatEntryBuffs(entries,{specialStats,statSortKey,labels}){
@@ -343,11 +364,14 @@ function formatEntryBuffs(entries,{specialStats,statSortKey,labels}){
 
 function formatEnemyDebuffs(enemyDebuffs,{specialStats,statSortKey,labels}){
   const L=withLabels(labels)
-  return Object.entries(enemyDebuffs||{}).flatMap(([target,{up={},down={}}])=>{
-    const stats=sortBuffStats([
-      ...Object.entries(down).map(([stat,value])=>[stat,{down:value,up:0}]),
-      ...Object.entries(up).map(([stat,value])=>[stat,{up:value,down:0}]),
-    ],statSortKey)
+  return Object.entries(enemyDebuffs||{}).flatMap(([target,{up={},down={},potentialUp={},potentialDown={}}])=>{
+    const names=new Set([...Object.keys(up),...Object.keys(down),...Object.keys(potentialUp),...Object.keys(potentialDown)])
+    const stats=sortBuffStats([...names].map(stat=>[stat,{
+      up:up[stat]||0,
+      down:down[stat]||0,
+      potentialUp:potentialUp[stat]||0,
+      potentialDown:potentialDown[stat]||0,
+    }]),statSortKey)
     const values=stats.map(([stat,buff])=>formatBuffValue(stat,buff,specialStats,L)).filter(Boolean)
     return values.length?[`- ${L.enemyDebuffOn} ${term(L,target)}: ${values.join(', ')}`]:[]
   })
@@ -355,7 +379,7 @@ function formatEnemyDebuffs(enemyDebuffs,{specialStats,statSortKey,labels}){
 
 function sortBuffStats(entries,statSortKey){
   return entries
-    .filter(([,buff])=>(buff?.up||0)>0||(buff?.down||0)>0)
+    .filter(([,buff])=>(buff?.up||0)>0||(buff?.down||0)>0||(buff?.potentialUp||0)>0||(buff?.potentialDown||0)>0)
     .sort(([a],[b])=>statSortKey?statSortKey(a)-statSortKey(b):a.localeCompare(b))
 }
 
@@ -364,9 +388,14 @@ function formatBuffValue(stat,buff,specialStats,labels){
   const parts=[]
   const up=buff?.up||0
   const down=buff?.down||0
+  const potentialUp=buff?.potentialUp||0
+  const potentialDown=buff?.potentialDown||0
   if(specialStats.has(stat)&&up>0) parts.push(`${fmt(up)}x`)
   else if(up>0) parts.push(`+${fmt(up)}%`)
   if(down>0) parts.push(`-${fmt(down)}%`)
+  if(specialStats.has(stat)&&potentialUp>0) parts.push(`${L.potential} ${fmt(potentialUp)}x`)
+  else if(potentialUp>0) parts.push(`${L.potential} +${fmt(potentialUp)}%`)
+  if(potentialDown>0) parts.push(`${L.potential} -${fmt(potentialDown)}%`)
   return parts.length?`${term(L,stat)} ${parts.join('/')}`:''
 }
 

@@ -102,6 +102,7 @@ export const STATS = {
   // ── Recovery / drain ─────────────────────────────────────────────────────
   // TouranKo says "Soin de 35% de PV" and "regain de moral"; both are kept.
   'HP Recovery': { de: 'de soin', le: 'le soin', a: 'au soin', heal: 'PV' },
+  'HP Recovery Nullification': { de: 'd’annulation des soins', le: 'l’annulation des soins', a: 'à l’annulation des soins' },
   'Morale Recovery': { de: 'de regain de moral', le: 'le regain de moral', a: 'au regain de moral' },
   'HP Recovery Rate': { de: 'de taux de soin', le: 'le taux de soin', a: 'au taux de soin' },
   'Continuous HP Recovery': { de: 'de soin continu', le: 'le soin continu', a: 'au soin continu' },

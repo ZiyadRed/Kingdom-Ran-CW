@@ -87,6 +87,7 @@ export const STATS = {
 
   // ── Recovery / drain ─────────────────────────────────────────────────────
   'HP Recovery': { def: 'استعادة الصحة', ind: 'استعادة صحة' },
+  'HP Recovery Nullification': { def: 'منع استعادة الصحة', ind: 'منع استعادة الصحة' },
   'Morale Recovery': { def: 'استعادة المعنويات', ind: 'استعادة معنويات' },
   'HP Recovery Rate': { def: 'معدل استعادة الصحة', ind: 'معدل استعادة صحة' },
   'Continuous HP Recovery': { def: 'الاستعادة المستمرة للصحة', ind: 'استعادة مستمرة للصحة' },

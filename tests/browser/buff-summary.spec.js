@@ -41,10 +41,13 @@ test('buff, Guard alternative and enemy disclosures support keyboard activation'
     await expect(sources).toBeHidden()
     await expect(row).toBeFocused()
   }
-  const singleGuard=attack.locator('[data-buff-general="renpa"] [data-buff-stat="Guard"] .buff-row')
-  await singleGuard.focus()
+  // Renpa's Guard requires another living Renpa Army ally. This formation has
+  // none, so use his single-source combat contribution for the final keyboard
+  // disclosure check instead of asserting the inapplicable Guard row exists.
+  const singleContribution=attack.locator('[data-buff-general="renpa"] [data-buff-stat="DEF Penetration"] .buff-row')
+  await singleContribution.focus()
   await page.keyboard.press('Space')
-  await expect(singleGuard).toHaveAttribute('aria-expanded','true')
+  await expect(singleContribution).toHaveAttribute('aria-expanded','true')
 })
 
 test('formation summaries, contribution evidence and shared totals respect attack and defense', async ({ page, path, locale }) => {

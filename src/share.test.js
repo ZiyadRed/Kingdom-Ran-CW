@@ -84,6 +84,21 @@ describe('Discord share formatting', () => {
     expect(text).toContain('- Enemy debuff on Enemy Cavalry: ATK -20%')
   })
 
+  it('labels potential values and omitted conditions separately from guaranteed share totals', () => {
+    const conditionalSource={owner:{id:'a'},skill:{name_en:'A'},effect:{condition:'Per own attack count'},stat:'ATK'}
+    const text=formatTeamBuffShare({
+      atk:[{name_en:'A'}],
+      atkBuffs:[{general:{name_en:'A'},buffs:{
+        ATK:{up:10,down:0,potentialUp:20,potentialDown:0},
+        meta:{conditionalUnquantified:[conditionalSource],unsupported:[]},
+      }}],
+      specialStats:new Set(),
+      statSortKey:()=>0,
+    })
+    expect(text).toContain('ATK +10%/Potential +20%')
+    expect(text).toContain('1 conditional effects omitted from totals')
+  })
+
   it('uses the active locale resolver for dynamic buff-summary terms', () => {
     const text=formatTeamBuffShare({
       atk:[{name_en:'A'}],
