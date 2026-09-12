@@ -563,6 +563,7 @@ textarea {
 /* Builder and Battle Order */
 .main-page { max-width: var(--content); }
 .builder-side-switch { display: none; }
+.builder-share-error { margin: 0 0 14px; padding: 10px 12px; border: 1px solid rgba(192,57,43,.35); border-radius: 6px; background: rgba(192,57,43,.08); color: #8f281e; font-size: 13px; font-weight: 700; line-height: 1.45; }
 .two-sides { gap: 18px; align-items: stretch; }
 .side {
   overflow: hidden;

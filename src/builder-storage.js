@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useHydratedState } from './use-hydrated-state.js'
 
 export const BUILDER_STORAGE_KEY = 'ranhq:party-builder'
@@ -137,8 +137,15 @@ export function writeBuilderState(value) {
   }
 }
 
-export function usePersistedBuilderState() {
-  const [state, setState, changed] = useHydratedState(createDefaultBuilderState, readBuilderState)
+export function usePersistedBuilderState(initialState) {
+  const initialStateRef = useRef(initialState)
+  const readInitialState = useCallback(
+    () => initialStateRef.current === undefined
+      ? readBuilderState()
+      : normalizeBuilderState(initialStateRef.current),
+    [],
+  )
+  const [state, setState, changed] = useHydratedState(createDefaultBuilderState, readInitialState)
 
   useEffect(() => {
     if (changed) writeBuilderState(state)

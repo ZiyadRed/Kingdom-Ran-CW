@@ -23,6 +23,20 @@ describe('Discord share formatting', () => {
     expect(characterShareUrl({ id: 'ouhon' }, 'fr')).toBe('https://ranhq.vercel.app/fr/archive/characters/ouhon')
   })
 
+  it('makes a Builder full-details URL recipient-reconstructable', () => {
+    const mask = { n: 3, s6: true, role: false }
+    const state = {
+      version: 1,
+      attack: ['shouheikun', 'renpa', 'shin', 'makou'],
+      defense: ['rien', 'beiman', 'karin', 'shunshinkun'],
+      attackSkills: [mask, mask, mask, mask],
+      defenseSkills: [mask, mask, mask, mask],
+    }
+    const url = builderShareUrl('fr', state, { includeCombat: true })
+    expect(url).toMatch(/^https:\/\/ranhq\.vercel\.app\/fr\/builder\?plan=1&/)
+    expect(url).toContain('&c=1')
+  })
+
   it('formats character skills with condition labels instead of IF text', () => {
     const text=formatCharacterSkillsShare({
       id:'test-general',

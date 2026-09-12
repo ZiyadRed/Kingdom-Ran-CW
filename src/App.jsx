@@ -3,7 +3,8 @@ import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { canonicalPath, characterRouteId, routeSeo, setSeo } from './seo.js'
 import { enabledLocales, localePrefixedPath, stripLocalePrefix, useLocale, writeLocalePreference } from './i18n/index.js'
-import { builderStateHasSetup, DEFAULT_BUILDER_SKILL_MASK, usePersistedBuilderState } from './builder-storage.js'
+import { builderStateHasSetup, createDefaultBuilderState, DEFAULT_BUILDER_SKILL_MASK, reconcileBuilderState, usePersistedBuilderState } from './builder-storage.js'
+import { decodeBuilderShareSearch } from './builder-share.js'
 import RouteErrorBoundary from './RouteErrorBoundary.jsx'
 import Dialog from './Dialog.jsx'
 import NotFoundPage from './NotFoundPage.jsx'
@@ -155,7 +156,12 @@ export default function App(){
   const locale=useLocale()
   const{t}=useTranslation('common')
   const page=currentPage(location.pathname)
-  const[builderState,setBuilderState,reconcileBuilder]=usePersistedBuilderState()
+  const initialBuilderShare=decodeBuilderShareSearch(location.search)
+  const initialBuilderState=initialBuilderShare.status==='valid'
+    ?initialBuilderShare.state
+    :initialBuilderShare.status==='invalid'?createDefaultBuilderState():undefined
+  const[builderState,setBuilderState,reconcileBuilder]=usePersistedBuilderState(initialBuilderState)
+  const[builderShareStatus,setBuilderShareStatus]=useState(initialBuilderShare.status)
   const atk=builderState.attack
   const def=builderState.defense
   const atkSk=builderState.attackSkills
@@ -205,10 +211,18 @@ export default function App(){
   useEffect(()=>{
     if(!hasBuilderSetup||!needsBuilderRegistry) return
     let active=true
-    import('./core.jsx').then(({ALL})=>{if(active)reconcileBuilder(ALL)})
+    import('./core.jsx').then(({ALL})=>{
+      if(!active) return
+      const shared=decodeBuilderShareSearch(location.search)
+      if(shared.status==='valid'){
+        const reconciled=reconcileBuilderState(shared.state,ALL)
+        if(JSON.stringify(reconciled)!==JSON.stringify(shared.state)) setBuilderShareStatus('invalid')
+      }
+      reconcileBuilder(ALL)
+    })
       .catch(error=>console.error('RanHQ could not load the Builder registry:',error))
     return()=>{active=false}
-  },[hasBuilderSetup,needsBuilderRegistry,reconcileBuilder])
+  },[hasBuilderSetup,needsBuilderRegistry,reconcileBuilder,location.search])
   // Scroll to top when switching top-level tab (not on character deep-link changes within Archive)
   useEffect(()=>{window.scrollTo(0,0)},[page])
   // Close the mobile Tools dialog when navigation or a desktop layout hides its trigger.
@@ -278,7 +292,7 @@ export default function App(){
           <Route path="/archive/characters/:charId" element={<><ArchiveTabs active="characters"/><ArchivePage/></>}/>
           <Route path="/archive/cw6-scene-cards" element={<CW6SceneCardsPage/>}/>
           <Route path="/archive/:charId" element={<><ArchiveTabs active="characters"/><ArchivePage/></>}/>
-          <Route path="/builder" element={<BuilderPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} setAtkSk={setAtkSk} setDefSk={setDefSk} setSlot={setSlot} rm={rm} goSim={()=>navigate('/sim')} loadMetaTeam={loadMetaTeam}/>}/>
+          <Route path="/builder" element={<BuilderPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} setAtkSk={setAtkSk} setDefSk={setDefSk} setSlot={setSlot} rm={rm} goSim={()=>navigate('/sim')} loadMetaTeam={loadMetaTeam} sharedIncludeCombat={initialBuilderShare.status==='valid'&&initialBuilderShare.includeCombat} shareStatus={mounted?builderShareStatus:'absent'}/>}/>
           <Route path="/sim" element={<SimPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} goBuilder={()=>navigate('/builder')}/>}/>
           <Route path="/castle-points" element={<CastlePointsPage/>}/>
           <Route path="/buffs" element={<BuffsPage/>}/>

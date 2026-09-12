@@ -1,5 +1,6 @@
 import { classifyConditionParts } from './skillConditions.js'
 import { absoluteUrl } from './seo.js'
+import { encodeBuilderShareSearch } from './builder-share.js'
 
 export const DISCORD_MESSAGE_LIMIT = 1900
 export const SKILL_IMAGE_WIDTH = 1080
@@ -118,8 +119,9 @@ export function characterShareUrl(character, localeCode='en'){
   return absoluteUrl(`/archive/characters/${character?.id||''}`, localeCode)
 }
 
-export function builderShareUrl(localeCode='en'){
-  return absoluteUrl('/builder', localeCode)
+export function builderShareUrl(localeCode='en',state,options){
+  const base=absoluteUrl('/builder', localeCode)
+  return state?`${base}${encodeBuilderShareSearch(state,options)}`:base
 }
 
 export function sceneCardShareUrl(localeCode='en'){

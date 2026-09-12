@@ -23,6 +23,7 @@ import { localizedTeamName } from './i18n/team-names.js'
 import { localizedCharacterName } from './i18n/ar-character-names.js'
 import { localizedCharacter, localizedDuration, localizedSkill, localizedTarget, localizedText } from './i18n/data.js'
 import { builderShareUrl, characterShareUrl, createCharacterSkillsImage, createTeamSkillsImage, downloadBlob, formatCharacterSkillsShare, formatSceneCardShare, formatTeamBuffShare, sceneCardShareUrl, shareImageBlob, shareText } from './share.js'
+import { BUILDER_SCHEMA_VERSION } from './builder-storage.js'
 
 export function ArchiveTabs({active}){
   const location=useLocation()
@@ -552,7 +553,7 @@ export function SkillImageButton({character,url,label='skills'}){
   )
 }
 
-export function TeamImageButton({team,side='team'}){
+export function TeamImageButton({team,side='team',builderState}){
   const shareLabels=useShareLabels()
   const locale=useLocale()
   const{t}=useTranslation('common')
@@ -592,7 +593,7 @@ export function TeamImageButton({team,side='team'}){
         team,
         title,
         side,
-        url:builderShareUrl(locale.code),
+        url:builderShareUrl(locale.code,builderState),
         labels:shareLabels,
       })
       showRendered(rendered)
@@ -789,7 +790,7 @@ export function MetaTeamCard({team,onLoad}){
 }
 
 // ── PARTY BUILDER ─────────────────────────────────────────────────────────────
-export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk,setSlot,rm,goSim,loadMetaTeam}){
+export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk,setSlot,rm,goSim,loadMetaTeam,sharedIncludeCombat=false,shareStatus='absent'}){
   const {findCharById,findCharByName}=useReleaseData()
   const{t}=useTranslation('common')
   const locale=useLocale()
@@ -801,6 +802,13 @@ export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk
   const atkF=atk.filter(Boolean),defF=def.filter(Boolean)
   const atkM=atk.map((c,i)=>applyMask(c,atkSk[i])).filter(Boolean)
   const defM=def.map((c,i)=>applyMask(c,defSk[i])).filter(Boolean)
+  const builderShareState=useMemo(()=>({
+    version:BUILDER_SCHEMA_VERSION,
+    attack:atkIds,
+    defense:defIds,
+    attackSkills:atkSk,
+    defenseSkills:defSk,
+  }),[atkIds,defIds,atkSk,defSk])
   // Only exclude chars already on the SAME side — opposing-team chars must remain searchable
   const excl=picker ? (picker.side==='attack'?atkF:defF).map(c=>c.id) : []
   const updateSk=(side,idx,mask)=>{
@@ -820,6 +828,7 @@ export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk
       {picker&&<Picker onSelect={c=>setSlot(c,picker.side,picker.idx)} onClose={()=>setPicker(null)} excl={excl} returnFocus={()=>document.querySelector(`[data-builder-slot="${picker.side}-${picker.idx}"] button, button[data-builder-slot="${picker.side}-${picker.idx}"]`)}/>}
       <h1 className="pg-title">{t('builder.title')}</h1>
       <p className="pg-sub">{t('builder.subtitle')}</p>
+      {shareStatus==='invalid'&&<p className="builder-share-error" role="alert">{t('builder.sharedPlanInvalid')}</p>}
       <div className="builder-side-switch" role="group" aria-label={t('builder.formationSide')}>
         <button type="button" className={activeSide==='attack'?'active':''} aria-pressed={activeSide==='attack'} onClick={()=>setActiveSide('attack')}>{t('builder.attacking')} <span>{atkF.length}/4</span></button>
         <button type="button" className={activeSide==='defense'?'active':''} aria-pressed={activeSide==='defense'} onClick={()=>setActiveSide('defense')}>{t('builder.defending')} <span>{defF.length}/4</span></button>
@@ -827,11 +836,11 @@ export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk
       <div className={`two-sides builder-two-sides builder-show-${activeSide}`}>
         <SideSlots side="attack"  label={t('builder.attacking')} party={atk} skMask={atkSk}
                    onSlot={i=>setPicker({side:'attack',idx:i})}  onRm={c=>rm(c,'attack')}
-                   onSkChange={(i,mk)=>updateSk('attack',i,mk)}/>
+                   onSkChange={(i,mk)=>updateSk('attack',i,mk)} builderState={builderShareState}/>
         <div className="vs-sep">{t('versus')}</div>
         <SideSlots side="defense" label={t('builder.defending')} party={def} skMask={defSk}
                    onSlot={i=>setPicker({side:'defense',idx:i})} onRm={c=>rm(c,'defense')}
-                   onSkChange={(i,mk)=>updateSk('defense',i,mk)}/>
+                   onSkChange={(i,mk)=>updateSk('defense',i,mk)} builderState={builderShareState}/>
       </div>
       {(atkF.length&&defF.length)>0&&<div className="cta-row"><button className="cta-btn" onClick={goSim}>{t('builder.viewBattleOrder')}</button></div>}
       {(atkM.length||defM.length)>0&&(
@@ -840,7 +849,7 @@ export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk
             <span><strong>{t('builder.teamBuffs')}</strong><small>{t('builder.calculated')}</small></span>
             <span>{buffsOpen?t('builder.hide'):t('builder.review')}</span>
           </button>
-          {buffsOpen&&<BuffTable atk={atkM} def={defM}/>}
+          {buffsOpen&&<BuffTable atk={atkM} def={defM} builderState={builderShareState} initialIncludeCombat={sharedIncludeCombat}/>}
         </section>
       )}
 
@@ -866,7 +875,7 @@ export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk
   )
 }
 
-export function SideSlots({side,label,party,skMask,onSlot,onRm,onSkChange}){
+export function SideSlots({side,label,party,skMask,onSlot,onRm,onSkChange,builderState}){
   const locale=useLocale()
   const{t}=useTranslation('common')
   const ac=side==='attack'?'var(--red)':'var(--blue)'
@@ -878,13 +887,13 @@ export function SideSlots({side,label,party,skMask,onSlot,onRm,onSkChange}){
     <div className={`side side-${side}`}>
       <div className="side-lbl side-lbl-with-action" style={{color:ac,borderBottomColor:ac}}>
         <span>{label}</span>
-        <TeamImageButton team={maskedTeam} side={side}/>
+        <TeamImageButton team={maskedTeam} side={side} builderState={builderState}/>
       </div>
       {Array.from({length:4}).map((_,i)=>{
         const m=party[i]
         const display=m?localizedCharacter(m,locale):null
         return m?(
-          <div key={i} data-builder-slot={`${side}-${i}`} className="slot-filled" style={{borderLeftColor:CC[m.country]||'#999'}}>
+          <div key={i} data-builder-slot={`${side}-${i}`} data-builder-character={m.id} className="slot-filled" style={{borderLeftColor:CC[m.country]||'#999'}}>
             <span className="sn" style={{color:ac}}>{i+1}</span>
             <CharIcon c={m} size={36} round={true}/>
             <div className="slot-info"><span className="slot-en">{display.displayName}</span>{secondaryName(display.displayName,display.displaySecondaryName)&&<span className="slot-jp">{display.displaySecondaryName}</span>}</div>
@@ -1153,11 +1162,11 @@ export function StratCol({label,entries,side}){
 }
 
 // ── BUFF TABLE ────────────────────────────────────────────────────────────────
-export function BuffTable({atk,def}){
+export function BuffTable({atk,def,builderState,initialIncludeCombat=false}){
   const shareLabels=useShareLabels()
   const locale=useLocale()
   const{t}=useTranslation('common')
-  const[includeCombat,setIncludeCombat]=useState(false)
+  const[includeCombat,setIncludeCombat]=useState(Boolean(initialIncludeCombat))
   if(!atk.length&&!def.length) return null
   // Formation totals use the actual side; unresolved battle conditions remain
   // potential contributions, disclosed below and beside their source effects.
@@ -1185,7 +1194,7 @@ export function BuffTable({atk,def}){
               includeCombat,
                specialStats:SPECIAL_STATS,
                statSortKey,
-               url:builderShareUrl(locale.code),
+               url:builderShareUrl(locale.code,builderState,{includeCombat}),
                labels:shareLabels,
              })}
           />
