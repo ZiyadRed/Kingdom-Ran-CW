@@ -27,7 +27,7 @@ import sceneCardBuffs from '../data/scene_card_cw_buffs.json'
 import rarityData from '../data/character_rarity.json'
 import classification from '../data/character_classification.json'
 import souhaRoleSkills from '../data/souha_role_skills.json'
-import { PROGRESS_STORAGE_KEY, emptyProgress, readProgressSnapshot, replaceProgressFromBackup } from './progress-storage.js'
+import { PROGRESS_STORAGE_KEY, emptyProgress, parseProgressStorageValue, readProgressSnapshot, replaceProgressFromBackup, writeProgressState, writeProgressValue } from './progress-storage.js'
 import { useHydratedState } from './use-hydrated-state.js'
 import { getDocumentReleaseSnapshot, releaseStage, useReleaseStage } from './release-snapshot.js'
 import Dialog from './Dialog.jsx'
@@ -47,44 +47,45 @@ export const normalizeProgress=(raw={})=>{
 }
 export const readProgress=()=>{
   if(typeof window==='undefined') return emptyProgress()
-  try{return normalizeProgress(JSON.parse(window.localStorage.getItem(PROGRESS_STORAGE_KEY)||'{}'))}
+  try{return parseProgressStorageValue(window.localStorage.getItem(PROGRESS_STORAGE_KEY),normalizeProgress)||emptyProgress()}
   catch{return emptyProgress()}
+}
+const progressStorage=()=>{
+  try{return typeof window==='undefined'?null:window.localStorage}
+  catch{return null}
 }
 export function useProgressTracker(){
   const{t}=useTranslation('common')
-  const[progress,setProgress,changed]=useHydratedState(emptyProgress,readProgress)
+  const[progress,setProgress]=useHydratedState(emptyProgress,readProgress)
+  const progressRef=useRef(progress)
+  progressRef.current=progress
   const[previousAvailable,setPreviousAvailable]=useState(false)
+  const[saveStatus,setSaveStatus]=useState('idle')
   useEffect(()=>{
     try{setPreviousAvailable(readProgressSnapshot(window.localStorage)!==null)}catch{ /* storage unavailable */ }
   },[])
   useEffect(()=>{
-    if(!changed) return
-    try{
-      const serialized=JSON.stringify(progress)
-      if(window.localStorage.getItem(PROGRESS_STORAGE_KEY)!==serialized) window.localStorage.setItem(PROGRESS_STORAGE_KEY,serialized)
+    const onStorage=event=>{
+      if(event.key!==PROGRESS_STORAGE_KEY) return
+      const next=parseProgressStorageValue(event.newValue,normalizeProgress)
+      if(!next) return
+      progressRef.current=next
+      setProgress(next)
+      setSaveStatus('saved')
     }
-    catch{ /* localStorage unavailable (private mode / quota) — ignore */ }
-  },[progress,changed])
+    window.addEventListener('storage',onStorage)
+    return()=>window.removeEventListener('storage',onStorage)
+  },[setProgress])
   const isOwned=(bucket,id)=>!!progress[bucket]?.[id]
-  const toggleOwned=(bucket,id)=>{
-    setProgress(prev=>{
-      const next=normalizeProgress(prev)
-      const group={...next[bucket]}
-      if(group[id]) delete group[id]
-      else group[id]=true
-      next[bucket]=group
-      return next
-    })
+  const persistValue=(bucket,id,value)=>{
+    const result=writeProgressValue(progressStorage(),progressRef.current,bucket,id,value,normalizeProgress)
+    progressRef.current=result.progress
+    setProgress(result.progress)
+    setSaveStatus(result.saved?'saved':'failed')
   }
+  const toggleOwned=(bucket,id)=>persistValue(bucket,id,!progressRef.current[bucket]?.[id])
   const setProgressValue=(bucket,id,value)=>{
-    setProgress(prev=>{
-      const next=normalizeProgress(prev)
-      const group={...next[bucket]}
-      if(value===undefined||value===null||value===false||value===0||value==='') delete group[id]
-      else group[id]=value
-      next[bucket]=group
-      return next
-    })
+    persistValue(bucket,id,value)
   }
   const countOwned=(bucket,ids)=>ids.reduce((n,id)=>n+(isOwned(bucket,id)?1:0),0)
   const exportProgress=async()=>{
@@ -104,10 +105,13 @@ export function useProgressTracker(){
   const replaceBackup=text=>{
     try{
       const result=replaceProgressFromBackup(text,window.localStorage,normalizeProgress)
+      progressRef.current=result.progress
       setProgress(result.progress)
+      setSaveStatus('saved')
       setPreviousAvailable(true)
       window.alert(`${t('progressImported')} ${t('progressImportSummary',result.counts)}`)
     }catch(error){
+      if(error.code==='storage') setSaveStatus('failed')
       window.alert(t(error.code==='storage'?'progressStorageFailed':'progressImportFailed'))
     }
   }
@@ -117,9 +121,14 @@ export function useProgressTracker(){
     if(previous!==null&&previous!==undefined&&window.confirm(t('restoreProgressConfirm'))) replaceBackup(previous)
   }
   const clearProgress=()=>{
-    if(window.confirm(t('clearProgressConfirm'))) setProgress(emptyProgress())
+    if(!window.confirm(t('clearProgressConfirm'))) return
+    const next=emptyProgress()
+    const saved=writeProgressState(progressStorage(),next,normalizeProgress)
+    progressRef.current=next
+    setProgress(next)
+    setSaveStatus(saved?'saved':'failed')
   }
-  return{progress,isOwned,toggleOwned,setProgressValue,countOwned,exportProgress,importProgress,clearProgress,previousAvailable,restoreProgress}
+  return{progress,isOwned,toggleOwned,setProgressValue,countOwned,exportProgress,importProgress,clearProgress,previousAvailable,restoreProgress,saveStatus}
 }
 // `label` is the English default; `key` lets a caller translate it. The
 // catalog already carries all/owned/missing for every locale.
@@ -132,7 +141,7 @@ export const ProgressTools=({tracker})=>{
   const{t}=useTranslation('common')
   return(
     <div className="progress-tools" aria-label={t('toolsSummary')}>
-      <span className="progress-tools-note">{t('savedBrowser')}</span>
+      <span className="progress-tools-note" role="status" aria-live="polite" data-save-status={tracker.saveStatus}>{t(tracker.saveStatus==='failed'?'saveFailedBrowser':tracker.saveStatus==='saved'?'savedBrowser':'browserStorage')}</span>
       <button type="button" onClick={tracker.exportProgress}>{t('export')}</button>
       <button type="button" onClick={tracker.importProgress}>{t('import')}</button>
       {tracker.previousAvailable&&<button type="button" onClick={tracker.restoreProgress}>{t('restoreProgress')}</button>}

@@ -62,6 +62,48 @@ export function readProgressSnapshot(storage) {
   }
 }
 
+/** Parse a live storage value without turning corruption into an in-memory reset. */
+export function parseProgressStorageValue(raw, normalize = value => value) {
+  if (raw === null) return emptyProgress()
+  try {
+    return normalize(parseProgressBackup(raw))
+  } catch {
+    return null
+  }
+}
+
+/** Persist one canonical progress value and report the real write result. */
+export function writeProgressState(storage, progress, normalize = value => value) {
+  try {
+    const serialized = JSON.stringify(normalize(progress))
+    if (storage.getItem(PROGRESS_STORAGE_KEY) !== serialized) storage.setItem(PROGRESS_STORAGE_KEY, serialized)
+    return true
+  } catch {
+    return false
+  }
+}
+
+/**
+ * Apply one ownership/value intent to the newest valid stored snapshot. This
+ * preserves unrelated edits made by another tab while keeping IDs opaque.
+ */
+export function writeProgressValue(storage, current, bucket, id, value, normalize = item => item) {
+  const local = normalize(current)
+  let base = local
+  try {
+    const raw = storage.getItem(PROGRESS_STORAGE_KEY)
+    if (raw !== null) base = parseProgressStorageValue(raw, normalize) || local
+  } catch {
+    // A blocked read should not prevent the session-only update below.
+  }
+  const next = normalize(base)
+  const group = { ...next[bucket] }
+  if (value === undefined || value === null || value === false || value === 0 || value === '') delete group[id]
+  else group[id] = value
+  next[bucket] = group
+  return { progress: next, saved: writeProgressState(storage, next, normalize) }
+}
+
 // Validate before touching storage or state. localStorage.setItem is atomic
 // for one key; if the main write fails, restore the previous snapshot key.
 // The hook commits React state and announces success only after this returns.

@@ -131,6 +131,18 @@ export const normalizeCwStatsState = (raw = {}) => {
   return { version: 1, characters, teams }
 }
 
+export const writeStoredCwStats = (state, storage) => {
+  try {
+    const target = storage === undefined ? (typeof window === 'undefined' ? null : window.localStorage) : storage
+    if (!target) return false
+    const serialized = JSON.stringify(normalizeCwStatsState(state))
+    if (target.getItem(CW_STATS_STORAGE_KEY) !== serialized) target.setItem(CW_STATS_STORAGE_KEY, serialized)
+    return true
+  } catch {
+    return false
+  }
+}
+
 const readStoredCwStats = () => {
   if (typeof window === 'undefined') return createDefaultCwStatsState()
   try {
@@ -465,16 +477,12 @@ export function CWStatsPage() {
   const [openTeam, setOpenTeam] = useState(null)
   const [activeSlot, setActiveSlot] = useState(null)
   const [editingSlot, setEditingSlot] = useState(null)
+  const [saveStatus, setSaveStatus] = useState('idle')
   const searchRefs = useRef([])
 
   useEffect(() => {
     if (!changed) return
-    try {
-      const serialized = JSON.stringify(state)
-      if (window.localStorage.getItem(CW_STATS_STORAGE_KEY) !== serialized) window.localStorage.setItem(CW_STATS_STORAGE_KEY, serialized)
-    } catch {
-      // Local storage may be unavailable in private browsing; the calculator still works for the session.
-    }
+    setSaveStatus(writeStoredCwStats(state) ? 'saved' : 'failed')
   }, [state, changed])
 
   useEffect(() => {
@@ -646,7 +654,7 @@ export function CWStatsPage() {
           <p>{t('stats.description')}</p>
         </div>
         <div className="cwstats-page-actions">
-          <span className="cwstats-save-note">{t('stats.saved')}</span>
+          <span className="cwstats-save-note" role="status" aria-live="polite" data-save-status={saveStatus}>{t(saveStatus === 'failed' ? 'stats.saveFailed' : saveStatus === 'saved' ? 'stats.saved' : 'stats.autoSave')}</span>
           <button type="button" className="cwstats-clear-button" onClick={clearSavedCalculator}>{t('stats.reset')}</button>
         </div>
       </header>

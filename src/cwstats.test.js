@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import {
   calculateCwPower,
   cwStatsCharacterRarity,
@@ -6,6 +6,7 @@ import {
   displayedCwStats,
   normalizeCwStatsState,
   projectedCwStats,
+  writeStoredCwStats,
 } from './cwstats.jsx'
 
 describe('CW Stats calculator formula', () => {
@@ -125,5 +126,20 @@ describe('CW Stats calculator saved state', () => {
     })
     expect(normalized.characters.shin.baseBuffs).toEqual({ hp: 1983, atk: '', def: 20 })
     expect(normalized.characters.ouki.baseBuffs).toEqual({ hp: '', atk: 12, def: '' })
+  })
+
+  it('reports the actual browser-storage write result without touching other keys', () => {
+    const values = new Map([['unrelated', 'unchanged']])
+    const storage = {
+      getItem: vi.fn((key) => values.get(key) ?? null),
+      setItem: vi.fn((key, value) => values.set(key, value)),
+    }
+    expect(writeStoredCwStats(createDefaultCwStatsState(), storage)).toBe(true)
+    expect(JSON.parse(values.get('ranhq-cw-stats-v1'))).toEqual(createDefaultCwStatsState())
+    expect(values.get('unrelated')).toBe('unchanged')
+
+    storage.setItem.mockImplementation(() => { throw Error('quota') })
+    expect(writeStoredCwStats({ ...createDefaultCwStatsState(), teams: [['shin']] }, storage)).toBe(false)
+    expect(values.get('unrelated')).toBe('unchanged')
   })
 })

@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { normalizeProgress } from './core.jsx'
 import unitBuffs from '../data/cw_buffs.json'
 import buffLegacy from '../data/buff_ownership_legacy.json'
-import { emptyProgress, parseProgressBackup, PROGRESS_STORAGE_KEY, PROGRESS_SNAPSHOT_KEY, progressImportCounts, readProgressSnapshot, replaceProgressFromBackup } from './progress-storage.js'
+import { emptyProgress, parseProgressBackup, parseProgressStorageValue, PROGRESS_STORAGE_KEY, PROGRESS_SNAPSHOT_KEY, progressImportCounts, readProgressSnapshot, replaceProgressFromBackup, writeProgressState, writeProgressValue } from './progress-storage.js'
 
 const populated = () => ({ cw6Cards: { '40172': true, oldCard: false }, sceneBuffCards: { legacyCard: true }, sceneBuffStars: { currentCard: 4 }, buffSources: { sourceA: true, 'sourceB:shard': true } })
 const backup = progress => ({ version: 1, exportedAt: '2026-09-05T10:00:00.000Z', progress })
@@ -106,5 +106,69 @@ describe('progress import validation and storage atomicity (F01)', () => {
     // This source has no evidenced shard toggle. Preserve its unknown key.
     expect(result.progress.buffSources['state:Chu:Attack:Kyoubou:巨暴:5::9:shard']).toBe(true)
     expect(legacy.buffSources['state:Chu:Attack:Kyoubou:巨暴:5::7']).toBe(true)
+  })
+})
+
+describe('cross-tab progress persistence (F04)', () => {
+  it('merges one local intent into the newest stored snapshot', () => {
+    const { storage } = storageFixture()
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify({
+      ...emptyProgress(),
+      cw6Cards: { '40172': true },
+      buffSources: { stableSource: true },
+    }))
+    const result = writeProgressValue(
+      storage,
+      emptyProgress(),
+      'cw6Cards',
+      '40186',
+      true,
+      normalizeProgress,
+    )
+    expect(result.saved).toBe(true)
+    expect(result.progress.cw6Cards).toEqual({ '40172': true, '40186': true })
+    expect(result.progress.buffSources).toEqual({ stableSource: true })
+    expect(JSON.parse(storage.getItem(PROGRESS_STORAGE_KEY))).toEqual(result.progress)
+  })
+
+  it('removes only the requested stable ID from current storage', () => {
+    const { storage } = storageFixture()
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify({
+      ...emptyProgress(),
+      cw6Cards: { '40172': true, '40186': true },
+    }))
+    const result = writeProgressValue(storage, emptyProgress(), 'cw6Cards', '40172', false, normalizeProgress)
+    expect(result.progress.cw6Cards).toEqual({ '40186': true })
+  })
+
+  it('keeps a session-only update and reports failure when storage rejects writes', () => {
+    const { storage, values, before } = storageFixture()
+    storage.setItem.mockImplementation(() => { throw Error('quota') })
+    const result = writeProgressValue(storage, JSON.parse(before), 'cw6Cards', '40186', true, normalizeProgress)
+    expect(result.saved).toBe(false)
+    expect(result.progress.cw6Cards).toMatchObject({ '40172': true, '40186': true })
+    expect(values.get(PROGRESS_STORAGE_KEY)).toBe(before)
+    expect(values.get('unrelated')).toBe('unchanged')
+  })
+
+  it('ignores corrupt live events and persists a valid replacement after corrupt storage', () => {
+    expect(parseProgressStorageValue('{broken', normalizeProgress)).toBeNull()
+    expect(parseProgressStorageValue('[]', normalizeProgress)).toBeNull()
+    expect(parseProgressStorageValue(JSON.stringify({ ...emptyProgress(), cw6Cards: { '40172': 'yes' } }), normalizeProgress)).toBeNull()
+    expect(parseProgressStorageValue(JSON.stringify({ cw6Cards: {} }), normalizeProgress)).toBeNull()
+    expect(parseProgressStorageValue(null, normalizeProgress)).toEqual(emptyProgress())
+
+    const { storage } = storageFixture()
+    storage.setItem(PROGRESS_STORAGE_KEY, '{broken')
+    const result = writeProgressValue(storage, emptyProgress(), 'cw6Cards', '40172', true, normalizeProgress)
+    expect(result.saved).toBe(true)
+    expect(JSON.parse(storage.getItem(PROGRESS_STORAGE_KEY))).toEqual(result.progress)
+  })
+
+  it('writes exact defaults without touching unrelated keys', () => {
+    const { storage } = storageFixture()
+    expect(writeProgressState(storage, emptyProgress(), normalizeProgress)).toBe(true)
+    expect(JSON.parse(storage.getItem(PROGRESS_STORAGE_KEY))).toEqual(emptyProgress())
+    expect(storage.getItem('unrelated')).toBe('unchanged')
   })
 })
