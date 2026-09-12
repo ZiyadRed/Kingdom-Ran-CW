@@ -1362,6 +1362,13 @@ textarea {
   line-height: 1;
 }
 .cwstats-scene-card-buffs summary > span { display: block; min-width: 0; }
+.cwstats-scene-card-buffs summary > span > small {
+  display: block;
+  margin-top: 2px;
+  color: #314c68;
+  font-size: .7rem;
+  font-weight: 700;
+}
 .cwstats-scene-card-buffs[open] summary::before { content: '−'; }
 .cwstats-scene-card-buffs summary:focus-visible {
   outline: 3px solid rgba(224,127,72,.28);

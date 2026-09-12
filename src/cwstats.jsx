@@ -7,6 +7,7 @@ import { formatNumber as formatLocaleNumber } from './i18n/format.js'
 import { useHydratedState } from './use-hydrated-state.js'
 
 export const CW_STATS_STORAGE_KEY = 'ranhq-cw-stats-v1'
+export const CW_STATS_VERSION = 2
 export const CW_POWER_WEIGHTS = { hp: 0.2, atk: 0.64102, def: 1 }
 export const CW_STATS_MAX_TEAMS = 5
 export const CW_STATS_SLOTS = 4
@@ -22,14 +23,15 @@ export const emptyCwCharacter = () => ({
   atkMax: '',
   def: '',
   buffs: { hp: '', atk: '', def: '' },
+})
+
+export const emptyCwScenario = () => ({
   buffChanges: { hp: '', atk: '', def: '' },
   baseBuffs: { hp: '', atk: '', def: '' },
 })
 
 const normalizeCwCharacter = (raw = {}) => {
   const buffs = raw.buffs || raw.pct || {}
-  const buffChanges = raw.buffChanges || raw.changes || {}
-  const baseBuffs = raw.baseBuffs || raw.rawBuffs || raw.sceneCardBaseBuffs || {}
   return {
     hp: raw.hp ?? '',
     atkMin: raw.atkMin ?? '',
@@ -40,6 +42,13 @@ const normalizeCwCharacter = (raw = {}) => {
       atk: buffs.atk ?? '',
       def: buffs.def ?? '',
     },
+  }
+}
+
+const normalizeCwScenario = (raw = {}) => {
+  const buffChanges = raw.buffChanges || raw.changes || {}
+  const baseBuffs = raw.baseBuffs || raw.rawBuffs || raw.sceneCardBaseBuffs || {}
+  return {
     buffChanges: {
       hp: buffChanges.hp ?? '',
       atk: buffChanges.atk ?? '',
@@ -50,6 +59,14 @@ const normalizeCwCharacter = (raw = {}) => {
       atk: baseBuffs.atk ?? '',
       def: baseBuffs.def ?? '',
     },
+  }
+}
+
+export const cwStatsValuesForTeam = (state, teamId, characterId) => {
+  const team = state?.teams?.find(candidate => candidate.id === teamId)
+  return {
+    ...normalizeCwCharacter(state?.characters?.[characterId]),
+    ...normalizeCwScenario(team?.scenarios?.[characterId]),
   }
 }
 
@@ -74,7 +91,7 @@ const percentFactor = (value) => {
 }
 
 export const projectedCwStats = (stats = {}) => {
-  const current = normalizeCwCharacter(stats)
+  const current = { ...normalizeCwCharacter(stats), ...normalizeCwScenario(stats) }
   const displayed = displayedCwStats(current)
   const projected = { ...displayed }
 
@@ -106,13 +123,24 @@ export const calculateCwPower = (stats = {}) => {
   )
 }
 
+const createCwStatsTeam = (id) => ({
+  id,
+  slots: Array(CW_STATS_SLOTS).fill(null),
+  scenarios: {},
+})
+
 export const createDefaultCwStatsState = () => ({
-  version: 1,
+  version: CW_STATS_VERSION,
   characters: {},
-  teams: [Array(CW_STATS_SLOTS).fill(null)],
+  teams: [createCwStatsTeam('team-1')],
+  nextTeamId: 2,
 })
 
 export const normalizeCwStatsState = (raw = {}) => {
+  if (!raw || typeof raw !== 'object') return createDefaultCwStatsState()
+  if (raw.version !== undefined && raw.version !== 1 && raw.version !== CW_STATS_VERSION) {
+    return createDefaultCwStatsState()
+  }
   const characters = {}
   if (raw.characters && typeof raw.characters === 'object') {
     Object.entries(raw.characters).forEach(([id, values]) => {
@@ -123,12 +151,122 @@ export const normalizeCwStatsState = (raw = {}) => {
   const savedTeams = Array.isArray(raw.teams) && raw.teams.length > 0
     ? raw.teams.slice(0, CW_STATS_MAX_TEAMS)
     : [Array(CW_STATS_SLOTS).fill(null)]
-  const teams = savedTeams.map((team) => Array.from(
-    { length: CW_STATS_SLOTS },
-    (_, index) => typeof team?.[index] === 'string' ? team[index] : null,
-  ))
+  const usedIds = new Set()
+  let generatedId = 1
+  const nextGeneratedId = () => {
+    while (usedIds.has(`team-${generatedId}`)) generatedId += 1
+    const id = `team-${generatedId}`
+    generatedId += 1
+    return id
+  }
+  const teams = savedTeams.map((savedTeam) => {
+    const storedId = !Array.isArray(savedTeam) && /^team-[1-9]\d*$/.test(savedTeam?.id) ? savedTeam.id : null
+    const id = storedId && !usedIds.has(storedId) ? storedId : nextGeneratedId()
+    usedIds.add(id)
+    const savedSlots = Array.isArray(savedTeam) ? savedTeam : savedTeam?.slots
+    const slots = Array.from(
+      { length: CW_STATS_SLOTS },
+      (_, index) => typeof savedSlots?.[index] === 'string' ? savedSlots[index] : null,
+    )
+    const storedScenarios = !Array.isArray(savedTeam) && savedTeam?.scenarios && typeof savedTeam.scenarios === 'object'
+      ? savedTeam.scenarios
+      : null
+    const scenarios = {}
+    new Set(slots.filter(Boolean)).forEach((characterId) => {
+      scenarios[characterId] = normalizeCwScenario(storedScenarios?.[characterId] || raw.characters?.[characterId])
+    })
+    return { id, slots, scenarios }
+  })
+  const highestTeamId = teams.reduce((highest, team) => Math.max(highest, Number(team.id.slice(5))), 0)
+  const requestedNextId = Number.isSafeInteger(raw.nextTeamId) && raw.nextTeamId > 0 ? raw.nextTeamId : 1
 
-  return { version: 1, characters, teams }
+  return {
+    version: CW_STATS_VERSION,
+    characters,
+    teams,
+    nextTeamId: Math.max(requestedNextId, highestTeamId + 1),
+  }
+}
+
+export const updateCwStatsCharacter = (state, characterId, field, value) => {
+  const current = state.characters[characterId] || emptyCwCharacter()
+  return {
+    ...state,
+    characters: { ...state.characters, [characterId]: { ...current, [field]: value } },
+  }
+}
+
+export const updateCwStatsActiveBuff = (state, characterId, buffField, value) => {
+  const current = state.characters[characterId] || emptyCwCharacter()
+  return {
+    ...state,
+    characters: {
+      ...state.characters,
+      [characterId]: { ...current, buffs: { ...current.buffs, [buffField]: value } },
+    },
+  }
+}
+
+export const updateCwStatsScenario = (state, teamId, characterId, scenarioField, buffField, value) => ({
+  ...state,
+  teams: state.teams.map((team) => {
+    if (team.id !== teamId) return team
+    const current = team.scenarios[characterId] || emptyCwScenario()
+    return {
+      ...team,
+      scenarios: {
+        ...team.scenarios,
+        [characterId]: {
+          ...current,
+          [scenarioField]: { ...current[scenarioField], [buffField]: value },
+        },
+      },
+    }
+  }),
+})
+
+export const assignCwStatsCharacter = (state, teamId, characterId, requestedSlot = null, expectedCharacterId = null) => {
+  const team = state.teams.find(candidate => candidate.id === teamId)
+  if (!team) return state
+  const slotIndex = requestedSlot === null ? team.slots.findIndex(id => !id) : requestedSlot
+  if (slotIndex < 0 || slotIndex >= CW_STATS_SLOTS) return state
+  if (requestedSlot !== null && team.slots[slotIndex] !== expectedCharacterId) return state
+  if (team.slots.some((id, index) => id === characterId && index !== slotIndex)) return state
+  return {
+    ...state,
+    characters: state.characters[characterId]
+      ? state.characters
+      : { ...state.characters, [characterId]: emptyCwCharacter() },
+    teams: state.teams.map(candidate => candidate.id === teamId ? {
+      ...candidate,
+      slots: candidate.slots.map((id, index) => index === slotIndex ? characterId : id),
+      scenarios: candidate.scenarios[characterId]
+        ? candidate.scenarios
+        : { ...candidate.scenarios, [characterId]: emptyCwScenario() },
+    } : candidate),
+  }
+}
+
+export const removeCwStatsCharacter = (state, teamId, slotIndex) => ({
+  ...state,
+  teams: state.teams.map((team) => {
+    if (team.id !== teamId) return team
+    const characterId = team.slots[slotIndex]
+    if (!characterId) return team
+    const { [characterId]: removedScenario, ...scenarios } = team.scenarios
+    void removedScenario
+    return {
+      ...team,
+      slots: team.slots.map((id, index) => index === slotIndex ? null : id),
+      scenarios,
+    }
+  }),
+})
+
+export const addCwStatsTeam = (state) => state.teams.length >= CW_STATS_MAX_TEAMS ? state : {
+  ...state,
+  teams: [...state.teams, createCwStatsTeam(`team-${state.nextTeamId}`)],
+  nextTeamId: state.nextTeamId + 1,
 }
 
 export const writeStoredCwStats = (state, storage) => {
@@ -203,7 +341,7 @@ function EmptySlot({ slotIndex, onSelect }) {
   )
 }
 
-function CharacterSlot({ character, slotIndex, values, onChange, onChangeBaseBuff, onChangeBuff, onChangeSceneCardBuff, onChangeCharacter, onRemove }) {
+function CharacterSlot({ character, slotIndex, values, onChange, onChangeActiveBuff, onChangeBuff, onChangeSceneCardBuff, onChangeCharacter, onRemove }) {
   const { t } = useTranslation('common')
   const locale = useLocale()
   const displayCharacter = localizedCharacter(character, locale)
@@ -240,7 +378,7 @@ function CharacterSlot({ character, slotIndex, values, onChange, onChangeBaseBuf
       <div className="cwstats-stat-section">
         <div className="cwstats-section-label">
           <span>{t('stats.screenValues')}</span>
-          <small>{t('stats.fromScreen')}</small>
+          <small>{t('stats.fromScreen')} · {t('stats.sharedAcrossTeams')}</small>
         </div>
         <div className="cwstats-stat-grid">
           <StatInput label={t('stats.hp')} value={values.hp} onChange={(value) => onChange('hp', value)} />
@@ -252,16 +390,20 @@ function CharacterSlot({ character, slotIndex, values, onChange, onChangeBaseBuf
 
       <div className="cwstats-buff-editor">
         <div className="cwstats-current-percent-row">
-          <span className="cwstats-subsection-label">{t('stats.activeBuffs')}</span>
+          <div className="cwstats-section-label">
+            <span>{t('stats.activeBuffs')}</span>
+            <small>{t('stats.sharedAcrossTeams')}</small>
+          </div>
           <div className="cwstats-percent-grid">
-            <StatInput label={`${t('stats.hp')}%`} percentage value={values.buffs.hp} onChange={(value) => onChangeBaseBuff('hp', value)} />
-            <StatInput label={`${t('stats.attack')}%`} percentage value={values.buffs.atk} onChange={(value) => onChangeBaseBuff('atk', value)} />
-            <StatInput label={`${t('stats.defense')}%`} percentage value={values.buffs.def} onChange={(value) => onChangeBaseBuff('def', value)} />
+            <StatInput label={`${t('stats.hp')}%`} percentage value={values.buffs.hp} onChange={(value) => onChangeActiveBuff('hp', value)} />
+            <StatInput label={`${t('stats.attack')}%`} percentage value={values.buffs.atk} onChange={(value) => onChangeActiveBuff('atk', value)} />
+            <StatInput label={`${t('stats.defense')}%`} percentage value={values.buffs.def} onChange={(value) => onChangeActiveBuff('def', value)} />
           </div>
         </div>
         <div className="cwstats-buff-section">
           <div className="cwstats-section-label cwstats-section-label-buff">
             <span>{t('stats.buffsToAdd')}</span>
+            <small>{t('stats.currentTeamOnly')}</small>
           </div>
           <div className="cwstats-buff-grid">
             <StatInput label={`${t('stats.hp')}%`} buff percentage value={values.buffChanges.hp} onChange={(value) => onChangeBuff('hp', value)} />
@@ -271,7 +413,7 @@ function CharacterSlot({ character, slotIndex, values, onChange, onChangeBaseBuf
         </div>
         <details className="cwstats-scene-card-buffs">
           <summary>
-            <span>{t('stats.sceneCardBuffs')}</span>
+            <span>{t('stats.sceneCardBuffs')}<small>{t('stats.currentTeamOnly')}</small></span>
           </summary>
           <div className="cwstats-base-buff-grid">
             <StatInput label={t('stats.hp')} base value={values.baseBuffs.hp} onChange={(value) => onChangeSceneCardBuff('hp', value)} />
@@ -291,7 +433,7 @@ function CharacterSlot({ character, slotIndex, values, onChange, onChangeBaseBuf
   )
 }
 
-function CharacterSearch({ team, teamIndex, query, open, activeSlot, inputRef, onFocus, onChange, onSelect }) {
+function CharacterSearch({ team, teamId, teamNumber, query, open, activeSlot, inputRef, onFocus, onChange, onSelect }) {
   const { ALL: roster } = useReleaseData()
   const characterList = useMemo(() => roster
     .map(character => ({ ...character, rarity: cwStatsCharacterRarity(character) }))
@@ -305,16 +447,16 @@ function CharacterSearch({ team, teamIndex, query, open, activeSlot, inputRef, o
     ? searchCharacters(characterList, query, locale).slice(0, 24)
     : []
   const emptySlots = team.filter(Boolean).length < CW_STATS_SLOTS
-  const hasTargetSlot = activeSlot?.teamIndex === teamIndex
+  const hasTargetSlot = activeSlot?.teamId === teamId
   const canSelect = emptySlots || hasTargetSlot
 
   return (
     <div className="cwstats-search-wrap">
-      <label className="cwstats-search-label" htmlFor={`cwstats-search-${teamIndex}`}>{t('stats.chooseCharacter')} · {t('stats.team', { number: teamIndex + 1 })}</label>
+      <label className="cwstats-search-label" htmlFor={`cwstats-search-${teamId}`}>{t('stats.chooseCharacter')} · {t('stats.team', { number: teamNumber })}</label>
       <div className="cwstats-search-input-wrap">
         <SearchIcon />
         <input
-          id={`cwstats-search-${teamIndex}`}
+          id={`cwstats-search-${teamId}`}
           ref={element=>{searchInput.current=element;inputRef(element)}}
           className="cwstats-search-input"
           type="search"
@@ -328,7 +470,7 @@ function CharacterSearch({ team, teamIndex, query, open, activeSlot, inputRef, o
       </div>
 
       {open && (
-        <div className="cwstats-search-results" role="listbox" aria-label={`${t('search')} · ${t('stats.team', { number: teamIndex + 1 })}`}>
+        <div className="cwstats-search-results" role="listbox" aria-label={`${t('search')} · ${t('stats.team', { number: teamNumber })}`}>
           {!normalizedQuery && (
             <p className="cwstats-search-hint">{t('stats.searchHint')}</p>
           )}
@@ -365,25 +507,29 @@ function CharacterSearch({ team, teamIndex, query, open, activeSlot, inputRef, o
   )
 }
 
-function TeamSection({ team, teamIndex, characters, query, open, activeSlot, editingSlot, inputRef, onSearchFocus, onQueryChange, onSelectCharacter, onSelectSlot, onEditSlot, onChangeStat, onChangeBaseBuff, onChangeBuff, onChangeSceneCardBuff, onRemoveCharacter, onRemoveTeam }) {
+function TeamSection({ team, teamNumber, characters, query, open, activeSlot, editingSlot, inputRef, onSearchFocus, onQueryChange, onSelectCharacter, onSelectSlot, onEditSlot, onChangeStat, onChangeActiveBuff, onChangeBuff, onChangeSceneCardBuff, onRemoveCharacter, onRemoveTeam }) {
   const { t } = useTranslation('common')
   const locale = useLocale()
-  const filled = team.filter(Boolean).length
-  const currentTotal = team.reduce((sum, id) => sum + (id ? calculateCwPower(displayedCwStats(characters[id])) : 0), 0)
-  const total = team.reduce((sum, id) => sum + (id ? calculateCwPower(projectedCwStats(characters[id])) : 0), 0)
+  const filled = team.slots.filter(Boolean).length
+  const valuesFor = (characterId) => ({
+    ...characters[characterId],
+    ...(team.scenarios[characterId] || emptyCwScenario()),
+  })
+  const currentTotal = team.slots.reduce((sum, id) => sum + (id ? calculateCwPower(displayedCwStats(characters[id])) : 0), 0)
+  const total = team.slots.reduce((sum, id) => sum + (id ? calculateCwPower(projectedCwStats(valuesFor(id))) : 0), 0)
   const powerChange = total - currentTotal
-  const editingIndex = editingSlot?.teamIndex === teamIndex ? editingSlot.slotIndex : null
-  const editingId = editingIndex === null ? null : team[editingIndex]
+  const editingIndex = editingSlot?.teamId === team.id ? editingSlot.slotIndex : null
+  const editingId = editingIndex === null ? null : team.slots[editingIndex]
 
   return (
-    <section className="cwstats-team" aria-labelledby={`cwstats-team-title-${teamIndex}`}>
+    <section className="cwstats-team" data-team-id={team.id} aria-labelledby={`cwstats-team-title-${team.id}`}>
       <header className="cwstats-team-head">
         <div className="cwstats-team-title">
           <div>
-            <h2 id={`cwstats-team-title-${teamIndex}`}>{t('stats.team', { number: teamIndex + 1 })}</h2>
+            <h2 id={`cwstats-team-title-${team.id}`}>{t('stats.team', { number: teamNumber })}</h2>
             <span>{`${filled}/${CW_STATS_SLOTS}`} {t('generals')}</span>
           </div>
-          {teamIndex > 0 && (
+          {teamNumber > 1 && (
             <button type="button" className="cwstats-remove-team" onClick={onRemoveTeam}>{t('stats.removeTeam')}</button>
           )}
         </div>
@@ -401,13 +547,13 @@ function TeamSection({ team, teamIndex, characters, query, open, activeSlot, edi
         </div>
       </header>
 
-      <div className="cwstats-roster" aria-label={t('stats.teamRoster', { team: t('stats.team', { number: teamIndex + 1 }) })}>
-        {team.map((characterId, slotIndex) => {
+      <div className="cwstats-roster" aria-label={t('stats.teamRoster', { team: t('stats.team', { number: teamNumber }) })}>
+        {team.slots.map((characterId, slotIndex) => {
           if (!characterId) {
-            return <EmptySlot key={slotIndex} slotIndex={slotIndex} onSelect={() => onSelectSlot(teamIndex, slotIndex)} />
+            return <EmptySlot key={slotIndex} slotIndex={slotIndex} onSelect={() => onSelectSlot(team.id, slotIndex, null)} />
           }
           const character = characterById[characterId] || { id: characterId, name_en: characterId, rarity: '—', unit_type: 'General' }
-          const values = characters[characterId] || emptyCwCharacter()
+          const values = valuesFor(characterId)
           const unit = localizedText(character.unit_type || character.unit || 'General', locale)
           const power = calculateCwPower(projectedCwStats(values))
           return (
@@ -416,7 +562,7 @@ function TeamSection({ team, teamIndex, characters, query, open, activeSlot, edi
               key={`${characterId}-${slotIndex}`}
               className={`cwstats-roster-slot${editingIndex === slotIndex ? ' is-active' : ''}`}
               aria-pressed={editingIndex === slotIndex}
-              onClick={() => onEditSlot(teamIndex, slotIndex)}
+              onClick={() => onEditSlot(team.id, slotIndex)}
             >
               <span className="cwstats-roster-index">{slotIndex + 1}</span>
               <CharIcon c={character} size={42} round className="cwstats-roster-avatar" />
@@ -433,8 +579,9 @@ function TeamSection({ team, teamIndex, characters, query, open, activeSlot, edi
       {open && (
         <div className="cwstats-team-search">
           <CharacterSearch
-            team={team}
-            teamIndex={teamIndex}
+            team={team.slots}
+            teamId={team.id}
+            teamNumber={teamNumber}
             query={query}
             open={open}
             activeSlot={activeSlot}
@@ -452,13 +599,13 @@ function TeamSection({ team, teamIndex, characters, query, open, activeSlot, edi
             key={`${editingId}-${editingIndex}`}
             character={characterById[editingId] || { id: editingId, name_en: editingId, rarity: '—', unit_type: 'General' }}
             slotIndex={editingIndex}
-            values={characters[editingId] || emptyCwCharacter()}
+            values={valuesFor(editingId)}
             onChange={(field, value) => onChangeStat(editingId, field, value)}
-            onChangeBaseBuff={(field, value) => onChangeBaseBuff(editingId, field, value)}
-            onChangeBuff={(field, value) => onChangeBuff(editingId, field, value)}
-            onChangeSceneCardBuff={(field, value) => onChangeSceneCardBuff(editingId, field, value)}
-            onChangeCharacter={() => onSelectSlot(teamIndex, editingIndex)}
-            onRemove={() => onRemoveCharacter(teamIndex, editingIndex)}
+            onChangeActiveBuff={(field, value) => onChangeActiveBuff(editingId, field, value)}
+            onChangeBuff={(field, value) => onChangeBuff(team.id, editingId, field, value)}
+            onChangeSceneCardBuff={(field, value) => onChangeSceneCardBuff(team.id, editingId, field, value)}
+            onChangeCharacter={() => onSelectSlot(team.id, editingIndex, editingId)}
+            onRemove={() => onRemoveCharacter(team.id, editingIndex)}
           />
         </div>
       )}
@@ -478,7 +625,7 @@ export function CWStatsPage() {
   const [activeSlot, setActiveSlot] = useState(null)
   const [editingSlot, setEditingSlot] = useState(null)
   const [saveStatus, setSaveStatus] = useState('idle')
-  const searchRefs = useRef([])
+  const searchRefs = useRef({})
 
   useEffect(() => {
     if (!changed) return
@@ -505,131 +652,77 @@ export function CWStatsPage() {
     }
   }, [])
 
-  const openSlot = (teamIndex, slotIndex) => {
-    setActiveSlot({ teamIndex, slotIndex })
-    setOpenTeam(teamIndex)
+  const openSlot = (teamId, slotIndex, expectedCharacterId) => {
+    setActiveSlot({ teamId, slotIndex, expectedCharacterId })
+    setOpenTeam(teamId)
   }
 
-  const editSlot = (teamIndex, slotIndex) => {
-    setEditingSlot({ teamIndex, slotIndex })
+  const editSlot = (teamId, slotIndex) => {
+    setEditingSlot({ teamId, slotIndex })
     setOpenTeam(null)
     setActiveSlot(null)
   }
 
-  const focusTeamSearch = (teamIndex) => {
+  const focusTeamSearch = (teamId) => {
     setActiveSlot((previous) => {
-      if (previous?.teamIndex === teamIndex) return previous
-      const slotIndex = state.teams[teamIndex]?.findIndex((id) => !id) ?? -1
-      return slotIndex >= 0 ? { teamIndex, slotIndex } : null
+      if (previous?.teamId === teamId) return previous
+      const slotIndex = state.teams.find(team => team.id === teamId)?.slots.findIndex((id) => !id) ?? -1
+      return slotIndex >= 0 ? { teamId, slotIndex, expectedCharacterId: null } : null
     })
-    setOpenTeam(teamIndex)
+    setOpenTeam(teamId)
   }
 
   const updateCharacter = (characterId, field, value) => {
-    setState((previous) => {
-      const current = previous.characters[characterId] || emptyCwCharacter()
-      return {
-        ...previous,
-        characters: { ...previous.characters, [characterId]: { ...current, [field]: value } },
-      }
-    })
+    setState((previous) => updateCwStatsCharacter(previous, characterId, field, value))
   }
 
-  const updateBaseBuff = (characterId, buffField, value) => {
-    setState((previous) => {
-      const current = previous.characters[characterId] || emptyCwCharacter()
-      return {
-        ...previous,
-        characters: {
-          ...previous.characters,
-          [characterId]: { ...current, buffs: { ...current.buffs, [buffField]: value } },
-        },
-      }
-    })
+  const updateActiveBuff = (characterId, buffField, value) => {
+    setState((previous) => updateCwStatsActiveBuff(previous, characterId, buffField, value))
   }
 
-  const updateBuffChange = (characterId, buffField, value) => {
-    setState((previous) => {
-      const current = previous.characters[characterId] || emptyCwCharacter()
-      return {
-        ...previous,
-        characters: {
-          ...previous.characters,
-          [characterId]: { ...current, buffChanges: { ...current.buffChanges, [buffField]: value } },
-        },
-      }
-    })
+  const updateBuffChange = (teamId, characterId, buffField, value) => {
+    setState((previous) => updateCwStatsScenario(previous, teamId, characterId, 'buffChanges', buffField, value))
   }
 
-  const updateSceneCardBaseBuff = (characterId, buffField, value) => {
-    setState((previous) => {
-      const current = previous.characters[characterId] || emptyCwCharacter()
-      return {
-        ...previous,
-        characters: {
-          ...previous.characters,
-          [characterId]: { ...current, baseBuffs: { ...current.baseBuffs, [buffField]: value } },
-        },
-      }
-    })
+  const updateSceneCardBaseBuff = (teamId, characterId, buffField, value) => {
+    setState((previous) => updateCwStatsScenario(previous, teamId, characterId, 'baseBuffs', buffField, value))
   }
 
-  const selectCharacter = (teamIndex, character) => {
-    const team = state.teams[teamIndex] || Array(CW_STATS_SLOTS).fill(null)
-    const requestedSlot = activeSlot?.teamIndex === teamIndex ? activeSlot.slotIndex : team.findIndex((id) => !id)
-    if (requestedSlot < 0 || team.some((id, index) => id === character.id && index !== requestedSlot)) return
-
-    setState((previous) => {
-      const teams = previous.teams.map((existing, index) => (
-        index === teamIndex
-          ? existing.map((id, indexInTeam) => indexInTeam === requestedSlot ? character.id : id)
-          : existing
-      ))
-      return {
-        ...previous,
-        characters: previous.characters[character.id]
-          ? previous.characters
-          : { ...previous.characters, [character.id]: emptyCwCharacter() },
-        teams,
-      }
-    })
-    setQueries((previous) => ({ ...previous, [teamIndex]: '' }))
+  const selectCharacter = (teamId, character) => {
+    const target = activeSlot?.teamId === teamId ? activeSlot : null
+    const requestedSlot = target?.slotIndex ?? state.teams.find(team => team.id === teamId)?.slots.findIndex(id => !id) ?? -1
+    if (requestedSlot < 0) return
+    setState((previous) => assignCwStatsCharacter(
+      previous,
+      teamId,
+      character.id,
+      requestedSlot,
+      target?.expectedCharacterId ?? null,
+    ))
+    setQueries((previous) => ({ ...previous, [teamId]: '' }))
     setOpenTeam(null)
     setActiveSlot(null)
-    setEditingSlot({ teamIndex, slotIndex: requestedSlot })
+    setEditingSlot({ teamId, slotIndex: requestedSlot })
   }
 
-  const removeCharacter = (teamIndex, slotIndex) => {
-    setState((previous) => ({
-      ...previous,
-      teams: previous.teams.map((team, index) => (
-        index === teamIndex ? team.map((id, slot) => slot === slotIndex ? null : id) : team
-      )),
-    }))
+  const removeCharacter = (teamId, slotIndex) => {
+    setState((previous) => removeCwStatsCharacter(previous, teamId, slotIndex))
     setActiveSlot(null)
-    if (editingSlot?.teamIndex === teamIndex && editingSlot.slotIndex === slotIndex) setEditingSlot(null)
+    if (editingSlot?.teamId === teamId && editingSlot.slotIndex === slotIndex) setEditingSlot(null)
   }
 
   const addTeam = () => {
-    if (state.teams.length >= CW_STATS_MAX_TEAMS) return
-    setState((previous) => ({
-      ...previous,
-      teams: [...previous.teams, Array(CW_STATS_SLOTS).fill(null)],
-    }))
+    setState(addCwStatsTeam)
   }
 
-  const removeTeam = (teamIndex) => {
+  const removeTeam = (teamId) => {
     setState((previous) => ({
       ...previous,
-      teams: previous.teams.filter((_, index) => index !== teamIndex),
+      teams: previous.teams.filter(team => team.id !== teamId),
     }))
     setQueries((previous) => {
-      const next = {}
-      Object.entries(previous).forEach(([index, value]) => {
-        const parsedIndex = Number(index)
-        if (parsedIndex < teamIndex) next[parsedIndex] = value
-        if (parsedIndex > teamIndex) next[parsedIndex - 1] = value
-      })
+      const { [teamId]: removed, ...next } = previous
+      void removed
       return next
     })
     setOpenTeam(null)
@@ -662,30 +755,30 @@ export function CWStatsPage() {
       <div className="cwstats-team-list">
         {state.teams.map((team, teamIndex) => (
           <TeamSection
-            key={`team-${teamIndex}`}
+            key={team.id}
             team={team}
-            teamIndex={teamIndex}
+            teamNumber={teamIndex + 1}
             characters={state.characters}
-            query={queries[teamIndex] || ''}
-            open={openTeam === teamIndex}
+            query={queries[team.id] || ''}
+            open={openTeam === team.id}
             activeSlot={activeSlot}
             editingSlot={editingSlot}
-            inputRef={(element) => { searchRefs.current[teamIndex] = element }}
-            onSearchFocus={() => focusTeamSearch(teamIndex)}
+            inputRef={(element) => { searchRefs.current[team.id] = element }}
+            onSearchFocus={() => focusTeamSearch(team.id)}
             onQueryChange={(value) => {
-              setQueries((previous) => ({ ...previous, [teamIndex]: value }))
-              setOpenTeam(teamIndex)
-              setActiveSlot((previous) => previous?.teamIndex === teamIndex ? previous : null)
+              setQueries((previous) => ({ ...previous, [team.id]: value }))
+              setOpenTeam(team.id)
+              setActiveSlot((previous) => previous?.teamId === team.id ? previous : null)
             }}
-            onSelectCharacter={(character) => selectCharacter(teamIndex, character)}
+            onSelectCharacter={(character) => selectCharacter(team.id, character)}
             onSelectSlot={openSlot}
             onEditSlot={editSlot}
             onChangeStat={updateCharacter}
-            onChangeBaseBuff={updateBaseBuff}
+            onChangeActiveBuff={updateActiveBuff}
             onChangeBuff={updateBuffChange}
             onChangeSceneCardBuff={updateSceneCardBaseBuff}
             onRemoveCharacter={removeCharacter}
-            onRemoveTeam={() => removeTeam(teamIndex)}
+            onRemoveTeam={() => removeTeam(team.id)}
           />
         ))}
       </div>
