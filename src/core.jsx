@@ -32,6 +32,13 @@ import { useHydratedState } from './use-hydrated-state.js'
 import { getDocumentReleaseSnapshot, releaseStage, useReleaseStage } from './release-snapshot.js'
 import Dialog from './Dialog.jsx'
 import { buffOwnershipId, migrateBuffOwnership } from './buff-ownership.js'
+import {
+  BUILDER_MECHANICS,
+  attachBuilderMechanicIds,
+  stableCriterionMatches,
+  stableRecipientsMatch,
+  stableRosterHas,
+} from './builder-mechanics.js'
 export { PROGRESS_STORAGE_KEY, emptyProgress } from './progress-storage.js'
 
 export const normalizeProgress=(raw={})=>{
@@ -208,7 +215,7 @@ const completeRoster = [
       characterId:entry.characterId,
     },
   }
-})
+}).map(attachBuilderMechanicIds)
 
 // Verified game affiliations and unit types. Evidence and the full roster audit
 // live in data/source/character-classification.json and docs/character-integrity.
@@ -1351,7 +1358,11 @@ export function evaluateBuffApplicability(effect,modifier,owner,team,enemyTeam,i
   return{state,multiplier,reasons}
 }
 
-const newBuffMeta=()=>({conditionalUnquantified:[],unsupported:[]})
+const newBuffMeta=()=>({
+  conditionalUnquantified:[],
+  unsupported:[],
+  mechanicResolution:{stable:[],parserFallback:[],failClosed:[]},
+})
 const attachBuffMeta=(result,meta)=>{
   Object.defineProperty(result,'meta',{value:meta,enumerable:false})
   return result
@@ -1366,11 +1377,142 @@ const ensureBuffStat=(stats,stat)=>{
 }
 const buffSource=(owner,skill,effect,modifier,application,contribution=null,dir=null)=>({
   owner,skill,effect,stat:modifier?.stat||null,contribution,dir,
+  mechanicId:effect?.mechanicId||null,
+  mechanicResolution:effect?.mechanicId?(BUILDER_MECHANICS[effect.mechanicId]?'stable':'failClosed'):'parserFallback',
   applicability:application.state,reasons:application.reasons,
 })
 const parseUnsupportedBuffEffect=effect=>{
   const match=String(effect||'').trim().match(/^(.+?)\s+(?:significantly|greatly)\s+(Up|Down)$/i)
   return match?{stat:normalizeBuffStat(match[1].trim()),dir:match[2],val:null}:null
+}
+
+const mechanicResolutionKey=(owner,skill,effect)=>[
+  owner?.id||owner?.name_en||'unknown-owner',
+  skill?.sourceSkillId||skill?.cwId||skill?.name_jp||skill?.name_en||'unknown-skill',
+  effect?.mechanicId||effect?.effect||'unknown-effect',
+].join('|')
+const recordMechanicResolution=(meta,resolution,owner,skill,effect)=>{
+  const list=meta.mechanicResolution[resolution]
+  const key=mechanicResolutionKey(owner,skill,effect)
+  if(!list.some(entry=>entry.key===key)) list.push({key,owner,skill,effect,mechanicId:effect?.mechanicId||null})
+}
+
+export function resolveBuilderMechanic(effect){
+  if(!effect?.mechanicId) return{
+    resolution:'parserFallback',
+    mechanic:null,
+    modifiers:parseBuffEffect(effect?.effect),
+  }
+  const mechanic=BUILDER_MECHANICS[effect.mechanicId]
+  if(!mechanic) return{resolution:'failClosed',mechanic:null,modifiers:[]}
+  return{
+    resolution:'stable',
+    mechanic,
+    modifiers:mechanic.modifiers.map(entry=>({
+      stat:entry.stat,
+      dir:entry.direction==='down'?'Down':'Up',
+      val:entry.value,
+      mechanicId:mechanic.id,
+    })),
+  }
+}
+
+export function builderMechanicCoverage(roster=ALL,includeCombat=true){
+  const rows=[]
+  for(const owner of roster||[]){
+    const skills=[...(owner.skills||[]),...(owner.roleSkill?[owner.roleSkill]:[])]
+    for(const skill of skills){
+      if(!isBuffSummarySkill(skill,includeCombat)) continue
+      for(const effect of skill.effects||[]){
+        const resolved=resolveBuilderMechanic(effect)
+        const qualitative=parseUnsupportedBuffEffect(effect.effect)
+        if(resolved.resolution==='stable') rows.push({owner:owner.id,mechanicId:effect.mechanicId,resolution:'stable'})
+        else if(resolved.resolution==='failClosed') rows.push({owner:owner.id,mechanicId:effect.mechanicId,resolution:'failClosed'})
+        else if(resolved.modifiers.length) rows.push({owner:owner.id,mechanicId:null,resolution:'parserFallback'})
+        else if(qualitative) rows.push({owner:owner.id,mechanicId:null,resolution:'unsupported'})
+      }
+    }
+  }
+  const counts=rows.reduce((result,row)=>{
+    result[row.resolution]+=1
+    return result
+  },{stable:0,parserFallback:0,unsupported:0,failClosed:0})
+  return{total:rows.length,...counts,rows}
+}
+
+const raiseStableApplicability=(state,next)=>{
+  const rank={
+    [BUFF_APPLICABILITY.APPLICABLE]:0,
+    [BUFF_APPLICABILITY.CONDITIONAL]:1,
+    [BUFF_APPLICABILITY.IMPOSSIBLE]:2,
+    [BUFF_APPLICABILITY.UNSUPPORTED]:3,
+  }
+  return rank[next]>rank[state]?next:state
+}
+
+export function evaluateStableMechanicApplicability(mechanic,owner,team,enemyTeam,isDefense,showAll=false){
+  if(!mechanic) return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:['stable-identity-unmapped']}
+  let state=BUFF_APPLICABILITY.APPLICABLE
+  let multiplier=1
+  const reasons=[]
+  for(const condition of mechanic.conditions||[]){
+    if(condition.kind==='side'){
+      const active=condition.side==='defense'?isDefense:!isDefense
+      if(!active&&!showAll) return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:['side']}
+      continue
+    }
+    if(condition.kind==='rosterCount'){
+      const roster=condition.side==='enemy'?(enemyTeam||[]):(team||[])
+      const matched=new Set(roster
+        .filter(member=>stableCriterionMatches(member,condition.criteria,owner,condition.excludeSelf))
+        .map(member=>member.id))
+      multiplier=matched.size
+      if(multiplier===0) return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:['ally-count-zero']}
+      continue
+    }
+    if(condition.kind==='presence'){
+      const roster=condition.side==='enemy'?(enemyTeam||[]):(team||[])
+      if(condition.side==='enemy'&&!roster.length){
+        state=raiseStableApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+        reasons.push('enemy-roster-unknown')
+        continue
+      }
+      if(!stableRosterHas(roster,condition.criteria,owner,condition.excludeSelf))
+        return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:[`${condition.side}-presence`]}
+      if(condition.state!=='present'){
+        state=raiseStableApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+        reasons.push(`${condition.side}-${condition.state}`)
+      }
+      continue
+    }
+    if(condition.kind==='battleState'||condition.kind==='targetState'){
+      state=raiseStableApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+      reasons.push(condition.kind==='targetState'?`target-status:${condition.state}`:'battle-state')
+      continue
+    }
+    return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:['stable-condition-kind']}
+  }
+
+  const enemyRecipients=(mechanic.recipients||[]).filter(recipient=>recipient.side==='enemy')
+  if(enemyRecipients.length&&enemyRecipients.some(recipient=>recipient.criteria?.kind!=='all')){
+    if(!(enemyTeam||[]).length){
+      state=raiseStableApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+      reasons.push('enemy-target-roster-unknown')
+    }else if(!(enemyTeam||[]).some(member=>stableRecipientsMatch(mechanic,'enemy',member,owner))){
+      return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:['enemy-target']}
+    }
+  }
+
+  if(mechanic.opponent){
+    const opponentRoster=enemyRecipients.length?(team||[]):(enemyTeam||[])
+    if(!opponentRoster.length){
+      state=raiseStableApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+      reasons.push('opponent-roster-unknown')
+    }else if(!stableRosterHas(opponentRoster,mechanic.opponent)){
+      return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:['opponent']}
+    }
+  }
+  return{state,multiplier,reasons}
 }
 
 export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false,includeCombat=false){
@@ -1380,8 +1522,16 @@ export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false,includeCo
     for(const skill of(owner.skills||[])){
       if(!isBuffSummarySkill(skill,includeCombat)) continue
       for(const eff of(skill.effects||[])){
-        const baseTargeted=isTargetedBy(eff.target,G,owner,team)
-        const modifiers=parseBuffEffect(eff.effect)
+        const resolved=resolveBuilderMechanic(eff)
+        recordMechanicResolution(meta,resolved.resolution,owner,skill,eff)
+        if(resolved.resolution==='failClosed'){
+          pushBuffMeta(meta,'unsupported',buffSource(owner,skill,eff,null,{state:BUFF_APPLICABILITY.UNSUPPORTED,reasons:['stable-identity-unmapped']}))
+          continue
+        }
+        const baseTargeted=resolved.mechanic
+          ?stableRecipientsMatch(resolved.mechanic,'ally',G,owner)
+          :isTargetedBy(eff.target,G,owner,team)
+        const modifiers=resolved.modifiers
         const bareNamedTarget=findCharByName(String(eff.target||'').replace(/["“”]/g,'').trim())
         const qualitativeTargeted=bareNamedTarget?.id===G.id
         if(!modifiers.length&&(baseTargeted||qualitativeTargeted)){
@@ -1395,7 +1545,9 @@ export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false,includeCo
           // row target; it does not narrow it.  Examples such as target
           // `Self`, effect `Ally [Cavalry] DEF Up` represent self + cavalry.
           if(!baseTargeted&&!additionalTargeted) continue
-          const application=evaluateBuffApplicability(eff,modifier,owner,team,enemyTeam,isDefense,showAll)
+          const application=resolved.mechanic
+            ?evaluateStableMechanicApplicability(resolved.mechanic,owner,team,enemyTeam,isDefense,showAll)
+            :evaluateBuffApplicability(eff,modifier,owner,team,enemyTeam,isDefense,showAll)
           if(application.state===BUFF_APPLICABILITY.IMPOSSIBLE) continue
           const source=buffSource(owner,skill,eff,modifier,application)
           if(application.state===BUFF_APPLICABILITY.UNSUPPORTED){
@@ -1411,7 +1563,7 @@ export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false,includeCo
           const potential=application.state===BUFF_APPLICABILITY.CONDITIONAL
           const sourceList=potential?bucket.potentialSources:bucket.sources
           if(SPECIAL_STATS.has(stat)){
-            const times=(parseInt(eff.duration)||1)*mult
+            const times=(resolved.mechanic?val:(parseInt(eff.duration)||1))*mult
             if(potential) bucket.potentialUp+=times
             else bucket.up+=times
             sourceList.push({...source,contribution:times,dir:'up'})
@@ -1489,13 +1641,15 @@ export function enemyDebuffFactor(cond,isDefense,owner,team,enemyTeam=[]){
 export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false,isDefense=false){
   const byTarget={}
   const meta=newBuffMeta()
-  function addToTarget(key,parsed,owner,skill,effect,evaluationEffect=effect){
+  function addToTarget(key,parsed,owner,skill,effect,evaluationEffect=effect,stableMechanic=null){
     if(!parsed.length) return
     for(const modifier of parsed){
       const{stat,dir,val}=modifier
-      let application=evaluateBuffApplicability(evaluationEffect,modifier,owner,team,enemyTeam,isDefense,false)
+      let application=stableMechanic
+        ?evaluateStableMechanicApplicability(stableMechanic,owner,team,enemyTeam,isDefense,false)
+        :evaluateBuffApplicability(evaluationEffect,modifier,owner,team,enemyTeam,isDefense,false)
       if(application.state===BUFF_APPLICABILITY.IMPOSSIBLE) continue
-      if(!enemyTeam.length&&parseEnemyTargetCriteria(evaluationEffect.target)?.restricted){
+      if(!stableMechanic&&!enemyTeam.length&&parseEnemyTargetCriteria(evaluationEffect.target)?.restricted){
         application={...application,state:raiseApplicability(application.state,BUFF_APPLICABILITY.CONDITIONAL),reasons:[...application.reasons,'enemy-target-roster-unknown']}
       }
       const source=buffSource(owner,skill,effect,modifier,application)
@@ -1523,6 +1677,21 @@ export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false,isDef
     for(const sk of(owner.skills||[])){
       if(!isBuffSummarySkill(sk,includeCombat)) continue
       for(const eff of(sk.effects||[])){
+        const resolved=resolveBuilderMechanic(eff)
+        recordMechanicResolution(meta,resolved.resolution,owner,sk,eff)
+        if(resolved.resolution==='failClosed'){
+          pushBuffMeta(meta,'unsupported',buffSource(owner,sk,eff,null,{state:BUFF_APPLICABILITY.UNSUPPORTED,reasons:['stable-identity-unmapped']}))
+          continue
+        }
+        if(resolved.mechanic){
+          if(resolved.mechanic.recipients.some(recipient=>recipient.side==='enemy')){
+            addToTarget(
+              resolved.mechanic.targetLabel||normalizeEnemyTarget(eff.target),
+              resolved.modifiers,owner,sk,eff,eff,resolved.mechanic,
+            )
+          }
+          continue
+        }
         const t=(eff.target||'').trim()
         if(parseEnemyTargetCriteria(t)){
           addToTarget(normalizeEnemyTarget(t),parseBuffEffect(eff.effect),owner,sk,eff)
