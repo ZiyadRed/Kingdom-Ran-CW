@@ -1,4 +1,6 @@
 import {test,expect,settle} from './fixtures.js'
+import {encodeBuilderShareSearch} from '../../src/builder-share.js'
+import {CATALOGS} from '../../src/i18n/i18n.js'
 
 async function contrast(locator){
   return locator.evaluate(node=>{
@@ -175,4 +177,57 @@ test('F09 compact actions retain semantic contrast across locales and responsive
     expect(await page.locator('html').getAttribute('dir')).toBe(testInfo.project.name==='ar'?'rtl':'ltr')
   }
   await testInfo.attach('f09-compact-action-contrast.json',{body:JSON.stringify(samples,null,2),contentType:'application/json'})
+})
+
+test('Japanese original-source labels keep their own readable blue across rendered consumers',async({page,path,locale},testInfo)=>{
+  const samples=[]
+  for(const width of [390,1440]){
+    await page.setViewportSize({width,height:width===390?844:900})
+    for(const character of ['moubu','shin']){
+      await page.goto(path(`/archive/characters/${character}`))
+      await settle(page)
+      const labels=page.locator('.sk-source-label')
+      if(locale!=='ja'){
+        await expect(labels).toHaveCount(0)
+        continue
+      }
+      expect(await labels.count()).toBeGreaterThan(0)
+      for(const label of await labels.all()){
+        const sample={width,character,...await compactActionContrast(label)}
+        const sourceToken=await label.evaluate(node=>getComputedStyle(node).getPropertyValue('--source-label-fg').trim())
+        samples.push({...sample,sourceToken})
+        expect(sourceToken).toBe('#32639f')
+        expect(sample.foreground).toBe('rgb(50, 99, 159)')
+        expect(sample.semanticForeground).toBe('#7b4628')
+        expect(sample.opacity).toBe(1)
+        expect(sample.background[0]).toBeCloseTo(236.77,1)
+        expect(sample.background[1]).toBeCloseTo(236.48,1)
+        expect(sample.background[2]).toBeCloseTo(235.87,1)
+        expect(sample.ratio,JSON.stringify(sample)).toBeGreaterThanOrEqual(4.5)
+        expect(sample.ratio,JSON.stringify(sample)).toBeGreaterThan(5)
+        await expect(label.locator('..')).toHaveClass(/sk-source-desc/)
+        expect(await label.evaluate(node=>Boolean(node.closest('a,button')))).toBe(false)
+        expect(await label.evaluate(node=>node.scrollWidth<=node.clientWidth)).toBe(true)
+      }
+      expect(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth)).toBe(true)
+    }
+    if(locale==='ja'){
+      const formation={version:1,attack:['moubu','renpa',null,null],defense:['kyou',null,null,null],attackSkills:Array(4).fill({n:3,s6:true,role:false}),defenseSkills:Array(4).fill({n:3,s6:true,role:false})}
+      await page.goto(`${path('/builder')}${encodeBuilderShareSearch(formation)}`)
+      await settle(page)
+      await page.getByRole('button',{name:CATALOGS.ja.builder.viewBattleOrder}).click()
+      await expect(page).toHaveURL(/\/sim$/)
+      const simLabels=page.locator('.sk-source-label')
+      await expect(simLabels.first()).toBeVisible()
+      expect(await simLabels.count()).toBeGreaterThan(0)
+      for(const label of await simLabels.all()){
+        const sample={width,character:'sim',...await compactActionContrast(label)}
+        samples.push(sample)
+        expect(sample.ratio,JSON.stringify(sample)).toBeGreaterThan(5)
+        expect(sample.foreground).toBe('rgb(50, 99, 159)')
+      }
+      expect(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth)).toBe(true)
+    }
+  }
+  await testInfo.attach('japanese-source-label-contrast.json',{body:JSON.stringify(samples,null,2),contentType:'application/json'})
 })

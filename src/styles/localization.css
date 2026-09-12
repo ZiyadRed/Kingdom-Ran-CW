@@ -8,13 +8,15 @@
 .locale-switcher option { color: #06264c; background: #fff; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .sk-source-desc {
+  /* Provenance metadata stays blue and readable over this translucent panel. */
+  --source-label-fg: #32639f;
   display: flex; flex-direction: column; gap: .22rem; margin: -.15rem 0 .15rem;
   padding: .48rem .6rem; border: 1px solid rgba(61,110,181,.26);
   border-inline-start: 3px solid #3d6eb5; border-radius: 5px;
   background: rgba(61,110,181,.07); color: var(--txt2); white-space: pre-line;
   line-height: 1.5; font-size: .76rem;
 }
-.sk-source-label { color: #3d6eb5; font-size: .62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
+.sk-source-label { color: var(--source-label-fg); font-size: .62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
 
 /* RTL audit: logical edges keep the archive, cards, and overlays coherent. */
 html[dir="rtl"] .hdr-in { direction: rtl; }
