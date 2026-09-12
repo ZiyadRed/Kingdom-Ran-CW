@@ -73,3 +73,76 @@ for (const width of [320, 820, 1440]) test(`Castle ${width}px stepper hit areas 
   for (const input of await steppers.locator('input').all()) await expect(input).toHaveValue('42')
   await expectLocale(page, locale)
 })
+
+for (const width of [390, 1440]) test(`F08 tied Castle Points stay consistent at ${width}px`, async ({ page, path, locale }) => {
+  await page.setViewportSize({ width, height: 900 })
+  await instrumentStorage(page, {
+    'ranhq:castle-points': JSON.stringify({
+      version: 1,
+      mode: 'normal',
+      boards: {
+        normal: [
+          { id: 'mine', isMine: true, name: 'Audit Mine', defaultNumber: 1, large: 2, medium: 0, small: 0, carried: 1000 },
+          { id: 'alliance-2', isMine: false, name: 'Audit Rival', defaultNumber: 2, large: 0, medium: 4, small: 0, carried: 0 },
+        ],
+        selection: [{ id: 'mine', isMine: true, name: null, defaultNumber: 1, large: 0, medium: 0, small: 0, carried: 0 }],
+      },
+    }),
+  })
+  await page.goto(path('/castle-points'))
+  await expectLocale(page, locale)
+
+  const mine = page.locator('.cp-rank-row[data-alliance-id="mine"]')
+  const rival = page.locator('.cp-rank-row[data-alliance-id="alliance-2"]')
+  await expect(mine).toHaveAttribute('data-rank', '1')
+  await expect(mine).toHaveAttribute('data-tied', 'true')
+  await expect(rival).toHaveAttribute('data-rank', '1')
+  await expect(rival).toHaveAttribute('data-tied', 'true')
+  await expect(mine.locator('.cp-rank-badge')).toHaveText('1')
+  await expect(rival.locator('.cp-rank-badge')).toHaveText('1')
+  const badgeColors = await page.locator('.cp-rank-badge').evaluateAll(nodes => nodes.map(node => getComputedStyle(node).backgroundColor))
+  expect(new Set(badgeColors).size).toBe(1)
+  await expect(mine).toContainText('Audit Mine')
+  await expect(rival).toContainText('Audit Rival')
+  await expect(page.locator('.cp-score-mine')).toHaveAttribute('data-rank', '1')
+  await expect(page.locator('.cp-score-mine')).toHaveAttribute('data-tied', 'true')
+  await expect(page.locator('.cp-gap-box')).toHaveAttribute('data-standing', 'tied-first')
+  await expect(page.locator('.cp-tie-note')).toBeVisible()
+  await expect(page.locator('.cp-gap-box')).not.toContainText(/behind|خلف|まで|retard/i)
+
+  if(locale === 'ar') {
+    await expect(page.locator('html')).toHaveAttribute('dir', 'rtl')
+    await expect(mine).toContainText('1')
+    await expect(mine).toContainText('Audit Mine')
+  }
+})
+
+test('F08 does not invent a bottom-two cutoff through a tied score', async ({ page, path, locale }) => {
+  await instrumentStorage(page, {
+    'ranhq:castle-points': JSON.stringify({
+      version: 1,
+      mode: 'normal',
+      boards: {
+        normal: [7000, 6000, 5000, 4000, 3000, 3000, 2000].map((carried, index) => ({
+          id: index === 4 ? 'mine' : `alliance-${index + 1}`,
+          isMine: index === 4,
+          name: `Cutoff ${index + 1}`,
+          defaultNumber: index + 1,
+          large: 0,
+          medium: 0,
+          small: 0,
+          carried,
+        })),
+        selection: [{ id: 'mine', isMine: true, name: null, defaultNumber: 1, large: 0, medium: 0, small: 0, carried: 0 }],
+      },
+    }),
+  })
+  await page.goto(path('/castle-points'))
+  await expectLocale(page, locale)
+
+  const tiedAtCutoff = page.locator('.cp-rank-row[data-rank="5"]')
+  await expect(tiedAtCutoff).toHaveCount(2)
+  await expect(tiedAtCutoff.nth(0)).toHaveAttribute('data-tied', 'true')
+  await expect(tiedAtCutoff.nth(1)).toHaveAttribute('data-tied', 'true')
+  await expect(page.locator('.cp-drop-line')).toHaveCount(0)
+})

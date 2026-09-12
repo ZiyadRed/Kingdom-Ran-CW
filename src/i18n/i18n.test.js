@@ -76,4 +76,39 @@ describe('i18next initialization', () => {
     expect(i18n.t('common:sim.description')).toContain('الجولة الأولى')
     expect(i18n.t('common:sim.openingRule')).toContain('القائد أولًا، ثم الاستراتيجي')
   })
+
+  it('translates Castle Point tied-first semantics in every supported locale', async () => {
+    initI18n(en)
+    const expected = {
+      en: [
+        'Equal projected totals share a rank; row order does not break ties.',
+        'Projected tied for 1st',
+        'Your alliance shares the lead on this board.',
+      ],
+      ja: [
+        '予測累計城獲得ポイントが同じ同盟は同率です。表示順では順位を決めません。',
+        '予測同率1位',
+        'このボードでは自同盟が同率首位です。',
+      ],
+      ar: [
+        'التحالفات ذات الإجمالي المتوقع نفسه متعادلة؛ ترتيب الصفوف لا يحسم التعادل.',
+        'تعادل متوقع في المركز الأول',
+        'تحالفك يتقاسم صدارة هذه اللوحة.',
+      ],
+      fr: [
+        'Les alliances au même total prévu sont ex æquo ; l’ordre des lignes ne les départage pas.',
+        '1re place ex æquo prévue',
+        'Votre alliance partage la tête de ce tableau.',
+      ],
+    }
+
+    for (const [locale, messages] of Object.entries(expected)) {
+      await i18n.changeLanguage(locale)
+      expect([
+        i18n.t('common:castlePoints.tieNote'),
+        i18n.t('common:castlePoints.projectedTiedFirst'),
+        i18n.t('common:castlePoints.tiedLeading'),
+      ]).toEqual(messages)
+    }
+  })
 })

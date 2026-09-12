@@ -2701,9 +2701,19 @@ button { -webkit-appearance: none; appearance: none; }
   font-size: .76rem;
   font-weight: 950;
 }
-.cp-rank-row:nth-child(1) .cp-rank-badge { background: #f5cf75; border-color: #d7a636 }
-.cp-rank-row:nth-child(2) .cp-rank-badge { background: #d9dde3; border-color: #adb5c0 }
-.cp-rank-row:nth-child(3) .cp-rank-badge { background: #edbea2; border-color: #cf875b }
+.cp-rank-row.is-rank-1 .cp-rank-badge { background: #f5cf75; border-color: #d7a636 }
+.cp-rank-row.is-rank-2 .cp-rank-badge { background: #d9dde3; border-color: #adb5c0 }
+.cp-rank-row.is-rank-3 .cp-rank-badge { background: #edbea2; border-color: #cf875b }
+.cp-tie-note {
+  margin: 0;
+  padding: .58rem .78rem;
+  border-bottom: 1px solid rgba(200,184,152,.7);
+  background: rgba(26,95,168,.07);
+  color: var(--txt3);
+  font-size: .66rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
 .cp-rank-name {
   min-width: 0;
 }

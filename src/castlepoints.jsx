@@ -32,7 +32,7 @@ export function calculateTodayPoints(alliance, values = CASTLE_POINT_VALUES){
 }
 
 export function rankCastlePointBoard(board, values = CASTLE_POINT_VALUES){
-  return board
+  const normalized = board
     .map((alliance, index) => {
       const today = calculateTodayPoints(alliance, values)
       const carried = clampNumber(alliance.carried)
@@ -47,10 +47,39 @@ export function rankCastlePointBoard(board, values = CASTLE_POINT_VALUES){
     })
     .sort((a, b) => {
       if(b.projected !== a.projected) return b.projected - a.projected
-      if(b.today !== a.today) return b.today - a.today
+      // Official Castle War standings keep equal cumulative castle-acquisition
+      // points tied. RanHQ does not collect the alliance-power field that the
+      // game can use to order tied rows, so use stable identity for rendering
+      // only; never fabricate a placement from today's points or source order.
+      const aId = String(a.id || '')
+      const bId = String(b.id || '')
+      if(aId < bId) return -1
+      if(aId > bId) return 1
       return a.index - b.index
     })
-    .map((alliance, index) => ({ ...alliance, rank: index + 1 }))
+
+  const tieCounts = normalized.reduce((counts, alliance) => (
+    counts.set(alliance.projected, (counts.get(alliance.projected) || 0) + 1)
+  ), new Map())
+  let rank = 0
+  let previousProjected = null
+  return normalized.map((alliance, index) => {
+    if(index === 0 || alliance.projected !== previousProjected) rank = index + 1
+    previousProjected = alliance.projected
+    const tieCount = tieCounts.get(alliance.projected)
+    return { ...alliance, rank, tieCount, isTied: tieCount > 1 }
+  })
+}
+
+export function summarizeCastlePointStanding(ranked, allianceId = 'mine'){
+  const alliance = ranked.find(row => row.id === allianceId || (allianceId === 'mine' && row.isMine)) || ranked[0]
+  const leader = ranked[0]
+  if(!alliance || !leader) return null
+  const gapToFirst = Math.max(0, leader.projected - alliance.projected)
+  const status = alliance.rank === 1
+    ? (alliance.isTied ? 'tied-first' : 'first')
+    : 'behind'
+  return { alliance, leader, gapToFirst, status }
 }
 
 function formatNumber(value, locale){
@@ -150,9 +179,12 @@ export default function CastlePointsPage(){
 
   const board = boards[mode]
   const ranked = useMemo(() => rankCastlePointBoard(board), [board])
-  const me = ranked.find(alliance => alliance.isMine) || ranked[0]
-  const leader = ranked[0]
-  const gapToFirst = leader && me ? Math.max(0, leader.projected - me.projected) : 0
+  const rankedById = useMemo(() => new Map(ranked.map(alliance => [alliance.id, alliance])), [ranked])
+  const standing = useMemo(() => summarizeCastlePointStanding(ranked), [ranked])
+  const me = standing?.alliance
+  const gapToFirst = standing?.gapToFirst || 0
+  const hasTies = ranked.some(alliance => alliance.isTied)
+  const hasCertainBottomTwoBoundary = board.length === 7 && ranked[4]?.projected > ranked[5]?.projected
   const totalToday = ranked.reduce((sum, alliance) => sum + alliance.today, 0)
   const totalCastles = board.reduce((sum, alliance) => (
     sum + clampNumber(alliance.large) + clampNumber(alliance.medium) + clampNumber(alliance.small)
@@ -230,7 +262,11 @@ export default function CastlePointsPage(){
             </div>
           </div>
         ))}
-        <div className="cp-score-card cp-score-mine">
+        <div
+          className="cp-score-card cp-score-mine"
+          data-rank={me?.rank}
+          data-tied={me?.isTied ? 'true' : 'false'}
+        >
           <b>{me ? `#${formatNumber(me.rank, locale)}` : '-'}</b>
           <span>{me ? projectedSummary(me.projected, t, locale) : t('noBoard', { defaultValue: 'No board' })}</span>
         </div>
@@ -266,8 +302,9 @@ export default function CastlePointsPage(){
               </thead>
               <tbody>
                 {board.map(alliance => {
-                  const today = calculateTodayPoints(alliance)
-                  const projected = today + clampNumber(alliance.carried)
+                  const result = rankedById.get(alliance.id)
+                  const today = result?.today || 0
+                  const projected = result?.projected || 0
                   return (
                     <tr key={alliance.id}>
                       <td>
@@ -331,9 +368,16 @@ export default function CastlePointsPage(){
           </div>
 
           <div className="cp-rank-list">
+            {hasTies && <p className="cp-tie-note">{t('castlePoints.tieNote')}</p>}
             {ranked.map((alliance, index) => (
-              <div key={alliance.id} className={`cp-rank-row${alliance.isMine ? ' is-mine' : ''}`}>
-                {board.length === 7 && index === 5 && (
+              <div
+                key={alliance.id}
+                className={`cp-rank-row is-rank-${Math.min(alliance.rank, 3)}${alliance.isMine ? ' is-mine' : ''}`}
+                data-alliance-id={alliance.id}
+                data-rank={alliance.rank}
+                data-tied={alliance.isTied ? 'true' : 'false'}
+              >
+                {hasCertainBottomTwoBoundary && index === 5 && (
                   <div className="cp-drop-line"><span>{t('castlePoints.bottomTwo')}</span></div>
                 )}
                 <div className="cp-rank-main">
@@ -351,9 +395,17 @@ export default function CastlePointsPage(){
             ))}
           </div>
 
-          <div className={`cp-gap-box${gapToFirst === 0 ? ' is-leading' : ''}`}>
-            <b>{gapToFirst === 0 ? t('castlePoints.projectedFirst') : pointsLabel(gapToFirst, 'behindFirst', t, locale)}</b>
-            <span>{gapToFirst === 0 ? t('castlePoints.leading') : t('castlePoints.roughly', { count: castleEquivalent(gapToFirst, t, locale) })}</span>
+          <div className={`cp-gap-box${standing?.status !== 'behind' ? ' is-leading' : ''}`} data-standing={standing?.status}>
+            <b>{standing?.status === 'tied-first'
+              ? t('castlePoints.projectedTiedFirst')
+              : standing?.status === 'first'
+                ? t('castlePoints.projectedFirst')
+                : pointsLabel(gapToFirst, 'behindFirst', t, locale)}</b>
+            <span>{standing?.status === 'tied-first'
+              ? t('castlePoints.tiedLeading')
+              : standing?.status === 'first'
+                ? t('castlePoints.leading')
+                : t('castlePoints.roughly', { count: castleEquivalent(gapToFirst, t, locale) })}</span>
           </div>
         </aside>
       </div>
