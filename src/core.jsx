@@ -32,6 +32,7 @@ import { useHydratedState } from './use-hydrated-state.js'
 import { getDocumentReleaseSnapshot, releaseStage, useReleaseStage } from './release-snapshot.js'
 import Dialog from './Dialog.jsx'
 import { buffOwnershipId, migrateBuffOwnership } from './buff-ownership.js'
+import { resolveRegularBuffCharacter } from './buff-identity.js'
 import {
   BUILDER_MECHANICS,
   attachBuilderMechanicIds,
@@ -326,7 +327,9 @@ export const buffTargetMatches=(skill,effect,kind,key)=>{
 }
 export function redCrystalBuffUnlockCost(entry,kind,key,stat){
   if(!entry||entry.special_icon||entry.special_label||Number(entry.value)===5) return null
-  const char=entry.name_jp?ALL.find(c=>c.name_jp===entry.name_jp):findCharByName(entry.name)
+  const char=kind==='unit'
+    ? resolveRegularBuffCharacter(entry,CHAR_BY_ID,ALL)
+    : entry.name_jp?ALL.find(c=>c.name_jp===entry.name_jp):findCharByName(entry.name)
   if(!char) return null
   const rarity=buffEntryRarity(entry)||char.rarity||'SR'
   const costs=RED_CRYSTAL_UNLOCK_COSTS[rarity]

@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next'
 import cwBuffsData from '../../../data/cw_buffs.json'
 import cwTeamBuffs from '../../../data/cw_team_buffs.json'
 import sceneCardBuffs from '../../../data/scene_card_cw_buffs.json'
-import { ALL, CC, FACTIONS, CharIcon, BuffValueCluster, OwnedToggle, ProgressTools, RedCrystalCostChip, SCENE_CARD, SceneStarControl, buffEntryRarity, buffSourceId, findCharByName, persosThumb, progressFilterItems, redCrystalBuffUnlockCost, useProgressTracker } from '../../core.jsx'
+import { ALL, CHAR_BY_ID, CC, FACTIONS, CharIcon, BuffValueCluster, OwnedToggle, ProgressTools, RedCrystalCostChip, SCENE_CARD, SceneStarControl, buffEntryRarity, buffSourceId, findCharByName, persosThumb, progressFilterItems, redCrystalBuffUnlockCost, useProgressTracker } from '../../core.jsx'
+import { resolveRegularBuffCharacter } from '../../buff-identity.js'
 import Dialog from '../../Dialog.jsx'
 import { ArtLightbox, ViewArtButton } from '../../art-preview.jsx'
 import { secondaryName } from '../../display-names.js'
@@ -55,13 +56,16 @@ export function BuffsPage(){
     if(kind==='siege') return ((cwTeamBuffs.siege||{})[key]||{})[stat]||[]
     return []
   }
-  const findBuffChar=e=>findCharByName(e?.name)||ALL.find(c=>c.name_jp===e?.name_jp)||null
-  const buffEntryDisplayName=e=>{
-    const character=findBuffChar(e)
-    return character?localizedCharacter(character,locale).displayName:localizedCharacterName(e?.name,locale)
+  const findBuffChar=(e,kind=activeKind)=>kind==='unit'
+    ? resolveRegularBuffCharacter(e,CHAR_BY_ID,ALL)
+    : findCharByName(e?.name)||ALL.find(c=>c.name_jp===e?.name_jp)||null
+  const buffEntryDisplayName=(e,kind=activeKind)=>{
+    const character=findBuffChar(e,kind)
+    return character?localizedCharacter(character,locale).displayName
+      :locale.code==='ja'&&e?.name_jp?e.name_jp:localizedCharacterName(e?.name,locale)
   }
-  const buffEntryMatches=(entry,query)=>matchesCharacterName(
-    findBuffChar(entry)||{name_en:entry?.name,name_jp:entry?.name_jp},
+  const buffEntryMatches=(entry,query,kind)=>matchesCharacterName(
+    findBuffChar(entry,kind)||{name_en:entry?.name,name_jp:entry?.name_jp},
     query,
   )
   const buffSearchNorm=buffSearch.trim().toLowerCase()
@@ -77,7 +81,7 @@ export function BuffsPage(){
       const terrain=TERRAIN_BUFFS.find(item=>item.name===key)
       return terrain?.entries.some(entry=>buffEntryMatches(entry,buffSearch))
     }
-    return buffStats.some(stat=>String(labelFor(stat)).toLowerCase().includes(buffSearchNorm)||lookupEntries(kind,key,stat).some(entry=>buffEntryMatches(entry,buffSearch)))
+    return buffStats.some(stat=>String(labelFor(stat)).toLowerCase().includes(buffSearchNorm)||lookupEntries(kind,key,stat).some(entry=>buffEntryMatches(entry,buffSearch,kind)))
   }
   const handlePick=(kind,key)=>{
     if(activeKind===kind&&activeKey===key){setActiveKind(null);setActiveKey(null)}
@@ -433,7 +437,7 @@ export function BuffsPage(){
       keys.forEach(key=>{
         buffStats.forEach(stat=>{
           lookupEntries(kind,key,stat).forEach((e,i)=>{
-            const char=findBuffChar(e)
+            const char=findBuffChar(e,kind)
             rows.push({
               bucket:'buffSources',
               id:buffSourceId(kind,key,stat,e,i),
@@ -457,7 +461,7 @@ export function BuffsPage(){
     TERRAIN_BUFFS.forEach(terrain=>{
       const entries=[...(terrain.entries||[])].sort((a,b)=>b.value-a.value||a.name.localeCompare(b.name))
       entries.forEach((e,i)=>{
-        const char=findBuffChar(e)
+        const char=findBuffChar(e,'terrain')
         rows.push({
           bucket:'buffSources',
           id:buffSourceId('terrain',terrain.name,'terrain',e,i),
