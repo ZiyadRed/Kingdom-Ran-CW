@@ -649,6 +649,23 @@ textarea {
 .buff-summary-rows { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; }
 .buff-summary-row { border-inline: 0; border-top: 0; border-radius: 0; padding: 10px 4px; background: transparent; }
 .buff-summary-row:last-child { border-bottom: 1px solid var(--bdr); }
+.buff-summary-section-scene .buff-summary-rows { grid-template-columns: minmax(0, 1fr); }
+.buff-summary-row.buff-summary-row-scene {
+  grid-template-columns: minmax(140px, 180px) minmax(0, 1fr);
+  align-items: start;
+}
+.buff-summary-stats-scene .buff-summary-stat {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  min-width: 0;
+  white-space: normal;
+}
+.buff-summary-stats-scene .buff-summary-stat b {
+  min-width: 0;
+  line-height: 1.2;
+}
+.buff-summary-stats-scene .buff-summary-stat > span { justify-self: start; }
 .buff-pick-row { display: flex !important; flex-wrap: wrap !important; justify-content: center !important; gap: 10px !important; overflow: visible; padding: 3px 1px 12px; }
 .buff-pick-card { flex: 0 0 116px; width: 116px !important; min-height: 104px !important; border-radius: var(--radius-md) !important; box-shadow: none !important; }
 .buff-source-row { border-radius: var(--radius-sm) !important; box-shadow: none !important; }
@@ -1047,6 +1064,7 @@ textarea {
   .buffs-legend { gap: 6px 14px; }
   .buff-progress-head { padding: 14px; }
   .buff-summary-rows { grid-template-columns: 1fr; }
+  .buff-summary-row.buff-summary-row-scene { grid-template-columns: 1fr !important; }
   .buff-pick-row {
     display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr));

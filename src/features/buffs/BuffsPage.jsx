@@ -547,12 +547,12 @@ export function BuffsPage(){
               </div>
             </div>
           ))}
-          <div className="buff-summary-section">
+          <div className="buff-summary-section buff-summary-section-scene">
             <h3>{t('buffs.sceneCards')}</h3>
             <div className="buff-summary-rows">
-              <div className="buff-summary-row">
+              <div className="buff-summary-row buff-summary-row-scene">
                 <span className="buff-summary-name" style={{'--sc':'#1a8a5a'}}>{t('buffs.sceneCards')} · {t('buffs.ownedTotals')}</span>
-                <span className="buff-summary-stats">
+                <span className="buff-summary-stats buff-summary-stats-scene">
                   {sceneStatOrder.map(stat=>{
                     const meta=sceneStatMeta[stat]
                     const val=sceneOwnedByStat(stat)
