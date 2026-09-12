@@ -457,6 +457,9 @@ export function CharIcon({c,size=40,round=false,className='',eager=false}){
 
 
 export const ROLE_SKILL_TYPES=new Set(['Leader','Strategist'])
+// Official post-2026-09-02 Alliance Conquest opening priority. These semantic
+// identities stay locale-independent; display labels must not define ordering.
+export const SOUHA_ROLE_PRIORITY=Object.freeze(['Leader','Strategist'])
 export const TYPE_COLOR={Combat:'#c0392b',Strategy:'#3d6eb5',Leader:'#e07f48',Strategist:'#16a085','Internal Affairs':'#1a8a72'}
 export const isBuffSummarySkill=(skill,includeCombat=false)=>
   skill?.type==='Strategy'||ROLE_SKILL_TYPES.has(skill?.type)||(includeCombat&&skill?.type==='Combat')
@@ -506,27 +509,52 @@ export const META_TEAMS=[
 // Tier list = the META_TEAMS that carry a tier, with their colour resolved.
 export const TIER_TEAMS=META_TEAMS.filter(t=>t.tier).map(t=>({...t,color:TIER_COLORS[t.tier]}))
 
+function orderedRoleActions(team,side){
+  const firstByRole=new Map()
+  for(const general of team){
+    for(const skill of general.skills||[]){
+      if(!ROLE_SKILL_TYPES.has(skill?.type)||firstByRole.has(skill.type)) continue
+      firstByRole.set(skill.type,{kind:'role',general,skill,side,role:skill.type})
+    }
+  }
+  return SOUHA_ROLE_PRIORITY.map(role=>firstByRole.get(role)).filter(Boolean)
+}
+
+function insertTurnOneRoleActions(entries,attack,defense){
+  const actions={attack:orderedRoleActions(attack,'attack'),defense:orderedRoleActions(defense,'defense')}
+  const inserted=new Set()
+  const result=[]
+  for(const entry of entries){
+    if(!inserted.has(entry.side)){
+      result.push(...actions[entry.side])
+      inserted.add(entry.side)
+    }
+    result.push(entry)
+  }
+  return result
+}
+
 // Formation order advances first-to-last; only each general's combat skill
-// slots reverse. Official FAQ evidence and scope: docs/BATTLE_ORDER_EVIDENCE.md.
+// slots reverse. On turn 1, selected Alliance Conquest role skills are inserted
+// at their fixed Leader -> Strategist -> first-general positions for each side.
+// Actual firing still depends on unlock, assignment and runtime morale, which
+// this planner does not simulate. Official evidence: docs/BATTLE_ORDER_EVIDENCE.md.
 export function simulate(a,d){
   const st={attack:[],defense:[]}
-  const roles={attack:[],defense:[]}
   for(const g of a){const s=(g.skills||[]).filter(s=>s.type==='Strategy');if(s.length)st.attack.push({general:g,skills:s})}
   for(const g of d){const s=(g.skills||[]).filter(s=>s.type==='Strategy');if(s.length)st.defense.push({general:g,skills:s})}
-  for(const g of a){const s=(g.skills||[]).filter(s=>ROLE_SKILL_TYPES.has(s.type));if(s.length)roles.attack.push({general:g,skills:s})}
-  for(const g of d){const s=(g.skills||[]).filter(s=>ROLE_SKILL_TYPES.has(s.type));if(s.length)roles.defense.push({general:g,skills:s})}
   const aq=a.map(g=>[...(g.skills||[]).filter(s=>s.type==='Combat')].reverse())
   const dq=d.map(g=>[...(g.skills||[]).filter(s=>s.type==='Combat')].reverse())
   const turns=[]
   for(let t=1;t<=4;t++){
     const e=[];const mx=Math.max(a.length,d.length)
     for(let i=0;i<mx;i++){
-      if(i<a.length)e.push({general:a[i],skill:aq[i].shift()||null,side:'attack'})
-      if(i<d.length)e.push({general:d[i],skill:dq[i].shift()||null,side:'defense'})
+      if(i<a.length)e.push({kind:'character',general:a[i],skill:aq[i].shift()||null,side:'attack'})
+      if(i<d.length)e.push({kind:'character',general:d[i],skill:dq[i].shift()||null,side:'defense'})
     }
-    turns.push({turn:t,entries:e})
+    turns.push({turn:t,entries:t===1?insertTurnOneRoleActions(e,a,d):e})
   }
-  return{roles,st,turns}
+  return{st,turns}
 }
 
 // ── CW SIMULATION ENGINE ─────────────────────────────────────────────────────

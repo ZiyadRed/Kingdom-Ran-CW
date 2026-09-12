@@ -867,6 +867,8 @@ html[dir="rtl"] .meta-country[open] > .meta-country-head::before { transform: ro
 .scol-av     { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; object-position: top; flex-shrink: 0 }
 .scol-jp     { font-size: .63rem; color: var(--txt3); font-weight: 400 }
 .scol-unit-badge { font-size: .58rem; font-weight: 700; padding: 1px 5px; border-radius: 4px; opacity: .75; margin-left: auto; flex-shrink: 0 }
+.turn-guidance { display: grid; gap: .22rem; padding: .62rem .78rem; border: 1.5px solid var(--bdr); border-top: 0; background: var(--sur); color: var(--txt2); font-size: .74rem; line-height: 1.45; margin-bottom: .85rem }
+.turn-guidance strong { color: var(--navy) }
 .turn        { margin-bottom: .85rem }
 .turn-lbl    { font-size: .76rem; font-weight: 700; color: var(--navy); letter-spacing: .08em; padding: .32rem .72rem; background: var(--bg2); border: 1.5px solid var(--bdr); border-radius: 8px 8px 0 0; border-bottom: none }
 .turn-entries { border: 1.5px solid var(--bdr); border-radius: 0 0 8px 8px; overflow: hidden }
@@ -874,14 +876,18 @@ html[dir="rtl"] .meta-country[open] > .meta-country-head::before { transform: ro
 .te:last-child { border-bottom: none }
 .te-attack   { background: rgba(192,57,43,.07); border-left: 3px solid rgba(192,57,43,.3) }
 .te-defense  { background: rgba(26,95,168,.07); border-left: 3px solid rgba(26,95,168,.3) }
+.te-role     { background: linear-gradient(90deg,rgba(224,127,72,.1),rgba(22,160,133,.08)) }
 .te-stripe   { width: 5px; flex-shrink: 0 }
+.te-order    { width: 24px; height: 24px; margin: .6rem 0 .6rem .58rem; display: inline-flex; align-items: center; justify-content: center; align-self: flex-start; border-radius: 50%; background: var(--navy); color: #fff; font-size: .68rem; font-weight: 800; flex: 0 0 24px; font-variant-numeric: tabular-nums }
 .te-body     { flex: 1; padding: .52rem .78rem; min-width: 0 }
 .te-gen      { display: flex; align-items: center; gap: .45rem; margin-bottom: .42rem }
 .te-av       { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; object-position: top; flex-shrink: 0 }
 .te-name     { font-size: .88rem; display: block; font-weight: 700; color: var(--navy) }
 .te-jp       { font-size: .63rem; color: var(--txt3); display: block }
 .te-tag      { font-size: .64rem; font-weight: 800; border-radius: 4px; padding: 2px 8px; margin-left: auto; font-family: monospace; flex-shrink: 0; letter-spacing: .04em }
+.te-role-priority { color: var(--terra2); font-size: .7rem; font-weight: 800; margin: -.08rem 0 .35rem }
 .normal-atk  { color: var(--txt3); font-style: italic; font-size: .8rem; padding: .12rem 0 }
+html[dir="rtl"] .te-order { margin: .6rem .58rem .6rem 0 }
 
 /* ============================================================
    CW BUFFS

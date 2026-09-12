@@ -74,6 +74,6 @@ describe('i18next initialization', () => {
     expect(i18n.t('common:castlePoints.pointsToday', { count: 0 })).toBe('لا نقاط اليوم')
     expect(i18n.t('common:castlePoints.behindFirst', { count: 0 })).toBe('لا فارق عن المركز الأول')
     expect(i18n.t('common:sim.description')).toContain('الجولة الأولى')
-    expect(i18n.t('common:sim.leaderSkills')).toBe('مهارات القائد والاستراتيجي — الجولة الأولى')
+    expect(i18n.t('common:sim.openingRule')).toContain('القائد أولًا، ثم الاستراتيجي')
   })
 })

@@ -1,4 +1,43 @@
-# Battle Order formation and skill ordering (F06)
+# Battle Order formation, skill, and special-role ordering (F07)
+
+## September 2, 2026 special opening sequence
+
+Verified live on 2026-09-12. The current official FAQ
+[争覇総大将スキル・争覇軍師スキルについて](https://www.kingdomran.jp/post-help/souha_soudaigunshiskill)
+defines the first-turn battle flow and explicitly says that formation position
+does not change the fixed order: **争覇総大将 → 争覇軍師 → 1人目の武将**.
+Both special role skills are separate from normal character attacks and activate
+only on the first turn of each battle. Each consumes morale and does not activate
+when required morale is unavailable.
+
+The complete documented opening is:
+
+1. 大軍 effects, attacking/invading side then defending/garrison side.
+2. 軍略 effects, attacking/invading side then defending/garrison side.
+3. Attacking 争覇総大将 skill, then 争覇軍師 skill, then first general action,
+   then weapon action.
+4. Defending 争覇総大将 skill, then 争覇軍師 skill, then first general action,
+   then weapon action.
+5. The attacking side's second general onward continues under normal battle flow.
+
+The [September 2 maintenance notice](https://www.kingdomran.jp/info/260902maintenance)
+confirms that the role-skill system was released that day. The current
+[known-issues notice](https://www.kingdomran.jp/info/knownbug), updated September
+9, contains no later correction to this ordering.
+
+RanHQ maps stable internal `Leader` and `Strategist` identities to official
+`争覇総大将` and `争覇軍師`. Those identities, not localized labels, drive
+ordering. Builder role toggles record the user's selected role assignment, but
+RanHQ does not know live battle morale. The Battle Order therefore presents
+activation priority rather than guaranteeing that a selected role skill fires.
+
+`simulate()` inserts selected special-role events into the first-turn timeline
+before the corresponding side's first normal character action. Duplicate or
+unknown role types fail closed, and no role event is added after turn 1. Start
+effects and weapon actions remain outside the planner timeline and are disclosed
+as untracked rather than guessed.
+
+## Normal formation and per-general skill ordering
 
 Verified 2026-09-08. The existing `simulate()` sequencing is retained. The
 contradiction was in Builder/Battle Order copy: **formation order advances from

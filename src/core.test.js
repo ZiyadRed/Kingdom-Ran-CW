@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { parseBuffEffect, simulate, ALL, META_TEAMS, findCharByName, calcCwStats, isTargetedBy, normalizeEnemyTarget, calcCharBuffs, calcTeamEnemyDebuffs, SOUHA_ROLE_SKILLS, DEFAULT_SK, defaultSks, applyMask, updateSkillMasks, normalizeProgress } from './core.jsx'
+import { parseBuffEffect, simulate, ALL, META_TEAMS, findCharByName, calcCwStats, isTargetedBy, normalizeEnemyTarget, calcCharBuffs, calcTeamEnemyDebuffs, SOUHA_ROLE_SKILLS, SOUHA_ROLE_PRIORITY, DEFAULT_SK, defaultSks, applyMask, updateSkillMasks, normalizeProgress } from './core.jsx'
 
 // The buff-text parser is the most intricate pure function in the engine.
 // These lock its behaviour against the documented terminology + formats.
@@ -285,11 +285,64 @@ describe('simulate turn ordering', () => {
     expect(st.attack[0].skills.map((s) => s.name)).toEqual(['s1'])
   })
 
-  it('collects selected role skills into their own turn-1 section', () => {
+  const eventKeys = entries => entries.map(({ kind, side, general, role }) =>
+    `${side}:${kind}:${role || general.id}`)
+
+  it('uses the official fixed role priority before each side’s first normal action', () => {
+    const attack = [
+      g('A-strategist', [{ type: 'Strategist', name: 'strategist' }]),
+      g('A-normal', []),
+      g('A-leader', [{ type: 'Leader', name: 'leader' }]),
+    ]
+    const defense = [
+      g('D-normal', []),
+      g('D-strategist', [{ type: 'Strategist', name: 'strategist' }]),
+      g('D-leader', [{ type: 'Leader', name: 'leader' }]),
+    ]
+    const { turns } = simulate(attack, defense)
+    expect(SOUHA_ROLE_PRIORITY).toEqual(['Leader', 'Strategist'])
+    expect(eventKeys(turns[0].entries)).toEqual([
+      'attack:role:Leader',
+      'attack:role:Strategist',
+      'attack:character:A-strategist',
+      'defense:role:Leader',
+      'defense:role:Strategist',
+      'defense:character:D-normal',
+      'attack:character:A-normal',
+      'defense:character:D-strategist',
+      'attack:character:A-leader',
+      'defense:character:D-leader',
+    ])
+    expect(turns.slice(1).flatMap(turn => turn.entries).some(entry => entry.kind === 'role')).toBe(false)
+  })
+
+  it.each([
+    ['Leader only', [{ type: 'Leader', name: 'leader' }], ['attack:role:Leader', 'attack:character:A']],
+    ['Strategist only', [{ type: 'Strategist', name: 'strategist' }], ['attack:role:Strategist', 'attack:character:A']],
+    ['neither role', [], ['attack:character:A']],
+  ])('keeps the %s opening distinct from normal formation order', (_label, skills, expected) => {
+    expect(eventKeys(simulate([g('A', skills)], []).turns[0].entries)).toEqual(expected)
+  })
+
+  it('fails safely for malformed or duplicate role types while preserving formation order', () => {
+    const attack = [
+      g('A1', [{ type: 'Commander', name: 'unknown-role' }, { type: 'Leader', name: 'first-leader' }]),
+      g('A2', [{ type: 'Leader', name: 'duplicate-leader' }]),
+    ]
+    const { turns } = simulate(attack, [])
+    expect(eventKeys(turns[0].entries)).toEqual([
+      'attack:role:Leader',
+      'attack:character:A1',
+      'attack:character:A2',
+    ])
+    expect(turns[0].entries[0].skill.name).toBe('first-leader')
+  })
+
+  it('keeps Strategy skills in reference data rather than the chronological role timeline', () => {
     const a = [g('A', [{ type: 'Leader', name: 'leader1' }, { type: 'Strategy', name: 's1' }])]
-    const { roles, st } = simulate(a, [])
-    expect(roles.attack[0].skills.map((s) => s.name)).toEqual(['leader1'])
+    const { st, turns } = simulate(a, [])
     expect(st.attack[0].skills.map((s) => s.name)).toEqual(['s1'])
+    expect(turns[0].entries.filter(entry => entry.kind === 'role').map(entry => entry.skill.name)).toEqual(['leader1'])
   })
 })
 

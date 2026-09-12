@@ -981,7 +981,7 @@ export function SimPage({atk:atkIds,def:defIds,atkSk,defSk,goBuilder}){
       </section>
     </div>
   )
-  const{roles,st,turns}=simulate(atkF,defF)
+  const{st,turns}=simulate(atkF,defF)
   return(
     <div className="main-page">
       {/* ── Battle Result (hidden for now) ──────────────── */}
@@ -1001,37 +1001,28 @@ export function SimPage({atk:atkIds,def:defIds,atkSk,defSk,goBuilder}){
         <div className="form-vs">{t('versus')}</div>
         <FormBar generals={defF} side="defense" label={t('builder.defending')}/>
       </div>
-      {(roles.attack.length||roles.defense.length)>0&&(
-        <div className="sim-sec">
-          <div className="sec-hd sec-role">{t('sim.leaderSkills')}</div>
-          <div className="strat-cols">
-            <StratCol label={t('builder.attacking')} entries={roles.attack} side="attack"/>
-            <StratCol label={t('builder.defending')} entries={roles.defense} side="defense"/>
-          </div>
-        </div>
-      )}
-      <div className="sim-sec">
-        <div className="sec-hd sec-strat">{t('sim.strategySkills')}</div>
-        <div className="strat-cols">
-          <StratCol label={t('builder.attacking')} entries={st.attack} side="attack"/>
-          <StratCol label={t('builder.defending')} entries={st.defense} side="defense"/>
-        </div>
-      </div>
       <div className="sim-sec">
         <div className="sec-hd sec-combat">{t('sim.activation')}</div>
+        <div className="turn-guidance">
+          <strong>{t('sim.openingRule')}</strong>
+          <span>{t('sim.roleConditional')}</span>
+          <span>{t('sim.timelineLimit')}</span>
+        </div>
         {turns.map(({turn,entries})=>(
           <div key={turn} className="turn">
             <div className="turn-lbl">{t('sim.turn',{turn})}</div>
             <div className="turn-entries">
-              {entries.map(({general,skill,side},i)=>(
-                <div key={i} className={`te te-${side}`}>
+              {entries.map(({kind,general,skill,side,role},i)=>(
+                <div key={`${kind}-${side}-${general.id}-${role||i}`} className={`te te-${side}${kind==='role'?' te-role':''}`} data-event-kind={kind} data-role={role||undefined} data-order={i+1}>
                   <div className="te-stripe" style={{background:side==='attack'?'var(--red)':'var(--blue)'}}/>
+                  <span className="te-order" aria-hidden="true">{formatLocaleNumber(i+1,locale)}</span>
                   <div className="te-body">
                     <div className="te-gen">
                       <CharIcon c={general} size={38} round={true}/>
                       <div><b className="te-name">{general.displayName||general.name_en}</b>{secondaryName(general.displayName||general.name_en,general.name_jp)&&<span className="te-jp">{general.name_jp}</span>}</div>
                       <span className="te-tag" style={{background:side==='attack'?'rgba(192,57,43,.18)':'rgba(26,95,168,.18)',color:side==='attack'?'#c0392b':'#1a5fa8',border:`1px solid ${side==='attack'?'rgba(192,57,43,.3)':'rgba(26,95,168,.3)'}`}}>{side==='attack'?'ATK':'DEF'}</span>
                     </div>
+                    {kind==='role'&&<div className="te-role-priority">{t('sim.specialRoleAction')}</div>}
                     {skill?<SkillCard skill={skill}/>:<div className="normal-atk">{locale.code==='ja'?'通常攻撃':locale.code==='ar'?'هجوم عادي':locale.code==='fr'?'Attaque normale':'Normal Attack'}</div>}
                   </div>
                 </div>
@@ -1039,6 +1030,13 @@ export function SimPage({atk:atkIds,def:defIds,atkSk,defSk,goBuilder}){
             </div>
           </div>
         ))}
+      </div>
+      <div className="sim-sec">
+        <div className="sec-hd sec-strat">{t('sim.strategySkills')}</div>
+        <div className="strat-cols">
+          <StratCol label={t('builder.attacking')} entries={st.attack} side="attack"/>
+          <StratCol label={t('builder.defending')} entries={st.defense} side="defense"/>
+        </div>
       </div>
     </div>
   )
