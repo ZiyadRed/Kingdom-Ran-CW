@@ -615,7 +615,7 @@ textarea {
 .sim-page-head h1 { font-family: 'Oswald', sans-serif; color: var(--navy); font-size: 28px; font-weight: 650; line-height: 1.05; }
 .sim-page-head p { max-width: 720px; margin-top: 5px; color: var(--txt3); font-size: 13px; line-height: 1.4; }
 .sim-page-head button { flex: 0 0 auto; min-height: 40px; padding: 0 14px; border: 1px solid var(--bdr); border-radius: var(--radius-sm); background: var(--sur); color: var(--navy); font-size: 13px; font-weight: 800; }
-.sim-page-head button:hover { border-color: var(--terra); color: var(--terra2); }
+.sim-page-head button:hover { border-color: var(--terra); color: var(--accent-action-fg); }
 .sec-hd { min-height: 46px; padding: 10px 14px; font-size: 14px; }
 .strat-cols { gap: 0; }
 .scol { border-radius: 0; }
@@ -1032,7 +1032,7 @@ textarea {
   .builder-buff-toggle > span:first-child { display: grid; gap: 1px; }
   .builder-buff-toggle strong { font-size: 12px; }
   .builder-buff-toggle small { color: var(--txt3); font-size: 10px; font-weight: 500; }
-  .builder-buff-toggle > span:last-child { color: var(--terra2); font-size: 11px; font-weight: 800; }
+  .builder-buff-toggle > span:last-child { color: var(--accent-action-fg); font-size: 11px; font-weight: 800; }
   .builder-buff-disclosure > .sim-sec { margin-top: 8px; }
   .sim-sec { border-radius: var(--radius-md); }
   .sim-page-head { position: static; align-items: flex-start; margin-bottom: 12px; padding: 13px; box-shadow: none; }

@@ -12,6 +12,12 @@
   --navy2:   #082d58;
   --terra:   #E07F48;
   --terra2:  #c4652a;
+  /* Semantic foreground for small enabled actions on RanHQ's light and
+     translucent surfaces. This is a deterministic 55% tint of --terra over
+     black, retaining the warm accent hue with WCAG-normal-text headroom. */
+  --accent-action-fg: #7b4628;
+  --accent-action-focus: var(--accent-action-fg);
+  --accent-action-focus-on-dark: var(--salmon);
   --action-bg: var(--terra);
   --action-hover-bg: #e99562;
   --action-text: var(--navy);
@@ -122,7 +128,7 @@ img { display: block; max-width: 100%; height: auto }
 .app-body { flex: 1; display: flex; flex-direction: column }
 .foot { text-align: center; padding: 1rem; border-top: 1px solid var(--bdr); color: var(--txt3); font-size: .7rem }
 .foot a { color: var(--txt3); text-decoration: underline; text-underline-offset: 2px }
-.foot a:hover { color: var(--terra2) }
+.foot a:hover { color: var(--accent-action-fg) }
 .main-page { max-width: 1400px; margin: 0 auto; padding: 1.5rem; width: 100% }
 .pg-title  { font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: .25rem }
 .pg-sub    { color: var(--txt2); font-size: .8rem; margin-bottom: 1.1rem }
@@ -385,7 +391,7 @@ img { display: block; max-width: 100%; height: auto }
 }
 .progress-tools button:hover,
 .progress-filter-group button:hover,
-.owned-toggle:hover { border-color: var(--terra); color: var(--terra2); transform: translateY(-1px) }
+.owned-toggle:hover { border-color: var(--terra); color: var(--accent-action-fg); transform: translateY(-1px) }
 .progress-filter-group { display: inline-flex; align-items: center; gap: 4px; padding: 3px; border: 1px solid var(--bdr); border-radius: 999px; background: var(--bg2) }
 .progress-filter-group button { background: transparent; border-color: transparent; padding: 5px 9px }
 .progress-filter-group button.active { background: var(--navy); border-color: var(--navy); color: #fff }
@@ -624,12 +630,14 @@ img { display: block; max-width: 100%; height: auto }
 .detail-close:hover   { background: rgba(255,255,255,.25); color: #fff }
 .detail-skills        { padding: .65rem .75rem .85rem; display: flex; flex-direction: column; gap: .6rem; overflow-y: auto; flex: 1 }
 .no-skills            { color: var(--txt3); font-style: italic; font-size: .82rem; padding: .5rem 0 }
-.share-btn            { min-height: 30px; border: 1.5px solid rgba(224,127,72,.42); border-radius: 7px; background: rgba(224,127,72,.12); color: var(--terra2); padding: .34rem .62rem; font-size: .7rem; font-weight: 900; line-height: 1; cursor: pointer; white-space: nowrap; transition: background .15s, border-color .15s, transform .1s }
+.share-btn            { min-height: 30px; border: 1.5px solid rgba(224,127,72,.42); border-radius: 7px; background: rgba(224,127,72,.12); color: var(--accent-action-fg); padding: .34rem .62rem; font-size: .7rem; font-weight: 900; line-height: 1; cursor: pointer; white-space: nowrap; transition: background .15s, border-color .15s, transform .1s }
 .share-btn:hover      { background: rgba(224,127,72,.2); border-color: rgba(224,127,72,.68) }
 .share-btn:active     { transform: scale(.97) }
+.share-btn:focus-visible { outline-color: var(--accent-action-focus) }
 .detail-header > .detail-actions > .share-btn { color: #fff; background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.25) }
 .detail-header > .detail-actions > .share-btn:hover { background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.42) }
-.share-btn:disabled     { opacity: .65; cursor: wait; transform: none }
+.detail-header > .detail-actions > .share-btn:focus-visible { outline-color: var(--accent-action-focus-on-dark) }
+.share-btn:disabled     { opacity: 1; cursor: wait; transform: none }
 .share-preview-backdrop { position: fixed; inset: 0; z-index: 600; display: flex; align-items: center; justify-content: center; padding: 22px; background: rgba(6,18,36,.72); backdrop-filter: blur(4px) }
 .share-preview          { width: min(900px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); display: flex; flex-direction: column; overflow: hidden; border-radius: 10px; border: 1.5px solid rgba(255,255,255,.18); background: var(--sur); box-shadow: 0 18px 60px rgba(0,0,0,.42) }
 .share-preview-wide     { width: min(1240px, calc(100vw - 32px)) }
@@ -659,7 +667,7 @@ img { display: block; max-width: 100%; height: auto }
 .seo-breadcrumbs li { display: inline-flex; align-items: center; min-width: 0 }
 .seo-breadcrumbs li + li::before { content: '›'; margin-inline: .38rem; color: var(--bdr2) }
 .seo-breadcrumbs a { color: var(--txt2); font-weight: 700; text-decoration: none }
-.seo-breadcrumbs a:hover { color: var(--terra2); text-decoration: underline; text-underline-offset: 2px }
+.seo-breadcrumbs a:hover { color: var(--accent-action-fg); text-decoration: underline; text-underline-offset: 2px }
 .seo-breadcrumbs [aria-current="page"] { overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
 .detail-panel > .seo-breadcrumbs { flex-shrink: 0; border-bottom: 1px solid var(--bdr); background: var(--sur2) }
 
@@ -894,14 +902,14 @@ html[dir="rtl"] .te-order { margin: .6rem .58rem .6rem 0 }
    ============================================================ */
 .cat-pills   { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .8rem }
 .cat-pill    { display: flex; align-items: center; gap: .38rem; padding: .35rem .8rem; background: var(--sur); border: 1.5px solid var(--bdr); border-radius: 20px; color: var(--txt2); font-size: .78rem; font-weight: 600 }
-.cat-pill:hover  { border-color: var(--terra); color: var(--terra2) }
+.cat-pill:hover  { border-color: var(--terra); color: var(--accent-action-fg) }
 .cat-pill.active { background: var(--terra); border-color: var(--terra); color: #fff }
 .cat-pill.active .cat-n { background: rgba(255,255,255,.25); border-color: transparent; color: #fff }
 .cat-n       { font-size: .6rem; background: var(--bg2); border: 1px solid var(--bdr); border-radius: 10px; padding: 0 5px; color: var(--txt3) }
 .stat-pills  { display: flex; align-items: center; flex-wrap: wrap; gap: .28rem; padding: .5rem .7rem; background: var(--sur); border: 1.5px solid var(--bdr); border-radius: 8px; margin-bottom: .8rem }
 .stat-lbl    { font-size: .68rem; color: var(--txt3); margin-right: .18rem }
 .stat-pill   { display: flex; align-items: center; gap: .28rem; padding: .22rem .65rem; background: var(--bg2); border: 1.5px solid var(--bdr); border-radius: 20px; color: var(--txt2); font-size: .76rem; font-weight: 600 }
-.stat-pill:hover  { border-color: var(--terra); color: var(--terra2) }
+.stat-pill:hover  { border-color: var(--terra); color: var(--accent-action-fg) }
 .stat-pill.active { background: var(--navy); border-color: var(--navy); color: #fff }
 .stat-pct    { font-size: .68rem; color: var(--gold2); font-weight: 700 }
 .stat-pill.active .stat-pct { color: var(--salmon) }
@@ -1693,7 +1701,7 @@ button { -webkit-appearance: none; appearance: none; }
 .cwstats-remove-team:hover,
 .cwstats-action-button:hover {
   border-color: var(--terra);
-  color: var(--terra2);
+  color: var(--accent-action-fg);
   background: rgba(224,127,72,.06);
 }
 .cwstats-team-list {
@@ -1876,7 +1884,7 @@ button { -webkit-appearance: none; appearance: none; }
   font-weight: 800;
 }
 .cwstats-result-add {
-  color: var(--terra2);
+  color: var(--accent-action-fg);
 }
 .cwstats-search-hint {
   padding: .7rem .55rem;
@@ -2157,18 +2165,20 @@ button { -webkit-appearance: none; appearance: none; }
   border: 1px dashed var(--terra);
   border-radius: 8px;
   background: rgba(224,127,72,.05);
-  color: var(--terra2);
+  color: var(--accent-action-fg);
   font-size: .74rem;
   font-weight: 900;
 }
 .cwstats-add-team:hover:not(:disabled) {
   background: rgba(224,127,72,.11);
 }
+.cwstats-add-team:focus-visible,
+.cwstats-search-result:focus-visible { outline-color: var(--accent-action-focus) }
 .cwstats-add-team:disabled {
   cursor: not-allowed;
   border-color: var(--bdr);
   background: transparent;
-  color: var(--txt3);
+  color: var(--txt2);
 }
 .cwstats-add-team > span {
   font-size: 1.15rem;
@@ -2437,7 +2447,7 @@ button { -webkit-appearance: none; appearance: none; }
   white-space: nowrap;
 }
 .cp-mode-tabs button:hover {
-  color: var(--terra2);
+  color: var(--accent-action-fg);
 }
 .cp-mode-tabs button.is-active {
   background: var(--navy);
@@ -2538,7 +2548,7 @@ button { -webkit-appearance: none; appearance: none; }
 .cp-soft-btn:hover,
 .cp-add-btn:hover {
   border-color: var(--terra);
-  color: var(--terra2);
+  color: var(--accent-action-fg);
 }
 .cp-table-shell {
   overflow-x: auto;
