@@ -97,7 +97,8 @@ function lookupGroup(raw) {
 /** `[General]` -> `武将`. Japanese drops the brackets; they are an English cue. */
 function renderTags(text) {
   return String(text).replace(/\[([^\]]+)\]/g, (whole, inner) => {
-    const hit = TAG_INDEX.get(inner.trim().toLowerCase())
+    const key = inner.trim().toLowerCase()
+    const hit = TAG_INDEX.get(key) || GROUP_INDEX.get(key)
     return hit || whole
   }).replace(/\s+/g, '')
 }
@@ -445,6 +446,9 @@ function renderTargetClause(text) {
     }
     const tail = tags.join('')
     if (!rest) return `${head}${tail || ''}`
+
+    const unbracketedTag = TAG_INDEX.get(rest.toLowerCase())
+    if (unbracketedTag) return `${head}${unbracketedTag}${tail}`
 
     const group = lookupGroup(rest.replace(/\s+members?$/i, ''))
     if (group) return `${head}${group}${tail || '武将'}`

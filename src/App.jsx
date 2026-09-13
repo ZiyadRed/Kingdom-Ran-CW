@@ -315,7 +315,7 @@ export default function App(){
           </div>
           <div className="foot-legal">
             <span>{t('footer.unofficial')}</span>
-            <span>© Yasuhisa Hara / Shueisha・Kingdom Production Committee ©でらゲー</span>
+            {locale.code!=='ja'&&<span>© Yasuhisa Hara / Shueisha・Kingdom Production Committee ©でらゲー</span>}
             {/* The Japanese rights notice is shown in every locale. On /ja the
                 disclaimer sentence is already rendered above, so it is not repeated. */}
             <span lang="ja">{locale.code==='ja' ? '© 原泰久／集英社・キングダム製作委員会 ©でらゲー' : '非公式ファンサイト・営利目的ではありません。 © 原泰久／集英社・キングダム製作委員会 ©でらゲー'}</span>

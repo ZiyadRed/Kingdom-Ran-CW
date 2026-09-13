@@ -113,8 +113,18 @@ describe('Japanese target rendering', () => {
     // Unlike Arabic, no transliteration risk exists here: the source names them.
     expect(renderJapaneseTarget('Ally Kanki Army')).toBe('味方桓騎軍武将')
     expect(renderJapaneseTarget('Ally Hi Shin Unit [General]')).toBe('味方飛信隊武将')
+    expect(renderJapaneseCondition('Per other ally [Hishin] [General]')).toBe('自身以外の味方飛信隊武将ごと')
+    expect(renderJapaneseTarget('Enemy Cavalry')).toBe('敵騎兵')
+    expect(renderJapaneseTarget('Enemy Qin')).toBe('敵秦国')
+    expect(renderJapaneseTarget('Enemy generals')).toBe('敵武将')
+    expect(renderJapaneseTarget('All enemies')).toBe('敵全武将')
     expect(renderJapaneseTerm('Way of The Great General')).toBe('大将軍への道')
     expect(renderJapaneseTerm('Six Great Generals')).toBe('六大将軍')
+  })
+
+  it('localizes status-infliction aggregate labels', () => {
+    expect(renderJapaneseTerm('Illusion Infliction Rate')).toBe('「幻影」付与確率')
+    expect(renderJapaneseTerm('Paralysis Infliction Rate')).toBe('「麻痺」付与確率')
   })
 })
 

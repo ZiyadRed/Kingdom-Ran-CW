@@ -143,4 +143,10 @@ describe('guide copy parity between English fallbacks and translations', () => {
   it('keeps HP Seal aligned with recovery nullification in Arabic', () => {
     expect(copy.ar.effects.items['HP Seal'].name).toBe('ختم استعادة الصحة')
   })
+
+  it('keeps the current strategist defeat penalty distinct from ordinary 錯乱', () => {
+    expect(copy.ja.leaders.roles.strategist.risk).toContain('「混乱」')
+    expect(copy.ja.types.items['軍師スキル'].description).toContain('「混乱」')
+    expect(copy.ja.effects.items.Confusion.name).toBe('錯乱')
+  })
 })

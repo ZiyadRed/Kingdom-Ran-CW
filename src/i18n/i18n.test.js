@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { getLocale } from './locales.js'
-import { i18n, initI18n } from './i18n.js'
+import { CATALOGS, i18n, initI18n } from './i18n.js'
 
 const en = getLocale('en')
 const ja = getLocale('ja')
@@ -35,6 +35,17 @@ describe('i18next initialization', () => {
     expect(i18n.language).toBe('ja')
     expect(i18n.t('common:appName')).toBe('RanHQ')
     expect(i18n.t('common:nav.archive')).toBe('アーカイブ')
+  })
+
+  it('keeps authored Japanese UI on the official skill, resource and battle-side terms', () => {
+    expect(JSON.stringify(CATALOGS.ja)).not.toContain('技能')
+    expect(CATALOGS.ja.skillEffectQualifiers).toBe('スキル効果の条件')
+    expect(CATALOGS.ja.redCrystalAlt).toBe('赤の結晶')
+    expect(CATALOGS.ja.sim.attackingSide).toBe('侵攻側')
+    expect(CATALOGS.ja.sim.defendingSide).toBe('駐屯側')
+    expect(CATALOGS.ja.breadcrumbs).toBe('パンくずリスト')
+    expect(CATALOGS.ja.shareOutput.withCombat).toBe('軍略と戦技の効果を含む。')
+    expect(CATALOGS.ja.shareOutput.strategyOnly).toBe('軍略のみ。')
   })
 
   it('initializing with French selects the French catalog with English fallback', async () => {

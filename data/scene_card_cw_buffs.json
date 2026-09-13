@@ -21,7 +21,9 @@
       "value": 7.5,
       "valueMode": "percent",
       "image": "/scene_cards/webp/Hakusui-Evasion-buff.webp",
+      "ownerId": "hakusui",
       "ownerName": "Hakusui",
+      "ownerNameJp": "白翠",
       "ownerIcon": "/icons/Hakusui.webp",
       "thumb": "/scene_cards/thumbs/Hakusui-Evasion-buff-thumb.webp",
       "starValues": [
@@ -43,7 +45,9 @@
       "value": 500,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Hanoki-Attack-buff.webp",
+      "ownerId": "hanoki",
       "ownerName": "Hanoki",
+      "ownerNameJp": "樊於期",
       "ownerIcon": "/icons/Hanoki.webp",
       "thumb": "/scene_cards/thumbs/Hanoki-Attack-buff-thumb.webp",
       "starValues": [
@@ -65,7 +69,9 @@
       "value": 500,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Rien-Defense-buff.webp",
+      "ownerId": "rien",
       "ownerName": "Rien",
+      "ownerNameJp": "李園",
       "ownerIcon": "/icons/Rien.webp",
       "thumb": "/scene_cards/thumbs/Rien-Defense-buff-thumb.webp",
       "starValues": [
@@ -87,7 +93,9 @@
       "value": 10,
       "valueMode": "percent",
       "image": "/scene_cards/webp/Kouretsu-Critical-Rate-buff.webp",
+      "ownerId": "kouretsu",
       "ownerName": "Kouretsu",
+      "ownerNameJp": "考烈王",
       "ownerIcon": "/icons/Kouretsu.webp",
       "thumb": "/scene_cards/thumbs/Kouretsu-Critical-Rate-buff-thumb.webp",
       "starValues": [
@@ -109,7 +117,9 @@
       "value": 750,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Rouai-Max-Morale-buff.webp",
+      "ownerId": "rouai",
       "ownerName": "Rouai",
+      "ownerNameJp": "嫪毐",
       "ownerIcon": "/icons/Rouai.webp",
       "thumb": "/scene_cards/thumbs/Rouai-Max-Morale-buff-thumb.webp",
       "starValues": [
@@ -131,7 +141,9 @@
       "value": 7.5,
       "valueMode": "percent",
       "image": "/scene_cards/webp/Hanroki-Evasion-buff.webp",
+      "ownerId": "hanroki",
       "ownerName": "Hanruki",
+      "ownerNameJp": "樊琉期",
       "ownerIcon": "/icons/Hanroki.webp",
       "thumb": "/scene_cards/thumbs/Hanroki-Evasion-buff-thumb.webp",
       "starValues": [
@@ -153,7 +165,9 @@
       "value": 500,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Gakurai-Defense-buff.webp",
+      "ownerId": "gakurai",
       "ownerName": "Gakurai",
+      "ownerNameJp": "岳雷",
       "ownerIcon": "/icons/Gakurai.webp",
       "thumb": "/scene_cards/thumbs/Gakurai-Defense-buff-thumb.webp",
       "starValues": [
@@ -175,7 +189,9 @@
       "value": 3000,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Karin-HP-buff.webp",
+      "ownerId": "karin",
       "ownerName": "Karin",
+      "ownerNameJp": "媧燐",
       "ownerIcon": "/icons/Karin.webp",
       "thumb": "/scene_cards/thumbs/Karin-HP-buff-thumb.webp",
       "starValues": [
@@ -197,7 +213,9 @@
       "value": 750,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Ei-Sei-Max-Morale-buff.webp",
+      "ownerId": "ei_sei",
       "ownerName": "Ei Sei",
+      "ownerNameJp": "嬴政",
       "ownerIcon": "/icons/Ei Sei.webp",
       "thumb": "/scene_cards/thumbs/Ei-Sei-Max-Morale-buff-thumb.webp",
       "starValues": [
@@ -219,7 +237,9 @@
       "value": 500,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Ei-Sei-Defense-buff.webp",
+      "ownerId": "ei_sei",
       "ownerName": "Ei Sei",
+      "ownerNameJp": "嬴政",
       "ownerIcon": "/icons/Ei Sei.webp",
       "thumb": "/scene_cards/thumbs/Ei-Sei-Defense-buff-thumb.webp",
       "starValues": [
@@ -241,7 +261,9 @@
       "value": 500,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Kanki-Attack-buff.webp",
+      "ownerId": "kanki",
       "ownerName": "Kanki",
+      "ownerNameJp": "桓騎",
       "ownerIcon": "/icons/Kanki.webp",
       "thumb": "/scene_cards/thumbs/Kanki-Attack-buff-thumb.webp",
       "starValues": [
@@ -263,7 +285,9 @@
       "value": 3000,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Kokuou-HP-buff.webp",
+      "ownerId": "kokuou",
       "ownerName": "Kokuou",
+      "ownerNameJp": "黒桜",
       "ownerIcon": "/icons/Kokuou.webp",
       "thumb": "/scene_cards/thumbs/Kokuou-HP-buff-thumb.webp",
       "starValues": [
@@ -285,7 +309,9 @@
       "value": 10,
       "valueMode": "percent",
       "image": "/scene_cards/webp/Duke-Sei-Critical-Rate-buff.webp",
+      "ownerId": "duke_sei",
       "ownerName": "Duke Sei",
+      "ownerNameJp": "青公",
       "ownerIcon": "/icons/Duke Sei.webp",
       "thumb": "/scene_cards/thumbs/Duke-Sei-Critical-Rate-buff-thumb.webp",
       "starValues": [
@@ -307,7 +333,9 @@
       "value": 750,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Shunpeikun-Max-Morale-buff.webp",
+      "ownerId": "shunpeikun",
       "ownerName": "Shunpeikun",
+      "ownerNameJp": "春平君",
       "ownerIcon": "/icons/Shunpeikun.webp",
       "thumb": "/scene_cards/thumbs/Shunpeikun-Max-Morale-buff-thumb.webp",
       "starValues": [
@@ -329,7 +357,9 @@
       "value": 500,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Kanki-Attack-buff-2.webp",
+      "ownerId": "kanki",
       "ownerName": "Kanki",
+      "ownerNameJp": "桓騎",
       "ownerIcon": "/icons/Kanki.webp",
       "thumb": "/scene_cards/thumbs/Kanki-Attack-buff-2-thumb.webp",
       "starValues": [
@@ -351,7 +381,9 @@
       "value": 3000,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Yuri-HP-buff.webp",
+      "ownerId": "yuri",
       "ownerName": "Yuri",
+      "ownerNameJp": "友里",
       "ownerIcon": "/icons/Yuri.webp",
       "thumb": "/scene_cards/thumbs/Yuri-HP-buff-thumb.webp",
       "starValues": [
@@ -373,7 +405,9 @@
       "value": 500,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Toumi-Defense-buff.webp",
+      "ownerId": "toumi",
       "ownerName": "Toubi",
+      "ownerNameJp": "東美",
       "ownerIcon": "/icons/Toumi.webp",
       "thumb": "/scene_cards/thumbs/Toumi-Defense-buff-thumb.webp",
       "starValues": [
@@ -395,7 +429,9 @@
       "value": 500,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Kyou-Attack-buff.webp",
+      "ownerId": "kyou",
       "ownerName": "Kyou",
+      "ownerNameJp": "摎",
       "ownerIcon": "/icons/Kyou.webp",
       "thumb": "/scene_cards/thumbs/Kyou-Attack-buff-thumb.webp",
       "starValues": [
@@ -417,7 +453,9 @@
       "value": 3000,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Ousen-HP-buff.webp",
+      "ownerId": "ousen",
       "ownerName": "Ousen",
+      "ownerNameJp": "王翦",
       "ownerIcon": "/icons/Ousen.webp",
       "thumb": "/scene_cards/thumbs/Ousen-HP-buff-thumb.webp",
       "starValues": [
@@ -439,7 +477,9 @@
       "value": 500,
       "valueMode": "flat",
       "image": "/scene_cards/webp/Karin-Defense-buff.webp",
+      "ownerId": "karin",
       "ownerName": "Karin",
+      "ownerNameJp": "媧燐",
       "ownerIcon": "/icons/Karin.webp",
       "thumb": "/scene_cards/thumbs/Karin-Defense-buff-thumb.webp",
       "starValues": [
@@ -461,7 +501,9 @@
       "value": 7,
       "valueMode": "percent",
       "image": "/scene_cards/webp/Kitari-Hit-Rate-buff.webp",
+      "ownerId": "kitari",
       "ownerName": "Kitari",
+      "ownerNameJp": "キタリ",
       "ownerIcon": "/icons/Kitari.webp",
       "thumb": "/scene_cards/thumbs/Kitari-Hit-Rate-buff-thumb.webp",
       "starValues": [
@@ -483,7 +525,9 @@
       "value": 5,
       "valueMode": "percent",
       "image": "/scene_cards/webp/Yuri-Attack-Down-Resistance-buff.webp",
+      "ownerId": "yuri",
       "ownerName": "Yuri",
+      "ownerNameJp": "友里",
       "ownerIcon": "/icons/Yuri.webp",
       "thumb": "/scene_cards/thumbs/Yuri-Attack-Down-Resistance-buff-thumb.webp",
       "starValues": [
@@ -505,7 +549,9 @@
       "value": 5,
       "valueMode": "percent",
       "image": "/scene_cards/webp/Shin-Defense-Down-Resistance-buff.webp",
+      "ownerId": "shin",
       "ownerName": "Shin",
+      "ownerNameJp": "信",
       "ownerIcon": "/icons/Shin.webp",
       "thumb": "/scene_cards/thumbs/Shin-Defense-Down-Resistance-buff-thumb.webp",
       "starValues": [

@@ -352,7 +352,7 @@ export function ArchivePage(){
       {/* Skills panel — desktop: right column, mobile: complete detail page */}
       {selected&&(
         <article className="detail-panel">
-          <nav className="seo-breadcrumbs" aria-label={t('archive.breadcrumbs',{defaultValue:'Breadcrumbs'})}>
+          <nav className="seo-breadcrumbs" aria-label={t('breadcrumbs')}>
             <Link to="/">{t('nav.home')}</Link>
             <span aria-hidden="true">›</span>
             <Link to="/archive">{t('nav.archive')}</Link>
@@ -919,6 +919,7 @@ export function SkillToggles({char,mask,onChange}){
   const n=mask?.n??3
   const s6on=mask?.s6!==false
   const roleOn=mask?.role===true
+  const localizedRoleSkill=roleExists?localizedSkill(char.roleSkill,char.id,-1,locale):null
   const clickNum=k=>{
     // Cascade: clicking k while n>=k => dim down to k-1; else unlock up to k.
     const nextN=n>=k?k-1:k
@@ -951,9 +952,9 @@ export function SkillToggles({char,mask,onChange}){
         <button
           className={`stog-role stog-role-${char.roleSkill.type.toLowerCase()}${roleOn?' stog-role-on':''}`}
           onClick={e=>{e.stopPropagation();toggleRole()}}
-          aria-label={`${localizedText(char.roleSkill.type,locale)} ${t('shareOutput.skill')} ${char.roleSkill.name_en} ${roleOn?t('enabled'):t('disabled')}`}
+          aria-label={`${localizedText(char.roleSkill.type,locale)} ${t('shareOutput.skill')} ${localizedRoleSkill.displayName} ${roleOn?t('enabled'):t('disabled')}`}
           aria-pressed={roleOn}
-          title={`${localizedText(char.roleSkill.type,locale)}: ${char.roleSkill.name_en}`}
+          title={`${localizedText(char.roleSkill.type,locale)}: ${localizedRoleSkill.displayName}`}
         >
           <img className="skill-toggle-art" src={ROLE_SKILL_ICON[char.roleSkill.type]} alt="" aria-hidden="true" draggable="false" decoding="async"/>
         </button>
@@ -1020,7 +1021,7 @@ export function SimPage({atk:atkIds,def:defIds,atkSk,defSk,goBuilder}){
                     <div className="te-gen">
                       <CharIcon c={general} size={38} round={true}/>
                       <div><b className="te-name">{general.displayName||general.name_en}</b>{secondaryName(general.displayName||general.name_en,general.name_jp)&&<span className="te-jp">{general.name_jp}</span>}</div>
-                      <span className="te-tag" style={{background:side==='attack'?'rgba(192,57,43,.18)':'rgba(26,95,168,.18)',color:side==='attack'?'#c0392b':'#1a5fa8',border:`1px solid ${side==='attack'?'rgba(192,57,43,.3)':'rgba(26,95,168,.3)'}`}}>{side==='attack'?'ATK':'DEF'}</span>
+                      <span className="te-tag" style={{background:side==='attack'?'rgba(192,57,43,.18)':'rgba(26,95,168,.18)',color:side==='attack'?'#c0392b':'#1a5fa8',border:`1px solid ${side==='attack'?'rgba(192,57,43,.3)':'rgba(26,95,168,.3)'}`}}>{t(side==='attack'?'sim.attackingSide':'sim.defendingSide')}</span>
                     </div>
                     {kind==='role'&&<div className="te-role-priority">{t('sim.specialRoleAction')}</div>}
                     {skill?<SkillCard skill={skill}/>:<div className="normal-atk">{locale.code==='ja'?'通常攻撃':locale.code==='ar'?'هجوم عادي':locale.code==='fr'?'Attaque normale':'Normal Attack'}</div>}

@@ -78,17 +78,17 @@ const BASE_ROUTE_SEO = {
     },
     '/archive': {
       title: 'キングダム乱 武将・追想カードアーカイブ | RanHQ',
-      description: "武将データベース、またはCW6★追想カード一覧を選んでください。 武将名や技能効果で検索し、勢力で絞り込んで、各武将の技能を確認できます。",
+      description: "武将データベース、またはCW6★追想カード一覧を選んでください。 武将名やスキル効果で検索し、勢力で絞り込んで、各武将のスキルを確認できます。",
       pageType: 'CollectionPage',
     },
     '/archive/characters': {
       title: 'キングダム乱 武将・争覇スキル一覧 | RanHQ',
-      description: 'キングダム乱の武将を日本語名・読み・ローマ字名で検索し、勢力、兵種、同盟争覇戦の技能（スキル）と効果を確認できます。',
+      description: 'キングダム乱の武将を日本語名・読み・ローマ字名で検索し、勢力、兵種、同盟争覇戦のスキルと効果を確認できます。',
       pageType: 'CollectionPage',
     },
     '/archive/cw6-scene-cards': {
-      title: 'キングダム乱 CW6★追想カード・技能一覧 | RanHQ',
-      description: 'キングダム乱のCW6★追想カードを所持武将、日本語技能名、原文、効果とともに確認できます。',
+      title: 'キングダム乱 CW6★追想カード・スキル一覧 | RanHQ',
+      description: 'キングダム乱のCW6★追想カードを所持武将、日本語スキル名、原文、効果とともに確認できます。',
       pageType: 'CollectionPage',
     },
     '/guide': {
@@ -98,7 +98,7 @@ const BASE_ROUTE_SEO = {
     },
     '/builder': {
       title: 'キングダム乱 同盟争覇戦 編成作成 | RanHQ',
-      description: 'キングダム乱の同盟争覇戦で使う攻撃・防御編成を作成し、解放技能、編成バフ、発動順を確認できます。',
+      description: 'キングダム乱の同盟争覇戦で使う侵攻側・駐屯側編成を作成し、解放スキル、編成バフ、発動順を確認できます。',
       pageType: 'WebPage',
     },
     '/castle-points': {
@@ -117,8 +117,8 @@ const BASE_ROUTE_SEO = {
       pageType: 'WebPage',
     },
     '/cost': {
-      title: 'キングダム乱 編成コスト・赤の争覇解放石計算 | RanHQ',
-      description: 'キングダム乱の武将技能解放に必要な赤の争覇解放石を計算し、4武将の育成コストを確認できます。',
+      title: 'キングダム乱 編成コスト・赤の結晶計算 | RanHQ',
+      description: 'キングダム乱の武将スキル解放に必要な赤の結晶を計算し、4武将の育成コストを確認できます。',
       pageType: 'WebPage',
     },
     '/cw-stats': {
@@ -127,8 +127,8 @@ const BASE_ROUTE_SEO = {
       pageType: 'WebPage',
     },
     '/sim': {
-      title: 'キングダム乱 同盟争覇戦の技能発動順 | RanHQ',
-      description: '編成作成で保存した攻撃・防御編成の同盟争覇戦技能の発動順を確認できます。',
+      title: 'キングダム乱 同盟争覇戦のスキル発動順 | RanHQ',
+      description: '編成作成で保存した侵攻側・駐屯側編成の同盟争覇戦スキル発動順を確認できます。',
       pageType: 'WebPage',
       robots: 'noindex,follow',
     },
@@ -284,13 +284,13 @@ const GUIDE_LABELS = {
     stats: '争覇ステータスの上げ方',
     roles: '武将の役割',
     bandits: '盗賊討伐',
-    leaders: '総大将・軍師技能',
-    crystals: '争覇解放石の種類',
+    leaders: '争覇総大将・争覇軍師スキル',
+    crystals: '解放アイテムの種類',
     debuffs: 'デバフ耐性',
     effects: '状態異常',
     matchups: '兵種相性',
     terrain: '地形効果',
-    types: '技能タイプ',
+    types: 'スキルタイプ',
     interactions: '効果の相互作用',
     targeting: '対象選択ルール',
   },
@@ -526,8 +526,8 @@ export function characterSeo(character, options = {}) {
   if (code === 'ja') {
     const identity = reading ? `${localizedName}（${reading}）` : localizedName
     const example = japaneseSkills.length ? `${japaneseSkills.slice(0, 2).join('、')}など` : ''
-    title = `${identity}｜同盟争覇戦の技能・武将データ｜キングダム乱 | RanHQ`
-    description = `${identity}${englishName !== localizedName ? `／${englishName}` : ''}のキングダム乱・同盟争覇戦データ。${example}${skillCount}技能の原文・効果${faction ? `、${faction}` : ''}を確認できます。`
+    title = `${identity}｜同盟争覇戦のスキル・武将データ｜キングダム乱 | RanHQ`
+    description = `${identity}${englishName !== localizedName ? `／${englishName}` : ''}のキングダム乱・同盟争覇戦データ。${example}${skillCount}スキルの原文・効果${faction ? `、${faction}` : ''}を確認できます。`
     breadcrumbs = [
       { name: 'ホーム', path: '/' },
       { name: 'アーカイブ', path: '/archive' },

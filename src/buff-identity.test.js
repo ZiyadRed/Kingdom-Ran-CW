@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { createHash } from 'node:crypto'
 import unitBuffs from '../data/cw_buffs.json'
+import sceneCardBuffs from '../data/scene_card_cw_buffs.json'
 import characterSourceMap from '../data/source/characters.map.json'
 import classification from '../data/character_classification.json'
 import { resolveRegularBuffCharacter } from './buff-identity.js'
@@ -84,5 +85,18 @@ describe('regular Buff Tracker character identity', () => {
     const progress = { buffSources: { [id]: true, 'unrelated:opaque': true } }
     expect(id).toBe('buff_fbc9ed824fb448a588cd091db0027196')
     expect(normalizeProgress(progress).buffSources).toEqual(progress.buffSources)
+  })
+})
+
+describe('Scene Card Buff Tracker character identity', () => {
+  it('pins every Japanese owner label to a stable source-backed character id', () => {
+    expect(sceneCardBuffs.cards).toHaveLength(23)
+    for (const card of sceneCardBuffs.cards) {
+      const character = CHAR_BY_ID[card.ownerId]
+      expect(character, `unknown ownerId on scene card ${card.id}`).toBeTruthy()
+      expect(character.name_en, `English owner mismatch on scene card ${card.id}`).toBe(card.ownerName)
+      expect(character.name_jp, `Japanese owner mismatch on scene card ${card.id}`).toBe(card.ownerNameJp)
+      expect(character.source?.characterId, `missing source characterId on scene card ${card.id}`).toBeTypeOf('number')
+    }
   })
 })
