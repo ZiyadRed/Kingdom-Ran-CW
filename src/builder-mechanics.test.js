@@ -3,14 +3,20 @@ import sourceSkillMap from '../data/source/cw_skills.map.json'
 import japaneseSkills from '../data/generated/ja/skills.json'
 import { BUILDER_MECHANIC_ROWS, BUILDER_MECHANICS } from './builder-mechanics.js'
 import {
-  ALL,
   BUFF_APPLICABILITY,
   builderMechanicCoverage,
   calcCharBuffs,
   calcTeamEnemyDebuffs,
-  findCharByName,
+  getReleaseData,
   resolveBuilderMechanic,
 } from './core.jsx'
+
+const KISUI_RELEASE_BOUNDARY=1789290000000
+const PRE_KISUI_ROSTER=getReleaseData(KISUI_RELEASE_BOUNDARY-1).ALL
+const KISUI_RELEASE_DATA=getReleaseData(KISUI_RELEASE_BOUNDARY)
+const KISUI_RELEASE_ROSTER=KISUI_RELEASE_DATA.ALL
+const AUDITED_ROSTER=KISUI_RELEASE_ROSTER
+const findAuditedCharByName=KISUI_RELEASE_DATA.findCharByName
 
 const withoutSkills=character=>({...character,skills:[],roleSkill:null})
 const publicTotals=result=>Object.fromEntries(Object.entries(result).map(([stat,bucket])=>[
@@ -27,7 +33,7 @@ const publicEnemyTotals=result=>Object.fromEntries(Object.entries(result).map(([
 ]))
 
 const locate=row=>{
-  const owner=ALL.find(character=>character.id===row.sourceKey.split('#')[0])
+  const owner=AUDITED_ROSTER.find(character=>character.id===row.sourceKey.split('#')[0])
   const found=(owner?.skills||[]).flatMap(skill=>(skill.effects||[]).map(effect=>({skill,effect})))
     .find(entry=>entry.effect.mechanicId===row.id)
   expect(owner,`owner for ${row.id}`).toBeTruthy()
@@ -70,7 +76,7 @@ describe('F03 stable Builder identity',()=>{
   })
 
   it('keeps mechanics independent of English and localized presentation wording',()=>{
-    const original=findCharByName('Shunshinkun')
+    const original=findAuditedCharByName('Shunshinkun')
     const stableSkill=original.skills.find(skill=>skill.name_en==='Peerless Leader')
     const mutated={
       ...original,
@@ -87,8 +93,8 @@ describe('F03 stable Builder identity',()=>{
       }],
       roleSkill:null,
     }
-    const target=withoutSkills(findCharByName('Gokei'))
-    const enemy=[withoutSkills(findCharByName('Shin'))]
+    const target=withoutSkills(findAuditedCharByName('Gokei'))
+    const enemy=[withoutSkills(findAuditedCharByName('Shin'))]
     const expected=calcCharBuffs(target,[scopedOwner(BUILDER_MECHANIC_ROWS.find(row=>row.sourceKey==='shunshinkun#2')) ,target],enemy,false)
     const actual=calcCharBuffs(target,[mutated,target],enemy,false)
     expect(publicTotals(actual)).toEqual(publicTotals(expected))
@@ -97,7 +103,7 @@ describe('F03 stable Builder identity',()=>{
   })
 
   it('fails closed for a declared identity that is not mapped',()=>{
-    const owner={...findCharByName('Shin'),skills:[{
+    const owner={...findAuditedCharByName('Shin'),skills:[{
       name_en:'Unknown stable row',type:'Strategy',effects:[{
         mechanicId:'cw:999999:e1',condition:null,target:'Self',effect:'ATK Up 999%',duration:null,
       }],
@@ -119,7 +125,7 @@ describe('F03 stable Builder identity',()=>{
       ...skill,
       effects:[{...effect,target:'All enemy [General]',effect:'ATK Down 999%'}],
     }],roleSkill:null}
-    const result=calcTeamEnemyDebuffs([adversarialOwner],[withoutSkills(findCharByName('Riboku'))],true,false)
+    const result=calcTeamEnemyDebuffs([adversarialOwner],[withoutSkills(findAuditedCharByName('Riboku'))],true,false)
     expect(publicEnemyTotals(result)).toEqual({})
     expect(result.meta.mechanicResolution.stable).toHaveLength(1)
     expect(result.meta.mechanicResolution.parserFallback).toHaveLength(0)
@@ -130,7 +136,7 @@ describe('F03 stable Builder identity',()=>{
       const source=sourceSkillMap.skills[sourceKey]
       expect(source.status).toBe('ambiguous')
       expect(source.skillId).toBeNull()
-      const owner=ALL.find(character=>character.id===sourceKey.split('#')[0])
+      const owner=AUDITED_ROSTER.find(character=>character.id===sourceKey.split('#')[0])
       const skill=owner.skills[Number(sourceKey.split('#')[1])]
       expect((skill.effects||[]).every(effect=>!effect.mechanicId),sourceKey).toBe(true)
     }
@@ -139,12 +145,12 @@ describe('F03 stable Builder identity',()=>{
   it('matches the compatibility parser for every migrated row across the roster corpus',()=>{
     const enemyCases=[
       [],
-      [withoutSkills(findCharByName('Shin'))],
-      [withoutSkills(findCharByName('Riboku'))],
-      [withoutSkills(findCharByName('Gokei'))],
-      [withoutSkills(findCharByName('Hakurei'))],
-      [withoutSkills(findCharByName('Ouhon'))],
-      [withoutSkills(findCharByName('Shoutaku'))],
+      [withoutSkills(findAuditedCharByName('Shin'))],
+      [withoutSkills(findAuditedCharByName('Riboku'))],
+      [withoutSkills(findAuditedCharByName('Gokei'))],
+      [withoutSkills(findAuditedCharByName('Hakurei'))],
+      [withoutSkills(findAuditedCharByName('Ouhon'))],
+      [withoutSkills(findAuditedCharByName('Shoutaku'))],
     ]
     for(const row of BUILDER_MECHANIC_ROWS){
       const stable=scopedOwner(row,true)
@@ -152,7 +158,7 @@ describe('F03 stable Builder identity',()=>{
       const mechanic=BUILDER_MECHANICS[row.id]
       const allyTarget=mechanic.recipients.some(recipient=>recipient.side==='ally')
       if(allyTarget){
-        for(const candidate of ALL){
+        for(const candidate of AUDITED_ROSTER){
           for(const enemies of enemyCases){
             for(const isDefense of [false,true]){
               const stableTarget=candidate.id===stable.id?stable:withoutSkills(candidate)
@@ -166,8 +172,8 @@ describe('F03 stable Builder identity',()=>{
           }
         }
       }else{
-        const allyCases=[[],[withoutSkills(findCharByName('Karin'))],[withoutSkills(findCharByName('Shin'))]]
-        for(const candidate of ALL){
+        const allyCases=[[],[withoutSkills(findAuditedCharByName('Karin'))],[withoutSkills(findAuditedCharByName('Shin'))]]
+        for(const candidate of AUDITED_ROSTER){
           for(const allies of allyCases){
             for(const isDefense of [false,true]){
               const stableTeam=[stable,...allies]
@@ -183,13 +189,26 @@ describe('F03 stable Builder identity',()=>{
     }
   },60000)
 
-  it('reports stable, parser fallback, unsupported and fail-closed coverage explicitly',()=>{
-    expect(builderMechanicCoverage(ALL,true)).toMatchObject({
+  it('reports coverage for named pre-Kisui and Kisui release snapshots',()=>{
+    expect(builderMechanicCoverage(PRE_KISUI_ROSTER,true)).toMatchObject({
       total:885,
       stable:44,
       parserFallback:840,
       unsupported:1,
       failClosed:0,
     })
+    expect(builderMechanicCoverage(KISUI_RELEASE_ROSTER,true)).toMatchObject({
+      total:889,
+      stable:44,
+      parserFallback:844,
+      unsupported:1,
+      failClosed:0,
+    })
+
+    const kisuiStar6=KISUI_RELEASE_ROSTER.find(character=>character.id==='kisui')
+      .skills.find(skill=>skill.star6)
+    expect(kisuiStar6.effects).toHaveLength(4)
+    expect(kisuiStar6.effects.map(effect=>resolveBuilderMechanic(effect).resolution))
+      .toEqual(['parserFallback','parserFallback','parserFallback','parserFallback'])
   })
 })
