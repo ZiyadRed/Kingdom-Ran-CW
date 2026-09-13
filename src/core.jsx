@@ -1903,5 +1903,6 @@ export function applyMask(char, mask){
   const s6 = (char.skills||[]).find(s=>s.star6)
   const skills=(m.s6&&s6)?[...base,s6]:base
   if(m.role&&char.roleSkill) skills.push(char.roleSkill)
-  return {...char, skills}
+  const hasSelectableSkills=(char.skills||[]).length>0||!!char.roleSkill
+  return {...char, skills, skillsDisabled:hasSelectableSkills&&skills.length===0}
 }

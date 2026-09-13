@@ -110,6 +110,18 @@ export function CW6SceneCardsPage(){
   })
   const ownedCount=tracker.countOwned('cw6Cards',cards.map(c=>c.id))
   const GalleryHeading=selected?'h2':'h1'
+  const selectedSkill=selected?.skill
+    ?localizedSkill({...selected.skill,cwId:selected.cwIds?.[5]},selected.owner_id,5,locale)
+    :null
+  const selectedOwnerName=selected?.ownerName
+    ?localizedCharacterName(locale.code==='ja'?(selected.ownerNameJp||selected.ownerName):selected.ownerName,locale)
+    :''
+  const selectedShareCard=selected?{
+    ...selected,
+    ownerName:selectedOwnerName,
+    skill:selectedSkill,
+    skill_en:selectedSkill?.displayName||selected.skill_en,
+  }:null
   const pickCard=card=>setSelected(selected?.id===card.id?null:card)
   const clearSelection=()=>setSelected(null)
   const sceneCardFileName=card=>card.name_en||`${card.ownerName||'Scene'} CW6 star`
@@ -195,16 +207,17 @@ export function CW6SceneCardsPage(){
             <div className="detail-actions">
               <ShareButton
                 title={`${selected.skill_en||sceneCardFileName(selected)} - RanHQ`}
-                getText={()=>formatSceneCardShare(selected,{url:sceneCardShareUrl(locale.code),labels:shareLabels})}
+                getText={()=>formatSceneCardShare(selectedShareCard,{url:sceneCardShareUrl(locale.code),labels:shareLabels})}
               />
               <SkillImageButton
                 character={{
                   ...selected,
                   name_en:selected.ownerName||selected.skill_en||sceneCardFileName(selected),
                   name_jp:selected.ownerNameJp||selected.skill_jp,
+                  displayName:selectedOwnerName||selectedSkill?.displayName,
                   icon:selected.ownerIcon,
-                  unit_type:'CW6 Scene Card',
-                  skills:selected.skill?[selected.skill]:[],
+                  unit_type:t('archive.sceneCards'),
+                  skills:selectedSkill?[selectedSkill]:[],
                 }}
                 url={sceneCardShareUrl(locale.code)}
                 label={t('archive.sceneCards')}
@@ -706,6 +719,7 @@ export function useShareLabels(){
     teamSheet:t('shareOutput.teamSheet'),
     teamSkills:t('shareOutput.teamSkills'),
     noEffects:t('shareOutput.noEffects'),
+    noSkillsSelected:t('shareOutput.noSkillsSelected'),
     translationPending:t('translationPending'),
     attackingFormation:t('buffs.attackingFormation'),
     defendingFormation:t('buffs.defendingFormation'),

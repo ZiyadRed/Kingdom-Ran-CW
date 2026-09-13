@@ -1,14 +1,64 @@
-import { classifyConditionParts } from './skillConditions.js'
+import { classifyConditionParts, splitConditionParts } from './skillConditions.js'
 import { absoluteUrl } from './seo.js'
 import { encodeBuilderShareSearch } from './builder-share.js'
 
 export const DISCORD_MESSAGE_LIMIT = 1900
 export const SKILL_IMAGE_WIDTH = 1080
 export const TEAM_IMAGE_WIDTH = 1800
-const TYPE_COLORS = {Combat:'#c0392b',Strategy:'#3d6eb5',Leader:'#e07f48',Strategist:'#16a085','Internal Affairs':'#1a8a72'}
 const FACTION_COLORS = {qin:'#c0392b',zhao:'#2471a3',chu:'#8e44ad',wei:'#d19a2a',yan:'#1a8a72',han:'#6a4fc8',ai:'#b05070',qi:'#8a6a2a',mountain_folk:'#7d8a35',other:'#888'}
 const FACTION_LABELS = {qin:'Qin',zhao:'Zhao',chu:'Chu',wei:'Wei',yan:'Yan',han:'Han',ai:'Ai',qi:'Qi',mountain_folk:'Mountain Folk',other:'Other'}
 const displayName=entity=>entity?.displayName||entity?.name_en||entity?.name||''
+
+/**
+ * Shared semantic design tokens for every generated PNG. Skill/faction colors
+ * are accents only; readable foregrounds are selected independently.
+ */
+export const SHARE_IMAGE_TOKENS=Object.freeze({
+  colors:Object.freeze({
+    parchment:'#f7efe3',navy:'#08294f',navyRaised:'#102f54',skillSurface:'#fffdf8',
+    effectSurface:'#fff9f0',border:'#d8c5a8',text:'#102a43',secondary:'#5f513f',
+    sourceOnDark:'#c8d6e5',metaOnDark:'#e5edf5',condition:'#6f3b17',
+    conditionSurface:'#f4ddc9',conditionBorder:'#d9955f',duration:'#594b3b',
+    brand:'#75502d',attack:'#b9342b',defense:'#235e9a',cw6:'#b98516',cw6Surface:'#f5dda0',
+  }),
+  spacing:Object.freeze({xs:6,sm:10,md:16,lg:24,xl:32}),
+  radius:Object.freeze({badge:6,effect:9,skill:14,column:14}),
+})
+
+const SKILL_TYPE_VISUALS=Object.freeze({
+  Combat:Object.freeze({accent:'#b9342b',badge:'#f4d9d6',text:'#6f1d18'}),
+  Strategy:Object.freeze({accent:'#3d6eb5',badge:'#dce8f7',text:'#173f73'}),
+  Leader:Object.freeze({accent:'#c76530',badge:'#f7dfd2',text:'#693013'}),
+  Strategist:Object.freeze({accent:'#16806e',badge:'#d9eee9',text:'#0c5145'}),
+  'Internal Affairs':Object.freeze({accent:'#167460',badge:'#d8ece7',text:'#0b4b3e'}),
+})
+const UNKNOWN_SKILL_VISUAL=Object.freeze({accent:'#687386',badge:'#e5e9ef',text:'#303a49'})
+
+export function skillTypeVisual(type){
+  return SKILL_TYPE_VISUALS[type]||UNKNOWN_SKILL_VISUAL
+}
+
+const hexRgb=hex=>{
+  const value=String(hex||'').replace('#','')
+  if(!/^[0-9a-f]{3}(?:[0-9a-f]{3})?$/i.test(value)) return null
+  const full=value.length===3?value.split('').map(part=>part+part).join(''):value
+  const number=parseInt(full,16)
+  return[(number>>16)&255,(number>>8)&255,number&255]
+}
+export function contrastRatio(foreground,background){
+  const luminance=color=>{
+    const rgb=hexRgb(color)
+    if(!rgb) return 0
+    return rgb.map(value=>{
+      const channel=value/255
+      return channel<=.03928?channel/12.92:((channel+.055)/1.055)**2.4
+    }).reduce((sum,value,index)=>sum+value*[.2126,.7152,.0722][index],0)
+  }
+  const a=luminance(foreground),b=luminance(background)
+  return(Math.max(a,b)+.05)/(Math.min(a,b)+.05)
+}
+
+export const shareEffectBodyColor=()=>SHARE_IMAGE_TOKENS.colors.text
 
 /**
  * The Japanese line under a name exists to pair the localized name with the
@@ -41,6 +91,7 @@ export const DEFAULT_SHARE_LABELS={
   teamSkills:'RanHQ Team Skills',
   noEffects:'No translated effects yet.',
   translationPending:'Translation pending',
+  noSkillsSelected:'No skills selected',
   attackingFormation:'Attacking Formation',
   defendingFormation:'Defending Formation',
   duration:'Duration',
@@ -130,11 +181,14 @@ export function sceneCardShareUrl(localeCode='en'){
 
 export async function createCharacterSkillsImage(character,{url=characterShareUrl(character),labels}={}){
   const L=withLabels(labels)
+  // URLs remain part of text/link sharing, but are deliberately excluded from
+  // generated image chrome. Keep the option for API compatibility.
+  void url
   if(typeof document==='undefined') throw new Error('Image rendering requires a browser.')
   const measureCanvas=document.createElement('canvas')
   const measure=measureCanvas.getContext('2d')
   applyDirection(measure,L)
-  const layout=buildCharacterImageLayout(measure,character,url,L)
+  const layout=buildCharacterImageLayout(measure,character,L)
   const scale=Math.max(2,Math.min(3,window.devicePixelRatio||2))
   const canvas=document.createElement('canvas')
   canvas.width=layout.width*scale
@@ -144,22 +198,23 @@ export async function createCharacterSkillsImage(character,{url=characterShareUr
   const ctx=canvas.getContext('2d')
   ctx.scale(scale,scale)
   applyDirection(ctx,L)
-  await drawCharacterSkillsImage(ctx,layout,character,url,L)
+  await drawCharacterSkillsImage(ctx,layout,character,L)
   const blob=await canvasToBlob(canvas)
   return {
     blob,
-    fileName:`${safeFileName(displayName(character)||'ranhq-skills')}-skills.png`,
+    fileName:`${safeFileName(displayName(character)||'ranhq-skills')}-skills.png`,layout,
   }
 }
 
 export async function createTeamSkillsImage({team=[],title,side='team',url=builderShareUrl(),labels}={}){
   const L=withLabels(labels)
+  void url
   if(typeof document==='undefined') throw new Error('Image rendering requires a browser.')
   const members=(team||[]).filter(Boolean).slice(0,4)
   const measureCanvas=document.createElement('canvas')
   const measure=measureCanvas.getContext('2d')
   applyDirection(measure,L)
-  const layout=buildTeamImageLayout(measure,members,{title:title||L.teamSkills,side,url,labels:L})
+  const layout=buildTeamImageLayout(measure,members,{title:title||L.teamSkills,side,labels:L})
   const scale=Math.max(1.25,Math.min(2,window.devicePixelRatio||1.5))
   const canvas=document.createElement('canvas')
   canvas.width=Math.ceil(layout.width*scale)
@@ -169,11 +224,11 @@ export async function createTeamSkillsImage({team=[],title,side='team',url=build
   const ctx=canvas.getContext('2d')
   ctx.scale(scale,scale)
   applyDirection(ctx,L)
-  await drawTeamSkillsImage(ctx,layout,{title:title||L.teamSkills,side,url,labels:L})
+  await drawTeamSkillsImage(ctx,layout,{title:title||L.teamSkills,side,labels:L})
   const blob=await canvasToBlob(canvas)
   return {
     blob,
-    fileName:`${safeFileName(title||side||'ranhq-team')}-skills.png`,
+    fileName:`${safeFileName(title||side||'ranhq-team')}-skills.png`,layout,
   }
 }
 
@@ -405,44 +460,94 @@ function fmt(value){
   return Number.isInteger(value)?String(value):value.toFixed(1)
 }
 
-function buildCharacterImageLayout(ctx,character,url,L=DEFAULT_SHARE_LABELS){
+const IMAGE_FONT='Segoe UI, Meiryo, sans-serif'
+const MONO_FONT='Consolas, monospace'
+const CHARACTER_HEADER_HEIGHT=178
+
+/**
+ * Build the complete character-image geometry. This is intentionally public:
+ * rendering tests can exercise the same measured contract without pixel OCR.
+ */
+export function buildCharacterImageLayout(ctx,character,labels=DEFAULT_SHARE_LABELS){
+  const L=withLabels(labels)
   const width=SKILL_IMAGE_WIDTH
   const margin=44
   const cardWidth=width-(margin*2)
-  const skills=characterSkillsWithRole(character)
+  const rtl=L.direction==='rtl'
+  const portrait={x:rtl?width-margin-96:margin,y:48,w:96,h:96}
+  const profileX=rtl?margin:margin+118
+  const profileWidth=cardWidth-118
+  const profileAnchor=rtl?'right':'left'
+  const labelBlock=measureTextBlock(ctx,L.skillCard,{
+    x:profileX,y:15,w:profileWidth,font:`900 18px ${IMAGE_FONT}`,lineHeight:22,align:rtl?'left':'right',maxLines:1,
+  })
+  const nameBlock=measureTextBlock(ctx,displayName(character)||L.unknown,{
+    x:profileX,y:46,w:profileWidth,font:`950 36px ${IMAGE_FONT}`,lineHeight:40,align:profileAnchor,maxLines:2,
+  })
+  const sourceText=sourceLine(displayName(character),character?.name_jp)
+  const sourceBlock=sourceText?measureTextBlock(ctx,sourceText,{
+    x:profileX,y:Math.min(126,nameBlock.y+nameBlock.h+4),w:profileWidth,font:`700 18px ${IMAGE_FONT}`,lineHeight:22,align:profileAnchor,maxLines:1,
+  }):null
+  const metaText=[term(L,factionLabel(character?.country)),term(L,character?.unit_type)].filter(Boolean).join(' / ')
+  const metaBlock=measureTextBlock(ctx,metaText,{
+    x:profileX,y:148,w:profileWidth,font:`800 16px ${IMAGE_FONT}`,lineHeight:20,align:profileAnchor,maxLines:1,
+  })
+  const profile={portrait,labelBlock,nameBlock,sourceBlock,metaBlock,anchor:profileAnchor}
+
   const skillLayouts=[]
-  let y=190
-  skills.forEach(skill=>{
-    const skillLayout=measureSkill(ctx,skill,cardWidth,L)
-    skillLayout.y=y
+  let y=CHARACTER_HEADER_HEIGHT+24
+  characterSkillsWithRole(character).forEach((skill,index)=>{
+    const skillLayout=buildSkillCardLayout(ctx,skill,{x:margin,y,width:cardWidth,mode:'character',labels:L,index})
     skillLayouts.push(skillLayout)
     y+=skillLayout.height+18
   })
-  if(!skills.length) y+=72
-  y+=70
-  return {width,height:y,margin,cardWidth,skillLayouts,url}
+  let empty=null
+  if(!skillLayouts.length){
+    empty=measureEmptyState(ctx,{x:margin,y,w:cardWidth,h:82,text:L.translationPending,labels:L,fontSize:18})
+    y+=empty.h+18
+  }
+  const footerHeight=54
+  const height=y+footerHeight
+  return {kind:'character',width,height,margin,cardWidth,headerHeight:CHARACTER_HEADER_HEIGHT,profile,skillLayouts,empty,footerHeight,labels:L,character}
 }
 
-function buildTeamImageLayout(ctx,members,{title,side,url,labels:L=DEFAULT_SHARE_LABELS}){
+/** Build the shared team-image geometry used for attack and defense exports. */
+export function buildTeamImageLayout(ctx,members,{title,side,labels=DEFAULT_SHARE_LABELS}={}){
+  const L=withLabels(labels)
   const width=TEAM_IMAGE_WIDTH
   const margin=28
   const gap=18
-  const headerHeight=122
   const footerHeight=52
   const count=Math.max(1,Math.min(4,members.length||1))
   const presentation=teamImagePresentationLayout({count,direction:L.direction,width,margin,gap})
-  const {colWidth}=presentation
-  const memberLayouts=members.map((member,index)=>{
-    const layout=measureTeamMember(ctx,member,colWidth,L)
-    layout.x=presentation.columnX[index]
-    layout.y=headerHeight+24
-    return layout
+  const rtl=L.direction==='rtl'
+  const headerTitle=measureTextBlock(ctx,title||L.teamSkills,{
+    x:margin,y:42,w:width-(margin*2),font:`950 34px ${IMAGE_FONT}`,lineHeight:38,align:rtl?'right':'left',maxLines:2,
   })
-  const columnHeight=Math.max(...memberLayouts.map(layout=>layout.height),240)
-  const height=headerHeight+24+columnHeight+footerHeight+margin
-  const sideColor=side==='attack'?'#c0392b':side==='defense'?'#1a5fa8':'#e07f48'
   const subtitle=members.length?members.map(member=>displayName(member)).join(' / '):L.noGenerals
-  return {width,height,margin,gap,headerHeight,footerHeight,colWidth,columnHeight,memberLayouts,title,url,sideColor,subtitle,...presentation}
+  const subtitleBlock=measureTextBlock(ctx,subtitle,{
+    x:margin,y:headerTitle.y+headerTitle.h+5,w:width-(margin*2),font:`800 17px ${IMAGE_FONT}`,lineHeight:22,align:rtl?'right':'left',maxLines:2,
+  })
+  const headerHeight=Math.max(136,subtitleBlock.y+subtitleBlock.h+18)
+  const brandBlock=measureTextBlock(ctx,L.partyBuilder,{
+    x:margin,y:12,w:width-(margin*2),font:`900 17px ${IMAGE_FONT}`,lineHeight:21,align:rtl?'left':'right',maxLines:1,
+  })
+  const memberLayouts=members.map((member,index)=>buildTeamMemberLayout(ctx,member,{
+    x:presentation.columnX[index],y:headerHeight+24,width:presentation.colWidth,labels:L,index,
+  }))
+  const columnHeight=Math.max(240,...memberLayouts.map(layout=>layout.height))
+  memberLayouts.forEach(layout=>{
+    layout.height=columnHeight
+    layout.box.h=columnHeight
+  })
+  const teamEmpty=members.length?null:measureEmptyState(ctx,{x:margin,y:headerHeight+24,w:width-(margin*2),h:180,text:L.noGenerals,labels:L,fontSize:20})
+  const contentHeight=teamEmpty?.h||columnHeight
+  const height=headerHeight+24+contentHeight+footerHeight+margin
+  const sideColor=side==='attack'?SHARE_IMAGE_TOKENS.colors.attack:side==='defense'?SHARE_IMAGE_TOKENS.colors.defense:SKILL_TYPE_VISUALS.Leader.accent
+  return {
+    kind:'team',width,height,margin,gap,headerHeight,footerHeight,colWidth:presentation.colWidth,columnHeight,
+    memberLayouts,title:title||L.teamSkills,sideColor,subtitle,subtitleBlock,headerTitle,brandBlock,teamEmpty,labels:L,...presentation,
+  }
 }
 
 /** Pure geometry contract used by canvas rendering and RTL regression tests. */
@@ -463,356 +568,441 @@ export function teamImagePresentationLayout({count,direction='ltr',width=TEAM_IM
   }
 }
 
-function measureTeamMember(ctx,member,width,L=DEFAULT_SHARE_LABELS){
-  const inner=width-28
-  const headerHeight=112
-  const skills=member?.skills||[]
+function buildTeamMemberLayout(ctx,member,{x,y,width,labels,index}){
+  const L=withLabels(labels)
+  const rtl=L.direction==='rtl'
+  const padding=14
+  const profileHeight=124
+  const portrait={x:rtl?x+width-82:x+16,y:y+18,w:66,h:66}
+  const textX=rtl?x+16:x+94
+  const textWidth=width-110
+  const textAlign=rtl?'right':'left'
+  const nameBlock=measureTextBlock(ctx,displayName(member)||L.unknown,{
+    x:textX,y:y+18,w:textWidth,font:`950 19px ${IMAGE_FONT}`,lineHeight:22,align:textAlign,maxLines:2,
+  })
+  const sourceText=sourceLine(displayName(member),member?.name_jp)
+  const sourceBlock=sourceText?measureTextBlock(ctx,sourceText,{
+    x:textX,y:y+64,w:textWidth,font:`700 12px ${IMAGE_FONT}`,lineHeight:15,align:textAlign,maxLines:1,
+  }):null
+  const metaBlock=measureTextBlock(ctx,[term(L,factionLabel(member?.country)),term(L,member?.unit_type)].filter(Boolean).join(' / '),{
+    x:x+16,y:y+94,w:width-32,font:`800 11px ${IMAGE_FONT}`,lineHeight:15,align:textAlign,maxLines:1,
+  })
   const skillLayouts=[]
-  let y=headerHeight+14
-  skills.forEach((skill,index)=>{
-    const skillLayout=measureTeamSkill(ctx,skill,inner,index,L)
-    skillLayout.x=14
-    skillLayout.y=y
+  let cursorY=y+profileHeight+14
+  ;(member?.skills||[]).forEach((skill,skillIndex)=>{
+    const skillLayout=buildSkillCardLayout(ctx,skill,{x:x+padding,y:cursorY,width:width-(padding*2),mode:'team',labels:L,index:skillIndex})
     skillLayouts.push(skillLayout)
-    y+=skillLayout.height+9
+    cursorY+=skillLayout.height+10
   })
-  if(!skills.length) y+=56
-  y+=14
-  return {member,width,height:y,skillLayouts,headerHeight,labels:L}
+  const emptyText=member?.skillsDisabled?L.noSkillsSelected:L.translationPending
+  const empty=skillLayouts.length?null:measureEmptyState(ctx,{x:x+padding,y:cursorY,w:width-(padding*2),h:58,text:emptyText,labels:L,fontSize:14})
+  if(empty) cursorY+=empty.h+10
+  const height=cursorY-y+padding
+  return {
+    kind:'member',x,y,width,height,index,member,labels:L,box:{x,y,w:width,h:height},profileHeight,
+    portrait,nameBlock,sourceBlock,metaBlock,skillLayouts,empty,
+  }
 }
 
-function measureTeamSkill(ctx,skill,width,index,L=DEFAULT_SHARE_LABELS){
-  const inner=width-22
-  const titleLines=wrapText(ctx,teamSkillTitle(skill,index,L),inner-62,'900 16px Segoe UI, Meiryo, sans-serif')
-  const skillSource=sourceLine(displayName(skill),skill.name_jp)
-  const jpLines=skillSource?wrapText(ctx,skillSource,inner,'700 11px Segoe UI, Meiryo, sans-serif').slice(0,2):[]
-  const headingHeight=14+(titleLines.length*19)+(jpLines.length*14)+10
-  const effects=skillEffects(skill).map(effect=>{
-    const conditionLines=classifyConditionParts(effect.condition).flatMap(chip=>
-      wrapText(ctx,`${chipLabel(L,chip)}: ${chip.text}`,inner-18,'700 11px Segoe UI, Meiryo, sans-serif')
-    )
-    const bodyLines=wrapText(ctx,formatEffectCompact(effect,L),inner-18,'800 13px Segoe UI, Meiryo, sans-serif')
-    const durationLines=effect.duration?wrapText(ctx,`${L.duration}: ${effect.duration}`,inner-18,'700 10px Consolas, monospace'):[]
-    const height=10+(conditionLines.length*14)+(conditionLines.length?4:0)+(bodyLines.length*17)+(durationLines.length?14:0)+8
-    return {effect,conditionLines,bodyLines,durationLines,height}
+function buildSkillCardLayout(ctx,skill,{x,y,width,mode,labels,index}){
+  const L=withLabels(labels)
+  const rtl=L.direction==='rtl'
+  const compact=mode==='team'
+  const pad=compact?14:22
+  const gap=compact?8:12
+  const badgeFont=`900 ${compact?10:14}px ${IMAGE_FONT}`
+  const badgeLineHeight=compact?13:18
+  const typeVisual=skillTypeVisual(skill?.type)
+  const badges=[{
+    id:'type',text:term(L,skill?.type)||skill?.type||L.skill,bg:typeVisual.badge,fg:typeVisual.text,border:typeVisual.accent,
+  }]
+  if(skill?.star6) badges.push({id:'cw6',text:L.star6,bg:SHARE_IMAGE_TOKENS.colors.cw6Surface,fg:'#624400',border:SHARE_IMAGE_TOKENS.colors.cw6})
+  const badgeLayout=measureBadgeFlow(ctx,badges,{
+    x:x+pad,y:y+pad,w:width-(pad*2),font:badgeFont,lineHeight:badgeLineHeight,direction:L.direction,gap:compact?6:8,
   })
-  const effectsHeight=effects.length?effects.reduce((sum,e)=>sum+e.height+6,0)+4:42
-  return {skill,width,height:headingHeight+effectsHeight,titleLines,jpLines,effects,headingHeight,labels:L}
+  const titleFont=`900 ${compact?16:24}px ${IMAGE_FONT}`
+  const titleLineHeight=compact?19:29
+  const titleText=compact?teamSkillTitle(skill,index,L):(displayName(skill)||L.unnamedSkill)
+  const titleBlock=measureTextBlock(ctx,titleText,{
+    x:x+pad,y:badgeLayout.y+badgeLayout.h+gap,w:width-(pad*2),font:titleFont,lineHeight:titleLineHeight,align:rtl?'right':'left',
+  })
+  const sourceText=sourceLine(displayName(skill),skill?.name_jp)
+  const sourceBlock=sourceText?measureTextBlock(ctx,sourceText,{
+    x:x+pad,y:titleBlock.y+titleBlock.h+(compact?3:5),w:width-(pad*2),font:`700 ${compact?11:16}px ${IMAGE_FONT}`,
+    lineHeight:compact?14:20,align:rtl?'right':'left',maxLines:2,
+  }):null
+  const headerBottom=(sourceBlock?sourceBlock.y+sourceBlock.h:titleBlock.y+titleBlock.h)+pad
+  const header={x,y,w:width,h:headerBottom-y}
+  const effects=[]
+  let cursorY=headerBottom+gap
+  pairedSkillEffects(skill).forEach(pair=>{
+    const effect=measureEffectLayout(ctx,pair,{x:x+pad,y:cursorY,width:width-(pad*2),mode,labels:L})
+    effects.push(effect)
+    cursorY+=effect.h+gap
+  })
+  const noEffects=effects.length?null:measureTextBlock(ctx,L.noEffects,{
+    x:x+pad,y:cursorY+8,w:width-(pad*2),font:`700 ${compact?13:20}px ${IMAGE_FONT}`,lineHeight:compact?17:25,align:rtl?'right':'left',maxLines:2,
+  })
+  if(noEffects) cursorY=noEffects.y+noEffects.h+pad
+  else cursorY+=Math.max(0,pad-gap)
+  const height=cursorY-y
+  return {
+    kind:'skill',x,y,width,height,box:{x,y,w:width,h:height},mode,skill,labels:L,typeVisual,header,
+    badgeLayout,titleBlock,sourceBlock,effects,noEffects,
+  }
 }
 
-function measureSkill(ctx,skill,width,L=DEFAULT_SHARE_LABELS){
-  const inner=width-40
-  let h=70
-  const effects=skillEffects(skill)
-  const measuredEffects=effects.map(effect=>{
-    const qualifierLines=classifyConditionParts(effect.condition).flatMap(chip=>wrapText(ctx,`${chipLabel(L,chip)}: ${chip.text}`,inner-28,'700 18px Segoe UI, Meiryo, sans-serif'))
-    const bodyText=[effect.target||L.effect,'->',effect.effect||L.translationPending].join(' ')
-    const bodyLines=wrapText(ctx,bodyText,inner-28,'800 24px Segoe UI, Meiryo, sans-serif')
-    const durationLines=effect.duration?wrapText(ctx,effect.duration,inner-28,'700 17px Consolas, monospace'):[]
-    const height=22+(qualifierLines.length*24)+(qualifierLines.length?8:0)+(bodyLines.length*30)+(durationLines.length?26:0)+18
-    return {effect,qualifierLines,bodyLines,durationLines,height}
-  })
-  h+=measuredEffects.reduce((sum,e)=>sum+e.height+10,0)
-  if(!effects.length) h+=48
-  return {skill,measuredEffects,height:h,width,labels:L}
+function pairedSkillEffects(skill){
+  const source=skill?.effects||[]
+  const display=skill?.displayEffects||source
+  return display.map((effect,index)=>({effect,source:source[index]||effect,index}))
 }
 
-async function drawCharacterSkillsImage(ctx,layout,character,url,L=DEFAULT_SHARE_LABELS){
-  const {width,height,margin,cardWidth}=layout
-  const factionColor=FACTION_COLORS[character?.country]||'#7a4a24'
-  ctx.fillStyle='#f7efe3'
+function localizedConditionChips(pair){
+  const sourceChips=classifyConditionParts(pair?.source?.condition)
+  const displayParts=splitConditionParts(pair?.effect?.condition)
+  if(!sourceChips.length) return classifyConditionParts(pair?.effect?.condition)
+  return sourceChips.map((chip,index)=>({...chip,text:displayParts[index]||chip.text}))
+}
+
+function measureEffectLayout(ctx,pair,{x,y,width,mode,labels}){
+  const L=withLabels(labels)
+  const compact=mode==='team'
+  const rtl=L.direction==='rtl'
+  const pad=compact?12:16
+  const contentX=x+pad+(compact?10:0)
+  const contentW=width-(pad*2)-(compact?10:0)
+  const align=rtl?'right':'left'
+  let cursorY=y+pad
+  const conditionFont=`700 ${compact?11:17}px ${IMAGE_FONT}`
+  const conditionLineHeight=compact?14:22
+  const conditionBlocks=localizedConditionChips(pair).map(chip=>{
+    const block=measureTextBlock(ctx,`${chipLabel(L,chip)}: ${chip.text}`,{
+      x:contentX,y:cursorY,w:contentW,font:conditionFont,lineHeight:conditionLineHeight,align,
+    })
+    block.semanticKind=chip.kind
+    cursorY+=block.h+(compact?3:5)
+    return block
+  })
+  if(conditionBlocks.length) cursorY+=compact?2:4
+  const bodyFont=`800 ${compact?13:22}px ${IMAGE_FONT}`
+  const bodyLineHeight=compact?17:28
+  const bodyBlock=measureTextBlock(ctx,formatEffectCompact(pair.effect,L),{
+    x:contentX,y:cursorY,w:contentW,font:bodyFont,lineHeight:bodyLineHeight,align,
+  })
+  cursorY+=bodyBlock.h
+  const durationText=pair.effect?.duration?`${L.duration}: ${pair.effect.duration}`:''
+  const durationBlock=durationText?measureTextBlock(ctx,durationText,{
+    x:contentX,y:cursorY+(compact?2:5),w:contentW,font:`700 ${compact?10:16}px ${MONO_FONT}`,
+    lineHeight:compact?14:21,align,
+  }):null
+  if(durationBlock) cursorY=durationBlock.y+durationBlock.h
+  const h=cursorY-y+pad
+  return {kind:'effect',x,y,w:width,h,box:{x,y,w:width,h},pair,conditionBlocks,bodyBlock,durationBlock,mode,labels:L}
+}
+
+function measureTextBlock(ctx,text,{x,y,w,font,lineHeight,align='left',maxLines=Infinity}){
+  const lines=wrapText(ctx,text,w,font).slice(0,maxLines)
+  return {kind:'text',text:String(text||''),x,y,w,h:lines.length*lineHeight,lines,font,lineHeight,align}
+}
+
+function measureEmptyState(ctx,{x,y,w,h,text,labels,fontSize=16}){
+  const rtl=labels?.direction==='rtl'
+  const block=measureTextBlock(ctx,text,{
+    x:x+18,y:y+18,w:w-36,font:`800 ${fontSize}px ${IMAGE_FONT}`,lineHeight:fontSize+5,align:rtl?'right':'left',
+  })
+  return {kind:'empty',x,y,w,h,text,block}
+}
+
+function measureBadgeFlow(ctx,badges,{x,y,w,font,lineHeight,direction='ltr',gap=8}){
+  const maxBadgeWidth=Math.max(40,w)
+  const measured=badges.map(badge=>{
+    const lines=wrapText(ctx,badge.text,Math.max(20,maxBadgeWidth-20),font)
+    ctx.font=font
+    const textWidth=Math.max(0,...lines.map(line=>ctx.measureText(line).width))
+    return {...badge,lines,font,lineHeight,w:Math.min(maxBadgeWidth,Math.ceil(textWidth)+20),h:(lines.length*lineHeight)+10}
+  })
+  const rows=[]
+  let row=[]
+  let used=0
+  measured.forEach(item=>{
+    if(row.length&&used+gap+item.w>w){ rows.push(row); row=[]; used=0 }
+    row.push(item)
+    used+=item.w+(row.length>1?gap:0)
+  })
+  if(row.length) rows.push(row)
+  let cursorY=y
+  const items=[]
+  rows.forEach(rowItems=>{
+    const rowHeight=Math.max(...rowItems.map(item=>item.h))
+    if(direction==='rtl'){
+      let cursorX=x+w
+      rowItems.forEach(item=>{
+        cursorX-=item.w
+        items.push({...item,x:cursorX,y:cursorY+(rowHeight-item.h)/2})
+        cursorX-=gap
+      })
+    }else{
+      let cursorX=x
+      rowItems.forEach(item=>{
+        items.push({...item,x:cursorX,y:cursorY+(rowHeight-item.h)/2})
+        cursorX+=item.w+gap
+      })
+    }
+    cursorY+=rowHeight+gap
+  })
+  return {kind:'badges',x,y,w,h:Math.max(0,cursorY-y-gap),items}
+}
+
+/** Return layout-boundary and sibling-overlap failures for deterministic QA. */
+export function inspectShareImageLayout(layout){
+  const issues=[]
+  const root={x:0,y:0,w:layout?.width||0,h:layout?.height||0}
+  const within=(child,parent,label)=>{
+    if(!child) return
+    if(child.x<parent.x-.01||child.y<parent.y-.01||child.x+child.w>parent.x+parent.w+.01||child.y+child.h>parent.y+parent.h+.01){
+      issues.push(`${label} escapes its measured parent`)
+    }
+  }
+  const disjoint=(items,label)=>{
+    for(let i=0;i<items.length;i+=1){
+      for(let j=i+1;j<items.length;j+=1){
+        if(rectsIntersect(items[i],items[j])) issues.push(`${label} ${i+1} overlaps ${j+1}`)
+      }
+    }
+  }
+  const inspectSkill=(skill,label)=>{
+    within(skill.box,root,`${label} card`)
+    skill.badgeLayout.items.forEach((badge,index)=>within(badge,skill.header,`${label} badge ${index+1}`))
+    within(skill.titleBlock,skill.header,`${label} title`)
+    within(skill.sourceBlock,skill.header,`${label} source`)
+    disjoint([...skill.badgeLayout.items,skill.titleBlock,...(skill.sourceBlock?[skill.sourceBlock]:[])],`${label} header item`)
+    disjoint(skill.effects.map(effect=>effect.box),`${label} effect`)
+    skill.effects.forEach((effect,index)=>{
+      within(effect.box,skill.box,`${label} effect ${index+1}`)
+      const blocks=[...effect.conditionBlocks,effect.bodyBlock,...(effect.durationBlock?[effect.durationBlock]:[])]
+      blocks.forEach((block,blockIndex)=>within(block,effect.box,`${label} effect ${index+1} block ${blockIndex+1}`))
+      disjoint(blocks,`${label} effect ${index+1} block`)
+    })
+    within(skill.noEffects,skill.box,`${label} empty state`)
+  }
+  if(layout?.kind==='character'){
+    within(layout.profile.portrait,root,'character portrait')
+    ;[layout.profile.labelBlock,layout.profile.nameBlock,layout.profile.sourceBlock,layout.profile.metaBlock].filter(Boolean).forEach((block,index)=>within(block,root,`character header ${index+1}`))
+    disjoint(layout.skillLayouts.map(skill=>skill.box),'character skill')
+    layout.skillLayouts.forEach((skill,index)=>inspectSkill(skill,`character skill ${index+1}`))
+    within(layout.empty,root,'character empty state')
+    if(layout.empty) within(layout.empty.block,layout.empty,'character empty text')
+  }else if(layout?.kind==='team'){
+    within(layout.headerTitle,root,'team title')
+    within(layout.subtitleBlock,root,'team subtitle')
+    within(layout.brandBlock,root,'team brand')
+    disjoint(layout.memberLayouts.map(member=>member.box),'team member')
+    layout.memberLayouts.forEach((member,memberIndex)=>{
+      within(member.box,root,`team member ${memberIndex+1}`)
+      within(member.portrait,member.box,`team member ${memberIndex+1} portrait`)
+      ;[member.nameBlock,member.sourceBlock,member.metaBlock,member.empty].filter(Boolean).forEach((block,index)=>within(block,member.box,`team member ${memberIndex+1} item ${index+1}`))
+      if(member.empty) within(member.empty.block,member.empty,`team member ${memberIndex+1} empty text`)
+      disjoint(member.skillLayouts.map(skill=>skill.box),`team member ${memberIndex+1} skill`)
+      member.skillLayouts.forEach((skill,index)=>inspectSkill(skill,`team member ${memberIndex+1} skill ${index+1}`))
+    })
+    within(layout.teamEmpty,root,'team empty state')
+    if(layout.teamEmpty) within(layout.teamEmpty.block,layout.teamEmpty,'team empty text')
+  }
+  return {ok:issues.length===0,issues}
+}
+
+/** Visible strings in paint order, excluding non-rendered layout metadata. */
+export function shareImagePaintText(layout){
+  const text=[]
+  const add=block=>{ if(block?.lines) text.push(...block.lines) }
+  const addSkill=skill=>{
+    skill.badgeLayout.items.forEach(add)
+    add(skill.titleBlock)
+    add(skill.sourceBlock)
+    skill.effects.forEach(effect=>{
+      effect.conditionBlocks.forEach(add)
+      add(effect.bodyBlock)
+      add(effect.durationBlock)
+    })
+    add(skill.noEffects)
+  }
+  if(layout?.kind==='character'){
+    add(layout.profile.labelBlock)
+    add(layout.profile.nameBlock)
+    add(layout.profile.sourceBlock)
+    add(layout.profile.metaBlock)
+    layout.skillLayouts.forEach(addSkill)
+    add(layout.empty?.block)
+  }else if(layout?.kind==='team'){
+    add(layout.brandBlock)
+    add(layout.headerTitle)
+    add(layout.subtitleBlock)
+    layout.memberLayouts.forEach(member=>{
+      add(member.nameBlock)
+      add(member.sourceBlock)
+      add(member.metaBlock)
+      member.skillLayouts.forEach(addSkill)
+      add(member.empty?.block)
+    })
+    add(layout.teamEmpty?.block)
+  }
+  text.push('ranhq.vercel.app')
+  return text
+}
+
+function rectsIntersect(a,b){
+  if(!a||!b||a.w<=0||a.h<=0||b.w<=0||b.h<=0) return false
+  return a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y
+}
+
+async function drawCharacterSkillsImage(ctx,layout,character,L=DEFAULT_SHARE_LABELS){
+  const {width,height,margin,headerHeight,profile,skillLayouts,empty}=layout
+  const colors=SHARE_IMAGE_TOKENS.colors
+  const factionColor=FACTION_COLORS[character?.country]||UNKNOWN_SKILL_VISUAL.accent
+  ctx.fillStyle=colors.parchment
   ctx.fillRect(0,0,width,height)
   drawTexture(ctx,width,height)
-
-  ctx.fillStyle='#06264c'
-  roundedRect(ctx,0,0,width,154,0)
-  ctx.fill()
+  ctx.fillStyle=colors.navy
+  ctx.fillRect(0,0,width,headerHeight)
   ctx.fillStyle=factionColor
-  ctx.fillRect(0,150,width,6)
-
-  const portrait=await loadImage(character?.icon||persosThumb(character?.image))
-  ctx.save()
-  roundedRect(ctx,margin,34,86,86,16)
-  ctx.clip()
-  if(portrait) drawImageCover(ctx,portrait,margin,34,86,86)
-  else{
-    ctx.fillStyle=factionColor
-    ctx.fillRect(margin,34,86,86)
-    ctx.fillStyle='#fff'
-    drawText(ctx,(character?.name_en||'?')[0],margin+43,89,'900 42px Segoe UI, sans-serif','#fff','center')
-  }
-  ctx.restore()
-  ctx.strokeStyle='rgba(255,255,255,.35)'
-  ctx.lineWidth=3
-  roundedRect(ctx,margin,34,86,86,16)
-  ctx.stroke()
-
-  drawText(ctx,displayName(character)||L.unknown,margin+108,64,'950 38px Segoe UI, Meiryo, sans-serif','#fff')
-  drawText(ctx,sourceLine(displayName(character),character?.name_jp),margin+108,94,'700 21px Segoe UI, Meiryo, sans-serif','rgba(255,255,255,.68)')
-  drawText(ctx,[term(L,factionLabel(character?.country)),term(L,character?.unit_type)].filter(Boolean).join(' / '),margin+108,120,'800 18px Segoe UI, sans-serif',factionColor)
-  drawText(ctx,L.skillCard,width-margin,54,'900 20px Segoe UI, sans-serif','rgba(255,255,255,.86)','right')
-  drawText(ctx,url,width-margin,84,'700 15px Segoe UI, sans-serif','rgba(255,255,255,.55)','right')
-
-  if(!characterSkillsWithRole(character).length){
-    drawEmptyCard(ctx,margin,190,cardWidth,L)
-  }else{
-    layout.skillLayouts.forEach(skillLayout=>drawSkill(ctx,margin,skillLayout.y,skillLayout))
-  }
-
-  drawText(ctx,'ranhq.vercel.app',margin,height-34,'800 18px Segoe UI, sans-serif','#81562a')
-  drawText(ctx,L.generatedFor,width-margin,height-34,'700 17px Segoe UI, sans-serif','#9a7b5a','right')
+  ctx.fillRect(0,headerHeight-6,width,6)
+  await drawPortrait(ctx,character,profile.portrait,factionColor)
+  drawTextBlock(ctx,profile.labelBlock,colors.metaOnDark)
+  drawTextBlock(ctx,profile.nameBlock,'#ffffff')
+  drawTextBlock(ctx,profile.sourceBlock,colors.sourceOnDark)
+  drawTextBlock(ctx,profile.metaBlock,'#ffffff')
+  skillLayouts.forEach(skill=>drawSkillCard(ctx,skill))
+  if(empty) drawEmptyState(ctx,empty,L)
+  drawText(ctx,'ranhq.vercel.app',L.direction==='rtl'?width-margin:margin,height-24,`800 18px ${IMAGE_FONT}`,colors.brand,L.direction==='rtl'?'right':'left')
 }
 
-async function drawTeamSkillsImage(ctx,layout,{title,url,labels:L=DEFAULT_SHARE_LABELS}){
-  const {width,height,margin,headerHeight,sideColor,subtitle,memberLayouts,columnHeight,primaryAnchor,secondaryAnchor}=layout
-  ctx.fillStyle='#f7efe3'
+async function drawTeamSkillsImage(ctx,layout){
+  const {width,height,margin,headerHeight,sideColor,memberLayouts,teamEmpty,labels:L}=layout
+  const colors=SHARE_IMAGE_TOKENS.colors
+  ctx.fillStyle=colors.parchment
   ctx.fillRect(0,0,width,height)
   drawTexture(ctx,width,height)
-
-  ctx.fillStyle='#06264c'
-  roundedRect(ctx,0,0,width,headerHeight,0)
-  ctx.fill()
+  ctx.fillStyle=colors.navy
+  ctx.fillRect(0,0,width,headerHeight)
   ctx.fillStyle=sideColor
   ctx.fillRect(0,headerHeight-6,width,6)
-  ctx.fillStyle='rgba(255,255,255,.06)'
-  ctx.fillRect(0,0,width,34)
-
-  drawText(ctx,title||L.teamSkills,primaryAnchor.x,48,'950 34px Segoe UI, Meiryo, sans-serif','#fff',primaryAnchor.align)
-  wrapText(ctx,subtitle,width-margin*2-360,'800 17px Segoe UI, sans-serif').slice(0,2).forEach((line,index)=>{
-    drawText(ctx,line,primaryAnchor.x,78+(index*21),'800 17px Segoe UI, sans-serif','rgba(255,255,255,.72)',primaryAnchor.align)
-  })
-  drawText(ctx,L.partyBuilder,secondaryAnchor.x,45,'900 18px Segoe UI, sans-serif','rgba(255,255,255,.86)',secondaryAnchor.align)
-  drawText(ctx,url,secondaryAnchor.x,72,'700 14px Segoe UI, sans-serif','rgba(255,255,255,.55)',secondaryAnchor.align)
-  drawText(ctx,L.builderNote,secondaryAnchor.x,98,'700 13px Segoe UI, sans-serif','rgba(255,255,255,.5)',secondaryAnchor.align)
-
-  for(const memberLayout of memberLayouts){
-    await drawTeamMemberColumn(ctx,{...memberLayout,height:columnHeight})
-  }
-
-  drawText(ctx,'ranhq.vercel.app',secondaryAnchor.x,height-28,'800 17px Segoe UI, sans-serif','#81562a',secondaryAnchor.align)
-  drawText(ctx,L.teamSheet,primaryAnchor.x,height-28,'700 16px Segoe UI, sans-serif','#9a7b5a',primaryAnchor.align)
+  drawTextBlock(ctx,layout.brandBlock,colors.metaOnDark)
+  drawTextBlock(ctx,layout.headerTitle,'#ffffff')
+  drawTextBlock(ctx,layout.subtitleBlock,colors.sourceOnDark)
+  for(const memberLayout of memberLayouts) await drawTeamMemberColumn(ctx,memberLayout)
+  if(teamEmpty) drawEmptyState(ctx,teamEmpty,L)
+  drawText(ctx,'ranhq.vercel.app',L.direction==='rtl'?width-margin:margin,height-24,`800 17px ${IMAGE_FONT}`,colors.brand,L.direction==='rtl'?'right':'left')
 }
 
 async function drawTeamMemberColumn(ctx,layout){
-  const L=layout.labels||DEFAULT_SHARE_LABELS
-  const {x,y,width,height,member,skillLayouts,headerHeight}=layout
-  const rtl=L.direction==='rtl'
-  const factionColor=FACTION_COLORS[member?.country]||'#7a4a24'
-  roundedRect(ctx,x,y,width,height,12)
-  ctx.fillStyle='#fffdf8'
-  ctx.fill()
-  ctx.strokeStyle='rgba(90,60,30,.2)'
-  ctx.lineWidth=1.5
-  ctx.stroke()
-
+  const {x,y,width,height,member,skillLayouts,profileHeight,labels:L}=layout
+  const colors=SHARE_IMAGE_TOKENS.colors
+  const factionColor=FACTION_COLORS[member?.country]||UNKNOWN_SKILL_VISUAL.accent
+  drawPanel(ctx,{x,y,w:width,h:height},colors.skillSurface,colors.border,SHARE_IMAGE_TOKENS.radius.column)
   ctx.save()
-  roundedRect(ctx,x,y,width,headerHeight,12)
+  roundedRect(ctx,x,y,width,profileHeight,SHARE_IMAGE_TOKENS.radius.column)
   ctx.clip()
-  ctx.fillStyle='#092f5f'
-  ctx.fillRect(x,y,width,headerHeight)
+  ctx.fillStyle=colors.navyRaised
+  ctx.fillRect(x,y,width,profileHeight)
   ctx.fillStyle=factionColor
-  ctx.fillRect(rtl?x+width-7:x,y,7,headerHeight)
+  ctx.fillRect(L.direction==='rtl'?x+width-7:x,y,7,profileHeight)
   ctx.restore()
+  await drawPortrait(ctx,member,layout.portrait,factionColor)
+  drawTextBlock(ctx,layout.nameBlock,'#ffffff')
+  drawTextBlock(ctx,layout.sourceBlock,colors.sourceOnDark)
+  drawTextBlock(ctx,layout.metaBlock,'#ffffff')
+  skillLayouts.forEach(skill=>drawSkillCard(ctx,skill))
+  if(layout.empty) drawEmptyState(ctx,layout.empty,L)
+}
 
-  const portrait=await loadImage(member?.icon||persosThumb(member?.image))
+function drawSkillCard(ctx,layout){
+  const colors=SHARE_IMAGE_TOKENS.colors
+  const {box,header,typeVisual,labels:L}=layout
+  drawPanel(ctx,box,colors.skillSurface,colors.border,SHARE_IMAGE_TOKENS.radius.skill)
   ctx.save()
-  const portraitX=rtl?x+width-82:x+16
-  roundedRect(ctx,portraitX,y+18,66,66,12)
+  roundedRect(ctx,header.x,header.y,header.w,header.h,SHARE_IMAGE_TOKENS.radius.skill)
   ctx.clip()
-  if(portrait) drawImageCover(ctx,portrait,portraitX,y+18,66,66)
+  ctx.fillStyle=colors.navyRaised
+  ctx.fillRect(header.x,header.y,header.w,header.h)
+  ctx.fillStyle=typeVisual.accent
+  ctx.fillRect(L.direction==='rtl'?header.x+header.w-7:header.x,header.y,7,header.h)
+  ctx.restore()
+  layout.badgeLayout.items.forEach(badge=>drawBadge(ctx,badge))
+  drawTextBlock(ctx,layout.titleBlock,'#ffffff')
+  drawTextBlock(ctx,layout.sourceBlock,colors.sourceOnDark)
+  layout.effects.forEach(effect=>drawEffect(ctx,effect,typeVisual.accent))
+  if(layout.noEffects) drawTextBlock(ctx,layout.noEffects,colors.secondary)
+}
+
+function drawEffect(ctx,layout,accent){
+  const colors=SHARE_IMAGE_TOKENS.colors
+  drawPanel(ctx,layout.box,colors.effectSurface,colors.border,SHARE_IMAGE_TOKENS.radius.effect)
+  ctx.fillStyle=accent
+  const markerX=layout.labels.direction==='rtl'?layout.x+layout.w-5:layout.x
+  ctx.fillRect(markerX,layout.y,5,layout.h)
+  layout.conditionBlocks.forEach(block=>{
+    drawTextBlockBackground(ctx,block,colors.conditionSurface,colors.conditionBorder)
+    drawTextBlock(ctx,block,colors.condition)
+  })
+  // Continuation lines are intentionally semantic-neutral. Line position never
+  // changes meaning or color.
+  drawTextBlock(ctx,layout.bodyBlock,shareEffectBodyColor())
+  drawTextBlock(ctx,layout.durationBlock,colors.duration)
+}
+
+async function drawPortrait(ctx,entity,box,fallbackColor){
+  const portrait=await loadImage(entity?.icon||persosThumb(entity?.image))
+  ctx.save()
+  roundedRect(ctx,box.x,box.y,box.w,box.h,12)
+  ctx.clip()
+  if(portrait) drawImageCover(ctx,portrait,box.x,box.y,box.w,box.h)
   else{
-    ctx.fillStyle=factionColor
-    ctx.fillRect(portraitX,y+18,66,66)
-    drawText(ctx,(member?.name_en||'?')[0],portraitX+33,y+62,'900 31px Segoe UI, sans-serif','#fff','center')
+    ctx.fillStyle=fallbackColor
+    ctx.fillRect(box.x,box.y,box.w,box.h)
+    drawText(ctx,(entity?.name_en||'?')[0],box.x+(box.w/2),box.y+(box.h*.65),`900 ${Math.round(box.h*.45)}px ${IMAGE_FONT}`,'#ffffff','center')
   }
   ctx.restore()
-  ctx.strokeStyle='rgba(255,255,255,.32)'
+  ctx.strokeStyle='rgba(255,255,255,.45)'
   ctx.lineWidth=2
-  roundedRect(ctx,portraitX,y+18,66,66,12)
+  roundedRect(ctx,box.x,box.y,box.w,box.h,12)
   ctx.stroke()
-
-  const nameWidth=width-112
-  const nameLines=wrapText(ctx,displayName(member)||L.unknown,nameWidth,'950 19px Segoe UI, Meiryo, sans-serif').slice(0,2)
-  const nameX=rtl?x+width-94:x+94
-  const textAlign=rtl?'right':'left'
-  nameLines.forEach((line,index)=>drawText(ctx,line,nameX,y+38+(index*22),'950 19px Segoe UI, Meiryo, sans-serif','#fff',textAlign))
-  drawText(ctx,sourceLine(displayName(member),member?.name_jp),nameX,y+86,'700 12px Segoe UI, Meiryo, sans-serif','rgba(255,255,255,.58)',textAlign)
-  drawText(ctx,[term(L,factionLabel(member?.country)),term(L,member?.unit_type)].filter(Boolean).join(' / '),rtl?x+width-16:x+16,y+102,'800 11px Segoe UI, sans-serif',lighten(factionColor),textAlign)
-
-  if(!skillLayouts.length){
-    drawTeamEmpty(ctx,x+14,y+headerHeight+16,width-28,layout.labels||DEFAULT_SHARE_LABELS)
-  }else{
-    skillLayouts.forEach(skillLayout=>drawTeamSkill(ctx,x+skillLayout.x,y+skillLayout.y,skillLayout))
-  }
 }
 
-function drawTeamSkill(ctx,x,y,layout){
-  const L=layout.labels||DEFAULT_SHARE_LABELS
-  const rtl=L.direction==='rtl'
-  const textAlign=rtl?'right':'left'
-  const {skill,width,height,titleLines,jpLines,effects,headingHeight}=layout
-  const typeColor=skill.star6?'#cc972d':TYPE_COLORS[skill.type]||'#777'
-  roundedRect(ctx,x,y,width,height,9)
-  ctx.fillStyle=skill.star6?'#fff8e6':'#fffaf2'
+function drawBadge(ctx,badge){
+  drawPanel(ctx,badge,badge.bg,badge.border,SHARE_IMAGE_TOKENS.radius.badge)
+  badge.lines.forEach((line,index)=>{
+    drawText(ctx,line,badge.x+(badge.w/2),badge.y+6+(badge.lineHeight*.78)+(index*badge.lineHeight),badge.font,badge.fg,'center')
+  })
+}
+
+function drawTextBlock(ctx,block,color){
+  if(!block) return
+  const anchor=block.align==='right'?block.x+block.w:block.align==='center'?block.x+(block.w/2):block.x
+  block.lines.forEach((line,index)=>drawText(ctx,line,anchor,block.y+(block.lineHeight*.78)+(index*block.lineHeight),block.font,color,block.align))
+}
+
+function drawTextBlockBackground(ctx,block,fill,stroke){
+  if(!block||block.h<=0) return
+  const pad=3
+  drawPanel(ctx,{x:block.x-pad,y:block.y-1,w:block.w+(pad*2),h:block.h+2},fill,stroke,5)
+}
+
+function drawPanel(ctx,box,fill,stroke,radius){
+  roundedRect(ctx,box.x,box.y,box.w,box.h,radius)
+  ctx.fillStyle=fill
   ctx.fill()
-  ctx.strokeStyle=skill.star6?'rgba(204,151,45,.55)':'rgba(208,184,152,.85)'
-  ctx.lineWidth=1.4
-  ctx.stroke()
-
-  ctx.save()
-  roundedRect(ctx,x,y,width,headingHeight,9)
-  ctx.clip()
-  ctx.fillStyle=darken(typeColor)
-  ctx.fillRect(x,y,width,headingHeight)
-  ctx.fillStyle=typeColor
-  ctx.fillRect(rtl?x+width-6:x,y,6,headingHeight)
-  ctx.restore()
-
-  let ty=y+21
-  titleLines.forEach(line=>{
-    drawText(ctx,line,rtl?x+width-16:x+16,ty,'900 16px Segoe UI, Meiryo, sans-serif','#fff',textAlign)
-    ty+=19
-  })
-  jpLines.forEach(line=>{
-    drawText(ctx,line,rtl?x+width-16:x+16,ty,'700 11px Segoe UI, Meiryo, sans-serif','rgba(255,255,255,.6)',textAlign)
-    ty+=14
-  })
-  const tagText=skill.star6?'CW6':term(L,skill.type)||L.skill
-  drawTeamTag(ctx,tagText,rtl?x+14:x+width-14,y+13,typeColor,rtl?'left':'right')
-
-  let cy=y+headingHeight+9
-  if(!effects.length){
-    drawText(ctx,L.noEffects,rtl?x+width-16:x+16,cy+22,'700 13px Segoe UI, sans-serif','#7d6a53',textAlign)
-    return
-  }
-  effects.forEach(({conditionLines,bodyLines,durationLines,height:effectHeight})=>{
-    roundedRect(ctx,x+11,cy,width-22,effectHeight,7)
-    ctx.fillStyle='#fff'
-    ctx.fill()
-    ctx.strokeStyle='rgba(208,184,152,.65)'
-    ctx.lineWidth=1
+  if(stroke){
+    ctx.strokeStyle=stroke
+    ctx.lineWidth=1.2
     ctx.stroke()
-    drawText(ctx,rtl?'<':'>',rtl?x+width-21:x+21,cy+21,'900 13px Consolas, monospace','#c0392b',rtl?'right':'left')
-    let ey=cy+18
-    conditionLines.forEach(line=>{
-      drawText(ctx,line,rtl?x+width-38:x+38,ey,'700 11px Segoe UI, Meiryo, sans-serif','#7a4a24',textAlign)
-      ey+=14
-    })
-    if(conditionLines.length) ey+=4
-    bodyLines.forEach((line,index)=>{
-      drawText(ctx,line,rtl?x+width-38:x+38,ey,'800 13px Segoe UI, Meiryo, sans-serif',index===0?'#06264c':'#9a3925',textAlign)
-      ey+=17
-    })
-    durationLines.forEach(line=>{
-      drawText(ctx,line,rtl?x+width-38:x+38,ey,'700 10px Consolas, monospace','#65513b',textAlign)
-      ey+=14
-    })
-    cy+=effectHeight+6
-  })
-}
-
-function drawTeamEmpty(ctx,x,y,width,L=DEFAULT_SHARE_LABELS){
-  roundedRect(ctx,x,y,width,54,9)
-  ctx.fillStyle='#fff7eb'
-  ctx.fill()
-  ctx.strokeStyle='rgba(208,184,152,.75)'
-  ctx.stroke()
-  const rtl=L.direction==='rtl'
-  drawText(ctx,L.translationPending,rtl?x+width-16:x+16,y+32,'800 14px Segoe UI, sans-serif','#7d6a53',rtl?'right':'left')
-}
-
-function drawTeamTag(ctx,text,anchorX,y,color,side='right'){
-  ctx.font='900 10px Segoe UI, sans-serif'
-  const w=Math.ceil(ctx.measureText(text).width)+16
-  const x=side==='left'?anchorX:anchorX-w
-  roundedRect(ctx,x,y,w,20,5)
-  ctx.fillStyle=color
-  ctx.fill()
-  drawText(ctx,text,x+w/2,y+14,'900 10px Segoe UI, sans-serif','#fff','center')
-}
-
-function drawSkill(ctx,x,y,layout){
-  const L=layout.labels||DEFAULT_SHARE_LABELS
-  const {skill,width,height,measuredEffects}=layout
-  const typeColor=TYPE_COLORS[skill.type]||'#777'
-  roundedRect(ctx,x,y,width,height,14)
-  ctx.fillStyle='#fffdf8'
-  ctx.fill()
-  ctx.strokeStyle='rgba(90,60,30,.18)'
-  ctx.lineWidth=2
-  ctx.stroke()
-
-  roundedRect(ctx,x,y,width,64,14)
-  ctx.fillStyle=darken(typeColor)
-  ctx.fill()
-  ctx.fillStyle=typeColor
-  ctx.fillRect(x,y,8,64)
-  drawText(ctx,displayName(skill)||L.unnamedSkill,x+24,y+29,'900 24px Segoe UI, Meiryo, sans-serif','#fff')
-  drawText(ctx,sourceLine(displayName(skill),skill.name_jp),x+24,y+52,'700 16px Segoe UI, Meiryo, sans-serif','rgba(255,255,255,.6)')
-  drawTag(ctx,term(L,skill.type)||L.skill,x+width-168,y+19,typeColor)
-  if(skill.star6) drawTag(ctx,L.star6,x+width-254,y+19,'#cc972d')
-
-  let cy=y+82
-  if(!measuredEffects.length){
-    drawText(ctx,L.noEffects,x+24,cy+22,'700 20px Segoe UI, sans-serif','#7d6a53')
-    return
   }
-  measuredEffects.forEach(({qualifierLines,bodyLines,durationLines,height:effectHeight})=>{
-    roundedRect(ctx,x+20,cy,width-40,effectHeight,10)
-    ctx.fillStyle='#fff7eb'
-    ctx.fill()
-    ctx.strokeStyle='rgba(208,184,152,.75)'
-    ctx.lineWidth=1.5
-    ctx.stroke()
-    let ey=cy+22
-    qualifierLines.forEach(line=>{
-      drawPillLine(ctx,line,x+34,ey)
-      ey+=24
-    })
-    if(qualifierLines.length) ey+=8
-    bodyLines.forEach((line,idx)=>{
-      drawText(ctx,line,x+34,ey+20,idx===0?'900 22px Segoe UI, Meiryo, sans-serif':'800 21px Segoe UI, Meiryo, sans-serif',idx===0?'#06264c':'#c0392b')
-      ey+=30
-    })
-    durationLines.forEach(line=>{
-      drawText(ctx,line,x+34,ey+18,'800 17px Consolas, monospace','#65513b')
-      ey+=24
-    })
-    cy+=effectHeight+10
-  })
 }
 
-function drawEmptyCard(ctx,x,y,width,L=DEFAULT_SHARE_LABELS){
-  roundedRect(ctx,x,y,width,82,14)
-  ctx.fillStyle='#fffdf8'
-  ctx.fill()
-  ctx.strokeStyle='rgba(90,60,30,.18)'
-  ctx.stroke()
-  drawText(ctx,L.translationPending,x+24,y+48,'800 23px Segoe UI, sans-serif','#7d6a53')
-}
-
-function drawTag(ctx,text,x,y,color){
-  ctx.font='900 15px Segoe UI, sans-serif'
-  const w=Math.ceil(ctx.measureText(text).width)+24
-  roundedRect(ctx,x,y,w,28,7)
-  ctx.fillStyle=`${color}33`
-  ctx.fill()
-  ctx.strokeStyle=`${color}88`
-  ctx.lineWidth=1.5
-  ctx.stroke()
-  drawText(ctx,text,x+w/2,y+19,'900 15px Segoe UI, sans-serif','#fff','center')
-}
-
-function drawPillLine(ctx,line,x,y){
-  const [label,...rest]=line.split(':')
-  const value=rest.join(':').trim()
-  ctx.font='900 14px Consolas, monospace'
-  const labelW=Math.ceil(ctx.measureText(label).width)+18
-  roundedRect(ctx,x,y-15,labelW,22,5)
-  ctx.fillStyle='#e07f48'
-  ctx.fill()
-  drawText(ctx,label.toUpperCase(),x+labelW/2,y+1,'900 13px Consolas, monospace','#fff','center')
-  drawText(ctx,value,x+labelW+10,y+2,'700 17px Segoe UI, Meiryo, sans-serif','#704315')
+function drawEmptyState(ctx,box,L=DEFAULT_SHARE_LABELS){
+  drawPanel(ctx,box,SHARE_IMAGE_TOKENS.colors.skillSurface,SHARE_IMAGE_TOKENS.colors.border,SHARE_IMAGE_TOKENS.radius.skill)
+  void L
+  drawTextBlock(ctx,box.block,SHARE_IMAGE_TOKENS.colors.secondary)
 }
 
 function drawText(ctx,text,x,y,font,color,align='left'){
@@ -921,24 +1111,6 @@ function formatEffectCompact(effect,labels){
   // reads as a left arrow inside an RTL run without any per-locale branching,
   // and English output is unchanged.
   return `${target} -> ${value}`
-}
-
-function darken(hex){
-  const value=hex.replace('#','')
-  const n=parseInt(value.length===3?value.split('').map(ch=>ch+ch).join(''):value,16)
-  const r=Math.max(10,Math.round(((n>>16)&255)*0.34))
-  const g=Math.max(10,Math.round(((n>>8)&255)*0.34))
-  const b=Math.max(10,Math.round((n&255)*0.34))
-  return `rgb(${r},${g},${b})`
-}
-
-function lighten(hex){
-  const value=hex.replace('#','')
-  const n=parseInt(value.length===3?value.split('').map(ch=>ch+ch).join(''):value,16)
-  const r=Math.min(255,Math.round(((n>>16)&255)*1.38))
-  const g=Math.min(255,Math.round(((n>>8)&255)*1.38))
-  const b=Math.min(255,Math.round((n&255)*1.38))
-  return `rgb(${r},${g},${b})`
 }
 
 function drawTexture(ctx,width,height){
