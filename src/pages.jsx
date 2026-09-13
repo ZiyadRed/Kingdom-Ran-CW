@@ -1189,6 +1189,13 @@ export function StratCol({label,entries,side}){
 }
 
 // ── BUFF TABLE ────────────────────────────────────────────────────────────────
+function hasMissingOpponentInput(entries,enemyDebuffs){
+  const sources=[
+    ...entries.flatMap(({buffs})=>buffs.meta?.missingInputs||[]),
+    ...(enemyDebuffs.meta?.missingInputs||[]),
+  ]
+  return sources.some(source=>source.missingInputs?.some(input=>input.kind==='opposingFormation'))
+}
 export function BuffTable({atk,def,builderState,initialIncludeCombat=false}){
   const shareLabels=useShareLabels()
   const locale=useLocale()
@@ -1201,6 +1208,7 @@ export function BuffTable({atk,def,builderState,initialIncludeCombat=false}){
   const defBuffs=def.map(g=>({general:g,buffs:calcCharBuffs(g,def,atk,true,false,includeCombat)}))
   const atkEnemyDebuffs=calcTeamEnemyDebuffs(atk,def,includeCombat,false)
   const defEnemyDebuffs=calcTeamEnemyDebuffs(def,atk,includeCombat,true)
+  const opponentMissing=hasMissingOpponentInput(atkBuffs,atkEnemyDebuffs)||hasMissingOpponentInput(defBuffs,defEnemyDebuffs)
   const hasAny=arr=>arr.some(({buffs})=>Object.keys(buffs).length>0||buffs.meta?.conditionalEffects.length||buffs.meta?.missingInputs.length||buffs.meta?.unsupported.length)
   const hasEnemyOutput=debuffs=>Object.keys(debuffs).length>0||debuffs.meta?.conditionalEffects.length||debuffs.meta?.missingInputs.length||debuffs.meta?.unsupported.length
   if(!hasAny(atkBuffs)&&!hasAny(defBuffs)&&!hasEnemyOutput(atkEnemyDebuffs)&&!hasEnemyOutput(defEnemyDebuffs)) return null
@@ -1232,7 +1240,8 @@ export function BuffTable({atk,def,builderState,initialIncludeCombat=false}){
           </label>
         </div>
       </div>
-      <p className="buff-summary-note">{t('buffs.summaryConditions')}</p>
+      <p className="buff-summary-note">{t('buffs.summaryCalculatedOnly')}</p>
+      {opponentMissing&&<p className="buff-opponent-notice" data-buff-opponent-notice>{t('buffs.opponentNotSelected')}</p>}
       <div className="strat-cols">
         <BuffSideTable label={`⚔ ${t('buffs.attackingFormation')}`} entries={atkBuffs} side="attack" enemyDebuffs={atkEnemyDebuffs}/>
         <BuffSideTable label={`🛡 ${t('buffs.defendingFormation')}`} entries={defBuffs} side="defense" enemyDebuffs={defEnemyDebuffs}/>
@@ -1260,58 +1269,12 @@ export function BuffSourceEvidence({source}){
     {source.valueMeaning?.kind==='dynamicMultiplier'&&<span className="buff-source-condition">{t('buffs.dynamicMeaning')}</span>}
   </div>
 }
-function uniqueBuffMetaSources(entries,enemyDebuffs,key){
-  const all=[
-    ...entries.flatMap(({buffs})=>buffs.meta?.[key]||[]),
-    ...(enemyDebuffs.meta?.[key]||[]),
-  ]
-  const seen=new Set()
-  return all.filter(source=>{
-    const id=[source.owner?.id,source.skill?.name_en,source.effect?.condition,source.effect?.target,source.effect?.effect,source.stat].join('|')
-    if(seen.has(id)) return false
-    seen.add(id)
-    return true
-  })
-}
-export function BuffApplicabilityNotices({entries,enemyDebuffs}){
-  const{t}=useTranslation('common')
-  const locale=useLocale()
-  const conditional=uniqueBuffMetaSources(entries,enemyDebuffs,'conditionalEffects')
-  const missing=uniqueBuffMetaSources(entries,enemyDebuffs,'missingInputs')
-  const unsupported=uniqueBuffMetaSources(entries,enemyDebuffs,'unsupported')
-  if(!conditional.length&&!missing.length&&!unsupported.length) return null
-  const notice=(kind,sources,label)=><section className={`buff-applicability-notice ${kind}`}>
-    <h4>{label}</h4>
-    <div className="buff-sources">
-      {sources.map((source,index)=><div key={`${source.owner?.id}|${source.skill?.name_en}|${source.stat}|${index}`} className="buff-source-contribution">
-        <div className="buff-source-row">
-          <CharIcon c={source.owner} size={16} round={true}/>
-          <span className="buff-source-name">{localizedCharacter(source.owner,locale).displayName}</span>
-          {source.stat&&<span className="buff-source-state">{localizedText(source.stat,locale)}</span>}
-          {source.valueMeaning?.kind==='fixed'&&Number.isFinite(source.valueMeaning.value)&&<span className="buff-potential">{source.dir==='down'?'−':'+'}{source.valueMeaning.value}%</span>}
-          {source.valueMeaning?.kind==='upperBound'&&<span className="buff-potential">{t('buffs.upToValue',{value:source.valueMeaning.max})}</span>}
-          {source.valueMeaning?.kind==='perCounter'&&<span className="buff-potential">{t('buffs.perCounterValue',{value:source.valueMeaning.amount,cap:source.valueMeaning.cap??'—'})}</span>}
-          {source.valueMeaning?.kind==='chance'&&<span className="buff-potential">{t('buffs.chanceValue',{value:source.valueMeaning.rate})}</span>}
-          {source.valueMeaning?.kind==='dynamicMultiplier'&&<span className="buff-potential">{t('buffs.dynamicValue',{value:source.valueMeaning.max})}</span>}
-        </div>
-        {source.missingInputs?.length>0&&<span className="buff-source-condition">{t('buffs.selectOpponent')}</span>}
-        {source.applicability===BUFF_APPLICABILITY.UNSUPPORTED&&<span className="buff-source-condition">{t('buffs.unsupported')}</span>}
-        <BuffSourceEvidence source={source}/>
-      </div>)}
-    </div>
-  </section>
-  return <div className="buff-applicability-notices">
-    {conditional.length>0&&notice('conditional',conditional,t('buffs.conditionalEffects'))}
-    {(missing.length>0||unsupported.length>0)&&notice('not-calculated',[...missing,...unsupported],t('buffs.notCalculated'))}
-  </div>
-}
 export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
   const disclosureId=useId()
   const{t}=useTranslation('common')
   const locale=useLocale()
   const[expanded,setExpanded]=useState(null)
   const ac=side==='attack'?'var(--red)':'var(--blue)'
-  const hasNotices=Boolean(entries.some(({buffs})=>buffs.meta?.conditionalEffects.length||buffs.meta?.missingInputs.length||buffs.meta?.unsupported.length)||enemyDebuffs.meta?.conditionalEffects.length||enemyDebuffs.meta?.missingInputs.length||enemyDebuffs.meta?.unsupported.length)
   const hasAny=entries.some(({buffs})=>Object.values(buffs).some(value=>value.up>0||value.down>0))
   const hasEnemyDebuffs=Object.values(enemyDebuffs).some(value=>Object.values(value.up||{}).some(Boolean)||Object.values(value.down||{}).some(Boolean))
   const fmt=v=>Number.isInteger(v)?v:v.toFixed(1)
@@ -1461,7 +1424,6 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
           </div>
         )
       })}
-      {hasNotices&&<BuffApplicabilityNotices entries={entries} enemyDebuffs={enemyDebuffs}/>}
     </div>
   )
 }

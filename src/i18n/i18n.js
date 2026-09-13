@@ -450,28 +450,28 @@ ja.skipToContent = '本文へ移動'
 ar.skipToContent = 'انتقل إلى المحتوى الرئيسي'
 fr.skipToContent = 'Aller au contenu principal'
 
-en.buffs.summaryConditions = 'Guaranteed totals include only effects proven by the selected formations. Battle-state effects are shown separately as potential, or omitted when their value cannot be determined.'
+en.buffs.summaryConditions = 'Calculated from selected formations and skills. Survival-dependent effects assume the required generals remain alive; battle-state effects are listed separately.'
 en.buffs.potential = 'Potential'
 en.buffs.unsupported = 'Unsupported'
 en.buffs.conditionalOmitted = 'conditional effects omitted from totals'
 en.buffs.unsupportedOmitted = 'unsupported effects omitted from totals'
 en.buffs.conditionalOmittedCount = 'Conditional effects omitted from totals because their value depends on battle state: {{count}}'
 en.buffs.unsupportedOmittedCount = 'Effects omitted because RanHQ cannot safely interpret their condition: {{count}}'
-ja.buffs.summaryConditions = '確定合計には、選択中の編成で発動を確認できる効果のみを含めます。戦闘中の状態に依存する効果は条件付きとして分け、値を確定できない場合は合計から除外します。'
+ja.buffs.summaryConditions = '選択した編成とスキルから計算。生存条件は対象武将が生存し続ける前提です。戦闘中の状態に依存する効果は別に表示します。'
 ja.buffs.potential = '条件付き'
 ja.buffs.unsupported = '未対応'
 ja.buffs.conditionalOmitted = '戦闘条件により合計から除外した効果'
 ja.buffs.unsupportedOmitted = '未対応のため合計から除外した効果'
 ja.buffs.conditionalOmittedCount = '戦闘中の状態で値が変わるため合計から除外：{{count}}件'
 ja.buffs.unsupportedOmittedCount = '条件を安全に解釈できないため合計から除外：{{count}}件'
-ar.buffs.summaryConditions = 'لا تشمل المجاميع المؤكدة إلا التأثيرات التي تثبتها التشكيلات المحددة. تُعرض تأثيرات حالة المعركة منفصلة بوصفها محتملة، أو تُستبعد إذا تعذر تحديد قيمتها.'
+ar.buffs.summaryConditions = 'تُحسب القيم من التشكيلتين والمهارات المختارة. تفترض تأثيرات البقاء استمرار حياة الجنرالات المطلوبة؛ وتُعرض شروط المعركة منفصلة.'
 ar.buffs.potential = 'محتمل'
 ar.buffs.unsupported = 'غير مدعوم'
 ar.buffs.conditionalOmitted = 'تأثيرات مشروطة مستبعدة من المجاميع'
 ar.buffs.unsupportedOmitted = 'تأثيرات غير مدعومة مستبعدة من المجاميع'
 ar.buffs.conditionalOmittedCount = 'تأثيرات مستبعدة لأن قيمتها تعتمد على حالة المعركة: {{count}}'
 ar.buffs.unsupportedOmittedCount = 'تأثيرات مستبعدة لأن RanHQ لا يستطيع تفسير شرطها بأمان: {{count}}'
-fr.buffs.summaryConditions = 'Les totaux garantis ne comprennent que les effets confirmés par les formations choisies. Les effets dépendant du combat sont affichés séparément comme potentiels, ou omis si leur valeur ne peut pas être déterminée.'
+fr.buffs.summaryConditions = 'Calculé à partir des formations et compétences choisies. Les effets liés à la survie supposent que les généraux requis restent en vie ; les conditions de combat sont affichées séparément.'
 fr.buffs.potential = 'Potentiel'
 fr.buffs.unsupported = 'Non pris en charge'
 fr.buffs.conditionalOmitted = 'effets conditionnels omis des totaux'
@@ -480,36 +480,36 @@ fr.buffs.conditionalOmittedCount = 'Effets omis car leur valeur dépend de l’�
 fr.buffs.unsupportedOmittedCount = 'Effets omis car RanHQ ne peut pas interpréter leur condition avec certitude : {{count}}'
 
 Object.assign(en.buffs,{
-  summaryConditions:'Calculated from selected formations and skills. Survival-dependent effects assume the required generals remain alive; battle-state effects are listed separately.',
+  summaryConditions:'Calculated from selected formations and skills. Survival-dependent effects assume the required generals remain alive; battle-state effects are listed separately.',summaryCalculatedOnly:'Shows only buffs calculated from the selected formations and skills.',
   calculatedFromFormation:'Calculated from this formation',conditionalEffects:'Conditional effects',notCalculated:'Not calculated',
-  selectOpponent:'Select an opposing formation to evaluate this effect.',formationMatched:'Formation requirement matched.',
+  selectOpponent:'Select an opposing formation to evaluate this effect.',opponentNotSelected:'Opponent not selected — some matchup effects will be included after you select an opposing formation.',formationMatched:'Formation requirement matched.',
   survivalCaveat:'Assumes the required generals remain alive.',upperBoundMeaning:'Maximum, not a fixed bonus.',
   chanceMeaning:'Chance or application rate; not an additive stat bonus.',perCounterMeaning:'Scales with a battle counter; actual value is unknown.',
   upToValue:'Up to {{value}}%',perCounterValue:'+{{value}}% per event (cap {{cap}}%)',chanceValue:'{{value}}% chance',
   conditionalOmitted:'conditional effects listed separately',unsupportedOmitted:'effects not calculated',
 })
 Object.assign(ja.buffs,{
-  summaryConditions:'選択した編成とスキルから計算。生存条件は対象武将が生存し続ける前提です。戦闘中の状態に依存する効果は別に表示します。',
+  summaryConditions:'選択した編成とスキルから計算。生存条件は対象武将が生存し続ける前提です。戦闘中の状態に依存する効果は別に表示します。',summaryCalculatedOnly:'選択中の編成とスキルから計算できる強化効果のみを表示します。',
   calculatedFromFormation:'この編成から計算',conditionalEffects:'戦闘中の条件付き効果',notCalculated:'計算対象外',
-  selectOpponent:'効果を評価するには相手の編成を選択してください。',formationMatched:'編成条件を満たしています。',
+  selectOpponent:'効果を評価するには相手の編成を選択してください。',opponentNotSelected:'相手編成が未選択です。相手を選ぶと、一部の対戦条件付き効果が計算に反映されます。',formationMatched:'編成条件を満たしています。',
   survivalCaveat:'必要な武将が生存し続ける前提です。',upperBoundMeaning:'上限値であり固定の加算値ではありません。',
   chanceMeaning:'発動確率・付与率であり、加算できる能力値ではありません。',perCounterMeaning:'戦闘中の回数で変化するため、実際の値は未確定です。',
   upToValue:'最大{{value}}%',perCounterValue:'1回につき+{{value}}%（上限{{cap}}%）',chanceValue:'発動率{{value}}%',
   conditionalOmitted:'条件付き効果は別に記載',unsupportedOmitted:'計算対象外の効果',
 })
 Object.assign(ar.buffs,{
-  summaryConditions:'تُحسب القيم من التشكيلتين والمهارات المختارة. تفترض تأثيرات البقاء استمرار حياة الجنرالات المطلوبة؛ وتُعرض شروط المعركة منفصلة.',
+  summaryConditions:'تُحسب القيم من التشكيلتين والمهارات المختارة. تفترض تأثيرات البقاء استمرار حياة الجنرالات المطلوبة؛ وتُعرض شروط المعركة منفصلة.',summaryCalculatedOnly:'يعرض فقط التعزيزات المحسوبة من التشكيلات والمهارات المحددة.',
   calculatedFromFormation:'المحسوب من هذا التشكيل',conditionalEffects:'تأثيرات مشروطة',notCalculated:'غير محسوب',
-  selectOpponent:'اختر تشكيلة الخصم لتقييم هذا التأثير.',formationMatched:'شرط التشكيلة متحقق.',
+  selectOpponent:'اختر تشكيلة الخصم لتقييم هذا التأثير.',opponentNotSelected:'لم تُحدّد تشكيلة الخصم — ستُضاف بعض تأثيرات المواجهة بعد اختيارها.',formationMatched:'شرط التشكيلة متحقق.',
   survivalCaveat:'يفترض بقاء الجنرالات المطلوبين أحياء.',upperBoundMeaning:'هذه قيمة قصوى وليست زيادة ثابتة.',
   chanceMeaning:'احتمال تطبيق، وليس زيادة خصائص قابلة للجمع.',perCounterMeaning:'يتغير بعدد أحداث المعركة؛ القيمة الفعلية غير معروفة.',
   upToValue:'حتى {{value}}%',perCounterValue:'+{{value}}% لكل حدث (الحد {{cap}}%)',chanceValue:'احتمال {{value}}%',
   conditionalOmitted:'التأثيرات المشروطة مذكورة منفصلة',unsupportedOmitted:'تأثيرات غير محسوبة',
 })
 Object.assign(fr.buffs,{
-  summaryConditions:'Calculé à partir des formations et compétences choisies. Les effets liés à la survie supposent que les généraux requis restent en vie ; les conditions de combat sont affichées séparément.',
+  summaryConditions:'Calculé à partir des formations et compétences choisies. Les effets liés à la survie supposent que les généraux requis restent en vie ; les conditions de combat sont affichées séparément.',summaryCalculatedOnly:'Affiche uniquement les bonus calculés à partir des formations et compétences sélectionnées.',
   calculatedFromFormation:'Calculé pour cette formation',conditionalEffects:'Effets conditionnels',notCalculated:'Non calculé',
-  selectOpponent:'Choisissez une formation adverse pour évaluer cet effet.',formationMatched:'Condition de formation remplie.',
+  selectOpponent:'Choisissez une formation adverse pour évaluer cet effet.',opponentNotSelected:'Aucune formation adverse sélectionnée — certains effets de confrontation seront pris en compte après votre sélection.',formationMatched:'Condition de formation remplie.',
   survivalCaveat:'Suppose que les généraux requis restent en vie.',upperBoundMeaning:'Valeur maximale, pas un bonus fixe.',
   chanceMeaning:'Probabilité d’application, pas un bonus de statistique cumulable.',perCounterMeaning:'Varie selon un compteur de combat ; valeur réelle inconnue.',
   upToValue:"Jusqu’à {{value}} %",perCounterValue:'+{{value}} % par événement (plafond {{cap}} %)',chanceValue:'{{value}} % de chance',

@@ -80,7 +80,7 @@ test('formation summaries, contribution evidence and shared totals respect attac
     await expect(row.locator('.buff-source-condition').first()).not.toBeEmpty()
     if(locale==='en') await expect(row.locator('.buff-source-condition').first()).toHaveText(value===30?'When Garrisoning':'When Attacking')
   }
-  await expect(summary.locator('.buff-summary-note').first()).toHaveText(CATALOGS[locale].buffs.summaryConditions)
+  await expect(summary.locator('.buff-summary-note').first()).toHaveText(CATALOGS[locale].buffs.summaryCalculatedOnly)
   await page.evaluate(() => {
     Object.defineProperty(navigator,'share',{ configurable:true,value:undefined })
     Object.defineProperty(navigator,'clipboard',{ configurable:true,value:{writeText:async text=>{window.__buffShare=text}} })
@@ -123,19 +123,40 @@ test('survival-qualified formation values and missing-opponent disclosures stay 
     await settle(page)
     const toggle=page.locator('.builder-buff-toggle')
     if(await toggle.getAttribute('aria-expanded')==='false') await toggle.click()
-    return page.locator('.buff-summary .scol.atk')
+    return page.locator('.buff-summary')
   }
   const matched=await open('hakurei')
-  const hit=matched.locator('[data-buff-general="shin"] [data-buff-stat="Hit Rate"]')
+  const hit=matched.locator('.scol.atk [data-buff-general="shin"] [data-buff-stat="Hit Rate"]')
   await expect(hit.locator('.buff-row')).toContainText('+30%')
   await expect(hit.locator('.buff-row')).not.toContainText('Potential')
+  await expect(matched.locator('[data-buff-opponent-notice]')).toHaveCount(0)
+  await expect(matched.locator('.buff-applicability-notice')).toHaveCount(0)
   await hit.locator('.buff-row').click()
   await expect(hit.locator('.buff-source-evidence')).toContainText(CATALOGS[locale].buffs.survivalCaveat)
 
   const nonmatch=await open('karin')
-  await expect(nonmatch.locator('[data-buff-general="shin"] [data-buff-stat="Hit Rate"]')).toHaveCount(0)
+  await expect(nonmatch.locator('.scol.atk [data-buff-general="shin"] [data-buff-stat="Hit Rate"]')).toHaveCount(0)
+  await expect(nonmatch.locator('[data-buff-opponent-notice]')).toHaveCount(0)
+  await expect(nonmatch.locator('.buff-applicability-notice')).toHaveCount(0)
 
   const missing=await open(null)
-  await expect(missing.locator('[data-buff-general="shin"] [data-buff-stat="Hit Rate"]')).toHaveCount(0)
-  await expect(missing.locator('.buff-applicability-notice.not-calculated')).toContainText(CATALOGS[locale].buffs.selectOpponent)
+  await expect(missing.locator('.scol.atk [data-buff-general="shin"] [data-buff-stat="Hit Rate"]')).toHaveCount(0)
+  await expect(missing.locator('[data-buff-opponent-notice]')).toHaveCount(1)
+  await expect(missing.locator('[data-buff-opponent-notice]')).toHaveText(CATALOGS[locale].buffs.opponentNotSelected)
+  await expect(missing.locator('.buff-applicability-notice')).toHaveCount(0)
+  await expect(missing).not.toContainText(CATALOGS[locale].buffs.conditionalEffects)
+  await expect(missing).not.toContainText(CATALOGS[locale].buffs.notCalculated)
+
+  const manyMatchups=JSON.stringify({
+    version:1,attack:['mangoku','makou','shin',null],defense:[null,null,null,null],
+    attackSkills:[mask,mask,mask,mask],defenseSkills:[mask,mask,mask,mask],
+  })
+  await page.evaluate(next=>localStorage.setItem('ranhq:party-builder',next),manyMatchups)
+  await page.goto(path('/builder'))
+  await settle(page)
+  const toggle=page.locator('.builder-buff-toggle')
+  if(await toggle.getAttribute('aria-expanded')==='false') await toggle.click()
+  const multiSummary=page.locator('.buff-summary')
+  await expect(multiSummary.locator('[data-buff-opponent-notice]')).toHaveCount(1)
+  await expect(multiSummary.locator('.buff-applicability-notice')).toHaveCount(0)
 })
