@@ -208,8 +208,8 @@ describe('calcTeamEnemyDebuffs condition gating', () => {
     expect(Object.keys(calcTeamEnemyDebuffs([owner], [], false, false)).length).toBe(0)
     const ouhon = mk('ouhon', 'qin', 'Cavalry', [])
     const withOuhon=calcTeamEnemyDebuffs([owner, ouhon], [], false, false)['All enemies']
-    expect(withOuhon.down.ATK).toBeUndefined()
-    expect(withOuhon.potentialDown.ATK).toBe(30)
+    expect(withOuhon.down.ATK).toBe(30)
+    expect(withOuhon.sources['down|ATK'][0].survivalCaveats).toHaveLength(1)
   })
 
   it('keeps dynamic-state conditions (e.g. "Confused enemy present") as potential', () => {

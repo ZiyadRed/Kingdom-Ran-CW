@@ -12,11 +12,12 @@ const group=id=>({kind:'group',id})
 const character=id=>({kind:'character',id})
 const everyone=()=>({kind:'all',id:'general'})
 const any=(...criteria)=>({kind:'any',criteria})
+const allPresent=(...criteria)=>({kind:'allPresent',criteria})
 
 const ally=(criteria=everyone(),excludeSelf=false)=>({side:'ally',criteria,excludeSelf})
 const self=()=>({side:'ally',criteria:{kind:'self'}})
 const enemy=(criteria=everyone())=>({side:'enemy',criteria})
-const modifier=(stat,direction,value)=>({stat,direction,value})
+const modifier=(stat,direction,value,options={})=>({stat,direction,value,valueMeaning:{kind:'fixed',value},...options})
 const count=(criteria,excludeSelf=true)=>({kind:'rosterCount',side:'ally',criteria,excludeSelf})
 const presence=(side,criteria=everyone(),state='alive',excludeSelf=false)=>({kind:'presence',side,criteria,state,excludeSelf})
 
@@ -25,6 +26,12 @@ const SOURCES={
   'shunshinkun#2':{characterId:121,skillId:382,textId:382,status:'exact',skillEffectIds:[1610,1611,1612,1613,1614,1615,1616,1617,1618,1619],evidence:'秦国武将に対する攻撃力と防御力が30%上昇'},
   'makou#1':{characterId:255,skillId:791,textId:790,status:'exact',skillEffectIds:[2686,3208,3209,3210,3211],evidence:'敵弓兵武将が生存している場合'},
   'ka#1':{characterId:240,skillId:734,textId:732,status:'exact',skillEffectIds:[1535,1994,2612,2952,2967,2969],evidence:'敵武将が生存している場合、生存している味方趙国武将'},
+  'kaine#1':{characterId:1,skillId:419,textId:415,status:'exact',skillEffectIds:[1725,1726,1723,1724,1727,1728],evidence:'味方「{-1:72}」が生存している場合'},
+  'kaine#2':{characterId:1,skillId:420,textId:416,status:'exact',skillEffectIds:[1235,1448,1729,1730,1731],evidence:'味方「{-1:72}」が生存している場合'},
+  'eiki#1':{characterId:254,skillId:794,textId:793,status:'exact',skillEffectIds:[3216,3217,3218],evidence:'味方「{-1:253}」が生存している場合'},
+  'kisui#2':{characterId:207,skillId:521,textId:519,status:'exact',skillEffectIds:[1953,2043,2044,2045,2046,2047,1234],evidence:'味方「{-1:214}」か「{-2:213}」が生存している場合'},
+  'kisui#3':{characterId:207,skillId:869,textId:868,status:'resolved',skillEffectIds:[2462,3530,3531,3532,3533,3534,3535,3536],evidence:'味方「{-3:214}」と「{-4:213}」が生存している場合'},
+  'kishou#2':{characterId:218,skillId:529,textId:527,status:'exact',skillEffectIds:[2080,2081,2082,1773],evidence:'味方「{-1:207}」が生存している場合'},
   'naki#2':{characterId:204,skillId:500,textId:496,status:'exact',skillEffectIds:[1234,1980,1981,1982,1983],evidence:'敵趙国、魏国武将に「体力回復無効」状態'},
   'ryofui#2':{characterId:79,skillId:444,textId:440,status:'exact',skillEffectIds:[1779,1797,1798,1799,1800,1802,1803],evidence:'敵「李牧」「嬴政」「太后」に「攻撃封印」状態'},
   'kakukai#0':{characterId:203,skillId:452,textId:448,status:'exact',skillEffectIds:[1014,1251,1782,1844,1845],evidence:'100%の確率で「李牧」に「攻撃封印」状態'},
@@ -66,6 +73,23 @@ add('makou#1',1,[3208,3209],{recipients:[ally(faction('qin'))],modifiers:[modifi
 add('makou#1',2,[3210,3211],{recipients:[ally(faction('qin'))],conditions:[presence('enemy',unit('Archer'))],modifiers:[modifier('Hit Rate','up',30)]})
 add('ka#1',0,[1535,1994,2612,2967],{recipients:[ally(faction('zhao'))],modifiers:[modifier('ATK','up',30),modifier('DEF','up',30)]})
 add('ka#1',1,[2952,2969],{recipients:[ally(faction('zhao'))],conditions:[presence('ally',faction('zhao'),'surviving'),presence('enemy')],modifiers:[modifier('HP Recovery','up',30)]})
+add('kaine#1',1,[1727,1728],{recipients:[ally(faction('zhao'))],conditions:[presence('ally',character('riboku'))],modifiers:[modifier('Max Morale','up',50)]})
+add('kaine#2',2,[1730,1731],{recipients:[ally(faction('zhao'))],conditions:[presence('ally',character('riboku'))],modifiers:[modifier('Evasion','up',20)]})
+add('eiki#1',0,[3216,3217],{recipients:[ally(faction('qin'))],conditions:[count(group('Ousen Army'))],modifiers:[modifier('DEF','up',10)]})
+add('eiki#1',1,[3218],{recipients:[enemy()],targetLabel:'All enemies',conditions:[presence('ally',character('akou'))],modifiers:[modifier('DEF','down',20)]})
+add('kisui#2',1,[2044,2045],{recipients:[ally(faction('zhao'))],conditions:[presence('ally',any(character('batei'),character('ryuuto')))],modifiers:[modifier('Guard','up',60)]})
+add('kisui#2',2,[2046,2047],{recipients:[ally(faction('zhao'))],conditions:[presence('ally',allPresent(character('batei'),character('ryuuto')))],modifiers:[modifier('Attack Nullification','up',1)]})
+add('kisui#3',0,[2462,3530],{recipients:[ally(group('Kisui Army'))],modifiers:[modifier('Morale Consumption','down',30)]})
+add('kisui#3',1,[3531,3532],{recipients:[ally(group('Kisui Army'))],conditions:[presence('ally',character('batei'))],opponent:faction('qin'),modifiers:[modifier('ATK','up',20)]})
+add('kisui#3',2,[3533,3534],{recipients:[ally(group('Kisui Army'))],conditions:[presence('ally',character('ryuuto'))],modifiers:[modifier('ATK Down Resistance','up',30)]})
+add('kisui#3',3,[3535,3536],{recipients:[ally(group('Kisui Army'))],conditions:[presence('ally',allPresent(character('batei'),character('ryuuto')))],modifiers:[modifier('Betrayal Resistance','up',50)]})
+// One derived Kishou row collapsed three distinct source triggers. Atomic
+// effect IDs and Japanese placeholders preserve the three named requirements.
+add('kishou#2',0,[2080,2081,2082],{recipients:[enemy()],targetLabel:'All enemies',modifiers:[
+  modifier('ATK','down',20,{conditions:[presence('ally',character('kisui'))]}),
+  modifier('Critical Damage','down',20,{conditions:[presence('ally',character('batei'))]}),
+  modifier('Critical Rate','down',20,{conditions:[presence('ally',character('ryuuto'))]}),
+]})
 add('naki#2',0,[1980,1981],{recipients:[enemy(any(faction('zhao'),faction('wei')))],targetLabel:'Enemy [Zhao] / [Wei]',modifiers:[modifier('HP Recovery Nullification','up',70)]})
 add('naki#2',1,[1982,1983],{recipients:[ally(group('Kanki Army'))],conditions:[{kind:'side',side:'attack'}],modifiers:[modifier('Critical Rate','up',20)]})
 add('ryofui#2',0,[1802,1803],{recipients:[ally(group('Ryofui Four Pillars'))],modifiers:[modifier('ATK','up',30),modifier('DEF','up',30)]})
@@ -134,10 +158,20 @@ export function stableCriterionMatches(member,criterion,owner,excludeSelf=false)
   return false
 }
 
+export function stableCriterionSupported(criterion,allowAllPresent=false){
+  if(!criterion||typeof criterion!=='object') return false
+  if(criterion.kind==='allPresent') return allowAllPresent&&Array.isArray(criterion.criteria)&&criterion.criteria.length>0&&criterion.criteria.every(part=>stableCriterionSupported(part))
+  if(criterion.kind==='any'||criterion.kind==='allOf') return Array.isArray(criterion.criteria)&&criterion.criteria.length>0&&criterion.criteria.every(part=>stableCriterionSupported(part))
+  if(criterion.kind==='self'||criterion.kind==='all') return true
+  if(criterion.kind==='faction'||criterion.kind==='unitType'||criterion.kind==='group'||criterion.kind==='character') return typeof criterion.id==='string'&&criterion.id.length>0
+  return false
+}
+
 export function stableRecipientsMatch(mechanic,side,member,owner){
   return (mechanic?.recipients||[]).some(recipient=>recipient.side===side&&stableCriterionMatches(member,recipient.criteria,owner,recipient.excludeSelf))
 }
 
 export function stableRosterHas(roster,criterion,owner=null,excludeSelf=false){
+  if(criterion?.kind==='allPresent') return criterion.criteria.every(part=>stableRosterHas(roster,part,owner,excludeSelf))
   return (roster||[]).some(member=>stableCriterionMatches(member,criterion,owner,excludeSelf))
 }

@@ -1,0 +1,28 @@
+{
+  "_schema": "Acknowledged pre-existing Builder content audit findings; new issue keys fail CI.",
+  "acknowledgedIssueKeys": [
+    "bajio|2|0|unsupported-recipient||When Attacking, Ally [Siege Weapon] with highest ATK|Ally [Siege Weapon]|1 [Siege Weapon] ATK Up 20%|[Siege Weapon]",
+    "bajio|2|1|unsupported-recipient||When Attacking, Ally [Siege Weapon] with highest ATK, Per other ally [Mountain Folk]|Ally [Siege Weapon]|1 [Siege Weapon] ATK Up 5%|[Siege Weapon]",
+    "ei_sei|2|1|unresolved-effect|||Self|Attack Immunity x3|",
+    "gokei|1|0|unsupported-recipient||Per ally [Infantry] [General]|Ally [Siege Weapon]|ATK Up 10%|[Siege Weapon]",
+    "gokei|1|1|unsupported-recipient||When Garrisoning|Ally [Siege Weapon] vs infantry|DEF Up 30%|[Siege Weapon]",
+    "gokei|2|1|unsupported-opponent|||Enemy [Cavalry] / Enemy [Siege Weapon]|ATK Down 20%|[Siege Weapon]",
+    "hakuki|1|4|unsupported-criterion||When Garrisoning|Ally [Siege Weapon] vs enemy [Siege Weapon]|ATK Up 40%|opponent:enemy [Siege Weapon]",
+    "hakuki|1|4|unsupported-opponent||When Garrisoning|Ally [Siege Weapon] vs enemy [Siege Weapon]|ATK Up 40%|enemy [Siege Weapon]",
+    "hakuki|1|4|unsupported-recipient||When Garrisoning|Ally [Siege Weapon] vs enemy [Siege Weapon]|ATK Up 40%|[Siege Weapon]",
+    "hakuki|2|3|unsupported-recipient||When Garrisoning|Ally [Siege Weapon]|Guard 60%|[Siege Weapon]",
+    "hakuki|3|3|unsupported-recipient||When Garrisoning|Ally [Siege Weapon]|ATK Up, DEF Up 50%|[Siege Weapon]",
+    "koshou|2|2|unsupported-criterion||When Attacking, per ally Six Great [General]|Enemy [Siege Weapon]|DEF Down 10%|enemy-target:[Siege Weapon]",
+    "koshou|2|2|unsupported-opponent||When Attacking, per ally Six Great [General]|Enemy [Siege Weapon]|DEF Down 10%|[Siege Weapon]",
+    "oukotsu|2|0|unsupported-recipient||When Attacking|Ally [Siege Weapon]|ATK Up 15%|[Siege Weapon]",
+    "oukotsu|2|1|unsupported-recipient||When Attacking, per other ally [Qin] [General]|Ally [Siege Weapon]|ATK Up 5%|[Siege Weapon]",
+    "ranbihaku|1|1|unsupported-criterion||When ally Reiou is alive|Self vs siege weapons|ATK Up 30%|opponent:siege weapons",
+    "ranbihaku|1|1|unsupported-opponent||When ally Reiou is alive|Self vs siege weapons|ATK Up 30%|siege weapons",
+    "reiou|2|1|unsupported-opponent||Own HP > 90%|Enemy [Qin] / Enemy [Siege Weapon]|ATK Down 20%|[Siege Weapon]",
+    "renpa|3|1|unknown-condition-grammar||Ally Renpa Army (other than self) alive|All ally [General]|Guard 60%|condition-grammar",
+    "rinko|3|2|unknown-condition-grammar||Ally \"Renpa\" alive in same formation|All ally [General]|Morale Consumption Down 30%|condition-grammar",
+    "rui|1|3|unsupported-recipient||When Garrisoning|Ally [Siege Weapon]|ATK Up 30%|[Siege Weapon]",
+    "shikika|1|3|unresolved-effect||Damage dealt by Shihaku|Shikika|Damage Received significantly Down|",
+    "shoubunkun|1|2|unsupported-recipient||When Garrisoning|Ally [Siege Weapon]|DEF Up 30%|[Siege Weapon]"
+  ]
+}

@@ -98,19 +98,34 @@ describe('Discord share formatting', () => {
     expect(text).toContain('- Enemy debuff on Enemy Cavalry: ATK -20%')
   })
 
-  it('labels potential values and omitted conditions separately from guaranteed share totals', () => {
-    const conditionalSource={owner:{id:'a'},skill:{name_en:'A'},effect:{condition:'Per own attack count'},stat:'ATK'}
+  it('lists runtime formulas individually without publishing a potential sum', () => {
+    const conditionalSource={owner:{id:'a',name_en:'A'},skill:{name_en:'Future Skill'},effect:{condition:'Per own attack count'},stat:'ATK',dir:'up',valueMeaning:{kind:'perCounter',amount:5,cap:30}}
     const text=formatTeamBuffShare({
       atk:[{name_en:'A'}],
       atkBuffs:[{general:{name_en:'A'},buffs:{
         ATK:{up:10,down:0,potentialUp:20,potentialDown:0},
-        meta:{conditionalUnquantified:[conditionalSource],unsupported:[]},
+        meta:{conditionalEffects:[conditionalSource],missingInputs:[],unsupported:[]},
       }}],
       specialStats:new Set(),
       statSortKey:()=>0,
     })
-    expect(text).toContain('ATK +10%/Potential +20%')
-    expect(text).toContain('1 conditional effects omitted from totals')
+    expect(text).toContain('ATK +10%')
+    expect(text).not.toContain('Potential +20%')
+    expect(text).toContain('Future Skill: ATK +5% per event (cap 30%)')
+  })
+
+  it('localizes team and conditional source names while preserving the recoverable link',()=>{
+    const general={id:'future',name_en:'Future General'}
+    const source={owner:general,skill:{name_en:'Future Skill'},effect:{condition:'Own HP ≤ 50%'},stat:'ATK',dir:'up',valueMeaning:{kind:'fixed',value:40}}
+    const url='https://ranhq.vercel.app/ja/builder?plan=1&v=1'
+    const text=formatTeamBuffShare({
+      atk:[general],atkBuffs:[{general,buffs:{meta:{conditionalEffects:[source],missingInputs:[],unsupported:[]}}}],
+      url,labels:{localizeCharacterName:()=> '未来の武将',localizeBuffSource:()=>({skillName:'未来の技能',condition:'自身の体力が50%以下'})},
+    })
+    expect(text).toContain('未来の武将')
+    expect(text).toContain('未来の技能: ATK +40% | 自身の体力が50%以下')
+    expect(text).toContain(`<${url}>`)
+    expect(text).not.toContain('Potential')
   })
 
   it('uses the active locale resolver for dynamic buff-summary terms', () => {

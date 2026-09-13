@@ -77,10 +77,10 @@ test('formation summaries, contribution evidence and shared totals respect attac
     await row.locator('.buff-row').click()
     await expect(row.locator('.buff-source-row')).toContainText(`+${value}%`)
     await expect(row.locator('.buff-source-skill')).not.toBeEmpty()
-    await expect(row.locator('.buff-source-condition')).not.toBeEmpty()
-    if(locale==='en') await expect(row.locator('.buff-source-condition')).toHaveText(value===30?'When Garrisoning':'When Attacking')
+    await expect(row.locator('.buff-source-condition').first()).not.toBeEmpty()
+    if(locale==='en') await expect(row.locator('.buff-source-condition').first()).toHaveText(value===30?'When Garrisoning':'When Attacking')
   }
-  await expect(summary.locator('.buff-summary-note')).toHaveText(CATALOGS[locale].buffs.summaryConditions)
+  await expect(summary.locator('.buff-summary-note').first()).toHaveText(CATALOGS[locale].buffs.summaryConditions)
   await page.evaluate(() => {
     Object.defineProperty(navigator,'share',{ configurable:true,value:undefined })
     Object.defineProperty(navigator,'clipboard',{ configurable:true,value:{writeText:async text=>{window.__buffShare=text}} })
@@ -92,15 +92,50 @@ test('formation summaries, contribution evidence and shared totals respect attac
   const defending=text.split(`**${CATALOGS[locale].buffs.defendingFormation}**`)[1]
   // The export uses the exact BuffTable arrays. Distinct penetration amounts
   // identify these two contributions even when their labels are localized.
-  const ousenAttack=attacking.split('\n').find(line=>line.startsWith('- Ousen:'))
-  const dukeDefense=defending.split('\n').find(line=>line.startsWith('- Duke Hyou:'))
+  const ousenName=await attack.locator('[data-buff-general="ousen"] .scol-gen-hdr b').textContent()
+  const dukeName=await defense.locator('[data-buff-general="duke_hyou"] .scol-gen-hdr b').textContent()
+  const ousenAttack=attacking.split('\n').find(line=>line.startsWith(`- ${ousenName}:`))
+  const dukeDefense=defending.split('\n').find(line=>line.startsWith(`- ${dukeName}:`))
   // A general with no active strategy buffs has no summary line; the team
   // roster still identifies him. Absence is the correct wrong-side outcome.
-  expect(attacking).toContain('1. Ousen')
-  expect(defending).toContain('2. Duke Hyou')
+  expect(attacking).toContain(`1. ${ousenName}`)
+  expect(defending).toContain(`2. ${dukeName}`)
   const stat=await penetration(defense,'ousen').locator('.buff-stat-name').textContent()
   expect(ousenAttack || '').not.toContain(stat)
   expect(dukeDefense || '').not.toContain(stat)
   expect(attacking).toContain(`${stat} +20%`)
   expect(defending).toContain(`${stat} +30%`)
+})
+
+test('survival-qualified formation values and missing-opponent disclosures stay distinct',async({page,path,locale})=>{
+  const mask={n:3,s6:false,role:false}
+  let seeded=false
+  const open=async defense=>{
+    const value=JSON.stringify({
+      version:1,attack:['makou','shin',null,null],defense:[defense,null,null,null],
+      attackSkills:[mask,mask,mask,mask],defenseSkills:[mask,mask,mask,mask],
+    })
+    if(!seeded){
+      await instrumentStorage(page,{'ranhq:party-builder':value})
+      seeded=true
+    }else await page.evaluate(next=>localStorage.setItem('ranhq:party-builder',next),value)
+    await page.goto(path('/builder'))
+    await settle(page)
+    const toggle=page.locator('.builder-buff-toggle')
+    if(await toggle.getAttribute('aria-expanded')==='false') await toggle.click()
+    return page.locator('.buff-summary .scol.atk')
+  }
+  const matched=await open('hakurei')
+  const hit=matched.locator('[data-buff-general="shin"] [data-buff-stat="Hit Rate"]')
+  await expect(hit.locator('.buff-row')).toContainText('+30%')
+  await expect(hit.locator('.buff-row')).not.toContainText('Potential')
+  await hit.locator('.buff-row').click()
+  await expect(hit.locator('.buff-source-evidence')).toContainText(CATALOGS[locale].buffs.survivalCaveat)
+
+  const nonmatch=await open('karin')
+  await expect(nonmatch.locator('[data-buff-general="shin"] [data-buff-stat="Hit Rate"]')).toHaveCount(0)
+
+  const missing=await open(null)
+  await expect(missing.locator('[data-buff-general="shin"] [data-buff-stat="Hit Rate"]')).toHaveCount(0)
+  await expect(missing.locator('.buff-applicability-notice.not-calculated')).toContainText(CATALOGS[locale].buffs.selectOpponent)
 })

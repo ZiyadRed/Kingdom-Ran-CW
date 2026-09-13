@@ -131,15 +131,15 @@ describe('redesign Team Buff calculation contract', () => {
       { val: 100, duration: '1 time', owner: 'Ouhon' },
     ])
 
-    // HP/alive/status-dependent effects are no longer presented as guaranteed.
+    // HP/status effects remain runtime; survival-only effects are planning totals.
     expect(attackByName.Shoutaku['HP Recovery']).toMatchObject({ up: 0, potentialUp: 40 })
     expect(attackByName.Shoutaku['HP Recovery Rate']).toMatchObject({ up: 0, potentialUp: 30 })
-    expect(defenseByName.Yotanwa['Morale Recovery']).toMatchObject({ up: 0, potentialUp: 20 })
+    expect(defenseByName.Yotanwa['Morale Recovery']).toMatchObject({ up: 20, potentialUp: 0 })
 
     // Opponent composition is known here: Kanjou's Qin/cavalry/Gyokuhou
-    // clauses stack, while battle-state conditions stay in the potential lane.
+    // clauses stack, while survival-only clauses use the planning assumption.
     expect(result.attackEnemyDebuffs['Enemy generals'].down.DEF).toBe(40)
-    expect(result.attackEnemyDebuffs['Enemy General'].potentialDown.ATK).toBe(40)
-    expect(result.defenseEnemyDebuffs['All enemies'].potentialDown.ATK).toBe(30)
+    expect(result.attackEnemyDebuffs['Enemy General'].down.ATK).toBe(40)
+    expect(result.defenseEnemyDebuffs['All enemies'].down.ATK).toBe(30)
   })
 })

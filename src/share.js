@@ -103,10 +103,17 @@ export const DEFAULT_SHARE_LABELS={
   teamBuffSummary:'RanHQ Team Buff Summary',
   withCombat:'Strategy + combat skill effects included.',
   strategyOnly:'Strategy skills only.',
-  summaryConditions:'Guaranteed totals include only effects proven by the selected formations. Battle-state effects are shown separately as potential, or omitted when their value cannot be determined.',
-  potential:'Potential',
-  conditionalOmitted:'conditional effects omitted from totals',
-  unsupportedOmitted:'unsupported effects omitted from totals',
+  summaryConditions:'Calculated from selected formations and skills. Survival-dependent effects assume the required generals remain alive; battle-state effects are listed separately.',
+  calculatedFromFormation:'Calculated from this formation',
+  conditionalEffects:'Conditional effects',
+  notCalculated:'Not calculated',
+  selectOpponent:'Select an opposing formation to evaluate this effect.',
+  upToValue:value=>`Up to ${value}%`,
+  perCounterValue:(value,cap)=>`+${value}% per event (cap ${cap??'—'}%)`,
+  chanceValue:value=>`${value}% chance`,
+  dynamicValue:value=>`Up to ${value}%, scales with battle state`,
+  conditionalOmitted:'conditional effects listed separately',
+  unsupportedOmitted:'effects not calculated',
   noRelevantBuffs:'No relevant buffs.',
   enemyDebuffOn:'Enemy debuff on',
   sceneCardSkill:'CW6 Card Skill',
@@ -383,16 +390,41 @@ export function limitDiscordMessage(text,url,maxLength=DISCORD_MESSAGE_LIMIT,lab
 function formatBuffSideForShare(title,team,entries,enemyDebuffs,opts){
   const L=withLabels(opts?.labels)
   const lines=[`**${title}**`]
-  lines.push(`${L.team}: ${team.length?team.map((g,i)=>`${i+1}. ${displayName(g)}`).join(' / '):L.noGenerals}`)
+  lines.push(`${L.team}: ${team.length?team.map((g,i)=>`${i+1}. ${L.localizeCharacterName?.(g)||displayName(g)}`).join(' / '):L.noGenerals}`)
+  lines.push(`${L.calculatedFromFormation}:`)
   const buffLines=formatEntryBuffs(entries,opts)
   const debuffLines=formatEnemyDebuffs(enemyDebuffs,opts)
   if(!buffLines.length&&!debuffLines.length) lines.push(`- ${L.noRelevantBuffs}`)
   else lines.push(...buffLines,...debuffLines)
-  const conditional=uniqueApplicabilitySources(entries,enemyDebuffs,'conditionalUnquantified')
+  const conditional=uniqueApplicabilitySources(entries,enemyDebuffs,'conditionalEffects')
+  const missing=uniqueApplicabilitySources(entries,enemyDebuffs,'missingInputs')
   const unsupported=uniqueApplicabilitySources(entries,enemyDebuffs,'unsupported')
-  if(conditional.length) lines.push(`- ${conditional.length} ${L.conditionalOmitted}`)
-  if(unsupported.length) lines.push(`- ${unsupported.length} ${L.unsupportedOmitted}`)
+  if(conditional.length){
+    lines.push(`${L.conditionalEffects}:`)
+    lines.push(...conditional.map(source=>`- ${formatBuffSourceForShare(source,L)}`))
+  }
+  if(missing.length||unsupported.length){
+    lines.push(`${L.notCalculated}:`)
+    lines.push(...missing.map(source=>`- ${formatBuffSourceForShare(source,L)} — ${L.selectOpponent}`))
+    lines.push(...unsupported.map(source=>`- ${formatBuffSourceForShare(source,L)} — ${L.unsupportedOmitted}`))
+  }
   return lines
+}
+
+function formatBuffSourceForShare(source,L){
+  const presentation=L.localizeBuffSource?.(source)||{}
+  const owner=L.localizeCharacterName?.(source.owner)||displayName(source.owner)||L.unknown
+  const skill=presentation.skillName||displayName(source.skill)||L.unnamedSkill
+  const stat=source.stat?term(L,source.stat):L.effect
+  const value=source.valueMeaning||{}
+  let amount=''
+  if(value.kind==='fixed') amount=`${source.dir==='down'?'-':'+'}${fmt(value.value)}%`
+  else if(value.kind==='upperBound') amount=L.upToValue(value.max)
+  else if(value.kind==='perCounter') amount=L.perCounterValue(value.amount,value.cap)
+  else if(value.kind==='chance') amount=L.chanceValue(value.rate)
+  else if(value.kind==='dynamicMultiplier') amount=L.dynamicValue(value.max)
+  const condition=presentation.condition||source.effect?.condition
+  return `${owner} — ${skill}: ${stat}${amount?` ${amount}`:''}${condition?` | ${condition}`:''}`
 }
 
 function uniqueApplicabilitySources(entries,enemyDebuffs,key){
@@ -415,19 +447,17 @@ function formatEntryBuffs(entries,{specialStats,statSortKey,labels}){
     const stats=sortBuffStats(Object.entries(buffs||{}),statSortKey)
     if(!stats.length) return []
     const values=stats.map(([stat,buff])=>formatBuffValue(stat,buff,specialStats,L)).filter(Boolean)
-    return values.length?[`- ${displayName(general)}: ${values.join(', ')}`]:[]
+    return values.length?[`- ${L.localizeCharacterName?.(general)||displayName(general)}: ${values.join(', ')}`]:[]
   })
 }
 
 function formatEnemyDebuffs(enemyDebuffs,{specialStats,statSortKey,labels}){
   const L=withLabels(labels)
-  return Object.entries(enemyDebuffs||{}).flatMap(([target,{up={},down={},potentialUp={},potentialDown={}}])=>{
-    const names=new Set([...Object.keys(up),...Object.keys(down),...Object.keys(potentialUp),...Object.keys(potentialDown)])
+  return Object.entries(enemyDebuffs||{}).flatMap(([target,{up={},down={}}])=>{
+    const names=new Set([...Object.keys(up),...Object.keys(down)])
     const stats=sortBuffStats([...names].map(stat=>[stat,{
       up:up[stat]||0,
       down:down[stat]||0,
-      potentialUp:potentialUp[stat]||0,
-      potentialDown:potentialDown[stat]||0,
     }]),statSortKey)
     const values=stats.map(([stat,buff])=>formatBuffValue(stat,buff,specialStats,L)).filter(Boolean)
     return values.length?[`- ${L.enemyDebuffOn} ${term(L,target)}: ${values.join(', ')}`]:[]
@@ -436,7 +466,7 @@ function formatEnemyDebuffs(enemyDebuffs,{specialStats,statSortKey,labels}){
 
 function sortBuffStats(entries,statSortKey){
   return entries
-    .filter(([,buff])=>(buff?.up||0)>0||(buff?.down||0)>0||(buff?.potentialUp||0)>0||(buff?.potentialDown||0)>0)
+    .filter(([,buff])=>(buff?.up||0)>0||(buff?.down||0)>0)
     .sort(([a],[b])=>statSortKey?statSortKey(a)-statSortKey(b):a.localeCompare(b))
 }
 
@@ -445,14 +475,9 @@ function formatBuffValue(stat,buff,specialStats,labels){
   const parts=[]
   const up=buff?.up||0
   const down=buff?.down||0
-  const potentialUp=buff?.potentialUp||0
-  const potentialDown=buff?.potentialDown||0
   if(specialStats.has(stat)&&up>0) parts.push(`${fmt(up)}x`)
   else if(up>0) parts.push(`+${fmt(up)}%`)
   if(down>0) parts.push(`-${fmt(down)}%`)
-  if(specialStats.has(stat)&&potentialUp>0) parts.push(`${L.potential} ${fmt(potentialUp)}x`)
-  else if(potentialUp>0) parts.push(`${L.potential} +${fmt(potentialUp)}%`)
-  if(potentialDown>0) parts.push(`${L.potential} -${fmt(potentialDown)}%`)
   return parts.length?`${term(L,stat)} ${parts.join('/')}`:''
 }
 

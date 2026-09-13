@@ -37,6 +37,7 @@ import {
   BUILDER_MECHANICS,
   attachBuilderMechanicIds,
   stableCriterionMatches,
+  stableCriterionSupported,
   stableRecipientsMatch,
   stableRosterHas,
 } from './builder-mechanics.js'
@@ -807,7 +808,7 @@ export function parseBuffEffect(str){
     if(/^Rampage$/i.test(part)){flush({stat:'Rampage',dir:'Up',val:1,ownerType,antiEnemy});continue}
     // "ATK Up (max X%)" — stacking buff with cap, no per-stack value given
     m=part.match(/^(.+?)\s+(Up|Down)\s+\(max\s+(\d+(?:\.\d+)?)[%％]\)$/i)
-    if(m){flush({stat:normalizeBuffStat(m[1].trim()),dir:m[2],val:parseFloat(m[3]),ownerType,antiEnemy});continue}
+    if(m){flush({stat:normalizeBuffStat(m[1].trim()),dir:m[2],val:parseFloat(m[3]),valueMeaning:{kind:'upperBound',max:parseFloat(m[3])},ownerType,antiEnemy});continue}
     // "Stat Up/Down X%"
     m=part.match(/^(.+?)\s+(Up|Down)\s+(\d+(?:\.\d+)?)[%％]/)
     if(m){flush({stat:normalizeBuffStat(m[1].trim()),dir:m[2],val:parseFloat(m[3]),ownerType,antiEnemy});continue}
@@ -1224,6 +1225,8 @@ export function parsePresenceRequirements(cond){
     .map(clause=>clause.trim().replace(/^when\s+/i,''))
     .filter(Boolean)
   for(const clause of clauses){
+    // A status-qualified target is battle state, not mere roster presence.
+    if(/^(?:confus\w*|poison\w*|burn\w*|fear\w*|paraly\w*|paralys\w*|betray\w*|illusion\w*|reckless)\s+enemy\b/i.test(clause)) continue
     let match
     // "Surviving ally [Zhao]" / "surviving ally [Cavalry]".
     match=clause.match(/\bsurviving\s+(other\s+)?(ally|enemy)\s*(.*?)(?=\s+when\b|$)/i)
@@ -1268,23 +1271,85 @@ function raiseApplicability(current,next){
   }
   return rank[next]>rank[current]?next:current
 }
-const DYNAMIC_CONDITION_RE=/\b(?:hp|morale|turn|damage|attack\s+count|defeated|alive|surviving|poison(?:ed)?|burn(?:ed)?|fear(?:ed)?|confus(?:ed|ion)|paralys(?:ed|is)|paraly(?:zed|sis)|illusion|betrayal|reckless|while|upon|after|highest|lowest|random|death|dies|remaining|afflicted|status)\b/i
 const DYNAMIC_MULTIPLIER_RE=/\b(?:per|for\s+each)\b[^,]*(?:attack|turn|defeat|defeated|damage)|\b(?:attack|skill)\s+count\b/i
 const PASSIVE_CONTEXT_RE=/^CW\s+battle\s*\(active\s+even\s+(?:when|if)\s+not\s+deployed\)$/i
 
-// Evaluate formation knowledge before aggregation.  A known mismatch is
-// impossible, a battle-state dependency remains potential, and a recognized
-// formation grammar we cannot resolve is unsupported (fail closed).
+export function buffValueMeaning(modifier,effect){
+  const value=modifier?.val
+  const text=`${effect?.effect||''} ${effect?.condition||''}`
+  if(!Number.isFinite(value)) return{kind:'unknown'}
+  const cap=/(?:max(?:imum)?|up to)\s*(\d+(?:\.\d+)?)[%％]/i.exec(text)
+  if(DYNAMIC_MULTIPLIER_RE.test(text)) return{kind:'perCounter',amount:value,cap:cap?Number(cap[1]):null,counter:/attack/i.test(text)?'attack':/turn/i.test(text)?'turn':/defeat|kill/i.test(text)?'defeat':'event'}
+  if(/\b(?:scales?|proportional|according to|based on|depending on)\b[^.]*\bHP\b|\bHP\b[^.]*\b(?:scales?|proportional)\b/i.test(text)) return{kind:'dynamicMultiplier',max:cap?Number(cap[1]):value,basis:'HP'}
+  if(modifier.valueMeaning?.kind==='upperBound'||/\b(?:max(?:imum)?|up to)\s*\d+(?:\.\d+)?[%％]/i.test(text)) return{kind:'upperBound',max:modifier.valueMeaning?.max??Number(cap?.[1]??value)}
+  if(modifier.valueMeaning&&modifier.valueMeaning.kind!=='fixed') return modifier.valueMeaning
+  if(SPECIAL_STATS.has(modifier.stat)) return{kind:'flag',count:value}
+  if(/(?:Infliction Rate|Attack Seal|HP Recovery Nullification)$/i.test(modifier.stat)) return{kind:'chance',rate:value}
+  return{kind:'fixed',value}
+}
+
+function runtimeFromCondition(cond,presenceRequirements){
+  const requirements=[]
+  const add=(kind,detail)=>{if(!requirements.some(item=>item.kind===kind)) requirements.push({kind,detail})}
+  if(/\bHP\b/i.test(cond)) add('hp',cond)
+  if(/\b(?:poison(?:ed)?|burn(?:ed)?|fear(?:ed)?|confus(?:ed|ion)|paralys(?:ed|is)|paraly(?:zed|sis)|illusion|betrayal|reckless|afflicted|status)\b/i.test(cond)) add('status',cond)
+  if(DYNAMIC_MULTIPLIER_RE.test(cond)) add('counter',cond)
+  if(/\b(?:turn|defeated|defeat|kill|damage|death|dies|upon|after)\b/i.test(cond)) add('event',cond)
+  if(/\b(?:morale|highest|lowest|random|remaining)\b/i.test(cond)) add('battleState',cond)
+  if(/\b(?:alive|surviving)\b/i.test(cond)&&!presenceRequirements.length) add('unresolvedSurvival',cond)
+  return requirements
+}
+
+function hasUnknownPresenceClause(cond,requirements){
+  if(!requirements.length) return false
+  let remainder=cond
+  for(const requirement of requirements){
+    if(!requirement.raw) continue
+    const escaped=requirement.raw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')
+    remainder=remainder.replace(new RegExp(escaped,'gi'),' ')
+  }
+  remainder=remainder
+    .replace(/\b(?:when|while|other|ally|allies|enemy|enemies|target|is|are|both|alive|present|surviving|and|or|besides|self|own|hp|morale|turn|attack|count|defeated|defeat|kill|damage|death|dies|upon|after|highest|lowest|random|remaining|afflicted|status|garrisoning|garrison|defending|attacking|general|unit|if|the|a|an|than|up|down|to|less|more|poison\w*|burn\w*|fear\w*|confus\w*|paraly\w*|paralys\w*|illusion\w*|betray\w*|reckless)\b/gi,' ')
+    .replace(/[\d\s\p{P}\p{S}]+/gu,'')
+  return remainder.length>0
+}
+
+// Evaluate formation knowledge before aggregation. A known mismatch is
+// impossible, runtime requirements stay conditional, and grammar we cannot
+// resolve is unsupported (fail closed).
 export function evaluateBuffApplicability(effect,modifier,owner,team,enemyTeam,isDefense,showAll=false){
   const cond=String(effect?.condition||'').trim()
   let state=BUFF_APPLICABILITY.APPLICABLE
   let multiplier=1
   let recognized=false
   const reasons=[]
+  const formationRequirements=[]
+  const survivalCaveats=[]
+  const runtimeRequirements=[]
+  const missingInputs=[]
+  const unsupportedRequirements=[]
+  const recipientRequirements=[]
+  const opponentRequirements=[]
+  const valueMeaning=modifier?buffValueMeaning(modifier,effect):null
+  const done=(nextState=state,nextMultiplier=multiplier)=>({
+    state:nextState,multiplier:nextMultiplier,reasons,
+    formationRequirements,
+    formationSatisfied:nextState!==BUFF_APPLICABILITY.IMPOSSIBLE&&formationRequirements.every(item=>item.matched),
+    survivalCaveats,runtimeRequirements,missingInputs,unsupportedRequirements,
+    recipientRequirements,opponentRequirements,valueMeaning,
+  })
+  const impossible=reason=>{reasons.push(reason);return done(BUFF_APPLICABILITY.IMPOSSIBLE,0)}
+  const unsupported=reason=>{reasons.push(reason);unsupportedRequirements.push(reason);return done(BUFF_APPLICABILITY.UNSUPPORTED,0)}
+  const missingOpponent=reason=>{
+    state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+    reasons.push(reason)
+    if(!missingInputs.some(item=>item.kind==='opposingFormation')) missingInputs.push({kind:'opposingFormation'})
+  }
   if(cond&&/garrison|when attacking|when defending/i.test(cond)){
     recognized=true
+    formationRequirements.push({kind:'side',side:isDefense?'defense':'attack',matched:isCondActive(cond,isDefense)})
     if(!isCondActive(cond,isDefense)){
-      if(!showAll) return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:['side']}
+      if(!showAll) return impossible('side')
     }
   }
   const count=parseAllyCountCondition(cond)
@@ -1294,11 +1359,13 @@ export function evaluateBuffApplicability(effect,modifier,owner,team,enemyTeam,i
       state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
       multiplier=null
       reasons.push('battle-count')
+      runtimeRequirements.push({kind:'counter',detail:count.raw})
     }else if(!count.supported){
-      return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:['ally-count-criterion']}
+      return unsupported('ally-count-criterion')
     }else{
       multiplier=getMultiplier(cond,owner,team)
-      if(multiplier===0) return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:['ally-count-zero']}
+      formationRequirements.push({kind:'rosterCount',side:'ally',terms:count.terms,matched:multiplier>0,count:multiplier})
+      if(multiplier===0) return impossible('ally-count-zero')
     }
   }
   if(DYNAMIC_MULTIPLIER_RE.test(cond)&&count?.kind!=='rosterCount'){
@@ -1306,22 +1373,22 @@ export function evaluateBuffApplicability(effect,modifier,owner,team,enemyTeam,i
     state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
     multiplier=null
     if(!reasons.includes('battle-count')) reasons.push('dynamic-multiplier')
+    if(!runtimeRequirements.some(item=>item.kind==='counter')) runtimeRequirements.push({kind:'counter',detail:cond})
   }
-  for(const requirement of parsePresenceRequirements(cond)){
+  const presenceRequirements=parsePresenceRequirements(cond)
+  for(const requirement of presenceRequirements){
     recognized=true
-    if(!requirement.criteria) return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:['presence-criterion']}
+    if(!requirement.criteria) return unsupported('presence-criterion')
     const roster=requirement.side==='enemy'?(enemyTeam||[]):(team||[])
     if(requirement.side==='enemy'&&!roster.length){
-      state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
-      reasons.push('enemy-roster-unknown')
+      formationRequirements.push({kind:'presence',...requirement,matched:null})
+      missingOpponent('enemy-roster-unknown')
       continue
     }
-    if(!rosterSatisfiesPresence(roster,requirement,owner))
-      return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:[`${requirement.side}-presence`]}
-    if(requirement.stateWord!=='present'||new RegExp(`(?:${STATUS_EFFECTS.join('|')})\\s+enemy`,'i').test(cond)){
-      state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
-      reasons.push(`${requirement.side}-${requirement.stateWord}`)
-    }
+    const matched=rosterSatisfiesPresence(roster,requirement,owner)
+    formationRequirements.push({kind:'presence',...requirement,matched})
+    if(!matched) return impossible(`${requirement.side}-presence`)
+    if(requirement.stateWord==='alive'||requirement.stateWord==='surviving') survivalCaveats.push({side:requirement.side,criteria:requirement.criteria,raw:requirement.raw})
   }
 
   const bareRoster=cond.match(/^(?:(other)\s+)?(ally|enemy)\s+(.+)$/i)
@@ -1331,17 +1398,19 @@ export function evaluateBuffApplicability(effect,modifier,owner,team,enemyTeam,i
       recognized=true
       const roster=bareRoster[2].toLowerCase()==='enemy'?(enemyTeam||[]):(team||[])
       if(bareRoster[2].toLowerCase()==='enemy'&&!roster.length){
-        state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
-        reasons.push('enemy-roster-unknown')
+        formationRequirements.push({kind:'roster',side:'enemy',criteria,matched:null})
+        missingOpponent('enemy-roster-unknown')
       }else if(!rosterHasCriterion(roster,criteria,owner,!!bareRoster[1])){
-        return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:[`${bareRoster[2].toLowerCase()}-roster`]}
-      }
+        formationRequirements.push({kind:'roster',side:bareRoster[2].toLowerCase(),criteria,matched:false})
+        return impossible(`${bareRoster[2].toLowerCase()}-roster`)
+      }else formationRequirements.push({kind:'roster',side:bareRoster[2].toLowerCase(),criteria,matched:true})
     }
   }
 
   if(modifier?.recipientRaw){
     recognized=true
-    if(!modifier.recipientCriteria) return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:['recipient-criterion']}
+    recipientRequirements.push({raw:modifier.recipientRaw,criteria:modifier.recipientCriteria})
+    if(!modifier.recipientCriteria) return unsupported('recipient-criterion')
   }
 
   const targetState=parseEnemyTargetState(effect?.target)
@@ -1349,22 +1418,23 @@ export function evaluateBuffApplicability(effect,modifier,owner,team,enemyTeam,i
     recognized=true
     state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
     reasons.push(`target-status:${targetState.statusLabel.toLowerCase()}`)
+    runtimeRequirements.push({kind:'targetStatus',detail:targetState.statusLabel})
   }
   const targetMechanics=parseTargetMechanics(targetState?.target||effect?.target)
   const enemyTarget=parseEnemyTargetCriteria(effect?.target)
   if(enemyTarget?.restricted){
     recognized=true
     const hasKnownMatch=enemyTarget.criteria&&rosterHasCriterion(enemyTeam||[],enemyTarget.criteria)
+    formationRequirements.push({kind:'enemyRecipient',criteria:enemyTarget.criteria,matched:hasKnownMatch?true:(enemyTeam||[]).length?false:null})
     if(hasKnownMatch){
       // A supported alternative is enough for an OR target even if another
       // alternative is a siege weapon the Builder cannot represent.
     }else if(enemyTarget.unsupported.length){
-      return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:[`enemy-target:${enemyTarget.unsupported.join(' / ')}`]}
+      return unsupported(`enemy-target:${enemyTarget.unsupported.join(' / ')}`)
     }else if(!(enemyTeam||[]).length){
-      state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
-      reasons.push('enemy-target-roster-unknown')
+      missingOpponent('enemy-target-roster-unknown')
     }else{
-      return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:['enemy-target']}
+      return impossible('enemy-target')
     }
   }
   const conditionMechanics=/\b(?:vs\.?|versus|against)\b/i.test(cond)?parseTargetMechanics(cond):null
@@ -1376,29 +1446,38 @@ export function evaluateBuffApplicability(effect,modifier,owner,team,enemyTeam,i
   const versusRoster=parseEnemyTargetCriteria(effect?.target)?(team||[]):(enemyTeam||[])
   for(const qualifier of opponentQualifiers){
     recognized=true
-    if(!qualifier.criteria) return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:[`opponent:${qualifier.raw}`]}
+    opponentRequirements.push(qualifier)
+    if(!qualifier.criteria) return unsupported(`opponent:${qualifier.raw}`)
     if(!versusRoster.length){
-      state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
-      reasons.push('opponent-roster-unknown')
+      formationRequirements.push({kind:'opponent',criteria:qualifier.criteria,matched:null})
+      missingOpponent('opponent-roster-unknown')
     }else if(!rosterHasCriterion(versusRoster,qualifier.criteria)){
-      return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:[`opponent:${qualifier.raw}`]}
-    }
+      formationRequirements.push({kind:'opponent',criteria:qualifier.criteria,matched:false})
+      return impossible(`opponent:${qualifier.raw}`)
+    }else formationRequirements.push({kind:'opponent',criteria:qualifier.criteria,matched:true})
   }
   if(cond&&PASSIVE_CONTEXT_RE.test(cond)) recognized=true
-  if(cond&&!recognized&&DYNAMIC_CONDITION_RE.test(cond)){
+  for(const runtime of runtimeFromCondition(cond,presenceRequirements)){
     recognized=true
-    state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
-    reasons.push('battle-state')
-  }else if(cond&&recognized&&DYNAMIC_CONDITION_RE.test(cond)){
-    state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
-    if(!reasons.some(reason=>reason.includes('alive')||reason==='battle-count'||reason==='dynamic-multiplier')) reasons.push('battle-state')
+    if(!runtimeRequirements.some(item=>item.kind===runtime.kind)) runtimeRequirements.push(runtime)
   }
-  if(cond&&!recognized)
-    return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:['condition-grammar']}
-  return{state,multiplier,reasons}
+  if(runtimeRequirements.length){
+    state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+    if(!reasons.includes('battle-state')) reasons.push('battle-state')
+  }
+  if(hasUnknownPresenceClause(cond,presenceRequirements)) return unsupported('condition-grammar')
+  if(cond&&!recognized) return unsupported('condition-grammar')
+  if(valueMeaning&&!['fixed','flag','chance','upperBound','perCounter','dynamicMultiplier'].includes(valueMeaning.kind)) return unsupported('value-meaning')
+  if(valueMeaning&&['upperBound','perCounter','chance','dynamicMultiplier'].includes(valueMeaning.kind)){
+    state=raiseApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+    if(!runtimeRequirements.some(item=>item.kind==='valueSemantics')) runtimeRequirements.push({kind:'valueSemantics',detail:valueMeaning.kind})
+  }
+  return done()
 }
 
 const newBuffMeta=()=>({
+  conditionalEffects:[],
+  missingInputs:[],
   conditionalUnquantified:[],
   unsupported:[],
   mechanicResolution:{stable:[],parserFallback:[],failClosed:[]},
@@ -1420,10 +1499,32 @@ const buffSource=(owner,skill,effect,modifier,application,contribution=null,dir=
   mechanicId:effect?.mechanicId||null,
   mechanicResolution:effect?.mechanicId?(BUILDER_MECHANICS[effect.mechanicId]?'stable':'failClosed'):'parserFallback',
   applicability:application.state,reasons:application.reasons,
+  formationRequirements:application.formationRequirements||[],
+  formationSatisfied:application.formationSatisfied??false,
+  survivalCaveats:application.survivalCaveats||[],
+  runtimeRequirements:application.runtimeRequirements||[],
+  missingInputs:application.missingInputs||[],
+  unsupportedRequirements:application.unsupportedRequirements||[],
+  recipientRequirements:application.recipientRequirements||[],
+  opponentRequirements:application.opponentRequirements||[],
+  valueMeaning:application.valueMeaning||modifier?.valueMeaning||{kind:'unknown'},
 })
 const parseUnsupportedBuffEffect=effect=>{
   const match=String(effect||'').trim().match(/^(.+?)\s+(?:significantly|greatly)\s+(Up|Down)$/i)
   return match?{stat:normalizeBuffStat(match[1].trim()),dir:match[2],val:null}:null
+}
+const looksLikeBuffEffect=effect=>/\b(?:up|down|guard|resistance|infliction|seal|nullification|recovery|immunity)\b/i.test(String(effect||''))
+const unsupportedAllyTarget=target=>{
+  const base=parseTargetMechanics(target).target.trim()
+  const parts=base.replace(/\s+and\s+(?=ally\b)/gi,'/').split('/').map(part=>part.trim()).filter(Boolean)
+  for(const part of parts){
+    if(/^self$/i.test(part)) continue
+    const match=/^(?:surviving\s+)?(?:other\s+)?ally\s+(.+)$/i.exec(part)
+    if(!match) continue
+    const raw=match[1].replace(/\b(?:other\s+than\s+self|besides\s+self)\b/gi,'').trim()
+    if(raw&&!parseCriterionExpression(raw)&&!parseRosterCriterion(raw)) return true
+  }
+  return false
 }
 
 const mechanicResolutionKey=(owner,skill,effect)=>[
@@ -1452,6 +1553,8 @@ export function resolveBuilderMechanic(effect){
       stat:entry.stat,
       dir:entry.direction==='down'?'Down':'Up',
       val:entry.value,
+      valueMeaning:entry.valueMeaning,
+      conditions:entry.conditions,
       mechanicId:mechanic.id,
     })),
   }
@@ -1490,69 +1593,123 @@ const raiseStableApplicability=(state,next)=>{
   return rank[next]>rank[state]?next:state
 }
 
-export function evaluateStableMechanicApplicability(mechanic,owner,team,enemyTeam,isDefense,showAll=false){
-  if(!mechanic) return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:['stable-identity-unmapped']}
+const stableCriterionKnown=criterion=>{
+  if(!stableCriterionSupported(criterion,true)) return false
+  if(criterion.kind==='any'||criterion.kind==='allOf'||criterion.kind==='allPresent') return criterion.criteria.every(stableCriterionKnown)
+  if(criterion.kind==='faction') return Object.values(FACTION_MAP).includes(criterion.id)
+  if(criterion.kind==='unitType') return UNIT_TYPE_LIST.includes(criterion.id)
+  if(criterion.kind==='group') return Object.hasOwn(GROUPS,criterion.id)
+  if(criterion.kind==='character') return ALL.some(character=>character.id===criterion.id)
+  return true
+}
+
+export function evaluateStableMechanicApplicability(mechanic,owner,team,enemyTeam,isDefense,showAll=false,modifier=null,effect=null){
+  if(!mechanic) return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:['stable-identity-unmapped'],unsupportedRequirements:['stable-identity-unmapped']}
   let state=BUFF_APPLICABILITY.APPLICABLE
   let multiplier=1
   const reasons=[]
-  for(const condition of mechanic.conditions||[]){
+  const formationRequirements=[]
+  const survivalCaveats=[]
+  const runtimeRequirements=[]
+  const missingInputs=[]
+  const unsupportedRequirements=[]
+  const recipientRequirements=mechanic.recipients||[]
+  const opponentRequirements=mechanic.opponent?[mechanic.opponent]:[]
+  const valueMeaning=modifier?buffValueMeaning(modifier,effect):null
+  const done=(nextState=state,nextMultiplier=multiplier)=>({
+    state:nextState,multiplier:nextMultiplier,reasons,
+    formationRequirements,
+    formationSatisfied:nextState!==BUFF_APPLICABILITY.IMPOSSIBLE&&formationRequirements.every(item=>item.matched),
+    survivalCaveats,runtimeRequirements,missingInputs,unsupportedRequirements,
+    recipientRequirements,opponentRequirements,valueMeaning,
+  })
+  const impossible=reason=>{reasons.push(reason);return done(BUFF_APPLICABILITY.IMPOSSIBLE,0)}
+  const unsupported=reason=>{reasons.push(reason);unsupportedRequirements.push(reason);return done(BUFF_APPLICABILITY.UNSUPPORTED,0)}
+  const missingOpponent=reason=>{
+    state=raiseStableApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+    reasons.push(reason)
+    if(!missingInputs.some(item=>item.kind==='opposingFormation')) missingInputs.push({kind:'opposingFormation'})
+  }
+  if(mechanic.identityResolution==='ambiguous') return unsupported('ambiguous-identity')
+  if((mechanic.recipients||[]).some(recipient=>!['ally','enemy'].includes(recipient.side)||!stableCriterionKnown(recipient.criteria))) return unsupported('stable-recipient-criterion')
+  if(mechanic.opponent&&!stableCriterionKnown(mechanic.opponent)) return unsupported('stable-opponent-criterion')
+  for(const condition of [...(mechanic.conditions||[]),...(modifier?.conditions||[])]){
+    if((condition.kind==='presence'||condition.kind==='rosterCount')&&!stableCriterionKnown(condition.criteria)) return unsupported('stable-condition-criterion')
     if(condition.kind==='side'){
       const active=condition.side==='defense'?isDefense:!isDefense
-      if(!active&&!showAll) return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:['side']}
+      formationRequirements.push({kind:'side',side:condition.side,matched:active})
+      if(!active&&!showAll) return impossible('side')
       continue
     }
     if(condition.kind==='rosterCount'){
       const roster=condition.side==='enemy'?(enemyTeam||[]):(team||[])
+      if(condition.side==='enemy'&&!roster.length){
+        formationRequirements.push({kind:'rosterCount',...condition,matched:null,count:null})
+        missingOpponent('enemy-roster-unknown')
+        continue
+      }
       const matched=new Set(roster
         .filter(member=>stableCriterionMatches(member,condition.criteria,owner,condition.excludeSelf))
         .map(member=>member.id))
       multiplier=matched.size
-      if(multiplier===0) return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:['ally-count-zero']}
+      formationRequirements.push({kind:'rosterCount',...condition,matched:multiplier>0,count:multiplier})
+      if(multiplier===0) return impossible('ally-count-zero')
       continue
     }
     if(condition.kind==='presence'){
       const roster=condition.side==='enemy'?(enemyTeam||[]):(team||[])
       if(condition.side==='enemy'&&!roster.length){
-        state=raiseStableApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
-        reasons.push('enemy-roster-unknown')
+        formationRequirements.push({kind:'presence',...condition,matched:null})
+        missingOpponent('enemy-roster-unknown')
         continue
       }
-      if(!stableRosterHas(roster,condition.criteria,owner,condition.excludeSelf))
-        return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:[`${condition.side}-presence`]}
-      if(condition.state!=='present'){
-        state=raiseStableApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
-        reasons.push(`${condition.side}-${condition.state}`)
-      }
+      const matched=stableRosterHas(roster,condition.criteria,owner,condition.excludeSelf)
+      formationRequirements.push({kind:'presence',...condition,matched})
+      if(!matched) return impossible(`${condition.side}-presence`)
+      if(condition.state==='alive'||condition.state==='surviving') survivalCaveats.push({side:condition.side,criteria:condition.criteria})
+      else if(condition.state!=='present') return unsupported('stable-presence-state')
+      continue
+    }
+    if(condition.kind==='battleState'&&condition.state==='surviving'){
+      survivalCaveats.push({side:'recipient',criteria:mechanic.recipients||[]})
       continue
     }
     if(condition.kind==='battleState'||condition.kind==='targetState'){
       state=raiseStableApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
       reasons.push(condition.kind==='targetState'?`target-status:${condition.state}`:'battle-state')
+      runtimeRequirements.push({kind:condition.kind,detail:condition.state})
       continue
     }
-    return{state:BUFF_APPLICABILITY.UNSUPPORTED,multiplier:0,reasons:['stable-condition-kind']}
+    return unsupported('stable-condition-kind')
   }
 
   const enemyRecipients=(mechanic.recipients||[]).filter(recipient=>recipient.side==='enemy')
   if(enemyRecipients.length&&enemyRecipients.some(recipient=>recipient.criteria?.kind!=='all')){
     if(!(enemyTeam||[]).length){
-      state=raiseStableApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
-      reasons.push('enemy-target-roster-unknown')
+      formationRequirements.push({kind:'enemyRecipient',recipients:enemyRecipients,matched:null})
+      missingOpponent('enemy-target-roster-unknown')
     }else if(!(enemyTeam||[]).some(member=>stableRecipientsMatch(mechanic,'enemy',member,owner))){
-      return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:['enemy-target']}
-    }
+      formationRequirements.push({kind:'enemyRecipient',recipients:enemyRecipients,matched:false})
+      return impossible('enemy-target')
+    }else formationRequirements.push({kind:'enemyRecipient',recipients:enemyRecipients,matched:true})
   }
 
   if(mechanic.opponent){
     const opponentRoster=enemyRecipients.length?(team||[]):(enemyTeam||[])
     if(!opponentRoster.length){
-      state=raiseStableApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
-      reasons.push('opponent-roster-unknown')
+      formationRequirements.push({kind:'opponent',criteria:mechanic.opponent,matched:null})
+      missingOpponent('opponent-roster-unknown')
     }else if(!stableRosterHas(opponentRoster,mechanic.opponent)){
-      return{state:BUFF_APPLICABILITY.IMPOSSIBLE,multiplier:0,reasons:['opponent']}
-    }
+      formationRequirements.push({kind:'opponent',criteria:mechanic.opponent,matched:false})
+      return impossible('opponent')
+    }else formationRequirements.push({kind:'opponent',criteria:mechanic.opponent,matched:true})
   }
-  return{state,multiplier,reasons}
+  if(valueMeaning&&!['fixed','flag','chance','upperBound','perCounter','dynamicMultiplier'].includes(valueMeaning.kind)) return unsupported('value-meaning')
+  if(valueMeaning&&['upperBound','perCounter','chance','dynamicMultiplier'].includes(valueMeaning.kind)){
+    state=raiseStableApplicability(state,BUFF_APPLICABILITY.CONDITIONAL)
+    runtimeRequirements.push({kind:'valueSemantics',detail:valueMeaning.kind})
+  }
+  return done()
 }
 
 export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false,includeCombat=false){
@@ -1572,11 +1729,15 @@ export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false,includeCo
           ?stableRecipientsMatch(resolved.mechanic,'ally',G,owner)
           :isTargetedBy(eff.target,G,owner,team)
         const modifiers=resolved.modifiers
+        if(!resolved.mechanic&&unsupportedAllyTarget(eff.target)&&modifiers.length){
+          pushBuffMeta(meta,'unsupported',buffSource(owner,skill,eff,null,{state:BUFF_APPLICABILITY.UNSUPPORTED,reasons:['recipient-criterion'],unsupportedRequirements:['recipient-criterion']}))
+          continue
+        }
         const bareNamedTarget=findCharByName(String(eff.target||'').replace(/["“”]/g,'').trim())
         const qualitativeTargeted=bareNamedTarget?.id===G.id
         if(!modifiers.length&&(baseTargeted||qualitativeTargeted)){
           const unsupported=parseUnsupportedBuffEffect(eff.effect)
-          if(unsupported) pushBuffMeta(meta,'unsupported',buffSource(owner,skill,eff,unsupported,{state:BUFF_APPLICABILITY.UNSUPPORTED,reasons:['effect-value']}))
+          if(unsupported||looksLikeBuffEffect(eff.effect)) pushBuffMeta(meta,'unsupported',buffSource(owner,skill,eff,unsupported,{state:BUFF_APPLICABILITY.UNSUPPORTED,reasons:['effect-value'],unsupportedRequirements:['effect-value']}))
         }
         for(const modifier of modifiers){
           const{stat,dir,val}=modifier
@@ -1586,18 +1747,24 @@ export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false,includeCo
           // `Self`, effect `Ally [Cavalry] DEF Up` represent self + cavalry.
           if(!baseTargeted&&!additionalTargeted) continue
           const application=resolved.mechanic
-            ?evaluateStableMechanicApplicability(resolved.mechanic,owner,team,enemyTeam,isDefense,showAll)
+            ?evaluateStableMechanicApplicability(resolved.mechanic,owner,team,enemyTeam,isDefense,showAll,modifier,eff)
             :evaluateBuffApplicability(eff,modifier,owner,team,enemyTeam,isDefense,showAll)
           if(application.state===BUFF_APPLICABILITY.IMPOSSIBLE) continue
-          const source=buffSource(owner,skill,eff,modifier,application)
+          const source=buffSource(owner,skill,eff,modifier,application,null,dir==='Down'?'down':'up')
           if(application.state===BUFF_APPLICABILITY.UNSUPPORTED){
             pushBuffMeta(meta,'unsupported',source)
             continue
           }
+          if(application.missingInputs?.length){
+            pushBuffMeta(meta,'missingInputs',source)
+            continue
+          }
+          if(application.state===BUFF_APPLICABILITY.CONDITIONAL) pushBuffMeta(meta,'conditionalEffects',source)
           if(application.multiplier===null){
             pushBuffMeta(meta,'conditionalUnquantified',source)
             continue
           }
+          if(application.state===BUFF_APPLICABILITY.CONDITIONAL&&application.valueMeaning?.kind!=='fixed') continue
           const mult=application.multiplier
           const bucket=ensureBuffStat(stats,stat)
           const potential=application.state===BUFF_APPLICABILITY.CONDITIONAL
@@ -1611,7 +1778,7 @@ export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false,includeCo
             // Guard doesn't stack — only the highest is active. Track instances separately.
             const instanceKey=potential?'potentialInstances':'instances'
             if(!bucket[instanceKey]) bucket[instanceKey]=[]
-            bucket[instanceKey].push({val:val*mult,duration:eff.duration||null,owner,skill,effect:eff,applicability:application.state,reasons:application.reasons})
+            bucket[instanceKey].push({...source,val:val*mult,duration:eff.duration||null})
             if(potential) bucket.potentialUp=Math.max(bucket.potentialUp,val*mult)
             else bucket.up=Math.max(bucket.up,val*mult)
             sourceList.push({...source,contribution:val*mult,dir:'up',duration:eff.duration||null})
@@ -1661,8 +1828,7 @@ export function normalizeEnemyTarget(t){
   return 'Enemies'
 }
 // Is `crit` a real roster criterion (unit type, faction, group, or named general)?
-// Distinguishes composition gates ("ally Makou", "[Chu]") from dynamic battle
-// states ("burned", "feared", "surviving") that should always show as potential.
+// Battle states are classified separately from roster identity.
 export function isRosterCriterion(crit){
   return !!crit&&ALL.some(c=>rosterCriterionMatches(c,crit,null,false))
 }
@@ -1686,21 +1852,27 @@ export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false,isDef
     for(const modifier of parsed){
       const{stat,dir,val}=modifier
       let application=stableMechanic
-        ?evaluateStableMechanicApplicability(stableMechanic,owner,team,enemyTeam,isDefense,false)
+        ?evaluateStableMechanicApplicability(stableMechanic,owner,team,enemyTeam,isDefense,false,modifier,effect)
         :evaluateBuffApplicability(evaluationEffect,modifier,owner,team,enemyTeam,isDefense,false)
       if(application.state===BUFF_APPLICABILITY.IMPOSSIBLE) continue
       if(!stableMechanic&&!enemyTeam.length&&parseEnemyTargetCriteria(evaluationEffect.target)?.restricted){
         application={...application,state:raiseApplicability(application.state,BUFF_APPLICABILITY.CONDITIONAL),reasons:[...application.reasons,'enemy-target-roster-unknown']}
       }
-      const source=buffSource(owner,skill,effect,modifier,application)
+      const source=buffSource(owner,skill,effect,modifier,application,null,dir==='Down'?'down':'up')
       if(application.state===BUFF_APPLICABILITY.UNSUPPORTED){
         pushBuffMeta(meta,'unsupported',source)
         continue
       }
+      if(application.missingInputs?.length){
+        pushBuffMeta(meta,'missingInputs',source)
+        continue
+      }
+      if(application.state===BUFF_APPLICABILITY.CONDITIONAL) pushBuffMeta(meta,'conditionalEffects',source)
       if(application.multiplier===null){
         pushBuffMeta(meta,'conditionalUnquantified',source)
         continue
       }
+      if(application.state===BUFF_APPLICABILITY.CONDITIONAL&&application.valueMeaning?.kind!=='fixed') continue
       if(!byTarget[key]) byTarget[key]={up:{},down:{},potentialUp:{},potentialDown:{},sources:{},potentialSources:{}}
       const d=dir==='Up'?'up':'down'
       const potential=application.state===BUFF_APPLICABILITY.CONDITIONAL
@@ -1734,7 +1906,9 @@ export function calcTeamEnemyDebuffs(team,enemyTeam=[],includeCombat=false,isDef
         }
         const t=(eff.target||'').trim()
         if(parseEnemyTargetCriteria(t)){
-          addToTarget(normalizeEnemyTarget(t),parseBuffEffect(eff.effect),owner,sk,eff)
+          const modifiers=parseBuffEffect(eff.effect)
+          if(!modifiers.length&&looksLikeBuffEffect(eff.effect)) pushBuffMeta(meta,'unsupported',buffSource(owner,sk,eff,null,{state:BUFF_APPLICABILITY.UNSUPPORTED,reasons:['effect-value'],unsupportedRequirements:['effect-value']}))
+          addToTarget(normalizeEnemyTarget(t),modifiers,owner,sk,eff)
         } else {
           const bareNamedTarget=findCharByName(t.replace(/["“”]/g,'').trim())
           if(bareNamedTarget&&/\b(?:Infliction|Seal)\b/i.test(String(eff.effect||''))){

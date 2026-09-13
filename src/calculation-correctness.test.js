@@ -100,7 +100,7 @@ describe('source-derived calculation truth set', () => {
     expect(vsWei.DEF).toBeUndefined()
   })
 
-  it('keeps Makou\'s enemy-Archer requirement potential with an Archer and impossible without one', () => {
+  it('counts Makou with an enemy Archer, records survival, and excludes a known mismatch', () => {
     const makou = withOnlySkill(real('Makou'), "Second General of Ousen's Army")
     const target = withoutSkills(real('Shin'))
     const archer = withoutSkills(real('Hakurei'))
@@ -109,10 +109,14 @@ describe('source-derived calculation truth set', () => {
     expect(nonArcher.unit_type).not.toBe('Archer')
     const qualifying = calcCharBuffs(target, [makou, target], [archer], false)
     const nonQualifying = calcCharBuffs(target, [makou, target], [nonArcher], false)
-    expect(qualifying['Hit Rate'].up).toBe(0)
-    expect(qualifying['Hit Rate'].potentialUp).toBe(30)
-    expect(qualifying['Hit Rate'].potentialSources[0].applicability).toBe(BUFF_APPLICABILITY.CONDITIONAL)
+    expect(qualifying['Hit Rate'].up).toBe(30)
+    expect(qualifying['Hit Rate'].potentialUp).toBe(0)
+    expect(qualifying['Hit Rate'].sources[0].survivalCaveats).toHaveLength(1)
+    expect(qualifying['Hit Rate'].sources[0].applicability).toBe(BUFF_APPLICABILITY.APPLICABLE)
     expect(nonQualifying['Hit Rate']).toBeUndefined()
+    const missing=calcCharBuffs(target,[makou,target],[],false)
+    expect(missing['Hit Rate']).toBeUndefined()
+    expect(missing.meta.missingInputs).toEqual([expect.objectContaining({stat:'Hit Rate',missingInputs:[{kind:'opposingFormation'}]})])
   })
 
   it('treats anti-faction alternatives as one modifier and anti-unit restrictions as matchups', () => {
@@ -275,22 +279,30 @@ describe('source-derived calculation truth set', () => {
     const naki = withOnlySkill(real('Naki'), 'Silent Intimidation')
     const zhao = [withoutSkills(real('Riboku'))]
     const qin = [withoutSkills(real('Shin'))]
-    expect(calcTeamEnemyDebuffs([naki], zhao, true)['Enemy [Zhao] / [Wei]'].up['HP Recovery Nullification']).toBe(70)
+    expect(calcTeamEnemyDebuffs([naki], zhao, true).meta.conditionalEffects).toEqual([
+      expect.objectContaining({stat:'HP Recovery Nullification',valueMeaning:{kind:'chance',rate:70}}),
+    ])
     expect(calcTeamEnemyDebuffs([naki], qin, true)['Enemy [Zhao] / [Wei]']).toBeUndefined()
 
     const ryofui = withOnlySkill(real('Ryofui'), 'Dominion Over the World')
     const namedTarget = 'Enemy Riboku / Ei Sei / Queen Biki'
-    expect(calcTeamEnemyDebuffs([ryofui], zhao, true)[namedTarget].up['Attack Seal']).toBe(70)
+    expect(calcTeamEnemyDebuffs([ryofui], zhao, true).meta.conditionalEffects).toEqual(expect.arrayContaining([
+      expect.objectContaining({stat:'Attack Seal',valueMeaning:{kind:'chance',rate:70}}),
+    ]))
     expect(calcTeamEnemyDebuffs([ryofui], [withoutSkills(real('Gokei'))], true)[namedTarget]).toBeUndefined()
 
     const kakukai = withOnlySkill(real('Kakukai'), 'Weak Point Flash [Orange Turtle]')
-    expect(calcTeamEnemyDebuffs([kakukai], zhao, true)['Enemy Riboku'].up['Attack Seal']).toBe(100)
+    expect(calcTeamEnemyDebuffs([kakukai], zhao, true).meta.conditionalEffects).toEqual(expect.arrayContaining([
+      expect.objectContaining({stat:'Attack Seal',valueMeaning:{kind:'chance',rate:100}}),
+    ]))
     expect(calcTeamEnemyDebuffs([kakukai], [withoutSkills(real('Gokei'))], true)['Enemy Riboku']).toBeUndefined()
 
     const chouin = withOnlySkill(real('Chouin'), "Successor's Duty")
     const poisoned = calcTeamEnemyDebuffs([chouin], [withoutSkills(real('Gokei'))], true)
-    expect(poisoned['All poisoned enemy [General]'].up['HP Recovery Nullification']).toBeUndefined()
-    expect(poisoned['All poisoned enemy [General]'].potentialUp['HP Recovery Nullification']).toBe(70)
+    expect(poisoned['All poisoned enemy [General]']).toBeUndefined()
+    expect(poisoned.meta.conditionalEffects).toEqual(expect.arrayContaining([
+      expect.objectContaining({stat:'HP Recovery Nullification',runtimeRequirements:expect.arrayContaining([expect.objectContaining({kind:'targetState'})])}),
+    ]))
   })
 
   it('discloses a source-backed qualitative effect whose numeric value is unavailable', () => {
@@ -319,7 +331,7 @@ describe('source-derived calculation truth set', () => {
     expect(hpDependent.ATK.potentialUp).toBe(30)
   })
 
-  it('treats named formation presence as deterministic while survival remains conditional', () => {
+  it('treats named formation presence and survival-only planning as composition', () => {
     const kaine = withOnlySkill(real('Kaine'), "Lieutenant's Wisdom")
     const riboku = withoutSkills(real('Riboku'))
     const zhaoTarget = withoutSkills(real('Ka'))
@@ -329,46 +341,41 @@ describe('source-derived calculation truth set', () => {
     const eiki = withOnlySkill(real('Eiki'), 'Inherited Trust')
     const akou = withoutSkills(real('Akou'))
     const withSurvivor = calcTeamEnemyDebuffs([eiki, akou], [], false, false)
-    expect(withSurvivor['All enemies'].down.DEF).toBeUndefined()
-    expect(withSurvivor['All enemies'].potentialDown.DEF).toBe(20)
+    expect(withSurvivor['All enemies'].down.DEF).toBe(20)
+    expect(withSurvivor['All enemies'].sources['down|DEF'][0].survivalCaveats).toHaveLength(1)
   })
 
-  it('keeps mixed survival clauses potential and handles generic alive grammar without leaking totals', () => {
+  it('counts supported survival clauses and preserves Kishou atomic identities', () => {
     const ka = withOnlySkill(real('Ka'), 'Light of Hope')
     const zhaoTarget = withoutSkills(real('Kaine'))
     const enemy = [withoutSkills(real('Shin'))]
     const recovery = calcCharBuffs(zhaoTarget, [ka, zhaoTarget], enemy, false)
-    expect(recovery['HP Recovery'].up).toBe(0)
-    expect(recovery['HP Recovery'].potentialUp).toBe(30)
+    expect(recovery['HP Recovery'].up).toBe(30)
+    expect(recovery['HP Recovery'].sources[0].survivalCaveats).toHaveLength(2)
     expect(recovery.meta.unsupported).toHaveLength(0)
 
-    // Source skill 529 binds its three stats to different named allies, but
-    // the derived row only says "ally". Keep every value potential rather
-    // than inventing one unconditional combined debuff.
+    // Source skill 529 binds its three stats to different named allies.
     const kishou = withOnlySkill(real('Kishou'), 'Inheritance of Will')
     const kisui = withoutSkills(real('Kisui'))
     const debuffs = calcTeamEnemyDebuffs([kishou, kisui], enemy)
-    expect(debuffs['All enemies'].down).toEqual({})
-    expect(debuffs['All enemies'].potentialDown).toMatchObject({
-      ATK: 20,
-      'Critical Damage': 20,
-      'Critical Rate': 20,
-    })
+    expect(debuffs['All enemies'].down).toEqual({ATK:20})
+    expect(calcTeamEnemyDebuffs([kishou,withoutSkills(real('Batei'))],enemy)['All enemies'].down).toEqual({'Critical Damage':20})
+    expect(calcTeamEnemyDebuffs([kishou,withoutSkills(real('Ryuuto'))],enemy)['All enemies'].down).toEqual({'Critical Rate':20})
     expect(debuffs.meta.unsupported).toHaveLength(0)
   })
 
-  it('honors all-versus-any named-alive formation requirements while keeping survival potential', () => {
+  it('honors all-versus-any named-alive formation requirements in composition', () => {
     const kisui = withOnlySkill(real('Kisui'), 'Rigan Bond [Heart]')
     const batei = withoutSkills(real('Batei'))
     const ryuuto = withoutSkills(real('Ryuuto'))
 
     const oneAlly = calcCharBuffs(kisui, [kisui, batei], [], false, false, true)
-    expect(oneAlly.Guard.potentialUp).toBe(60)
+    expect(oneAlly.Guard.up).toBe(60)
     expect(oneAlly['Attack Nullification']).toBeUndefined()
 
     const bothAllies = calcCharBuffs(kisui, [kisui, batei, ryuuto], [], false, false, true)
-    expect(bothAllies.Guard.potentialUp).toBe(60)
-    expect(bothAllies['Attack Nullification'].potentialUp).toBe(1)
+    expect(bothAllies.Guard.up).toBe(60)
+    expect(bothAllies['Attack Nullification'].up).toBe(1)
   })
 })
 

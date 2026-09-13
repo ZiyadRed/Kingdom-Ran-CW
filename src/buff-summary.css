@@ -6,8 +6,9 @@
 .buff-summary .buff-applicability-notices { display: grid; gap: .35rem; margin-top: .65rem; }
 .buff-summary .buff-applicability-notice { border: 1px solid rgba(165,90,0,.3); border-radius: 6px; background: rgba(255,171,64,.08); font-size: .72rem; }
 .buff-summary .buff-applicability-notice.unsupported { border-color: rgba(145,74,60,.35); background: rgba(145,74,60,.07); }
-.buff-summary .buff-applicability-notice > summary { cursor: pointer; padding: .45rem .55rem; color: var(--txt2); font-weight: 700; }
+.buff-summary .buff-applicability-notice > h4 { margin: 0; padding: .45rem .55rem; color: var(--txt2); font-size: .73rem; font-weight: 700; }
 .buff-summary .buff-applicability-notice > .buff-sources { margin: 0 .45rem .45rem; }
+.buff-summary .buff-applicability-notice.not-calculated { border-color: rgba(50,91,142,.38); background: rgba(50,91,142,.07); }
 .buff-row-click { width: 100%; font: inherit; color: inherit; text-align: start; }
 .buff-row-click:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
 .buff-sources[hidden] { display: none; }

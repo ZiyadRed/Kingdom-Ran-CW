@@ -479,6 +479,48 @@ fr.buffs.unsupportedOmitted = 'effets non pris en charge omis des totaux'
 fr.buffs.conditionalOmittedCount = 'Effets omis car leur valeur dépend de l’état du combat : {{count}}'
 fr.buffs.unsupportedOmittedCount = 'Effets omis car RanHQ ne peut pas interpréter leur condition avec certitude : {{count}}'
 
+Object.assign(en.buffs,{
+  summaryConditions:'Calculated from selected formations and skills. Survival-dependent effects assume the required generals remain alive; battle-state effects are listed separately.',
+  calculatedFromFormation:'Calculated from this formation',conditionalEffects:'Conditional effects',notCalculated:'Not calculated',
+  selectOpponent:'Select an opposing formation to evaluate this effect.',formationMatched:'Formation requirement matched.',
+  survivalCaveat:'Assumes the required generals remain alive.',upperBoundMeaning:'Maximum, not a fixed bonus.',
+  chanceMeaning:'Chance or application rate; not an additive stat bonus.',perCounterMeaning:'Scales with a battle counter; actual value is unknown.',
+  upToValue:'Up to {{value}}%',perCounterValue:'+{{value}}% per event (cap {{cap}}%)',chanceValue:'{{value}}% chance',
+  conditionalOmitted:'conditional effects listed separately',unsupportedOmitted:'effects not calculated',
+})
+Object.assign(ja.buffs,{
+  summaryConditions:'選択した編成とスキルから計算。生存条件は対象武将が生存し続ける前提です。戦闘中の状態に依存する効果は別に表示します。',
+  calculatedFromFormation:'この編成から計算',conditionalEffects:'戦闘中の条件付き効果',notCalculated:'計算対象外',
+  selectOpponent:'効果を評価するには相手の編成を選択してください。',formationMatched:'編成条件を満たしています。',
+  survivalCaveat:'必要な武将が生存し続ける前提です。',upperBoundMeaning:'上限値であり固定の加算値ではありません。',
+  chanceMeaning:'発動確率・付与率であり、加算できる能力値ではありません。',perCounterMeaning:'戦闘中の回数で変化するため、実際の値は未確定です。',
+  upToValue:'最大{{value}}%',perCounterValue:'1回につき+{{value}}%（上限{{cap}}%）',chanceValue:'発動率{{value}}%',
+  conditionalOmitted:'条件付き効果は別に記載',unsupportedOmitted:'計算対象外の効果',
+})
+Object.assign(ar.buffs,{
+  summaryConditions:'تُحسب القيم من التشكيلتين والمهارات المختارة. تفترض تأثيرات البقاء استمرار حياة الجنرالات المطلوبة؛ وتُعرض شروط المعركة منفصلة.',
+  calculatedFromFormation:'المحسوب من هذا التشكيل',conditionalEffects:'تأثيرات مشروطة',notCalculated:'غير محسوب',
+  selectOpponent:'اختر تشكيلة الخصم لتقييم هذا التأثير.',formationMatched:'شرط التشكيلة متحقق.',
+  survivalCaveat:'يفترض بقاء الجنرالات المطلوبين أحياء.',upperBoundMeaning:'هذه قيمة قصوى وليست زيادة ثابتة.',
+  chanceMeaning:'احتمال تطبيق، وليس زيادة خصائص قابلة للجمع.',perCounterMeaning:'يتغير بعدد أحداث المعركة؛ القيمة الفعلية غير معروفة.',
+  upToValue:'حتى {{value}}%',perCounterValue:'+{{value}}% لكل حدث (الحد {{cap}}%)',chanceValue:'احتمال {{value}}%',
+  conditionalOmitted:'التأثيرات المشروطة مذكورة منفصلة',unsupportedOmitted:'تأثيرات غير محسوبة',
+})
+Object.assign(fr.buffs,{
+  summaryConditions:'Calculé à partir des formations et compétences choisies. Les effets liés à la survie supposent que les généraux requis restent en vie ; les conditions de combat sont affichées séparément.',
+  calculatedFromFormation:'Calculé pour cette formation',conditionalEffects:'Effets conditionnels',notCalculated:'Non calculé',
+  selectOpponent:'Choisissez une formation adverse pour évaluer cet effet.',formationMatched:'Condition de formation remplie.',
+  survivalCaveat:'Suppose que les généraux requis restent en vie.',upperBoundMeaning:'Valeur maximale, pas un bonus fixe.',
+  chanceMeaning:'Probabilité d’application, pas un bonus de statistique cumulable.',perCounterMeaning:'Varie selon un compteur de combat ; valeur réelle inconnue.',
+  upToValue:"Jusqu’à {{value}} %",perCounterValue:'+{{value}} % par événement (plafond {{cap}} %)',chanceValue:'{{value}} % de chance',
+  conditionalOmitted:'effets conditionnels détaillés séparément',unsupportedOmitted:'effets non calculés',
+})
+Object.assign(en.buffs,{dynamicMeaning:'Scales with battle state; the shown maximum is not a fixed bonus.',dynamicValue:'Up to {{value}}%, scales with battle state'})
+Object.assign(ja.buffs,{dynamicMeaning:'戦闘状態に応じて変動し、表示上限は固定値ではありません。',dynamicValue:'最大{{value}}%（戦闘状態で変動）'})
+Object.assign(ar.buffs,{dynamicMeaning:'يتغير مع حالة المعركة؛ الحد الأقصى المعروض ليس زيادة ثابتة.',dynamicValue:'حتى {{value}}% حسب حالة المعركة'})
+Object.assign(fr.buffs,{dynamicMeaning:'Varie selon l’état du combat ; le maximum affiché n’est pas un bonus fixe.',dynamicValue:'Jusqu’à {{value}} %, selon l’état du combat'})
+for(const locale of [en,ja,ar,fr]) locale.buffs.calculatedFromFormation=locale.builder.calculated
+
 en.browserStorage = 'Browser storage'
 en.stats.autoSave = 'Saves automatically'
 ja.browserStorage = 'ブラウザー保存'

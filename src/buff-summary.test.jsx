@@ -41,14 +41,16 @@ describe('real BuffTable formation summaries', () => {
     }
   })
 
-  it('renders Makou\'s enemy-Archer effect as potential and removes it for a known non-Archer', () => {
+  it('renders Makou\'s enemy-Archer effect as a composition amount with survival detail', () => {
     const makou=findCharById('makou')
     const shin=findCharById('shin')
     const hakurei=findCharById('hakurei')
     const karin=findCharById('karin')
     const qualifying=renderForLocale(<BuffTable atk={[makou,shin]} def={[hakurei]}/>,'en')
     const impossible=renderForLocale(<BuffTable atk={[makou,shin]} def={[karin]}/>,'en')
-    expect(qualifying).toContain(CATALOGS.en.buffs.potential)
+    expect(qualifying).toContain(CATALOGS.en.buffs.calculatedFromFormation)
+    expect(qualifying).toContain('data-buff-stat="Hit Rate"')
+    expect(qualifying).toContain(CATALOGS.en.buffs.survivalCaveat)
     expect(qualifying).toContain('When enemy [Archer] [General] is alive')
     expect(impossible).not.toContain('When enemy [Archer] [General] is alive')
   })
