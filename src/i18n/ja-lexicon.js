@@ -104,7 +104,9 @@ export const STATS = {
   'Fear Infliction Rate': '「恐怖」付与確率',
 
   'Attack Down Resistance': '攻撃力低下耐性',
+  'ATK Down Resistance': '攻撃力低下耐性',
   'Defense Down Resistance': '防御力低下耐性',
+  'DEF Down Resistance': '防御力低下耐性',
   'DEF Penetration Resistance': '防御力貫通耐性',
 }
 

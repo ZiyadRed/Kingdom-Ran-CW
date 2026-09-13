@@ -75,6 +75,28 @@ function lookupStat(raw) {
   const direct = STAT_INDEX.get(text.toLowerCase())
   if (direct) return direct
 
+  const scoped = /^(?:(\d+)\s+)?\[([^\]]+)\]\s+(.+)$/.exec(text)
+  if (scoped) {
+    const unit = TAG_INDEX.get(scoped[2].toLowerCase())
+    const stat = lookupStat(scoped[3])
+    if (unit && stat) return `${unit}${scoped[1] ? `${scoped[1]}つ` : ''}の${stat}`
+  }
+
+  const infliction = /^(.+) Infliction Rate$/i.exec(text)
+  if (infliction) {
+    const status = STATUS_INDEX.get(infliction[1].toLowerCase())
+    if (status) return `「${status}」付与確率`
+  }
+
+  // Parser and stable mechanics can emit any source-backed status resistance.
+  // Use the established status vocabulary instead of maintaining a second
+  // incomplete list of English resistance aliases.
+  const resistance = /^(.+) Resistance$/i.exec(text)
+  if (resistance) {
+    const status = STATUS_INDEX.get(resistance[1].toLowerCase())
+    if (status) return `「${status}」耐性`
+  }
+
   const max = /^max(?:imum)?\s+(.+)$/i.exec(text)
   if (max) {
     // 体力 caps as 体力上限, 士気 as 最大士気 — the game is not uniform here.

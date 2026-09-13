@@ -29,6 +29,8 @@
     {"key":"morale","english":"Morale","japanese":"士気","arabic":"المعنويات","source":"GAME_TERM","notes":"Stat label."},
     {"key":"damage","english":"Damage","japanese":"ダメージ","arabic":"الضرر","source":"GAME_TERM","notes":"Effect label."},
     {"key":"guard","english":"Guard","japanese":"ガード効果","arabic":"حراسة","source":"GAME_TERM","notes":"Status/effect label."},
+    {"key":"atk_down_resistance","english":"ATK Down Resistance","japanese":"攻撃力低下耐性","arabic":"مقاومة خفض الهجوم","source":"GAME_TERM","evidence":"data/generated/ja/skills.json","notes":"Canonical Builder key; Attack Down Resistance is an equivalent display alias."},
+    {"key":"def_down_resistance","english":"DEF Down Resistance","japanese":"防御力低下耐性","arabic":"مقاومة خفض الدفاع","source":"GAME_TERM","evidence":"data/generated/ja/skills.json","notes":"Canonical Builder key; Defense Down Resistance is an equivalent display alias."},
     {"key":"attack_nullification","english":"Attack Nullification","japanese":"攻撃無効","arabic":"إبطال الهجوم","source":"GAME_TERM","notes":"Status/effect label."},
     {"key":"sure_hit","english":"Sure Hit","japanese":"必中","arabic":"إصابة مؤكدة","source":"GAME_TERM","notes":"Status/effect label."},
     {"key":"provoke","english":"Provoke","japanese":"挑発","arabic":"استفزاز","source":"GAME_TERM","notes":"Status/effect label."},
