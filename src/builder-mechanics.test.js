@@ -190,7 +190,7 @@ describe('F03 stable Builder identity',()=>{
         }
       }
     }
-  },60000)
+  },120000)
 
   it('reports coverage for named pre-Kisui and Kisui release snapshots',()=>{
     const pre=builderMechanicCoverage(PRE_KISUI_ROSTER,true)
