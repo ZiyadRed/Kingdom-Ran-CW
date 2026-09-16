@@ -629,6 +629,23 @@ function buildTeamMemberLayout(ctx,member,{x,y,width,labels,index}){
   }
 }
 
+const TEAM_SKILL_COLORS={
+  Combat:{ribbon:'#853931',badge:'#b43d32'},
+  Strategy:{ribbon:'#285484',badge:'#346eab'},
+  Leader:{ribbon:'#80451e',badge:'#a85a25'},
+  Strategist:{ribbon:'#155d51',badge:'#197563'},
+  'Internal Affairs':{ribbon:'#155d51',badge:'#197563'},
+}
+
+export function teamSkillCardIdentity(skill){
+  const category=TEAM_SKILL_COLORS[skill?.type]||{ribbon:'#42536a',badge:'#546985'}
+  return {
+    ribbon:skill?.star6?'#d9b75f':category.ribbon,
+    typeBadge:{bg:category.badge,fg:'#ffffff',border:category.badge},
+    cw6Badge:{bg:'#d9b75f',fg:'#3d2a09',border:'#d9b75f'},
+  }
+}
+
 function buildSkillCardLayout(ctx,skill,{x,y,width,mode,labels,index}){
   const L=withLabels(labels)
   const rtl=L.direction==='rtl'
@@ -641,7 +658,11 @@ function buildSkillCardLayout(ctx,skill,{x,y,width,mode,labels,index}){
   const badges=[{
     id:'type',text:term(L,skill?.type)||skill?.type||L.skill,bg:typeVisual.badge,fg:typeVisual.text,border:typeVisual.accent,
   }]
-  if(skill?.star6) badges.push({id:'cw6',text:L.star6,bg:SHARE_IMAGE_TOKENS.colors.cw6Surface,fg:'#624400',border:SHARE_IMAGE_TOKENS.colors.cw6})
+  if(skill?.star6) badges.push({id:'cw6',text:compact?'CW6':L.star6,bg:SHARE_IMAGE_TOKENS.colors.cw6Surface,fg:'#624400',border:SHARE_IMAGE_TOKENS.colors.cw6})
+  if(compact){
+    const identity=teamSkillCardIdentity(skill)
+    badges.forEach(badge=>Object.assign(badge,badge.id==='cw6'?identity.cw6Badge:identity.typeBadge))
+  }
   const badgeLayout=measureBadgeFlow(ctx,badges,{
     x:x+pad,y:y+pad,w:width-(pad*2),font:badgeFont,lineHeight:badgeLineHeight,direction:L.direction,gap:compact?6:8,
   })
@@ -950,8 +971,13 @@ function drawSkillCard(ctx,layout){
   ctx.clip()
   ctx.fillStyle=colors.navyRaised
   ctx.fillRect(header.x,header.y,header.w,header.h)
-  ctx.fillStyle=typeVisual.accent
-  ctx.fillRect(L.direction==='rtl'?header.x+header.w-7:header.x,header.y,7,header.h)
+  if(layout.mode==='team'){
+    ctx.fillStyle=teamSkillCardIdentity(layout.skill).ribbon
+    ctx.fillRect(header.x,header.y,header.w,layout.badgeLayout.y+layout.badgeLayout.h+5-header.y)
+  }else{
+    ctx.fillStyle=typeVisual.accent
+    ctx.fillRect(L.direction==='rtl'?header.x+header.w-7:header.x,header.y,7,header.h)
+  }
   ctx.restore()
   layout.badgeLayout.items.forEach(badge=>drawBadge(ctx,badge))
   drawTextBlock(ctx,layout.titleBlock,'#ffffff')

@@ -91,8 +91,16 @@ export const WOGG_BUFF_NAME = 'Way of The Great General'
 // unit types and states, so the page shows it last and compact.
 export const BUFF_SIEGE = ['Attack Siege Weapons','Defense Siege Weapons']
 export const SIEGE_META = {
-  'Attack Siege Weapons':  {color:'#a8452e', icon:'/icons/siege_attack.webp'},
-  'Defense Siege Weapons': {color:'#4a6b7c', icon:'/icons/siege_defense.webp'},
+  // Castle War atlas frames joined by mstUnionConquestWeapons.weaponType/imgId.
+  // See docs/SIEGE_WEAPON_ICONS.md; the older siege_weapon assets are a different mode.
+  'Attack Siege Weapons': {
+    color:'#a8452e', icon:'/icons/siege/atk_001.webp',
+    icons:['atk_001','atk_003','atk_004','atk_005'],
+  },
+  'Defense Siege Weapons': {
+    color:'#4a6b7c', icon:'/icons/siege/def_002.webp',
+    icons:['def_002','def_001','def_003','def_004'],
+  },
 }
 export const WOGG_BUFF_DESCRIPTION = 'These buffs unlock from the second page of WoGG.'
 export const WOGG_BUFF_SOURCES = [

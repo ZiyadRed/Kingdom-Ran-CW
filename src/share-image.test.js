@@ -9,6 +9,7 @@ import {
   shareEffectBodyColor,
   shareImagePaintText,
   skillTypeVisual,
+  teamSkillCardIdentity,
 } from './share.js'
 
 function measuringContext(){
@@ -28,6 +29,26 @@ const skill={name_en:'A deliberately long but ordinary source skill title for la
 const character={id:'test',name_en:'Test General',name_jp:'試験武将',country:'qin',unit_type:'Cavalry',skills:[skill]}
 
 describe('generated share-image contract',()=>{
+  it('distinguishes team categories and CW6 without losing the underlying type',()=>{
+    const ribbons=new Set()
+    for(const type of ['Combat','Strategy','Leader','Strategist','future-skill-type']){
+      const normal=teamSkillCardIdentity({type})
+      const cw6=teamSkillCardIdentity({type,star6:true})
+      ribbons.add(normal.ribbon)
+      expect(cw6.ribbon).toBe('#d9b75f')
+      expect(cw6.typeBadge).toEqual(normal.typeBadge)
+      for(const badge of [normal.typeBadge,cw6.cw6Badge]){
+        expect(contrastRatio(badge.fg,badge.bg)).toBeGreaterThanOrEqual(4.5)
+      }
+    }
+    expect(ribbons.size).toBe(5)
+    const layout=buildTeamImageLayout(measuringContext(),[character])
+    const badges=layout.memberLayouts[0].skillLayouts[0].badgeLayout.items
+    expect(badges.map(b=>b.text)).toEqual(['Strategy','CW6'])
+    expect(badges[0].bg).toBe(teamSkillCardIdentity(skill).typeBadge.bg)
+    expect(inspectShareImageLayout(layout)).toEqual({ok:true,issues:[]})
+  })
+
   it('uses readable semantic badge pairs for every known and unknown skill type',()=>{
     for(const type of ['Combat','Strategy','Leader','Strategist','Internal Affairs','future-skill-type']){
       const visual=skillTypeVisual(type)

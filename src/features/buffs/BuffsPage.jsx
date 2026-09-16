@@ -128,7 +128,11 @@ export function BuffsPage(){
       <div style={{width:size,height:size,borderRadius:'14px',background:`linear-gradient(135deg,${c}30,${c}10)`,border:`2px solid ${c}`,display:'flex',alignItems:'center',justifyContent:'center',color:c,fontWeight:900,fontSize:size*.28+'px',textAlign:'center',lineHeight:'1.05',padding:'4px'}}>{name.split(' ').map(w=>w[0]).join('')}</div>
     )
   }
-  const SiegeIcon=({name,size=34})=>(
+  const SiegeIcon=({name,size=34,all=false})=>all?(
+    <span className="buff-siege-icons" aria-hidden="true">
+      {SIEGE_META[name].icons.map(icon=><img key={icon} src={`/icons/siege/${icon}.webp`} alt="" loading="lazy" decoding="async"/>)}
+    </span>
+  ):(
     <img src={SIEGE_META[name]?.icon} alt="" loading="lazy" decoding="async"
       style={{width:size,height:size,objectFit:'contain'}}/>
   )
@@ -141,7 +145,7 @@ export function BuffsPage(){
         borderColor:isActive?col:'var(--bdr)',
         background:isActive?`linear-gradient(135deg,${col}18,${col}08)`:'var(--sur)',
       }}>
-        <SiegeIcon name={key}/>
+        <SiegeIcon name={key} all/>
         <span className="buff-siege-text">
           <span className="buff-siege-name" style={isActive?{color:col}:undefined}>{labelFor(key)}</span>
           <span className="buff-siege-n">{t('generalCount',{count:siegeCount(key)})}</span>
