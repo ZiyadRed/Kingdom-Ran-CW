@@ -461,6 +461,13 @@ export function CharIcon({c,size=40,round=false,className='',eager=false}){
 
 
 export const ROLE_SKILL_TYPES=new Set(['Leader','Strategist'])
+// Metawatch uses the verified structured role metadata already merged onto
+// each character. Unknown/future role values fail closed instead of becoming
+// a presentation badge through a name or text heuristic.
+export function roleBadgeType(character){
+  const role=character?.roleSkill?.type
+  return ROLE_SKILL_TYPES.has(role)?role:null
+}
 // Official post-2026-09-02 Alliance Conquest opening priority. These semantic
 // identities stay locale-independent; display labels must not define ordering.
 export const SOUHA_ROLE_PRIORITY=Object.freeze(['Leader','Strategist'])
@@ -492,6 +499,7 @@ export const META_TEAMS=[
   {tier:'A',name:'Chu Cavalry',     country:'chu',           members:['Kyoubou','Rinbukun','Rokin','Kanmei']},
   {tier:'B',name:'6GG',             country:'qin',           members:['Sho','Ouki','Tou','Kyou']},
   {tier:'B',name:'Renpa v1',        country:'wei',           members:['Rinko','Tairoji','Renpa','Kouretsu']},
+  {tier:'B',name:'Renpa v3',        country:'wei',           members:['Rinko','Renpa','Kaishibou','Gohoumei']},
   {tier:'B',name:'Karin Army',      country:'chu',           members:['Karin','Kaen','Goutoku','Shunshinkun']},
   {tier:'B',name:'Han',             country:'han',           members:['Seikai','Chouin','Bakan','Nakon']},
   {tier:'C',name:'Ai',              country:'ai',            members:['Rouai','Hanoki','Ryofui','Hanroki']},
@@ -499,6 +507,7 @@ export const META_TEAMS=[
   {tier:'C',name:'Rigan',           country:'zhao',          members:['Kisui','Kishou','Batei','Duke Sei']},
   {tier:'C',name:'Kanki',           country:'qin',           members:['Zenou','Raido','Kanki','Naki']},
   {tier:'C',name:'Ousen Army',      country:'qin',           members:['Eiki','Makou','Akou','Ousen']},
+  {tier:'C',name:'Shouheikun',      country:'qin',           members:['Shouheikun','Sougen','Hyoushiga','Kaioku']},
   {tier:'C',name:'Yan',             country:'yan',           members:['Ordo','Gakuki','Yukii','Otaji']},
   // ── Party-Builder-only extras (no `tier`, not on the tier list) ──
   {name:'Ouhon',          country:'qin', members:['Shoutaku','Ouhon','Kanjou','Gakuki']},

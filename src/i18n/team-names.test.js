@@ -38,6 +38,18 @@ describe('team preset names', () => {
     expect(localizedTeamName('6GG', 'ar')).toBe('الجنرالات الستة العظام')
   })
 
+  it('covers the new editorial preset labels in every supported locale', () => {
+    expect(localizedTeamName('Renpa v3', 'en')).toBe('Renpa v3')
+    expect(localizedTeamName('Renpa v3', 'ja')).toBe('廉頗 v3')
+    expect(localizedTeamName('Renpa v3', 'ar')).toBe('رينبا (نسخة 3)')
+    expect(localizedTeamName('Renpa v3', 'fr')).toBe('Renpa v3')
+
+    expect(localizedTeamName('Shouheikun', 'en')).toBe('Shouheikun')
+    expect(localizedTeamName('Shouheikun', 'ja')).toBe('昌平君編成')
+    expect(localizedTeamName('Shouheikun', 'ar')).toBe('تشكيلة شوهيكون')
+    expect(localizedTeamName('Shouheikun', 'fr')).toBe('Compo Shouheikun')
+  })
+
   it('leaves English alone and falls back rather than guessing', () => {
     expect(localizedTeamName('Gyokuhou', 'en')).toBe('Gyokuhou')
     expect(localizedTeamName('Some Future Team', 'ja')).toBe('Some Future Team')

@@ -33,6 +33,7 @@ const TEAM_NAMES = {
   'YTW + Triplets': { ja: '楊端和＋三つ子', ar: 'يوتانوا والتوائم الثلاثة', fr: 'Yotanwa + les triplés' },
   '6GG':            { ja: '六大将軍',      ar: 'الجنرالات الستة العظام', fr: 'Six Grands Généraux' },
   'Renpa v1':       { ja: '廉頗 v1',       ar: 'رينبا (نسخة 1)', fr: 'Renpa v1' },
+  'Renpa v3':       { ja: '廉頗 v3',       ar: 'رينبا (نسخة 3)', fr: 'Renpa v3' },
   'Karin Army':     { ja: '媧燐軍',        ar: 'جيش كارين', fr: 'Armée de Karin' },
   'Han':            { ja: '韓国編成',      ar: 'تشكيلة هان', fr: 'Compo Han' },
   'Ai':             { ja: '毐国編成',      ar: 'تشكيلة آي', fr: 'Compo Ai' },
@@ -40,6 +41,7 @@ const TEAM_NAMES = {
   'Rigan':          { ja: '離眼編成',      ar: 'تشكيلة ريغان', fr: 'Compo Rigan' },
   'Kanki':          { ja: '桓騎軍',        ar: 'جيش كانكي', fr: 'Armée de Kanki' },
   'Ousen Army':     { ja: '王翦軍',        ar: 'جيش أوسن', fr: 'Armée d’Ousen' },
+  'Shouheikun':     { ja: '昌平君編成',    ar: 'تشكيلة شوهيكون', fr: 'Compo Shouheikun' },
   'Yan':            { ja: '燕国編成',      ar: 'تشكيلة يان', fr: 'Compo Yan' },
 
   // ── Party-Builder-only extras ──

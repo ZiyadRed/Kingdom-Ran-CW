@@ -9,7 +9,7 @@ import { Link, useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import {
-  useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, ALL, useReleaseData, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, simulate, calcCharBuffs, calcTeamEnemyDebuffs, Picker, characterInitialRarity, INVERSE_STATS, SPECIAL_STATS, statSortKey, DEFAULT_SK, hasStar6, hasRoleSkill, updateSkillMasks, applyMask, matchCharacterSearch, searchCharacters, BUFF_APPLICABILITY
+  useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, ALL, useReleaseData, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, simulate, calcCharBuffs, calcTeamEnemyDebuffs, Picker, characterInitialRarity, INVERSE_STATS, SPECIAL_STATS, statSortKey, DEFAULT_SK, hasStar6, hasRoleSkill, roleBadgeType, updateSkillMasks, applyMask, matchCharacterSearch, searchCharacters, BUFF_APPLICABILITY
 } from './core.jsx'
 import { characterSeo, routeSeo, setSeo } from './seo.js'
 import { classifyConditionParts } from './skillConditions.js'
@@ -1452,12 +1452,19 @@ function TierTeamCard({team,def,ss=false}){
       <div className="mw-team-members" dir="ltr">
         {chars.map((c,ci)=>{
           const star6=(c.skills||[]).some(s=>s.star6)
+          const roleType=roleBadgeType(c)
+          const roleLabel=roleType?localizedText(roleType,locale):null
           return(
             <div key={ci} className="mw-member" dir={locale.direction}>
               <div className="mw-avatar" style={{borderColor:ss?'#b9912e':def.ring}}>
                 <CharIcon c={c} size={44} round={true} className="mw-avatar-img"/>
               </div>
-              {star6&&<span className="mw-badge">☆6</span>}
+              {(roleType||star6)&&<div className="mw-badges">
+                {roleType&&<span className={`mw-role-badge mw-role-badge-${roleType.toLowerCase()}`} data-role-badge={roleType} role="img" aria-label={roleLabel} title={roleLabel}>
+                  <img src={ROLE_SKILL_ICON[roleType]} alt="" aria-hidden="true" loading="lazy" decoding="async" draggable="false"/>
+                </span>}
+                {star6&&<span className="mw-badge" data-cw6-badge="true">☆6</span>}
+              </div>}
               <span className="mw-mem-name">{localizedCharacter(c, locale).displayName}</span>
             </div>
           )

@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
-import { META_TEAMS, TIER_TEAMS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, findCharByName } from './core.jsx'
+import { META_TEAMS, TIER_TEAMS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, findCharByName, roleBadgeType } from './core.jsx'
 
 const pagesSource = readFileSync(new URL('./pages.jsx', import.meta.url), 'utf8')
+const stylesSource = readFileSync(new URL('./styles/globals.css', import.meta.url), 'utf8')
 
 /**
  * Preset comps are defined once in META_TEAMS; the tier list and the Party
@@ -98,5 +99,57 @@ describe('the two Chu meta teams', () => {
     for (const name of [...byName('Chu Shields').members, ...byName('Chu Cavalry').members]) {
       expect(findCharByName(name).country, name).toBe('chu')
     }
+  })
+})
+
+describe('new Metawatch formations', () => {
+  const byName = (name) => META_TEAMS.filter((team) => team.name === name)
+
+  it('adds Renpa v3 exactly once as the supplied Wei Tier B formation', () => {
+    expect(byName('Renpa v3')).toHaveLength(1)
+    const team = byName('Renpa v3')[0]
+    expect(team.tier).toBe('B')
+    expect(team.country).toBe('wei')
+    expect(team.members).toEqual(['Rinko', 'Renpa', 'Kaishibou', 'Gohoumei'])
+    expect(team.members.map((name) => findCharByName(name)?.name_en))
+      .toEqual(['Rinko', 'Renpa', 'Kaishibou', 'Gohoumei'])
+  })
+
+  it('adds Shouheikun exactly once as the supplied Qin Tier C formation', () => {
+    expect(byName('Shouheikun')).toHaveLength(1)
+    const team = byName('Shouheikun')[0]
+    expect(team.tier).toBe('C')
+    expect(team.country).toBe('qin')
+    expect(team.members).toEqual(['Shouheikun', 'Sougen', 'Hyoushiga', 'Kaioku'])
+    expect(team.members.map((name) => findCharByName(name)?.name_en))
+      .toEqual(['Shouheikun', 'Sougen', 'Hyoushiga', 'Kaioku'])
+  })
+
+  it('keeps both formations in the derived tier list and the Party Builder grouping', () => {
+    expect(TIER_TEAMS.filter((team) => team.name === 'Renpa v3')).toHaveLength(1)
+    expect(TIER_TEAMS.filter((team) => team.name === 'Shouheikun')).toHaveLength(1)
+    const wei = metaTeamsByCountry().find((group) => group.country === 'wei')
+    const qin = metaTeamsByCountry().find((group) => group.country === 'qin')
+    expect(wei.teams.some((team) => team.name === 'Renpa v3')).toBe(true)
+    expect(qin.teams.some((team) => team.name === 'Shouheikun')).toBe(true)
+  })
+})
+
+describe('Metawatch role portrait badges', () => {
+  it('derives Leader and Strategist badges from structured role metadata only', () => {
+    expect(roleBadgeType(findCharByName('Renpa'))).toBe('Leader')
+    expect(roleBadgeType(findCharByName('Gohoumei'))).toBe('Strategist')
+    expect(roleBadgeType(findCharByName('Rinko'))).toBeNull()
+    expect(roleBadgeType({ name_en: 'Leader' })).toBeNull()
+    expect(roleBadgeType({ roleSkill: { type: 'Commander' } })).toBeNull()
+  })
+
+  it('renders role assets alongside, rather than replacing, the existing CW6 badge', () => {
+    expect(pagesSource).toContain('const roleType=roleBadgeType(c)')
+    expect(pagesSource).toContain('data-role-badge={roleType}')
+    expect(pagesSource).toContain('ROLE_SKILL_ICON[roleType]')
+    expect(pagesSource).toContain('data-cw6-badge="true"')
+    expect(stylesSource).toContain('.mw-badges { position: absolute;')
+    expect(stylesSource).toContain('.mw-role-badge img {')
   })
 })
