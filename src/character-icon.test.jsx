@@ -1,6 +1,7 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 import { CharIcon, findCharById } from './core.jsx'
+import { versionedPersosThumb } from './asset-url.js'
 
 describe('character icon server snapshot', () => {
   it('keeps the authentic first source, dimensions, class and priority before hydration', () => {
@@ -17,7 +18,7 @@ describe('character icon server snapshot', () => {
   it('uses the existing thumbnail immediately when the icon path is absent', () => {
     const character = { ...findCharById('moubu'), icon: null }
     const html = renderToStaticMarkup(<CharIcon c={character} round />)
-    expect(html).toContain('src="/persos/thumbs/moubu.webp"')
+    expect(html).toContain(`src="${versionedPersosThumb('/persos/moubu.webp')}"`)
     expect(html).toContain('border-radius:50%')
     expect(html).toContain('loading="lazy"')
   })

@@ -3,6 +3,7 @@ import crypto from 'node:crypto'
 import fs from 'node:fs'
 import audit from '../docs/character-integrity/banner-rework.json'
 import { ALL, ARCHIVE_BROWSE_CHARACTERS, ARCHIVE_CHAR_COUNT, searchCharacters } from './core.jsx'
+import { versionPublicAsset } from './asset-url.js'
 
 const expectedIds = [
   'yugi', 'kesshi', 'amon', 'jiou', 'douken', 'shishi', 'gii',
@@ -60,7 +61,7 @@ describe('strict replacement-banner acceptance', () => {
     for (const entry of accepted) {
       const character = ALL.find(candidate => candidate.id === entry.id)
       const banner = entry.accepted_banner
-      expect(character.image, entry.id).toBe(`/persos/${entry.id}.webp`)
+      expect(character.image, entry.id).toBe(versionPublicAsset(`/persos/${entry.id}.webp`))
       expect(new URL(banner.source_page).hostname).toBe('www.kingdomran.jp')
       expect(new URL(banner.source_url).hostname).toBe('dxqkr1fuhva1u.cloudfront.net')
       for (const path of [banner.final_path, banner.thumbnail_path]) {

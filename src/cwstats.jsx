@@ -12,9 +12,22 @@ export const CW_POWER_WEIGHTS = { hp: 0.2, atk: 0.64102, def: 1 }
 export const CW_STATS_MAX_TEAMS = 5
 export const CW_STATS_SLOTS = 4
 
+// All calculator inputs are non-negative by definition. Keep the original
+// value for controlled inputs (including a legitimate numeric zero), while
+// rejecting malformed, non-finite, and negative values at every state boundary.
+const normalizeCwNumericValue = (value) => {
+  if (value === '' || value === null || value === undefined) return ''
+  if (typeof value === 'number') return Number.isFinite(value) && value >= 0 ? value : ''
+  if (typeof value !== 'string') return ''
+  const trimmed = value.trim()
+  if (!trimmed) return ''
+  const parsed = Number(trimmed)
+  return Number.isFinite(parsed) && parsed >= 0 ? trimmed : ''
+}
+
 const numberOrZero = (value) => {
-  const parsed = Number.parseFloat(value)
-  return Number.isFinite(parsed) ? parsed : 0
+  const normalized = normalizeCwNumericValue(value)
+  return normalized === '' ? 0 : Number(normalized)
 }
 
 export const emptyCwCharacter = () => ({
@@ -31,33 +44,35 @@ export const emptyCwScenario = () => ({
 })
 
 const normalizeCwCharacter = (raw = {}) => {
-  const buffs = raw.buffs || raw.pct || {}
+  const source = raw && typeof raw === 'object' ? raw : {}
+  const buffs = source.buffs || source.pct || {}
   return {
-    hp: raw.hp ?? '',
-    atkMin: raw.atkMin ?? '',
-    atkMax: raw.atkMax ?? '',
-    def: raw.def ?? '',
+    hp: normalizeCwNumericValue(source.hp),
+    atkMin: normalizeCwNumericValue(source.atkMin),
+    atkMax: normalizeCwNumericValue(source.atkMax),
+    def: normalizeCwNumericValue(source.def),
     buffs: {
-      hp: buffs.hp ?? '',
-      atk: buffs.atk ?? '',
-      def: buffs.def ?? '',
+      hp: normalizeCwNumericValue(buffs.hp),
+      atk: normalizeCwNumericValue(buffs.atk),
+      def: normalizeCwNumericValue(buffs.def),
     },
   }
 }
 
 const normalizeCwScenario = (raw = {}) => {
-  const buffChanges = raw.buffChanges || raw.changes || {}
-  const baseBuffs = raw.baseBuffs || raw.rawBuffs || raw.sceneCardBaseBuffs || {}
+  const source = raw && typeof raw === 'object' ? raw : {}
+  const buffChanges = source.buffChanges || source.changes || {}
+  const baseBuffs = source.baseBuffs || source.rawBuffs || source.sceneCardBaseBuffs || {}
   return {
     buffChanges: {
-      hp: buffChanges.hp ?? '',
-      atk: buffChanges.atk ?? '',
-      def: buffChanges.def ?? '',
+      hp: normalizeCwNumericValue(buffChanges.hp),
+      atk: normalizeCwNumericValue(buffChanges.atk),
+      def: normalizeCwNumericValue(buffChanges.def),
     },
     baseBuffs: {
-      hp: baseBuffs.hp ?? '',
-      atk: baseBuffs.atk ?? '',
-      def: baseBuffs.def ?? '',
+      hp: normalizeCwNumericValue(baseBuffs.hp),
+      atk: normalizeCwNumericValue(baseBuffs.atk),
+      def: normalizeCwNumericValue(baseBuffs.def),
     },
   }
 }
@@ -86,8 +101,7 @@ const CW_BUFF_FIELDS = {
 }
 
 const percentFactor = (value) => {
-  const factor = 1 + numberOrZero(value) / 100
-  return factor === 0 ? 1 : factor
+  return 1 + numberOrZero(value) / 100
 }
 
 export const projectedCwStats = (stats = {}) => {
@@ -189,20 +203,26 @@ export const normalizeCwStatsState = (raw = {}) => {
 }
 
 export const updateCwStatsCharacter = (state, characterId, field, value) => {
-  const current = state.characters[characterId] || emptyCwCharacter()
-  return {
-    ...state,
-    characters: { ...state.characters, [characterId]: { ...current, [field]: value } },
-  }
-}
-
-export const updateCwStatsActiveBuff = (state, characterId, buffField, value) => {
-  const current = state.characters[characterId] || emptyCwCharacter()
+  const current = normalizeCwCharacter(state.characters[characterId] || emptyCwCharacter())
   return {
     ...state,
     characters: {
       ...state.characters,
-      [characterId]: { ...current, buffs: { ...current.buffs, [buffField]: value } },
+      [characterId]: { ...current, [field]: normalizeCwNumericValue(value) },
+    },
+  }
+}
+
+export const updateCwStatsActiveBuff = (state, characterId, buffField, value) => {
+  const current = normalizeCwCharacter(state.characters[characterId] || emptyCwCharacter())
+  return {
+    ...state,
+    characters: {
+      ...state.characters,
+      [characterId]: {
+        ...current,
+        buffs: { ...current.buffs, [buffField]: normalizeCwNumericValue(value) },
+      },
     },
   }
 }
@@ -211,14 +231,17 @@ export const updateCwStatsScenario = (state, teamId, characterId, scenarioField,
   ...state,
   teams: state.teams.map((team) => {
     if (team.id !== teamId) return team
-    const current = team.scenarios[characterId] || emptyCwScenario()
+    const current = normalizeCwScenario(team.scenarios[characterId] || emptyCwScenario())
     return {
       ...team,
       scenarios: {
         ...team.scenarios,
         [characterId]: {
           ...current,
-          [scenarioField]: { ...current[scenarioField], [buffField]: value },
+          [scenarioField]: {
+            ...current[scenarioField],
+            [buffField]: normalizeCwNumericValue(value),
+          },
         },
       },
     }

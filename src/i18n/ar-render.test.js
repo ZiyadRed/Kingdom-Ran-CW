@@ -136,17 +136,17 @@ describe('Arabic target rendering', () => {
 
   it('renders an army as a noun plus its canonical Latin name', () => {
     // Audit AR-004: "حليف Kanki جيش" mixed scripts in the wrong order.
-    expect(renderArabicTarget('Ally Kanki Army')).toBe('حليف من جيش كانكي')
-    expect(renderArabicTarget('Ally Hi Shin Unit [General]')).toBe('حليف من وحدة الهاي شين')
+    expect(renderArabicTarget('Ally Kanki Army')).toBe('الحلفاء من جيش كانكي')
+    expect(renderArabicTarget('Ally Hi Shin Unit [General]')).toBe('الحلفاء من وحدة الهاي شين')
   })
 
   it('translates a group whose name is a common noun', () => {
     // Audit AR-023: "Coalition" is not a proper name.
-    expect(renderArabicTarget('Ally Coalition Army')).toBe('حليف من جيش التحالف')
+    expect(renderArabicTarget('Ally Coalition Army')).toBe('الحلفاء من جيش التحالف')
   })
 
   it('uses the unit wording established by the guide', () => {
-    expect(renderArabicTarget('Ally [Shield]')).toBe('حليف من جنود الدروع')
+    expect(renderArabicTarget('Ally [Shield]')).toBe('جنود الدروع الحلفاء')
     expect(renderArabicTarget('1 poisoned enemy [General]')).toBe('جنرال واحد مسموم من العدو')
     expect(renderArabicTarget('All poisoned enemy [General]')).toBe('جميع جنرالات العدو المسمومين')
     expect(renderArabicTarget('Enemy General')).toBe('جنرال من العدو')
@@ -154,7 +154,7 @@ describe('Arabic target rendering', () => {
     expect(renderArabicCondition('Confused enemy [General] present')).toBe('وجود جنرال مرتبك من العدو')
     expect(renderArabicCondition('Poisoned enemies present')).toBe('وجود أعداء مسمومين من العدو')
     expect(renderArabicCondition('When feared enemies are present')).toBe('عند وجود أعداء خائفين من العدو')
-    expect(renderArabicTarget('Ally [Siege Weapon]')).toBe('حليف من أسلحة الحصار')
+    expect(renderArabicTarget('Ally [Siege Weapon]')).toBe('أسلحة الحصار الحليفة')
   })
 
   it('localizes the compact enemy labels emitted by the buff summary engine', () => {
@@ -167,7 +167,22 @@ describe('Arabic target rendering', () => {
     expect(renderArabicTarget('Ally [Wizard]')).toBe('Ally [Wizard]')
     expect(renderArabicCondition('Enemy [Wizard] with highest ATK'))
       .toBe('Enemy [Wizard] with highest ATK')
-    expect(renderArabicTarget('Ally [Hishin] Unit')).toBe('حليف من وحدة الهاي شين')
+    expect(renderArabicTarget('Ally [Hishin] Unit')).toBe('الحلفاء من وحدة الهاي شين')
+  })
+
+  it('uses plural wording for group targets while keeping conditions and counts singular', () => {
+    // Bajio's source says 自身以外の味方山の民武将: all eligible other
+    // Mountain Folk allies are recipients, while the condition asks whether
+    // at least one such ally exists and the per-ally clause counts one at a
+    // time.
+    expect(renderArabicTarget('Other ally [Mountain Folk]'))
+      .toBe('الحلفاء الآخرون من جيش الجبال')
+    expect(renderArabicTarget('Ally [Mountain Folk]'))
+      .toBe('الحلفاء من جيش الجبال')
+    expect(renderArabicCondition('Other ally [Mountain Folk] alive'))
+      .toBe('حليف آخر من جيش الجبال على قيد الحياة')
+    expect(renderArabicCondition('Per other ally [Mountain Folk] member'))
+      .toBe('لكل حليف آخر من جيش الجبال')
   })
 })
 
@@ -402,8 +417,8 @@ describe('Arabic that reads like a person wrote it', () => {
   it('builds a phrase around the unit type instead of appending a tag', () => {
     expect(renderArabicTarget('1 enemy [General]')).toBe('جنرال واحد من العدو')
     expect(renderArabicTarget('3 enemy [General]')).toBe('3 جنرالات من العدو')
-    expect(renderArabicTarget('Ally [Infantry]')).toBe('حليف من المشاة')
-    expect(renderArabicTarget('Other ally [Cavalry]')).toBe('حليف آخر من الفرسان')
+    expect(renderArabicTarget('Ally [Infantry]')).toBe('المشاة الحلفاء')
+    expect(renderArabicTarget('Other ally [Cavalry]')).toBe('الفرسان الحلفاء الآخرون')
     expect(renderArabicTarget('All enemy [General]')).toBe('جميع جنرالات العدو')
   })
 
@@ -476,7 +491,7 @@ describe('ally names match the archive', () => {
 
   it('leaves a name that is already canonical alone', () => {
     expect(renderArabicTarget('Ally Ouhon')).toBe('حليف أوهون')
-    expect(renderArabicTarget('Ally Kanki Army')).toBe('حليف من جيش كانكي')
+    expect(renderArabicTarget('Ally Kanki Army')).toBe('الحلفاء من جيش كانكي')
   })
 })
 

@@ -56,7 +56,7 @@ test('accepted banners render with clean transparent edges in all target viewpor
       const card = page.locator(`.banner-card[data-detail-id="${entry.id}"]`)
       await card.scrollIntoViewIfNeeded()
       const image = card.locator('img')
-      await expect(image).toHaveAttribute('src', `/persos/thumbs/${entry.id}.webp`)
+      await expect(image).toHaveAttribute('src', new RegExp(`/persos/thumbs/${entry.id}\\.webp\\?v=[0-9a-f]{16}$`))
       await expectTransparentBanner(image)
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
     }
@@ -65,13 +65,13 @@ test('accepted banners render with clean transparent edges in all target viewpor
 
 test('new banners join the existing icon recovery while unresolved characters retain initials', async ({ page, path }) => {
   await instrumentStorage(page, saved)
-  await page.route('**/icons/Yugi.webp', route => route.abort('failed'))
+  await page.route(url => new URL(url).pathname === '/icons/Yugi.webp', route => route.abort('failed'))
   await page.goto(path('/archive/characters/yugi'))
   const yugi = page.locator('.detail-portrait')
-  await expect(yugi).toHaveAttribute('src', '/persos/thumbs/yugi.webp')
+  await expect(yugi).toHaveAttribute('src', /\/persos\/thumbs\/yugi\.webp\?v=[0-9a-f]{16}$/)
   await yugi.evaluate(element => element.decode())
 
-  await page.route('**/icons/Hyou.webp', route => route.abort('failed'))
+  await page.route(url => new URL(url).pathname === '/icons/Hyou.webp', route => route.abort('failed'))
   await page.goto(path('/archive/characters/hyou'))
   const fallback = page.locator('.detail-portrait')
   const heading = await page.locator('.detail-info h1').textContent()

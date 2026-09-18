@@ -7,9 +7,9 @@ immutable archive. Preserve raw game inputs outside the public repository.
 
 ## Current reproducibility boundary
 
-As of 6 September 2026, no matching raw snapshot was found in the available
-Kingdom data directories, older July/August snapshots, desktop game-data copies,
-or the inspected RanHQ/localization backup archives. The named snapshot JSON
+As of 17 September 2026, no matching raw snapshot was found in the available
+Kingdom data directories, including the current decrypted tree, the July/August
+snapshots, the September baseline/quarantine copies, and the dump cache. The named snapshot JSON
 under `C:\kingdom_data\snapshots` contains summaries/row hashes, not the original
 five binary masters and STBL files. It cannot reproduce their byte hashes.
 
@@ -17,12 +17,13 @@ The default read-only verifier fails before writing anything:
 
 ```text
 masters_001.bin
-actual:   5DFD05438B0CC10507438A171CC83872A421F66DEE9D3F3C86D1909ABBC3271B
+actual:   8436812A8EC8ABD3FD63BE91ADA0A6FE6BDC7F1EF923FE4BE640F68AEDB8251B
 expected: E054EDB9D12229933621BAA2C9D40E5AB2A06DC0859C75FC46ECCA2B08222A8A
 ```
 
-The 2026-08-05 and 2026-07-29 copies and the KingdomViewer master copy also
-have different hashes. The missing historical raw snapshot remains an **external
+The September baseline/quarantine copy hashes to `5649A995C2D6A18768B980C82910EDBC6328ABD0CBDE6C96A6E23D7C02D32EB2`.
+The 2026-08-05 and 2026-07-29 copies and the dump-cache copy also have different
+hashes. The missing historical raw snapshot remains an **external
 prerequisite for original-source re-extraction**. Internal source-map, raw-artifact
 and generated-locale validation passes against the checked-in artifacts; it does
 not establish that the original input files are available. No pinned hashes or

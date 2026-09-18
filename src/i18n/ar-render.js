@@ -258,12 +258,42 @@ function scopedTagsConstruct(scope, text) {
 function scopedTagsPlural(scopeKey, text) {
   const tags = tagsIn(text)
   const primary = primaryTag(tags)
-  if (!primary || primary.kind !== 'unit') return null
+  if (!primary) return null
   if (scopeKey === 'enemy' || scopeKey === 'allEnemy') {
+    if (primary.kind !== 'unit') return null
     // الجنرالات heads a construct as جنرالات.
     return `${primary.coll.replace(/^ال/, '')} العدو`
   }
-  return `${primary.coll} الحلفاء`
+  if (scopeKey === 'ally' || scopeKey === 'otherAlly') {
+    const other = scopeKey === 'otherAlly' ? ' الآخرون' : ''
+    const qualifier = tags.find((tag) => tag !== primary && (tag.kind === 'state' || tag.kind === 'group'))
+    const where = qualifier
+      ? qualifier.kind === 'group' ? `وحدة ${qualifier.coll}` : qualifier.coll
+      : null
+
+    if (primary.kind === 'unit') {
+      // A bare General tag is redundant in the singular path, but a plural
+      // target still needs to state that the recipients are generals when no
+      // faction narrows it further: الجنرالات الحلفاء الآخرون.
+      // Siege weapons are non-human in Arabic, so their plural takes the
+      // feminine-singular adjective: أسلحة الحصار الحليفة.
+      if (primary.sing === 'سلاح حصار') {
+        const adjective = scopeKey === 'otherAlly' ? 'الحليفة الأخرى' : 'الحليفة'
+        const subject = `${primary.coll} ${adjective}`
+        return where ? `${subject} من ${where}` : subject
+      }
+      const subject = `${primary.coll} الحلفاء${other}`
+      // The source's [General] tag is redundant when a state/group is also
+      // present, matching the singular renderer's "حليف ... من تشين" shape.
+      if (primary.sing === 'جنرال' && where) return `الحلفاء${other} من ${where}`
+      return where ? `${subject} من ${where}` : subject
+    }
+
+    const subject = `الحلفاء${other}`
+    const target = primary.kind === 'group' ? `وحدة ${primary.coll}` : primary.coll
+    return `${subject} من ${target}`
+  }
+  return null
 }
 
 /**
@@ -751,9 +781,11 @@ export function renderArabicEffect(value) {
 
 const ENEMY_FORMS = { one: 'عدو واحد', two: 'عدوان', few: 'أعداء', many: 'عدوًا' }
 
-function renderTargetClause(text) {
+function renderTargetClause(text, options = {}) {
   const raw = clean(text)
   if (!raw) return null
+
+  if (options.pluralAllyTarget && /^Other ally$/i.test(raw)) return 'حلفاء آخرون'
 
   const phrase = PHRASE_INDEX.get(raw.toLowerCase())
   if (phrase) return phrase
@@ -845,7 +877,7 @@ function renderTargetClause(text) {
   // "Surviving ally [Chu]"
   match = /^Surviving\s+(.+)$/i.exec(raw)
   if (match) {
-    const inner = renderTargetClause(match[1])
+    const inner = renderTargetClause(match[1], options)
     if (inner) return `${inner} على قيد الحياة`
   }
 
@@ -868,6 +900,9 @@ function renderTargetClause(text) {
   match = /^(Other ally|Ally|Enemy)\s+(.+)$/i.exec(raw)
   if (match) {
     const head = PHRASE_INDEX.get(match[1].toLowerCase())
+    const pluralGroupHead = options.pluralAllyTarget && /^other ally$/i.test(match[1])
+      ? 'الحلفاء الآخرون'
+      : options.pluralAllyTarget && /^ally$/i.test(match[1]) ? 'الحلفاء' : head
     let rest = clean(match[2])
 
     // A scope followed by nothing but tags is the commonest shape of all
@@ -877,7 +912,9 @@ function renderTargetClause(text) {
       const scopeKey = /^other ally$/i.test(match[1])
         ? 'otherAlly'
         : /^ally$/i.test(match[1]) ? 'ally' : 'enemy'
-      const scoped = scopedTags(scopeKey, rest)
+      const scoped = options.pluralAllyTarget && (scopeKey === 'ally' || scopeKey === 'otherAlly')
+        ? scopedTagsPlural(scopeKey, rest)
+        : scopedTags(scopeKey, rest)
       if (scoped) return scoped
     }
 
@@ -890,7 +927,9 @@ function renderTargetClause(text) {
       const scopeKey = /^other ally$/i.test(match[1])
         ? 'otherAlly'
         : /^ally$/i.test(match[1]) ? 'ally' : 'enemy'
-      const scoped = scopedTags(scopeKey, `[${rest}]`)
+      const scoped = options.pluralAllyTarget && (scopeKey === 'ally' || scopeKey === 'otherAlly')
+        ? scopedTagsPlural(scopeKey, `[${rest}]`)
+        : scopedTags(scopeKey, `[${rest}]`)
       if (scoped) return scoped
     }
 
@@ -913,7 +952,7 @@ function renderTargetClause(text) {
     const phrase = lookupGroupPhrase(rest)
     if (phrase) {
       const noun = phrase.member ? `عضو من ${phrase.group}` : `من ${phrase.group}`
-      return words(head, noun, phrase.tag, tail)
+      return words(pluralGroupHead, noun, phrase.tag, tail)
     }
 
     if (/^\[[^\]]+\]$/.test(rest)) return words(head, renderTags(rest), tail)
@@ -927,8 +966,8 @@ function renderTargetClause(text) {
     }
 
     // "Ally [Hishin] Unit" — the remainder is itself a renderable group.
-    const inner = renderTargetTail(rest)
-    if (inner) return words(head, `من ${inner}`, tail)
+    const inner = renderTargetTail(rest, options)
+    if (inner) return words(pluralGroupHead, `من ${inner}`, tail)
 
     return null
   }
@@ -945,16 +984,16 @@ function renderTargetClause(text) {
  * Render a trailing member of a slash list that omits its head, e.g. the
  * "Ousen Army" of "Ally Gyokuhou Unit / Ousen Army", or a bare "[Wei]".
  */
-function renderTargetTail(text) {
+function renderTargetTail(text, options = {}) {
   const raw = clean(text)
   if (!raw) return null
 
-  const full = renderTargetClause(raw)
+  const full = renderTargetClause(raw, options)
   if (full) return full
 
   const other = /^Other\s+(.+)$/i.exec(raw)
   if (other) {
-    const inner = renderTargetTail(other[1])
+    const inner = renderTargetTail(other[1], options)
     return inner ? `${inner} آخر` : null
   }
 
@@ -964,7 +1003,7 @@ function renderTargetTail(text) {
   return null
 }
 
-function renderTargetExpression(raw) {
+function renderTargetExpression(raw, options = {}) {
   // A bare tag or tag list standing alone as the target.
   if (/^(\[[^\]]+\][,\s]*)+$/.test(raw)) return renderTags(raw).replace(/,/g, '،')
 
@@ -975,7 +1014,7 @@ function renderTargetExpression(raw) {
     const rendered = parts.map((part, i) => {
       const tail = /^and\s+(.+)$/i.exec(part)
       const body = tail ? tail[1] : part
-      const out = i === 0 ? renderTargetExpression(body) : (renderTargetExpression(body) || renderTargetTail(body))
+      const out = i === 0 ? renderTargetExpression(body, options) : (renderTargetExpression(body, options) || renderTargetTail(body, options))
       if (!out) return null
       return tail ? `و${out}` : out
     })
@@ -987,22 +1026,22 @@ function renderTargetExpression(raw) {
   // "Enemy [Qin] or [Mountain Folk]" — an alternative rather than a list.
   const alternative = /^(.+?)\s+or\s+(.+)$/i.exec(raw)
   if (alternative) {
-    const left = renderTargetExpression(alternative[1])
-    const right = renderTargetExpression(alternative[2]) || renderTargetTail(alternative[2])
+    const left = renderTargetExpression(alternative[1], options)
+    const right = renderTargetExpression(alternative[2], options) || renderTargetTail(alternative[2], options)
     if (left && right) return `${left} أو ${right}`
   }
 
   // "Ally [Cavalry] other than self"
   const excluded = /^(.*?)\s+other than self$/i.exec(raw)
   if (excluded) {
-    const inner = renderTargetExpression(excluded[1])
+    const inner = renderTargetExpression(excluded[1], options)
     if (inner) return `${inner} عدا نفسه`
   }
 
   // "Self vs Qin" / "Enemy [General] vs cavalry"
   const versus = /^(.*?)\s+vs\s+(.+)$/i.exec(raw)
   if (versus) {
-    const inner = renderTargetExpression(versus[1])
+    const inner = renderTargetExpression(versus[1], options)
     const target = clean(versus[2])
     const against =
       TAG_INDEX.get(target.toLowerCase())?.coll ||
@@ -1011,21 +1050,21 @@ function renderTargetExpression(raw) {
     if (inner && against) return `${inner} ضد ${against}`
   }
 
-  const direct = renderTargetClause(raw)
+  const direct = renderTargetClause(raw, options)
   if (direct) return direct
 
   // "Ally [Infantry] and [Cavalry]" / "Self and ally Renpa Army"
   const conjunction = /^(.+?)\s+and\s+(.+)$/i.exec(raw)
   if (conjunction) {
-    const left = renderTargetExpression(conjunction[1])
-    const right = renderTargetExpression(conjunction[2]) || renderTargetTail(conjunction[2])
+    const left = renderTargetExpression(conjunction[1], options)
+    const right = renderTargetExpression(conjunction[2], options) || renderTargetTail(conjunction[2], options)
     if (left && right) return `${left} و${right}`
   }
 
   // Slash lists, where later members may omit the head.
   if (raw.includes('/')) {
     const parts = raw.split('/').map((s) => s.trim()).filter(Boolean)
-    const rendered = parts.map((part, i) => (i === 0 ? renderTargetExpression(part) : renderTargetTail(part)))
+    const rendered = parts.map((part, i) => (i === 0 ? renderTargetExpression(part, options) : renderTargetTail(part, options)))
     if (!rendered.some((p) => p == null)) return rendered.join(SLASH)
   }
 
@@ -1039,7 +1078,7 @@ export function renderArabicTarget(value) {
   const raw = clean(value)
   if (!raw) return value
   if (hasUnknownTags(raw)) return value
-  return renderTargetExpression(raw) ?? value
+  return renderTargetExpression(raw, { pluralAllyTarget: true }) ?? value
 }
 
 // ── Condition rendering ─────────────────────────────────────────────────────

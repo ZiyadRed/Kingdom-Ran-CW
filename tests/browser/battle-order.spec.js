@@ -55,6 +55,7 @@ test('desktop Battle Order keeps the same semantic sequence when role slots are 
   await settle(page)
   await page.getByRole('button', { name: CATALOGS[locale].builder.viewBattleOrder }).click()
   await expect(page).toHaveURL(/\/sim$/)
+  await expect(page.locator('.turn').first().locator('.te-role')).toHaveCount(4)
   const roles = await page.locator('.turn').first().locator('.te-role').evaluateAll(rows =>
     rows.map(row => `${row.classList.contains('te-attack') ? 'attack' : 'defense'}:${row.dataset.role}`))
   expect(roles).toEqual(['attack:Leader', 'attack:Strategist', 'defense:Leader', 'defense:Strategist'])

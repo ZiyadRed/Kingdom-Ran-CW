@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useLocale } from './i18n/index.js'
 import { localizedCharacterName } from './i18n/ar-character-names.js'
 import { isGuideSection } from './seo.js'
+import { versionPublicAsset } from './asset-url.js'
 import NotFoundPage from './NotFoundPage.jsx'
 import statusEffects from '../data/glossary/status_effects.json'
 import unitMatchups  from '../data/glossary/unit_matchups.json'
@@ -1417,7 +1418,7 @@ export const SOUHA_LEADER_ROLES=SOUHA_LEADER_ROLE_META.map(role=>({
       name:entry.ownerName,
       nameJp:entry.ownerNameJp,
       ownerId:entry.owner_id,
-      icon:entry.ownerIcon,
+      icon:versionPublicAsset(entry.ownerIcon),
       skillName:entry.skill.name_en,
       skillNameJp:entry.skill.name_jp,
       cwId:entry.skill.cwId,

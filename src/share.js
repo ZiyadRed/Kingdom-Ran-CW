@@ -1,6 +1,7 @@
 import { classifyConditionParts, splitConditionParts } from './skillConditions.js'
 import { absoluteUrl } from './seo.js'
 import { encodeBuilderShareSearch } from './builder-share.js'
+import { versionPublicAsset } from './asset-url.js'
 
 export const DISCORD_MESSAGE_LIMIT = 1900
 export const SKILL_IMAGE_WIDTH = 1080
@@ -1137,7 +1138,9 @@ function canvasToBlob(canvas){
 }
 
 function persosThumb(img){
-  return img&&img.startsWith('/persos/')?img.replace('/persos/','/persos/thumbs/'):img
+  if(!img?.startsWith('/persos/')) return img
+  const path=img.split(/[?#]/,1)[0].replace('/persos/','/persos/thumbs/')
+  return versionPublicAsset(path)
 }
 
 function safeFileName(name){

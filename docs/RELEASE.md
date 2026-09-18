@@ -92,6 +92,15 @@ Its permissions are read-only and it has no deployment step. The historical
 raw-source verifier requires the external snapshot and is not silently treated
 as passing by CI.
 
+Production promotion must wait for a successful acceptance check on the exact
+release commit. This repository does not contain a production deployment job or
+Vercel project settings, so this workflow cannot itself block Vercel's Git-triggered
+promotion. Configure the required check in the external promotion settings before
+relying on automatic deployment from `main`; preview deployments remain separate.
+On 18 September 2026, GitHub reported `main` as unprotected while the `RanHQ
+acceptance` workflow was active. A green workflow is therefore evidence to review,
+not a repository-enforced production gate.
+
 Before publishing, review the final diff and source prerequisite, confirm the
 actual Vercel project/root/build/Node settings and required checks, and approve
 the specific release tree. After an authorized deploy, verify the deployed

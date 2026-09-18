@@ -12,6 +12,7 @@ import {
   projectedCwStats,
   removeCwStatsCharacter,
   updateCwStatsCharacter,
+  updateCwStatsActiveBuff,
   updateCwStatsScenario,
   writeStoredCwStats,
 } from './cwstats.jsx'
@@ -76,6 +77,16 @@ describe('CW Stats calculator formula', () => {
 
   it('treats blank or non-numeric inputs as zero without producing NaN', () => {
     expect(calculateCwPower({ hp: '', atkMin: 'not a number', atkMax: '', def: '' })).toBe(0)
+  })
+
+  it('rejects negative modifiers instead of wrapping percentages or producing negative power', () => {
+    const current = { hp: 10000, atkMin: 1000, atkMax: 1200, def: 800 }
+
+    for (const value of [-1, -99, -100, -101, '', 'malformed']) {
+      expect(projectedCwStats({ ...current, buffChanges: { hp: value } })).toEqual(current)
+    }
+    expect(calculateCwPower({ ...current, hp: -1 })).toBe(1505)
+    expect(calculateCwPower(projectedCwStats({ ...current, buffChanges: { hp: -99 } }))).toBe(3505)
   })
 })
 
@@ -195,6 +206,71 @@ describe('CW Stats calculator saved state', () => {
       buffChanges: { hp: '', atk: '', def: '' },
       baseBuffs: { hp: '', atk: '', def: '' },
     })
+  })
+
+  it('normalizes negative and malformed persisted values while preserving zero', () => {
+    const normalized = normalizeCwStatsState({
+      version: 2,
+      characters: {
+        shin: {
+          hp: '0',
+          atkMin: -1,
+          atkMax: '-99',
+          def: 'not-a-number',
+          buffs: { hp: 0, atk: '-100', def: '0' },
+        },
+      },
+      teams: [{
+        id: 'team-1',
+        slots: ['shin', null, null, null],
+        scenarios: {
+          shin: {
+            buffChanges: { hp: -1, atk: '-100', def: '0' },
+            baseBuffs: { hp: -101, atk: 'malformed', def: 0 },
+          },
+        },
+      }],
+    })
+
+    expect(normalized.characters.shin).toEqual({
+      hp: '0',
+      atkMin: '',
+      atkMax: '',
+      def: '',
+      buffs: { hp: 0, atk: '', def: '0' },
+    })
+    expect(normalized.teams[0].scenarios.shin).toEqual({
+      buffChanges: { hp: '', atk: '', def: '0' },
+      baseBuffs: { hp: '', atk: '', def: 0 },
+    })
+  })
+
+  it('rejects invalid updates before they can be persisted and keeps zero valid', () => {
+    const state = normalizeCwStatsState({
+      version: 2,
+      characters: { shin: { hp: '10000' } },
+      teams: [{ id: 'team-1', slots: ['shin', null, null, null], scenarios: { shin: emptyCwScenario() } }],
+    })
+    const updatedCharacter = updateCwStatsCharacter(state, 'shin', 'hp', '-100')
+    const updatedBuff = updateCwStatsActiveBuff(updatedCharacter, 'shin', 'hp', '0')
+    const updatedScenario = updateCwStatsScenario(updatedBuff, 'team-1', 'shin', 'buffChanges', 'hp', 'bad')
+    const withZeroScenario = updateCwStatsScenario(updatedScenario, 'team-1', 'shin', 'baseBuffs', 'hp', 0)
+
+    expect(withZeroScenario.characters.shin.hp).toBe('')
+    expect(withZeroScenario.characters.shin.buffs.hp).toBe('0')
+    expect(withZeroScenario.teams[0].scenarios.shin.buffChanges.hp).toBe('')
+    expect(withZeroScenario.teams[0].scenarios.shin.baseBuffs.hp).toBe(0)
+
+    const values = new Map()
+    expect(writeStoredCwStats(withZeroScenario, {
+      getItem: key => values.get(key) ?? null,
+      setItem: (key, value) => values.set(key, value),
+    })).toBe(true)
+    const persisted = JSON.parse(values.get('ranhq-cw-stats-v1'))
+    expect(persisted.characters.shin.hp).toBe('')
+    expect(persisted.characters.shin.buffs.hp).toBe('0')
+    expect(persisted.teams[0].scenarios.shin.buffChanges.hp).toBe('')
+    expect(persisted.teams[0].scenarios.shin.baseBuffs.hp).toBe(0)
   })
 
   it('updates shared character facts globally while leaving team hypotheses intact', () => {

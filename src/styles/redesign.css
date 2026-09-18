@@ -187,8 +187,7 @@ textarea {
   transition: opacity .14s ease, transform .14s ease, visibility .14s ease;
 }
 
-.nav-group:hover .nav-menu,
-.nav-group:focus-within .nav-menu {
+.nav-group.is-open .nav-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);

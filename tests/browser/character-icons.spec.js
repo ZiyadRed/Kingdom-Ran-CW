@@ -1,10 +1,14 @@
 import { readCharacters } from '../../scripts/seo/routes.mjs'
+import { readFileSync } from 'node:fs'
 import { test, expect, instrumentStorage, saved, storage, settle } from './fixtures.js'
 
 const characters = readCharacters()
 const moubu = characters.find(character => character.id === 'moubu')
 const renpa = characters.find(character => character.id === 'renpa')
-const thumb = moubu.image.replace('/persos/', '/persos/thumbs/')
+const versions = JSON.parse(readFileSync(new URL('../../src/asset-versions.json', import.meta.url), 'utf8'))
+const versioned = path => `${path}?v=${versions[path]}`
+const thumbPath = moubu.image.replace('/persos/', '/persos/thumbs/')
+const thumb = versioned(thumbPath)
 const portrait = page => page.locator('.detail-portrait')
 async function expectDecoded(image) {
   await image.evaluate(element => element.decode())
@@ -26,8 +30,8 @@ test('an icon that failed before hydration recovers to its existing thumbnail wi
   let releaseScripts, iconRequests = 0, thumbnailRequests = 0
   const scripts = new Promise(resolve => { releaseScripts = resolve })
   await page.route(/\/assets\/.*\.js$/, async route => { await scripts; await route.continue() })
-  await page.route('**' + moubu.icon, route => { iconRequests++; return route.abort('failed') })
-  page.on('request', request => { if (new URL(request.url()).pathname === thumb) thumbnailRequests++ })
+  await page.route(url => new URL(url).pathname === moubu.icon, route => { iconRequests++; return route.abort('failed') })
+  page.on('request', request => { if (new URL(request.url()).pathname === thumbPath) thumbnailRequests++ })
   try {
     await page.goto(path('/archive/characters/moubu'), { waitUntil: 'commit' })
     await expect(portrait(page)).toBeVisible()
@@ -58,7 +62,7 @@ test('two failed sources end at an accessible initial; changing character and re
   await expectDecoded(portrait(page))
   const box = await portrait(page).boundingBox()
   let block = true
-  for (const source of [moubu.icon, thumb]) await page.route('**' + source, route => {
+  for (const source of [moubu.icon, thumbPath]) await page.route(url => new URL(url).pathname === source, route => {
     attempts.push(source)
     return block ? route.abort('failed') : route.continue()
   })
@@ -84,30 +88,30 @@ test('two failed sources end at an accessible initial; changing character and re
   expect(contrast).toBeGreaterThanOrEqual(4.5)
   await expect(page.locator('.detail-portrait img')).toHaveCount(0)
   await settle(page)
-  expect(attempts).toEqual([moubu.icon, thumb])
+  expect(attempts).toEqual([moubu.icon, thumbPath])
   // An ordinary dialog/state change must not restart a failed resource chain.
   await page.locator('.detail-panel .share-image-btn').focus()
   await page.keyboard.press('Tab')
   await settle(page)
-  expect(attempts).toEqual([moubu.icon, thumb])
+  expect(attempts).toEqual([moubu.icon, thumbPath])
   await clientNavigate(page, path('/archive/characters/renpa'))
-  await expect(portrait(page)).toHaveAttribute('src', renpa.icon)
+  await expect(portrait(page)).toHaveAttribute('src', versioned(renpa.icon))
   await expectDecoded(portrait(page))
   block = false
   await clientNavigate(page, path('/archive/characters/moubu'))
-  await expect(portrait(page)).toHaveAttribute('src', moubu.icon)
+  await expect(portrait(page)).toHaveAttribute('src', versioned(moubu.icon))
   await expectDecoded(portrait(page))
-  expect(attempts).toEqual([moubu.icon, thumb, moubu.icon])
+  expect(attempts).toEqual([moubu.icon, thumbPath, moubu.icon])
   expect(await storage(page)).toEqual(saved)
 })
 
 test('shared Builder icons preserve round dimensions when their requests fail', async ({ page, path }) => {
   await instrumentStorage(page, saved)
   let block = false
-  for (const source of [moubu.icon, thumb]) await page.route('**' + source, route => block ? route.abort('failed') : route.continue())
+  for (const source of [moubu.icon, thumbPath]) await page.route(url => new URL(url).pathname === source, route => block ? route.abort('failed') : route.continue())
   await page.goto(path('/builder'))
   const slot = page.locator('[data-builder-slot="attack-0"]')
-  await expect(slot.locator('img').first()).toHaveAttribute('src', moubu.icon)
+  await expect(slot.locator('img').first()).toHaveAttribute('src', versioned(moubu.icon))
   const original = await slot.locator('img').first().evaluate(image => {
     const rect = image.getBoundingClientRect()
     return { width: rect.width, height: rect.height, radius: getComputedStyle(image).borderRadius, name: image.alt }

@@ -6,6 +6,7 @@ import characterSourceMap from '../data/source/characters.map.json'
 import classification from '../data/character_classification.json'
 import { resolveRegularBuffCharacter } from './buff-identity.js'
 import { ALL, CHAR_BY_ID, buffSourceId, findCharByName, normalizeProgress, redCrystalBuffUnlockCost } from './core.jsx'
+import { versionPublicAsset } from './asset-url.js'
 
 const rows = Object.entries(unitBuffs).flatMap(([unit, stats]) =>
   Object.entries(stats).flatMap(([stat, entries]) => entries.map((entry, index) => ({ unit, stat, entry, index }))),
@@ -24,7 +25,7 @@ describe('regular Buff Tracker character identity', () => {
     })
     expect(findCharByName('Kou').id).toBe('kou2') // The old name-first join reproduced F03.
     const character = resolveRegularBuffCharacter(kou, CHAR_BY_ID, ALL)
-    expect(character).toMatchObject({ id: 'kou', name_jp: '向', icon: '/icons/Kou.webp', source: { characterId: 132 } })
+    expect(character).toMatchObject({ id: 'kou', name_jp: '向', icon: versionPublicAsset('/icons/Kou.webp'), source: { characterId: 132 } })
     expect(character.id).not.toBe('kou2')
     expect(character.icon).not.toBe('/icons/Kou2.webp')
     expect(redCrystalBuffUnlockCost(kou, 'unit', 'Archer', 'Attack')).toBe(1750)

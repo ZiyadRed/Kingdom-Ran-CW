@@ -20,6 +20,9 @@
 
 /* RTL audit: logical edges keep the archive, cards, and overlays coherent. */
 html[dir="rtl"] .hdr-in { direction: rtl; }
+/* Keep the desktop text region shaded on the reading side. The mobile hero
+   already puts its copy on an opaque panel below the artwork. */
+html[dir="rtl"] .home-hero-shade { transform: scaleX(-1); }
 html[dir="rtl"] .nav-menu { right: auto; left: 0; }
 html[dir="rtl"] .nav-menu a.is-current { box-shadow: inset -3px 0 var(--terra); }
 html[dir="rtl"] .home-task-lane + .home-task-lane { border-left: 0; border-right: 1px solid var(--bdr); }

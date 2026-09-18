@@ -91,19 +91,48 @@ const SKILL_LEVEL_ICON={
 }
 
 const CW6_SKILL_ICON='/icons/neon_cw6_hexagon_badge.webp'
+const CW6_CARD_QUERY='card'
+
+// CW6 cards already have stable source IDs. Keep the selected card in the
+// query string so a detail view is bookmarkable without coupling the URL to
+// the current gallery order. The helper also preserves unrelated query state
+// if another caller adds it to the collection route later.
+const cw6CardSearch=(search,cardId)=>{
+  const params=new URLSearchParams(search||'')
+  if(cardId==null) params.delete(CW6_CARD_QUERY)
+  else params.set(CW6_CARD_QUERY,String(cardId))
+  const value=params.toString()
+  return value?`?${value}`:''
+}
+const cw6ShareUrl=(localeCode='en',cardId)=>{
+  const base=sceneCardShareUrl(localeCode)
+  return cardId==null?base:`${base}?${new URLSearchParams({[CW6_CARD_QUERY]:String(cardId)})}`
+}
 
 export function CW6SceneCardsPage(){
   const {PUBLIC_CW6_CARDS}=useReleaseData()
   const shareLabels=useShareLabels()
   const locale=useLocale()
   const{t}=useTranslation('common')
-  const[selected,setSelected]=useState(null)
-  const galleryVisible=useArchiveGalleryVisible(!!selected)
-  const detailLayoutRef=useMobileDetailFocus(selected?.id)
+  const location=useLocation()
+  const navigate=useNavigate()
   const[artSrc,setArtSrc]=useState(null)
   const[progressFilter,setProgressFilter]=useState('all')
+  const[hydrated,setHydrated]=useState(false)
   const tracker=useProgressTracker()
   const cards=PUBLIC_CW6_CARDS
+  useEffect(()=>{startTransition(()=>setHydrated(true))},[])
+  const selectedId=hydrated?new URLSearchParams(location.search).get(CW6_CARD_QUERY):null
+  const selected=cards.find(card=>String(card.id)===selectedId)||null
+  const galleryVisible=useArchiveGalleryVisible(!!selected)
+  const detailLayoutRef=useMobileDetailFocus(selected?.id)
+  useEffect(()=>{
+    // Unknown IDs should degrade to the ordinary collection URL. Keep any
+    // unrelated query state intact and replace the bad bookmark in place.
+    if(selectedId!==null&&!selected){
+      navigate({pathname:location.pathname,search:cw6CardSearch(location.search),hash:location.hash},{replace:true})
+    }
+  },[selectedId,selected,location.pathname,location.search,location.hash,navigate])
   const visibleCards=cards.filter(card=>{
     const owned=tracker.isOwned('cw6Cards',card.id)
     return progressFilter==='all'||(progressFilter==='owned'?owned:!owned)
@@ -122,8 +151,9 @@ export function CW6SceneCardsPage(){
     skill:selectedSkill,
     skill_en:selectedSkill?.displayName||selected.skill_en,
   }:null
-  const pickCard=card=>setSelected(selected?.id===card.id?null:card)
-  const clearSelection=()=>setSelected(null)
+  const selectedShareUrl=selected?cw6ShareUrl(locale.code,selected.id):sceneCardShareUrl(locale.code)
+  const pickCard=card=>navigate({pathname:location.pathname,search:cw6CardSearch(location.search,selected?.id===card.id?null:card.id),hash:location.hash})
+  const clearSelection=()=>navigate({pathname:location.pathname,search:cw6CardSearch(location.search),hash:location.hash})
   const sceneCardFileName=card=>card.name_en||`${card.ownerName||'Scene'} CW6 star`
   const sceneCardAccessibleName=card=>{
     const owner=localizedCharacterName(locale.code==='ja'?(card.ownerNameJp||card.ownerName):card.ownerName,locale)
@@ -175,7 +205,9 @@ export function CW6SceneCardsPage(){
               <div className="cw6-card-body">
                 <div>
                   <strong className="cw6-card-skill">{locale.code==='ja'?(card.skill_jp||card.skill_en):card.skill_en}</strong>
-                  <span className="cw6-card-jp">{card.skill_jp}</span>
+                  {secondaryName(locale.code==='ja'?(card.skill_jp||card.skill_en):card.skill_en,card.skill_jp)&&(
+                    <span className="cw6-card-jp">{card.skill_jp}</span>
+                  )}
                 </div>
                 {card.ownerName&&(
                   <div className="cw6-card-owner">
@@ -207,7 +239,7 @@ export function CW6SceneCardsPage(){
             <div className="detail-actions">
               <ShareButton
                 title={`${selected.skill_en||sceneCardFileName(selected)} - RanHQ`}
-                getText={()=>formatSceneCardShare(selectedShareCard,{url:sceneCardShareUrl(locale.code),labels:shareLabels})}
+                getText={()=>formatSceneCardShare(selectedShareCard,{url:selectedShareUrl,labels:shareLabels})}
               />
               <SkillImageButton
                 character={{
@@ -219,7 +251,7 @@ export function CW6SceneCardsPage(){
                   unit_type:t('archive.sceneCards'),
                   skills:selectedSkill?[selectedSkill]:[],
                 }}
-                url={sceneCardShareUrl(locale.code)}
+                url={selectedShareUrl}
                 label={t('archive.sceneCards')}
               />
             </div>

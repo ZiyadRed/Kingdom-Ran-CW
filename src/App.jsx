@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense, startTransition } from 'react'
+import { useState, useEffect, useRef, lazy, Suspense, startTransition } from 'react'
 import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { canonicalPath, characterRouteId, routeSeo, setSeo } from './seo.js'
@@ -175,6 +175,8 @@ export default function App(){
   const setAtkSk=update=>updateBuilderField('attackSkills',update)
   const setDefSk=update=>updateBuilderField('defenseSkills',update)
   const[moreOpen,setMoreOpen]=useState(false)
+  const[openNav,setOpenNav]=useState(null)
+  const escapeClosedNav=useRef(null)
   // Storage-derived UI must not render on the hydration pass; see nav-count below.
   const[mounted,setMounted]=useState(false)
   useEffect(()=>{startTransition(()=>setMounted(true))},[])
@@ -235,6 +237,20 @@ export default function App(){
     desktop.addEventListener('change',closeOnDesktop)
     return()=>desktop.removeEventListener('change',closeOnDesktop)
   },[moreOpen])
+  useEffect(()=>{
+    if(!openNav) return
+    const closeOnEscape=event=>{
+      if(event.key!=='Escape'||event.isComposing||document.querySelector('dialog[open]')) return
+      event.preventDefault()
+      event.stopPropagation()
+      escapeClosedNav.current=openNav
+      setOpenNav(null)
+      const nav=document.querySelector('.nav')
+      if(nav?.contains(document.activeElement)) nav.querySelector(`[data-nav-group="${openNav}"] .nav-link`)?.focus()
+    }
+    document.addEventListener('keydown',closeOnEscape)
+    return()=>document.removeEventListener('keydown',closeOnEscape)
+  },[openNav])
   // Keep route-level SEO tags in sync for crawlers that render the SPA.
   useEffect(()=>{
     // The character route resolves exact IDs and owns its detailed or 404 SEO.
@@ -258,8 +274,12 @@ export default function App(){
             {NAV_GROUPS.map(group=>{
               const active=group.pages.includes(page)
               return(
-                <div key={group.label} className={`nav-group${active?' nav-group-active':''}`}>
-                  <Link className="nav-link" to={group.route}>
+                <div key={group.label} data-nav-group={group.label} className={`nav-group${active?' nav-group-active':''}${openNav===group.label?' is-open':''}`}
+                  onMouseEnter={()=>{if(group.items&&escapeClosedNav.current!==group.label)setOpenNav(group.label)}}
+                  onMouseLeave={()=>{setOpenNav(current=>current===group.label?null:current);if(escapeClosedNav.current===group.label)escapeClosedNav.current=null}}
+                  onFocus={()=>{if(group.items&&escapeClosedNav.current!==group.label)setOpenNav(group.label)}}
+                  onBlur={event=>{if(!event.currentTarget.contains(event.relatedTarget)){setOpenNav(current=>current===group.label?null:current);if(escapeClosedNav.current===group.label)escapeClosedNav.current=null}}}>
+                  <Link className="nav-link" to={group.route} aria-expanded={group.items?openNav===group.label:undefined}>
                     <span>{navText(t,group.label)}</span>
                     {group.label==='Teams'&&mounted&&selectedCount>0&&<span className="nav-count" aria-label={t('selectedGenerals',{count:selectedCount})}>{selectedCount}</span>}
                     {group.items&&<UiIcon name="chevron" size={15}/>}

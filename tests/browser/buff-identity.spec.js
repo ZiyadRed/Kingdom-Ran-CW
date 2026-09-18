@@ -11,7 +11,7 @@ for (const [size, viewport] of [['mobile', { width: 390, height: 844 }], ['deskt
       await page.locator('.buff-stat-tabs button').nth(1).click()
       const row = page.locator('.buff-source-row').filter({ hasText: '向' }).first()
       await expect(row).toBeVisible()
-      await expect(row.locator('.buff-source-avatar img')).toHaveAttribute('src', '/icons/Kou.webp')
+      await expect(row.locator('.buff-source-avatar img')).toHaveAttribute('src', /\/icons\/Kou\.webp\?v=[0-9a-f]{16}$/)
       await expect(row.locator('.buff-source-avatar img')).not.toHaveAttribute('src', '/icons/Kou2.webp')
       await expect(row.locator('.buff-source-info')).toContainText('UR')
       await expect(row).toContainText(locale === 'fr' ? '+12,4%' : '+12.4%')
