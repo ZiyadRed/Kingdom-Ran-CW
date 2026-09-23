@@ -534,6 +534,28 @@ fr.stats.saveFailed = 'Non enregistré — le stockage du navigateur est indispo
 fr.browserStorage = 'Stockage du navigateur'
 fr.stats.autoSave = 'Enregistrement automatique'
 
+Object.assign(en.archive, {
+  pageTitle: 'Kingdom Ran Generals and Castle War Skills',
+  directoryTitle: 'All generals by faction',
+  directoryDescription: 'Open any general profile, including records without banner art.',
+})
+Object.assign(ja.archive, {
+  pageTitle: 'キングダム乱（キンラン）武将・争覇スキル一覧',
+  directoryTitle: '勢力別・全武将一覧',
+  directoryDescription: '勢力別に武将を探せます。画像未掲載の武将もここから確認できます。',
+})
+Object.assign(ar.archive, {
+  pageTitle: 'جنرالات Kingdom Ran ومهارات حرب القلاع',
+  directoryTitle: 'جميع الجنرالات حسب الفصيل',
+  directoryDescription: 'افتح ملف أي جنرال، بما في ذلك السجلات التي لا تعرض صورة بعد.',
+})
+Object.assign(fr.archive, {
+  pageTitle: 'Généraux et compétences de Kingdom Ran',
+  directoryTitle: 'Tous les généraux par faction',
+  directoryDescription: 'Ouvrez chaque fiche, y compris celles sans illustration de bannière.',
+})
+ja.home.heroDescription = 'キングダム乱（キンラン）の同盟争覇戦に役立つ武将・争覇スキルの検索、編成作成、バフ確認、ステータス計算ができます。'
+
 export const CATALOGS = { en, ja, ar, fr }
 const resources = { en: { common: en }, ja: { common: ja }, ar: { common: ar }, fr: { common: fr } }
 const supportedLngs = LOCALES.map((locale) => locale.code)

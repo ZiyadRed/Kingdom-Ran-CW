@@ -7,6 +7,7 @@ import {
   indexableRoutes,
   legacyCharacterRoutes,
   localizedVariants,
+  readCharacters,
   renderRoutes,
 } from './seo/routes.mjs'
 
@@ -87,6 +88,24 @@ function validateDocument(route, indexable = true) {
 
 const indexable = indexableRoutes()
 for (const route of indexable) validateDocument(route, true)
+
+// The sitemap contains every general, but the default gallery shows one
+// faction. Keep a real HTML path from the collection page to every profile.
+const characterIds = readCharacters().map(character => character.id)
+for (const locale of SEO_LOCALES) {
+  const collectionPath = locale === 'en' ? '/archive/characters' : `/${locale}/archive/characters`
+  const html = read(htmlOutputPath(outputDir, collectionPath))
+  const directoryLinks = (html.match(/<a\b[^>]*data-directory-id=["'][^"']+["'][^>]*>/gi) || [])
+  const linked = new Map(directoryLinks.map(tag => [attribute(tag, 'data-directory-id'), attribute(tag, 'href')]))
+  pass(directoryLinks.length === characterIds.length, `${collectionPath}: directory link count does not match character routes`)
+  for (const id of characterIds) {
+    const expected = `${locale === 'en' ? '' : `/${locale}`}/archive/characters/${id}`
+    pass(linked.get(id) === expected, `${collectionPath}: missing canonical directory link for ${id}`)
+  }
+  if (locale === 'ja') {
+    pass(/<h1\b[^>]*>キングダム乱（キンラン）武将・争覇スキル一覧<\/h1>/.test(html), `${collectionPath}: Japanese archive H1 is missing`)
+  }
+}
 
 const titleOwners = new Map()
 for (const route of indexable) {

@@ -314,9 +314,15 @@ export function ArchivePage(){
   },[deferredQuery,activeFac,locale,ALL,ARCHIVE_BROWSE_CHARACTERS])
   const localizedSelected=useMemo(()=>selected?localizedCharacter(selected,locale):null,[selected,locale])
   const localizedFiltered=useMemo(()=>filtered.map(character=>localizedCharacter(character,locale)),[filtered,locale])
+  const directory=useMemo(()=>FACTIONS.map(faction=>({
+    faction,
+    characters:ALL.filter(character=>character.country===faction.id)
+      .map(character=>localizedCharacter(character,locale))
+      .sort((a,b)=>a.displayName.localeCompare(b.displayName,locale.code)),
+  })).filter(group=>group.characters.length),[ALL,locale])
   const galleryVisible=useArchiveGalleryVisible(!!selected)
 
-  const GalleryHeading=selected?'h2':'h1'
+  const GalleryHeading='h2'
   if(charId&&!selected) return <NotFoundPage/>
   return(
     <div ref={detailLayoutRef} className={`archive-layout${selected?' has-selection':''}`}>
@@ -345,6 +351,7 @@ export function ArchivePage(){
 
       {/* Gallery */}
       <div className="gallery-wrap">
+        {!selected&&<h1 className="archive-page-title">{t('archive.pageTitle')}</h1>}
         {/* Mobile-only search bar — visible on small screens */}
         <div className="mobile-search-bar">
           <span className="mobile-search-icon">⌕</span>
@@ -392,6 +399,16 @@ export function ArchivePage(){
             )
           })}
         </div>
+        {!selected&&!hasSearch&&<section className="archive-directory" aria-labelledby="archive-directory-title">
+          <h2 id="archive-directory-title">{t('archive.directoryTitle')}</h2>
+          <p>{t('archive.directoryDescription')}</p>
+          {directory.map(group=><div className="archive-directory-group" key={group.faction.id}>
+            <h3>{factionDisplay(group.faction,locale)}</h3>
+            <div className="archive-directory-links">
+              {group.characters.map(character=><Link key={character.id} data-directory-id={character.id} to={`/archive/characters/${character.id}`}>{character.displayName}</Link>)}
+            </div>
+          </div>)}
+        </section>}
       </div>
 
       {/* Skills panel — desktop: right column, mobile: complete detail page */}

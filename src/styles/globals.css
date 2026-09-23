@@ -362,6 +362,16 @@ img { display: block; max-width: 100%; height: auto }
   background: var(--bg); display: flex; flex-direction: column;
   height: 100%;
 }
+.archive-page-title {
+  margin: 0;
+  padding: .8rem 1.1rem;
+  color: var(--navy);
+  background: var(--sur);
+  font-size: 1.12rem;
+  line-height: 1.45;
+  font-weight: 800;
+  border-bottom: 1px solid var(--bdr);
+}
 .gallery-header {
   display: flex; align-items: center; justify-content: space-between;
   padding: .85rem 1.1rem .6rem;
@@ -574,6 +584,20 @@ img { display: block; max-width: 100%; height: auto }
   grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
   gap: .7rem; padding: .85rem; align-content: start;
 }
+.archive-directory {
+  margin: 1rem .85rem 1.5rem;
+  padding: 1rem;
+  background: var(--sur);
+  border: 1px solid var(--bdr);
+  border-radius: 8px;
+}
+.archive-directory h2 { color: var(--navy); font-size: 1.05rem; margin: 0 0 .3rem }
+.archive-directory > p { color: var(--txt2); font-size: .82rem; line-height: 1.5; margin: 0 0 1rem }
+.archive-directory-group + .archive-directory-group { border-top: 1px solid var(--bdr); margin-top: .85rem; padding-top: .85rem }
+.archive-directory-group h3 { color: var(--navy); font-size: .9rem; margin: 0 0 .4rem }
+.archive-directory-links { display: flex; flex-wrap: wrap; gap: .35rem .8rem }
+.archive-directory-links a { color: var(--navy); font-size: .82rem; line-height: 1.6; text-decoration: underline; text-underline-offset: 2px }
+.archive-directory-links a:hover, .archive-directory-links a:focus-visible { color: var(--terra) }
 .banner-card {
   position: relative; border-radius: 10px; overflow: hidden;
   background: var(--bg2); border: 2px solid var(--bdr);
