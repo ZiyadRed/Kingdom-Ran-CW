@@ -58,7 +58,9 @@ export function BuffsPage(){
   }
   const findBuffChar=(e,kind=activeKind)=>kind==='unit'
     ? resolveRegularBuffCharacter(e,CHAR_BY_ID,ALL)
-    : findCharByName(e?.name)||ALL.find(c=>c.name_jp===e?.name_jp)||null
+    : e?.characterId
+      ? ALL.find(c=>c.source?.characterId===e.characterId)||null
+      : findCharByName(e?.name)||ALL.find(c=>c.name_jp===e?.name_jp)||null
   const buffEntryDisplayName=(e,kind=activeKind)=>{
     const character=findBuffChar(e,kind)
     return character?localizedCharacter(character,locale).displayName
