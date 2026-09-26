@@ -94,7 +94,7 @@ describe('Discord share formatting', () => {
       url:'https://ranhq.vercel.app/builder',
     })
     expect(text).toContain('Team: 1. A / 2. B')
-    expect(text).toContain('- A: ATK +30%, Guard 60x')
+    expect(text).toContain('- A: ATK +30%, Guard 60×')
     expect(text).toContain('- Enemy debuff on Enemy Cavalry: ATK -20%')
   })
 

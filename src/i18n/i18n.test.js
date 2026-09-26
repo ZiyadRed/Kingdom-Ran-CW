@@ -43,6 +43,7 @@ describe('i18next initialization', () => {
     expect(CATALOGS.ja.redCrystalAlt).toBe('赤の結晶')
     expect(CATALOGS.ja.sim.attackingSide).toBe('侵攻側')
     expect(CATALOGS.ja.sim.defendingSide).toBe('駐屯側')
+    expect(CATALOGS.ja.stats.hp).toBe('体力')
     expect(CATALOGS.ja.breadcrumbs).toBe('パンくずリスト')
     expect(CATALOGS.ja.shareOutput.withCombat).toBe('軍略と戦技の効果を含む。')
     expect(CATALOGS.ja.shareOutput.strategyOnly).toBe('軍略のみ。')

@@ -96,11 +96,16 @@ describe('Builder Buff Summary Japanese terminology',()=>{
       atk:[general],atkBuffs:[{general,buffs:{
         'ATK Down Resistance':{up:30,down:0},
         'DEF Down Resistance':{up:20,down:0},
+        'Attack Nullification':{up:1,down:0},
+        'Less Likely to be Targeted':{up:3,down:0},
       }}],url:'https://example.com/builder',
+      specialStats:new Set(['Attack Nullification','Less Likely to be Targeted']),
       labels:{localizeTerm:term=>localizedText(term,'ja'),localizeCharacterName:()=> '試験武将'},
     })
     expect(result).toContain('攻撃力低下耐性')
     expect(result).toContain('防御力低下耐性')
+    expect(result).toContain('攻撃無効 1×')
+    expect(result).toContain('狙われにくい 3×')
     expect(result).not.toMatch(/(?:ATK|DEF) Down Resistance/)
   })
 
@@ -110,5 +115,18 @@ describe('Builder Buff Summary Japanese terminology',()=>{
     const source=japaneseSkillSource(character.id,index)
     expect(source).toBeTruthy()
     expect(localizedSkill(character.skills[index],character.id,index,'ja').displayName).toBe(source.name)
+  })
+
+  it('shows Kishou\'s distinct named survival conditions from source skill 529',()=>{
+    const kishou=getReleaseData(Infinity).ALL.find(row=>row.id==='kishou')
+    const skill=localizedSkill(kishou.skills[2],kishou.id,2,'ja')
+    expect(skill.sourceSkillId).toBe(529)
+    expect(skill.displayEffects.slice(0,3).map(row=>row.condition)).toEqual([
+      '味方紀彗が生存している場合',
+      '味方馬呈が生存している場合',
+      '味方劉冬が生存している場合',
+    ])
+    expect(skill.displayEffects[3].condition).toBe('駐屯時、城門の体力が残っている場合')
+    expect(skill.displayEffects.map(row=>row.condition).join(' ')).not.toMatch(/Gate|HP remaining|ally alive/)
   })
 })

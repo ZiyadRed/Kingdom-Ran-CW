@@ -476,7 +476,7 @@ function formatBuffValue(stat,buff,specialStats,labels){
   const parts=[]
   const up=buff?.up||0
   const down=buff?.down||0
-  if(specialStats.has(stat)&&up>0) parts.push(`${fmt(up)}x`)
+  if(specialStats.has(stat)&&up>0) parts.push(`${fmt(up)}×`)
   else if(up>0) parts.push(`+${fmt(up)}%`)
   if(down>0) parts.push(`-${fmt(down)}%`)
   return parts.length?`${term(L,stat)} ${parts.join('/')}`:''

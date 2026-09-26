@@ -76,7 +76,7 @@
         "type": "Strategy",
         "effects": [
           { "condition": null, "target": "Self", "effect": "Sure Hit", "duration": null },
-          { "condition": null, "target": "Ally Hi Shin Unit Shield [General]", "effect": "ATK Up 20%", "duration": null },
+          { "condition": null, "target": "Ally Hi Shin Unit [General] vs enemy [Shield] [General]", "effect": "ATK Up 20%", "duration": null },
           { "condition": "When ally Soutan is alive", "target": "Self", "effect": "Critical Rate Up 20%", "duration": null }
         ]
       },

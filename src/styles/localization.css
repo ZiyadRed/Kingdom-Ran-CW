@@ -71,3 +71,63 @@ html[dir="rtl"] .foot-discord { margin-left: 0; margin-right: auto; }
 @media (max-width: 768px) {
   html[lang="fr"] .fac-name { font-size: .62rem; }
 }
+/* Show the official FAQ's Japanese map. The flow screenshot still contains an
+   obsolete declaration clock, so its Japanese card shows only the game scene. */
+.home-guide-map-ja,
+.guide-ja-basics-crop {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg2);
+}
+
+.home-guide-map-ja {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-bottom: 1px solid var(--bdr);
+}
+
+.home-guide-map-ja img {
+  position: absolute;
+  left: 50%;
+  top: -40%;
+  width: auto;
+  max-width: none;
+  height: 165%;
+  aspect-ratio: auto;
+  transform: translateX(-50%);
+  border: 0;
+}
+
+.guide-ja-basics-crop img {
+  position: absolute;
+  display: block;
+  height: auto;
+  max-width: none;
+}
+
+.guide-ja-basics-map-link {
+  display: block;
+}
+
+.guide-ja-basics-map-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.guide-ja-basics-flow {
+  aspect-ratio: 500 / 185;
+}
+
+.guide-ja-basics-flow img {
+  width: 160%;
+  left: 0;
+  top: -36%;
+}
+
+@media (max-width: 768px) {
+  .home-guide-map-ja {
+    height: 74px;
+    aspect-ratio: auto;
+  }
+}

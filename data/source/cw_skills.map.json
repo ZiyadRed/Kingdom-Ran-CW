@@ -3846,7 +3846,7 @@
       "sourceNameJp": "名将一閃【黄牛】",
       "fingerprint": {
         "name_jp": "名将一閃【黄牛】",
-        "effectsHash": "d80c0e45405763f9883d82167386256a7818284c23d196627ac93310699773d4"
+        "effectsHash": "ee24a1c14fed923a5d4a5b3488a91a9004ca041f780480942b7758dcfefcbd7e"
       }
     },
     "kishou#1": {
@@ -3859,7 +3859,7 @@
       "sourceNameJp": "離眼の絆【想】",
       "fingerprint": {
         "name_jp": "離眼の絆【想】",
-        "effectsHash": "16a62aeca602f5c710aa2919a0761c238a692d7c0468d87da75f8c6cc0e6f87a"
+        "effectsHash": "b6f29aa8eef9666b7df24934fb1b90d0683294fbe76d149b9df57ddb7846c9c2"
       }
     },
     "kishou#2": {
@@ -3872,7 +3872,7 @@
       "sourceNameJp": "想いの継承",
       "fingerprint": {
         "name_jp": "想いの継承",
-        "effectsHash": "4cfba072d541c58546fb4cac6fa4c592ba0e478336c98bb6f7b477a1f5e8eaf4"
+        "effectsHash": "3e806bc1a767a1651a28f06232b1051308148c8dd8c3a0c99ee82c9299e00b69"
       }
     },
     "kisui#0": {
@@ -5898,7 +5898,7 @@
       "sourceNameJp": "鉄壁一閃【黄虎】",
       "fingerprint": {
         "name_jp": "鉄壁一閃【黄虎】",
-        "effectsHash": "88724735811c487bbd418c3fbb0913cfba11caa6368959d53c8b50545922d35d"
+        "effectsHash": "92529dda1c9c319f47d7c1d47e052c3888332f75d21def185c1f1119390711ca"
       }
     },
     "reiou#1": {
@@ -5924,7 +5924,7 @@
       "sourceNameJp": "戦況判断",
       "fingerprint": {
         "name_jp": "戦況判断",
-        "effectsHash": "90df098cf6a98eef18a3bb52e67a01ed100854c55ed4e8c4e07825d154338ca8"
+        "effectsHash": "616be341fef07125eaeab8a44ad5a8e3a99602fb88b6e36f9ed209f029309976"
       }
     },
     "reiou#3": {
@@ -7964,7 +7964,7 @@
       "sourceNameJp": "十弓相伝【仁】",
       "fingerprint": {
         "name_jp": "十弓相伝【仁】",
-        "effectsHash": "59bd573f483a4240948af8ac59a0af722775c71514009a9e95bf9df56335ac30"
+        "effectsHash": "947862532dfb904b7512de65599f71031414d520f2ecfed702ac3dd98fe266ed"
       },
       "basis": "Owner-linked CW profile and effects resolved this row when the project spelled it 十号相伝【仁】. The project name has since been corrected to the source spelling 十弓相伝【仁】 (2026-08-24), so name and source now agree; status stays \"resolved\" to record that identification originally required owner-linking."
     },

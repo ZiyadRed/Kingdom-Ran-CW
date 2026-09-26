@@ -16,6 +16,24 @@ describe('audited compound Japanese conditions and targets',()=>{
     expect(renderJapaneseCondition('When Garrisoning, enemy [Infantry] / enemy [Siege Weapon] with highest ATK')).toBe('駐屯時、攻撃力が最も高い敵歩兵／攻撃力が最も高い敵兵器')
     expect(renderJapaneseCondition('Other ally [Qin] or [Mountain Folk] alive, first enemy in formation')).toBe('自身以外の味方秦国または山の民が生存している場合、編成順が最も早い敵')
   })
+
+  it('uses source-backed gate, group, and inclusive HP conditions',()=>{
+    expect(renderJapaneseCondition('When Garrisoning, gate HP remaining'))
+      .toBe('駐屯時、城門の体力が残っている場合')
+    expect(renderJapaneseCondition('When Garrisoning, gate HP remaining, ally Kisui is alive'))
+      .toBe('駐屯時、城門の体力が残っており、味方紀彗が生存している場合')
+    expect(renderJapaneseCondition('When ally Hi Shin Unit member is alive'))
+      .toBe('味方飛信隊武将が生存している場合')
+    expect(renderJapaneseCondition('Own HP ≤ 50%')).toBe('自身の残り体力が50%以下')
+    expect(renderJapaneseCondition('Enemy [General]\'s HP ≤ 50%')).toBe('敵武将の体力が50%以下')
+    expect(renderJapaneseCondition('Own HP < 50%')).toBe('自身の残り体力が50%未満')
+    expect(renderJapaneseCondition('Own HP > 90%')).toBe('自身の残り体力が90%超')
+    expect(renderJapaneseCondition('Own HP ≥ 90%')).toBe('自身の残り体力が90%以上')
+  })
+  it('keeps Soujin\'s Hi Shin Unit versus Shield restriction intact',()=>{
+    expect(renderJapaneseTarget('Ally Hi Shin Unit [General] vs enemy [Shield] [General]'))
+      .toBe('敵盾兵武将に対する味方飛信隊武将')
+  })
   it('keeps separate counted targets and per-ally categories',()=>{
     expect(renderJapaneseTarget('1 each of [Zhao]/[Wei]/[Chu]/[Qi] enemy')).toBe('敵趙国・魏国・楚国・斉国各1名')
     expect(renderJapaneseTarget('1 [Infantry] / 1 [Cavalry] enemy [General]')).toBe('敵歩兵武将1名／敵騎兵武将1名')

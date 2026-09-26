@@ -904,6 +904,7 @@ export const FAQ_IMAGES={
 
 export function GuideImages({images}) {
   const locale = useLocale()
+  const japaneseBasics = locale.code === 'ja' && images === FAQ_IMAGES.basics
   const imageLabels = {
     ja: {
       'Castle War map overview': '同盟争覇戦マップ概要',
@@ -941,18 +942,32 @@ export function GuideImages({images}) {
   }
   return (
     <div style={{margin:'0 auto 1.25rem',maxWidth:'900px'}}>
-      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(160px,1fr))',gap:'10px',alignItems:'start'}}>
+      <div style={{display:'grid',gridTemplateColumns:`repeat(auto-fit,minmax(${japaneseBasics ? 280 : 160}px,1fr))`,gap:'10px',alignItems:'start'}}>
         {images.map(img=>{
           const label = imageLabels[locale.code]?.[img.label] || img.label
-          return (
-          <a key={img.src} href={img.src} target="_blank" rel="noopener noreferrer" style={{
+          const cardStyle = {
             display:'block',borderRadius:'10px',overflow:'hidden',background:'var(--sur)',
             border:'1px solid var(--bdr)',boxShadow:'0 2px 8px rgba(6,38,76,.06)',textDecoration:'none',
-          }}>
+          }
+          const caption = <div style={{fontSize:'.7rem',fontWeight:700,color:'var(--txt2)',padding:'.45rem .55rem',lineHeight:1.3}}>{label}</div>
+          if(japaneseBasics){
+            const flow=img.src==='/guide/basics-flow-en.webp'
+            const source=flow?'/guide/basics-flow-ja.png':'/guide/basics-map-ja.png'
+            return (
+              <div key={img.src} style={cardStyle}>
+                {flow
+                  ? <div className="guide-ja-basics-crop guide-ja-basics-flow"><img src={source} alt={label} loading="lazy" decoding="async"/></div>
+                  : <a className="guide-ja-basics-map-link" href={source} target="_blank" rel="noopener noreferrer"><img src={source} alt={label} loading="lazy" decoding="async"/></a>}
+                {caption}
+              </div>
+            )
+          }
+          return (
+          <a key={img.src} href={img.src} target="_blank" rel="noopener noreferrer" style={cardStyle}>
             <div style={{aspectRatio:'16 / 10',background:'var(--bg2)',display:'flex',alignItems:'center',justifyContent:'center',overflow:'hidden'}}>
               <img src={img.src} alt={label} loading="lazy" decoding="async" style={{display:'block',width:'100%',height:'100%',objectFit:'contain'}}/>
             </div>
-            <div style={{fontSize:'.7rem',fontWeight:700,color:'var(--txt2)',padding:'.45rem .55rem',lineHeight:1.3}}>{label}</div>
+            {caption}
           </a>
           )
         })}

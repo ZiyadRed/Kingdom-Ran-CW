@@ -467,7 +467,9 @@ function HomePage(){
         <div className="home-guide-list">
           {guideLinks.map(item=>(
             <Link key={item.route} to={item.route}>
-              <img src={item.image} alt="" loading="lazy" decoding="async"/>
+              {locale.code==='ja'&&item.route==='/guide/basics'
+                ? <div className="home-guide-map-ja"><img src="/guide/basics-map-ja.png" alt="" loading="lazy" decoding="async"/></div>
+                : <img src={item.image} alt="" loading="lazy" decoding="async"/>}
               <span>{item.label}</span>
             </Link>
           ))}

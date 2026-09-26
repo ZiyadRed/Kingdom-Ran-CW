@@ -106,6 +106,8 @@ describe('renderFrenchTarget', () => {
 
   it('renders matchup and exclusion qualifiers', () => {
     expect(renderFrenchTarget('Ally [Shield] vs cavalry')).toBe('Boucliers alliés contre les cavaliers')
+    expect(renderFrenchTarget('Ally Hi Shin Unit [General] vs enemy [Shield] [General]'))
+      .toBe('Généraux alliés de l’unité Hi Shin contre les généraux ennemis de type bouclier')
     expect(renderFrenchTarget('Ally [Cavalry] other than self')).toBe('Cavaliers alliés autres que soi')
     expect(renderFrenchTarget('Surviving ally [Chu]')).toBe('Alliés Chu survivants')
   })

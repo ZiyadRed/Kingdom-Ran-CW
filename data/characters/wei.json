@@ -654,7 +654,7 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy [General] with highest DEF and own HP > 90%",
+            "condition": "Enemy [General] with highest DEF and own HP ≥ 90%",
             "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
@@ -666,7 +666,7 @@
             "duration": null
           },
           {
-            "condition": "Own HP > 90%",
+            "condition": "Own HP ≥ 90%",
             "target": "Enemy [Cavalry]",
             "effect": "ATK Down 10%",
             "duration": "3 turns"
@@ -698,13 +698,13 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "Enemy [General] with highest DEF and own HP > 90%",
+            "condition": "Enemy [General] with highest DEF and own HP ≥ 90%",
             "target": "1 enemy [General]",
             "effect": "170% Damage",
             "duration": null
           },
           {
-            "condition": "Own HP > 90%",
+            "condition": "Own HP ≥ 90%",
             "target": "Enemy [Qin] / Enemy [Siege Weapon]",
             "effect": "ATK Down 20%",
             "duration": "3 turns"

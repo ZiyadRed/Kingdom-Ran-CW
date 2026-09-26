@@ -18,7 +18,7 @@
     "oukotsu|2|1|unsupported-recipient||When Attacking, per other ally [Qin] [General]|Ally [Siege Weapon]|ATK Up 5%|[Siege Weapon]",
     "ranbihaku|1|1|unsupported-criterion||When ally Reiou is alive|Self vs siege weapons|ATK Up 30%|opponent:siege weapons",
     "ranbihaku|1|1|unsupported-opponent||When ally Reiou is alive|Self vs siege weapons|ATK Up 30%|siege weapons",
-    "reiou|2|1|unsupported-opponent||Own HP > 90%|Enemy [Qin] / Enemy [Siege Weapon]|ATK Down 20%|[Siege Weapon]",
+    "reiou|2|1|unsupported-opponent||Own HP ≥ 90%|Enemy [Qin] / Enemy [Siege Weapon]|ATK Down 20%|[Siege Weapon]",
     "renpa|3|1|unknown-condition-grammar||Ally Renpa Army (other than self) alive|All ally [General]|Guard 60%|condition-grammar",
     "rinko|3|2|unknown-condition-grammar||Ally \"Renpa\" alive in same formation|All ally [General]|Morale Consumption Down 30%|condition-grammar",
     "rui|1|3|unsupported-recipient||When Garrisoning|Ally [Siege Weapon]|ATK Up 30%|[Siege Weapon]",

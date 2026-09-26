@@ -48,6 +48,18 @@ const scopedOwner=(row,stable=true)=>{
 }
 
 describe('F03 stable Builder identity',()=>{
+  it('keeps Soujin\'s source matchup on the opponent, not the recipient',()=>{
+    expect(sourceSkillMap.skills['soujin#1'].skillId).toBe(831)
+    expect(japaneseSkills.skills['831'].desc).toContain('味方飛信隊武将の盾兵武将に対する攻撃力が20%上昇する')
+    const soujin=AUDITED_ROSTER.find(character=>character.id==='soujin')
+    const skill=soujin.skills[1]
+    const owner={...soujin,skills:[{...skill,effects:[skill.effects[1]]}],roleSkill:null}
+    const shin=withoutSkills(AUDITED_ROSTER.find(character=>character.id==='shin'))
+    const versus=enemy=>calcCharBuffs(shin,[owner,shin],[withoutSkills(AUDITED_ROSTER.find(character=>character.id===enemy))],false)
+    expect(versus('ousen').ATK?.up).toBe(20)
+    expect(versus('moubu').ATK?.up||0).toBe(0)
+  })
+
   it('uses deterministic source effect identities with validated skill joins and Japanese evidence',()=>{
     expect(BUILDER_MECHANIC_ROWS.length).toBeGreaterThanOrEqual(44)
     expect(new Set(BUILDER_MECHANIC_ROWS.map(row=>row.id)).size).toBe(BUILDER_MECHANIC_ROWS.length)
@@ -153,8 +165,8 @@ describe('F03 stable Builder identity',()=>{
       [withoutSkills(findAuditedCharByName('Shoutaku'))],
     ]
     for(const row of BUILDER_MECHANIC_ROWS){
-      // Kishou's derived presentation is lossy: three atomic source effects
-      // have different named-ally triggers, so parser parity is unsafe.
+      // Kishou's three named-ally triggers are checked against source IDs and
+      // formation outcomes above; parser parity is not its acceptance gate.
       if(row.sourceKey==='kishou#2'||row.conditions?.some(condition=>condition.kind==='battleState'&&condition.state==='surviving')) continue
       const stable=scopedOwner(row,true)
       const legacy=scopedOwner(row,false)

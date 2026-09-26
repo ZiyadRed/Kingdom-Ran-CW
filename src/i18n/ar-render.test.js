@@ -138,6 +138,8 @@ describe('Arabic target rendering', () => {
     // Audit AR-004: "حليف Kanki جيش" mixed scripts in the wrong order.
     expect(renderArabicTarget('Ally Kanki Army')).toBe('الحلفاء من جيش كانكي')
     expect(renderArabicTarget('Ally Hi Shin Unit [General]')).toBe('الحلفاء من وحدة الهاي شين')
+    expect(renderArabicTarget('Ally Hi Shin Unit [General] vs enemy [Shield] [General]'))
+      .toBe('جنرالات وحدة الهاي شين الحلفاء ضد جنرالات الدروع لدى العدو')
   })
 
   it('translates a group whose name is a common noun', () => {

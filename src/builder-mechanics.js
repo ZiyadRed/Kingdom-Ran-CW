@@ -83,13 +83,11 @@ add('kisui#3',0,[2462,3530],{recipients:[ally(group('Kisui Army'))],modifiers:[m
 add('kisui#3',1,[3531,3532],{recipients:[ally(group('Kisui Army'))],conditions:[presence('ally',character('batei'))],opponent:faction('qin'),modifiers:[modifier('ATK','up',20)]})
 add('kisui#3',2,[3533,3534],{recipients:[ally(group('Kisui Army'))],conditions:[presence('ally',character('ryuuto'))],modifiers:[modifier('ATK Down Resistance','up',30)]})
 add('kisui#3',3,[3535,3536],{recipients:[ally(group('Kisui Army'))],conditions:[presence('ally',allPresent(character('batei'),character('ryuuto')))],modifiers:[modifier('Betrayal Resistance','up',50)]})
-// One derived Kishou row collapsed three distinct source triggers. Atomic
-// effect IDs and Japanese placeholders preserve the three named requirements.
-add('kishou#2',0,[2080,2081,2082],{recipients:[enemy()],targetLabel:'All enemies',modifiers:[
-  modifier('ATK','down',20,{conditions:[presence('ally',character('kisui'))]}),
-  modifier('Critical Damage','down',20,{conditions:[presence('ally',character('batei'))]}),
-  modifier('Critical Rate','down',20,{conditions:[presence('ally',character('ryuuto'))]}),
-]})
+// Skill 529 names a different surviving ally for each debuff. Keep its three
+// source effect IDs attached to three presentation rows and stable mechanics.
+add('kishou#2',0,[2080],{recipients:[enemy()],targetLabel:'All enemies',conditions:[presence('ally',character('kisui'))],modifiers:[modifier('ATK','down',20)]})
+add('kishou#2',1,[2081],{recipients:[enemy()],targetLabel:'All enemies',conditions:[presence('ally',character('batei'))],modifiers:[modifier('Critical Damage','down',20)]})
+add('kishou#2',2,[2082],{recipients:[enemy()],targetLabel:'All enemies',conditions:[presence('ally',character('ryuuto'))],modifiers:[modifier('Critical Rate','down',20)]})
 add('naki#2',0,[1980,1981],{recipients:[enemy(any(faction('zhao'),faction('wei')))],targetLabel:'Enemy [Zhao] / [Wei]',modifiers:[modifier('HP Recovery Nullification','up',70)]})
 add('naki#2',1,[1982,1983],{recipients:[ally(group('Kanki Army'))],conditions:[{kind:'side',side:'attack'}],modifiers:[modifier('Critical Rate','up',20)]})
 add('ryofui#2',0,[1802,1803],{recipients:[ally(group('Ryofui Four Pillars'))],modifiers:[modifier('ATK','up',30),modifier('DEF','up',30)]})

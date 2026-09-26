@@ -278,7 +278,7 @@ export const PHRASES = {
   '% of remaining HP Damage': '残り体力割合ダメージ',
   'Higher own remaining HP (scales)': '自身の残り体力が高いほど',
   'Lower own remaining HP (scales)': '自身の残り体力が低いほど',
-  'gate HP remaining': '城門の残り体力',
+  'gate HP remaining': '城門の体力が残っている場合',
   'The enemy with the lowest remaining strength': '残り兵力が最も低い敵',
   'The enemy with the lowest defense.': '防御力が最も低い敵',
   'CW battle': '同盟争覇戦',

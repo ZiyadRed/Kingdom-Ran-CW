@@ -329,6 +329,7 @@ export const PHRASES = {
   '1 each of [Zhao]/[Wei]/[Chu]/[Qi] enemy': 'عدو واحد من كل من تشاو ووي وتشو وتشي',
   'When ally Soutan is alive and own HP is 70% or higher': 'عندما يكون سوتان الحليف على قيد الحياة وتكون صحة صاحب المهارة 70% أو أكثر',
   'Ally [Siege Weapon] vs enemy [Siege Weapon]': 'أسلحة الحصار الحليفة ضد أسلحة حصار العدو',
+  'Ally Hi Shin Unit [General] vs enemy [Shield] [General]': 'جنرالات وحدة الهاي شين الحلفاء ضد جنرالات الدروع لدى العدو',
   'When Garrisoning, While gate has HP remaining': 'عند الدفاع، ما دامت للبوابة صحة متبقية',
   'Per ally Sho / per other ally Six Great [General]': 'لكل شو حليف / لكل جنرال حليف آخر من الجنرالات الستة العظام',
   'Per other ally [Qin] / [Mountain Folk] [General]': 'لكل جنرال حليف آخر من تشين أو جيش الجبال',

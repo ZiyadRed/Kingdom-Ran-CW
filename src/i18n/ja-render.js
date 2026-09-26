@@ -68,6 +68,13 @@ const QUALIFIER_INDEX = buildIndex(QUALIFIERS)
 
 const clean = (value) => String(value == null ? '' : value).trim()
 
+// Keep strict and inclusive HP thresholds distinct. The source uses both
+// 50%以下 and 90%未満, and swapping them changes when a skill activates.
+const thresholdEnding = (operator) => ({
+  '<': '未満', '<=': '以下', '≤': '以下',
+  '>': '超', '>=': '以上', '≥': '以上',
+})[operator]
+
 /** Look up a stat name, handling a leading "Max ". */
 function lookupStat(raw) {
   const text = clean(raw).replace(/\s+/g, ' ')
@@ -698,6 +705,11 @@ function renderConditionBody(body) {
 
   // "ally Batei and Ryuuto are both alive" — Japanese needs no dual form, but
   // and/or must stay distinct because they are different mechanics.
+  match = /^ally\s+(.+?)\s+members?\s+(?:is|are)\s+alive$/i.exec(body)
+  if (match) {
+    const group = lookupGroup(match[1])
+    if (group) return `味方${group}武将が生存している場合`
+  }
   match = /^ally\s+(.+?)\s+(?:is|are)(?:\s+both)?\s+(alive|present)$/i.exec(body)
   if (match) {
     const alternative = /\bor\b/i.test(match[1])
@@ -707,19 +719,19 @@ function renderConditionBody(body) {
     return /alive/i.test(match[2]) ? `味方${joined}が生存している場合` : `味方${joined}がいる場合`
   }
 
-  match = new RegExp(`^Own\\s+(?:remaining\\s+)?HP\\s*(<|≤|>|≥|<=|>=)\\s*(${VALUE})$`, 'i').exec(body)
-  if (match) return `自身の残り体力が${match[2]}${/[<≤]/.test(match[1]) ? '未満' : '以上'}`
+  match = new RegExp(`^Own\\s+(?:remaining\\s+)?HP\\s*(<=|>=|[<≤>≥])\\s*(${VALUE})$`, 'i').exec(body)
+  if (match) return `自身の残り体力が${match[2]}${thresholdEnding(match[1])}`
 
-  match = new RegExp(`^(.+?)'s?\\s+(?:(remaining)\\s+)?HP\\s*(<|≤|>|≥|<=|>=)\\s*(${VALUE})$`, 'i').exec(body)
+  match = new RegExp(`^(.+?)'s?\\s+(?:(remaining)\\s+)?HP\\s*(<=|>=|[<≤>≥])\\s*(${VALUE})$`, 'i').exec(body)
   if (match) {
     const owner = selector(match[1])
-    if (owner) return `${owner}の${match[2] ? '残り' : ''}体力が${match[4]}${/[<≤]/.test(match[3]) ? '未満' : '以上'}`
+    if (owner) return `${owner}の${match[2] ? '残り' : ''}体力が${match[4]}${thresholdEnding(match[3])}`
   }
 
-  match = new RegExp(`^(.+?)\\s+(?:(remaining)\\s+)?HP\\s*(<|≤|>|≥|<=|>=)\\s*(${VALUE})$`, 'i').exec(body)
+  match = new RegExp(`^(.+?)\\s+(?:(remaining)\\s+)?HP\\s*(<=|>=|[<≤>≥])\\s*(${VALUE})$`, 'i').exec(body)
   if (match && !/^own\b/i.test(match[1])) {
     const owner = selector(match[1])
-    if (owner) return `${owner}の${match[2] ? '残り' : ''}体力が${match[4]}${/[<≤]/.test(match[3]) ? '未満' : '以上'}`
+    if (owner) return `${owner}の${match[2] ? '残り' : ''}体力が${match[4]}${thresholdEnding(match[3])}`
   }
 
   match = new RegExp(`^From (?:the\\s+)?(${VALUE})\\s+Damage(?:\\s+above)?$`, 'i').exec(body)
@@ -836,6 +848,13 @@ function renderConditionClause(text) {
 }
 
 function renderConditionExpression(raw) {
+  // Kishou's gate recovery has two independent source conditions. Render them
+  // as one readable clause when the named ally is verified in the roster.
+  const gateWithAlly = /^When Garrisoning,\s*gate HP remaining,\s*ally\s+(.+?)\s+is\s+alive$/i.exec(raw)
+  if (gateWithAlly) {
+    const ally = lookupCharacter(gateWithAlly[1])
+    if (ally) return `駐屯時、城門の体力が残っており、味方${ally}が生存している場合`
+  }
   const sharedSelector=/^(enemy \[[^\]]+\])\s*\/\s*(enemy \[[^\]]+\]) with (highest|lowest) (.+)$/i.exec(raw)
   if(sharedSelector){
     const stat=lookupStat(sharedSelector[4])
