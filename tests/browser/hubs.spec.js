@@ -69,6 +69,9 @@ test('all search-only records retain searchable cards and direct detail document
   const searchOnly = readCharacters().filter(character => !character.image)
   expect(searchOnly).toHaveLength(19)
   await page.goto(path('/archive/characters'))
+  // The first hydration pass restores the collection's default URL state.
+  // Wait for that navigation before typing so it cannot reset the search.
+  await expect(page).toHaveURL(/\?faction=qin$/)
   const search = page.locator('input[type="search"]:visible').first()
   for (const character of searchOnly) {
     await search.fill(character.name_en)
