@@ -65,7 +65,7 @@ localization validators.
 
 - Use the GitHub noreply address for commit author and committer metadata. Never publish a personal email in new commits.
 - Push a candidate commit to a `release/*` branch and wait for the `acceptance` check to pass on that exact SHA. Then fast-forward that SHA to `main`. GitHub requires this check on `main`, including for admins, and blocks force pushes and deletion.
-- Vercel's production `GitHub Acceptance` check blocks domain aliasing until the same GitHub `acceptance` check succeeds. Verify the production deployment and alias after each release.
+- The `main` workflow publishes a distinct `acceptance-main` check. Vercel's production `GitHub Main Acceptance` check blocks domain aliasing until that `main` check succeeds. Verify the production deployment and alias after each release.
 
 ## Validation
 

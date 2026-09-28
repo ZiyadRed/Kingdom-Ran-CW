@@ -15,6 +15,8 @@ concurrency:
 
 jobs:
   acceptance:
+    # Vercel must wait for the main run, not reuse a passing release-branch check.
+    name: ${{ github.ref == 'refs/heads/main' && 'acceptance-main' || 'acceptance' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
