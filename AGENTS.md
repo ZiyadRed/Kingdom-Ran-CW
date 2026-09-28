@@ -61,6 +61,12 @@ Enforced by `src/content-contract.test.js`, `src/meta-teams.test.js`,
 `src/i18n/corpus-coverage.test.js`, `src/i18n/team-names.test.js` and the
 localization validators.
 
+## Security release gate
+
+- Use the GitHub noreply address for commit author and committer metadata. Never publish a personal email in new commits.
+- Push a candidate commit to a `release/*` branch and wait for the `acceptance` check to pass on that exact SHA. Then fast-forward that SHA to `main`. GitHub requires this check on `main`, including for admins, and blocks force pushes and deletion.
+- Vercel's production `GitHub Acceptance` check blocks domain aliasing until the same GitHub `acceptance` check succeeds. Verify the production deployment and alias after each release.
+
 ## Validation
 
 Run the relevant focused tests, then:
