@@ -18,8 +18,12 @@ const sourceMap = JSON.parse(
 ).characters
 
 describe('new-content contract: every character is complete', () => {
-  it('keeps Toujouou scoped to the three officially announced CW skills', () => {
+  it('keeps Toujou scoped to the three officially announced CW skills', () => {
     const character = ALL.find((c) => c.id === 'toujouou')
+    expect(character?.name_en).toBe('Toujou')
+    expect(character?.name_jp).toBe('悼襄王')
+    expect(AR_CHARACTER_NAMES[character?.name_en]).toBe('توجو')
+    expect(matchesCharacterName(character, 'Toujouou', { exact: true })).toBe(true)
     expect(character?.source).toEqual({ characterId: 223, generalIds: [428, 429] })
     expect(character?.country).toBe('zhao')
     expect(character?.unit_type).toBe('Infantry')

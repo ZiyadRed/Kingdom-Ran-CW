@@ -115,7 +115,7 @@ describe('source index', () => {
   it('keeps canonical IDs and leaves preview skills unassigned', () => {
     const entries = Object.values(index.skills)
     expect(entries.filter((e) => e.skillId !== null)).toHaveLength(657)
-    // Four ambiguous rows and the three announced Toujouou skills have no
+    // Four ambiguous rows and the three announced Toujou skills have no
     // canonical game skill IDs in the pinned September 17 master.
     expect(entries.filter((e) => e.skillId === null)).toHaveLength(7)
     expect(entries.filter((e) => e.status === 'ambiguous')).toHaveLength(4)

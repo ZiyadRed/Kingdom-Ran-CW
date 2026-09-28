@@ -96,6 +96,28 @@ test('faction browsing keeps the full directory on the main collection only', as
   await expect(page.locator('.archive-directory')).toHaveCount(0)
 })
 
+test('Toujou uses the requested name while keeping the old spelling searchable', async ({ page, path, locale }) => {
+  const displayName = { en: 'Toujou', ja: '悼襄王', ar: 'توجو', fr: 'Toujou' }[locale]
+  const detailPath = path('/archive/characters/toujouou')
+  const document = await staticPage(page, detailPath)
+  expect(document.heading).toBe(displayName)
+  expect(document.title).toContain(displayName)
+
+  for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 }]) {
+    await page.setViewportSize(viewport)
+    await page.goto(detailPath)
+    await expectLocale(page, locale)
+    await expect(page.locator('.detail-info h1')).toHaveText(displayName)
+
+    await page.goto(path('/archive/characters?faction=zhao'))
+    const search = page.locator('input[type="search"]:visible').first()
+    await search.fill('Toujouou')
+    const card = page.locator('.banner-card[data-detail-id="toujouou"]')
+    await expect(card).toBeVisible()
+    await expect(card.locator('.banner-name')).toHaveText(displayName)
+  }
+})
+
 test('Guide contents link every preserved article and return through its breadcrumb', async ({ page, path, locale }) => {
   const hub = await staticPage(page, path('/guide'))
   const basics = await staticPage(page, path('/guide/basics'))

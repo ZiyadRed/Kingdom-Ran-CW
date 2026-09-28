@@ -31,6 +31,7 @@ export const LEGACY_CHARACTER_NAME_ALIASES = Object.freeze({
   Miyamoto: 'Kyuugen',
   Saizatsu: 'Saitaku',
   Toumi: 'Toubi',
+  Toujouou: 'Toujou',
 })
 
 const LEGACY_ALIAS_BY_LOWER = Object.fromEntries(
@@ -241,7 +242,7 @@ export const AR_CHARACTER_NAMES = {
   'Ka': 'كا',
   'Shunsuiju': 'شونسويجو',
   'Shunpeikun': 'شونبيكون',
-  'Toujouou': 'الملك توجو',
+  'Toujou': 'توجو',
   'Duke Sei': 'الدوق سي',
   'Kinmou': 'كينمو',
   'Gakuei': 'غاكوي',
