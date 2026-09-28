@@ -337,7 +337,9 @@ const mapStatuses = Object.values(entries).reduce((counts, entry) => {
 }, { total: 0, exact: 0, resolved: 0, ambiguous: 0, deterministic: 0, pendingSource: 0 })
 provenance.cwSkillMapping = {
   ...(provenance.cwSkillMapping || {}),
-  inputFileSha256: createHash('sha256').update(readFileSync(join(root, 'data/source/cw_skills.map.json'))).digest('hex').toUpperCase(),
+  inputFileSha256: createHash('sha256')
+    .update(readFileSync(join(root, 'data/source/cw_skills.map.json'), 'utf8').replace(/\r\n/g, '\n'), 'utf8')
+    .digest('hex').toUpperCase(),
   total: mapStatuses.total,
   exact: mapStatuses.exact,
   resolved: mapStatuses.resolved,

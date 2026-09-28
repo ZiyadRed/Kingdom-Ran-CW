@@ -228,7 +228,9 @@ const skillStatusCounts = Object.values(skillEntries).reduce((counts, entry) => 
   return counts
 }, { total: 0, exact: 0, resolved: 0, ambiguous: 0, pendingSource: 0, deterministic: 0 })
 const actualSkillMapHash = createHash('sha256')
-  .update(readFileSync(join(root, 'data/source/cw_skills.map.json')))
+  // Git stores this JSON with LF; normalize Windows working-tree CRLF so the
+  // provenance check agrees with the committed file on every platform.
+  .update(readFileSync(join(root, 'data/source/cw_skills.map.json'), 'utf8').replace(/\r\n/g, '\n'), 'utf8')
   .digest('hex')
   .toUpperCase()
 const recordedSkillMapping = provenance?.cwSkillMapping || {}
