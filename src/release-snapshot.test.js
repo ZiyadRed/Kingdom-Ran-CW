@@ -17,7 +17,7 @@ describe('the scheduled Kisui CW6 release snapshot', () => {
     for (const skill of after.findCharById('kisui').skills.filter(skill => skill.star6)) expect(card.cwIds).toContain(skill.cwId)
     expect(before.ALL.map(c => c.id)).toEqual(after.ALL.map(c => c.id))
     expect(before.ARCHIVE_BROWSE_CHARACTERS.map(c => c.id)).toEqual(after.ARCHIVE_BROWSE_CHARACTERS.map(c => c.id))
-    expect(before.ARCHIVE_BROWSE_CHARACTERS).toHaveLength(190)
+    expect(before.ARCHIVE_BROWSE_CHARACTERS.length).toBe(before.ALL.filter(character => Boolean(character.image)).length)
   })
 
   it('keeps old snapshots immutable and preserves identities between release boundaries', () => {

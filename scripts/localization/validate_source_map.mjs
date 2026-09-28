@@ -23,22 +23,22 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const J = (p) => JSON.parse(readFileSync(join(root, p), 'utf-8'))
 
 // ── Phase 1 character expectations ───────────────────────────────────────────
-const EXPECTED_TOTAL = 209
-const EXPECTED_EXACT = 198
+const EXPECTED_TOTAL = 210
+const EXPECTED_EXACT = 199
 const EXPECTED_RESOLVED = 11
 
 // ── Phase 2 CW-skill expectations ────────────────────────────────────────────
-const EXPECTED_SKILLS = 661
+const EXPECTED_SKILLS = 664
 const EXPECTED_SKILL_AMBIGUOUS = 4
 const EXPECTED_SKILL_DETERMINISTIC = 657
-const EXPECTED_BASE = 627
+const EXPECTED_BASE = 630
 const EXPECTED_SCENE_CARD_RANK = 34
 const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'jiou#1', 'kousonryu#0']
 
 // The current decrypted snapshot now contains the previously pending Soutan
 // rows. Keep this explicit so a stale map cannot silently reintroduce them.
-const EXPECTED_SKILL_PENDING = 0
-const PENDING_KEYS = []
+const EXPECTED_SKILL_PENDING = 3
+const PENDING_KEYS = ['toujouou#0', 'toujouou#1', 'toujouou#2']
 const EXPECTED_ROLE_SKILLS = 10
 
 const errors = []

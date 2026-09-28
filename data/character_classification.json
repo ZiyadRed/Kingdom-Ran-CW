@@ -184,6 +184,7 @@
   "shuki": {"unit_type": "Infantry", "groups": [], "initial_rarity": "N"},
   "shunmen": {"unit_type": "Infantry", "groups": [], "initial_rarity": "SR"},
   "shunpeikun": {"unit_type": "Infantry", "groups": [], "initial_rarity": "UR"},
+  "toujouou": {"unit_type": "Infantry", "groups": [], "initial_rarity": "UR", "stats_fallback_rarity": "UR"},
   "shunshinkun": {"unit_type": "Shield", "groups": ["Coalition Army"], "initial_rarity": "UR"},
   "shunsuiju": {"unit_type": "Cavalry", "groups": [], "initial_rarity": "UR"},
   "sosui": {"unit_type": "Cavalry", "groups": ["Hi Shin Unit"], "initial_rarity": "SR"},

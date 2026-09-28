@@ -8835,6 +8835,45 @@
         "name_jp": "防御力強化・小改【防衛兵器】",
         "effectsHash": "a15ed36239d477d49a3fb0adbf1b5df057a7ddd1db6aee320de7437f0a160538"
       }
+    },
+    "toujouou#0": {
+      "status": "pending_source",
+      "characterId": 223,
+      "skillId": null,
+      "textId": null,
+      "sourceType": "base",
+      "sourceNameJp": "急所攻撃【赤牛】",
+      "fingerprint": {
+        "name_jp": "急所攻撃【赤牛】",
+        "effectsHash": "cd4f66676db60a1bb8a10733d57d93659465a89af233fe719c0797fe8647412d"
+      },
+      "basis": "Official 2026-09-28 CW skill preview: https://www.kingdomran.jp/info/urlg_toujouou. September 17 master still has placeholder skill IDs; canonical skillId/textId remain unassigned."
+    },
+    "toujouou#1": {
+      "status": "pending_source",
+      "characterId": 223,
+      "skillId": null,
+      "textId": null,
+      "sourceType": "base",
+      "sourceNameJp": "唯我独尊",
+      "fingerprint": {
+        "name_jp": "唯我独尊",
+        "effectsHash": "d00289c9e335afa9e24e4d28496396313c7140cf6d934592a5108bc92d20bc74"
+      },
+      "basis": "Official 2026-09-28 CW skill preview: https://www.kingdomran.jp/info/urlg_toujouou. September 17 master still has placeholder skill IDs; canonical skillId/textId remain unassigned."
+    },
+    "toujouou#2": {
+      "status": "pending_source",
+      "characterId": 223,
+      "skillId": null,
+      "textId": null,
+      "sourceType": "base",
+      "sourceNameJp": "防御力強化・特大改【歩兵】",
+      "fingerprint": {
+        "name_jp": "防御力強化・特大改【歩兵】",
+        "effectsHash": "0ff344677fae7f4ed03d936bec35b605f5ddb9b79e003381a74590091a9750cb"
+      },
+      "basis": "Official 2026-09-28 CW skill preview: https://www.kingdomran.jp/info/urlg_toujouou. September 17 master still has placeholder skill IDs; canonical skillId/textId remain unassigned."
     }
   }
 }

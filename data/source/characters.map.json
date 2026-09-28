@@ -2676,6 +2676,18 @@
       ],
       "status": "exact"
     },
+    "toujouou": {
+      "characterId": 223,
+      "generalIds": [
+        428,
+        429
+      ],
+      "rarityIds": [
+        4,
+        5
+      ],
+      "status": "exact"
+    },
     "kou2": {
       "characterId": 23,
       "generalIds": [

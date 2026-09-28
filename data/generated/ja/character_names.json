@@ -3,7 +3,7 @@
     "schema": "ranhq.character_names/1",
     "source": "data/characters/*.json",
     "note": "English character name -> Japanese name, for effect text that names an ally",
-    "entries": 208
+    "entries": 209
   },
   "names": {
     "Rouai": "嫪毐",
@@ -194,6 +194,7 @@
     "Batei": "馬呈",
     "Gika": "魏加",
     "Fuuki": "馮忌",
+    "Toujouou": "悼襄王",
     "Kakukai": "郭開",
     "Keisha": "慶舎",
     "Gakujou": "楽乗",

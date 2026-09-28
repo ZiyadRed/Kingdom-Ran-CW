@@ -108,17 +108,19 @@ describe('source index', () => {
     for (const c of characters) {
       (c.skills || []).forEach((_, i) => projectKeys.push(`${c.id}#${i}`))
     }
-    expect(projectKeys).toHaveLength(661)
+    expect(new Set(projectKeys).size).toBe(projectKeys.length)
     expect(Object.keys(index.skills).sort()).toEqual(projectKeys.sort())
   })
 
-  it('assigns 657 canonical ids and leaves exactly 4 unassigned', () => {
+  it('keeps canonical IDs and leaves preview skills unassigned', () => {
     const entries = Object.values(index.skills)
     expect(entries.filter((e) => e.skillId !== null)).toHaveLength(657)
-    // Four ambiguous rows remain fail-closed by design.
-    expect(entries.filter((e) => e.skillId === null)).toHaveLength(4)
+    // Four ambiguous rows and the three announced Toujouou skills have no
+    // canonical game skill IDs in the pinned September 17 master.
+    expect(entries.filter((e) => e.skillId === null)).toHaveLength(7)
     expect(entries.filter((e) => e.status === 'ambiguous')).toHaveLength(4)
-    expect(entries.filter((e) => e.status === 'pending_source')).toHaveLength(0)
+    expect(Object.entries(index.skills).filter(([, e]) => e.status === 'pending_source').map(([key]) => key).sort())
+      .toEqual(['toujouou#0', 'toujouou#1', 'toujouou#2'])
   })
 })
 
@@ -146,14 +148,14 @@ describe('ambiguous rows', () => {
 })
 
 describe('character readings', () => {
-  it('covers all 209 slugs with 188 readings and 21 nulls', () => {
+  it('covers every slug with source-derived readings or explicit nulls', () => {
     expect(readings._meta.schema).toBe('ranhq.ja_character_readings/1')
     const values = Object.values(readings.characters)
-    expect(values).toHaveLength(209)
-    expect(values.filter((v) => typeof v === 'string' && v.length > 0)).toHaveLength(188)
-    expect(values.filter((v) => v === null)).toHaveLength(21)
-    expect(readings._meta.available).toBe(188)
-    expect(readings._meta.missing).toBe(21)
+    expect(values).toHaveLength(characters.length)
+    expect(readings._meta.available).toBe(values.filter((v) => typeof v === 'string' && v.length > 0).length)
+    expect(readings._meta.missing).toBe(values.filter((v) => v === null).length)
+    expect(readings._meta.available + readings._meta.missing).toBe(characters.length)
+    expect(readings.characters.toujouou).toBe('とうじょうおう')
   })
 
   it('uses only real character slugs and invents no readings', () => {

@@ -29,14 +29,14 @@
     "unresolved": 0
   },
   "cwSkillMapping": {
-    "inputFileSha256": "D8412B4250FB921E5200B374585C356C879B6A65AF23554580A1080890DC392F",
-    "total": 661,
+    "inputFileSha256": "9AC86DE1023CDC7C7D76CF1FDD613390C59DE55A5500303AEE77BB2B195897B9",
+    "total": 664,
     "exact": 618,
     "resolved": 39,
     "ambiguous": 4,
     "unresolved": 0,
     "deterministic": 657,
-    "pendingSource": 0
+    "pendingSource": 3
   },
   "stblTables": {
     "MsgUnionConquestSkillName.stbl": {
@@ -64,8 +64,8 @@
     "deterministicProjectSkills": 657,
     "canonicalJapaneseSkills": 600,
     "ambiguousProjectSkills": 4,
-    "sourceIndexRows": 661,
-    "rubyReadingsAvailable": 188,
+    "sourceIndexRows": 664,
+    "rubyReadingsAvailable": 189,
     "rubyReadingsMissing": 21
   }
 }

@@ -39,9 +39,8 @@ test('Archive overview and collections retain distinct crawlable pages and saved
   const cards = page.locator('.archive-hub .reference-hub-card')
   await expect(cards).toHaveCount(2)
   const roster = readCharacters()
-  expect(roster).toHaveLength(209)
-  expect(roster.filter(character => character.image)).toHaveLength(190)
-  await expect(cards.first().locator('.reference-hub-count')).toHaveText('209')
+  const browseCount = roster.filter(character => character.image).length
+  await expect(cards.first().locator('.reference-hub-count')).toHaveText(String(roster.length))
   const cardCount = Number(await cards.last().locator('.reference-hub-count').textContent())
   await cards.first().focus()
   await expect(cards.first()).toBeFocused()
@@ -49,7 +48,7 @@ test('Archive overview and collections retain distinct crawlable pages and saved
   await expect(page.locator('.gallery-grid')).toBeVisible()
   // Browse counts cover accepted banners; search and direct routes retain the
   // full roster, independently of the hub's total-record count.
-  expect((await page.locator('.fac-n').allTextContents()).reduce((sum, count) => sum + Number(count), 0)).toBe(190)
+  expect((await page.locator('.fac-n').allTextContents()).reduce((sum, count) => sum + Number(count), 0)).toBe(browseCount)
   await expect(page.locator('.archive-tabs [aria-current=page]')).toHaveAttribute('href', path('/archive/characters')+'?faction=qin')
   await page.goBack()
   await expect(page.locator('.archive-hub')).toBeVisible()

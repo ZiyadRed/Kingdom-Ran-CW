@@ -241,6 +241,7 @@ export const AR_CHARACTER_NAMES = {
   'Ka': 'كا',
   'Shunsuiju': 'شونسويجو',
   'Shunpeikun': 'شونبيكون',
+  'Toujouou': 'الملك توجو',
   'Duke Sei': 'الدوق سي',
   'Kinmou': 'كينمو',
   'Gakuei': 'غاكوي',

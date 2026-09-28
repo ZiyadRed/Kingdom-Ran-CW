@@ -1,8 +1,8 @@
 {
   "_meta": {
     "schema": "ranhq.ja_character_readings/1",
-    "rows": 209,
-    "available": 188,
+    "rows": 210,
+    "available": 189,
     "missing": 21
   },
   "characters": {
@@ -195,6 +195,7 @@
     "batei": "ばてい",
     "gika": "ぎか",
     "hoki": "ふうき",
+    "toujouou": "とうじょうおう",
     "kakukai": "かくかい",
     "keisha": "けいしゃ",
     "gakujou": "がくじょう",

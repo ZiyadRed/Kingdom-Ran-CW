@@ -18,6 +18,17 @@ const sourceMap = JSON.parse(
 ).characters
 
 describe('new-content contract: every character is complete', () => {
+  it('keeps Toujouou scoped to the three officially announced CW skills', () => {
+    const character = ALL.find((c) => c.id === 'toujouou')
+    expect(character?.source).toEqual({ characterId: 223, generalIds: [428, 429] })
+    expect(character?.country).toBe('zhao')
+    expect(character?.unit_type).toBe('Infantry')
+    expect(character?.groups).toEqual([])
+    expect(character?.skills.map((skill) => skill.name_jp)).toEqual([
+      '急所攻撃【赤牛】', '唯我独尊', '防御力強化・特大改【歩兵】',
+    ])
+  })
+
   it('has the three locale names it needs', () => {
     const incomplete = ALL.filter((c) => !c.name_en || !c.name_jp || !AR_CHARACTER_NAMES[c.name_en])
     expect(incomplete.map((c) => `${c.id}: en=${!!c.name_en} jp=${!!c.name_jp} ar=${!!AR_CHARACTER_NAMES[c.name_en]}`))

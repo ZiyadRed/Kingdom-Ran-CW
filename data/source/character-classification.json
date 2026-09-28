@@ -7405,6 +7405,38 @@
           "assetId": 472
         }
       ]
+    },
+    "toujouou": {
+      "characterId": 223,
+      "generals": [
+        {
+          "id": 428,
+          "publicTime": 1893423600,
+          "characterId": 223,
+          "rarityId": 4,
+          "attributeId": 0,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 532
+        },
+        {
+          "id": 429,
+          "publicTime": 1893423600,
+          "characterId": 223,
+          "rarityId": 5,
+          "attributeId": 0,
+          "countryId": 2,
+          "belongId": 0,
+          "belong1Id": 0,
+          "belong2Id": 0,
+          "belong3Id": 0,
+          "assetId": 533
+        }
+      ],
+      "evidenceSnapshot": "C:/kingdom_data/decrypted 2026-09-17 master"
     }
   }
 }

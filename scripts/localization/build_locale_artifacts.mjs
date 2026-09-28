@@ -44,16 +44,16 @@ const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'jiou#1', 'kousonryu#0']
 // mistaken for the other: `rows` counts entries in the file, and
 // `coveredProjectRows` counts the deterministic project rows they serve.
 const EXPECTED = {
-  skills: 661,
+  skills: 664,
   deterministic: 657,
   canonicalSkills: 600,
   ambiguous: 4,
   // Rows for characters who shipped after the pinned snapshot: no canonical
   // skillId/textId exists yet, so they contribute no Japanese text and are
   // excluded from `deterministic`/`canonicalSkills` (see cw_skills.map.json).
-  pending: 0,
-  characters: 209,
-  readingsAvailable: 188,
+  pending: 3,
+  characters: 210,
+  readingsAvailable: 189,
   readingsMissing: 21,
 }
 
