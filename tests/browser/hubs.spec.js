@@ -86,6 +86,16 @@ test('all search-only records retain searchable cards and direct detail document
   await expect(page.locator('.detail-info h1')).toBeVisible()
 })
 
+test('faction browsing keeps the full directory on the main collection only', async ({ page, path }) => {
+  await page.goto(path('/archive/characters'))
+  await expect(page).toHaveURL(/\?faction=qin$/)
+  await expect(page.locator('.archive-directory')).toBeVisible()
+
+  await page.goto(path('/archive/characters?faction=zhao'))
+  await expect(page.locator('.banner-card[data-detail-id="toujouou"]')).toBeVisible()
+  await expect(page.locator('.archive-directory')).toHaveCount(0)
+})
+
 test('Guide contents link every preserved article and return through its breadcrumb', async ({ page, path, locale }) => {
   const hub = await staticPage(page, path('/guide'))
   const basics = await staticPage(page, path('/guide/basics'))

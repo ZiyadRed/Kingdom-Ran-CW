@@ -399,7 +399,8 @@ export function ArchivePage(){
             )
           })}
         </div>
-        {!selected&&!hasSearch&&<section className="archive-directory" aria-labelledby="archive-directory-title">
+        {/* Keep the crawlable directory on the main collection landing, not below each short faction roster. */}
+        {!selected&&!hasSearch&&activeFac===ARCHIVE_FACTION_IDS[0]&&<section className="archive-directory" aria-labelledby="archive-directory-title">
           <h2 id="archive-directory-title">{t('archive.directoryTitle')}</h2>
           <p>{t('archive.directoryDescription')}</p>
           {directory.map(group=><div className="archive-directory-group" key={group.faction.id}>
