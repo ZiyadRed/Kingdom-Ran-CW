@@ -2,8 +2,8 @@
   "_meta": {
     "schema": "ranhq.stbl_raw/1",
     "table": "MsgUnionConquestSkillName.stbl",
-    "sha256": "D3B5125440EB5C8F1FF59D447038F15795D9B463597C8602A07ECDD2DBF8F501",
-    "entries": 869
+    "sha256": "5DCE9DF03A703E13539B29FD5E9BB1CBAFC6EAB5AC79A5529FFFDBC95994B3A3",
+    "entries": 879
   },
   "values": [
     "null",
@@ -874,6 +874,16 @@
     "隠れた名将☆3",
     "隠れた名将☆4",
     "隠れた名将☆5",
-    "隠れた名将☆6"
+    "隠れた名将☆6",
+    "急所攻撃【赤牛】",
+    "唯我独尊",
+    "離眼の豪力☆1",
+    "離眼の豪力☆2",
+    "離眼の豪力☆3",
+    "離眼の豪力☆4",
+    "離眼の豪力☆5",
+    "離眼の豪力☆6",
+    "狂気の心理戦",
+    "有能な陪臣"
   ]
 }

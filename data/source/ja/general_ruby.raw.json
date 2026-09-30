@@ -2,7 +2,7 @@
   "_meta": {
     "schema": "ranhq.stbl_raw/1",
     "table": "MsgUnitGeneralRubyName.stbl",
-    "sha256": "C37D1BCF3D49CCEBDF50F904634E94B3E891288AC52022E7E054D08C356BFF0A",
+    "sha256": "B5D60F5D627D9A6FF99B29A5F47B83A78962F7F70C72CBB3A9ECECD913DDA9FA",
     "entries": 609
   },
   "values": [
@@ -565,12 +565,12 @@
     "へいらい",
     "そうげん",
     "そうげん",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
+    "こしゅう",
+    "こしゅう",
+    "こしゅう",
+    "これき",
+    "これき",
+    "これき",
     "",
     "",
     "",

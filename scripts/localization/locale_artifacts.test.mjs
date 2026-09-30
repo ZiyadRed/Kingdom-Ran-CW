@@ -14,7 +14,7 @@ import { dirname, join } from 'node:path'
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const J = (p) => JSON.parse(readFileSync(join(root, p), 'utf-8'))
 
-const SNAPSHOT = '59408FDF1D9E5A6B0A18DA30D4175EE90B2D0B2554E7D17D53FFD04B91A931E0'
+const SNAPSHOT = 'DF4991D44F206E6D8702CA858CFE98BC51FC36486C0AA4E95B70180F084C4943'
 const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'jiou#1', 'kousonryu#0']
 
 const skillName = J('data/source/ja/skill_name.raw.json')
@@ -35,8 +35,8 @@ for (const f of readdirSync(join(root, 'data/characters'))) {
 
 describe('raw STBL snapshots', () => {
   it.each([
-    ['skill name', skillName, 'MsgUnionConquestSkillName.stbl', 869],
-    ['skill desc', skillDesc, 'MsgUnionConquestSkillDesc.stbl', 869],
+    ['skill name', skillName, 'MsgUnionConquestSkillName.stbl', 879],
+    ['skill desc', skillDesc, 'MsgUnionConquestSkillDesc.stbl', 879],
     ['general ruby', generalRuby, 'MsgUnitGeneralRubyName.stbl', 609],
     ['effect desc', effectDesc, 'MsgUnionConquestSkillEffectDesc.stbl', 1020],
   ])('%s is a verbatim table of the expected size', (_label, doc, table, count) => {
@@ -59,12 +59,12 @@ describe('raw STBL snapshots', () => {
 })
 
 describe('generated Japanese skills', () => {
-  it('holds 600 canonical entries covering 657 deterministic project rows', () => {
+  it('holds 602 canonical entries covering 660 deterministic project rows', () => {
     expect(skills._meta.schema).toBe('ranhq.ja_skills/1')
     expect(skills._meta.sourceSnapshot).toBe(SNAPSHOT)
-    expect(Object.keys(skills.skills)).toHaveLength(600)
-    expect(skills._meta.rows).toBe(600)
-    expect(skills._meta.coveredProjectRows).toBe(657)
+    expect(Object.keys(skills.skills)).toHaveLength(602)
+    expect(skills._meta.rows).toBe(602)
+    expect(skills._meta.coveredProjectRows).toBe(660)
   })
 
   it('matches the raw source byte-for-byte at every mapped textId', () => {
@@ -78,7 +78,7 @@ describe('generated Japanese skills', () => {
       expect(generated.desc).toBe(skillDesc.values[textId])
       verified++
     }
-    expect(verified).toBe(657)
+    expect(verified).toBe(660)
   })
 
   it('carries no provenance, evidence or candidate metadata', () => {
@@ -114,13 +114,13 @@ describe('source index', () => {
 
   it('keeps canonical IDs and leaves preview skills unassigned', () => {
     const entries = Object.values(index.skills)
-    expect(entries.filter((e) => e.skillId !== null)).toHaveLength(657)
-    // Four ambiguous rows and the three announced Toujou skills have no
-    // canonical game skill IDs in the pinned September 17 master.
-    expect(entries.filter((e) => e.skillId === null)).toHaveLength(7)
+    expect(entries.filter((e) => e.skillId !== null)).toHaveLength(660)
+    // The four deliberately ambiguous rows have no
+    // assigned canonical game skill IDs.
+    expect(entries.filter((e) => e.skillId === null)).toHaveLength(4)
     expect(entries.filter((e) => e.status === 'ambiguous')).toHaveLength(4)
     expect(Object.entries(index.skills).filter(([, e]) => e.status === 'pending_source').map(([key]) => key).sort())
-      .toEqual(['toujouou#0', 'toujouou#1', 'toujouou#2'])
+      .toEqual([])
   })
 })
 

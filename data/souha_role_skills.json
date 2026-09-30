@@ -1,5 +1,5 @@
 {
-  "snapshot": "v8.6.0_20260826_c23b0a22",
+  "snapshot": "v8.7.0_20260930_11f45ee4",
   "source": "mstUnionConquestGenerals.chiefGeneralSkillId / tacticianSkillId",
   "skills": [
     {
@@ -23,8 +23,22 @@
         "skillType": 2,
         "timing": 1,
         "mainIconId": 405,
-        "subIconIds": [3, 221, 117, 141, 22],
-        "effectIds": [3447, 3448, 1714, 3477, 3449, 3450, 3451],
+        "subIconIds": [
+          3,
+          221,
+          117,
+          141,
+          22
+        ],
+        "effectIds": [
+          3447,
+          3448,
+          1714,
+          3477,
+          3449,
+          3450,
+          3451
+        ],
         "effects": [
           {
             "condition": null,
@@ -74,8 +88,26 @@
         "skillType": 2,
         "timing": 1,
         "mainIconId": 404,
-        "subIconIds": [2, 209, 3, 4, 116, 170, 112],
-        "effectIds": [1019, 3452, 3453, 3454, 3254, 3455, 3371, 3457, 3456],
+        "subIconIds": [
+          2,
+          209,
+          3,
+          4,
+          116,
+          170,
+          112
+        ],
+        "effectIds": [
+          1019,
+          3452,
+          3453,
+          3454,
+          3254,
+          3455,
+          3371,
+          3457,
+          3456
+        ],
         "effects": [
           {
             "condition": null,
@@ -125,8 +157,19 @@
         "skillType": 2,
         "timing": 1,
         "mainIconId": 404,
-        "subIconIds": [3, 179, 4, 22],
-        "effectIds": [3453, 3458, 3254, 3538, 3459],
+        "subIconIds": [
+          3,
+          179,
+          4,
+          22
+        ],
+        "effectIds": [
+          3453,
+          3458,
+          3254,
+          3538,
+          3459
+        ],
         "effects": [
           {
             "condition": null,
@@ -170,8 +213,22 @@
         "skillType": 2,
         "timing": 1,
         "mainIconId": 405,
-        "subIconIds": [2, 228, 3, 116, 111],
-        "effectIds": [1019, 3460, 3453, 3461, 3371, 3462, 3463],
+        "subIconIds": [
+          2,
+          228,
+          3,
+          116,
+          111
+        ],
+        "effectIds": [
+          1019,
+          3460,
+          3453,
+          3461,
+          3371,
+          3462,
+          3463
+        ],
         "effects": [
           {
             "condition": null,
@@ -215,8 +272,24 @@
         "skillType": 2,
         "timing": 1,
         "mainIconId": 405,
-        "subIconIds": [2, 270, 3, 247, 249, 14, 171],
-        "effectIds": [1019, 3464, 3453, 3465, 3466, 3467, 3468],
+        "subIconIds": [
+          2,
+          270,
+          3,
+          247,
+          249,
+          14,
+          171
+        ],
+        "effectIds": [
+          1019,
+          3464,
+          3453,
+          3465,
+          3466,
+          3467,
+          3468
+        ],
         "effects": [
           {
             "condition": null,
@@ -260,8 +333,20 @@
         "skillType": 2,
         "timing": 1,
         "mainIconId": 404,
-        "subIconIds": [2, 170, 4, 250],
-        "effectIds": [1994, 3469, 3254, 3539, 3471, 3472],
+        "subIconIds": [
+          2,
+          170,
+          4,
+          250
+        ],
+        "effectIds": [
+          1994,
+          3469,
+          3254,
+          3539,
+          3471,
+          3472
+        ],
         "effects": [
           {
             "condition": null,
@@ -305,8 +390,22 @@
         "skillType": 2,
         "timing": 1,
         "mainIconId": 404,
-        "subIconIds": [147, 117, 176, 159, 4],
-        "effectIds": [1713, 2532, 3473, 1564, 3476, 3474, 3475],
+        "subIconIds": [
+          147,
+          117,
+          176,
+          159,
+          4
+        ],
+        "effectIds": [
+          1713,
+          2532,
+          3473,
+          1564,
+          3476,
+          3474,
+          3475
+        ],
         "effects": [
           {
             "condition": null,
@@ -356,8 +455,22 @@
         "skillType": 2,
         "timing": 1,
         "mainIconId": 404,
-        "subIconIds": [147, 3, 179, 6, 274, 118],
-        "effectIds": [1713, 1020, 1806, 2186, 3478, 3479],
+        "subIconIds": [
+          147,
+          3,
+          179,
+          6,
+          274,
+          118
+        ],
+        "effectIds": [
+          1713,
+          1020,
+          1806,
+          2186,
+          3478,
+          3479
+        ],
         "effects": [
           {
             "condition": null,
@@ -407,8 +520,18 @@
         "skillType": 2,
         "timing": 1,
         "mainIconId": 406,
-        "subIconIds": [147, 15, 112, 118],
-        "effectIds": [1713, 3480, 3481, 3479],
+        "subIconIds": [
+          147,
+          15,
+          112,
+          118
+        ],
+        "effectIds": [
+          1713,
+          3480,
+          3481,
+          3479
+        ],
         "effects": [
           {
             "condition": null,
@@ -458,8 +581,22 @@
         "skillType": 2,
         "timing": 1,
         "mainIconId": 404,
-        "subIconIds": [247, 252, 4, 7, 14],
-        "effectIds": [2131, 3482, 3254, 3540, 1909, 2266, 3484],
+        "subIconIds": [
+          247,
+          252,
+          4,
+          7,
+          14
+        ],
+        "effectIds": [
+          2131,
+          3482,
+          3254,
+          3540,
+          1909,
+          2266,
+          3484
+        ],
         "effects": [
           {
             "condition": null,
@@ -477,6 +614,120 @@
             "condition": null,
             "target": "All enemy [General]",
             "effect": "DEF Down 30%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "owner_id": "kanki",
+      "characterId": 16,
+      "ownerName": "Kanki",
+      "ownerNameJp": "桓騎",
+      "ownerIcon": "/icons/Kanki.webp",
+      "role": "Leader",
+      "role_jp": "総大将",
+      "sourceField": "chiefGeneralSkillId",
+      "unlockSkillGroupId": 1,
+      "skill": {
+        "cwId": 878,
+        "textId": 877,
+        "name_en": "Madness of Psychological Warfare",
+        "name_jp": "狂気の心理戦",
+        "type": "Leader",
+        "roleSkill": true,
+        "mp": 2000,
+        "skillType": 2,
+        "timing": 1,
+        "mainIconId": 404,
+        "subIconIds": [
+          2,
+          197,
+          117,
+          4,
+          227
+        ],
+        "effectIds": [
+          1019,
+          3590,
+          1714,
+          3591,
+          1867,
+          3592,
+          3593
+        ],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Kanki Army",
+            "effect": "ATK Up 20%, Evasion (Dodge Chance) Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Kanki Army",
+            "effect": "HP Recovery 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "Remove Sure Hit",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "owner_id": "kaioku",
+      "characterId": 175,
+      "ownerName": "Kaioku",
+      "ownerNameJp": "介億",
+      "ownerIcon": "/icons/Kaioku.webp",
+      "role": "Strategist",
+      "role_jp": "軍師",
+      "sourceField": "tacticianSkillId",
+      "unlockSkillGroupId": 2,
+      "skill": {
+        "cwId": 879,
+        "textId": 878,
+        "name_en": "Capable Retainer",
+        "name_jp": "有能な陪臣",
+        "type": "Strategist",
+        "roleSkill": true,
+        "mp": 1000,
+        "skillType": 2,
+        "timing": 1,
+        "mainIconId": 404,
+        "subIconIds": [
+          3,
+          123,
+          4,
+          112
+        ],
+        "effectIds": [
+          3594,
+          3254,
+          3539,
+          3481
+        ],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Cavalry]",
+            "effect": "DEF Up 60%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Qin]",
+            "effect": "HP Recovery 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "Critical Damage Down 30%",
             "duration": null
           }
         ]

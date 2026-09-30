@@ -248,6 +248,7 @@ export const SKILL_TYPES = {
 
 /** Whole-string phrases with a fixed Japanese rendering. */
 export const PHRASES = {
+  'Remove Sure Hit': '「必中」状態を解除',
   ...SKILL_TYPES,
   'Self': '自身',
   'Own': '自身',

@@ -28,21 +28,21 @@ const has = (p) => existsSync(join(root, p))
 // 42 canonical CW skills are legitimately shared by several characters. Both
 // counts are asserted so neither can silently drift into the other.
 const EXPECTED_PROJECT_SKILLS = 664
-const EXPECTED_DETERMINISTIC = 657
-const EXPECTED_CANONICAL_SKILLS = 600
+const EXPECTED_DETERMINISTIC = 660
+const EXPECTED_CANONICAL_SKILLS = 602
 const EXPECTED_AMBIGUOUS = 4
 // Rows for characters who shipped after the pinned snapshot — no canonical
 // skillId exists yet, so they stay unassigned like the ambiguous rows.
-const EXPECTED_PENDING = 3
-const PENDING_KEYS = ['toujouou#0', 'toujouou#1', 'toujouou#2']
+const EXPECTED_PENDING = 0
+const PENDING_KEYS = []
 const EXPECTED_CHARACTERS = 210
 const EXPECTED_READINGS_AVAILABLE = 189
 const EXPECTED_READINGS_MISSING = 21
 const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'jiou#1', 'kousonryu#0']
 
 const RAW_TABLES = [
-  ['skill_name.raw.json', 'MsgUnionConquestSkillName.stbl', 869],
-  ['skill_desc.raw.json', 'MsgUnionConquestSkillDesc.stbl', 869],
+  ['skill_name.raw.json', 'MsgUnionConquestSkillName.stbl', 879],
+  ['skill_desc.raw.json', 'MsgUnionConquestSkillDesc.stbl', 879],
   ['general_ruby.raw.json', 'MsgUnitGeneralRubyName.stbl', 609],
   ['general_name.raw.json', 'MsgUnitGeneralName.stbl', 609],
   ['skill_effect_desc.raw.json', 'MsgUnionConquestSkillEffectDesc.stbl', 1020],

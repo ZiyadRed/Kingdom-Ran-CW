@@ -120,11 +120,8 @@ describe('calcCharBuffs / buff summary', () => {
 })
 
 describe('Souha Leader / Strategist staging', () => {
-  it('attaches the exact v8.6.0 role roster and CW ids to site characters', () => {
-    expect(SOUHA_ROLE_SKILLS).toHaveLength(10)
-    expect(SOUHA_ROLE_SKILLS.map(entry=>entry.skill.cwId)).toEqual([851,852,853,854,855,856,857,858,859,860])
-    expect(SOUHA_ROLE_SKILLS.filter(entry=>entry.role==='Leader')).toHaveLength(5)
-    expect(SOUHA_ROLE_SKILLS.filter(entry=>entry.role==='Strategist')).toHaveLength(5)
+  it('attaches every assigned role skill to its stable owner', () => {
+    expect(new Set(SOUHA_ROLE_SKILLS.map(entry=>entry.owner_id)).size).toBe(SOUHA_ROLE_SKILLS.length)
     for(const entry of SOUHA_ROLE_SKILLS){
       const char=findCharByName(entry.ownerName)
       expect(char?.id).toBe(entry.owner_id)
@@ -152,6 +149,34 @@ describe('Souha Leader / Strategist staging', () => {
     expect(masks.map(mask=>mask.role)).toEqual([false,true,false,false])
     masks=updateSkillMasks(masks,party,2,{...masks[2],role:true})
     expect(masks.map(mask=>mask.role)).toEqual([false,true,true,false])
+  })
+  it('targets Kanki army buffs and keeps Sure Hit removal out of numeric totals', () => {
+    const kanki = applyMask(findCharByName('Kanki'), {n:0, s6:false, role:true})
+    const raido = {...findCharByName('Raido'), skills:[]}
+    const shin = {...findCharByName('Shin'), skills:[]}
+    const team = [kanki, raido, shin]
+    for(const member of [kanki, raido]){
+      const buffs = calcCharBuffs(member, team, [], false, true)
+      expect(buffs.ATK?.up).toBe(20)
+      expect(buffs.Evasion?.up).toBe(20)
+      expect(buffs['HP Recovery']?.up).toBe(20)
+    }
+    expect(calcCharBuffs(shin, team, [], false, true).ATK).toBeUndefined()
+    expect(parseBuffEffect('Remove Sure Hit')).toEqual([])
+    expect(calcTeamEnemyDebuffs(team)['All enemies']?.down?.['Sure Hit']).toBeUndefined()
+  })
+  it('applies Kaioku cavalry DEF separately from Qin healing and enemy critical damage', () => {
+    const kaioku = applyMask(findCharByName('Kaioku'), {n:0, s6:false, role:true})
+    const kanki = {...findCharByName('Kanki'), skills:[], roleSkill:null}
+    const futei = {...findCharByName('Futei'), skills:[], roleSkill:null}
+    const en = {...findCharByName('En'), skills:[], roleSkill:null}
+    const team = [kaioku,kanki,futei,en]
+    expect(calcCharBuffs(kanki,team,[],false,true).DEF?.up).toBe(60)
+    expect(calcCharBuffs(futei,team,[],false,true).DEF?.up).toBe(60)
+    expect(calcCharBuffs(futei,team,[],false,true)['HP Recovery']).toBeUndefined()
+    expect(calcCharBuffs(en,team,[],false,true).DEF).toBeUndefined()
+    expect(calcCharBuffs(en,team,[],false,true)['HP Recovery']?.up).toBe(30)
+    expect(calcTeamEnemyDebuffs(team)['All enemies']?.down?.['Critical Damage']).toBe(30)
   })
 })
 

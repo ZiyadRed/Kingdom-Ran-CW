@@ -30,16 +30,17 @@ const EXPECTED_RESOLVED = 11
 // ── Phase 2 CW-skill expectations ────────────────────────────────────────────
 const EXPECTED_SKILLS = 664
 const EXPECTED_SKILL_AMBIGUOUS = 4
-const EXPECTED_SKILL_DETERMINISTIC = 657
+const EXPECTED_SKILL_DETERMINISTIC = 660
 const EXPECTED_BASE = 630
 const EXPECTED_SCENE_CARD_RANK = 34
 const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'jiou#1', 'kousonryu#0']
 
 // The current decrypted snapshot now contains the previously pending Soutan
 // rows. Keep this explicit so a stale map cannot silently reintroduce them.
-const EXPECTED_SKILL_PENDING = 3
-const PENDING_KEYS = ['toujouou#0', 'toujouou#1', 'toujouou#2']
-const EXPECTED_ROLE_SKILLS = 10
+const EXPECTED_SKILL_PENDING = 0
+const PENDING_KEYS = []
+const roleSource = J('data/source/souha_role_assignments.json')
+const EXPECTED_ROLE_SKILLS = roleSource.assignments.length
 
 const errors = []
 const err = (msg) => errors.push(msg)
@@ -440,6 +441,10 @@ if (roleSkills.length !== EXPECTED_ROLE_SKILLS) {
 }
 for (const row of roleSkills) {
   const skill = row?.skill || {}
+  const assignment = roleSource.assignments.find(a => a.characterId === row.characterId && a.sourceField === row.sourceField)
+  if (!assignment || assignment.skillId !== skill.cwId || assignment.textId !== skill.textId) {
+    err(`role skill ${row.owner_id}: current profile assignment does not match cwId/textId`)
+  }
   if (!Number.isInteger(skill.cwId) || !Number.isInteger(skill.textId)) {
     err(`role skill ${row?.owner_id || '<unknown>'}: cwId/textId must be integers`)
     continue

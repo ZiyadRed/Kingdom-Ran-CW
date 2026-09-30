@@ -53,14 +53,14 @@ except ImportError:  # pragma: no cover - environment guard
 # "<name>:<UPPERCASE_SHA256>\n" for masters_001..005, in order.
 MASTER_FILES = [f"masters_00{i}.bin" for i in range(1, 6)]
 EXPECTED_MASTER_SHA256 = {
-    "masters_001.bin": "E054EDB9D12229933621BAA2C9D40E5AB2A06DC0859C75FC46ECCA2B08222A8A",
-    "masters_002.bin": "9D98E3326302178D0FBE9348A0D8662B248DFF5FAFE0CC12C6F7D939616CC179",
-    "masters_003.bin": "1BC784A61CD7A6FFB1CE852DA90E88CD1C0FAC2BBD111C37C10722E91A668B04",
-    "masters_004.bin": "5D53C8835C5B2CDDE05FD8B415FBC5EF5FF26A8600E8A2912E047D69A22F73E7",
-    "masters_005.bin": "10C71F47F31FB9AEE74C02C91ADBB232750008FDF4F799E08B3D3E2123766E72",
+    "masters_001.bin": "40C334192BF10EBFFC047E05CB53979AB8D7BEA0AB0DDED1BD5774D17B16C308",
+    "masters_002.bin": "8C577C86C0DBA50D5F361E6CDDFDBAA7DBA0ACA572CFA35C462EFAE0C3F12745",
+    "masters_003.bin": "17A3AE63419FB386CE7F6F3318EF3E141851BBA05E255D7493E46C2B56914231",
+    "masters_004.bin": "703BFA58A90B8EEE410387D700ABF180D0864F30A3923DB7EE79DA0323EDA205",
+    "masters_005.bin": "C23FD8511C87E3C70AD5B138F7C33D4E2F84D1406E1F2753FE220389FA763DEA",
 }
 EXPECTED_SNAPSHOT_SHA256 = (
-    "59408FDF1D9E5A6B0A18DA30D4175EE90B2D0B2554E7D17D53FFD04B91A931E0"
+    "DF4991D44F206E6D8702CA858CFE98BC51FC36486C0AA4E95B70180F084C4943"
 )
 EXPECTED_MANIFEST_BYTES = 405
 
@@ -69,8 +69,8 @@ EXPECTED_MANIFEST_BYTES = 405
 # is hashed independently and its hash recorded in the artifact and provenance.
 STBL_TABLES = [
     # (stbl filename, output artifact, expected entry count)
-    ("MsgUnionConquestSkillName.stbl", "skill_name.raw.json", 869),
-    ("MsgUnionConquestSkillDesc.stbl", "skill_desc.raw.json", 869),
+    ("MsgUnionConquestSkillName.stbl", "skill_name.raw.json", 879),
+    ("MsgUnionConquestSkillDesc.stbl", "skill_desc.raw.json", 879),
     ("MsgUnitGeneralRubyName.stbl", "general_ruby.raw.json", 609),
     ("MsgUnitGeneralName.stbl", "general_name.raw.json", 609),
     ("MsgUnionConquestSkillEffectDesc.stbl", "skill_effect_desc.raw.json", 1020),
@@ -380,8 +380,8 @@ def update_provenance(snapshot: dict, stbl_meta: list[dict], decrypted_dir: Path
     prov = json.loads(path.read_text(encoding="utf-8"))
 
     prov["sourceSnapshot"]["manifestSha256"] = snapshot["snapshot"]
-    prov["sourceSnapshot"]["snapshotLabel"] = "v8.6.0_20260826_c23b0a22"
-    prov["sourceSnapshot"]["snapshotDate"] = "2026-08-26"
+    prov["sourceSnapshot"]["snapshotLabel"] = "v8.7.0_20260930_11f45ee4"
+    prov["sourceSnapshot"]["snapshotDate"] = "2026-09-30"
     prov["sourceSnapshot"]["sourceRoot"] = str(decrypted_dir)
     prov["sourceSnapshot"]["decoder"] = DECODER_METADATA
     prov["sourceSnapshot"]["masterFiles"] = snapshot["files"]
@@ -516,8 +516,8 @@ def main() -> int:
     provenance_path = REPO_ROOT / "data/source/_provenance.json"
     expected_provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
     expected_provenance["sourceSnapshot"]["manifestSha256"] = snapshot["snapshot"]
-    expected_provenance["sourceSnapshot"]["snapshotLabel"] = "v8.6.0_20260826_c23b0a22"
-    expected_provenance["sourceSnapshot"]["snapshotDate"] = "2026-08-26"
+    expected_provenance["sourceSnapshot"]["snapshotLabel"] = "v8.7.0_20260930_11f45ee4"
+    expected_provenance["sourceSnapshot"]["snapshotDate"] = "2026-09-30"
     expected_provenance["sourceSnapshot"]["sourceRoot"] = str(decrypted)
     expected_provenance["sourceSnapshot"]["decoder"] = DECODER_METADATA
     expected_provenance["sourceSnapshot"]["masterFiles"] = snapshot["files"]

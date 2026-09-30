@@ -280,6 +280,7 @@ export const SKILL_TYPES = {
 
 /** Standalone phrases with a fixed, whole-string Arabic rendering. */
 export const PHRASES = {
+  'Remove Sure Hit': 'إزالة حالة الإصابة المؤكدة',
   ...SKILL_TYPES,
   // A badge marking an Internal Affairs skill as affecting the Castle War map.
   'Map': 'الخريطة',

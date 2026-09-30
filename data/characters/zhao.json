@@ -801,7 +801,14 @@
         "star6": true,
         "cwId": 869,
         "textId": 868,
-        "cwIds": [864, 865, 866, 867, 868, 869],
+        "cwIds": [
+          864,
+          865,
+          866,
+          867,
+          868,
+          869
+        ],
         "effects": [
           {
             "condition": null,
@@ -1059,7 +1066,10 @@
     "id": "toujouou",
     "source": {
       "characterId": 223,
-      "generalIds": [428, 429]
+      "generalIds": [
+        428,
+        429
+      ]
     },
     "name_en": "Toujou",
     "name_jp": "悼襄王",
@@ -1070,37 +1080,94 @@
         "name_en": "Weak Point Attack [Red Ox]",
         "name_jp": "急所攻撃【赤牛】",
         "type": "Combat",
-        "descriptionJp": "防御力が最も低い敵武将1名に100%のダメージを与える。自身以外の全武将の士気を30%低下させる。",
+        "descriptionJp": "防御力が最も低い敵武将1名に100%のダメージを与える。\n自身以外の全武将の士気を30%低下させる。",
         "effects": [
-          { "condition": "Enemy [General] with lowest DEF", "target": "1 enemy [General]", "effect": "100% Damage", "duration": null },
-          { "condition": null, "target": "Other ally [General]", "effect": "Morale Down 30%", "duration": null },
-          { "condition": null, "target": "All enemy [General]", "effect": "Morale Down 30%", "duration": null }
-        ]
+          {
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
+            "effect": "100% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Other ally [General]",
+            "effect": "Morale Down 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "Morale Down 30%",
+            "duration": null
+          }
+        ],
+        "cwId": 870,
+        "textId": 869
       },
       {
         "name_en": "I Alone Am Supreme",
         "name_jp": "唯我独尊",
         "type": "Combat",
-        "descriptionJp": "自身以外の全武将の防御力を50%低下(4ターン)させる。自身以外の全武将の士気を50%低下させる。自身以外の味方武将に「挑発」状態(4ターン)を付与する。防御力が最も低い敵武将1名に100%のダメージを与える。",
+        "descriptionJp": "自身以外の全武将の防御力を50%低下(4ターン)させる。\n自身以外の全武将の士気を50%低下させる。\n自身以外の味方武将に「挑発(4ターン)」状態を付与する。\n防御力が最も低い敵武将1名に100%のダメージを与える。",
         "effects": [
-          { "condition": null, "target": "Other ally [General]", "effect": "DEF Down 50%", "duration": "4 turns" },
-          { "condition": null, "target": "All enemy [General]", "effect": "DEF Down 50%", "duration": "4 turns" },
-          { "condition": null, "target": "Other ally [General]", "effect": "Morale Down 50%", "duration": null },
-          { "condition": null, "target": "All enemy [General]", "effect": "Morale Down 50%", "duration": null },
-          { "condition": null, "target": "Other ally [General]", "effect": "Provoke", "duration": "4 turns" },
-          { "condition": "Enemy [General] with lowest DEF", "target": "1 enemy [General]", "effect": "100% Damage", "duration": null }
-        ]
+          {
+            "condition": null,
+            "target": "Other ally [General]",
+            "effect": "DEF Down 50%",
+            "duration": "4 turns"
+          },
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "DEF Down 50%",
+            "duration": "4 turns"
+          },
+          {
+            "condition": null,
+            "target": "Other ally [General]",
+            "effect": "Morale Down 50%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "Morale Down 50%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Other ally [General]",
+            "effect": "Provoke",
+            "duration": "4 turns"
+          },
+          {
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
+            "effect": "100% Damage",
+            "duration": null
+          }
+        ],
+        "cwId": 871,
+        "textId": 870
       },
       {
         "name_en": "DEF Enhancement – Special Large Improved [Infantry]",
         "name_jp": "防御力強化・特大改【歩兵】",
         "type": "Internal Affairs",
-        "descriptionJp": "同盟争覇戦時に味方歩兵武将の防御力を12.4%上昇する。自身が出撃していなくても有効。",
+        "descriptionJp": "同盟争覇戦時に味方歩兵武将の防御力を12.4%上昇する。\n自身が出撃していなくても有効。",
         "effects": [
-          { "condition": "CW battle (active even when not deployed)", "target": "Ally [Infantry]", "effect": "DEF Up 12.4%", "duration": null }
-        ]
+          {
+            "condition": "CW battle (active even when not deployed)",
+            "target": "Ally [Infantry]",
+            "effect": "DEF Up 12.4%",
+            "duration": null
+          }
+        ],
+        "cwId": 579,
+        "textId": 577
       }
     ],
-    "image": "/persos/toujouou.webp"
+    "image": "/persos/toujouou.webp",
+    "icon": "/icons/Toujou.webp"
   }
 ]

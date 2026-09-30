@@ -11,10 +11,12 @@ describe('guide leader/strategist roster', () => {
     role.generals.map(g => [role.id, g]),
   )
 
-  it('lists both roles with five generals each', () => {
+  it('lists every assigned general under the correct role', () => {
     expect(SOUHA_LEADER_ROLES.map(r => r.id)).toEqual(['leader', 'strategist'])
+    const assignments = JSON.parse(readFileSync(new URL('../data/source/souha_role_assignments.json', import.meta.url), 'utf8')).assignments
     for (const role of SOUHA_LEADER_ROLES) {
-      expect(role.generals).toHaveLength(5)
+      const sourceField = role.id === 'leader' ? 'chiefGeneralSkillId' : 'tacticianSkillId'
+      expect(role.generals.map(g => g.cwId).sort((a,b) => a-b)).toEqual(assignments.filter(a => a.sourceField === sourceField).map(a => a.skillId).sort((a,b) => a-b))
     }
   })
 

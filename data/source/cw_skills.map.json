@@ -8837,43 +8837,46 @@
       }
     },
     "toujouou#0": {
-      "status": "pending_source",
+      "status": "exact",
       "characterId": 223,
-      "skillId": null,
-      "textId": null,
+      "skillId": 870,
+      "textId": 869,
       "sourceType": "base",
       "sourceNameJp": "急所攻撃【赤牛】",
       "fingerprint": {
         "name_jp": "急所攻撃【赤牛】",
         "effectsHash": "cd4f66676db60a1bb8a10733d57d93659465a89af233fe719c0797fe8647412d"
       },
-      "basis": "Official 2026-09-28 CW skill preview: https://www.kingdomran.jp/info/urlg_toujouou. September 17 master still has placeholder skill IDs; canonical skillId/textId remain unassigned."
+      "basis": "September 30 current master: characterId 223 -> CW profile skill slot -> skill textId.",
+      "sourceSlot": 1
     },
     "toujouou#1": {
-      "status": "pending_source",
+      "status": "exact",
       "characterId": 223,
-      "skillId": null,
-      "textId": null,
+      "skillId": 871,
+      "textId": 870,
       "sourceType": "base",
       "sourceNameJp": "唯我独尊",
       "fingerprint": {
         "name_jp": "唯我独尊",
         "effectsHash": "d00289c9e335afa9e24e4d28496396313c7140cf6d934592a5108bc92d20bc74"
       },
-      "basis": "Official 2026-09-28 CW skill preview: https://www.kingdomran.jp/info/urlg_toujouou. September 17 master still has placeholder skill IDs; canonical skillId/textId remain unassigned."
+      "basis": "September 30 current master: characterId 223 -> CW profile skill slot -> skill textId.",
+      "sourceSlot": 2
     },
     "toujouou#2": {
-      "status": "pending_source",
+      "status": "exact",
       "characterId": 223,
-      "skillId": null,
-      "textId": null,
+      "skillId": 579,
+      "textId": 577,
       "sourceType": "base",
       "sourceNameJp": "防御力強化・特大改【歩兵】",
       "fingerprint": {
         "name_jp": "防御力強化・特大改【歩兵】",
         "effectsHash": "0ff344677fae7f4ed03d936bec35b605f5ddb9b79e003381a74590091a9750cb"
       },
-      "basis": "Official 2026-09-28 CW skill preview: https://www.kingdomran.jp/info/urlg_toujouou. September 17 master still has placeholder skill IDs; canonical skillId/textId remain unassigned."
+      "basis": "September 30 current master: characterId 223 -> CW profile skill slot -> skill textId.",
+      "sourceSlot": 3
     }
   }
 }

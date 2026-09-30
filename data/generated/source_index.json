@@ -2389,16 +2389,16 @@
       "skillId": 301
     },
     "toujouou#0": {
-      "status": "pending_source",
-      "skillId": null
+      "status": "exact",
+      "skillId": 870
     },
     "toujouou#1": {
-      "status": "pending_source",
-      "skillId": null
+      "status": "exact",
+      "skillId": 871
     },
     "toujouou#2": {
-      "status": "pending_source",
-      "skillId": null
+      "status": "exact",
+      "skillId": 579
     },
     "kakukai#0": {
       "status": "exact",

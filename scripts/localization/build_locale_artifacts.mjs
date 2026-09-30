@@ -32,7 +32,7 @@ import { dirname, join } from 'node:path'
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const J = (p) => JSON.parse(readFileSync(join(root, p), 'utf-8'))
 
-const SNAPSHOT = '59408FDF1D9E5A6B0A18DA30D4175EE90B2D0B2554E7D17D53FFD04B91A931E0'
+const SNAPSHOT = 'DF4991D44F206E6D8702CA858CFE98BC51FC36486C0AA4E95B70180F084C4943'
 const RAW_SCHEMA = 'ranhq.stbl_raw/1'
 const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'jiou#1', 'kousonryu#0']
 
@@ -45,13 +45,13 @@ const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'jiou#1', 'kousonryu#0']
 // `coveredProjectRows` counts the deterministic project rows they serve.
 const EXPECTED = {
   skills: 664,
-  deterministic: 657,
-  canonicalSkills: 600,
+  deterministic: 660,
+  canonicalSkills: 602,
   ambiguous: 4,
   // Rows for characters who shipped after the pinned snapshot: no canonical
   // skillId/textId exists yet, so they contribute no Japanese text and are
   // excluded from `deterministic`/`canonicalSkills` (see cw_skills.map.json).
-  pending: 3,
+  pending: 0,
   characters: 210,
   readingsAvailable: 189,
   readingsMissing: 21,
