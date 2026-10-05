@@ -604,17 +604,19 @@
         ]
       },
       {
-        "name_en": "HP Enhancement – Medium Improved [Archers]",
-        "name_jp": "体力強化・中改【弓兵】",
+        "name_en": "HP Enhancement – Medium [Archers]",
+        "name_jp": "体力強化・中【弓兵】",
         "type": "Internal Affairs",
         "effects": [
           {
             "condition": "CW battle (active even when not deployed)",
             "target": "Ally [Archer]",
-            "effect": "Max HP Up 15.9%",
+            "effect": "Max HP Up 6.9%",
             "duration": null
           }
-        ]
+        ],
+        "cwId": 279,
+        "textId": 279
       },
       {
         "name_en": "Scout – Medium Improved",

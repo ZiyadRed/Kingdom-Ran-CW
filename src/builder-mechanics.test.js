@@ -144,7 +144,7 @@ describe('F03 stable Builder identity',()=>{
   })
 
   it('leaves ambiguous source-map joins explicit and parser-only',()=>{
-    for(const sourceKey of ['futei#0','gakuki#0','jiou#1','kousonryu#0']){
+    for(const sourceKey of ['futei#0','gakuki#0','kousonryu#0']){
       const source=sourceSkillMap.skills[sourceKey]
       expect(source.status).toBe('ambiguous')
       expect(source.skillId).toBeNull()

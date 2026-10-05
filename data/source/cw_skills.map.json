@@ -2807,33 +2807,18 @@
       }
     },
     "jiou#1": {
-      "status": "ambiguous",
+      "status": "exact",
       "characterId": 24,
-      "skillId": null,
-      "textId": null,
+      "skillId": 279,
+      "textId": 279,
       "sourceType": "base",
       "sourceSlot": 2,
-      "sourceNameJp": null,
+      "sourceNameJp": "体力強化・中【弓兵】",
       "fingerprint": {
-        "name_jp": "体力強化・中改【弓兵】",
-        "effectsHash": "54abab4cfe7aa71ec189ed39729cb875a259ddd8d8d8884a02bd284da5ce9c97"
+        "name_jp": "体力強化・中【弓兵】",
+        "effectsHash": "325b85c0941c9a72582b66a4266117ed639fb15662d607a09dd39f89586ea5e0"
       },
-      "candidates": [
-        {
-          "skillId": 279,
-          "textId": 279,
-          "sourceNameJp": "体力強化・中【弓兵】",
-          "basis": "owner_link",
-          "evidence": "mstUnionConquestGenerals characterId 24 skill2id=279."
-        },
-        {
-          "skillId": 282,
-          "textId": 282,
-          "sourceNameJp": "体力強化・中改【弓兵】",
-          "basis": "content_match",
-          "evidence": "Current project name/content matches source skill 282; owner profile points to skill 279."
-        }
-      ]
+      "basis": "Verified current mstUnionConquestGenerals characterId=24 skill2id=279 -> mstUnionConquestSkills.textId=279; effect 1401 and original STBL specify Archer HP +6.9%."
     },
     "jiou#2": {
       "status": "exact",

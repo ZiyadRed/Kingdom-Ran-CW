@@ -34,7 +34,7 @@ const J = (p) => JSON.parse(readFileSync(join(root, p), 'utf-8'))
 
 const SNAPSHOT = 'DF4991D44F206E6D8702CA858CFE98BC51FC36486C0AA4E95B70180F084C4943'
 const RAW_SCHEMA = 'ranhq.stbl_raw/1'
-const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'jiou#1', 'kousonryu#0']
+const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'kousonryu#0']
 
 // NOTE ON COUNTS: 654 deterministic PROJECT ROWS resolve onto only 597 DISTINCT
 // canonical skillIds, because 42 canonical CW skills are legitimately shared by
@@ -45,9 +45,9 @@ const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'jiou#1', 'kousonryu#0']
 // `coveredProjectRows` counts the deterministic project rows they serve.
 const EXPECTED = {
   skills: 664,
-  deterministic: 660,
-  canonicalSkills: 602,
-  ambiguous: 4,
+  deterministic: 661,
+  canonicalSkills: 603,
+  ambiguous: 3,
   // Rows for characters who shipped after the pinned snapshot: no canonical
   // skillId/textId exists yet, so they contribute no Japanese text and are
   // excluded from `deterministic`/`canonicalSkills` (see cw_skills.map.json).

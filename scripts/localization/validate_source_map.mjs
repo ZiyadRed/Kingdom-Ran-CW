@@ -29,11 +29,11 @@ const EXPECTED_RESOLVED = 11
 
 // ── Phase 2 CW-skill expectations ────────────────────────────────────────────
 const EXPECTED_SKILLS = 664
-const EXPECTED_SKILL_AMBIGUOUS = 4
-const EXPECTED_SKILL_DETERMINISTIC = 660
+const EXPECTED_SKILL_AMBIGUOUS = 3
+const EXPECTED_SKILL_DETERMINISTIC = 661
 const EXPECTED_BASE = 630
 const EXPECTED_SCENE_CARD_RANK = 34
-const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'jiou#1', 'kousonryu#0']
+const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'kousonryu#0']
 
 // The current decrypted snapshot now contains the previously pending Soutan
 // rows. Keep this explicit so a stale map cannot silently reintroduce them.

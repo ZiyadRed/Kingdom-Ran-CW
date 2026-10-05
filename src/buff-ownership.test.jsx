@@ -25,7 +25,9 @@ describe('authored buff ownership identity', () => {
     expect(manifest.version).toBe(1)
     const current = new Set(rows.flatMap(row => row.entry.shard_bonus ? [idFor(row), idFor(row) + ':shard'] : [idFor(row)]))
     const targets = new Set(Object.values(aliases).flat())
-    expect(targets).toEqual(current)
+    // This manifest is frozen historical data. New sources have no old keys;
+    // every historical destination must still exist after additions/corrections.
+    expect([...targets].filter(id => !current.has(id))).toEqual([])
   })
 
   it('preserves saved ownership through name/value corrections, insertion and reorder in every category', () => {

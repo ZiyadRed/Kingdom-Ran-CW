@@ -28,9 +28,9 @@ const has = (p) => existsSync(join(root, p))
 // 42 canonical CW skills are legitimately shared by several characters. Both
 // counts are asserted so neither can silently drift into the other.
 const EXPECTED_PROJECT_SKILLS = 664
-const EXPECTED_DETERMINISTIC = 660
-const EXPECTED_CANONICAL_SKILLS = 602
-const EXPECTED_AMBIGUOUS = 4
+const EXPECTED_DETERMINISTIC = 661
+const EXPECTED_CANONICAL_SKILLS = 603
+const EXPECTED_AMBIGUOUS = 3
 // Rows for characters who shipped after the pinned snapshot — no canonical
 // skillId exists yet, so they stay unassigned like the ambiguous rows.
 const EXPECTED_PENDING = 0
@@ -38,7 +38,7 @@ const PENDING_KEYS = []
 const EXPECTED_CHARACTERS = 210
 const EXPECTED_READINGS_AVAILABLE = 189
 const EXPECTED_READINGS_MISSING = 21
-const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'jiou#1', 'kousonryu#0']
+const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'kousonryu#0']
 
 const RAW_TABLES = [
   ['skill_name.raw.json', 'MsgUnionConquestSkillName.stbl', 879],
@@ -198,7 +198,7 @@ if (pendingSeen.slice().sort().join(',') !== [...PENDING_KEYS].sort().join(','))
   err(`pending_source rows are [${pendingSeen.join(', ')}], expected [${PENDING_KEYS.join(', ')}]`)
 }
 
-// ── 4. The four ambiguous rows stay unassigned ───────────────────────────────
+// ── 4. The remaining ambiguous rows stay unassigned ───────────────────────────────
 const expectedAmbiguous = [...AMBIGUOUS_KEYS].sort().join(',')
 if (ambiguousSeen.sort().join(',') !== expectedAmbiguous) {
   err(`ambiguous rows are [${ambiguousSeen.join(', ')}], expected [${AMBIGUOUS_KEYS.join(', ')}]`)

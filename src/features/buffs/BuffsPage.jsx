@@ -311,7 +311,7 @@ export function BuffsPage(){
                 :<ArmyBadge name={activeKey} size={36}/>}
             <div>
               <div style={{fontWeight:700,fontSize:'.88rem',color:col}}>{labelFor(activeKey)} · {labelFor(activeStat)}</div>
-              <div style={{fontSize:'.7rem',color:'var(--txt3)'}}>{t('buffs.totalStackable', { count: entries.length })}</div>
+              <div style={{fontSize:'.7rem',color:'var(--txt3)'}}>{t('buffs.totalStackable', { count: new Set(entries.map(entry=>findBuffChar(entry)?.id||entry.name_jp||entry.name)).size })}</div>
             </div>
           </div>
           <div style={{fontWeight:900,fontSize:'1.5rem',color:sc}}>+{formatFixedNumber(total,locale)}%</div>
@@ -356,6 +356,7 @@ export function BuffsPage(){
                     <span style={{fontWeight:700,fontSize:'.92rem',color:'var(--txt)'}}>{displayName}</span>
                     {secondaryName(displayName,e.name_jp)&&<span style={{fontSize:'.65rem',color:'var(--txt3)'}}>{e.name_jp}</span>}
                     {e.star6&&<span style={{fontSize:'.65rem',color:'#c9902a',fontWeight:800}}>☆6</span>}
+                    {['normal','ura'].includes(e.skill_layer)&&<span className="buff-source-layer" style={{fontSize:'.65rem',color:'var(--txt2)'}}>{t(e.skill_layer==='ura'?'buffs.uraSkill':'buffs.normalSkill')}</span>}
                   </div>
                   <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
                     <span style={{fontSize:'.62rem',padding:'1px 7px',borderRadius:'4px',background:fc+'22',color:fc,border:`1px solid ${fc}44`,fontWeight:700}}>{buffEntryRarity(e)}</span>

@@ -294,7 +294,7 @@
         "faction": "zhao",
         "type": "R",
         "star6": false,
-        "value": 15.9,
+        "value": 6.9,
         "ownership_id": "buff_7a58b414000d430182a85c070dca2df0"
       },
       {
@@ -408,6 +408,18 @@
         "star6": false,
         "value": 3.8,
         "ownership_id": "buff_87e646530612478dbc336253e3578292"
+      },
+      {
+        "name": "Hakusui",
+        "name_jp": "白翠",
+        "character_id": "hakusui",
+        "faction": "chu",
+        "type": "UR",
+        "star6": false,
+        "value": 5.0,
+        "source_id": "ura:188:10696",
+        "ownership_id": "buff_e8053b92700541bfa6d4e9c71fe817ce",
+        "skill_layer": "ura"
       }
     ],
     "Defense": [
@@ -956,6 +968,41 @@
         "star6": false,
         "value": 5.0,
         "ownership_id": "buff_ee796d1db9ad42f0883f62be0474e7a3"
+      },
+      {
+        "name": "Shunpeikun",
+        "name_jp": "春平君",
+        "character_id": "shunpeikun",
+        "faction": "zhao",
+        "type": "UR",
+        "star6": false,
+        "value": 5.0,
+        "source_id": "ura:222:10876",
+        "ownership_id": "buff_1c08fcd223ae4d1cab97e673d12b97df",
+        "skill_layer": "ura"
+      },
+      {
+        "name": "Pam",
+        "name_jp": "パム",
+        "character_id": "pam",
+        "faction": "mountain_folk",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0,
+        "source_id": "ura:241:10876",
+        "ownership_id": "buff_2e9aa452cfcc40a08f9367714a844413",
+        "skill_layer": "ura"
+      },
+      {
+        "name": "Toujou",
+        "name_jp": "悼襄王",
+        "character_id": "toujouou",
+        "faction": "zhao",
+        "type": "UR",
+        "star6": false,
+        "value": 12.4,
+        "source_id": "cw:223:579",
+        "ownership_id": "buff_fb8756b74b764f53bbde50b3d259bedb"
       }
     ]
   },
@@ -1061,6 +1108,18 @@
         "star6": false,
         "value": 5.0,
         "ownership_id": "buff_26386f1757714f4cb102909dc2fa1cec"
+      },
+      {
+        "name": "Kakubi",
+        "name_jp": "郭備",
+        "character_id": "kakubi",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0,
+        "source_id": "normal:2:1354",
+        "ownership_id": "buff_31d7f30c7dde40d08b77aab240039998",
+        "skill_layer": "normal"
       }
     ],
     "Attack": [

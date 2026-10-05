@@ -28,7 +28,8 @@
           "faction": "zhao",
           "type": "UR",
           "value": 5.0,
-          "ownership_id": "buff_74ca97f19a8f46b0830fc7e94d17df16"
+          "ownership_id": "buff_74ca97f19a8f46b0830fc7e94d17df16",
+          "skill_layer": "normal"
         },
         {
           "name": "Ka",
@@ -53,6 +54,18 @@
           "type": "UR",
           "value": 5.0,
           "ownership_id": "buff_750cc11aa734448f980dbe91dd96ce86"
+        },
+        {
+          "name": "Duke Sei",
+          "name_jp": "青公",
+          "character_id": "duke_sei",
+          "faction": "zhao",
+          "type": "UR",
+          "characterId": 221,
+          "value": 5.0,
+          "source_id": "ura:221:10814",
+          "ownership_id": "buff_ebc12a90d98444ff98ff17e39cff8d3b",
+          "skill_layer": "ura"
         }
       ]
     },
@@ -257,6 +270,18 @@
           "type": "UR",
           "value": 5.0,
           "ownership_id": "buff_adf1892bc1104f18b3bf984354cbd88e"
+        },
+        {
+          "name": "Rokin",
+          "name_jp": "魯近",
+          "character_id": "rokin",
+          "faction": "chu",
+          "type": "SR",
+          "characterId": 248,
+          "value": 5.0,
+          "source_id": "ura:248:10916",
+          "ownership_id": "buff_47241b79b52b4fc5a4cc0b8e2440487d",
+          "skill_layer": "ura"
         }
       ],
       "Defense": [
@@ -307,6 +332,18 @@
           "type": "UR",
           "value": 5.0,
           "ownership_id": "buff_0b024697252d4e4c98bf4018706aeaee"
+        },
+        {
+          "name": "Goutoku",
+          "name_jp": "豪徳",
+          "character_id": "goutoku",
+          "faction": "chu",
+          "type": "SR",
+          "characterId": 249,
+          "value": 5.0,
+          "source_id": "ura:249:10698",
+          "ownership_id": "buff_c28e8878ebc1412fae5b1d932a26fded",
+          "skill_layer": "ura"
         }
       ]
     },
@@ -450,6 +487,18 @@
           "type": "UR",
           "value": 5.0,
           "ownership_id": "buff_ccefc25614f745ae9ba5e68df55f61f5"
+        },
+        {
+          "name": "Robin",
+          "name_jp": "呂敏",
+          "character_id": "robin",
+          "faction": "qin",
+          "type": "UR",
+          "characterId": 227,
+          "value": 5.0,
+          "source_id": "ura:227:10378",
+          "ownership_id": "buff_cdd6ad66065b43c6a23e8a385d7f55a5",
+          "skill_layer": "ura"
         }
       ],
       "Defense": [
@@ -492,6 +541,18 @@
           "type": "UR",
           "value": 5.0,
           "ownership_id": "buff_ff8544ee566d4040bbc7e58c9bc536fb"
+        },
+        {
+          "name": "Yuri",
+          "name_jp": "友里",
+          "character_id": "yuri",
+          "faction": "qin",
+          "type": "UR",
+          "characterId": 228,
+          "value": 5.0,
+          "source_id": "ura:228:10878",
+          "ownership_id": "buff_47e168f76eb845d5983f268cfcdffea0",
+          "skill_layer": "ura"
         }
       ]
     }
@@ -603,6 +664,18 @@
           "type": "UR",
           "value": 5.0,
           "ownership_id": "buff_7d2e5ddc32e041309c34ecef7c03e1d1"
+        },
+        {
+          "name": "En",
+          "name_jp": "渕",
+          "character_id": "en",
+          "faction": "qin",
+          "type": "R",
+          "characterId": 86,
+          "value": 5.0,
+          "source_id": "ura:86:10967",
+          "ownership_id": "buff_4f45a8afff254961a37a904839a03cb5",
+          "skill_layer": "ura"
         }
       ],
       "Defense": [
@@ -645,6 +718,30 @@
           "type": "R",
           "value": 5.0,
           "ownership_id": "buff_44064ec7b9b746fbb58cd398bf79b573"
+        },
+        {
+          "name": "En",
+          "name_jp": "渕",
+          "character_id": "en",
+          "faction": "qin",
+          "type": "R",
+          "characterId": 86,
+          "value": 5.0,
+          "source_id": "normal:86:1821",
+          "ownership_id": "buff_9ff99ccbf3b44ea6803a2bc90b0951d1",
+          "skill_layer": "normal"
+        },
+        {
+          "name": "Yuri",
+          "name_jp": "友里",
+          "character_id": "yuri",
+          "faction": "qin",
+          "type": "UR",
+          "characterId": 228,
+          "value": 5.0,
+          "source_id": "ura:228:10721",
+          "ownership_id": "buff_7bbe197bbb324191b5f1db690a4f12fc",
+          "skill_layer": "ura"
         }
       ]
     },
@@ -720,7 +817,20 @@
     },
     "Ousen Army": {
       "HP": [],
-      "Attack": [],
+      "Attack": [
+        {
+          "name": "Eiki",
+          "name_jp": "英紀",
+          "character_id": "eiki",
+          "faction": "qin",
+          "type": "SR",
+          "characterId": 254,
+          "value": 5.0,
+          "source_id": "ura:254:10990",
+          "ownership_id": "buff_7ab5e8deddd94ca6b2b9a5014c977ca7",
+          "skill_layer": "ura"
+        }
+      ],
       "Defense": [
         {
           "name": "Eiki",
@@ -855,6 +965,49 @@
         }
       ],
       "Defense": []
+    },
+    "Qiang Tribe": {
+      "HP": [],
+      "Attack": [
+        {
+          "name": "Kyomei",
+          "name_jp": "羌明",
+          "character_id": "kyomei",
+          "faction": "qin",
+          "type": "SR",
+          "characterId": 176,
+          "value": 5.0,
+          "source_id": "normal:176:683",
+          "ownership_id": "buff_7bea9e0a1b1b429794a43b402bd56b0c",
+          "skill_layer": "normal"
+        },
+        {
+          "name": "Kyoushou",
+          "name_jp": "羌象",
+          "character_id": "kyoushou",
+          "faction": "qin",
+          "type": "SR",
+          "characterId": 89,
+          "value": 5.0,
+          "source_id": "ura:89:10334",
+          "ownership_id": "buff_fa6c5755dee3416bbd49950c366b61b3",
+          "skill_layer": "ura"
+        }
+      ],
+      "Defense": [
+        {
+          "name": "Kyoushou",
+          "name_jp": "羌象",
+          "character_id": "kyoushou",
+          "faction": "qin",
+          "type": "SR",
+          "characterId": 89,
+          "value": 5.0,
+          "source_id": "ura:89:10336",
+          "ownership_id": "buff_4520a8ee795749218801eaf0a6220024",
+          "skill_layer": "ura"
+        }
+      ]
     }
   },
   "siege": {

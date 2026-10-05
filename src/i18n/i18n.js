@@ -556,6 +556,15 @@ Object.assign(fr.archive, {
 })
 ja.home.heroDescription = 'キングダム乱（キンラン）の同盟争覇戦に役立つ武将・争覇スキルの検索、編成作成、バフ確認、ステータス計算ができます。'
 
+en.buffs.normalSkill = 'Normal skill'
+en.buffs.uraSkill = 'Ura skill'
+ja.buffs.normalSkill = '表スキル'
+ja.buffs.uraSkill = '裏スキル'
+ar.buffs.normalSkill = 'مهارة أساسية'
+ar.buffs.uraSkill = 'مهارة خلفية'
+fr.buffs.normalSkill = 'Compétence normale'
+fr.buffs.uraSkill = 'Compétence Ura'
+
 export const CATALOGS = { en, ja, ar, fr }
 const resources = { en: { common: en }, ja: { common: ja }, ar: { common: ar }, fr: { common: fr } }
 const supportedLngs = LOCALES.map((locale) => locale.code)

@@ -445,8 +445,8 @@
       "skillId": 134
     },
     "jiou#1": {
-      "status": "ambiguous",
-      "skillId": null
+      "status": "exact",
+      "skillId": 279
     },
     "jiou#2": {
       "status": "exact",

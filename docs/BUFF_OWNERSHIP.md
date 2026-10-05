@@ -13,6 +13,11 @@ an evidenced source relationship; leave an ambiguous join unassigned for review.
 The source-data tests still compare gameplay fields against the character data.
 The ownership tests reject missing, malformed and duplicate IDs.
 
+New sources have no historical aliases. Do not add invented old keys to the frozen
+manifest just to cover them; existing saved ownership must leave new sources
+unowned. October 5 corrections use independent new IDs, including additions for
+generals whose red-crystal or normal-skill source was already listed.
+
 A combined shard/red-crystal source uses the authored base ID for red crystals
 and `<ownership_id>:shard` for its independent shard flag. A source without an
 independent shard control must not acquire such an alias.
