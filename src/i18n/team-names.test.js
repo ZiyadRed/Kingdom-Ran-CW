@@ -27,9 +27,9 @@ describe('team preset names', () => {
     expect(JA_NAMES['Kanmei']).toBe('汗明')
     expect(localizedTeamName('Karin + Kanmei', 'ja')).toContain('汗明')
     expect(localizedTeamName('Karin + Kanmei', 'ja')).not.toContain('干央')
-    // Makou is written 麻礦 in the source, not the 麻鉱 variant.
-    expect(JA_NAMES['Makou']).toBe('麻礦')
-    expect(localizedTeamName('Makou Army', 'ja')).toBe('麻礦軍')
+    // General IDs 533/534 in MsgUnitGeneralName use 麻鉱.
+    expect(JA_NAMES['Makou']).toBe('麻鉱')
+    expect(localizedTeamName('Makou Army', 'ja')).toBe(`${JA_NAMES.Makou}軍`)
   })
 
   it('uses Arabic character names while translating the rest', () => {

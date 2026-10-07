@@ -62,52 +62,52 @@ en.buffs.attackingFormation = 'Attacking Formation'
 en.buffs.defendingFormation = 'Defending Formation'
 
 const ja = {
-  appName: 'RanHQ', localeLabel: '言語', breadcrumbs: 'パンくずリスト', loading: '読み込み中', unknown: '不明', translationPending: '翻訳準備中', originalJapanese: '原文（日本語）', sourceVerified: 'ゲーム原文を確認済み', sourceUnavailable: '原文未確認', close: '閉じる', openOriginal: '原寸画像を新しいタブで開く', viewArt: '原寸画像を見る', share: '共有', image: '画像', making: '作成中…', shared: '共有しました', copied: 'コピーしました', copyFailed: 'コピーに失敗しました', previewReady: 'プレビュー準備完了', imageFailed: '画像の作成に失敗しました', copyImage: '画像をコピー', downloadPng: 'PNGをダウンロード', pasteImageHint: 'コピーしてDiscordに貼り付けるか、PNGをダウンロードしてください。', imagePreview: '画像プレビュー', shareTeam: '編成を共有', skillEffectQualifiers: 'スキル効果の条件', search: '検索', results: '検索結果', generals: '武将', owned: '所持', all: 'すべて', missing: '未所持', savedBrowser: 'このブラウザに保存', saveFailedBrowser: '保存できませんでした — ブラウザーのストレージを確認してください', export: '書き出し', import: '読み込み', clear: 'クリア', own: '所持', markedOwned: '所持済み', markOwned: '所持として記録', setAttacker: '攻撃側に設定', setDefender: '防御側に設定', attack: '攻撃', defend: '防御', remove: '削除', enabled: '有効', disabled: '無効', starSkill: '☆6スキル', toolsSummary: '進行状況を記録し、同盟争覇戦の数値を計算します。', closeTools: 'ツールを閉じる', selectedGenerals: '{{count}}人選択中', ownedCount: '{{owned}}/{{total}} 所持', resultCount: '検索結果（{{count}}）', generalCount: '{{count}}人の武将',
-  nav: { primary: 'メインナビゲーション', home: 'RanHQ ホーム', archive: 'アーカイブ', characters: '武将', sceneCards: 'CW6★追想カード', teams: '編成', partyBuilder: '編成作成', metawatch: '環境編成', battleOrder: '発動順', guide: '攻略', tools: 'ツール', buffTracker: 'バフ管理', statsCalculator: 'ステータス計算', teamCost: '編成コスト', castlePoints: '城獲得ポイント', charactersNote: 'スキル・ステータス・勢力', sceneCardsNote: '所持者と翻訳スキル', partyBuilderNote: '攻撃・防御編成を作成', metawatchNote: '現在のおすすめ編成', battleOrderNote: '発動順と編成バフを確認', buffTrackerNote: '所持状況と合計を記録', statsCalculatorNote: '同盟争覇戦の戦力を計算', teamCostNote: '赤の結晶コストを計画', castlePointsNote: '同盟順位を予測' },
-  home: { heroDescription: '編成、バフ、相性、同盟争覇戦の情報をまとめた攻略サイトです。', openArchive: 'アーカイブを開く', buildTeam: '編成を作る', findInformation: 'ゲーム情報を探す', findDescription: '武将スキルと同盟争覇戦の資料を検索できるアーカイブです。', buildCompare: '編成を作成・比較', buildDescription: '現在の編成を読み込み、スキルを調整して発動順を確認します。', trackCalculate: '記録・計算する', trackDescription: '所持バフを整理し、編成に必要な資源と戦力を計画します。', learnCastleWar: '同盟争覇戦を学ぶ', guideDescription: 'ルール、対象、状態異常、地形、相性を攻略ガイドで確認できます。', openGuide: '攻略ガイドを開く', guideBasics: '同盟争覇戦の基本', guideRoles: '武将の役割', guideStats: '争覇ステータス画面' },
+  appName: 'RanHQ', localeLabel: '言語', breadcrumbs: 'パンくずリスト', loading: '読み込み中', unknown: '不明', translationPending: '翻訳準備中', originalJapanese: '原文（日本語）', sourceVerified: 'ゲーム原文を確認済み', sourceUnavailable: '原文未確認', close: '閉じる', openOriginal: '原寸画像を新しいタブで開く', viewArt: '原寸画像を見る', share: '共有', image: '画像', making: '作成中…', shared: '共有しました', copied: 'コピーしました', copyFailed: 'コピーに失敗しました', previewReady: 'プレビュー準備完了', imageFailed: '画像の作成に失敗しました', copyImage: '画像をコピー', downloadPng: 'PNGをダウンロード', pasteImageHint: 'コピーしてDiscordに貼り付けるか、PNGをダウンロードしてください。', imagePreview: '画像プレビュー', shareTeam: '編成を共有', skillEffectQualifiers: 'スキル効果の条件', search: '検索', results: '検索結果', generals: '武将', owned: '所持', all: 'すべて', missing: '未所持', savedBrowser: 'このブラウザーに保存', saveFailedBrowser: '保存できませんでした — ブラウザーのストレージを確認してください', export: '書き出し', import: '読み込み', clear: 'クリア', own: '所持', markedOwned: '所持済み', markOwned: '所持として記録', setAttacker: '侵攻側に設定', setDefender: '駐屯側に設定', attack: '侵攻', defend: '駐屯', remove: '削除', enabled: '有効', disabled: '無効', starSkill: '☆6スキル', toolsSummary: '進行状況を記録し、同盟争覇戦の数値を計算します。', closeTools: 'ツールを閉じる', selectedGenerals: '{{count}}人選択中', ownedCount: '{{owned}}/{{total}} 所持', resultCount: '検索結果（{{count}}）', generalCount: '{{count}}人の武将',
+  nav: { primary: 'メインナビゲーション', home: 'RanHQ ホーム', archive: 'アーカイブ', characters: '武将', sceneCards: 'CW6★追想カード', teams: '編成', partyBuilder: '編成作成', metawatch: '環境編成', battleOrder: '発動順', guide: '攻略', tools: 'ツール', buffTracker: 'バフ管理', statsCalculator: 'ステータス計算', teamCost: '編成コスト', castlePoints: '城獲得ポイント', charactersNote: 'スキル・ステータス・勢力', sceneCardsNote: '対象武将と争覇スキル', partyBuilderNote: '侵攻・駐屯編成を作成', metawatchNote: '現在のおすすめ編成', battleOrderNote: '発動順と編成バフを確認', buffTrackerNote: '所持状況と合計を記録', statsCalculatorNote: '同盟争覇戦の戦力を計算', teamCostNote: '必要な争覇解放石を計算', castlePointsNote: '同盟順位を予測' },
+  home: { heroDescription: '編成、バフ、相性、同盟争覇戦の情報をまとめた攻略サイトです。', openArchive: 'アーカイブを開く', buildTeam: '編成を作る', findInformation: 'ゲーム情報を探す', findDescription: '武将スキルと同盟争覇戦の資料を検索できるアーカイブです。', buildCompare: '編成を作成・比較', buildDescription: 'おすすめ編成を読み込み、解放済みのスキルに合わせて調整し、発動順を確認できます。', trackCalculate: '記録・計算する', trackDescription: '所持バフを記録し、編成に必要な争覇解放石や争覇戦力を確認できます。', learnCastleWar: '同盟争覇戦を学ぶ', guideDescription: '戦闘ルール、スキルの対象選択、状態異常、地形効果、兵種相性を攻略ガイドで確認できます。', openGuide: '攻略ガイドを開く', guideBasics: '同盟争覇戦の基本', guideRoles: '武将の役割', guideStats: '争覇ステータス画面' },
   archive: {
     hubIntro: "武将データベース、またはCW6★追想カード一覧を選んでください。",
     hubCharacters: "武将名やスキル効果で検索し、勢力で絞り込んで、各武将のスキルを確認できます。",
-    hubCards: "カードの所持武将とスキル効果、元のイラストを確認し、このブラウザーに所持状況を記録できます。",
- sections: 'アーカイブのセクション', title: 'アーカイブ', sceneSubtitle: '☆6追想カードスキルと所持者', ownershipFilter: 'CW6所持フィルター', searchGenerals: '武将を検索', roster: '{{faction}}の武将', skills: 'スキル', skillsAndStats: 'スキル・ステータス・勢力', sceneCards: 'CW6★追想カード', cardArt: '追想カード画像', owners: '所持者' },
-  builder: { title: '編成作成', subtitle: '枠をクリックして武将を追加。武将は編成順に行動します。', formationSide: '編成側', attacking: '攻撃側', defending: '防御側', clickAdd: 'クリックして追加', viewBattleOrder: '発動順を見る', teamBuffs: '編成バフ', calculated: 'この編成から計算', hide: '隠す', review: '確認', knownTeam: '既存の編成から開始', knownTeamDescription: '現在の編成を読み込み、上のエディターで調整します。', sharedPlanInvalid: '共有された編成を読み込めませんでした。新しい編成を作成するか、送信者に新しいリンクを依頼してください。' },
-  sim: { title: '発動順', description: '選択した争覇総大将・争覇軍師スキルは、各陣営の1人目の武将より先に、1ターン目の固定優先順で配置されます。通常の武将行動は編成順で、戦技はスキル番号の大きいものから発動します。', editTeams: '編成を編集', chooseTeams: '侵攻側と駐屯側の両方を先に選択してください。', emptyDescription: '発動順では、作成した侵攻側・駐屯側編成をスキルの発動順に整理して確認できます。', emptyReason: '侵攻側または駐屯側の編成が未完成のため、まだ表示できる発動順がありません。', goBuilder: '編成作成へ', strategySkills: '戦闘開始時の軍略 — 参照', activation: '表示対象の発動順', openingRule: '1ターン目の役割優先順は、編成位置にかかわらず、争覇総大将、争覇軍師、各陣営の1人目の武将の順で固定です。', roleConditional: 'これは発動優先順です。役割スキルは、解放済みの武将が該当役割に設定され、必要な士気が足りる場合にのみ発動します。', timelineLimit: '軍略効果は下に参照表示しています。大軍効果と兵器の行動は、この発動順では追跡していません。', specialRoleAction: '特別な役割スキル — 条件を満たす場合', attackingSide: '侵攻側', defendingSide: '駐屯側', turn: '{{turn}}ターン目' },
+    hubCards: "カードの対象武将やスキル効果、イラストを確認し、このブラウザーに所持状況を記録できます。",
+ sections: 'アーカイブのセクション', title: 'アーカイブ', sceneSubtitle: '追想カードの☆6争覇スキルと対象武将', ownershipFilter: 'CW6追想カードの所持状況で絞り込み', searchGenerals: '武将を検索', roster: '{{faction}}の武将', skills: 'スキル', skillsAndStats: 'スキル・ステータス・勢力', sceneCards: 'CW6★追想カード', cardArt: '追想カード画像', owners: '対象武将' },
+  builder: { title: '編成作成', subtitle: '枠を選択して武将を追加します。武将は編成順に行動します。', formationSide: '編成する側', attacking: '侵攻側', defending: '駐屯側', clickAdd: '武将を追加', viewBattleOrder: '発動順を見る', teamBuffs: '編成バフ', calculated: 'この編成から計算', hide: '閉じる', review: '確認', knownTeam: 'おすすめ編成から作成', knownTeamDescription: 'おすすめ編成を読み込み、上の編集欄で調整できます。', sharedPlanInvalid: '共有された編成を読み込めませんでした。新しい編成を作成するか、送信者に新しいリンクを依頼してください。' },
+  sim: { title: '発動順', description: '選択した争覇総大将スキル・争覇軍師スキルは、1ターン目に各陣営の1人目の武将より先に表示します。武将は編成順に行動し、戦技はスキル番号の大きいものから発動します。', editTeams: '編成を編集', chooseTeams: '先に侵攻側と駐屯側の両方の編成を作成してください。', emptyDescription: '発動順では、作成した侵攻側・駐屯側編成をスキルの発動順に整理して確認できます。', emptyReason: '侵攻側または駐屯側の編成が未完成のため、まだ表示できる発動順がありません。', goBuilder: '編成作成へ', strategySkills: '戦闘開始時の軍略（参考）', activation: 'スキル発動順', openingRule: '1ターン目は編成位置にかかわらず、各陣営で争覇総大将、争覇軍師、1人目の武将の順に行動します。', roleConditional: 'この表示は発動の優先順です。総大将・軍師のスキルは、スキルを解放済みの武将を対応する役割に設定し、必要な士気を満たす場合にのみ発動します。', timelineLimit: '軍略の効果は下に参考として表示します。大軍効果と争覇兵器の行動は、この発動順に含まれません。', specialRoleAction: '総大将・軍師スキル（発動条件を満たす場合）', attackingSide: '侵攻側', defendingSide: '駐屯側', turn: '{{turn}}ターン目' },
   guide: {
     hubIntro: "まず基本を読むか、目次から確認したい同盟争覇戦の項目を選んでください。",
     hubBeginner: "戦闘の流れとステータス画面の見方を確認し、武将の育成計画に役立てましょう。",
     hubAdvanced: "争覇総大将・争覇軍師スキル、耐性、状態異常、地形、効果の相互作用、対象選択を確認できます。",
- title: '同盟争覇戦攻略', intro: '同盟争覇戦のルール、対象、状態異常、地形、相性をまとめています。', section: '攻略セクション', contents: '攻略目次', beginner: '初級', advanced: '上級', basics: '基本', roles: '武将の役割', stats: '争覇ステータス', glossary: '用語集', sections: { basics: '基本', 'stats-screen': '争覇ステータス画面', roles: '役割', bandits: '盗賊討伐', matchups: '兵種相性', types: 'スキルタイプ', crystals: '解放アイテムの種類', stats: '争覇ステータスの上げ方', leaders: '争覇総大将・争覇軍師', debuffs: 'デバフ耐性', effects: '状態異常', terrain: '地形効果', interactions: '効果の相互作用', targeting: '対象選択ルール' } },
-  noChange: '変化なし', vsCurrent: '現在との差', minimumAttack: '最小攻撃', maximumAttack: '最大攻撃', defense: '防御', added: '追加済み', full: '満員', costLabel: 'コスト', redCrystalAlt: '赤の結晶', efficiencyTooltip: '効率：{{value}}赤の結晶／バフ1%。低いほど有利（コスト{{cost}}／バフ{{buff}}%）', redCrystalCostTooltip: '赤の結晶によるスキル解放コスト：{{cost}}',
-  stats: { title: 'ステータス計算', description: '争覇画面の数値と有効なバフを入力します。割合バフや追想カードの基礎バフを加えて戦力を確認できます。', saved: '自動保存', saveFailed: '保存できませんでした — ブラウザーのストレージを確認してください', reset: '計算をリセット', confirmClear: 'この端末に保存した計算編成と武将数値をすべて削除しますか？', addTeam: '編成を追加', maxTeams: '編成は最大5つです', addCharacter: '武将を追加', searchHint: '入力して空いている枠に武将を追加します。', fullHint: '4枠すべて使用中です。カードの武将変更から入れ替えられます。', noCharacterMatches: '「{{query}}」に一致する武将はいません。', team: '編成 {{number}}', removeTeam: '編成を削除', powerAfterBuffs: 'バフ適用後の争覇戦力', screenValues: '争覇画面の数値', fromScreen: '争覇画面から', sharedAcrossTeams: 'この武将の値として全編成で共有', currentTeamOnly: 'この編成のみ', activeBuffs: '適用中のバフ', buffsToAdd: '追加するバフ', sceneCardBuffs: '追想カード基礎バフ', changeCharacter: '武将を変更', editHint: '上の武将を選択して数値を編集します。', chooseCharacter: '武将を選択', hp: '体力', attack: '攻撃', defense: '防御' },
-  noBoard: 'ボードなし', buffType: 'バフ種別', unitType: '兵種', state: '勢力', meta: { title: '争覇メタウォッチ', subtitle: 'よく見られる編成 · 最終更新：2026年9月', by: 'ティアリスト作成：', apex: '頂点 — ゲーム最強の編成', kings: '★ 圧倒的メタキング ★', source: '出典：対戦記録、X、YouTube、コミュニティ情報 · 基準：編成相性・固有スキル・兵種ステータス・育成コスト', tier: 'ティア {{tier}}' }, teamCost: { title: '編成コスト', description: '4人までの武将を育成するために必要な赤の結晶を計算します。', needed: '必要な赤の結晶', chooseSlot: '枠を選択して開始', clearAll: 'すべてクリア', team: '編成', selected: '{{count}} / 4 選択中', skills: 'スキルコスト', byRarity: 'レアリティ別', rarity: 'レアリティ', skill: 'スキル{{number}}', total: '合計', selectGeneral: '武将を選択', slot: '枠{{number}}', search: '検索…', clickAdd: 'クリックして武将を追加', maxed: '最大', change: '変更', buffs: { title: 'バフ管理', description: '所持している常時バフを記録し、兵種・勢力・特殊部隊・地形・追想カードの合計を確認します。', find: 'カテゴリまたは武将を検索', search: 'バフを検索…', redCrystal: '赤の結晶強化', shard: '欠片強化（+5%）', unitTypes: '兵種', states: '勢力', specialUnits: '特殊部隊', terrain: '地形', sceneCards: '追想カード', sceneDescription: '追想カードのバフはすべての武将に適用されます。', ownedTotals: '所持バフ合計', sourcesOwned: '{{owned}}/{{total}}件を所持として記録', showTotals: 'カテゴリ別の合計を表示', byCategory: 'カテゴリ別・クリックで展開', noCards: 'このフィルターにカードはありません。', tapCategory: '上のカテゴリをタップすると争覇バフを確認できます', buffsOwned: '追想カードバフ {{owned}}/{{total}}件を所持', ownershipFilter: '追想カードバフ所持フィルター' }, castlePoints: { tool: '同盟争覇戦ツール', title: '城獲得ポイント', mode: '同盟争覇戦モード', pointSummary: 'ポイント値と現在の概要', large: '大城', medium: '中城', small: '小城', largeShort: '大', mediumShort: '中', smallShort: '小', castle: '城', alliance: '同盟', today: '本日', currentTotal: '現在の累計', projected: '予測累計', board: '同盟ボード', reset: 'リセット', addAlliance: '同盟を追加', add: '追加', ranking: '予測順位', pointsToday: '本日 {{count}}ポイント', mine: '自分', remove: '削除', allianceName: '同盟名', currentPoints: '現在の累計城獲得ポイント', bottomTwo: '下位2同盟', tieNote: '予測累計城獲得ポイントが同じ同盟は同率です。表示順では順位を決めません。', projectedFirst: '予測1位', projectedTiedFirst: '予測同率1位', leading: 'このボードでは自同盟が首位です。', tiedLeading: 'このボードでは自同盟が同率首位です。', behindFirst: '1位まで {{count}}ポイント', roughly: 'およそ{{count}}。', allianceCount: '{{count}}同盟', allianceCount_one: '{{count}}同盟', castleCount: '{{count}}城', castleCount_one: '{{count}}城', largeCastleCount: '{{count}}大城', largeCastleCount_one: '{{count}}大城', mediumCastleCount: '{{count}}中城', mediumCastleCount_one: '{{count}}中城', smallCastleCount: '{{count}}小城', smallCastleCount_one: '{{count}}小城', zeroPoints: '0ポイント', versionOne: 'バージョン1.0', versionTwo: 'バージョン2.0' },
+ title: '同盟争覇戦攻略', intro: '同盟争覇戦の戦闘ルール、スキルの対象選択、状態異常、地形効果、兵種相性をまとめています。', section: '攻略セクション', contents: '攻略目次', beginner: '初級', advanced: '上級', basics: '基本', roles: '武将の役割', stats: '争覇ステータス', glossary: '用語集', sections: { basics: '基本', 'stats-screen': '争覇ステータス画面', roles: '役割', bandits: '野盗討伐', matchups: '兵種相性', types: 'スキルタイプ', crystals: '解放アイテムの種類', stats: '争覇ステータスの上げ方', leaders: '争覇総大将・争覇軍師', debuffs: 'デバフ耐性', effects: '状態異常', terrain: '地形効果', interactions: '効果の相互作用', targeting: '対象選択ルール' } },
+  noChange: '変化なし', vsCurrent: '現在との差', minimumAttack: '最小攻撃力', maximumAttack: '最大攻撃力', defense: '防御力', added: '追加済み', full: '空き枠なし', costLabel: 'コスト', redCrystalAlt: '争覇解放石', efficiencyTooltip: 'バフ1%あたり争覇解放石{{value}}個。少ないほど効率的です（争覇解放石{{cost}}個／バフ{{buff}}%）', redCrystalCostTooltip: '争覇スキルの解放に必要な争覇解放石：{{cost}}個',
+  stats: { title: 'ステータス計算', description: '争覇ステータス画面の数値と、現在反映されている割合バフを入力してください。追加する割合バフや追想カードの基礎ステータス上昇分を入力すると、追加後の争覇戦力を確認できます。', saved: '自動保存', saveFailed: '保存できませんでした — ブラウザーのストレージを確認してください', reset: '計算をリセット', confirmClear: 'このブラウザーに保存した計算用の編成と武将の数値をすべて削除しますか？', addTeam: '編成を追加', maxTeams: '編成は最大5つです', addCharacter: '武将を追加', searchHint: '武将名を検索し、検索結果から選択して空いている枠に追加してください。', fullHint: '4枠すべて使用中です。入れ替える武将を選択し、「武将を変更」から変更できます。', noCharacterMatches: '「{{query}}」に一致する武将はいません。', team: '編成 {{number}}', removeTeam: '編成を削除', powerAfterBuffs: 'バフ適用後の争覇戦力', screenValues: '争覇ステータス画面の数値', fromScreen: 'ゲーム内の表示値を入力', sharedAcrossTeams: 'この武将の値は全編成で共通', currentTeamOnly: 'この編成のみ', activeBuffs: '適用中のバフ', buffsToAdd: '追加するバフ', sceneCardBuffs: '追想カードの基礎ステータス上昇分', changeCharacter: '武将を変更', editHint: '上の武将を選択して数値を編集します。', chooseCharacter: '武将を選択', hp: '体力', attack: '攻撃力', defense: '防御力' },
+  noBoard: 'ボードなし', buffType: 'バフ種別', unitType: '兵種', state: '勢力', meta: { title: '争覇メタウォッチ', subtitle: 'よく見られる編成 · 最終更新：2026年9月', by: 'ティアリスト作成：', apex: '最高評価の編成', kings: '★ 環境トップの編成 ★', source: '出典：対戦記録、X、YouTube、コミュニティ情報 · 基準：編成相性・固有スキル・兵種ステータス・育成コスト', tier: 'ティア {{tier}}' }, teamCost: { title: '編成コスト', description: '最大4人の武将について、争覇スキルの解放に必要な争覇解放石を計算します。', needed: '必要な争覇解放石', chooseSlot: '枠を選択して開始', clearAll: 'すべてクリア', team: '編成', selected: '{{count}} / 4 選択中', skills: 'スキルコスト', byRarity: 'レアリティ別', rarity: 'レアリティ', skill: 'スキル{{number}}', total: '合計', selectGeneral: '武将を選択', slot: '枠{{number}}', search: '検索…', clickAdd: 'クリックして武将を追加', maxed: '解放済み', change: '変更', buffs: { title: 'バフ管理', description: '所持している常時バフを記録し、兵種・勢力・特殊部隊・地形・追想カードの合計を確認します。', find: 'カテゴリまたは武将を検索', search: 'バフを検索…', redCrystal: '争覇解放石で解放', shard: '武運によるスキル強化（+5%）', unitTypes: '兵種', states: '勢力', specialUnits: '特殊部隊', terrain: '地形', sceneCards: '追想カード', sceneDescription: '追想カードのバフはすべての武将に適用されます。', ownedTotals: '所持バフ合計', sourcesOwned: '{{owned}}/{{total}}件を所持として記録', showTotals: 'カテゴリ別の合計を表示', byCategory: 'カテゴリ別（選択して展開）', noCards: '条件に一致する追想カードはありません。', tapCategory: '上のカテゴリを選択すると争覇バフを確認できます', buffsOwned: '追想カードバフ {{owned}}/{{total}}件を所持', ownershipFilter: '追想カードバフ所持フィルター' }, castlePoints: { tool: '同盟争覇戦ツール', title: '城獲得ポイント', mode: '同盟争覇戦モード', pointSummary: '城ごとの獲得ポイントと予測累計', large: '大城', medium: '中城', small: '小城', largeShort: '大', mediumShort: '中', smallShort: '小', castle: '城', alliance: '同盟', today: '本日', currentTotal: '現在の累計', projected: '予測累計', board: '同盟ボード', reset: 'リセット', addAlliance: '同盟を追加', add: '追加', ranking: '予測順位', pointsToday: '本日 {{count}}ポイント', mine: '自同盟', remove: '削除', allianceName: '同盟名', currentPoints: '現在の累計城獲得ポイント', bottomTwo: '下位2同盟', tieNote: '予測累計城獲得ポイントが同じ同盟は同率です。表示順では順位を決めません。', projectedFirst: '予測1位', projectedTiedFirst: '予測同率1位', leading: 'このボードでは自同盟が首位です。', tiedLeading: 'このボードでは自同盟が同率首位です。', behindFirst: '1位との差：{{count}}ポイント', roughly: 'およそ{{count}}。', allianceCount: '{{count}}同盟', allianceCount_one: '{{count}}同盟', castleCount: '{{count}}城', castleCount_one: '{{count}}城', largeCastleCount: '大城{{count}}城分', largeCastleCount_one: '大城{{count}}城分', mediumCastleCount: '中城{{count}}城分', mediumCastleCount_one: '中城{{count}}城分', smallCastleCount: '小城{{count}}城分', smallCastleCount_one: '小城{{count}}城分', zeroPoints: '0ポイント', versionOne: 'バージョン1.0', versionTwo: 'バージョン2.0' },
   },
   footer: { madeBy: '制作者', specialThanks: 'スペシャルサンクス', joinDiscord: 'Discordに参加', unofficial: '非公式ファンサイト・営利目的ではありません。' },
 }
 ja.buffs = ja.teamCost.buffs
 ja.castlePoints = ja.teamCost.castlePoints
 ja.stats.hp = '体力'
-ja.stats.attack = '攻撃'
-ja.stats.defense = '防御'
+ja.stats.attack = '攻撃力'
+ja.stats.defense = '防御力'
 ja.stats.noCharacterMatches = '「{{query}}」に一致する武将はいません。'
 ja.progressCopied = '進行状況のバックアップをコピーしました。'
 ja.noRelevantBuffs = '該当するバフはありません'
-ja.buffs.guardNote = '重複しません — 最大値のみ有効'
-ja.buffs.totalStackable = '{{count}}人の武将による累積可能なバフ合計'
+ja.buffs.guardNote = '重複不可（最も高い効果のみ適用）'
+ja.buffs.totalStackable = '{{count}}人の武将による重複可能なバフの合計'
 ja.buffs.noBuffFor = '{{key}}の{{stat}}バフはありません'
 ja.buffs.woggTitle = '大将軍への道'
 ja.buffs.woggDescription = '大将軍への道の2ページ目で解放されるバフです。'
-ja.buffs.siegeWeapons = '兵器'
+ja.buffs.siegeWeapons = '争覇兵器'
 ja.copyShareText = 'RanHQ共有テキストをコピー：'
 ja.copyProgress = 'RanHQ進行状況のバックアップをコピー：'
 ja.pasteProgress = 'RanHQ進行状況のバックアップを貼り付け：'
 ja.progressImported = '進行状況を読み込みました。'
 ja.progressImportFailed = '進行状況のバックアップを読み込めませんでした。'
-ja.clearProgressConfirm = 'このブラウザに保存されたRanHQ進行状況をすべて削除しますか？'
+ja.clearProgressConfirm = 'このブラウザーに保存されたRanHQの進行状況をすべて削除しますか？'
 ja.buffs.teamSummary = '編成バフ概要'
 ja.buffs.includeCombat = '戦技も含める'
 ja.buffs.includeCombatTitle = '戦技のバフ・デバフも集計（軍略と選択した争覇総大将・争覇軍師スキルは常に含まれます）'
-ja.buffs.attackingFormation = '攻撃編成'
-ja.buffs.defendingFormation = '防御編成'
+ja.buffs.attackingFormation = '侵攻編成'
+ja.buffs.defendingFormation = '駐屯編成'
 
 const ar = {
   ...en,
@@ -168,13 +168,13 @@ ar.buffs.includeCombatTitle = 'احتسب أيضًا تأثيرات التعزي
 ar.buffs.attackingFormation = 'تشكيلة الهجوم'
 ar.buffs.defendingFormation = 'تشكيلة الدفاع'
 
-ja.shareOutput = { sceneCardSkill: 'CW6追想カードスキル', sideSkills: '{{side}}スキル', duration: '効果時間', enemyDebuffOn: '敵へのデバフ', skillCard: 'RanHQ スキルカード', generatedFor: 'Discord共有用に作成', partyBuilder: 'RanHQ 編成作成', builderNote: '現在の編成のスキル設定を反映', teamSheet: 'Discord共有用の編成スキル表', teamSkills: 'RanHQ 編成スキル', noEffects: '翻訳済みの効果はまだありません。', noSkillsSelected: 'スキル未選択', effect: '効果', skill: 'スキル', star6: '☆6', unnamedSkill: '名称未設定', noGenerals: '武将未選択', teamBuffSummary: 'RanHQ 編成バフ概要', withCombat: '軍略と戦技の効果を含む。', strategyOnly: '軍略のみ。', truncated: '…Discord向けに省略しました。', fullDetails: '詳細' }
+ja.shareOutput = { sceneCardSkill: 'CW6追想カードスキル', sideSkills: '{{side}}スキル', duration: '効果時間', enemyDebuffOn: '敵へのデバフ', skillCard: 'RanHQ スキルカード', generatedFor: 'Discord共有用に作成', partyBuilder: 'RanHQ 編成作成', builderNote: '現在の編成のスキル設定を反映', teamSheet: 'Discord共有用の編成スキル表', teamSkills: 'RanHQ 編成スキル', noEffects: '表示できるスキル効果がありません。', noSkillsSelected: 'スキル未選択', effect: '効果', skill: 'スキル', star6: '☆6', unnamedSkill: '名称未設定', noGenerals: '武将未選択', teamBuffSummary: 'RanHQ 編成バフ概要', withCombat: '軍略と戦技の効果を含む。', strategyOnly: '軍略のみ。', truncated: '…Discord向けに省略しました。', fullDetails: '詳細' }
 ar.shareOutput = { sceneCardSkill: 'مهارة بطاقة CW6', sideSkills: 'مهارات {{side}}', duration: 'المدة', enemyDebuffOn: 'إضعاف العدو على', skillCard: 'بطاقة مهارات RanHQ', generatedFor: 'أُنشئت للمشاركة على Discord', partyBuilder: 'منشئ فرق RanHQ', builderNote: 'تعكس إعدادات المهارات في الفريق الحالي', teamSheet: 'ورقة مهارات الفريق للمشاركة على Discord', teamSkills: 'مهارات فريق RanHQ', noEffects: 'لا توجد تأثيرات مترجمة بعد.', noSkillsSelected: 'لم تُحدد أي مهارات', effect: 'تأثير', skill: 'مهارة', star6: '6★', unnamedSkill: 'مهارة بلا اسم', noGenerals: 'لم يُحدد أي جنرال', teamBuffSummary: 'ملخص تعزيزات فريق RanHQ', withCombat: 'تشمل تأثيرات مهارات الاستراتيجية والمهارات القتالية.', strategyOnly: 'مهارات الاستراتيجية فقط.', truncated: '…تم اختصار المحتوى ليناسب Discord.', fullDetails: 'التفاصيل الكاملة' }
 
 // Battle-simulator result panel. It renders only after a simulation runs, so
 // it stayed English long after the rest of /sim was localized.
 en.battle = { attackWins: 'Attacking Team Wins', defendWins: 'Defending Team Wins', byPoints: '(Points)', turn: 'Turn {{count}}', attackingSide: 'Attacking', defendingSide: 'Defending', totalDamage: 'Total dmg dealt', killLog: 'Kill Log', resimulate: 'Re-Simulate', varyNote: 'Results may vary each run', ko: 'KO' }
-ja.battle = { attackWins: '攻撃側の勝利', defendWins: '防衛側の勝利', byPoints: '（ポイント）', turn: '第{{count}}ターン', attackingSide: '攻撃側', defendingSide: '防衛側', totalDamage: '総与ダメージ', killLog: '撃破ログ', resimulate: '再シミュレート', varyNote: '実行ごとに結果は変動します', ko: '撃破' }
+ja.battle = { attackWins: '侵攻側の勝利', defendWins: '駐屯側の勝利', byPoints: '（ポイント）', turn: '{{count}}ターン目', attackingSide: '侵攻側', defendingSide: '駐屯側', totalDamage: '総与ダメージ', killLog: '撃破ログ', resimulate: '再計算', varyNote: '実行ごとに結果は変動します', ko: '撃破' }
 ar.battle = { attackWins: 'فوز فريق الهجوم', defendWins: 'فوز فريق الدفاع', byPoints: '(بالنقاط)', turn: 'الجولة {{count}}', attackingSide: 'الهجوم', defendingSide: 'الدفاع', totalDamage: 'إجمالي الضرر', killLog: 'سجل الإسقاطات', resimulate: 'إعادة المحاكاة', varyNote: 'قد تختلف النتائج في كل تشغيل', ko: 'أُسقط' }
 // The attack/defence separator. Japanese uses VS as-is; Arabic does not.
 en.versus = 'VS'
@@ -357,8 +357,8 @@ fr.castlePoints.behindFirst_one = '{{count}} pt de retard sur la 1re place'
 en.buffs.terrainDamageDealt = 'Increases resistance to damage dealt reduction from {{terrain}} terrain.'
 en.buffs.terrainDamageTaken = 'Increases resistance to damage taken increase from {{terrain}} terrain.'
 en.buffs.terrainStartingHp = 'Reduces the unit damage effect from {{terrain}} terrain.'
-ja.buffs.terrainDamageDealt = '「{{terrain}}」地形による与ダメージ軽減への耐性を上げます。'
-ja.buffs.terrainDamageTaken = '「{{terrain}}」地形による被ダメージ上昇への耐性を上げます。'
+ja.buffs.terrainDamageDealt = '「{{terrain}}」で与ダメージが減少する効果への耐性を上げます。'
+ja.buffs.terrainDamageTaken = '「{{terrain}}」で被ダメージが増加する効果への耐性を上げます。'
 ja.buffs.terrainStartingHp = '「{{terrain}}」地形による初期兵力減少を軽減します。'
 ar.buffs.terrainDamageDealt = 'تزيد المقاومة لتقليل الضرر المُلحق الناتج عن تضاريس {{terrain}}.'
 ar.buffs.terrainDamageTaken = 'تزيد المقاومة لارتفاع الضرر المتلقى الناتج عن تضاريس {{terrain}}.'
@@ -391,7 +391,7 @@ Object.assign(ja, {
   routeErrorHome: 'ホームへ戻る',
   progressImportFailed: '対応していないバックアップです。4種類の進行状況を含むRanHQバージョン1の書き出しデータを使用してください。保存済みの進行状況は変更されていません。',
   progressStorageFailed: '進行状況を保存できませんでした。現在の進行状況は変更されていません。ブラウザーの保存設定を確認して、もう一度お試しください。',
-  progressImportSummary: 'CW6カード{{cw6}}枚、バフカード{{scene}}枚、バフ獲得元{{buffs}}件で進行状況を置き換えました。以前の進行状況に戻せます。',
+  progressImportSummary: 'バックアップの内容で所持状況を置き換えました（CW6追想カード{{cw6}}枚、バフ付き追想カード{{scene}}枚、バフ獲得元{{buffs}}件）。以前の進行状況に戻すこともできます。',
   restoreProgress: '以前の進行状況に戻す',
   restoreProgressConfirm: '前回の読み込み前に保存した進行状況に戻しますか？現在の進行状況は次の復元用データとして保存されます。',
 })
@@ -430,7 +430,7 @@ Object.assign(en.teamCost, {
   changeGeneral: 'Change {{name}}',
 })
 Object.assign(ja.teamCost, {
-  skillCompleted: '{{name}}：スキル{{number}}解放済み',
+  skillCompleted: '{{name}}：スキル{{number}}の解放状況',
   removeGeneral: '{{name}}を外す',
   changeGeneral: '{{name}}を変更',
 })
@@ -457,13 +457,13 @@ en.buffs.conditionalOmitted = 'conditional effects omitted from totals'
 en.buffs.unsupportedOmitted = 'unsupported effects omitted from totals'
 en.buffs.conditionalOmittedCount = 'Conditional effects omitted from totals because their value depends on battle state: {{count}}'
 en.buffs.unsupportedOmittedCount = 'Effects omitted because RanHQ cannot safely interpret their condition: {{count}}'
-ja.buffs.summaryConditions = '選択した編成とスキルから計算。生存条件は対象武将が生存し続ける前提です。戦闘中の状態に依存する効果は別に表示します。'
+ja.buffs.summaryConditions = '選択した編成とスキルから計算します。生存が条件となる効果は、必要な武将が生存し続ける前提です。戦闘中の状況によって変わる効果は別に表示します。'
 ja.buffs.potential = '条件付き'
 ja.buffs.unsupported = '未対応'
 ja.buffs.conditionalOmitted = '戦闘条件により合計から除外した効果'
 ja.buffs.unsupportedOmitted = '未対応のため合計から除外した効果'
 ja.buffs.conditionalOmittedCount = '戦闘中の状態で値が変わるため合計から除外：{{count}}件'
-ja.buffs.unsupportedOmittedCount = '条件を安全に解釈できないため合計から除外：{{count}}件'
+ja.buffs.unsupportedOmittedCount = '発動条件を判定できないため合計から除外：{{count}}件'
 ar.buffs.summaryConditions = 'تُحسب القيم من التشكيلتين والمهارات المختارة. تفترض تأثيرات البقاء استمرار حياة الجنرالات المطلوبة؛ وتُعرض شروط المعركة منفصلة.'
 ar.buffs.potential = 'محتمل'
 ar.buffs.unsupported = 'غير مدعوم'
@@ -489,11 +489,11 @@ Object.assign(en.buffs,{
   conditionalOmitted:'conditional effects listed separately',unsupportedOmitted:'effects not calculated',
 })
 Object.assign(ja.buffs,{
-  summaryConditions:'選択した編成とスキルから計算。生存条件は対象武将が生存し続ける前提です。戦闘中の状態に依存する効果は別に表示します。',summaryCalculatedOnly:'選択中の編成とスキルから計算できる強化効果のみを表示します。',
+  summaryConditions:'選択した編成とスキルから計算します。生存が条件となる効果は、必要な武将が生存し続ける前提です。戦闘中の状況によって変わる効果は別に表示します。',summaryCalculatedOnly:'選択中の編成とスキルから計算できる強化効果のみを表示します。',
   calculatedFromFormation:'この編成から計算',conditionalEffects:'戦闘中の条件付き効果',notCalculated:'計算対象外',
-  selectOpponent:'効果を評価するには相手の編成を選択してください。',opponentNotSelected:'相手編成が未選択です。相手を選ぶと、一部の対戦条件付き効果が計算に反映されます。',formationMatched:'編成条件を満たしています。',
-  survivalCaveat:'必要な武将が生存し続ける前提です。',upperBoundMeaning:'上限値であり固定の加算値ではありません。',
-  chanceMeaning:'発動確率・付与率であり、加算できる能力値ではありません。',perCounterMeaning:'戦闘中の回数で変化するため、実際の値は未確定です。',
+  selectOpponent:'効果を計算するには相手の編成を選択してください。',opponentNotSelected:'相手の編成が未選択です。相手の編成を選ぶと、相手によって変わる一部の効果が計算に反映されます。',formationMatched:'編成条件を満たしています。',
+  survivalCaveat:'必要な武将が生存し続ける前提です。',upperBoundMeaning:'効果の上限値です。常にこの値が加算されるわけではありません。',
+  chanceMeaning:'発動確率や付与率を示します。ステータスに加算される値ではありません。',perCounterMeaning:'戦闘中の行動などの回数で変わるため、実際の効果量は確定していません。',
   upToValue:'最大{{value}}%',perCounterValue:'1回につき+{{value}}%（上限{{cap}}%）',chanceValue:'発動率{{value}}%',
   conditionalOmitted:'条件付き効果は別に記載',unsupportedOmitted:'計算対象外の効果',
 })
@@ -516,7 +516,7 @@ Object.assign(fr.buffs,{
   conditionalOmitted:'effets conditionnels détaillés séparément',unsupportedOmitted:'effets non calculés',
 })
 Object.assign(en.buffs,{dynamicMeaning:'Scales with battle state; the shown maximum is not a fixed bonus.',dynamicValue:'Up to {{value}}%, scales with battle state'})
-Object.assign(ja.buffs,{dynamicMeaning:'戦闘状態に応じて変動し、表示上限は固定値ではありません。',dynamicValue:'最大{{value}}%（戦闘状態で変動）'})
+Object.assign(ja.buffs,{dynamicMeaning:'戦闘中の状況によって変わります。表示された最大値が常に適用されるわけではありません。',dynamicValue:'最大{{value}}%（戦闘中の状況で変動）'})
 Object.assign(ar.buffs,{dynamicMeaning:'يتغير مع حالة المعركة؛ الحد الأقصى المعروض ليس زيادة ثابتة.',dynamicValue:'حتى {{value}}% حسب حالة المعركة'})
 Object.assign(fr.buffs,{dynamicMeaning:'Varie selon l’état du combat ; le maximum affiché n’est pas un bonus fixe.',dynamicValue:'Jusqu’à {{value}} %, selon l’état du combat'})
 for(const locale of [en,ja,ar,fr]) locale.buffs.calculatedFromFormation=locale.builder.calculated

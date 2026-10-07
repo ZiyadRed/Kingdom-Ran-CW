@@ -16,6 +16,17 @@
  * and Suugen/Sougen both سوغين. Search matches every script, so both cards
  * surface for either query.
  */
+import japaneseReadings from '../../data/generated/ja/character_readings.json'
+
+// Previous Japanese spellings remain searchable after correcting the display
+// to the stable-ID-linked game name. Unknown readings are never filled in.
+const LEGACY_JAPANESE_NAMES = Object.freeze({
+  futei: ['傳抵'], makou: ['麻礦'], kuzen: ['蒙恬のじぃ'], shousa: ['松佐'],
+})
+const normalizeJapaneseSearchText = value => String(value ?? '').normalize('NFKC')
+  .replace(/[\u30a1-\u30f6]/g, character => String.fromCharCode(character.charCodeAt(0) - 0x60))
+  .replace(/\s+/g, '')
+
 export const LEGACY_CHARACTER_NAME_ALIASES = Object.freeze({
   Bikou: 'Bitou',
   Gii: 'Gikou',
@@ -326,6 +337,8 @@ export function matchesCharacterName(character, query, { exact = false } = {}) {
   const candidates = [
     character?.name_en,
     character?.name_jp,
+    character?.sourceReading || japaneseReadings.characters[character?.id],
+    ...(LEGACY_JAPANESE_NAMES[character?.id] || []),
     AR_CHARACTER_NAMES[canonicalCharacterName(character?.name_en)],
     ...legacyCharacterNames(character?.name_en),
   ].filter(Boolean)
@@ -333,6 +346,10 @@ export function matchesCharacterName(character, query, { exact = false } = {}) {
   return candidates.some((candidate) => {
     const text = normalizeArabicSearchText(candidate)
     if (exact ? text.toLowerCase() === lowerQuery : text.toLowerCase().includes(lowerQuery)) return true
+    if (/[\p{Script=Hiragana}\p{Script=Katakana}]/u.test(rawQuery)) {
+      const kana = normalizeJapaneseSearchText(text), queryKana = normalizeJapaneseSearchText(rawQuery)
+      if (exact ? kana === queryKana : kana.includes(queryKana)) return true
+    }
     const normalized = normalizeCharacterSearchText(text)
     return Boolean(normalizedQuery && (exact ? normalized === normalizedQuery : normalized.includes(normalizedQuery)))
   })

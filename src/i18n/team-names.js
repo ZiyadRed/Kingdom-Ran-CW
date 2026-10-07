@@ -52,7 +52,7 @@ const TEAM_NAMES = {
   'Renpa v2':       { ja: '廉頗 v2',       ar: 'رينبا (نسخة 2)', fr: 'Renpa v2' },
   'Moubo':          { ja: '蒙武編成',      ar: 'تشكيلة موبو', fr: 'Compo Moubo' },
   'Qin Shields':    { ja: '秦国盾兵',      ar: 'دروع تشين', fr: 'Boucliers Qin' },
-  'Makou Army':     { ja: '麻礦軍',        ar: 'جيش ماكو', fr: 'Armée de Makou' },
+  'Makou Army':     { ja: '麻鉱軍',        ar: 'جيش ماكو', fr: 'Armée de Makou' },
 }
 
 /**

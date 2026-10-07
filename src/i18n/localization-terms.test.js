@@ -6,6 +6,7 @@ const terms = new Map(glossary.terms.map(term => [term.key, term]))
 describe('official Japanese terminology glossary', () => {
   it('keeps similarly colored crystals and role stones as distinct items', () => {
     expect(terms.get('red_crystal').japanese).toBe('赤の結晶')
+    expect(terms.get('conquest_unlock_stone').japanese).toBe('争覇解放石')
     expect(terms.get('blue_crystal').japanese).toBe('青の結晶')
     expect(terms.get('hi_shin_unit_unlock_stone').japanese).toBe('専用争覇解放石(飛信隊)')
     expect(terms.get('leader_unlock_stone').japanese).toBe('争覇総大将解放石')
@@ -16,7 +17,7 @@ describe('official Japanese terminology glossary', () => {
     for (const key of [
       'skill', 'leader_skill', 'strategist_skill', 'leader_unlock_stone',
       'strategist_unlock_stone', 'hi_shin_unit_unlock_stone', 'red_crystal',
-      'blue_crystal', 'scene_card', 'castle_points', 'cumulative_castle_points',
+      'blue_crystal', 'conquest_unlock_stone', 'bandit_hunt', 'scene_card', 'castle_points', 'cumulative_castle_points',
       'attacking_side', 'defending_side', 'strategist_defeat_penalty',
     ]) expect(terms.get(key)?.evidence, key).toMatch(/^https:\/\/www\.kingdomran\.jp\//)
   })

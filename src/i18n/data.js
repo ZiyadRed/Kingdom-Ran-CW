@@ -110,6 +110,26 @@ function japaneseSkillSourceById(skillId, textId) {
   return null
 }
 
+// Presentation corrections for two legacy decompositions, keyed by verified
+// mstUnionConquestSkills.id. The original source descriptions are untouched.
+// Exact row guards prevent applying the correction to another effect/skill.
+function japaneseEffectRow(skillId, row) {
+  if (skillId === 147) {
+    // 不屈の精神: both the immunity and the兵器 attack require 駐屯時.
+    if (row?.target === 'Self' && row?.effect === 'Attack Immunity x3' && row?.condition == null) {
+      return { ...row, condition: 'When Garrisoning' }
+    }
+    if (row?.condition === 'When Garrisoning' && row?.target === 'Enemy [General] with highest ATK' && row?.effect === '150% Damage to equipment') {
+      return { ...row, target: '1 enemy [Siege Weapon] with highest ATK' }
+    }
+  }
+  // 兵器開発の才: 自身以外 applies to both 歩兵 and 弓兵.
+  if (skillId === 148 && row?.condition === 'Per ally [Infantry] / per other ally [Archer] [General]' && row?.effect === 'ATK Up 10%') {
+    return { ...row, condition: 'Per other ally [Infantry] / per other ally [Archer] [General]' }
+  }
+  return row
+}
+
 export function localizedSkill(skill, characterId, skillIndex, localeOrCode = 'en') {
   const code = typeof localeOrCode === 'string' ? localeOrCode : localeOrCode?.code || 'en'
   const source = japaneseSkillSource(characterId, skillIndex) || japaneseSkillSourceById(skill?.cwId, skill?.textId)
@@ -142,13 +162,16 @@ export function localizedSkill(skill, characterId, skillIndex, localeOrCode = 'e
   const renderers = RENDERERS[code]
   if (renderers) {
     const [condition, target, effect, duration] = renderers
-    next.displayEffects = (skill?.effects || []).map((row) => ({
-      ...row,
-      condition: condition(row?.condition),
-      target: target(row?.target),
-      effect: effect(row?.effect),
-      duration: duration(row?.duration),
-    }))
+    next.displayEffects = (skill?.effects || []).map((row) => {
+      const displayRow = code === 'ja' ? japaneseEffectRow(source?.skillId, row) : row
+      return {
+        ...row,
+        condition: condition(displayRow?.condition),
+        target: target(displayRow?.target),
+        effect: effect(displayRow?.effect),
+        duration: duration(displayRow?.duration),
+      }
+    })
   } else {
     next.displayEffects = skill?.effects || []
   }

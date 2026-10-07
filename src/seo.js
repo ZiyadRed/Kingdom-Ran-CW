@@ -88,7 +88,7 @@ const BASE_ROUTE_SEO = {
     },
     '/archive/cw6-scene-cards': {
       title: 'キングダム乱 CW6★追想カード・スキル一覧 | RanHQ',
-      description: 'キングダム乱のCW6★追想カードを所持武将、日本語スキル名、原文、効果とともに確認できます。',
+      description: 'キングダム乱のCW6★追想カードを対象武将、日本語スキル名、原文、効果とともに確認できます。',
       pageType: 'CollectionPage',
     },
     '/guide': {
@@ -102,7 +102,7 @@ const BASE_ROUTE_SEO = {
       pageType: 'WebPage',
     },
     '/castle-points': {
-      title: 'キングダム乱 城ポイント計算 | RanHQ',
+      title: 'キングダム乱 城獲得ポイント計算 | RanHQ',
       description: '大城・中城・小城の数から同盟争覇戦の獲得ポイントと予測順位を計算できます。',
       pageType: 'WebPage',
     },
@@ -112,13 +112,13 @@ const BASE_ROUTE_SEO = {
       pageType: 'WebPage',
     },
     '/tiers': {
-      title: 'キングダム乱 同盟争覇戦 Tier List・環境編成 | RanHQ',
-      description: 'キングダム乱の同盟争覇戦Tier Listと現在の攻撃・防御の環境編成を確認できます。',
+      title: 'キングダム乱 同盟争覇戦ティアリスト・環境編成 | RanHQ',
+      description: 'キングダム乱の同盟争覇戦ティアリストと侵攻・駐屯の環境編成を確認できます。',
       pageType: 'WebPage',
     },
     '/cost': {
-      title: 'キングダム乱 編成コスト・赤の結晶計算 | RanHQ',
-      description: 'キングダム乱の武将スキル解放に必要な赤の結晶を計算し、4武将の育成コストを確認できます。',
+      title: 'キングダム乱 編成コスト・争覇解放石計算 | RanHQ',
+      description: 'キングダム乱の争覇スキル解放に必要な争覇解放石を計算し、4武将の解放コストを確認できます。',
       pageType: 'WebPage',
     },
     '/cw-stats': {
@@ -283,7 +283,7 @@ const GUIDE_LABELS = {
     'stats-screen': '争覇ステータス画面',
     stats: '争覇ステータスの上げ方',
     roles: '武将の役割',
-    bandits: '盗賊討伐',
+    bandits: '野盗討伐',
     leaders: '争覇総大将・争覇軍師スキル',
     crystals: '解放アイテムの種類',
     debuffs: 'デバフ耐性',

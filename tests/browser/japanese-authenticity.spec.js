@@ -1,4 +1,45 @@
 import { test, expect, instrumentStorage, settle } from './fixtures.js'
+import { readFileSync } from 'node:fs'
+const sceneCards = JSON.parse(readFileSync(new URL('../../data/scene_card_cw_buffs.json', import.meta.url), 'utf8')).cards
+
+test('Japanese readings work on daily-use character searches and keep selections after refresh', async ({ page, path, locale }) => {
+  test.skip(locale !== 'ja')
+  await page.goto(path('/archive/characters'))
+  const search = page.locator('input[type="search"]:visible').first()
+  for (const query of ['もうぶ', 'モウブ', 'ﾓｳﾌﾞ']) {
+    await search.fill(query)
+    await expect(page.locator('.banner-card[data-detail-id="moubu"]')).toBeVisible()
+  }
+  await page.goto(path('/cost'))
+  await page.locator('.tc-slot-empty').first().click()
+  await page.locator('.picker-search').fill('ﾓｳﾌﾞ')
+  await page.locator('.tc-picker-card').filter({ hasText: '蒙武' }).first().click()
+  await expect(page.locator('.tc-slot-filled').first()).toContainText('蒙武')
+  await expect(page.getByRole('main')).toContainText('争覇解放石')
+  await expect(page.getByRole('main')).not.toContainText('赤の結晶')
+  await page.reload()
+  await expect(page.locator('.tc-slot-filled').first()).toContainText('蒙武')
+
+  await page.goto(path('/buffs'))
+  await page.locator('input[type="search"]:visible').fill('ｵﾙﾄﾞ')
+  await expect(page.locator('.buff-pick-card').first()).toBeVisible()
+})
+
+test('Japanese source conditions distinguish general targets, weapons and unlock requirements', async ({ page, path, locale }) => {
+  test.skip(locale !== 'ja')
+  await page.goto(path('/archive/characters/ei_sei'))
+  const skills = page.locator('.detail-panel .detail-skills')
+  await expect(skills).toContainText('攻撃力が最も高い敵兵器1つ')
+  await page.goto(path('/archive/characters/gohoumei'))
+  await expect(page.locator('.detail-panel .detail-skills')).toContainText('自身以外の味方歩兵武将1名につき')
+  await page.goto(path('/buffs'))
+  await page.locator('input[type="search"]:visible').fill('奈棍')
+  await page.locator('.buff-pick-card').filter({ hasText: '騎兵' }).click()
+  await expect(page.getByRole('dialog')).toBeVisible()
+  await page.getByRole('dialog').getByRole('button', { name: /防御力/ }).click()
+  await expect(page.getByRole('dialog').locator('img[alt="武運によるスキル強化"]').first()).toBeVisible()
+  await expect(page.getByRole('dialog')).not.toContainText('Shard upgrade')
+})
 
 const completeBuilder = {
   version: 1,
@@ -18,13 +59,18 @@ test('Japanese authored UI uses official terms and source-backed Scene Card owne
     }),
   })
 
-  await page.goto(path('/buffs'))
+  const response = await page.goto(path('/buffs'))
+  // Raw prerendered attributes must survive the stream before hydration.
+  // This previously contained a NUL in 岳雷's 追想カード alt attribute.
+  const prerendered = await response.text()
+  expect(prerendered).not.toContain(String.fromCharCode(0))
+  expect(prerendered).not.toContain('\ufffd')
   await settle(page)
   await page.locator('.buff-scene-section details').evaluateAll(elements => {
     for (const element of elements) element.open = true
   })
   const cardAlts = await page.locator('.buff-scene-section img[alt*="追想カード"]').evaluateAll(images => images.map(image => image.alt))
-  expect(cardAlts).toHaveLength(23)
+  expect(cardAlts).toHaveLength(sceneCards.length)
   expect(cardAlts.every(alt => !/[A-Za-z]/.test(alt.replaceAll('CW6', '')))).toBe(true)
   const ownerAlts = await page.locator('.buff-scene-section img[src^="/icons/"]').evaluateAll(images => images.map(image => image.alt))
   expect(new Set(ownerAlts)).toEqual(new Set(['白翠', '樊於期', '李園', '考烈王', '嫪毐', '樊琉期', '岳雷', '媧燐', '嬴政', '桓騎', '黒桜', '青公', '春平君', '友里', '東美', '摎', '王翦', 'キタリ', '信']))
@@ -32,7 +78,8 @@ test('Japanese authored UI uses official terms and source-backed Scene Card owne
 
   await page.goto(path('/guide/crystals'))
   await settle(page)
-  await expect(page.getByRole('main')).toContainText('赤の結晶')
+  await expect(page.getByRole('main')).toContainText('争覇解放石')
+  await expect(page.getByRole('main')).not.toContainText('赤の結晶')
   await expect(page.getByRole('main')).toContainText('専用争覇解放石(飛信隊)')
   await expect(page.getByRole('main')).toContainText('争覇総大将解放石')
   await expect(page.getByRole('main')).toContainText('争覇軍師解放石')

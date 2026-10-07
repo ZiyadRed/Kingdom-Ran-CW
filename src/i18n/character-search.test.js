@@ -7,6 +7,22 @@ const matches = (query, locale) => ALL.filter(character => matchCharacterSearch(
 const skills = character => [...(character.skills || []), ...(character.roleSkill ? [character.roleSkill] : [])]
 
 describe('localized content search over the actual roster', () => {
+  it('finds source readings in hiragana, katakana and half-width kana on every name picker', () => {
+    const moubu = ALL.find(character => character.id === 'moubu')
+    for (const query of ['もうぶ', 'モウブ', 'ﾓｳﾌﾞ']) {
+      expect(matchesCharacterName(moubu, query, { exact: true })).toBe(true)
+      expect(searchCharacters(ALL, query, 'ja')[0].id).toBe('moubu')
+    }
+    expect(matchesCharacterName({ id: 'unknown', name_jp: '武将', name_en: 'Unknown' }, 'もうぶ')).toBe(false)
+  })
+  it.each([
+    ['futei', '傅抵', '傳抵'], ['makou', '麻鉱', '麻礦'],
+    ['shousa', '松左', '松佐'], ['kuzen', '蒙恬のじィ', '蒙恬のじぃ'],
+  ])('uses the game Japanese name for %s while keeping the old spelling searchable', (id, name, legacy) => {
+    const character = ALL.find(character => character.id === id)
+    expect(character.name_jp).toBe(name)
+    expect(matchesCharacterName(character, legacy, { exact: true })).toBe(true)
+  })
   it.each(['en', 'ja', 'ar', 'fr'])('preserves tri-script names on %s', locale => {
     for (const query of ['Moubu', '蒙武', 'موبو','مُوبُو','مـوبـو']) {
       expect(matches(query, locale)).toContain('moubu')

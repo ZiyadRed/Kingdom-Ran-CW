@@ -30,6 +30,11 @@ export function TerrainIcon({terrain,size=72}){
 export function BuffsPage(){
   const { t } = useTranslation('common')
   const locale = useLocale()
+  // Verified source conditions: ordinary/ura skill growth uses 武運;
+  // Toubi general398, LG ability1469 requires LG覚醒値2 for the Qin HP buff.
+  const unlockLabelFor = entry => locale.code === 'ja' && entry.special_label
+    ? ({ 'Shard upgrade': '武運によるスキル強化', 'Special Qin HP condition': 'LG覚醒値2' }[entry.special_label] || localizedText(entry.special_label, locale))
+    : entry.special_label || (entry.value === 5 ? t('teamCost.buffs.shard') : t('teamCost.buffs.redCrystal'))
   // Category chips use the SHORT state names the archive rail uses (秦, 趙),
   // not the full 秦国/趙国 forms the effect sentences need, so this small map
   // stays. It is sourced from FACTIONS so the two can never drift apart.
@@ -37,7 +42,7 @@ export function BuffsPage(){
     const japanese = {
       Infantry: '歩兵', Cavalry: '騎兵', Archer: '弓兵', Shield: '盾兵',
       ...Object.fromEntries(FACTIONS.map(f => [f.label, f.jp])),
-      Slope: '坂', Forest: '森', River: '川', Swamp: '湿地', Ambush: '伏兵', Checkpoint: '関所',
+      Slope: '坂路', Forest: '森林', River: '水路', Swamp: '泥濘', Ambush: '伏兵', Checkpoint: '関所',
     }
     return locale.code === 'ja' ? (japanese[value] || localizedText(value, locale)) : localizedText(value, locale)
   }
@@ -207,7 +212,7 @@ export function BuffsPage(){
           <div style={{minWidth:0}}>
             <div style={{display:'flex',alignItems:'baseline',gap:'8px',flexWrap:'wrap',marginBottom:'4px'}}>
               <div style={{fontWeight:900,fontSize:'1.05rem',color:'var(--txt)'}}>{labelFor(terrain.name)}</div>
-              <div style={{fontSize:'.78rem',color:'var(--txt3)'}}>{terrain.jp}</div>
+              {locale.code !== 'ja' && <div style={{fontSize:'.78rem',color:'var(--txt3)'}}>{terrain.jp}</div>}
             </div>
             <div style={{fontSize:'.82rem',lineHeight:1.45,color:'var(--txt2)'}}>{terrainDescription(terrain)}</div>
             <div style={{fontSize:'.68rem',color:terrain.color,fontWeight:800,marginTop:'5px',letterSpacing:'.03em',textTransform:'uppercase'}}>{localizedText(terrain.typeLabel,locale)}</div>
@@ -324,8 +329,8 @@ export function BuffsPage(){
             const fc=CC[e.faction]||'#888'
             const isTop=i<3
             const unlockIcon=e.special_icon|| (e.value===5?'/icons/Shard.webp':'/icons/Red_Crystal.webp')
-             const unlockLabel=e.special_label|| (e.value===5?t('teamCost.buffs.shard'):t('teamCost.buffs.redCrystal'))
-             const unlockTitle=e.special_label|| (e.value===5?t('teamCost.buffs.shard'):t('teamCost.buffs.redCrystal'))
+             const unlockLabel=unlockLabelFor(e)
+             const unlockTitle=unlockLabel
             const sourceId=buffSourceId(activeKind,activeKey,activeStat,e,i)
             const shardSourceId=sourceId+':shard'
             const owned=tracker.isOwned('buffSources',sourceId)

@@ -1,5 +1,4 @@
-import { PassThrough } from 'node:stream'
-import { renderToPipeableStream } from 'react-dom/server'
+import { renderToReadableStream } from 'react-dom/server.browser'
 import { StaticRouter } from 'react-router-dom'
 import App from './App.jsx'
 import { findCharById, FACTIONS } from './core.jsx'
@@ -37,61 +36,34 @@ export function seoForUrl(url) {
   return routeSeo(url, locale)
 }
 
-export function render(url) {
+export async function render(url) {
   const locale = localeFromPathname(url)
   initI18n(locale)
 
-  return new Promise((resolve, reject) => {
-    let renderError = null
-    let settled = false
-    const timeout = setTimeout(() => {
-      if (settled) return
-      settled = true
-      abort()
-      reject(new Error(`SSR timed out for ${url}`))
-    }, 20_000)
-
-    const { pipe, abort } = renderToPipeableStream(
+  let renderError = null
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(new Error(`SSR timed out for ${url}`)), 20_000)
+  try {
+    // React 18's Node string writer emits unused NUL bytes when a multibyte
+    // character cannot fit at the end of a 2048-byte view. The Web writer
+    // encodes each string first, then splits bytes without padding the text.
+    const stream = await renderToReadableStream(
       <LocaleProvider locale={locale}>
         <StaticRouter location={url} basename={localeBasename(locale)}>
           <App />
         </StaticRouter>
       </LocaleProvider>,
       {
-        onAllReady() {
-          if (renderError) {
-            settled = true
-            clearTimeout(timeout)
-            reject(renderError)
-            return
-          }
-          const stream = new PassThrough()
-          const chunks = []
-          stream.on('data', (chunk) => chunks.push(chunk))
-          stream.on('error', (error) => {
-            if (settled) return
-            settled = true
-            clearTimeout(timeout)
-            reject(error)
-          })
-          stream.on('end', () => {
-            if (settled) return
-            settled = true
-            clearTimeout(timeout)
-            resolve(chunks.join(''))
-          })
-          pipe(stream)
-        },
-        onShellError(error) {
-          if (settled) return
-          settled = true
-          clearTimeout(timeout)
-          reject(error)
-        },
+        signal: controller.signal,
         onError(error) {
           renderError ||= error
         },
       },
     )
-  })
+    await stream.allReady
+    if (renderError) throw renderError
+    return await new Response(stream).text()
+  } finally {
+    clearTimeout(timeout)
+  }
 }

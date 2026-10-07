@@ -40,7 +40,7 @@ describe('i18next initialization', () => {
   it('keeps authored Japanese UI on the official skill, resource and battle-side terms', () => {
     expect(JSON.stringify(CATALOGS.ja)).not.toContain('技能')
     expect(CATALOGS.ja.skillEffectQualifiers).toBe('スキル効果の条件')
-    expect(CATALOGS.ja.redCrystalAlt).toBe('赤の結晶')
+    expect(CATALOGS.ja.redCrystalAlt).toBe('争覇解放石')
     expect(CATALOGS.ja.sim.attackingSide).toBe('侵攻側')
     expect(CATALOGS.ja.sim.defendingSide).toBe('駐屯側')
     expect(CATALOGS.ja.stats.hp).toBe('体力')

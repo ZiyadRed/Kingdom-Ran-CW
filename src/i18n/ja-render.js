@@ -132,6 +132,18 @@ function renderTags(text) {
   }).replace(/\s+/g, '')
 }
 
+// A faction in a recipient selector identifies its generals, not the country
+// itself. Keep this separate from short faction/filter labels and stat scopes.
+const FACTION_TAGS = new Set(['qin', 'zhao', 'wei', 'chu', 'yan', 'han', 'qi', 'ai', 'mountain folk'])
+const GENERAL_TAGS = new Set([...FACTION_TAGS, 'infantry', 'cavalry', 'archer', 'archers', 'shield', 'shield soldiers'])
+function renderSelectorTags(text) {
+  const keys = [...String(text).matchAll(/\[([^\]]+)\]/g)].map(match => match[1].trim().toLowerCase())
+  if (!keys.length || keys.some(key => !TAG_INDEX.has(key) && !GROUP_INDEX.has(key))) return null
+  const tags = renderTags(text)
+  return keys.some(key => GENERAL_TAGS.has(key) || GROUP_INDEX.has(key)) && !keys.includes('general') ? `${tags}武将` : tags
+}
+const targetCounter = text => /兵器/.test(text) ? 'つ' : '名'
+
 function renderQualifier(inner) {
   const hit = QUALIFIER_INDEX.get(clean(inner).toLowerCase())
   if (hit) return hit
@@ -177,6 +189,12 @@ function renderEffectBody(body) {
 
   let match
 
+  match = new RegExp(`^(Morale Cost|Morale Consumption|Squad Damage)\\s+Reduction\\s+(${VALUE})$`, 'i').exec(body)
+  if (match) return `${lookupStat(match[1])}${match[2]}軽減`
+
+  match = new RegExp(`^((?:Material|Coin|Currency|Ore) (?:Cost|Consumption))\\s+(Down|Decrease|Reduction)\\s+(${VALUE})$`, 'i').exec(body)
+  if (match) return `${lookupStat(match[1])}${match[3]}減少`
+
   match = new RegExp(`^%\\s*of\\s+remaining\\s+HP\\s+Damage\\s+(${VALUE})$`, 'i').exec(body)
   if (match) return `残り体力の${match[1]}ダメージ`
 
@@ -190,7 +208,7 @@ function renderEffectBody(body) {
   if (match) return `対象ごとに${match[1]}ダメージ`
 
   match = new RegExp(`^(${VALUE})\\s+Damage to equipment$`, 'i').exec(body)
-  if (match) return `装備に${match[1]}ダメージ`
+  if (match) return `兵器に${match[1]}ダメージ`
 
   match = new RegExp(`^(${VALUE})\\s+Damage$`, 'i').exec(body)
   if (match) return `${match[1]}ダメージ`
@@ -245,7 +263,7 @@ function renderEffectBody(body) {
   match = new RegExp(`^"?(.+?)"?\\s+Infliction\\s+(${VALUE})$`, 'i').exec(body)
   if (match) {
     const status = lookupStatus(match[1])
-    if (status) return `「${status}」付与${match[2]}`
+    if (status) return `「${status}」付与確率${match[2]}`
   }
   match = /^"?(.+?)"?\s+Infliction$/i.exec(body)
   if (match) {
@@ -297,11 +315,12 @@ function renderEffectBody(body) {
     if (status && scope) return `${scope}${renderTags(match[2])}に「${status}」${match[4]}`
   }
 
-  match = new RegExp(`^(?:\\d+\\s+)?(\\[[^\\]]+\\])\\s+(.+?)\\s+(Up|Down)\\s+(${VALUE})$`, 'i').exec(body)
+  match = new RegExp(`^(?:(\\d+)\\s+)?(\\[[^\\]]+\\])\\s+(.+?)\\s+(Up|Down)\\s+(${VALUE})$`, 'i').exec(body)
   if (match) {
-    const stat = lookupStat(match[2])
-    const dir = directionOf(match[3])
-    if (stat && dir) return `${renderTags(match[1])}の${stat}${match[4]}${DIRECTION[dir]}`
+    const stat = lookupStat(match[3])
+    const dir = directionOf(match[4])
+    const tags = renderSelectorTags(match[2])
+    if (stat && dir && tags) return `${tags}${match[1] ? `${match[1]}${targetCounter(tags)}` : ''}の${stat}${match[5]}${DIRECTION[dir]}`
   }
 
   match = /^(.+?)\s+significantly\s+(Up|Down)$/i.exec(body)
@@ -340,10 +359,19 @@ function renderEffectBody(body) {
   }
 
   // "Guard 60%" / "HP Recovery 20%" — a status or stat with a bare value.
+  // Bare Dodge Chance rows are the source's 見切り state. An explicit Evasion
+  // Up/Down row above changes 回避率 instead; these are distinct mechanics.
+  match = new RegExp(`^(?:Dodge Chance|Evasion \\(Dodge Chance\\))\\s+(${VALUE})$`, 'i').exec(body)
+  if (match) return `見切り${match[1]}`
   match = new RegExp(`^"?(.+?)"?\\s*(${VALUE})$`, 'i').exec(body)
   if (match) {
     const status = lookupStatus(match[1])
-    if (status) return `${status}${match[2]}`
+    if (status) {
+      // These percentages describe whether a state is inflicted. Guard and
+      // 見切り percentages describe its strength, so keep those separate.
+      const inflicted = /^(?:Provoke|Poison|Severe Poison|Burn|Illusion|Paralysis|Confusion|Betrayal|Rampage|Fear|Reckless|(?:Normal |Skill )?Attack Seal|HP Seal)$/i.test(match[1].replace(/^"|"$/g, '').trim())
+      return inflicted && /%$/.test(match[2]) ? `「${status}」付与確率${match[2]}` : `${status}${match[2]}`
+    }
     const stat = lookupStat(match[1])
     if (stat) return `${stat}${match[2]}`
   }
@@ -392,7 +420,9 @@ export function renderJapaneseEffect(value) {
 
   const rendered = segments.map((segment, index) => {
     if (trailingValue(segment) || !carried) return renderEffectClause(segment)
-    const bare = index < segments.length - 1 && (lookupStatus(segment) || lookupStat(segment))
+    // A modeled resistance already includes 耐性. Copying a shared Resistance
+    // frame onto "Confusion Resistance" would produce 耐性耐性.
+    const bare = index < segments.length - 1 && lookupStatus(segment)
     return renderEffectClause(sharedFrame && bare ? `${segment} ${sharedFrame}` : `${segment} ${carried}`)
   })
   if (rendered.some((part) => part == null)) return value
@@ -423,10 +453,16 @@ function renderTargetClause(text) {
 
   // "1 enemy [General]" -> 敵武将1名 (the game's own phrasing)
   match = /^(\d+)\s+enemy\s*((?:\[[^\]]+\]\s*)*)$/i.exec(raw)
-  if (match) return `敵${renderTags(clean(match[2])) || '武将'}${match[1]}名`
+  if (match) {
+    const tags = match[2] ? renderSelectorTags(match[2]) : '武将'
+    if (tags) return `敵${tags}${match[1]}${targetCounter(tags)}`
+  }
 
   match = /^(\d+)\s+(\[[^\]]+\])\s+enemy$/i.exec(raw)
-  if (match) return `敵${renderTags(match[2])}${match[1]}名`
+  if (match) {
+    const tags = renderSelectorTags(match[2])
+    if (tags) return `敵${tags}${match[1]}${targetCounter(tags)}`
+  }
 
   match = /^All\s+(enemy|ally)\s*(.*)$/i.exec(raw)
   if (match) {
@@ -436,7 +472,10 @@ function renderTargetClause(text) {
       const group = lookupGroup(rest)
       if (group) return `${/enemy/i.test(match[1]) ? '敵' : '味方'}${group}全武将`
     }
-    return `${head}${renderTags(rest) || '武将'}`
+    const tags = rest ? renderSelectorTags(rest) : '武将'
+    if (!tags) return null
+    if (/国武将$/.test(tags)) return `${/enemy/i.test(match[1]) ? '敵' : '味方'}${tags.slice(0, -2)}全武将`
+    return `${head}${tags}`
   }
 
   match = /^(\[[^\]]+\])\s+repair$/i.exec(raw)
@@ -444,8 +483,8 @@ function renderTargetClause(text) {
 
   match = /^Ally\s+(attack|defense)\s*(.*)$/i.exec(raw)
   if (match) {
-    const tags = renderTags(clean(match[2]))
-    return `味方${tags}の${/attack/i.test(match[1]) ? '攻撃' : '防御'}`
+    if (/^\[Siege Weapon\]$/i.test(clean(match[2]))) return `味方${/attack/i.test(match[1]) ? '攻撃' : '防衛'}兵器`
+    return null
   }
 
   match = /^Surviving\s+(.+)$/i.exec(raw)
@@ -474,10 +513,13 @@ function renderTargetClause(text) {
       rest = rest.replace(/\s*(\[[^\]]+\])$/, (whole, tag) => { tags.unshift(renderTags(tag)); return '' }).trim()
     }
     const tail = tags.join('')
-    if (!rest) return `${head}${tail || ''}`
+    if (!rest) {
+      const selected = renderSelectorTags(clean(match[2]))
+      return selected ? `${head}${selected}` : null
+    }
 
     const unbracketedTag = TAG_INDEX.get(rest.toLowerCase())
-    if (unbracketedTag) return `${head}${unbracketedTag}${tail}`
+    if (unbracketedTag) return `${head}${unbracketedTag}${tail || (GENERAL_TAGS.has(rest.toLowerCase()) ? '武将' : '')}`
 
     const group = lookupGroup(rest.replace(/\s+members?$/i, ''))
     if (group) return `${head}${group}${tail || '武将'}`
@@ -497,12 +539,15 @@ function renderTargetClause(text) {
       const where = TAG_INDEX.get(clean(of[2]).toLowerCase())
       if (ofGroup && where) return `${head}${where}の${ofGroup}${tail}`
     }
-    if (/^\[[^\]]+\]$/.test(rest)) return `${head}${renderTags(rest)}${tail}`
-    // A named ally: use the project's Japanese name where one exists, and
-    // only fall back to a quoted Latin name when there is none.
+    if (/^\[[^\]]+\]$/.test(rest)) {
+      const selected = renderSelectorTags(rest + (tail ? '[General]' : ''))
+      if (selected) return `${head}${selected}`
+    }
+    // Named operands resolve through the canonical Japanese names. Unknown
+    // participants leave the complete input unchanged at the public boundary.
     if (/^[A-Za-z"' .-]+$/.test(rest) && !/\b(and|or|with|than|besides|both)\b/i.test(rest)) {
       const jp = lookupCharacter(rest)
-      return jp ? `${head}${jp}${tail}` : `${head}「${rest}」${tail}`
+      return jp ? `${head}${jp}${tail}` : null
     }
     return null
   }
@@ -526,6 +571,19 @@ function renderTargetTail(text) {
   return null
 }
 
+function renderScopedTargetTail(text, expression) {
+  const raw = clean(text)
+  const scope = /^(?:Surviving\s+)?(?:Other ally|Ally|Enemy)\b/i.exec(expression)?.[0]
+  if (scope && !/^(?:Surviving|Other ally|Ally|Enemy|Self|Gate|Passing)\b/i.test(raw)) {
+    const inherited = /^Other\s+/i.test(raw) && /ally$/i.test(scope)
+      ? `Other ally ${raw.replace(/^Other\s+/i, '')}`
+      : `${scope} ${raw}`
+    const rendered = renderTargetExpression(inherited)
+    if (rendered) return rendered
+  }
+  return renderTargetExpression(raw) || renderTargetTail(raw)
+}
+
 function renderTargetExpression(raw) {
   const survivingNames=/^Surviving ally ((?:"[^"]+"\s*,\s*)+)(?:and )(.+?) \[General\]$/.exec(raw)
   if(survivingNames){
@@ -541,10 +599,14 @@ function renderTargetExpression(raw) {
   const each=/^(\d+) each of ((?:\[[^\]]+\]\s*\/?\s*)+)enemy$/i.exec(raw)
   if(each){
     const tags=each[2].match(/\[[^\]]+\]/g)
-    if(tags.every(tag=>TAG_INDEX.has(tag.slice(1,-1).toLowerCase()))) return `敵${tags.map(renderTags).join('・')}各${each[1]}名`
+    if(tags.every(tag=>TAG_INDEX.has(tag.slice(1,-1).toLowerCase()))) return `敵${tags.map(renderTags).join('・')}武将各${each[1]}名`
   }
   const paired=/^(\d+) (\[[^\]]+\])\s*\/\s*(\d+) (\[[^\]]+\]) enemy (\[General\])$/i.exec(raw)
-  if(paired) return `敵${renderTags(paired[2]+paired[5])}${paired[1]}名${SLASH}敵${renderTags(paired[4]+paired[5])}${paired[3]}名`
+  if(paired) {
+    const left = renderSelectorTags(paired[2]+paired[5])
+    const right = renderSelectorTags(paired[4]+paired[5])
+    if (left && right) return `敵${left}${paired[1]}${targetCounter(left)}${SLASH}敵${right}${paired[3]}${targetCounter(right)}`
+  }
   const groupMember=/^(\d+) enemy (.+?) member$/i.exec(raw)
   if(groupMember&&lookupGroup(groupMember[2])) return `敵${lookupGroup(groupMember[2])}武将${groupMember[1]}名`
   const excluded = /^(.*?)\s+other than self$/i.exec(raw)
@@ -572,7 +634,7 @@ function renderTargetExpression(raw) {
     const rendered = parts.map((part, i) => {
       const tail = /^and\s+(.+)$/i.exec(part)
       const body = tail ? tail[1] : part
-      return i === 0 ? renderTargetExpression(body) : (renderTargetExpression(body) || renderTargetTail(body))
+      return i === 0 ? renderTargetExpression(body) : renderScopedTargetTail(body, raw)
     })
     if (!rendered.some((p) => p == null)) return rendered.join('、')
   }
@@ -580,20 +642,20 @@ function renderTargetExpression(raw) {
   const alternative = /^(.+?)\s+or\s+(.+)$/i.exec(raw)
   if (alternative) {
     const left = renderTargetExpression(alternative[1])
-    const right = renderTargetExpression(alternative[2]) || renderTargetTail(alternative[2])
+    const right = renderScopedTargetTail(alternative[2], raw)
     if (left && right) return `${left}または${right}`
   }
 
   const conjunction = /^(.+?)\s+and\s+(.+)$/i.exec(raw)
   if (conjunction) {
     const left = renderTargetExpression(conjunction[1])
-    const right = renderTargetExpression(conjunction[2]) || renderTargetTail(conjunction[2])
+    const right = renderScopedTargetTail(conjunction[2], raw)
     if (left && right) return `${left}と${right}`
   }
 
   if (raw.includes('/')) {
     const parts = raw.split('/').map((s) => s.trim()).filter(Boolean)
-    const rendered = parts.map((part, i) => (i === 0 ? renderTargetExpression(part) : renderTargetTail(part)))
+    const rendered = parts.map((part, i) => (i === 0 ? renderTargetExpression(part) : renderScopedTargetTail(part, raw)))
     if (!rendered.some((p) => p == null)) return rendered.join(SLASH)
   }
 
@@ -615,7 +677,9 @@ function renderSelectorHead(text) {
 
   let match = /^((?:\[[^\]]+\][,\s]*)+)(enemy|ally)?$/i.exec(raw)
   if (match) {
-    const tags = renderTags(match[1].replace(/,/g, ''))
+    const parts = match[1].match(/\[[^\]]+\]/g)
+    const tags = match[1].includes(',') ? `${parts.map(renderTags).join('・')}武将` : renderSelectorTags(match[1])
+    if (!tags) return null
     if (!match[2]) return tags
     return `${/enemy/i.test(match[2]) ? '敵' : '味方'}${tags}`
   }
@@ -635,7 +699,10 @@ function renderSelectorHead(text) {
   }
 
   match = /^(\[[^\]]+\])\s+(enemy|ally)$/i.exec(raw)
-  if (match) return `${/enemy/i.test(match[2]) ? '敵' : '味方'}${renderTags(match[1])}`
+  if (match) {
+    const tags = renderSelectorTags(match[1])
+    if (tags) return `${/enemy/i.test(match[2]) ? '敵' : '味方'}${tags}`
+  }
 
   match = /^(enemy|ally|other ally)\s*(.*)$/i.exec(raw)
   if (match) {
@@ -643,12 +710,15 @@ function renderSelectorHead(text) {
     const rest = clean(match[2])
     if (!head) return null
     if (!rest) return head
-    if (/^(\[[^\]]+\]\s*)+$/.test(rest)) return `${head}${renderTags(rest)}`
+    if (/^(\[[^\]]+\]\s*)+$/.test(rest)) {
+      const tags = renderSelectorTags(rest)
+      if (tags) return `${head}${tags}`
+    }
     const group = lookupGroup(rest)
     if (group) return `${head}${group}`
     if (/^[A-Za-z"' .-]+$/.test(rest)) {
       const jp = lookupCharacter(rest)
-      return jp ? `${head}${jp}` : `${head}「${rest}」`
+      return jp ? `${head}${jp}` : null
     }
   }
   return null
@@ -678,7 +748,10 @@ function renderConditionBody(body) {
   match=/^Surviving (.+?) when enemies are alive$/i.exec(body)
   if(match&&selector(match[1])) return `敵が生存している場合の生存している${selector(match[1])}`
   match=/^(Other ally|Enemy) (\[[^\]]+\]) or (\[[^\]]+\]) alive$/i.exec(body)
-  if(match) return `${PHRASE_INDEX.get(match[1].toLowerCase())}${renderTags(match[2])}または${renderTags(match[3])}が生存している場合`
+  if(match) {
+    const tags = [match[2],match[3]].map(renderSelectorTags)
+    if (tags.every(Boolean)) return `${PHRASE_INDEX.get(match[1].toLowerCase())}${tags[0]}または${tags[1]}が生存している場合`
+  }
 
   // "When X" adds the conditional ending only when the inner clause does not
   // already carry one — several rules end in 時 or 場合 by themselves.
@@ -714,7 +787,8 @@ function renderConditionBody(body) {
   if (match) {
     const alternative = /\bor\b/i.test(match[1])
     const names = match[1].split(/\s+(?:and|or)\s+/i).map((n) => n.trim()).filter(Boolean)
-    const rendered = names.map((n) => lookupGroup(n) || lookupCharacter(n) || `「${n}」`)
+    const rendered = names.map((n) => lookupGroup(n) || lookupCharacter(n))
+    if (rendered.some(name => !name)) return null
     const joined = rendered.join(alternative ? 'または' : 'と')
     return /alive/i.test(match[2]) ? `味方${joined}が生存している場合` : `味方${joined}がいる場合`
   }
@@ -775,13 +849,17 @@ function renderConditionBody(body) {
   match = /^Per\s+(?:defeated\s+)?(.+?)(?:\s+defeated)?(?:\s+while skill is active)?$/i.exec(body)
   if (match && /defeated/i.test(body)) {
     const who = selector(match[1])
-    if (who) return `${who}を撃破するごと`
+    if (who) {
+      if (/^Per defeated ally\b/i.test(body)) return `撃破された${who}1名につき`
+      if (/while skill is active$/i.test(body)) return `効果中に自身が撃破した${who}1名につき`
+      return `${who}を撃破するごと`
+    }
   }
 
   match = /^Per\s+(.+?)(\s+members?)?$/i.exec(body)
   if (match) {
     const who = selector(match[1])
-    if (who) return `${who}ごと`
+    if (who) return `${who}1${targetCounter(who)}につき`
   }
 
   match = /^(.+?)\s+(?:have|has)\s+(.+?)\s+status$/i.exec(body)

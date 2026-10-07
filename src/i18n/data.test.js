@@ -4,6 +4,23 @@ import { AR_CHARACTER_NAMES, LEGACY_CHARACTER_NAME_ALIASES, matchesCharacterName
 import { ALL, parseBuffEffect } from '../core.jsx'
 
 describe('localized source data', () => {
+  it('keeps the Japanese decomposition faithful to the verified gate and siege targets', () => {
+    const sei = ALL.find(character => character.id === 'ei_sei')
+    const original = sei.skills[2]
+    const display = localizedSkill(original, sei.id, 2, 'ja')
+    expect(display.sourceSkillId).toBe(147)
+    expect(display.descriptionJp).toContain('駐屯時には、自身に攻撃無効(3回)を付与し、攻撃力が最も高い敵兵器1つ')
+    expect(display.displayEffects[1].condition).toBe('駐屯時')
+    expect(display.displayEffects[2].target).toBe('攻撃力が最も高い敵兵器1つ')
+    expect(original.effects[1].condition).toBeNull()
+    expect(localizedSkill(original, sei.id, 2, 'en').displayEffects).toEqual(original.effects)
+
+    const gohoumei = ALL.find(character => character.id === 'gohoumei')
+    const weapon = localizedSkill(gohoumei.skills[1], gohoumei.id, 1, 'ja')
+    expect(weapon.sourceSkillId).toBe(148)
+    expect(weapon.descriptionJp).toContain('自身以外の味方歩兵武将と弓兵武将1名につき')
+    expect(weapon.displayEffects[0].condition).toBe('自身以外の味方歩兵武将1名につき／自身以外の味方弓兵武将1名につき')
+  })
   it('joins a deterministic project row to the current Japanese source artifact', () => {
     const source = japaneseSkillSource('soutan', 0)
     expect(source).toMatchObject({ skillId: 861, name: '鉄壁一閃【青牛】' })
