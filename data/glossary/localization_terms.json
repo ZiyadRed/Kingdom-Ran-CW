@@ -19,6 +19,7 @@
     {"key":"conquest_unlock_stone","english":"Conquest Unlock Stone","japanese":"争覇解放石","source":"GAME_TERM","evidence":"https://www.kingdomran.jp/help/doumeisouhasen","notes":"Japanese label for the existing ordinary Conquest skill-unlock currency; distinct from 赤の結晶. Legacy English UI keys and artwork filenames retain their existing Red Crystal names."},
     {"key":"strategist_unlock_stone","english":"Strategist Unlock Stone","japanese":"争覇軍師解放石","arabic":"حجر فتح الاستراتيجي","source":"GAME_TERM","evidence":"https://www.kingdomran.jp/info/260902souha-skill","notes":"Role-specific unlock item; not a green crystal."},
     {"key":"hi_shin_unit_unlock_stone","english":"Hi Shin Unit Unlock Stone","japanese":"専用争覇解放石(飛信隊)","arabic":"حجر فتح في شين الحصري","source":"GAME_TERM","evidence":"https://www.kingdomran.jp/info/260527tsuminipack","notes":"Faction-specific unlock item; explicitly distinct from 青の結晶."},
+    {"key":"moubo_army","english":"Moubo Army","japanese":"蒙武軍","arabic":"جيش موبو","source":"GAME_TERM","evidence":"https://www.kingdomran.jp/info/lg_chousi","notes":"Existing shared army terminology; MsgMstBelong.stbl[27]. French: armée de Moubo."},
     {"key":"infantry","english":"Infantry","japanese":"歩兵","arabic":"مشاة","source":"GAME_TERM","notes":"Unit type."},
     {"key":"cavalry","english":"Cavalry","japanese":"騎兵","arabic":"فرسان","source":"GAME_TERM","notes":"Unit type."},
     {"key":"archer","english":"Archer","japanese":"弓兵","arabic":"سهامين","source":"GAME_TERM","notes":"Owner-approved Discord unit term."},

@@ -740,7 +740,8 @@
         "value": 5.0,
         "special_icon": "/icons/Shard.webp",
         "special_label": "Shard upgrade",
-        "ownership_id": "buff_1cabfb7a9d054147aa2bea8c12ef57bc"
+        "ownership_id": "buff_1cabfb7a9d054147aa2bea8c12ef57bc",
+        "skill_layer": "normal"
       },
       {
         "name": "Pam",
@@ -803,6 +804,18 @@
         "star6": false,
         "value": 5.0,
         "ownership_id": "buff_609d44a557c2410cbef8d6bd0d4eec6d"
+      },
+      {
+        "name": "Raiki",
+        "name_jp": "来輝",
+        "character_id": "raiki",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0,
+        "source_id": "ura:134:10909",
+        "ownership_id": "buff_f1c2df5cdca948b4a4fe817fac256686",
+        "skill_layer": "ura"
       }
     ],
     "Defense": [
@@ -907,7 +920,8 @@
         "value": 5.0,
         "special_icon": "/icons/Shard.webp",
         "special_label": "Shard upgrade",
-        "ownership_id": "buff_57fcd019e98741d78cef73ed949e6adc"
+        "ownership_id": "buff_57fcd019e98741d78cef73ed949e6adc",
+        "skill_layer": "normal"
       },
       {
         "name": "Hairou",
@@ -1003,6 +1017,18 @@
         "value": 12.4,
         "source_id": "cw:223:579",
         "ownership_id": "buff_fb8756b74b764f53bbde50b3d259bedb"
+      },
+      {
+        "name": "Choushi",
+        "name_jp": "丁之",
+        "character_id": "choushi",
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0,
+        "source_id": "ura:133:11002",
+        "ownership_id": "buff_ffe856737a3e48599e38811c6259faf0",
+        "skill_layer": "ura"
       }
     ]
   },

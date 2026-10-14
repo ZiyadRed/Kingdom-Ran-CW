@@ -2,20 +2,22 @@ import { describe, expect, it } from 'vitest'
 import units from '../../../data/cw_buffs.json'
 import teams from '../../../data/cw_team_buffs.json'
 import evidence from '../../../data/source/buff_corrections_2026-10-05.json'
+import moubuOfficers from '../../../data/source/moubu_officers_2026-10-14.json'
 import sourceMap from '../../../data/source/cw_skills.map.json'
 import legacy from '../../../data/buff_ownership_legacy.json'
 import { ALL, CHAR_BY_ID, normalizeProgress, redCrystalBuffUnlockCost } from '../../core.jsx'
 import { resolveRegularBuffCharacter } from '../../buff-identity.js'
 import { localizedCharacter, localizedText } from '../../i18n/data.js'
 import { matchesCharacterName } from '../../i18n/ar-character-names.js'
-import { BUFF_ARMIES, ARMY_ICON_CHAR } from './data.js'
+import { BUFF_ARMIES, ARMY_ICON_CHAR, ARMY_PARENT_STATE } from './data.js'
 
+const corrections = [...evidence.corrections, ...moubuOfficers.corrections]
 const entriesFor = record => (record.kind === 'unit' ? units : teams[record.kind === 'state' ? 'states' : 'armies'])[record.category][record.stat]
 const entryFor = record => entriesFor(record).find(entry => entry.ownership_id === record.ownership_id)
 
 describe('source-verified buff corrections', () => {
   it('keeps every reviewed assignment visible under its evidenced owner and category', () => {
-    for (const record of evidence.corrections) {
+    for (const record of corrections) {
       const entry = entryFor(record)
       const character = CHAR_BY_ID[record.character_id]
       expect(entry, `${record.character_id}/${record.category}/${record.stat}`).toBeTruthy()
@@ -35,7 +37,7 @@ describe('source-verified buff corrections', () => {
   it('does not award newly added buffs from existing saved or legacy ownership', () => {
     const old = new Set(Object.values(legacy.legacyKeys).flat())
     const saved = normalizeProgress({ buffSources: Object.fromEntries([...old].map(id => [id, true])) })
-    const additions = evidence.corrections.filter(record => record.previousValue === undefined)
+    const additions = corrections.filter(record => record.previousValue === undefined)
     for (const record of additions) {
       expect(old.has(record.ownership_id)).toBe(false)
       expect(saved.buffSources[record.ownership_id]).toBeUndefined()
@@ -66,5 +68,40 @@ describe('source-verified buff corrections', () => {
     expect(localizedText('Qiang Tribe', 'ja')).toBe('羌族')
     expect(localizedText('Qiang Tribe', 'ar')).toBe('قبيلة كيانغ')
     expect(localizedText('Qiang Tribe', 'fr')).toBe('Tribu Qiang')
+  })
+
+  it('adds the Moubu Army CW category without importing battlefield or Hero Rise buffs', () => {
+    expect(ARMY_ICON_CHAR['Moubo Army']).toBe('Moubu')
+    expect(ARMY_PARENT_STATE['Moubo Army']).toBe('qin')
+    expect(localizedText('Moubo Army', 'ja')).toBe('蒙武軍')
+    expect(localizedText('Moubo Army', 'ar')).toBe('جيش موبو')
+    expect(localizedText('Moubo Army', 'fr')).toBe('Armée de Moubo')
+    const group = teams.armies['Moubo Army']
+    expect(group.HP).toEqual([])
+    for (const stat of ['Attack', 'Defense']) {
+      const reviewed = moubuOfficers.corrections.filter(record => record.kind === 'army' && record.stat === stat)
+      expect(group[stat].map(entry => entry.ownership_id)).toEqual(reviewed.map(record => record.ownership_id))
+    }
+    const importedSkills = new Set(moubuOfficers.corrections.map(record => record.skillId))
+    for (const excluded of moubuOfficers.excludedNonCw) expect(importedSkills.has(excluded.skillId)).toBe(false)
+  })
+
+  it('retains both officers normal-skill ownership independently of each new Ura source', () => {
+    const saved = normalizeProgress({ buffSources: Object.fromEntries(moubuOfficers.existingNormal.map(record => [record.ownership_id, true])) })
+    for (const record of moubuOfficers.existingNormal) {
+      const entry = entryFor(record)
+      expect(entry.value).toBe(record.value)
+      expect(entry.skill_layer).toBe('normal')
+      expect(saved.buffSources[entry.ownership_id]).toBe(true)
+      expect(resolveRegularBuffCharacter(entry, CHAR_BY_ID, ALL)).toBe(CHAR_BY_ID[record.character_id])
+    }
+    for (const record of moubuOfficers.corrections) {
+      expect(saved.buffSources[record.ownership_id]).toBeUndefined()
+      const next = normalizeProgress({ ...saved, buffSources: { ...saved.buffSources, [record.ownership_id]: true } })
+      expect(next.buffSources[record.ownership_id]).toBe(true)
+      for (const other of moubuOfficers.corrections.filter(other => other.ownership_id !== record.ownership_id)) {
+        expect(next.buffSources[other.ownership_id]).toBeUndefined()
+      }
+    }
   })
 })

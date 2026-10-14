@@ -1008,6 +1008,39 @@
           "skill_layer": "ura"
         }
       ]
+    },
+    "Moubo Army": {
+      "HP": [],
+      "Attack": [
+        {
+          "name": "Raiki",
+          "name_jp": "来輝",
+          "character_id": "raiki",
+          "faction": "qin",
+          "type": "SR",
+          "star6": false,
+          "value": 5.0,
+          "source_id": "ura:134:11008",
+          "ownership_id": "buff_8004de691be24a2fa326039d936abea5",
+          "skill_layer": "ura",
+          "characterId": 134
+        }
+      ],
+      "Defense": [
+        {
+          "name": "Choushi",
+          "name_jp": "丁之",
+          "character_id": "choushi",
+          "faction": "qin",
+          "type": "SR",
+          "star6": false,
+          "value": 5.0,
+          "source_id": "ura:133:11001",
+          "ownership_id": "buff_743349f6b2f04052a101d1ee8a40c20c",
+          "skill_layer": "ura",
+          "characterId": 133
+        }
+      ]
     }
   },
   "siege": {

@@ -1,0 +1,369 @@
+{
+  "schema": "ranhq.buff_update/1",
+  "sourceSnapshot": {
+    "snapshotLabel": "v8.7.0_20261014_cca859f8",
+    "masterFiles": {
+      "masters_001.bin": "A80535E10A96B450541087F880E0E134BCE81E4681D2F741E4A19F7A60D78C97",
+      "masters_002.bin": "04BB1F886D4C3655CC8E7E2C4A214BCAE295571116CB72DEE18880140E18450B",
+      "masters_003.bin": "0D8BC144653C01A900312E2726158D6D5DA739C233E082F9D7F35FE17F8E95CD",
+      "masters_004.bin": "A28C6161DEE47CE8E35FBB6E40665B872A9B4EAB7DFE0CBEFFFCAB8DE83A3891",
+      "masters_005.bin": "84F611D916A7D42958C49ACDA040167C5066C3EAF6AA3449124BD149EF304396"
+    },
+    "manifestSha256": "955E0CF1018DBAE90CBDB9320F0701BE09B70858694B257CB9672972AD98843A",
+    "sourceRoot": "C:\\kingdom_data\\decrypted",
+    "snapshotDate": "2026-10-14"
+  },
+  "officialAnnouncements": [
+    "https://www.kingdomran.jp/info/lg_chousi",
+    "https://www.kingdomran.jp/info/lg_raiki"
+  ],
+  "stblSha256": {
+    "MsgUnitAbilityName.stbl": "2A2858C2933055C21F673D31A11E061E06D15F3F5E08C2B4741E840910B89CEE",
+    "MsgUnitAbilityDesc.stbl": "F2CD8EF7E0D99E8C1DE040713D548CA589E37089092F0C98DA59BC9A5C103FAC",
+    "MsgUnitSecondSkillName.stbl": "617D6A48F19CC1D671A98744497D032D742D7A50471B1C2BF845A57802D8AF7E",
+    "MsgUnitSecondSkillDesc.stbl": "BADFC169EEC7EB6E19FD62F7B2A70672E70AB4FD216DD60A5D719DF490328FBF",
+    "MsgMstBelong.stbl": "A68881B8B9ABA41E04407CB9F308FC1D801362C13B8E77CD1420E0F6A5EEA354",
+    "MsgUnitGeneralName.stbl": "2AC16EBA8D8D399B590A65025AF8540B24193C0376BA1F5CD74D5CB3EFB9DB18",
+    "MsgUnitGeneralRubyName.stbl": "B5D60F5D627D9A6FF99B29A5F47B83A78962F7F70C72CBB3A9ECECD913DDA9FA",
+    "MsgUnionConquestSkillName.stbl": "5DCE9DF03A703E13539B29FD5E9BB1CBAFC6EAB5AC79A5529FFFDBC95994B3A3",
+    "MsgUnionConquestSkillDesc.stbl": "15DF7AD74CF95CA510584E36093C6E2A036E41237C64115F1E7430585C7E7CEC"
+  },
+  "characters": [
+    {
+      "character_id": "choushi",
+      "characterId": 133,
+      "nameJp": "丁之",
+      "rubyJp": "ちょうし",
+      "initialRarity": "SR",
+      "lgGeneralId": 593,
+      "lgPublicTime": 1791968400,
+      "lgAbilityId": 1910,
+      "lgUpgrade": {
+        "id": 178,
+        "generalId": 593,
+        "lgGroupType": 4,
+        "unitMedalId": 0,
+        "subMedalId": 1005069
+      },
+      "asset": {
+        "id": 697,
+        "designNo": 24,
+        "image": 3
+      },
+      "cwSkills": [
+        {
+          "slot": 1,
+          "skillId": 802,
+          "textId": 801,
+          "nameJp": "名将攻撃【赤亀】"
+        },
+        {
+          "slot": 2,
+          "skillId": 805,
+          "textId": 804,
+          "nameJp": "唯一の活路"
+        },
+        {
+          "slot": 3,
+          "skillId": 806,
+          "textId": 805,
+          "nameJp": "一気呵成"
+        }
+      ]
+    },
+    {
+      "character_id": "raiki",
+      "characterId": 134,
+      "nameJp": "来輝",
+      "rubyJp": "らいき",
+      "initialRarity": "SR",
+      "lgGeneralId": 595,
+      "lgPublicTime": 1791968400,
+      "lgAbilityId": 1920,
+      "lgUpgrade": {
+        "id": 179,
+        "generalId": 595,
+        "lgGroupType": 4,
+        "unitMedalId": 0,
+        "subMedalId": 1005069
+      },
+      "asset": {
+        "id": 699,
+        "designNo": 25,
+        "image": 3
+      },
+      "cwSkills": [
+        {
+          "slot": 1,
+          "skillId": 802,
+          "textId": 801,
+          "nameJp": "名将攻撃【赤亀】"
+        },
+        {
+          "slot": 2,
+          "skillId": 803,
+          "textId": 802,
+          "nameJp": "道を拓く"
+        },
+        {
+          "slot": 3,
+          "skillId": 804,
+          "textId": 803,
+          "nameJp": "最強の証明"
+        }
+      ]
+    }
+  ],
+  "corrections": [
+    {
+      "kind": "army",
+      "category": "Moubo Army",
+      "stat": "Defense",
+      "character_id": "choushi",
+      "characterId": 133,
+      "value": 5.0,
+      "level": 99,
+      "method": "ura",
+      "generalId": 592,
+      "bindingId": 433,
+      "publicTime": 1791954600,
+      "slot": 2,
+      "skillId": 11001,
+      "fieldAbilityId": 222,
+      "nameId": 956,
+      "captionId": 956,
+      "nameJp": "争覇防御力強化【蒙武軍】",
+      "descriptionJp": "同盟争覇戦時に味方蒙武軍武将の防御力が上昇する。自身が出撃していなくても有効。,味方蒙武軍武将の防御力{1:float}%上昇,,,,,,,,,,,,,,,,,",
+      "ownership_id": "buff_743349f6b2f04052a101d1ee8a40c20c"
+    },
+    {
+      "kind": "unit",
+      "category": "Infantry",
+      "stat": "Defense",
+      "character_id": "choushi",
+      "characterId": 133,
+      "value": 5.0,
+      "level": 99,
+      "method": "ura",
+      "generalId": 592,
+      "bindingId": 433,
+      "publicTime": 1791954600,
+      "slot": 6,
+      "skillId": 11002,
+      "fieldAbilityId": 159,
+      "nameId": 957,
+      "captionId": 957,
+      "nameJp": "争覇防御力強化【歩兵】",
+      "descriptionJp": "同盟争覇戦時に味方歩兵武将の防御力が上昇する。自身が出撃していなくても有効。,味方歩兵武将の防御力{1:float}%上昇,,,,,,,,,,,,,,,,,",
+      "ownership_id": "buff_ffe856737a3e48599e38811c6259faf0"
+    },
+    {
+      "kind": "army",
+      "category": "Moubo Army",
+      "stat": "Attack",
+      "character_id": "raiki",
+      "characterId": 134,
+      "value": 5.0,
+      "level": 99,
+      "method": "ura",
+      "generalId": 594,
+      "bindingId": 436,
+      "publicTime": 1791954600,
+      "slot": 2,
+      "skillId": 11008,
+      "fieldAbilityId": 226,
+      "nameId": 963,
+      "captionId": 963,
+      "nameJp": "争覇攻撃力強化【蒙武軍】",
+      "descriptionJp": "同盟争覇戦時に味方蒙武軍武将の攻撃力が上昇する。自身が出撃していなくても有効。,味方蒙武軍武将の攻撃力{1:float}%上昇,,,,,,,,,,,,,,,,,",
+      "ownership_id": "buff_8004de691be24a2fa326039d936abea5"
+    },
+    {
+      "kind": "unit",
+      "category": "Infantry",
+      "stat": "Attack",
+      "character_id": "raiki",
+      "characterId": 134,
+      "value": 5.0,
+      "level": 99,
+      "method": "ura",
+      "generalId": 594,
+      "bindingId": 436,
+      "publicTime": 1791954600,
+      "slot": 6,
+      "skillId": 10909,
+      "fieldAbilityId": 91,
+      "nameId": 864,
+      "captionId": 864,
+      "nameJp": "争覇攻撃力強化【歩兵】",
+      "descriptionJp": "同盟争覇戦時に味方歩兵武将の攻撃力が上昇する。自身が出撃していなくても有効。,味方歩兵武将の攻撃力{1:per}上昇,,,,,,,,,,,,,,,,,",
+      "ownership_id": "buff_f1c2df5cdca948b4a4fe817fac256686"
+    }
+  ],
+  "existingNormal": [
+    {
+      "kind": "unit",
+      "category": "Infantry",
+      "stat": "Attack",
+      "character_id": "choushi",
+      "characterId": 133,
+      "value": 5.0,
+      "level": 99,
+      "method": "normal",
+      "generalId": 592,
+      "slot": 5,
+      "skillId": 1390,
+      "fieldAbilityId": 91,
+      "nameId": 1390,
+      "captionId": 1390,
+      "nameJp": "争覇攻撃力強化【歩兵】",
+      "descriptionJp": "同盟争覇戦時に味方歩兵武将の攻撃力が上昇する。自身が出撃していなくても有効。,味方歩兵武将の攻撃力{1:per}上昇,,,,,,,,",
+      "ownership_id": "buff_1cabfb7a9d054147aa2bea8c12ef57bc"
+    },
+    {
+      "kind": "unit",
+      "category": "Infantry",
+      "stat": "Defense",
+      "character_id": "raiki",
+      "characterId": 134,
+      "value": 5.0,
+      "level": 99,
+      "method": "normal",
+      "generalId": 594,
+      "slot": 5,
+      "skillId": 1576,
+      "fieldAbilityId": 159,
+      "nameId": 1576,
+      "captionId": 1576,
+      "nameJp": "争覇防御力強化【歩兵】",
+      "descriptionJp": "同盟争覇戦時に味方歩兵武将の防御力が上昇する。自身が出撃していなくても有効。,味方歩兵武将の防御力{1:per}上昇,,,,,,,,",
+      "ownership_id": "buff_57fcd019e98741d78cef73ed949e6adc"
+    }
+  ],
+  "excludedNonCw": [
+    {
+      "character_id": "choushi",
+      "characterId": 133,
+      "generalId": 592,
+      "slot": 3,
+      "skillId": 11003,
+      "fieldAbilityId": 215,
+      "targetType": 30,
+      "nameJp": "英雄体力強化【歩兵】",
+      "descriptionJp": "英雄台頭戦時に味方歩兵部隊の兵士体力が上昇する。自身が出陣していなくても有効。,味方歩兵部隊の兵士体力{1:float}%上昇,,,,,,,,,,,,,,,,,"
+    },
+    {
+      "character_id": "choushi",
+      "characterId": 133,
+      "generalId": 592,
+      "slot": 5,
+      "skillId": 11004,
+      "fieldAbilityId": 223,
+      "targetType": 2,
+      "nameJp": "全軍全能力強化【蒙武軍】",
+      "descriptionJp": "バトル時に味方蒙武軍部隊の兵士攻撃力と兵士防御力と兵士体力が上昇する。自身が出陣していなくても有効。,味方蒙武軍部隊の兵士攻撃力{1:float}%上昇,味方蒙武軍部隊の兵士防御力{1:float:3}%上昇,味方蒙武軍部隊の兵士体力{1:float:4}%上昇,,,,,,,,,,,,,,,"
+    },
+    {
+      "character_id": "raiki",
+      "characterId": 134,
+      "generalId": 594,
+      "slot": 3,
+      "skillId": 10897,
+      "fieldAbilityId": 160,
+      "targetType": 32,
+      "nameJp": "英雄防御力強化【歩兵】",
+      "descriptionJp": "英雄台頭戦時に味方歩兵部隊の兵士防御力が上昇する。自身が出陣していなくても有効。,味方歩兵部隊の兵士防御力{1:float}%上昇,,,,,,,,,,,,,,,,,"
+    },
+    {
+      "character_id": "raiki",
+      "characterId": 134,
+      "generalId": 594,
+      "slot": 5,
+      "skillId": 11004,
+      "fieldAbilityId": 223,
+      "targetType": 2,
+      "nameJp": "全軍全能力強化【蒙武軍】",
+      "descriptionJp": "バトル時に味方蒙武軍部隊の兵士攻撃力と兵士防御力と兵士体力が上昇する。自身が出陣していなくても有効。,味方蒙武軍部隊の兵士攻撃力{1:float}%上昇,味方蒙武軍部隊の兵士防御力{1:float:3}%上昇,味方蒙武軍部隊の兵士体力{1:float:4}%上昇,,,,,,,,,,,,,,,"
+    }
+  ],
+  "artwork": [
+    {
+      "character_id": "choushi",
+      "sourceUrl": "https://s3.ap-northeast-1.amazonaws.com/official-operation.s3.sand.okp.mobcast.io/wp-content/uploads/2026/09/25190005/LG-4.png",
+      "sourcePath": null,
+      "sourceSha256": "1B7B22F2C9219DF36A7D312038C968C2C0A21E44435A492F1EE8AC927796193F",
+      "output": "public/persos/choushi.webp",
+      "outputSha256": "F328A6C871A32C9207EFB23D204FECD376B7DE0579451E41FB9EC4CF5A318A88",
+      "size": [
+        313,
+        440
+      ],
+      "conversion": "Lossless WebP; exact RGBA; no resize or crop"
+    },
+    {
+      "character_id": "choushi",
+      "sourceUrl": "https://s3.ap-northeast-1.amazonaws.com/official-operation.s3.sand.okp.mobcast.io/wp-content/uploads/2026/09/25190005/LG-4.png",
+      "sourcePath": null,
+      "sourceSha256": "1B7B22F2C9219DF36A7D312038C968C2C0A21E44435A492F1EE8AC927796193F",
+      "output": "public/persos/thumbs/choushi.webp",
+      "outputSha256": "F328A6C871A32C9207EFB23D204FECD376B7DE0579451E41FB9EC4CF5A318A88",
+      "size": [
+        313,
+        440
+      ],
+      "conversion": "Lossless WebP; exact RGBA; no resize or crop"
+    },
+    {
+      "character_id": "choushi",
+      "sourceUrl": null,
+      "sourcePath": "C:\\kingdom_data\\decrypted\\character\\icon\\cg024_i03.png",
+      "sourceSha256": "66CF3EEB4ACC6491C36F61858D473DDC177AB70C5A1018AD3A3476102C2F28C8",
+      "output": "public/icons/Choushi.webp",
+      "outputSha256": "8157FDED032FE91DDC11DD3D9AFE81CD088769A0EAA87B5E39BD01281AE5DFA8",
+      "size": [
+        120,
+        120
+      ],
+      "conversion": "Lossless WebP; exact RGBA; no resize or crop"
+    },
+    {
+      "character_id": "raiki",
+      "sourceUrl": "https://s3.ap-northeast-1.amazonaws.com/official-operation.s3.sand.okp.mobcast.io/wp-content/uploads/2026/09/25190004/LG-3.png",
+      "sourcePath": null,
+      "sourceSha256": "EACE03FDA91BACD3B649D51F072EA87E51328E309ED3C88F77CB985B51FE48A5",
+      "output": "public/persos/raiki.webp",
+      "outputSha256": "889D238E69E60F20F88DB693D7596C0777BF9CCC271F43620CDA33DAA946E76F",
+      "size": [
+        313,
+        440
+      ],
+      "conversion": "Lossless WebP; exact RGBA; no resize or crop"
+    },
+    {
+      "character_id": "raiki",
+      "sourceUrl": "https://s3.ap-northeast-1.amazonaws.com/official-operation.s3.sand.okp.mobcast.io/wp-content/uploads/2026/09/25190004/LG-3.png",
+      "sourcePath": null,
+      "sourceSha256": "EACE03FDA91BACD3B649D51F072EA87E51328E309ED3C88F77CB985B51FE48A5",
+      "output": "public/persos/thumbs/raiki.webp",
+      "outputSha256": "889D238E69E60F20F88DB693D7596C0777BF9CCC271F43620CDA33DAA946E76F",
+      "size": [
+        313,
+        440
+      ],
+      "conversion": "Lossless WebP; exact RGBA; no resize or crop"
+    },
+    {
+      "character_id": "raiki",
+      "sourceUrl": null,
+      "sourcePath": "C:\\kingdom_data\\decrypted\\character\\icon\\cg025_i03.png",
+      "sourceSha256": "7ACB0F41D576D68ACB8DC50EADF256EA22318A5EEDF48C07A0C29EA5689DEF51",
+      "output": "public/icons/Raiki.webp",
+      "outputSha256": "C6E556841BBD0060AE7A687989AEEE017367704CBCF703D71D6F1A66EEAE737B",
+      "size": [
+        120,
+        120
+      ],
+      "conversion": "Lossless WebP; exact RGBA; no resize or crop"
+    }
+  ]
+}
