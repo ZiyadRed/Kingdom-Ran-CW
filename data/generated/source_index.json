@@ -1,7 +1,7 @@
 {
   "_meta": {
     "schema": "ranhq.source_index/1",
-    "rows": 664
+    "rows": 665
   },
   "skills": {
     "rouai#0": {
@@ -2363,6 +2363,10 @@
     "batei#2": {
       "status": "exact",
       "skillId": 512
+    },
+    "batei#3": {
+      "status": "resolved",
+      "skillId": 877
     },
     "gika#0": {
       "status": "exact",

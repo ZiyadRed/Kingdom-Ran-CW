@@ -12,7 +12,7 @@
 //        |
 //        v
 //   data/generated/ja/skills.json             597 canonical Japanese skills
-//   data/generated/source_index.json          661 project rows -> skillId|null
+//   data/generated/source_index.json          662 project rows -> skillId|null
 //   data/generated/ja/character_readings.json 208 slugs (187 kana / 21 null)
 //   data/generated/ja/character_names.json     name_en -> name_jp
 //   data/generated/ja/entity_names.json        characterId -> name, for
@@ -44,9 +44,9 @@ const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'kousonryu#0']
 // mistaken for the other: `rows` counts entries in the file, and
 // `coveredProjectRows` counts the deterministic project rows they serve.
 const EXPECTED = {
-  skills: 664,
-  deterministic: 661,
-  canonicalSkills: 603,
+  skills: 665,
+  deterministic: 662,
+  canonicalSkills: 604,
   ambiguous: 3,
   // Rows for characters who shipped after the pinned snapshot: no canonical
   // skillId/textId exists yet, so they contribute no Japanese text and are

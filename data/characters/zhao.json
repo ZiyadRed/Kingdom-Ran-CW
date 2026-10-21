@@ -929,6 +929,40 @@
             "duration": null
           }
         ]
+      },
+      {
+        "name_en": "Rigan’s Mighty Strength",
+        "name_jp": "離眼の豪力☆6",
+        "type": "Strategy",
+        "star6": true,
+        "cwId": 877,
+        "textId": 876,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Kisui Army",
+            "effect": "HP Recovery Rate Up 50%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Kisui is alive",
+            "target": "Ally Kisui Army",
+            "effect": "Anti-[Qin] DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Ryuuto is alive",
+            "target": "Ally Kisui Army",
+            "effect": "DEF Penetration Resistance 30%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Kisui and Ryuuto are alive",
+            "target": "Ally Kisui Army",
+            "effect": "Betrayal Resistance 50%",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "/persos/batei.webp",

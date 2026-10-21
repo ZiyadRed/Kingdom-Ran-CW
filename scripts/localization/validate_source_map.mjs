@@ -28,11 +28,11 @@ const EXPECTED_EXACT = 199
 const EXPECTED_RESOLVED = 11
 
 // ── Phase 2 CW-skill expectations ────────────────────────────────────────────
-const EXPECTED_SKILLS = 664
+const EXPECTED_SKILLS = 665
 const EXPECTED_SKILL_AMBIGUOUS = 3
-const EXPECTED_SKILL_DETERMINISTIC = 661
+const EXPECTED_SKILL_DETERMINISTIC = 662
 const EXPECTED_BASE = 630
-const EXPECTED_SCENE_CARD_RANK = 34
+const EXPECTED_SCENE_CARD_RANK = 35
 const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'kousonryu#0']
 
 // The current decrypted snapshot now contains the previously pending Soutan

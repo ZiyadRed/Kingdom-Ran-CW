@@ -59,12 +59,12 @@ describe('raw STBL snapshots', () => {
 })
 
 describe('generated Japanese skills', () => {
-  it('holds 603 canonical entries covering 661 deterministic project rows', () => {
+  it('holds 604 canonical entries covering 662 deterministic project rows', () => {
     expect(skills._meta.schema).toBe('ranhq.ja_skills/1')
     expect(skills._meta.sourceSnapshot).toBe(SNAPSHOT)
-    expect(Object.keys(skills.skills)).toHaveLength(603)
-    expect(skills._meta.rows).toBe(603)
-    expect(skills._meta.coveredProjectRows).toBe(661)
+    expect(Object.keys(skills.skills)).toHaveLength(604)
+    expect(skills._meta.rows).toBe(604)
+    expect(skills._meta.coveredProjectRows).toBe(662)
   })
 
   it('matches the raw source byte-for-byte at every mapped textId', () => {
@@ -78,7 +78,7 @@ describe('generated Japanese skills', () => {
       expect(generated.desc).toBe(skillDesc.values[textId])
       verified++
     }
-    expect(verified).toBe(661)
+    expect(verified).toBe(662)
   })
 
   it('carries no provenance, evidence or candidate metadata', () => {
@@ -114,7 +114,7 @@ describe('source index', () => {
 
   it('keeps canonical IDs and leaves preview skills unassigned', () => {
     const entries = Object.values(index.skills)
-    expect(entries.filter((e) => e.skillId !== null)).toHaveLength(661)
+    expect(entries.filter((e) => e.skillId !== null)).toHaveLength(662)
     // The remaining deliberately ambiguous rows have no
     // assigned canonical game skill IDs.
     expect(entries.filter((e) => e.skillId === null)).toHaveLength(3)

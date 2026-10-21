@@ -24,12 +24,11 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const J = (p) => JSON.parse(readFileSync(join(root, p), 'utf-8'))
 const has = (p) => existsSync(join(root, p))
 
-// 657 deterministic project rows resolve onto 600 distinct canonical skillIds:
-// 42 canonical CW skills are legitimately shared by several characters. Both
-// counts are asserted so neither can silently drift into the other.
-const EXPECTED_PROJECT_SKILLS = 664
-const EXPECTED_DETERMINISTIC = 661
-const EXPECTED_CANONICAL_SKILLS = 603
+// Multiple deterministic project rows can share a canonical CW skillId.
+// Assert project coverage and distinct canonical entries independently.
+const EXPECTED_PROJECT_SKILLS = 665
+const EXPECTED_DETERMINISTIC = 662
+const EXPECTED_CANONICAL_SKILLS = 604
 const EXPECTED_AMBIGUOUS = 3
 // Rows for characters who shipped after the pinned snapshot — no canonical
 // skillId exists yet, so they stay unassigned like the ambiguous rows.

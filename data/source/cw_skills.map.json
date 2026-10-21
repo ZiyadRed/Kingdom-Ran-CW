@@ -8862,6 +8862,63 @@
       },
       "basis": "September 30 current master: characterId 223 -> CW profile skill slot -> skill textId.",
       "sourceSlot": 3
+    },
+    "batei#3": {
+      "status": "resolved",
+      "characterId": 214,
+      "skillId": 877,
+      "textId": 876,
+      "sourceType": "scene_card_rank",
+      "sourceSlot": null,
+      "sourceNameJp": "離眼の豪力☆6",
+      "fingerprint": {
+        "name_jp": "離眼の豪力☆6",
+        "effectsHash": "dec57a2cd6cfcb7e3f4112449dce5690487665dbdde2ff1f82a0e55ed738083c"
+      },
+      "sceneCard": {
+        "cardId": 42003,
+        "rank": 6,
+        "rankGroupId": 35,
+        "ranks": [
+          {
+            "id": 205,
+            "rankGroupId": 35,
+            "rank": 1,
+            "skillId": 872
+          },
+          {
+            "id": 206,
+            "rankGroupId": 35,
+            "rank": 2,
+            "skillId": 873
+          },
+          {
+            "id": 207,
+            "rankGroupId": 35,
+            "rank": 3,
+            "skillId": 874
+          },
+          {
+            "id": 208,
+            "rankGroupId": 35,
+            "rank": 4,
+            "skillId": 875
+          },
+          {
+            "id": 209,
+            "rankGroupId": 35,
+            "rank": 5,
+            "skillId": 876
+          },
+          {
+            "id": 210,
+            "rankGroupId": 35,
+            "rank": 6,
+            "skillId": 877
+          }
+        ]
+      },
+      "basis": "Current stable-ID scene card 42003 -> rank group 35 -> rank 6 skill 877 -> textId 876. Availability gated by card.publicTime."
     }
   }
 }

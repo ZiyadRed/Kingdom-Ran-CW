@@ -1519,6 +1519,61 @@
       },
       "thumb": "/scene_cards/thumbs/Rien-CW6-star-thumb.webp",
       "name_en": "Rien CW6 star"
+    },
+    {
+      "id": 42003,
+      "imageId": 12003,
+      "name_jp": "黒羊の夜",
+      "name_en": "Night at Kokuyou",
+      "skill_en": "Rigan’s Mighty Strength",
+      "skill_jp": "離眼の豪力",
+      "image": "/scene_cards/webp/Batei-CW6-star.webp",
+      "thumb": "/scene_cards/thumbs/Batei-CW6-star-thumb.webp",
+      "owner_id": "batei",
+      "ownerName": "Batei",
+      "ownerNameJp": "馬呈",
+      "ownerIcon": "/icons/Batei.webp",
+      "publicTime": 1792573200,
+      "cwIds": [
+        872,
+        873,
+        874,
+        875,
+        876,
+        877
+      ],
+      "skill": {
+        "name_en": "Rigan’s Mighty Strength",
+        "name_jp": "離眼の豪力☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Kisui Army",
+            "effect": "HP Recovery Rate Up 50%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Kisui is alive",
+            "target": "Ally Kisui Army",
+            "effect": "Anti-[Qin] DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Ryuuto is alive",
+            "target": "Ally Kisui Army",
+            "effect": "DEF Penetration Resistance 30%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Kisui and Ryuuto are alive",
+            "target": "Ally Kisui Army",
+            "effect": "Betrayal Resistance 50%",
+            "duration": null
+          }
+        ]
+      }
     }
   ]
 }
