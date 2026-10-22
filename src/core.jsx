@@ -517,7 +517,7 @@ export const META_TEAMS=[
   {tier:'B',name:'Han',             country:'han',           members:['Seikai','Chouin','Bakan','Nakon']},
   {tier:'C',name:'Ai',              country:'ai',            members:['Rouai','Hanoki','Ryofui','Hanroki']},
   {tier:'C',name:'Archer Garrison', country:MIXED_COUNTRY,   members:['Rouai','Queen Biki','Seikai','Keisha']},
-  {tier:'C',name:'Rigan',           country:'zhao',          members:['Kisui','Kishou','Batei','Duke Sei']},
+  {tier:'C',name:'Rigan',           country:'zhao',          members:['Kishou','Kisui','Batei','Ryuuto']},
   {tier:'C',name:'Kanki',           country:'qin',           members:['Zenou','Raido','Kanki','Naki']},
   {tier:'C',name:'Ousen Army',      country:'qin',           members:['Eiki','Makou','Akou','Ousen']},
   {tier:'C',name:'Shouheikun',      country:'qin',           members:['Shouheikun','Sougen','Hyoushiga','Kaioku']},
