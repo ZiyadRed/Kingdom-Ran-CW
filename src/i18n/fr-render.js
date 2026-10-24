@@ -973,6 +973,13 @@ function renderConditionPart(text) {
     if (who) return `Quand ${withArticle(who)} ${isPlural(who) ? 'sont' : 'est'} en vie`
   }
 
+  // Attacks are events, so keep their count distinct from the roster count.
+  match = /^per\s+(.+?)\s+attack count$/i.exec(raw)
+  if (match) {
+    const who = renderConditionSelector(match[1])
+    if (who) return `À chaque attaque ${withDe(who)}`
+  }
+
   // "Per ally [Cavalry] [General]" / "Per other ally Kanki Army member"
   match = /^per\s+(.+)$/i.exec(raw)
   if (match) {

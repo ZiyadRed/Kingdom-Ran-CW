@@ -252,6 +252,8 @@ export default function CastlePointsPage(){
         </div>
       </section>
 
+      <p className="cp-mode-help">{t('castlePoints.versionOne')} · {t('castlePoints.versionTwo')}</p>
+
       <section className="cp-score-strip" aria-label={t('castlePoints.pointSummary')}>
         {CASTLE_TYPES.map(type => (
           <div key={type.id} className={`cp-score-card cp-score-${type.id}`}>

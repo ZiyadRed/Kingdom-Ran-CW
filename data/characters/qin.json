@@ -724,7 +724,7 @@
             "duration": "4 turns"
           },
           {
-            "condition": "Per ally Kanki Army member",
+            "condition": "Per other ally Kanki Army",
             "target": "All feared enemy [General]",
             "effect": "DEF Down 10%",
             "duration": "4 turns"
@@ -845,19 +845,19 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "target": "Ally Ouhon / Ally Ousen Army",
             "effect": "Anti-[Cavalry] ATK Up 20%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "target": "Ally Ouhon / Ally Ousen Army",
             "effect": "Hit Rate Up 40%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "target": "Ally Ouhon / Ally Ousen Army",
             "effect": "Confusion Resistance 50%",
             "duration": null
           }
@@ -966,7 +966,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "target": "Ally Ouhon / Ally Ousen Army",
             "effect": "DEF Up 40%, Critical Damage Up 30%",
             "duration": null
           },
@@ -1400,7 +1400,7 @@
             "duration": null
           },
           {
-            "condition": "Per allied attack count",
+            "condition": "Per other ally attack count",
             "target": "Ally [Infantry] and [Cavalry]",
             "effect": "ATK Up 3% (max 25%)",
             "duration": "3 turns"
@@ -1492,7 +1492,7 @@
             "condition": null,
             "target": "Self",
             "effect": "ATK Down, DEF Down, Evasion (Dodge Chance) Down 30%",
-            "duration": null
+            "duration": "3 turns"
           },
           {
             "condition": null,

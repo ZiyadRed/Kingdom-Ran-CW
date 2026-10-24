@@ -4,7 +4,7 @@ import { useLocale, formatNumber as formatLocaleNumber, formatFixedNumber } from
 import { versionPublicAsset, versionedPersosThumb } from './asset-url.js'
 import { localizedCharacter } from './i18n/data.js'
 import { LEGACY_CHARACTER_NAME_ALIASES } from './i18n/ar-character-names.js'
-import { characterContentMatch } from './i18n/character-search.js'
+import { characterContentMatch, compareCharacters } from './i18n/character-search.js'
 import cw6SceneCards from '../data/cw6_scene_cards.json'
 import mountainFolk from '../data/characters/mountain_folk.json'
 import qin          from '../data/characters/qin.json'
@@ -769,8 +769,9 @@ export function parseBuffEffect(str){
   if(!str) return []
   const results=[];let deferred=[],inheritedRecipientRaw=null
   for(let part of str.split(/[,、/]/)){
-    part=part.trim().replace(/\\/g,'').replace(/["\u201C\u201D\u300C\u300D]/g,'').trim()
-    part=part.replace(/^and\s+/i,'').replace(/\s*\(Dodge Chance\)/gi,'').replace(/\s+additional\b/gi,'').trim()
+    part=part.trim().replace(/\\/g,'').replace(/["\u201C\u201D\u300C\u300D]/g,'').trim().replace(/^and\s+/i,'')
+    const dodgeState=/^(?:Dodge Chance|Evasion\s*\(Dodge Chance\))\s+\d+(?:\.\d+)?[%％]$/i.test(part)
+    part=part.replace(/\s*\(Dodge Chance\)/gi,'').replace(/\s+additional\b/gi,'').trim()
     if(!part) continue
     if(/^enemy/i.test(part)) continue
     if(/\d+[%％]\s*Damage|^%\s*(?:of\s+|Damage)|HP Drain|Stun Rate/i.test(part)) continue
@@ -885,7 +886,7 @@ export function parseBuffEffect(str){
     if(m){flush({stat:'Morale Consumption',dir:'Down',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
     // Evasion/Dodge Chance X% (bare number, no Up/Down)
     m=part.match(/^(?:Evasion(?:\s*\([^)]*\))?|Dodge Chance)\s+(\d+(?:\.\d+)?)[%％]$/i)
-    if(m){flush({stat:'Evasion',dir:'Up',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
+    if(m){flush({stat:dodgeState?'Dodge Chance':'Evasion',dir:'Up',val:parseFloat(m[1]),...(dodgeState?{valueMeaning:{kind:'chance',rate:parseFloat(m[1])}}:{}),ownerType,antiEnemy});continue}
     // "Squad Damage Reduction X%"
     m=part.match(/^Squad Damage Reduction\s+(\d+(?:\.\d+)?)[%％]$/i)
     if(m){flush({stat:'Squad Damage Reduction',dir:'Up',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
@@ -1990,7 +1991,8 @@ export function matchCharacterSearch(character, query, locale) {
 
 export function searchCharacters(characters, query, locale) {
   const exactNames = [], partialNames = [], content = []
-  for (const character of characters) {
+  const ordered=(typeof locale==='string'?locale:locale?.code)==='ja'?[...characters].sort((a,b)=>compareCharacters(a,b,locale)):characters
+  for (const character of ordered) {
     const match = matchCharacterSearch(character, query, locale)
     if (match) (match.nameMatch === 'exact' ? exactNames : match.nameMatch ? partialNames : content).push(character)
   }
@@ -2058,7 +2060,7 @@ export function buffEntryRarity(entry){
 export const INVERSE_STATS=new Set(['Morale Consumption','Skill Cooldown','Damage Received'])
 export const SPECIAL_STATS=new Set(['Attack Nullification','Sure Hit','Status Effect Immunity','Rampage','Less Likely to be Targeted'])
 // Canonical display order for buff stats
-export const STAT_ORDER=['Max HP','ATK','DEF','DEF Penetration','DEF Penetration Resistance','Guard','Attack Nullification','Sure Hit','Status Effect Immunity','Less Likely to be Targeted','Rampage','Max Morale','Morale Consumption','Morale Recovery','Critical Rate','Critical Damage','Hit Rate','HP Recovery','HP Recovery Nullification','Evasion','Squad Damage Reduction']
+export const STAT_ORDER=['Max HP','ATK','DEF','DEF Penetration','DEF Penetration Resistance','Guard','Attack Nullification','Sure Hit','Status Effect Immunity','Less Likely to be Targeted','Rampage','Max Morale','Morale Consumption','Morale Recovery','Critical Rate','Critical Damage','Hit Rate','HP Recovery','HP Recovery Nullification','Evasion','Dodge Chance','Squad Damage Reduction']
 export function statSortKey(s){const i=STAT_ORDER.indexOf(s);return i===-1?STAT_ORDER.length:i}
 
 // ----- party-builder skill masks + hidden search tags (shared) -----

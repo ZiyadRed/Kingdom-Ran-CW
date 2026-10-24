@@ -561,7 +561,7 @@
           },
           {
             "condition": "When Attacking",
-            "target": "Ally [Archer]",
+            "target": "Other ally [Archer]",
             "effect": "DEF Up 20%",
             "duration": "3 turns"
           }

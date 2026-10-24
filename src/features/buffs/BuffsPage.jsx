@@ -78,7 +78,7 @@ export function BuffsPage(){
   const buffSearchNorm=buffSearch.trim().toLowerCase()
   const categoryMatches=(kind,key)=>{
     if(!buffSearchNorm) return true
-    if(key.toLowerCase().includes(buffSearchNorm)||String(labelFor(key)).toLowerCase().includes(buffSearchNorm)) return true
+    if([key,labelFor(key),localizedText(key,'en')].some(value=>String(value).toLowerCase().includes(buffSearchNorm))) return true
     if(kind==='wogg') return WOGG_BUFF_SOURCES.some(source=>buffEntryMatches(source,buffSearch))
     if(kind==='army'){
       const leader=ARMY_ICON_CHAR[key]&&findCharByName(ARMY_ICON_CHAR[key])

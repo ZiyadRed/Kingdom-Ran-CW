@@ -45,7 +45,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy [General]",
+            "target": "Other ally [Chu]",
             "effect": "DEF Down 10%",
             "duration": null
           }
@@ -504,12 +504,12 @@
           },
           {
             "condition": null,
-            "target": "Self and ally Renpa Army",
+            "target": "Self and ally Renpa",
             "effect": "Critical Rate Up 20%",
             "duration": null
           },
           {
-            "condition": "Ally \"Renpa\" alive in same formation",
+            "condition": "When ally Renpa is alive",
             "target": "All ally [General]",
             "effect": "Morale Consumption Down 30%",
             "duration": null

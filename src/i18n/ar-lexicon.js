@@ -221,7 +221,7 @@ export const GROUPS = {
   'Mera Tribe': 'قبيلة ميرا',
   'Figo Tribe': 'قبيلة فيغو',
   'Akou Army': 'جيش آكو',
-  'Qiang Tribe': 'قبيلة كيانغ',
+  'Qiang Tribe': 'قبيلة كيو',
   'Chinese Ten Bows': 'رماة الصين العشرة',
   "Zhao's New Three Great Heavens": 'سماوات تشاو الثلاث العظيمة الجديدة',
   "Zhao's Three Great Heavens": 'سماوات تشاو الثلاث العظيمة',

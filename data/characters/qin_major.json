@@ -1253,7 +1253,7 @@
           },
           {
             "condition": null,
-            "target": "Ally [Cavalry]",
+            "target": "Other ally [Cavalry]",
             "effect": "ATK Up 20%",
             "duration": "3 turns"
           }
@@ -1385,7 +1385,7 @@
           },
           {
             "condition": null,
-            "target": "Ally \"Ouki\" and Ouki Army",
+            "target": "Other ally Ouki / Other ally Ouki Army",
             "effect": "ATK Up 30%, DEF Up 30%",
             "duration": "4 turns"
           },

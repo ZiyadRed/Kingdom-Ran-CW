@@ -63,11 +63,12 @@ describe('source-verified buff corrections', () => {
     expect(redCrystalBuffUnlockCost(row, 'unit', 'Archer', 'HP')).toBe(245)
   })
 
-  it('reuses the established Qiang Tribe term and a real portrait in every locale', () => {
+  it('displays the Japanese-reading Kyo Tribe name while preserving the legacy key and real portrait', () => {
     expect(ARMY_ICON_CHAR['Qiang Tribe']).toBe('Kyoukai')
+    expect(localizedText('Qiang Tribe', 'en')).toBe('Kyo Tribe')
     expect(localizedText('Qiang Tribe', 'ja')).toBe('羌族')
-    expect(localizedText('Qiang Tribe', 'ar')).toBe('قبيلة كيانغ')
-    expect(localizedText('Qiang Tribe', 'fr')).toBe('Tribu Qiang')
+    expect(localizedText('Qiang Tribe', 'ar')).toBe('قبيلة كيو')
+    expect(localizedText('Qiang Tribe', 'fr')).toBe('Tribu Kyo')
   })
 
   it('adds the Moubu Army CW category without importing battlefield or Hero Rise buffs', () => {

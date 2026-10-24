@@ -159,7 +159,7 @@ describe('source-derived calculation truth set', () => {
   it('exhaustively verifies every effect-level Ally scope as a source-backed recipient union', () => {
     const expectedRows = [
       'bikou#0:0', 'bikou#0:1', 'denei#0:1', 'denyuu#0:1', 'en#0:0', 'en#0:1',
-      'hyouki#0:0', 'hyouki#0:1', 'kou2#0:1', 'kyouen#0:1', 'kyougai#0:0',
+      'kou2#0:1', 'kyouen#0:1', 'kyougai#0:0',
       'roen#0:1', 'seki#0:1', 'taijifu#0:1',
     ]
     const sourceUnions = {

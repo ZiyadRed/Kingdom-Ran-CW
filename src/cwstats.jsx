@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ALL, CharIcon, characterInitialRarity, searchCharacters, useReleaseData } from './core.jsx'
+import { compareCharacters } from './i18n/character-search.js'
 import { useLocale } from './i18n/LocaleContext.jsx'
 import { localizedCharacter, localizedText } from './i18n/data.js'
 import { formatNumber as formatLocaleNumber } from './i18n/format.js'
@@ -458,12 +459,12 @@ function CharacterSlot({ character, slotIndex, values, onChange, onChangeActiveB
 
 function CharacterSearch({ team, teamId, teamNumber, query, open, activeSlot, inputRef, onFocus, onChange, onSelect }) {
   const { ALL: roster } = useReleaseData()
+  const locale = useLocale()
   const characterList = useMemo(() => roster
     .map(character => ({ ...character, rarity: cwStatsCharacterRarity(character) }))
     .filter(character => character?.id && character?.name_en)
-    .sort((a, b) => a.name_en.localeCompare(b.name_en)), [roster])
+    .sort((a, b) => compareCharacters(a, b, locale)), [roster, locale])
   const { t } = useTranslation('common')
-  const locale = useLocale()
   const searchInput = useRef(null)
   const normalizedQuery = query.trim().toLowerCase()
   const results = normalizedQuery
@@ -484,12 +485,12 @@ function CharacterSearch({ team, teamId, teamNumber, query, open, activeSlot, in
           className="cwstats-search-input"
           type="search"
           value={query}
-          placeholder={`${t('search')} ${t('stats.addCharacter').toLowerCase()}…`}
+          placeholder={`${t('archive.searchGenerals')}…`}
           autoComplete="off"
           onFocus={onFocus}
           onChange={(event) => onChange(event.target.value)}
         />
-        {query&&<button type="button" onClick={()=>{onChange('');searchInput.current?.focus()}}>{t('clear')}</button>}
+        {query&&<button type="button" className="cwstats-search-clear" aria-label={t('clear')} onClick={()=>{onChange('');searchInput.current?.focus()}}>×</button>}
       </div>
 
       {open && (

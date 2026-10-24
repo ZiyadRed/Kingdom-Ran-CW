@@ -32,8 +32,8 @@ const TEAM_NAMES = {
   'Hi Shin':        { ja: '飛信隊',        ar: 'وحدة الهاي شين', fr: 'Unité Hi Shin' },
   'YTW + Triplets': { ja: '楊端和＋三つ子', ar: 'يوتانوا والتوائم الثلاثة', fr: 'Yotanwa + les triplés' },
   '6GG':            { ja: '六大将軍',      ar: 'الجنرالات الستة العظام', fr: 'Six Grands Généraux' },
-  'Renpa v1':       { ja: '廉頗 v1',       ar: 'رينبا (نسخة 1)', fr: 'Renpa v1' },
-  'Renpa v3':       { ja: '廉頗 v3',       ar: 'رينبا (نسخة 3)', fr: 'Renpa v3' },
+  'Renpa v1':       { ja: '廉頗編成1',       ar: 'رينبا (نسخة 1)', fr: 'Renpa v1' },
+  'Renpa v3':       { ja: '廉頗編成3',       ar: 'رينبا (نسخة 3)', fr: 'Renpa v3' },
   'Karin Army':     { ja: '媧燐軍',        ar: 'جيش كارين', fr: 'Armée de Karin' },
   'Han':            { ja: '韓国編成',      ar: 'تشكيلة هان', fr: 'Compo Han' },
   'Ai':             { ja: '毐国編成',      ar: 'تشكيلة آي', fr: 'Compo Ai' },
@@ -46,10 +46,10 @@ const TEAM_NAMES = {
 
   // ── Party-Builder-only extras ──
   'Ouhon':          { ja: '王賁編成',      ar: 'تشكيلة أوهون', fr: 'Compo Ouhon' },
-  'Ousen v3':       { ja: '王翦 v3',       ar: 'أوسن (نسخة 3)', fr: 'Ousen v3' },
+  'Ousen v3':       { ja: '王翦編成3',       ar: 'أوسن (نسخة 3)', fr: 'Ousen v3' },
   'Karin':          { ja: '媧燐編成',      ar: 'تشكيلة كارين', fr: 'Compo Karin' },
   'Chu':            { ja: '楚国編成',      ar: 'تشكيلة تشو', fr: 'Compo Chu' },
-  'Renpa v2':       { ja: '廉頗 v2',       ar: 'رينبا (نسخة 2)', fr: 'Renpa v2' },
+  'Renpa v2':       { ja: '廉頗編成2',       ar: 'رينبا (نسخة 2)', fr: 'Renpa v2' },
   'Moubo':          { ja: '蒙武編成',      ar: 'تشكيلة موبو', fr: 'Compo Moubo' },
   'Qin Shields':    { ja: '秦国盾兵',      ar: 'دروع تشين', fr: 'Boucliers Qin' },
   'Makou Army':     { ja: '麻鉱軍',        ar: 'جيش ماكو', fr: 'Armée de Makou' },

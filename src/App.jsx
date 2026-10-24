@@ -431,7 +431,7 @@ function HomePage(){
           alt="" className="home-hero-img" width="1881" height="836" decoding="async"/>
         <div className="home-hero-shade"/>
         <div className="home-hero-content">
-          <h1>{locale.code==='ja' ? 'キングダム乱（キンラン）同盟争覇戦攻略 | RanHQ' : locale.code==='ar' ? 'RanHQ — دليل حرب القلاع في Kingdom Ran' : locale.code==='fr' ? 'RanHQ — Guide de la Conquête d’Alliance de Kingdom Ran' : 'RanHQ — Kingdom Ran Castle War Guide'}</h1>
+          <h1>{locale.code==='ja' ? <><span className="home-ja-title-line">キングダム乱<span className="home-ja-reading">（キンラン）</span></span><span className="home-ja-title-line">同盟争覇戦攻略</span><span className="home-ja-brand"> RanHQ</span></> : locale.code==='ar' ? 'RanHQ — دليل حرب القلاع في Kingdom Ran' : locale.code==='fr' ? 'RanHQ — Guide de la Conquête d’Alliance de Kingdom Ran' : 'RanHQ — Kingdom Ran Castle War Guide'}</h1>
           <p>{t('home.heroDescription')}</p>
           <div className="home-actions">
             <Link className="home-primary" to="/archive">{t('home.openArchive')}</Link>

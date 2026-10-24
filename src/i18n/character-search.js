@@ -2,6 +2,18 @@ import { correctedCharacterSearchTarget, matchesCharacterName, normalizeArabicSe
 import { localizedCharacter, localizedText } from './data.js'
 import { TAGS as AR_TAGS } from './ar-lexicon.js'
 import { TAGS as FR_TAGS } from './fr-lexicon.js'
+import japaneseReadings from '../../data/generated/ja/character_readings.json'
+
+const japaneseCollator = new Intl.Collator('ja', { numeric: true })
+const kanaSortKey = character => String(character.sourceReading || japaneseReadings.characters[character.id] || character.name_jp || character.name_en || '')
+  .normalize('NFKC').replace(/[ァ-ヶ]/g, char => String.fromCharCode(char.charCodeAt(0) - 0x60))
+
+/** Japanese lists follow verified readings; canonical IDs and names stay intact. */
+export function compareCharacters(a, b, locale = 'en') {
+  const code = typeof locale === 'string' ? locale : locale.code
+  if (code === 'ja') return japaneseCollator.compare(kanaSortKey(a), kanaSortKey(b)) || String(a.id).localeCompare(String(b.id))
+  return a.name_en.localeCompare(b.name_en)
+}
 
 // Fold French accents and Arabic vowel marks, retaining Japanese dakuten.
 // The existing Romaji/alias normalizer remains owned by matchesCharacterName.
@@ -14,7 +26,7 @@ export function normalizeContentSearch(value) {
 const cache = new WeakMap()
 function termForms(value, code) {
   const tag = (code === 'ar' ? AR_TAGS : code === 'fr' ? FR_TAGS : {})[value]
-  return [value, localizedText(value, code), ...['coll', 'sing', 'one', 'two', 'few', 'label', 's', 'p'].map(key => tag?.[key]), ...(tag?.searchAliases || [])]
+  return [value, localizedText(value, code), localizedText(value, 'en'), ...['coll', 'sing', 'one', 'two', 'few', 'label', 's', 'p'].map(key => tag?.[key]), ...(tag?.searchAliases || [])]
 }
 
 // Authored synonyms search the same concept in rendered sentences as well as

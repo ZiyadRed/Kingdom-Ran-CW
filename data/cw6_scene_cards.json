@@ -377,12 +377,12 @@
           },
           {
             "condition": null,
-            "target": "Self and ally Renpa Army",
+            "target": "Self and ally Renpa",
             "effect": "Critical Rate Up 20%",
             "duration": null
           },
           {
-            "condition": "Ally \"Renpa\" alive in same formation",
+            "condition": "When ally Renpa is alive",
             "target": "All ally [General]",
             "effect": "Morale Consumption Down 30%",
             "duration": null
@@ -1227,7 +1227,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "target": "Ally Ouhon / Ally Ousen Army",
             "effect": "DEF Up 40%, Critical Damage Up 30%",
             "duration": null
           },
@@ -1261,19 +1261,19 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "target": "Ally Ouhon / Ally Ousen Army",
             "effect": "Anti-[Cavalry] ATK Up 20%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "target": "Ally Ouhon / Ally Ousen Army",
             "effect": "Hit Rate Up 40%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally Gyokuhou Unit / Ousen Army",
+            "target": "Ally Ouhon / Ally Ousen Army",
             "effect": "Confusion Resistance 50%",
             "duration": null
           }
@@ -1438,7 +1438,14 @@
       "ownerNameJp": "紀彗",
       "ownerIcon": "/icons/Kisui.webp",
       "publicTime": 1789290000,
-      "cwIds": [864, 865, 866, 867, 868, 869],
+      "cwIds": [
+        864,
+        865,
+        866,
+        867,
+        868,
+        869
+      ],
       "skill": {
         "name_en": "Hidden Great General",
         "name_jp": "隠れた名将☆6",

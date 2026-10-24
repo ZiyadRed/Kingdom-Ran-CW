@@ -68,7 +68,7 @@ add('shunshinkun#2',0,[1610,1611,1612,1613,1614,1615,1616,1617,1618,1619],{
   opponent:any(faction('qin')),
   modifiers:[modifier('ATK','up',30),modifier('DEF','up',30)],
 })
-add('makou#1',0,[2686],{recipients:[self()],modifiers:[modifier('Evasion','up',30)]})
+add('makou#1',0,[2686],{recipients:[self()],modifiers:[modifier('Dodge Chance','up',30,{valueMeaning:{kind:'chance',rate:30}})]})
 add('makou#1',1,[3208,3209],{recipients:[ally(faction('qin'))],modifiers:[modifier('ATK Down Resistance','up',30)]})
 add('makou#1',2,[3210,3211],{recipients:[ally(faction('qin'))],conditions:[presence('enemy',unit('Archer'))],modifiers:[modifier('Hit Rate','up',30)]})
 add('ka#1',0,[1535,1994,2612,2967],{recipients:[ally(faction('zhao'))],modifiers:[modifier('ATK','up',30),modifier('DEF','up',30)]})

@@ -1273,7 +1273,7 @@
           },
           {
             "condition": null,
-            "target": "Ally [General]",
+            "target": "Other ally [General]",
             "effect": "\"Confusion\" Infliction Rate Up, \"Betrayal\" Infliction Rate Up 35%",
             "duration": "3 turns"
           }
@@ -2408,8 +2408,8 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Other ally",
-            "effect": "[Shield] Anti-[Cavalry] DEF Up 25%",
+            "target": "Other ally [Shield]",
+            "effect": "DEF Up vs Cavalry 25%",
             "duration": null
           }
         ]

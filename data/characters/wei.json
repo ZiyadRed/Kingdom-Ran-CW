@@ -867,8 +867,8 @@
           },
           {
             "condition": null,
-            "target": "Other ally",
-            "effect": "[Archer] Anti-[Shield] ATK Up 20%",
+            "target": "Other ally [Archer]",
+            "effect": "ATK Up vs Shield 20%",
             "duration": "3 turns"
           }
         ]
@@ -1006,14 +1006,14 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally [Cavalry]",
-            "effect": "Ally [Archer] \"Confusion\" Resistance 40%",
+            "target": "Ally [Cavalry] / Ally [Archer]",
+            "effect": "Confusion Resistance 40%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Ally [Cavalry]",
-            "effect": "Ally [Archer] Anti-[Infantry] DEF Up 20%",
+            "target": "Ally [Cavalry] / Ally [Archer]",
+            "effect": "DEF Up vs Infantry 20%",
             "duration": null
           }
         ]

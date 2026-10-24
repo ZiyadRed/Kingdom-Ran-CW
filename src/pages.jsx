@@ -9,7 +9,7 @@ import { Link, useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import {
-  useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, ALL, useReleaseData, ARCHIVE_CHAR_COUNT, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, simulate, calcCharBuffs, calcTeamEnemyDebuffs, Picker, characterInitialRarity, INVERSE_STATS, SPECIAL_STATS, statSortKey, DEFAULT_SK, hasStar6, hasRoleSkill, roleBadgeType, updateSkillMasks, applyMask, matchCharacterSearch, searchCharacters, BUFF_APPLICABILITY
+  useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, ALL, useReleaseData, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, simulate, calcCharBuffs, calcTeamEnemyDebuffs, Picker, characterInitialRarity, INVERSE_STATS, SPECIAL_STATS, statSortKey, DEFAULT_SK, hasStar6, hasRoleSkill, roleBadgeType, updateSkillMasks, applyMask, matchCharacterSearch, searchCharacters, BUFF_APPLICABILITY
 } from './core.jsx'
 import { characterSeo, routeSeo, setSeo } from './seo.js'
 import { classifyConditionParts } from './skillConditions.js'
@@ -22,6 +22,7 @@ import { useLocale, formatNumber as formatLocaleNumber } from './i18n/index.js'
 import { localizedTeamName } from './i18n/team-names.js'
 import { localizedCharacterName } from './i18n/ar-character-names.js'
 import { localizedCharacter, localizedDuration, localizedSkill, localizedTarget, localizedText } from './i18n/data.js'
+import { compareCharacters } from './i18n/character-search.js'
 import { builderShareUrl, characterShareUrl, createCharacterSkillsImage, createTeamSkillsImage, downloadBlob, formatCharacterSkillsShare, formatSceneCardShare, formatTeamBuffShare, sceneCardShareUrl, shareImageBlob, shareText } from './share.js'
 import { BUILDER_SCHEMA_VERSION } from './builder-storage.js'
 
@@ -29,10 +30,10 @@ export function ArchiveTabs({active}){
   const location=useLocation()
   const[hydrated,setHydrated]=useState(false)
   useEffect(()=>{startTransition(()=>setHydrated(true))},[])
-  const {PUBLIC_CW6_CARDS}=useReleaseData()
+  const {PUBLIC_CW6_CARDS,ALL}=useReleaseData()
   const{t}=useTranslation('common')
   const tabs=[
-    {id:'characters',label:t('nav.characters'),count:String(ARCHIVE_CHAR_COUNT),route:'/archive/characters'},
+    {id:'characters',label:t('nav.characters'),count:String(ALL.length),route:'/archive/characters'},
     {id:'cw6',label:t('nav.sceneCards'),count:String(PUBLIC_CW6_CARDS.length),route:'/archive/cw6-scene-cards'},
   ]
   return(
@@ -309,7 +310,7 @@ export function ArchivePage(){
   const hasSearch=Boolean(search.trim())
   const filtered=useMemo(()=>{
     const source=deferredQuery?ALL:ARCHIVE_BROWSE_CHARACTERS
-    const alphabetical=source.slice().sort((a,b)=>a.name_en.localeCompare(b.name_en))
+    const alphabetical=source.slice().sort((a,b)=>compareCharacters(a,b,locale))
     return deferredQuery?searchCharacters(alphabetical,deferredQuery,locale):alphabetical.filter(c=>c.country===activeFac)
   },[deferredQuery,activeFac,locale,ALL,ARCHIVE_BROWSE_CHARACTERS])
   const localizedSelected=useMemo(()=>selected?localizedCharacter(selected,locale):null,[selected,locale])
@@ -318,7 +319,7 @@ export function ArchivePage(){
     faction,
     characters:ALL.filter(character=>character.country===faction.id)
       .map(character=>localizedCharacter(character,locale))
-      .sort((a,b)=>a.displayName.localeCompare(b.displayName,locale.code)),
+      .sort((a,b)=>compareCharacters(a,b,locale)),
   })).filter(group=>group.characters.length),[ALL,locale])
   const galleryVisible=useArchiveGalleryVisible(!!selected)
 
@@ -369,6 +370,7 @@ export function ArchivePage(){
           <GalleryHeading className="gallery-title">{hasSearch?t('resultCount',{count:filtered.length}):t('archive.roster',{faction:factionDisplay(FACTIONS.find(f=>f.id===activeFac),locale)})}</GalleryHeading>
           <span className="gallery-count">{t('generalCount',{count:filtered.length})}</span>
         </div>
+        {!hasSearch&&<p className="archive-browse-note">{t('archive.browseNote')}</p>}
         <div className="gallery-grid">
           {!filtered.length&&<p className="search-empty" role="status">{t('stats.noCharacterMatches',{query:search})}</p>}
           {localizedFiltered.map((c,index)=>{
@@ -387,9 +389,9 @@ export function ArchivePage(){
                 src={persosThumb(c.image)}
                 srcSet={`${persosThumb(c.image)} 320w, ${c.image} 626w`}
                 sizes="(max-width: 480px) 23vw, (max-width: 768px) 31vw, 180px"
-                alt={c.displayName} enabled={galleryVisible} eager={!selected&&index<3}/>
+                alt="" enabled={galleryVisible} eager={!selected&&index<3}/>
                 :<div className="banner-ph" style={{'--faction-color':CC[c.country]||'var(--navy)'}}>
-                  <ArchiveImage src={c.icon} alt={c.displayName} className="banner-img banner-icon" enabled={galleryVisible} eager={!selected&&index<3}/>
+                  <ArchiveImage src={c.icon} alt="" className="banner-img banner-icon" enabled={galleryVisible} eager={!selected&&index<3}/>
                 </div>}
               <div className="banner-footer">
                 <span className="banner-name">{c.displayName}</span>
@@ -481,6 +483,7 @@ export function SkillCard({skill}){
         </div>
       </div>
       <div className="sk-effects">
+        {locale.code==='ja'&&skill.sourceStatus==='UNKNOWN'&&<p className="sk-source-unavailable">{t('sourceUnavailable')}</p>}
         {locale.code==='ja'&&skill.descriptionJp&&(
           <div className="sk-source-desc" lang="ja">
             <span className="sk-source-label">{t('originalJapanese')}</span>
@@ -746,7 +749,7 @@ export function countryGroupLabel(country, locale, t) {
 
 
 export const CONDITION_CHIP_LABELS={
-  ja:{Requires:'条件',Route:'経路',Mode:'モード',When:'発動時',Scales:'累積',After:'発生後',Source:'出典',Vs:'対',Target:'対象',State:'状態',Scope:'範囲'},
+  ja:{Requires:'条件',Route:'経路',Mode:'モード',When:'発動時',Scales:'変動条件',After:'発生後',Source:'ダメージ元',Vs:'対',Target:'対象',State:'状態',Scope:'範囲'},
   ar:{Requires:'الشرط',Route:'المسار',Mode:'الوضع',When:'عند',Scales:'يتدرج',After:'بعد',Source:'المصدر',Vs:'ضد',Target:'الهدف',State:'الحالة',Scope:'النطاق'},
   fr:{Requires:'Condition',Route:'Route',Mode:'Mode',When:'Quand',Scales:'Progressif',After:'Après',Source:'Source',Vs:'Contre',Target:'Cible',State:'État',Scope:'Portée'},
 }
@@ -1607,7 +1610,7 @@ export function TeamCostPage(){
   const remainingCost=(rarity,done)=>SKILL_COSTS[rarity||'SR'].slice(done).reduce((s,v)=>s+v,0)
 
 
-  const filtered=searchCharacters(allChars.slice().sort((a,b)=>a.name_en.localeCompare(b.name_en)),search,locale)
+  const filtered=searchCharacters(allChars.slice().sort((a,b)=>compareCharacters(a,b,locale.code)),search,locale)
 
   const setSlot=(idx,char)=>{
     setDraft(p=>({ ...p, slots:p.slots.map((id,i)=>i===idx?char.id:id), skillsDone:p.skillsDone.map((done,i)=>i===idx?0:done) }))

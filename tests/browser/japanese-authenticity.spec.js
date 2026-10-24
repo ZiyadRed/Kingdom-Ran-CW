@@ -2,6 +2,44 @@ import { test, expect, instrumentStorage, settle } from './fixtures.js'
 import { readFileSync } from 'node:fs'
 const sceneCards = JSON.parse(readFileSync(new URL('../../data/scene_card_cw_buffs.json', import.meta.url), 'utf8')).cards
 
+test('Stats search keeps clear and search controls inside the input in both reading directions', async ({ page, path, locale }) => {
+  const query = { en: 'Moubu', ja: 'もうぶ', ar: 'موبو', fr: 'Moubu' }[locale]
+  for (const viewport of [{ width: 390, height: 844 }, { width: 1440, height: 900 }]) {
+    await page.setViewportSize(viewport)
+    await page.goto(path('/cw-stats'))
+    await page.locator('.cwstats-empty-slot').first().click()
+    const input = page.locator('.cwstats-search-input').first()
+    const before = await input.boundingBox()
+    await input.fill(query)
+    await expect(page.locator('.cwstats-search-result').first()).toBeVisible()
+    const after = await input.boundingBox()
+    const clear = page.locator('.cwstats-search-clear').first()
+    const button = await clear.boundingBox()
+    const icon = await page.locator('.cwstats-search-input-wrap > svg').first().boundingBox()
+    expect(after.y).toBe(before.y)
+    expect(after.height).toBe(before.height)
+    expect(button.y).toBeGreaterThanOrEqual(after.y)
+    expect(button.y + button.height).toBeLessThanOrEqual(after.y + after.height + 1)
+    expect(icon.x + icon.width < button.x || button.x + button.width < icon.x).toBe(true)
+    await clear.click()
+    await expect(input).toHaveValue('')
+    await expect(input).toBeFocused()
+  }
+})
+
+test('Japanese profiles disclose unassigned source skills and archive links announce a name once', async ({ page, path, locale }) => {
+  test.skip(locale !== 'ja')
+  for (const id of ['futei', 'gakuki', 'kousonryu']) {
+    await page.goto(path(`/archive/characters/${id}`))
+    await expect(page.locator('.sk-source-unavailable')).toHaveText('原文未確認')
+  }
+  await page.goto(path('/archive/characters'))
+  const akou = page.locator('.banner-card[data-detail-id="akou"]')
+  const accessible = await akou.ariaSnapshot()
+  expect((accessible.match(/亜光/g) || [])).toHaveLength(1)
+  await expect(page.locator('.archive-browse-note')).toContainText('画像のない武将')
+})
+
 test('Japanese readings work on daily-use character searches and keep selections after refresh', async ({ page, path, locale }) => {
   test.skip(locale !== 'ja')
   await page.goto(path('/archive/characters'))

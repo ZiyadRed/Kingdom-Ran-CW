@@ -2123,6 +2123,12 @@
         "type": "Combat",
         "effects": [
           {
+            "condition": null,
+            "target": "Ally [Infantry]",
+            "effect": "ATK Up 20%",
+            "duration": "3 turns"
+          },
+          {
             "condition": "When ally Heirai is alive",
             "target": "Ally Hi Shin Unit [General]",
             "effect": "DEF Up 40%",

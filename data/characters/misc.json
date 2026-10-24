@@ -323,7 +323,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Ally [Cavalry] / Other ally [Shield]",
+            "target": "Other ally [Cavalry] / Other ally [Shield]",
             "effect": "ATK Up 20%",
             "duration": null
           },

@@ -1,4 +1,14 @@
 /* ── Locale controls and source-text presentation ───────────────────────── */
+.archive-browse-note { margin: .65rem 0 0; padding-inline: 1.2rem; color: var(--txt2); font-size: .78rem; line-height: 1.6; }
+.sk-source-unavailable { margin: 0 0 .5rem; color: var(--txt2); font-size: .75rem; }
+html[lang="ja"] .home-hero h1 { font-family: 'Noto Sans JP', sans-serif; font-size: clamp(38px, 3.9vw, 56px); line-height: 1.25; letter-spacing: 0; }
+.home-ja-title-line { display: block; white-space: nowrap; }
+.home-ja-reading { font-size: .5em; }
+.home-ja-brand { display: block; font-size: .62em; }
+@media (max-width: 768px) {
+  html[lang="ja"] .home-hero h1 { font-size: clamp(28px, 8vw, 36px); }
+  .archive-browse-note { padding-inline: .6rem; }
+}
 .locale-switcher { display: inline-flex; align-items: center; flex: 0 0 auto; }
 .locale-switcher select {
   min-height: 32px; border: 1px solid rgba(255,255,255,.22); border-radius: 6px;
@@ -131,3 +141,4 @@ html[dir="rtl"] .foot-discord { margin-left: 0; margin-right: auto; }
     aspect-ratio: auto;
   }
 }
+.cp-mode-help{font-size:.78rem;line-height:1.5;color:var(--txt2);margin:-.5rem 0 1rem}

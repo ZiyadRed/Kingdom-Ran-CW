@@ -240,7 +240,7 @@ export const GROUPS = {
   'Figo Tribe': { name: 'tribu Figo', de: 'de la tribu Figo' },
   'Akou Army': { name: 'armée d’Akou', de: 'de l’armée d’Akou' },
   'Gyokuhou': { name: 'unité Gyokuhou', de: 'de l’unité Gyokuhou' },
-  'Qiang Tribe': { name: 'tribu Qiang', de: 'de la tribu Qiang' },
+  'Qiang Tribe': { name: 'tribu Kyo', de: 'de la tribu Kyo' },
   'Chinese Ten Bows': { name: 'Dix Arcs de Chine', de: 'des Dix Arcs de Chine' },
   "Zhao's New Three Great Heavens": { name: 'Trois Nouveaux Grands Cieux de Zhao', de: 'des Trois Nouveaux Grands Cieux de Zhao' },
   "Zhao's Three Great Heavens": { name: 'Trois Grands Cieux de Zhao', de: 'des Trois Grands Cieux de Zhao' },

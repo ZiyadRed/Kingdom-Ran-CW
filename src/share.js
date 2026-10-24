@@ -707,6 +707,13 @@ function pairedSkillEffects(skill){
 
 function localizedConditionChips(pair){
   const sourceChips=classifyConditionParts(pair?.source?.condition)
+  // Localized sentences may join several source clauses with different
+  // punctuation. Keep that complete sentence rather than pairing fragments
+  // by position and falling back to a raw English clause.
+  if(pair?.effect?.condition!==pair?.source?.condition){
+    const text=pair?.effect?.condition
+    return text?[{kind:sourceChips.length===1?sourceChips[0].kind:'requires',label:sourceChips.length===1?sourceChips[0].label:'Requires',text}]:[]
+  }
   const displayParts=splitConditionParts(pair?.effect?.condition)
   if(!sourceChips.length) return classifyConditionParts(pair?.effect?.condition)
   return sourceChips.map((chip,index)=>({...chip,text:displayParts[index]||chip.text}))

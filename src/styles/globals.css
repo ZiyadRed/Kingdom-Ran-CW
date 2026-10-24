@@ -1827,14 +1827,15 @@ button { -webkit-appearance: none; appearance: none; }
 .cwstats-search-input-wrap > svg {
   position: absolute;
   top: 50%;
-  left: .72rem;
+  inset-inline-start: .72rem;
   transform: translateY(-50%);
   pointer-events: none;
 }
 .cwstats-search-input {
   width: 100%;
   min-height: 39px;
-  padding: .58rem .75rem .58rem 2.2rem;
+  padding-block: .58rem;
+  padding-inline: 2.2rem 2.8rem;
   border: 1px solid var(--bdr);
   border-radius: 8px;
   outline: 0;
@@ -1845,6 +1846,12 @@ button { -webkit-appearance: none; appearance: none; }
 .cwstats-search-input:focus {
   border-color: var(--terra);
   box-shadow: 0 0 0 3px rgba(224,127,72,.14);
+}
+.cwstats-search-input::-webkit-search-cancel-button { display: none; }
+.cwstats-search-clear {
+  position: absolute; inset-inline-end: 0; top: 0; width: 44px; height: 100%;
+  border: 0; border-radius: 8px; background: transparent; color: var(--txt2);
+  font-size: 1.2rem; cursor: pointer;
 }
 .cwstats-search-results {
   position: absolute;

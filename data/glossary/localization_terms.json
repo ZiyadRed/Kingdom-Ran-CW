@@ -20,6 +20,7 @@
     {"key":"strategist_unlock_stone","english":"Strategist Unlock Stone","japanese":"争覇軍師解放石","arabic":"حجر فتح الاستراتيجي","source":"GAME_TERM","evidence":"https://www.kingdomran.jp/info/260902souha-skill","notes":"Role-specific unlock item; not a green crystal."},
     {"key":"hi_shin_unit_unlock_stone","english":"Hi Shin Unit Unlock Stone","japanese":"専用争覇解放石(飛信隊)","arabic":"حجر فتح في شين الحصري","source":"GAME_TERM","evidence":"https://www.kingdomran.jp/info/260527tsuminipack","notes":"Faction-specific unlock item; explicitly distinct from 青の結晶."},
     {"key":"moubo_army","english":"Moubo Army","japanese":"蒙武軍","arabic":"جيش موبو","source":"GAME_TERM","evidence":"https://www.kingdomran.jp/info/lg_chousi","notes":"Existing shared army terminology; MsgMstBelong.stbl[27]. French: armée de Moubo."},
+    {"key":"kyo_tribe","runtimeKey":"Qiang Tribe","english":"Kyo Tribe","japanese":"羌族","arabic":"قبيلة كيو","source":"GAME_TERM","evidence":"https://www.kingdomran.jp/info/kyoumei_kyousyou_skill","notes":"Owner-approved Romaji display Kyo for キョウ (2026-10-24). French: tribu Kyo. MsgMstBelong.stbl[16]; retain the legacy runtime key and saved ownership IDs."},
     {"key":"infantry","english":"Infantry","japanese":"歩兵","arabic":"مشاة","source":"GAME_TERM","notes":"Unit type."},
     {"key":"cavalry","english":"Cavalry","japanese":"騎兵","arabic":"فرسان","source":"GAME_TERM","notes":"Unit type."},
     {"key":"archer","english":"Archer","japanese":"弓兵","arabic":"سهامين","source":"GAME_TERM","notes":"Owner-approved Discord unit term."},

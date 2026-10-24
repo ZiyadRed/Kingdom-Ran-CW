@@ -7,6 +7,11 @@ const matches = (query, locale) => ALL.filter(character => matchCharacterSearch(
 const skills = character => [...(character.skills || []), ...(character.roleSkill ? [character.roleSkill] : [])]
 
 describe('localized content search over the actual roster', () => {
+  it.each(['en', 'ja', 'ar', 'fr'])('finds Kyo Tribe members through Romaji and the legacy label in %s', locale => {
+    const expected = ALL.filter(c => c.groups?.includes('Qiang Tribe')).map(c => c.id)
+    expect(matches('Kyo Tribe', locale)).toEqual(expect.arrayContaining(expected))
+    expect(matches('Qiang Tribe', locale)).toEqual(expect.arrayContaining(expected))
+  })
   it('finds source readings in hiragana, katakana and half-width kana on every name picker', () => {
     const moubu = ALL.find(character => character.id === 'moubu')
     for (const query of ['もうぶ', 'モウブ', 'ﾓｳﾌﾞ']) {

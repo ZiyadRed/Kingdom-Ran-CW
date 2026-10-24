@@ -797,7 +797,7 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "The enemy with the lowest remaining strength",
+            "condition": "Enemy [General] with lowest remaining HP",
             "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null

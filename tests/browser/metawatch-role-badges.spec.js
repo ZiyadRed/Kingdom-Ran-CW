@@ -2,7 +2,7 @@ import { test, expect } from './fixtures.js'
 
 const labels = {
   en: { renpa: 'Renpa v3', shou: 'Shouheikun', role: 'Leader' },
-  ja: { renpa: '廉頗 v3', shou: '昌平君編成', role: '総大将' },
+  ja: { renpa: '廉頗編成3', shou: '昌平君編成', role: '総大将' },
   ar: { renpa: 'رينبا (نسخة 3)', shou: 'تشكيلة شوهيكون', role: 'قائد' },
   fr: { renpa: 'Renpa v3', shou: 'Compo Shouheikun', role: 'Leader' },
 }

@@ -74,6 +74,10 @@ const CANONICAL_AR_TERMS = Object.fromEntries(
 
 const LEXICON_TERMS = { ...TAGS, ...STATUSES, ...GROUPS, ...PHRASES }
 const ARABIC_TERMS = { ...LEXICON_TERMS, ...CANONICAL_AR_TERMS }
+// Display names can follow Romaji without changing persisted category keys.
+const ENGLISH_TERMS = new Map((localizationTermsDocument.terms || [])
+  .filter(term => term.runtimeKey && term.english)
+  .map(term => [term.runtimeKey, term.english]))
 
 export function japaneseSkillSource(characterId, skillIndex) {
   const key = `${characterId}#${skillIndex}`
@@ -207,15 +211,15 @@ export function localizedCharacter(character, localeOrCode = 'en') {
 
 /**
  * Localize a game-data string whose field type is unknown at the call site
- * (filter chips, buff stat labels, condition chips). Non-Arabic locales are
- * returned untouched.
+ * (filter chips, buff stat labels, condition chips). English uses the glossary's
+ * display aliases while preserving the underlying game-data keys.
  */
 export function localizedText(value, localeOrCode = 'en') {
   const code = typeof localeOrCode === 'string' ? localeOrCode : localeOrCode?.code || 'en'
   if (code === 'ar') return renderArabicText(value)
   if (code === 'ja') return renderJapaneseText(value)
   if (code === 'fr') return renderFrenchText(value)
-  return value
+  return ENGLISH_TERMS.get(value) ?? value
 }
 
 /** Localize a field with known grammar instead of relying on generic inference. */

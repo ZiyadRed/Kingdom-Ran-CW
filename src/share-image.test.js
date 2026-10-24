@@ -87,8 +87,10 @@ describe('generated share-image contract',()=>{
       ...DEFAULT_SHARE_LABELS,direction:'rtl',conditions:{When:'عند',Target:'الهدف'},
     })
     const blocks=layout.skillLayouts[0].effects[0].conditionBlocks
-    expect(blocks.map(block=>block.semanticKind)).toEqual(['when','target'])
-    expect(blocks.map(block=>block.text).join(' ')).toContain('عند الهجوم')
+    expect(blocks.map(block=>block.semanticKind)).toEqual(['requires'])
+    expect(blocks).toHaveLength(1)
+    expect(blocks[0].text).toContain(localized.displayEffects[0].condition)
+    expect(blocks[0].text).not.toMatch(/When|enemy|highest|ATK/)
     expect(layout.skillLayouts[0].effects[0].bodyBlock.text).toContain('خفض الهجوم')
   })
 

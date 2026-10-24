@@ -44,8 +44,8 @@
             "duration": null
           },
           {
-            "condition": "Surviving ally [Zhao] when enemies are alive",
-            "target": "Ally [Zhao]",
+            "condition": "When enemy [General] alive",
+            "target": "Surviving ally [Zhao]",
             "effect": "HP Recovery 30%",
             "duration": null
           }

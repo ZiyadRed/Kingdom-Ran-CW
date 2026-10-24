@@ -40,7 +40,7 @@ describe('team preset names', () => {
 
   it('covers the new editorial preset labels in every supported locale', () => {
     expect(localizedTeamName('Renpa v3', 'en')).toBe('Renpa v3')
-    expect(localizedTeamName('Renpa v3', 'ja')).toBe('廉頗 v3')
+    expect(localizedTeamName('Renpa v3', 'ja')).toBe('廉頗編成3')
     expect(localizedTeamName('Renpa v3', 'ar')).toBe('رينبا (نسخة 3)')
     expect(localizedTeamName('Renpa v3', 'fr')).toBe('Renpa v3')
 
