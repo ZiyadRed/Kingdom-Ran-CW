@@ -1,8 +1,8 @@
 {
   "_schema": "ranhq.provenance/1",
   "sourceSnapshot": {
-    "snapshotLabel": "v8.7.0_20260930_11f45ee4",
-    "snapshotDate": "2026-09-30",
+    "snapshotLabel": "v8.8.0_20261028_263b4f3c",
+    "snapshotDate": "2026-10-28",
     "sourceRoot": "C:\\kingdom_data\\decrypted",
     "decoder": {
       "name": "extract_ja_text.py",
@@ -11,49 +11,49 @@
       "stblLayout": "STBL header + little-endian offset table + NUL-terminated UTF-8 strings",
       "masterDecoder": "msgpack master packets (masters_001.bin..masters_005.bin)"
     },
-    "manifestSha256": "DF4991D44F206E6D8702CA858CFE98BC51FC36486C0AA4E95B70180F084C4943",
+    "manifestSha256": "D6E9D9D90BBD419F3988D7650D018B2BCF11F6A0E3B2174F7BDDFA97AA5AC60D",
     "masterFiles": {
-      "masters_001.bin": "40C334192BF10EBFFC047E05CB53979AB8D7BEA0AB0DDED1BD5774D17B16C308",
-      "masters_002.bin": "8C577C86C0DBA50D5F361E6CDDFDBAA7DBA0ACA572CFA35C462EFAE0C3F12745",
-      "masters_003.bin": "17A3AE63419FB386CE7F6F3318EF3E141851BBA05E255D7493E46C2B56914231",
-      "masters_004.bin": "703BFA58A90B8EEE410387D700ABF180D0864F30A3923DB7EE79DA0323EDA205",
-      "masters_005.bin": "C23FD8511C87E3C70AD5B138F7C33D4E2F84D1406E1F2753FE220389FA763DEA"
+      "masters_001.bin": "3C86DB76159404ED23C2A81AB124C75D43CCEA5271BCF7F5FF15637C4ED90E34",
+      "masters_002.bin": "6E86B56D7ED49099E47DF52B01F4EB9156D976297C7DB802A4309BF055EE7A05",
+      "masters_003.bin": "9D0A917185DB2D8A9559E0C205F73666156C38BB717BBD37EA1EEFAD687B4318",
+      "masters_004.bin": "008800E405DD18C0F54860A14DE4BE3B8C8083FB7DEB0F268564E63B6F36E286",
+      "masters_005.bin": "231B77DF53B6117EA763FA5534C852DE1AB4C8408994E1B71F84620DE9DFC77B"
     }
   },
   "characterMapping": {
-    "inputFileSha256": "E7181DFDF10F6DFECF6637DBE38DA3CA2EA008028AA21E3D956AF9D46758B5CA",
-    "total": 209,
-    "exact": 198,
+    "inputFileSha256": "64229350605449213A0063BE7070D34C03DBD9C0AC1AAC2535E08EB23ECC697F",
+    "total": 212,
+    "exact": 201,
     "resolved": 11,
     "ambiguous": 0,
     "unresolved": 0
   },
   "cwSkillMapping": {
-    "inputFileSha256": "2B06ACA41F68759E65581A0D0E8B152EFFE121F739A21FC270DBD4A547F42F2E",
-    "total": 665,
-    "exact": 622,
+    "inputFileSha256": "ED418170EFE0EFF7064502383B6E77D7A8EF51B04B19C1FB449D0A164198C56A",
+    "total": 671,
+    "exact": 628,
     "resolved": 40,
     "ambiguous": 3,
     "unresolved": 0,
-    "deterministic": 662,
+    "deterministic": 668,
     "pendingSource": 0
   },
   "stblTables": {
     "MsgUnionConquestSkillName.stbl": {
-      "sha256": "5DCE9DF03A703E13539B29FD5E9BB1CBAFC6EAB5AC79A5529FFFDBC95994B3A3",
-      "entries": 879
+      "sha256": "03A7ABD39D7CAB1439665F416B4980CFCFF51E5AC041738918890F8B0318C547",
+      "entries": 891
     },
     "MsgUnionConquestSkillDesc.stbl": {
-      "sha256": "15DF7AD74CF95CA510584E36093C6E2A036E41237C64115F1E7430585C7E7CEC",
-      "entries": 879
+      "sha256": "F6C5DBFFE4736677912FB8C528952CA317E7A41CDD6146BD492A9D71B099ADDC",
+      "entries": 891
     },
     "MsgUnitGeneralRubyName.stbl": {
-      "sha256": "B5D60F5D627D9A6FF99B29A5F47B83A78962F7F70C72CBB3A9ECECD913DDA9FA",
-      "entries": 609
+      "sha256": "F5DBF16029BCB2E1CC17441FC83BE423DAFEC4534538090BCED47B535E331070",
+      "entries": 654
     },
     "MsgUnitGeneralName.stbl": {
-      "sha256": "2AC16EBA8D8D399B590A65025AF8540B24193C0376BA1F5CD74D5CB3EFB9DB18",
-      "entries": 609
+      "sha256": "7E06D363CE535C4F2395429C5829805D7F931D313AB5E068292E41074BBCAE6E",
+      "entries": 654
     },
     "MsgUnionConquestSkillEffectDesc.stbl": {
       "sha256": "96A4DD9BD740BD598F6F4080630DBBA096AA13E9DB38ED7E1740764FC186950C",
@@ -61,11 +61,11 @@
     }
   },
   "generatedArtifacts": {
-    "deterministicProjectSkills": 662,
-    "canonicalJapaneseSkills": 604,
+    "deterministicProjectSkills": 668,
+    "canonicalJapaneseSkills": 608,
     "ambiguousProjectSkills": 3,
-    "sourceIndexRows": 665,
-    "rubyReadingsAvailable": 189,
+    "sourceIndexRows": 671,
+    "rubyReadingsAvailable": 191,
     "rubyReadingsMissing": 21
   }
 }

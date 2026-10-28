@@ -1077,6 +1077,8 @@ function renderTargetExpression(raw, options = {}) {
 export function renderArabicTarget(value) {
   const raw = clean(value)
   if (!raw) return value
+  if (raw === 'Ally [Leader]') return 'القائد الحليف'
+  if (raw === 'Ally [Strategist]') return 'الاستراتيجي الحليف'
   if (hasUnknownTags(raw)) return value
   return renderTargetExpression(raw, { pluralAllyTarget: true }) ?? value
 }

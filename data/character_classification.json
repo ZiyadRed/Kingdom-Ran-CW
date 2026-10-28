@@ -208,5 +208,7 @@
   "yukii": {"unit_type": "Archer", "groups": ["Coalition Army"], "initial_rarity": "UR"},
   "yuri": {"unit_type": "Infantry", "groups": [], "initial_rarity": "UR"},
   "yuuren": {"unit_type": "Infantry", "groups": [], "initial_rarity": "SR"},
-  "zenou": {"unit_type": "Infantry", "groups": ["Kanki Army"], "initial_rarity": "UR"}
+  "zenou": {"unit_type": "Infantry", "groups": ["Kanki Army"], "initial_rarity": "UR"},
+  "koshuu": {"unit_type": "Infantry", "groups": [], "initial_rarity": "SR", "stats_fallback_rarity": "SR"},
+  "koreki": {"unit_type": "Infantry", "groups": [], "initial_rarity": "SR", "stats_fallback_rarity": "SR"}
 }

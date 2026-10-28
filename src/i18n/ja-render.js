@@ -434,6 +434,8 @@ export function renderJapaneseEffect(value) {
 function renderTargetClause(text) {
   const raw = clean(text)
   if (!raw) return null
+  if (raw === 'Ally [Leader]') return '味方総大将'
+  if (raw === 'Ally [Strategist]') return '味方軍師'
   const named=lookupCharacter(raw)
   if(named) return named
 

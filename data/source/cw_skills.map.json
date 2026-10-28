@@ -8919,6 +8919,90 @@
         ]
       },
       "basis": "Current stable-ID scene card 42003 -> rank group 35 -> rank 6 skill 877 -> textId 876. Availability gated by card.publicTime."
+    },
+    "koshuu#0": {
+      "status": "exact",
+      "characterId": 265,
+      "skillId": 880,
+      "textId": 879,
+      "sourceType": "base",
+      "sourceSlot": 1,
+      "sourceNameJp": "低下耐性【赤羊】",
+      "basis": "Verified October 28 master assignment: mstUnionConquestGenerals -> mstUnionConquestSkills.textId -> original STBL.",
+      "fingerprint": {
+        "name_jp": "低下耐性【赤羊】",
+        "effectsHash": "c139880884d39f5d25db7e0fd6d14f286b2c682625f7ab83ab609f9dcc5b1fe5"
+      }
+    },
+    "koshuu#1": {
+      "status": "exact",
+      "characterId": 265,
+      "skillId": 881,
+      "textId": 880,
+      "sourceType": "base",
+      "sourceSlot": 2,
+      "sourceNameJp": "憂国の老臣",
+      "basis": "Verified October 28 master assignment: mstUnionConquestGenerals -> mstUnionConquestSkills.textId -> original STBL.",
+      "fingerprint": {
+        "name_jp": "憂国の老臣",
+        "effectsHash": "29a886569a36e891187e3afd4b8aaa1f10ae6b7f9f2d5f44193c143af53d2d92"
+      }
+    },
+    "koshuu#2": {
+      "status": "exact",
+      "characterId": 265,
+      "skillId": 271,
+      "textId": 271,
+      "sourceType": "base",
+      "sourceSlot": 3,
+      "sourceNameJp": "体力強化・大改【歩兵】",
+      "basis": "Verified October 28 master assignment: mstUnionConquestGenerals -> mstUnionConquestSkills.textId -> original STBL.",
+      "fingerprint": {
+        "name_jp": "体力強化・大改【歩兵】",
+        "effectsHash": "e88df5bd75313ab8aa7ff3b4f732e9dc3cb4a2597496d9f5fd803760f1478eef"
+      }
+    },
+    "koreki#0": {
+      "status": "exact",
+      "characterId": 266,
+      "skillId": 882,
+      "textId": 881,
+      "sourceType": "base",
+      "sourceSlot": 1,
+      "sourceNameJp": "急所攻撃【赤亀】",
+      "basis": "Verified October 28 master assignment: mstUnionConquestGenerals -> mstUnionConquestSkills.textId -> original STBL.",
+      "fingerprint": {
+        "name_jp": "急所攻撃【赤亀】",
+        "effectsHash": "946ff6a32aec096abb6f5e3f5fb25c43404cf11875366d57a1763ee1e68b5e46"
+      }
+    },
+    "koreki#1": {
+      "status": "exact",
+      "characterId": 266,
+      "skillId": 883,
+      "textId": 882,
+      "sourceType": "base",
+      "sourceSlot": 2,
+      "sourceNameJp": "誘惑",
+      "basis": "Verified October 28 master assignment: mstUnionConquestGenerals -> mstUnionConquestSkills.textId -> original STBL.",
+      "fingerprint": {
+        "name_jp": "誘惑",
+        "effectsHash": "79e16586517e7e41d89bd1406a6ee7eea57a9af7d6096218f6b7d8c9db84a700"
+      }
+    },
+    "koreki#2": {
+      "status": "exact",
+      "characterId": 266,
+      "skillId": 271,
+      "textId": 271,
+      "sourceType": "base",
+      "sourceSlot": 3,
+      "sourceNameJp": "体力強化・大改【歩兵】",
+      "basis": "Verified October 28 master assignment: mstUnionConquestGenerals -> mstUnionConquestSkills.textId -> original STBL.",
+      "fingerprint": {
+        "name_jp": "体力強化・大改【歩兵】",
+        "effectsHash": "e88df5bd75313ab8aa7ff3b4f732e9dc3cb4a2597496d9f5fd803760f1478eef"
+      }
     }
   }
 }

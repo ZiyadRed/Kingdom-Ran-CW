@@ -1,4 +1,4 @@
-﻿{
+{
     "Akou":  {
                  "rarity":  "UR",
                  "faction":  "Qin",
@@ -1035,5 +1035,7 @@
                  "name_jp":  "英紀"
              },
     "Soujin": {"rarity": "UR", "faction": "Qin", "name_jp": "蒼仁"},
-    "Soutan": {"rarity": "UR", "faction": "Qin", "name_jp": "蒼淡"}
+    "Soutan": {"rarity": "UR", "faction": "Qin", "name_jp": "蒼淡"},
+  "Koshuu": {"rarity": "SR", "faction": "Zhao", "name_jp": "胡周"},
+  "Koreki": {"rarity": "SR", "faction": "Ai", "name_jp": "虎歴"}
 }

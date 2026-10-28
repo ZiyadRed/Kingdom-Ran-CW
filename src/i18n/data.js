@@ -141,6 +141,7 @@ export function localizedSkill(skill, characterId, skillIndex, localeOrCode = 'e
   if (source) {
     next.sourceStatus = 'VERIFIED_ORIGINAL'
     next.sourceSkillId = source.skillId
+    if (source.url) next.sourceUrl = source.url
     // Original Japanese is presented with its general references resolved:
     // 味方「{-1:261}」… reads 味方「蒼仁」…. The raw artifact keeps the token.
     next.sourceNameJp = resolveJapaneseEntities(source.name)

@@ -636,6 +636,30 @@
         "star6": false,
         "value": 5.0,
         "ownership_id": "buff_0a57eab2f1a047a1b7d469d3b3a86ec7"
+      },
+      {
+        "name": "Koshuu",
+        "name_jp": "胡周",
+        "character_id": "koshuu",
+        "characterId": 265,
+        "faction": "zhao",
+        "type": "SR",
+        "star6": false,
+        "value": 18.2,
+        "source_id": "cw:265:271",
+        "ownership_id": "buff_e60405ed6c5e41a4924b07db3e71da69"
+      },
+      {
+        "name": "Koreki",
+        "name_jp": "虎歴",
+        "character_id": "koreki",
+        "characterId": 266,
+        "faction": "ai",
+        "type": "SR",
+        "star6": false,
+        "value": 18.2,
+        "source_id": "cw:266:271",
+        "ownership_id": "buff_e02eed8c891e4f1c89953532ae236a21"
       }
     ],
     "Attack": [
@@ -1029,6 +1053,18 @@
         "source_id": "ura:133:11002",
         "ownership_id": "buff_ffe856737a3e48599e38811c6259faf0",
         "skill_layer": "ura"
+      },
+      {
+        "name": "Koreki",
+        "name_jp": "虎歴",
+        "character_id": "koreki",
+        "characterId": 266,
+        "faction": "ai",
+        "type": "SR",
+        "value": 5.0,
+        "skill_layer": "normal",
+        "source_id": "normal:266:1576",
+        "ownership_id": "buff_f0b9410b6b80466ebae235dad504b60d"
       }
     ]
   },

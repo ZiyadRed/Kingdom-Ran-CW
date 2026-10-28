@@ -23,22 +23,21 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const J = (p) => JSON.parse(readFileSync(join(root, p), 'utf-8'))
 
 // ── Phase 1 character expectations ───────────────────────────────────────────
-const EXPECTED_TOTAL = 210
-const EXPECTED_EXACT = 199
+const PENDING_KEYS = []
+const EXPECTED_TOTAL = 212
+const EXPECTED_EXACT = 201
 const EXPECTED_RESOLVED = 11
 
 // ── Phase 2 CW-skill expectations ────────────────────────────────────────────
-const EXPECTED_SKILLS = 665
+const EXPECTED_SKILLS = 671
 const EXPECTED_SKILL_AMBIGUOUS = 3
-const EXPECTED_SKILL_DETERMINISTIC = 662
-const EXPECTED_BASE = 630
+const EXPECTED_SKILL_DETERMINISTIC = 668
+const EXPECTED_BASE = 636
 const EXPECTED_SCENE_CARD_RANK = 35
 const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'kousonryu#0']
 
-// The current decrypted snapshot now contains the previously pending Soutan
-// rows. Keep this explicit so a stale map cannot silently reintroduce them.
+// The released October 28 skills must not regress to announcement-only data.
 const EXPECTED_SKILL_PENDING = 0
-const PENDING_KEYS = []
 const roleSource = J('data/source/souha_role_assignments.json')
 const EXPECTED_ROLE_SKILLS = roleSource.assignments.length
 

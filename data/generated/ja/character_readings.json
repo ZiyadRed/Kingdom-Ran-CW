@@ -1,8 +1,8 @@
 {
   "_meta": {
     "schema": "ranhq.ja_character_readings/1",
-    "rows": 210,
-    "available": 189,
+    "rows": 212,
+    "available": 191,
     "missing": 21
   },
   "characters": {
@@ -30,6 +30,8 @@
     "kaishibou": "かいしぼう",
     "gohoumei": "ごほうめい",
     "gokei": "ごけい",
+    "koshuu": "こしゅう",
+    "koreki": "これき",
     "yuri": "ゆうり",
     "toumi": "とうび",
     "yugi": "ゆうぎ",

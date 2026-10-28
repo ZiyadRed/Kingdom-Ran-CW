@@ -1,0 +1,225 @@
+[
+  {
+    "id": "koshuu",
+    "name_en": "Koshuu",
+    "name_jp": "胡周",
+    "country": "zhao",
+    "rarity": "SR",
+    "image": "/persos/koshuu.webp",
+    "icon": "/icons/Koshuu.webp",
+    "skills": [
+      {
+        "name_en": "低下耐性【赤羊】",
+        "name_jp": "低下耐性【赤羊】",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Zhao]",
+            "effect": "DEF Down Resistance Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Zhao]",
+            "effect": "DEF Penetration Resistance Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Zhao]",
+            "effect": "Status Effect Immunity",
+            "duration": "1 time"
+          }
+        ],
+        "cwId": 880,
+        "textId": 879,
+        "mp": 0,
+        "skillType": 1,
+        "timing": 1,
+        "mainIconId": 405,
+        "effectIds": [
+          3595,
+          3596,
+          3107,
+          3597,
+          3598,
+          3599
+        ]
+      },
+      {
+        "name_en": "憂国の老臣",
+        "name_jp": "憂国の老臣",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Zhao]",
+            "effect": "DEF Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Leader]",
+            "effect": "DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Strategist]",
+            "effect": "DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally \"Riboku\"",
+            "effect": "DEF Up 30%",
+            "duration": null
+          }
+        ],
+        "cwId": 881,
+        "textId": 880,
+        "mp": 0,
+        "skillType": 1,
+        "timing": 1,
+        "mainIconId": 405,
+        "effectIds": [
+          1020,
+          1804,
+          3600,
+          3601,
+          3602
+        ]
+      },
+      {
+        "name_en": "体力強化・大改【歩兵】",
+        "name_jp": "体力強化・大改【歩兵】",
+        "type": "Internal Affairs",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Infantry]",
+            "effect": "Max HP Up 18.2%",
+            "duration": null
+          }
+        ],
+        "cwId": 271,
+        "textId": 271,
+        "mp": 0,
+        "skillType": 4,
+        "timing": 1,
+        "mainIconId": 412,
+        "effectIds": [
+          1393
+        ]
+      }
+    ],
+    "source": {
+      "characterId": 265,
+      "generalIds": [
+        559,
+        560
+      ]
+    }
+  },
+  {
+    "id": "koreki",
+    "name_en": "Koreki",
+    "name_jp": "虎歴",
+    "country": "ai",
+    "rarity": "SR",
+    "image": "/persos/koreki.webp",
+    "icon": "/icons/Koreki.webp",
+    "skills": [
+      {
+        "name_en": "急所攻撃【赤亀】",
+        "name_jp": "急所攻撃【赤亀】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy [General] with lowest DEF",
+            "target": "1 enemy [General]",
+            "effect": "100% Damage",
+            "duration": null
+          },
+          {
+            "condition": "Enemy [General] with highest ATK",
+            "target": "1 enemy [General]",
+            "effect": "Betrayal Infliction 50%",
+            "duration": "3 turns"
+          }
+        ],
+        "cwId": 882,
+        "textId": 881,
+        "mp": 270,
+        "skillType": 2,
+        "timing": 4,
+        "mainIconId": 403,
+        "effectIds": [
+          3541,
+          1081
+        ]
+      },
+      {
+        "name_en": "誘惑",
+        "name_jp": "誘惑",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Ai]",
+            "effect": "HP Recovery Rate Up 50%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Ai]",
+            "effect": "Betrayal Infliction Rate Up 30%",
+            "duration": null
+          }
+        ],
+        "cwId": 883,
+        "textId": 882,
+        "mp": 0,
+        "skillType": 1,
+        "timing": 1,
+        "mainIconId": 405,
+        "effectIds": [
+          2452,
+          3603,
+          3604,
+          3605
+        ]
+      },
+      {
+        "name_en": "体力強化・大改【歩兵】",
+        "name_jp": "体力強化・大改【歩兵】",
+        "type": "Internal Affairs",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Infantry]",
+            "effect": "Max HP Up 18.2%",
+            "duration": null
+          }
+        ],
+        "cwId": 271,
+        "textId": 271,
+        "mp": 0,
+        "skillType": 4,
+        "timing": 1,
+        "mainIconId": 412,
+        "effectIds": [
+          1393
+        ]
+      }
+    ],
+    "source": {
+      "characterId": 266,
+      "generalIds": [
+        562,
+        563
+      ]
+    }
+  }
+]

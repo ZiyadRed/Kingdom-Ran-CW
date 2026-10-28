@@ -1,0 +1,276 @@
+{
+  "schema": "ranhq.announced_characters/1",
+  "reviewDate": "2026-10-26",
+  "publicTime": 1793178000,
+  "sourceSnapshot": {
+    "snapshotLabel": "v8.7.0_20261014_cca859f8",
+    "snapshotDate": "2026-10-14",
+    "sourceRoot": "C:\\kingdom_data\\decrypted",
+    "masterFiles": {
+      "masters_001.bin": "A80535E10A96B450541087F880E0E134BCE81E4681D2F741E4A19F7A60D78C97",
+      "masters_002.bin": "04BB1F886D4C3655CC8E7E2C4A214BCAE295571116CB72DEE18880140E18450B",
+      "masters_003.bin": "0D8BC144653C01A900312E2726158D6D5DA739C233E082F9D7F35FE17F8E95CD",
+      "masters_004.bin": "A28C6161DEE47CE8E35FBB6E40665B872A9B4EAB7DFE0CBEFFFCAB8DE83A3891",
+      "masters_005.bin": "84F611D916A7D42958C49ACDA040167C5066C3EAF6AA3449124BD149EF304396"
+    },
+    "manifestSha256": "955E0CF1018DBAE90CBDB9320F0701BE09B70858694B257CB9672972AD98843A",
+    "limitation": "Existing local acquisition, not a fresh pull. Character CW assignments are generic skill 1; published announcement is the source for the announced kits."
+  },
+  "characters": [
+    {
+      "id": "koshuu",
+      "characterId": 265,
+      "generalIds": [
+        559,
+        560
+      ],
+      "nameJp": "胡周",
+      "rubyJp": "こしゅう",
+      "initialRarity": "SR",
+      "availableRarities": [
+        "SR",
+        "UR"
+      ],
+      "announcement": {
+        "url": "https://www.kingdomran.jp/info/srur_kosyu",
+        "date": "2026-10-26",
+        "htmlSha256": "7FFAF4870AAA626D3A740C9F8124402B77C03821F5CD3C24193846C4D7D908F9"
+      },
+      "artwork": {
+        "url": "https://s3.ap-northeast-1.amazonaws.com/official-operation.s3.sand.okp.mobcast.io/wp-content/uploads/2026/10/12103118/UR-1.png",
+        "sourceSha256": "45D0B787B3ADB314749E8AFD685CDD562A3D47A49810269E1D45F234BD023B85",
+        "width": 313,
+        "height": 440,
+        "output": "public/persos/koshuu.webp",
+        "lossless": true,
+        "iconNote": "Native cg232/cg233 icons are absent in the acquired asset cache; use the authentic full UR card in existing icon rendering."
+      },
+      "cwSkills": [
+        {
+          "projectKey": "koshuu#0",
+          "characterId": 265,
+          "sourceSlot": 1,
+          "nameJp": "低下耐性【赤羊】",
+          "descriptionJp": "味方趙国武将の防御力低下耐性が20%上昇する。\n味方趙国武将の防御貫通耐性が20%上昇する。\n味方趙国武将に「状態異常無効」状態(1回)を付与する。",
+          "skillId": null,
+          "textId": null
+        },
+        {
+          "projectKey": "koshuu#1",
+          "characterId": 265,
+          "sourceSlot": 2,
+          "nameJp": "憂国の老臣",
+          "descriptionJp": "味方趙国武将の防御力が20%上昇する。\n味方総大将の防御力が30%上昇する。\n味方軍師の防御力が30%上昇する。\n味方「《？》」の防御力が30%上昇する。",
+          "skillId": null,
+          "textId": null
+        },
+        {
+          "projectKey": "koshuu#2",
+          "characterId": 265,
+          "sourceSlot": 3,
+          "nameJp": "体力強化・大改【歩兵】",
+          "descriptionJp": "同盟争覇戦時に味方歩兵武将の体力上限を18.2%上昇する。\n自身が出撃していなくても有効。",
+          "skillId": 271,
+          "textId": 271
+        }
+      ],
+      "excludedFutureGeneralIds": [
+        561
+      ],
+      "excludedLgAbilityId": 1418
+    },
+    {
+      "id": "koreki",
+      "characterId": 266,
+      "generalIds": [
+        562,
+        563
+      ],
+      "nameJp": "虎歴",
+      "rubyJp": "これき",
+      "initialRarity": "SR",
+      "availableRarities": [
+        "SR",
+        "UR"
+      ],
+      "announcement": {
+        "url": "https://www.kingdomran.jp/info/srur_koreki",
+        "date": "2026-10-26",
+        "htmlSha256": "52965EDCF7BEC1119E9C846764DC32A9E89E3B6D174CDAB9D7A656BC59E9950F"
+      },
+      "artwork": {
+        "url": "https://s3.ap-northeast-1.amazonaws.com/official-operation.s3.sand.okp.mobcast.io/wp-content/uploads/2026/10/12103117/UR.png",
+        "sourceSha256": "A8B432C3D1350ECA0A2504B9FED92E1107C03BC0EFF8D3A173EE0D514F8ACF72",
+        "width": 313,
+        "height": 440,
+        "output": "public/persos/koreki.webp",
+        "lossless": true,
+        "iconNote": "Native cg232/cg233 icons are absent in the acquired asset cache; use the authentic full UR card in existing icon rendering."
+      },
+      "cwSkills": [
+        {
+          "projectKey": "koreki#0",
+          "characterId": 266,
+          "sourceSlot": 1,
+          "nameJp": "急所攻撃【赤亀】",
+          "descriptionJp": "防御力が最も低い敵武将1名に100%のダメージを与える。\n50%の確率で攻撃力が最も高い敵武将1名に「裏切り」状態(3ターン)を付与する。",
+          "skillId": null,
+          "textId": null
+        },
+        {
+          "projectKey": "koreki#1",
+          "characterId": 266,
+          "sourceSlot": 2,
+          "nameJp": "誘惑",
+          "descriptionJp": "味方毐国武将の体力回復量が50%上昇する。\n味方毐国武将の「裏切り」状態の付与確率が30%上昇する。",
+          "skillId": null,
+          "textId": null
+        },
+        {
+          "projectKey": "koreki#2",
+          "characterId": 266,
+          "sourceSlot": 3,
+          "nameJp": "体力強化・大改【歩兵】",
+          "descriptionJp": "同盟争覇戦時に味方歩兵武将の体力上限を18.2%上昇する。\n自身が出撃していなくても有効。",
+          "skillId": 271,
+          "textId": 271
+        }
+      ],
+      "excludedFutureGeneralIds": [
+        564
+      ],
+      "excludedLgAbilityId": 1418
+    }
+  ],
+  "corrections": [
+    {
+      "kind": "state",
+      "category": "Zhao",
+      "stat": "Defense",
+      "character_id": "koshuu",
+      "characterId": 265,
+      "value": 5.0,
+      "level": 99,
+      "method": "normal",
+      "generalId": 560,
+      "slot": 5,
+      "skillId": 1356,
+      "fieldAbilityId": 84,
+      "sourceNameJp": "争覇防御力強化【趙】",
+      "sourceDescriptionJp": "同盟争覇戦時に味方趙国武将の防御力が上昇する。自身が出撃していなくても有効。,味方趙国武将の防御力{1:per}上昇,,,,,,,,",
+      "fieldRow": {
+        "id": 84,
+        "name": "争覇防御力強化【趙】",
+        "targetType": 23,
+        "effectLvA": 10000,
+        "effectLvB": 50000,
+        "effectLvC": 70000,
+        "effectLvD": 100000,
+        "effectLvE": 100000,
+        "minEffect": 0,
+        "maxEffect": 0,
+        "attributeType": -1,
+        "attributeType2": -1,
+        "countryId": 2,
+        "belongId": 0,
+        "characterIds": "",
+        "upgradeRank": 0
+      },
+      "ownership_id": "buff_1872f605c695442a8cbb98937a2041b6"
+    },
+    {
+      "kind": "unit",
+      "category": "Infantry",
+      "stat": "Defense",
+      "character_id": "koreki",
+      "characterId": 266,
+      "value": 5.0,
+      "level": 99,
+      "method": "normal",
+      "generalId": 562,
+      "slot": 2,
+      "skillId": 1576,
+      "fieldAbilityId": 159,
+      "sourceNameJp": "争覇防御力強化【歩兵】",
+      "sourceDescriptionJp": "同盟争覇戦時に味方歩兵武将の防御力が上昇する。自身が出撃していなくても有効。,味方歩兵武将の防御力{1:per}上昇,,,,,,,,",
+      "fieldRow": {
+        "id": 159,
+        "name": "争覇防御力強化【歩兵】",
+        "targetType": 23,
+        "effectLvA": 10000,
+        "effectLvB": 50000,
+        "effectLvC": 70000,
+        "effectLvD": 100000,
+        "effectLvE": 100000,
+        "minEffect": 0,
+        "maxEffect": 0,
+        "attributeType": 0,
+        "attributeType2": -1,
+        "countryId": 0,
+        "belongId": 0,
+        "characterIds": "",
+        "upgradeRank": 0
+      },
+      "ownership_id": "buff_f0b9410b6b80466ebae235dad504b60d"
+    },
+    {
+      "kind": "state",
+      "category": "Ai",
+      "stat": "Attack",
+      "character_id": "koreki",
+      "characterId": 266,
+      "value": 5.0,
+      "level": 99,
+      "method": "normal",
+      "generalId": 563,
+      "slot": 5,
+      "skillId": 1548,
+      "fieldAbilityId": 147,
+      "sourceNameJp": "争覇攻撃力強化【毐】",
+      "sourceDescriptionJp": "同盟争覇戦時に味方毐国武将の攻撃力が上昇する。自身が出撃していなくても有効。,味方毐国武将の攻撃力{1:per}上昇,,,,,,,,",
+      "fieldRow": {
+        "id": 147,
+        "name": "争覇攻撃力強化【毐】",
+        "targetType": 22,
+        "effectLvA": 10000,
+        "effectLvB": 50000,
+        "effectLvC": 70000,
+        "effectLvD": 100000,
+        "effectLvE": 100000,
+        "minEffect": 0,
+        "maxEffect": 0,
+        "attributeType": -1,
+        "attributeType2": -1,
+        "countryId": 10,
+        "belongId": 0,
+        "characterIds": "",
+        "upgradeRank": 0
+      },
+      "ownership_id": "buff_12fd768073f24525b51a8d7477e385a5"
+    }
+  ],
+  "cwPassives": [
+    {
+      "character_id": "koshuu",
+      "characterId": 265,
+      "skillId": 271,
+      "textId": 271,
+      "category": "Infantry",
+      "stat": "HP",
+      "value": 18.2,
+      "ownership_id": "buff_e60405ed6c5e41a4924b07db3e71da69",
+      "assignmentEvidence": "official announcement; local assignment pending"
+    },
+    {
+      "character_id": "koreki",
+      "characterId": 266,
+      "skillId": 271,
+      "textId": 271,
+      "category": "Infantry",
+      "stat": "HP",
+      "value": 18.2,
+      "ownership_id": "buff_e02eed8c891e4f1c89953532ae236a21",
+      "assignmentEvidence": "official announcement; local assignment pending"
+    }
+  ]
+}

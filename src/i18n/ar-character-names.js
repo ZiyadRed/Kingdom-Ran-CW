@@ -28,6 +28,7 @@ const normalizeJapaneseSearchText = value => String(value ?? '').normalize('NFKC
   .replace(/\s+/g, '')
 
 export const LEGACY_CHARACTER_NAME_ALIASES = Object.freeze({
+  Koshu: 'Koshuu',
   Bikou: 'Bitou',
   Gii: 'Gikou',
   Hakukisei: 'Hakukisai',
@@ -74,6 +75,8 @@ export function correctedCharacterSearchTarget(query) {
 }
 
 export const AR_CHARACTER_NAMES = {
+  'Koshuu': 'كوشو',
+  'Koreki': 'كوريكي',
   'Rouai': 'رواي',
   'Wategi': 'واتيغي',
   'Hanoki': 'هانوكي',

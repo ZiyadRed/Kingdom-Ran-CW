@@ -66,6 +66,18 @@
           "source_id": "ura:221:10814",
           "ownership_id": "buff_ebc12a90d98444ff98ff17e39cff8d3b",
           "skill_layer": "ura"
+        },
+        {
+          "name": "Koshuu",
+          "name_jp": "胡周",
+          "character_id": "koshuu",
+          "characterId": 265,
+          "faction": "zhao",
+          "type": "UR",
+          "value": 5.0,
+          "skill_layer": "normal",
+          "source_id": "normal:265:1356",
+          "ownership_id": "buff_1872f605c695442a8cbb98937a2041b6"
         }
       ]
     },
@@ -166,6 +178,18 @@
           "type": "UR",
           "value": 5.0,
           "ownership_id": "buff_e3f4dc76d53e42a4827d3bc61936f487"
+        },
+        {
+          "name": "Koreki",
+          "name_jp": "虎歴",
+          "character_id": "koreki",
+          "characterId": 266,
+          "faction": "ai",
+          "type": "UR",
+          "value": 5.0,
+          "skill_layer": "normal",
+          "source_id": "normal:266:1548",
+          "ownership_id": "buff_12fd768073f24525b51a8d7477e385a5"
         }
       ],
       "Defense": [

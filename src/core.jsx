@@ -22,6 +22,7 @@ import qi           from '../data/characters/qi.json'
 import misc         from '../data/characters/misc.json'
 import misc2        from '../data/characters/misc2.json'
 import aiYanMajor   from '../data/characters/ai_yan_major.json'
+import koshuKoreki  from '../data/characters/koshu_koreki.json'
 import cwBuffsData  from '../data/cw_buffs.json'
 import cwMaxStats   from '../data/cw_max_stats.json'
 import sceneCardBuffs from '../data/scene_card_cw_buffs.json'
@@ -213,7 +214,7 @@ const completeRoster = [
   ...mountainFolk,...qin,...qinBatch2,...qinMajor,
   ...zhao,...zhaoBatch2,...zhaoMajor,...otherStates,
   ...chu,...chuMajor,...wei,...yan,...qi,
-  ...aiYanMajor,...misc,...misc2,
+  ...aiYanMajor,...misc,...misc2,...koshuKoreki,
 ].filter(c=>c.country!=='unknown').map(c=>{
   const entry=ROLE_SKILL_BY_OWNER[c.id]
   if(!entry) return c
@@ -950,6 +951,8 @@ export function parseRosterCriterion(label){
   const raw=cleanRosterCriterion(original)
   if(!raw) return null
   const norm=normalizeRosterLabel(raw)
+  const role=['Leader','Strategist'].find(value=>value.toLowerCase()===norm)
+  if(role) return{kind:'role',id:role,raw:original}
   if(/^(?:general|generals)$/.test(norm)) return{kind:'all',id:'general',raw:original}
   const unit=UNIT_TYPE_LIST.find(u=>{
     const n=normalizeRosterLabel(u)
@@ -994,6 +997,7 @@ export function rosterCriterionMatches(c,label,owner,forceOther=false){
   }
   if(criterion.kind==='allOf') return criterion.criteria.every(part=>rosterCriterionMatches(c,part,owner,other))
   if(criterion.kind==='all') return true
+  if(criterion.kind==='role') return c.assignedRole===criterion.id
   if(criterion.kind==='unitType') return c.unit_type===criterion.id
   if(criterion.kind==='faction') return c.country===criterion.id
   if(criterion.kind==='group') return inGroup(c,criterion.id)
@@ -1095,6 +1099,8 @@ export function matchAllyRosterListTarget(t,G,owner){
 export function isTargetedBy(target,G,owner,team){
   if(!target) return false
   const t=parseTargetMechanics(target).target.trim()
+  const roleTarget=/^Ally\s+\[(Leader|Strategist)\]$/.exec(t)
+  if(roleTarget) return G.assignedRole===roleTarget[1]
   if(/^enemy|^1\s*enemy|^other\s+enemy|^siege\s+weapon|^ally\s+siege|^gate|^\d+\s+enemy|^Enemy\s*\[/i.test(t)) return false
   // "Self and/or ally X"
   const selfAnd=/^self(?:\s+and|\s*[/,])\s*ally\s+(.+)/i.exec(t)
@@ -2102,5 +2108,5 @@ export function applyMask(char, mask){
   const skills=(m.s6&&s6)?[...base,s6]:base
   if(m.role&&char.roleSkill) skills.push(char.roleSkill)
   const hasSelectableSkills=(char.skills||[]).length>0||!!char.roleSkill
-  return {...char, skills, skillsDisabled:hasSelectableSkills&&skills.length===0}
+  return {...char, skills, assignedRole:m.role&&char.roleSkill?char.roleSkill.type:null, skillsDisabled:hasSelectableSkills&&skills.length===0}
 }

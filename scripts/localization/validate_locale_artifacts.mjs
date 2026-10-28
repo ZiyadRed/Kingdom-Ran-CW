@@ -26,24 +26,23 @@ const has = (p) => existsSync(join(root, p))
 
 // Multiple deterministic project rows can share a canonical CW skillId.
 // Assert project coverage and distinct canonical entries independently.
-const EXPECTED_PROJECT_SKILLS = 665
-const EXPECTED_DETERMINISTIC = 662
-const EXPECTED_CANONICAL_SKILLS = 604
-const EXPECTED_AMBIGUOUS = 3
-// Rows for characters who shipped after the pinned snapshot — no canonical
-// skillId exists yet, so they stay unassigned like the ambiguous rows.
-const EXPECTED_PENDING = 0
 const PENDING_KEYS = []
-const EXPECTED_CHARACTERS = 210
-const EXPECTED_READINGS_AVAILABLE = 189
+const EXPECTED_PROJECT_SKILLS = 671
+const EXPECTED_DETERMINISTIC = 668
+const EXPECTED_CANONICAL_SKILLS = 608
+const EXPECTED_AMBIGUOUS = 3
+// All October 28 additions now have exact canonical master assignments.
+const EXPECTED_PENDING = 0
+const EXPECTED_CHARACTERS = 212
+const EXPECTED_READINGS_AVAILABLE = 191
 const EXPECTED_READINGS_MISSING = 21
 const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'kousonryu#0']
 
 const RAW_TABLES = [
-  ['skill_name.raw.json', 'MsgUnionConquestSkillName.stbl', 879],
-  ['skill_desc.raw.json', 'MsgUnionConquestSkillDesc.stbl', 879],
-  ['general_ruby.raw.json', 'MsgUnitGeneralRubyName.stbl', 609],
-  ['general_name.raw.json', 'MsgUnitGeneralName.stbl', 609],
+  ['skill_name.raw.json', 'MsgUnionConquestSkillName.stbl', 891],
+  ['skill_desc.raw.json', 'MsgUnionConquestSkillDesc.stbl', 891],
+  ['general_ruby.raw.json', 'MsgUnitGeneralRubyName.stbl', 654],
+  ['general_name.raw.json', 'MsgUnitGeneralName.stbl', 654],
   ['skill_effect_desc.raw.json', 'MsgUnionConquestSkillEffectDesc.stbl', 1020],
 ]
 

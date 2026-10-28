@@ -53,14 +53,14 @@ except ImportError:  # pragma: no cover - environment guard
 # "<name>:<UPPERCASE_SHA256>\n" for masters_001..005, in order.
 MASTER_FILES = [f"masters_00{i}.bin" for i in range(1, 6)]
 EXPECTED_MASTER_SHA256 = {
-    "masters_001.bin": "40C334192BF10EBFFC047E05CB53979AB8D7BEA0AB0DDED1BD5774D17B16C308",
-    "masters_002.bin": "8C577C86C0DBA50D5F361E6CDDFDBAA7DBA0ACA572CFA35C462EFAE0C3F12745",
-    "masters_003.bin": "17A3AE63419FB386CE7F6F3318EF3E141851BBA05E255D7493E46C2B56914231",
-    "masters_004.bin": "703BFA58A90B8EEE410387D700ABF180D0864F30A3923DB7EE79DA0323EDA205",
-    "masters_005.bin": "C23FD8511C87E3C70AD5B138F7C33D4E2F84D1406E1F2753FE220389FA763DEA",
+    "masters_001.bin": "3C86DB76159404ED23C2A81AB124C75D43CCEA5271BCF7F5FF15637C4ED90E34",
+    "masters_002.bin": "6E86B56D7ED49099E47DF52B01F4EB9156D976297C7DB802A4309BF055EE7A05",
+    "masters_003.bin": "9D0A917185DB2D8A9559E0C205F73666156C38BB717BBD37EA1EEFAD687B4318",
+    "masters_004.bin": "008800E405DD18C0F54860A14DE4BE3B8C8083FB7DEB0F268564E63B6F36E286",
+    "masters_005.bin": "231B77DF53B6117EA763FA5534C852DE1AB4C8408994E1B71F84620DE9DFC77B",
 }
 EXPECTED_SNAPSHOT_SHA256 = (
-    "DF4991D44F206E6D8702CA858CFE98BC51FC36486C0AA4E95B70180F084C4943"
+    "D6E9D9D90BBD419F3988D7650D018B2BCF11F6A0E3B2174F7BDDFA97AA5AC60D"
 )
 EXPECTED_MANIFEST_BYTES = 405
 
@@ -69,10 +69,10 @@ EXPECTED_MANIFEST_BYTES = 405
 # is hashed independently and its hash recorded in the artifact and provenance.
 STBL_TABLES = [
     # (stbl filename, output artifact, expected entry count)
-    ("MsgUnionConquestSkillName.stbl", "skill_name.raw.json", 879),
-    ("MsgUnionConquestSkillDesc.stbl", "skill_desc.raw.json", 879),
-    ("MsgUnitGeneralRubyName.stbl", "general_ruby.raw.json", 609),
-    ("MsgUnitGeneralName.stbl", "general_name.raw.json", 609),
+    ("MsgUnionConquestSkillName.stbl", "skill_name.raw.json", 891),
+    ("MsgUnionConquestSkillDesc.stbl", "skill_desc.raw.json", 891),
+    ("MsgUnitGeneralRubyName.stbl", "general_ruby.raw.json", 654),
+    ("MsgUnitGeneralName.stbl", "general_name.raw.json", 654),
     ("MsgUnionConquestSkillEffectDesc.stbl", "skill_effect_desc.raw.json", 1020),
 ]
 
@@ -138,15 +138,22 @@ def verify_snapshot(decrypted_dir: Path) -> dict:
 
 
 def load_masters(decrypted_dir: Path) -> dict:
-    """Decode each master packet independently; later files overwrite tables.
-
-    packet["master"] maps table name -> list of row dicts. Duplicate table names
-    are REPLACED, never concatenated.
-    """
-    tables: dict = {}
+    """Merge all source shards, rejecting conflicting duplicate row IDs."""
+    tables = {}
+    indexes = {}
     for name in MASTER_FILES:
         packet = msgpack.unpackb((decrypted_dir / name).read_bytes(), raw=False)
-        tables.update(packet.get("master", {}) or {})
+        for table, rows in (packet.get("master", {}) or {}).items():
+            destination = tables.setdefault(table, [])
+            index = indexes.setdefault(table, {})
+            for row in rows:
+                key = row["id"]
+                if key in index:
+                    if index[key] != row:
+                        raise ValidationError(f"conflicting master row {table}/{key}")
+                    continue
+                index[key] = row
+                destination.append(row)
     if SKILL_TABLE not in tables:
         raise ValidationError(f"master table {SKILL_TABLE} not found in snapshot")
     return tables
@@ -380,8 +387,8 @@ def update_provenance(snapshot: dict, stbl_meta: list[dict], decrypted_dir: Path
     prov = json.loads(path.read_text(encoding="utf-8"))
 
     prov["sourceSnapshot"]["manifestSha256"] = snapshot["snapshot"]
-    prov["sourceSnapshot"]["snapshotLabel"] = "v8.7.0_20260930_11f45ee4"
-    prov["sourceSnapshot"]["snapshotDate"] = "2026-09-30"
+    prov["sourceSnapshot"]["snapshotLabel"] = "v8.8.0_20261028_263b4f3c"
+    prov["sourceSnapshot"]["snapshotDate"] = "2026-10-28"
     prov["sourceSnapshot"]["sourceRoot"] = str(decrypted_dir)
     prov["sourceSnapshot"]["decoder"] = DECODER_METADATA
     prov["sourceSnapshot"]["masterFiles"] = snapshot["files"]
@@ -516,8 +523,8 @@ def main() -> int:
     provenance_path = REPO_ROOT / "data/source/_provenance.json"
     expected_provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
     expected_provenance["sourceSnapshot"]["manifestSha256"] = snapshot["snapshot"]
-    expected_provenance["sourceSnapshot"]["snapshotLabel"] = "v8.7.0_20260930_11f45ee4"
-    expected_provenance["sourceSnapshot"]["snapshotDate"] = "2026-09-30"
+    expected_provenance["sourceSnapshot"]["snapshotLabel"] = "v8.8.0_20261028_263b4f3c"
+    expected_provenance["sourceSnapshot"]["snapshotDate"] = "2026-10-28"
     expected_provenance["sourceSnapshot"]["sourceRoot"] = str(decrypted)
     expected_provenance["sourceSnapshot"]["decoder"] = DECODER_METADATA
     expected_provenance["sourceSnapshot"]["masterFiles"] = snapshot["files"]

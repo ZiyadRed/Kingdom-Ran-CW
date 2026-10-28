@@ -32,7 +32,7 @@ import { dirname, join } from 'node:path'
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const J = (p) => JSON.parse(readFileSync(join(root, p), 'utf-8'))
 
-const SNAPSHOT = 'DF4991D44F206E6D8702CA858CFE98BC51FC36486C0AA4E95B70180F084C4943'
+const SNAPSHOT = J('data/source/_provenance.json').sourceSnapshot.manifestSha256
 const RAW_SCHEMA = 'ranhq.stbl_raw/1'
 const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'kousonryu#0']
 
@@ -44,16 +44,15 @@ const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'kousonryu#0']
 // mistaken for the other: `rows` counts entries in the file, and
 // `coveredProjectRows` counts the deterministic project rows they serve.
 const EXPECTED = {
-  skills: 665,
-  deterministic: 662,
-  canonicalSkills: 604,
+  skills: 671,
+  deterministic: 668,
+  canonicalSkills: 608,
   ambiguous: 3,
-  // Rows for characters who shipped after the pinned snapshot: no canonical
-  // skillId/textId exists yet, so they contribute no Japanese text and are
-  // excluded from `deterministic`/`canonicalSkills` (see cw_skills.map.json).
+  // October 28 supplies all announced Koshuu/Koreki assignments. Reject any
+  // regression back to announcement-only rows or null canonical IDs.
   pending: 0,
-  characters: 210,
-  readingsAvailable: 189,
+  characters: 212,
+  readingsAvailable: 191,
   readingsMissing: 21,
 }
 
@@ -326,6 +325,13 @@ writeIfChanged('data/generated/ja/entity_names.json', {
 // the extractor. Keep the source-map summary synchronized with the reviewed
 // map so the manifest is self-consistent after a maintainer refresh.
 const provenance = J('data/source/_provenance.json')
+const characterMap = J('data/source/characters.map.json')
+const characterStatuses = Object.values(characterMap.characters)
+provenance.characterMapping = {
+  inputFileSha256: createHash('sha256').update(readFileSync(join(root, 'data/source/characters.map.json'), 'utf8').replace(/\r\n/g, '\n')).digest('hex').toUpperCase(),
+  total: characterStatuses.length,
+  ...Object.fromEntries(['exact', 'resolved', 'ambiguous', 'unresolved'].map(status => [status, characterStatuses.filter(entry => entry.status === status).length])),
+}
 const mapStatuses = Object.values(entries).reduce((counts, entry) => {
   counts.total += 1
   if (entry.status === 'exact') counts.exact += 1

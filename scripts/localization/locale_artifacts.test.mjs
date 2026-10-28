@@ -14,7 +14,7 @@ import { dirname, join } from 'node:path'
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const J = (p) => JSON.parse(readFileSync(join(root, p), 'utf-8'))
 
-const SNAPSHOT = 'DF4991D44F206E6D8702CA858CFE98BC51FC36486C0AA4E95B70180F084C4943'
+const SNAPSHOT = J('data/source/_provenance.json').sourceSnapshot.manifestSha256
 const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'kousonryu#0']
 
 const skillName = J('data/source/ja/skill_name.raw.json')
@@ -26,6 +26,8 @@ const index = J('data/generated/source_index.json')
 const readings = J('data/generated/ja/character_readings.json')
 const provenance = J('data/source/_provenance.json')
 const skillMap = J('data/source/cw_skills.map.json')
+const deterministicRows = Object.values(skillMap.skills).filter(entry => ['exact', 'resolved'].includes(entry.status))
+const pendingKeys = []
 
 const characters = []
 for (const f of readdirSync(join(root, 'data/characters'))) {
@@ -35,9 +37,9 @@ for (const f of readdirSync(join(root, 'data/characters'))) {
 
 describe('raw STBL snapshots', () => {
   it.each([
-    ['skill name', skillName, 'MsgUnionConquestSkillName.stbl', 879],
-    ['skill desc', skillDesc, 'MsgUnionConquestSkillDesc.stbl', 879],
-    ['general ruby', generalRuby, 'MsgUnitGeneralRubyName.stbl', 609],
+    ['skill name', skillName, 'MsgUnionConquestSkillName.stbl', 891],
+    ['skill desc', skillDesc, 'MsgUnionConquestSkillDesc.stbl', 891],
+    ['general ruby', generalRuby, 'MsgUnitGeneralRubyName.stbl', 654],
     ['effect desc', effectDesc, 'MsgUnionConquestSkillEffectDesc.stbl', 1020],
   ])('%s is a verbatim table of the expected size', (_label, doc, table, count) => {
     expect(doc._meta.schema).toBe('ranhq.stbl_raw/1')
@@ -59,12 +61,13 @@ describe('raw STBL snapshots', () => {
 })
 
 describe('generated Japanese skills', () => {
-  it('holds 604 canonical entries covering 662 deterministic project rows', () => {
+  it('covers every deterministic source row with its distinct canonical entry', () => {
     expect(skills._meta.schema).toBe('ranhq.ja_skills/1')
     expect(skills._meta.sourceSnapshot).toBe(SNAPSHOT)
-    expect(Object.keys(skills.skills)).toHaveLength(604)
-    expect(skills._meta.rows).toBe(604)
-    expect(skills._meta.coveredProjectRows).toBe(662)
+    expect(Object.keys(skills.skills).map(Number).sort((a, b) => a - b))
+      .toEqual([...new Set(deterministicRows.map(entry => entry.skillId))].sort((a, b) => a - b))
+    expect(skills._meta.rows).toBe(Object.keys(skills.skills).length)
+    expect(skills._meta.coveredProjectRows).toBe(deterministicRows.length)
   })
 
   it('matches the raw source byte-for-byte at every mapped textId', () => {
@@ -78,7 +81,7 @@ describe('generated Japanese skills', () => {
       expect(generated.desc).toBe(skillDesc.values[textId])
       verified++
     }
-    expect(verified).toBe(662)
+    expect(verified).toBe(deterministicRows.length)
   })
 
   it('carries no provenance, evidence or candidate metadata', () => {
@@ -114,13 +117,13 @@ describe('source index', () => {
 
   it('keeps canonical IDs and leaves preview skills unassigned', () => {
     const entries = Object.values(index.skills)
-    expect(entries.filter((e) => e.skillId !== null)).toHaveLength(662)
+    expect(entries.filter((e) => e.skillId !== null)).toHaveLength(deterministicRows.length)
     // The remaining deliberately ambiguous rows have no
     // assigned canonical game skill IDs.
-    expect(entries.filter((e) => e.skillId === null)).toHaveLength(3)
+    expect(entries.filter((e) => e.skillId === null)).toHaveLength(AMBIGUOUS_KEYS.length + pendingKeys.length)
     expect(entries.filter((e) => e.status === 'ambiguous')).toHaveLength(3)
     expect(Object.entries(index.skills).filter(([, e]) => e.status === 'pending_source').map(([key]) => key).sort())
-      .toEqual([])
+      .toEqual(pendingKeys)
   })
 })
 

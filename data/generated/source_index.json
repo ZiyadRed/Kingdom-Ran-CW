@@ -1,7 +1,7 @@
 {
   "_meta": {
     "schema": "ranhq.source_index/1",
-    "rows": 665
+    "rows": 671
   },
   "skills": {
     "rouai#0": {
@@ -331,6 +331,30 @@
     "gokei#3": {
       "status": "resolved",
       "skillId": 606
+    },
+    "koshuu#0": {
+      "status": "exact",
+      "skillId": 880
+    },
+    "koshuu#1": {
+      "status": "exact",
+      "skillId": 881
+    },
+    "koshuu#2": {
+      "status": "exact",
+      "skillId": 271
+    },
+    "koreki#0": {
+      "status": "exact",
+      "skillId": 882
+    },
+    "koreki#1": {
+      "status": "exact",
+      "skillId": 883
+    },
+    "koreki#2": {
+      "status": "exact",
+      "skillId": 271
     },
     "yuri#0": {
       "status": "exact",

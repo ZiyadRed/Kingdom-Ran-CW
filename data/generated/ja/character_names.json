@@ -3,7 +3,7 @@
     "schema": "ranhq.character_names/1",
     "source": "data/characters/*.json",
     "note": "English character name -> Japanese name, for effect text that names an ally",
-    "entries": 209
+    "entries": 211
   },
   "names": {
     "Rouai": "嫪毐",
@@ -30,6 +30,8 @@
     "Kaishibou": "介子坊",
     "Gohoumei": "呉鳳明",
     "Gokei": "呉慶",
+    "Koshuu": "胡周",
+    "Koreki": "虎歴",
     "Yuri": "友里",
     "Toubi": "東美",
     "Yugi": "有義",

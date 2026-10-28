@@ -1,5 +1,5 @@
 {
-  "snapshot": "v8.7.0_20260930_11f45ee4",
+  "snapshot": "v8.8.0_20261028_263b4f3c",
   "source": "mstUnionConquestGenerals.chiefGeneralSkillId / tacticianSkillId",
   "skills": [
     {
@@ -728,6 +728,118 @@
             "condition": null,
             "target": "All enemy [General]",
             "effect": "Critical Damage Down 30%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "owner_id": "kanmei",
+      "characterId": 137,
+      "ownerName": "Kanmei",
+      "ownerNameJp": "汗明",
+      "ownerIcon": "/icons/Kanmei.webp",
+      "role": "Leader",
+      "role_jp": "総大将",
+      "sourceField": "chiefGeneralSkillId",
+      "unlockSkillGroupId": 1,
+      "skill": {
+        "cwId": 890,
+        "textId": 889,
+        "name_en": "超大国の象徴",
+        "name_jp": "超大国の象徴",
+        "type": "Leader",
+        "roleSkill": true,
+        "mp": 2000,
+        "skillType": 2,
+        "timing": 1,
+        "mainIconId": 404,
+        "subIconIds": [
+          3,
+          274,
+          7,
+          22
+        ],
+        "effectIds": [
+          3453,
+          3648,
+          1909,
+          3649,
+          3451
+        ],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Kanmei Army",
+            "effect": "DEF Up 60%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Kanmei Army",
+            "effect": "Morale Recovery 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "Morale Down 30%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "owner_id": "reiou",
+      "characterId": 181,
+      "ownerName": "Reiou",
+      "ownerNameJp": "霊凰",
+      "ownerIcon": "/icons/Reiou.webp",
+      "role": "Strategist",
+      "role_jp": "軍師",
+      "sourceField": "tacticianSkillId",
+      "unlockSkillGroupId": 2,
+      "skill": {
+        "cwId": 891,
+        "textId": 890,
+        "name_en": "火龍鳳翼",
+        "name_jp": "火龍鳳翼",
+        "type": "Strategist",
+        "roleSkill": true,
+        "mp": 1000,
+        "skillType": 2,
+        "timing": 1,
+        "mainIconId": 404,
+        "subIconIds": [
+          3,
+          176,
+          14,
+          7
+        ],
+        "effectIds": [
+          1535,
+          2613,
+          3484,
+          1909,
+          3651
+        ],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Wei]",
+            "effect": "DEF Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "DEF Down 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally [Wei]",
+            "effect": "Morale Recovery 20%",
             "duration": null
           }
         ]

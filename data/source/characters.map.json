@@ -2697,6 +2697,30 @@
         1
       ],
       "status": "exact"
+    },
+    "koshuu": {
+      "characterId": 265,
+      "generalIds": [
+        559,
+        560
+      ],
+      "rarityIds": [
+        3,
+        4
+      ],
+      "status": "exact"
+    },
+    "koreki": {
+      "characterId": 266,
+      "generalIds": [
+        562,
+        563
+      ],
+      "rarityIds": [
+        3,
+        4
+      ],
+      "status": "exact"
     }
   }
 }
