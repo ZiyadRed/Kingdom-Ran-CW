@@ -1,6 +1,9 @@
 import { test, expect, instrumentStorage, settle } from './fixtures.js'
+import { readFileSync } from 'node:fs'
 
 const widths = [390, 768, 1024, 1440]
+const sceneCards = JSON.parse(readFileSync(new URL('../../data/scene_card_cw_buffs.json', import.meta.url), 'utf8')).cards
+const sceneStatIds = [...new Set(sceneCards.map(card => card.stat))].sort()
 const resistanceLabels = {
   en: ['Attack Down Resistance', 'Defense Down Resistance'],
   ja: ['攻撃力低下耐性', '防御力低下耐性'],
@@ -29,16 +32,18 @@ test('Scene Card totals keep localized labels and values readable without collis
   const stats = section.locator('.buff-summary-stats-scene')
   const cells = stats.locator('.buff-summary-stat')
   await expect(section).toBeVisible()
-  await expect(cells).toHaveCount(9)
+  await expect(cells).toHaveCount(sceneStatIds.length)
+  expect(await cells.evaluateAll(nodes => nodes.map(node => node.dataset.sceneStatTotal).sort())).toEqual(sceneStatIds)
 
   for (const width of widths) {
     await page.setViewportSize({ width, height: width === 390 ? 844 : 900 })
     await section.scrollIntoViewIfNeeded()
-    await expect(cells).toHaveCount(9)
-    await expect(cells.nth(7).locator('b')).toHaveText(resistanceLabels[locale][0])
-    await expect(cells.nth(8).locator('b')).toHaveText(resistanceLabels[locale][1])
-    await expect(cells.nth(7).locator('span')).toHaveText(fivePercent(locale))
-    await expect(cells.nth(8).locator('span')).toHaveText(fivePercent(locale))
+    await expect(cells).toHaveCount(sceneStatIds.length)
+    for (const [index, stat] of ['atk_down_resist', 'def_down_resist'].entries()) {
+      const cell = stats.locator(`[data-scene-stat-total="${stat}"]`)
+      await expect(cell.locator('b')).toHaveText(resistanceLabels[locale][index])
+      await expect(cell.locator('span')).toHaveText(fivePercent(locale))
+    }
 
     const geometry = await stats.evaluate(node => {
       const rect = element => {
