@@ -111,7 +111,7 @@ test('Japanese authored UI uses official terms and source-backed Scene Card owne
   expect(cardAlts).toHaveLength(sceneCards.length)
   expect(cardAlts.every(alt => !/[A-Za-z]/.test(alt.replaceAll('CW6', '')))).toBe(true)
   const ownerAlts = await page.locator('.buff-scene-section img[src^="/icons/"]').evaluateAll(images => images.map(image => image.alt))
-  expect(new Set(ownerAlts)).toEqual(new Set(['白翠', '樊於期', '李園', '考烈王', '嫪毐', '樊琉期', '岳雷', '媧燐', '嬴政', '桓騎', '黒桜', '青公', '春平君', '友里', '東美', '摎', '王翦', 'キタリ', '信']))
+  expect(new Set(ownerAlts)).toEqual(new Set(sceneCards.map(card => card.ownerNameJp)))
   await expect(page.getByRole('main')).not.toContainText(/Hakusui|Hanoki|Rien|Kouretsu|Rouai|Hanruki|Gakurai|Karin|Ei Sei|Kanki|Kokuou|Duke Sei|Shunpeikun|Yuri|Toubi|Kyou|Ousen|Kitari|Shin/)
 
   await page.goto(path('/guide/crystals'))

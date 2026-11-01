@@ -8,7 +8,8 @@
     "dodgeRate": 1500,
     "hitRate": 700,
     "atkDownResist": 500,
-    "defDownResist": 500
+    "defDownResist": 500,
+    "enemyDefReduction": 500
   },
   "cards": [
     {
@@ -562,6 +563,41 @@
         4.66,
         5.0
       ]
+    },
+    {
+      "id": 40276,
+      "imageId": 10276,
+      "name_en": "Queen Biki Enemy Defense Reduction",
+      "name_jp": "棘だらけの道の果て",
+      "stat": "enemy_def_down",
+      "statLabel": "Enemy Defense Reduction",
+      "value": 500,
+      "valueMode": "flat",
+      "direction": "down",
+      "target": "enemy",
+      "image": "/scene_cards/webp/Queen-Biki-Enemy-Defense-Reduction.webp",
+      "ownerId": "queen_biki",
+      "ownerName": "Queen Biki",
+      "ownerNameJp": "太后",
+      "ownerIcon": "/icons/Queen Biki.webp",
+      "thumb": "/scene_cards/thumbs/Queen-Biki-Enemy-Defense-Reduction-thumb.webp",
+      "starValues": [
+        330,
+        364,
+        398,
+        432,
+        466,
+        500
+      ],
+      "source": {
+        "sceneCardId": 40276,
+        "characterId": 122,
+        "normalSkillId": 109,
+        "skillTypeId": 11,
+        "nameTextId": 463,
+        "normalSkillTextId": 27,
+        "evidence": "data/source/queen_biki_scene_card_2026-11-01.json"
+      }
     }
   ]
 }

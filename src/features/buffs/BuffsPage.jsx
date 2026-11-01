@@ -422,8 +422,9 @@ export function BuffsPage(){
     hit_rate:{label:sceneStatLabel('Hit Rate'),color:'#c79a3a',total:(SCENE_CARD.hitRate||0)/100,unit:'%'},
     atk_down_resist:{label:sceneStatLabel('Attack Down Resistance'),color:'#b5654d',total:(SCENE_CARD.atkDownResist||0)/100,unit:'%'},
     def_down_resist:{label:sceneStatLabel('Defense Down Resistance'),color:'#5d8aa8',total:(SCENE_CARD.defDownResist||0)/100,unit:'%'},
+    enemy_def_down:{label:t('buffs.enemyDefenseReduction'),color:'#9b4d36',total:SCENE_CARD.enemyDefReduction||0,unit:'',direction:'down'},
   }
-  const sceneStatOrder=['hp','atk','def','morale','crit_rate','evasion','hit_rate','atk_down_resist','def_down_resist']
+  const sceneStatOrder=['hp','atk','def','morale','crit_rate','evasion','hit_rate','atk_down_resist','def_down_resist','enemy_def_down']
   const sceneCardStar=card=>{
     const saved=Number(tracker.progress.sceneBuffStars?.[card.id]||0)
     if(saved>0) return Math.min(6,Math.max(0,Math.round(saved)))
@@ -438,8 +439,11 @@ export function BuffsPage(){
     if(star<=0) return 0
     return card.starValues?.[star-1] ?? (star===6?card.value:Math.round((card.value||0)*star/6))
   }
-  const sceneValueText=(card,value=sceneCardValueAt(card))=>card.valueMode==='percent'?`+${formatFixedNumber(value,locale,2)}%`:`+${formatLocaleNumber(value,locale)}`
-  const sceneTotalText=m=>m.unit==='%'?`+${formatFixedNumber(m.total,locale,2)}%`:`+${formatLocaleNumber(m.total,locale)}`
+  const sceneValueText=(card,value=sceneCardValueAt(card))=>{
+    const sign=card.direction==='down'?(value?'-':''):'+'
+    return card.valueMode==='percent'?`${sign}${formatFixedNumber(value,locale,2)}%`:`${sign}${formatLocaleNumber(value,locale)}`
+  }
+  const sceneTotalText=m=>sceneValueText({direction:m.direction,valueMode:m.unit==='%'?'percent':'flat'},m.total)
   const sceneCardIds=(sceneCardBuffs.cards||[]).map(c=>c.id)
   const sceneOwnedCount=(sceneCardBuffs.cards||[]).filter(c=>sceneCardStar(c)>0).length
   const buffStats=['HP','Attack','Defense']
@@ -568,11 +572,11 @@ export function BuffsPage(){
                   {sceneStatOrder.map(stat=>{
                     const meta=sceneStatMeta[stat]
                     const val=sceneOwnedByStat(stat)
-                    const text=meta.unit==='%'?`+${formatFixedNumber(val,locale,2)}%`:`+${formatLocaleNumber(val,locale)}`
+                    const text=sceneTotalText({...meta,total:val})
                     return(
-                      <span key={stat} className="buff-summary-stat">
+                      <span key={stat} className="buff-summary-stat" data-scene-stat-total={stat}>
                         <b>{meta.label}</b>
-                        <span>{text}</span>
+                        <span dir="ltr">{text}</span>
                       </span>
                     )
                   })}
@@ -603,7 +607,7 @@ export function BuffsPage(){
           })
           const ownedCount=cards.filter(c=>sceneCardStar(c)>0).length
           return(
-            <details key={stat} style={{
+            <details key={stat} data-scene-stat={stat} style={{
               border:`1px solid ${m.color}44`,borderRadius:'8px',background:'var(--sur)',overflow:'hidden',
               boxShadow:'0 2px 10px rgba(0,0,0,.05)',
             }}>
@@ -613,22 +617,22 @@ export function BuffsPage(){
               }}>
                 <span style={{display:'inline-flex',alignItems:'center',gap:'10px',flexWrap:'wrap'}}>
                   <span style={{fontSize:'.86rem',fontWeight:900,color:m.color}}>{m.label}</span>
-                  <span style={{fontSize:'.95rem',fontWeight:900,color:'var(--txt)'}}>{sceneTotalText(m)}</span>
+                  <span dir="ltr" style={{fontSize:'.95rem',fontWeight:900,color:'var(--txt)'}}>{sceneTotalText(m)}</span>
                   <span style={{fontSize:'.66rem',color:'var(--txt3)',padding:'2px 8px',borderRadius:'999px',background:'var(--bg2)',border:'1px solid var(--bdr)'}}>{t('ownedCount',{owned:ownedCount,total:cards.length})}</span>
                 </span>
               </summary>
               <div className="buff-scene-card-grid" style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,116px)',justifyContent:'center',gap:'12px',padding:'12px'}}>
                 {visibleCards.map((card,i)=>(
                   (()=>{const star=sceneCardStar(card);const ownerName=localizedCharacterName(locale.code==='ja'?(card.ownerNameJp||card.ownerName):card.ownerName,locale);return(
-                  <div key={card.id} style={{
+                  <div key={card.id} data-scene-card={card.id} style={{
                     border:'1px solid var(--bdr)',borderRadius:'8px',overflow:'hidden',
                     background:star>0?'linear-gradient(180deg,rgba(26,138,90,.1),var(--sur))':'var(--sur)',
                     boxShadow:'0 2px 10px rgba(0,0,0,.06)',
                     }}>
                     <div style={{position:'relative',aspectRatio:'1 / 1',background:'var(--bg2)',overflow:'hidden'}}>
-                      <img src={card.thumb||card.image} alt={`${ownerName} — ${m.label} — ${t('archive.sceneCards')}`} title={`${ownerName} — ${m.label} — ${t('archive.sceneCards')}`} loading={i<4?'eager':'lazy'} decoding="async" style={{width:'100%',height:'100%',objectFit:'contain',display:'block'}}/>
+                      <img src={card.thumb||card.image} alt={`${ownerName} — ${m.label} — ${t('buffs.sceneCards')}`} title={`${ownerName} — ${m.label} — ${t('buffs.sceneCards')}`} loading={i<4?'eager':'lazy'} decoding="async" style={{width:'100%',height:'100%',objectFit:'contain',display:'block'}}/>
                       {card.image&&<ViewArtButton onClick={e=>{e.stopPropagation();setArtSrc(card.image)}}/>}
-                      <div style={{
+                      <div data-scene-value dir="ltr" style={{
                         position:'absolute',left:7,bottom:7,padding:'3px 7px',borderRadius:'6px',
                         background:'rgba(0,0,0,.66)',color:'#fff',fontSize:'.68rem',fontWeight:900,
                       }}>{sceneValueText(card)}</div>
@@ -717,7 +721,7 @@ export function BuffsPage(){
 
       <SectionLabel>{t('buffs.sceneCards')}</SectionLabel>
       <p style={{fontSize:'.78rem',color:'var(--txt3)',textAlign:'center',margin:'-.35rem auto 1rem',maxWidth:'520px'}}>
-        {t('buffs.sceneDescription', { defaultValue: 'Scene card buffs apply to all characters.' })}
+        {t('buffs.sceneDescription')}
       </p>
       {renderSceneCardsSection()}
 

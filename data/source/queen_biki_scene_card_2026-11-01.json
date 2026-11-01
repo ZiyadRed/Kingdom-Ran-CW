@@ -1,0 +1,230 @@
+{
+  "_schema": "ranhq.scene_card_source/1",
+  "provenance": "VERIFIED_ORIGINAL",
+  "sourceSnapshot": "v8.8.0_20261028_263b4f3c",
+  "acquiredAt": "2026-10-28T12:07:18",
+  "verifiedAt": "2026-11-01T10:18:56.323680+00:00",
+  "freshDevicePull": false,
+  "releaseEvidence": {
+    "url": "https://www.kingdomran.jp/info/261101gacha",
+    "publishedOn": "2026-11-01",
+    "publicTime": 1793523600,
+    "status": "officially-released"
+  },
+  "masterSha256": {
+    "masters_001.bin": "3c86db76159404ed23c2a81ab124c75d43ccea5271bcf7f5ff15637c4ed90e34",
+    "masters_002.bin": "6e86b56d7ed49099e47df52b01f4eb9156d976297c7db802a4309bf055ee7a05",
+    "masters_003.bin": "9d0a917185db2d8a9559e0c205f73666156c38bb717bbd37ea1eefad687b4318",
+    "masters_004.bin": "008800e405dd18c0f54860a14de4be3b8c8083fb7deb0f268564e63b6f36e286",
+    "masters_005.bin": "231b77df53b6117ea763fa5534c852de1ab4c8408994e1b71f84620de9dfc77b"
+  },
+  "sceneCard": {
+    "id": 40276,
+    "name": "UR太后:棘だらけの道の果て",
+    "publicTime": 1793523600,
+    "rarityId": 4,
+    "scenePieceRankUp": 1,
+    "scenePiecePrice": -1,
+    "scenePiecePayBack": 40,
+    "scenePiecePayBackRankGroupId": 0,
+    "normalSkillId": 109,
+    "extraEffectCharacterId": 122,
+    "extraSkillId": 10000,
+    "extraEffectAbilityId": 174,
+    "extraEffectTrickId1": 0,
+    "extraEffectTrickId2": 0,
+    "extraSpecialSkillId": 0,
+    "changeSkillId": 0,
+    "maxChangeSkillId": 0,
+    "replaceRankRate": 0,
+    "normalRankSkillGroupId": 40020,
+    "extraRankSkillGroupId": 41012,
+    "normalSkillTextId": 27,
+    "extraSkillTextId": 563,
+    "textId": 463,
+    "normalRankSkillTextId": 2,
+    "extraRankSkillTextId": 103,
+    "imageId": 10276,
+    "normalSkillMainIconId": 427,
+    "normalSkillSubIconId": 0,
+    "extraSkillMainIconId": 14,
+    "extraSkillSubIconId": 0,
+    "extraSkillSubIconIds": "0",
+    "secondSkillFlg": 0
+  },
+  "normalSkill": {
+    "id": 109,
+    "name": "【同盟争覇戦】敵軍防御力低下",
+    "skillTypeId": 11,
+    "param1Min": 0,
+    "param1Max": 0,
+    "param2Min": 0,
+    "param2Max": 0,
+    "param3Min": 100,
+    "param3Max": 500,
+    "param4Min": 0,
+    "param4Max": 0,
+    "param5Min": 0,
+    "param5Max": 0,
+    "param6Min": 0,
+    "param6Max": 0,
+    "param7Min": 0,
+    "param7Max": 0,
+    "textId": 32,
+    "mainIconId": 0,
+    "subIconId": 0
+  },
+  "ranks": [
+    {
+      "id": 401,
+      "name": "URランク１",
+      "rarityId": 4,
+      "rank": 1,
+      "maxLevel": 35,
+      "totalRankExp": 0
+    },
+    {
+      "id": 402,
+      "name": "URランク２",
+      "rarityId": 4,
+      "rank": 2,
+      "maxLevel": 40,
+      "totalRankExp": 50
+    },
+    {
+      "id": 403,
+      "name": "URランク３",
+      "rarityId": 4,
+      "rank": 3,
+      "maxLevel": 45,
+      "totalRankExp": 150
+    },
+    {
+      "id": 404,
+      "name": "URランク４",
+      "rarityId": 4,
+      "rank": 4,
+      "maxLevel": 50,
+      "totalRankExp": 350
+    },
+    {
+      "id": 405,
+      "name": "URランク５",
+      "rarityId": 4,
+      "rank": 5,
+      "maxLevel": 55,
+      "totalRankExp": 650
+    },
+    {
+      "id": 406,
+      "name": "URランク６",
+      "rarityId": 4,
+      "rank": 6,
+      "maxLevel": 60,
+      "totalRankExp": 1100
+    }
+  ],
+  "rankCapLevels": [
+    {
+      "id": 435,
+      "name": "UR Lv35",
+      "rarityId": 4,
+      "level": 35,
+      "totalLevelExp": 21360,
+      "skillLevelBonus": 21
+    },
+    {
+      "id": 440,
+      "name": "UR Lv40",
+      "rarityId": 4,
+      "level": 40,
+      "totalLevelExp": 39060,
+      "skillLevelBonus": 23
+    },
+    {
+      "id": 445,
+      "name": "UR Lv45",
+      "rarityId": 4,
+      "level": 45,
+      "totalLevelExp": 65150,
+      "skillLevelBonus": 26
+    },
+    {
+      "id": 450,
+      "name": "UR Lv50",
+      "rarityId": 4,
+      "level": 50,
+      "totalLevelExp": 101170,
+      "skillLevelBonus": 29
+    },
+    {
+      "id": 455,
+      "name": "UR Lv55",
+      "rarityId": 4,
+      "level": 55,
+      "totalLevelExp": 148170,
+      "skillLevelBonus": 32
+    },
+    {
+      "id": 460,
+      "name": "UR Lv60",
+      "rarityId": 4,
+      "level": 60,
+      "totalLevelExp": 206660,
+      "skillLevelBonus": 35
+    }
+  ],
+  "texts": {
+    "MsgSceneCardName.stbl": {
+      "slot": 463,
+      "value": "棘だらけの道の果て",
+      "sha256": "1f9d2e90c1b7d22a768555b495ad8969afd085274d6bf96432f9b95348920983"
+    },
+    "MsgSceneCardSkillName.stbl": {
+      "slot": 27,
+      "value": "敵軍防御力低下【同盟争覇戦】",
+      "sha256": "29cc558610d43887532421ad7b913bfba98ac7122b2de042d89b24724113c807"
+    },
+    "MsgSceneCardSkillDesc.stbl": {
+      "slot": 27,
+      "value": "同盟争覇戦で敵全部隊の防御力が低下する。\n所持しているだけで効果が有効。",
+      "sha256": "1d2ddd384f73ff63bcae7418d505fb85a8152a55684e366b55b1ff7d3d0f6492"
+    },
+    "MsgSceneCardSkillParamDesc.stbl": {
+      "slot": 27,
+      "value": "【同盟争覇戦】敵軍防御力低下 -{3:value},,,,,,",
+      "sha256": "843b66c1aa5ab1c6f658eab054761debcd229c1e096b1ca205a0bb6e6cb84add"
+    }
+  },
+  "scaling": {
+    "valueMode": "flat",
+    "parameter": 3,
+    "maxCardLevel": 60,
+    "starValues": [
+      330,
+      364,
+      398,
+      432,
+      466,
+      500
+    ],
+    "basis": "Maximum card level at each UR star rank; same 100..500 parameter range and rank caps as existing flat ATK/DEF passives 40141/40142. Values use the existing floor interpolation; lower card levels give smaller values."
+  },
+  "artwork": {
+    "sourcePath": "C:\\kingdom_data\\decrypted\\scene_card\\sc10276_c.png",
+    "sourceSha256": "0c863e3c2f9d3890e89052fcedd2b15df0959dd385eebef35bd8c27d9d4cf650",
+    "full": "/scene_cards/webp/Queen-Biki-Enemy-Defense-Reduction.webp",
+    "fullSha256": "75b778e7c69162fb63455ab336952db5c37a85ae6498f21f333763f4efe647d5",
+    "thumbnail": "/scene_cards/thumbs/Queen-Biki-Enemy-Defense-Reduction-thumb.webp",
+    "thumbnailSha256": "913d40bd24410a166c66b4aedb2a104973aa7e28b1f280fb33bb48cafbefe76c",
+    "fullSize": [
+      1024,
+      1024
+    ],
+    "thumbnailSize": [
+      320,
+      320
+    ],
+    "fullPixelIdentical": true
+  }
+}

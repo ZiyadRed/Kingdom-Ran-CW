@@ -34,6 +34,7 @@
     {"key":"guard","english":"Guard","japanese":"ガード効果","arabic":"حراسة","source":"GAME_TERM","notes":"Status/effect label."},
     {"key":"atk_down_resistance","english":"ATK Down Resistance","japanese":"攻撃力低下耐性","arabic":"مقاومة خفض الهجوم","source":"GAME_TERM","evidence":"data/generated/ja/skills.json","notes":"Canonical Builder key; Attack Down Resistance is an equivalent display alias."},
     {"key":"def_down_resistance","english":"DEF Down Resistance","japanese":"防御力低下耐性","arabic":"مقاومة خفض الدفاع","source":"GAME_TERM","evidence":"data/generated/ja/skills.json","notes":"Canonical Builder key; Defense Down Resistance is an equivalent display alias."},
+    {"key":"enemy_defense_reduction","english":"Enemy Defense Reduction","japanese":"敵軍防御力低下","arabic":"خفض دفاع العدو","source":"GAME_TERM","evidence":"https://www.kingdomran.jp/info/261101gacha","notes":"Flat passive reduction to every enemy unit in Castle War, active by ownership. French: Réduction de la défense ennemie. Source: scene card 40276, normal skill 109, skillTypeId 11; distinct from allied DEF buffs and DEF Down Resistance."},
     {"key":"attack_nullification","english":"Attack Nullification","japanese":"攻撃無効","arabic":"إبطال الهجوم","source":"GAME_TERM","notes":"Status/effect label."},
     {"key":"sure_hit","english":"Sure Hit","japanese":"必中","arabic":"إصابة مؤكدة","source":"GAME_TERM","notes":"Status/effect label."},
     {"key":"provoke","english":"Provoke","japanese":"挑発","arabic":"استفزاز","source":"GAME_TERM","notes":"Status/effect label."},

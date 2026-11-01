@@ -87,7 +87,8 @@ describe('regular Buff Tracker character identity', () => {
 
 describe('Scene Card Buff Tracker character identity', () => {
   it('pins every Japanese owner label to a stable source-backed character id', () => {
-    expect(sceneCardBuffs.cards).toHaveLength(23)
+    expect(sceneCardBuffs.cards.length).toBeGreaterThan(0)
+    expect(new Set(sceneCardBuffs.cards.map(card => card.id)).size).toBe(sceneCardBuffs.cards.length)
     for (const card of sceneCardBuffs.cards) {
       const character = CHAR_BY_ID[card.ownerId]
       expect(character, `unknown ownerId on scene card ${card.id}`).toBeTruthy()

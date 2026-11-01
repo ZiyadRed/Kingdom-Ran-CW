@@ -171,7 +171,7 @@ export const OwnedToggle=({owned,onToggle,label,className=''})=>{
 export const SceneStarControl=({star,onChange})=>{
   const{t}=useTranslation('common')
   return(
-    <div className="scene-star-control" aria-label={t('starSkill')}>
+    <div className="scene-star-control" role="group" aria-label={t('sceneCardRank')}>
       {[1,2,3,4,5,6].map(level=>(
         <button
           key={level}
