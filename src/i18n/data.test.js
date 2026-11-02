@@ -13,7 +13,10 @@ describe('localized source data', () => {
     expect(display.displayEffects[1].condition).toBe('駐屯時')
     expect(display.displayEffects[2].target).toBe('攻撃力が最も高い敵兵器1つ')
     expect(original.effects[1].condition).toBeNull()
-    expect(localizedSkill(original, sei.id, 2, 'en').displayEffects).toEqual(original.effects)
+    const english=localizedSkill(original,sei.id,2,'en').displayEffects
+    expect(english[1].condition).toBe('When Garrisoning')
+    expect(english[2].target).toBe('1 enemy [Siege Weapon] with highest ATK')
+    expect(original.effects[2].target).toBe('Enemy [General] with highest ATK')
 
     const gohoumei = ALL.find(character => character.id === 'gohoumei')
     const weapon = localizedSkill(gohoumei.skills[1], gohoumei.id, 1, 'ja')

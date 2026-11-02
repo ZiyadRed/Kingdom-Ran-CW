@@ -22,6 +22,14 @@ const count=(criteria,excludeSelf=true)=>({kind:'rosterCount',side:'ally',criter
 const presence=(side,criteria=everyone(),state='alive',excludeSelf=false)=>({kind:'presence',side,criteria,state,excludeSelf})
 
 const SOURCES={
+  'renpa#3':{characterId:78,skillId:567,textId:565,status:'resolved',skillEffectIds:[1989,2199,1994,2205,1535,2211,2217,2223],evidence:'自身以外の味方廉頗軍武将が生存している場合'},
+  'ei_sei#2':{characterId:98,skillId:147,textId:147,status:'exact',skillEffectIds:[1444,1445,1425],evidence:'駐屯時には、自身に攻撃無効(3回)を付与'},
+  'gii#0':{characterId:97,skillId:30,textId:30,status:'exact',skillEffectIds:[1147,1148,1149],evidence:'「錯乱」状態の付与確率が20%上昇'},
+  'shuki#0':{characterId:30,skillId:21,textId:21,status:'exact',skillEffectIds:[1023,1045],evidence:'自身以外の味方歩兵武将の攻撃力が20%上昇'},
+  'ryuusen#0':{characterId:74,skillId:41,textId:41,status:'exact',skillEffectIds:[1020,1023],evidence:'自身以外の味方歩兵武将の攻撃力が20%上昇'},
+  'shoumou#0':{characterId:37,skillId:128,textId:128,status:'exact',skillEffectIds:[1018,1029,1038],evidence:'自身以外の味方騎兵武将の攻撃力が20%上昇'},
+  'rinbou#0':{characterId:77,skillId:102,textId:102,status:'exact',skillEffectIds:[1012,1029],evidence:'自身以外の味方騎兵武将の攻撃力が20%上昇'},
+  'doukin#0':{characterId:47,skillId:107,textId:107,status:'exact',skillEffectIds:[1015,1030],evidence:'自身以外の味方騎兵武将の防御力が20%上昇'},
   'shin#1':{characterId:38,skillId:142,textId:142,status:'exact',skillEffectIds:[1223,1224,1225,1226],evidence:'自身以外の味方秦国武将1名につき'},
   'shunshinkun#2':{characterId:121,skillId:382,textId:382,status:'exact',skillEffectIds:[1610,1611,1612,1613,1614,1615,1616,1617,1618,1619],evidence:'秦国武将に対する攻撃力と防御力が30%上昇'},
   'makou#1':{characterId:255,skillId:791,textId:790,status:'exact',skillEffectIds:[2686,3208,3209,3210,3211],evidence:'敵弓兵武将が生存している場合'},
@@ -61,6 +69,14 @@ const add=(sourceKey,effectIndex,effectIds,mechanics)=>{
 }
 
 // F01/F02 source truth set and high-risk recipient/condition/opponent families.
+add('renpa#3',1,[2217,2223],{recipients:[ally()],conditions:[presence('ally',group('Renpa Army'),'alive',true)],modifiers:[modifier('Guard','up',60)]})
+add('ei_sei#2',1,[1445],{recipients:[self()],conditions:[{kind:'side',side:'defense'}],modifiers:[modifier('Attack Nullification','up',3)]})
+add('gii#0',0,[1147],{recipients:[ally(everyone(),true)],modifiers:[modifier('Confusion Infliction Rate','up',20)]})
+add('shuki#0',0,[1023],{recipients:[ally(unit('Infantry'),true)],modifiers:[modifier('ATK','up',20)]})
+add('ryuusen#0',1,[1023],{recipients:[ally(unit('Infantry'),true)],modifiers:[modifier('ATK','up',20)]})
+add('shoumou#0',1,[1029],{recipients:[ally(unit('Cavalry'),true)],modifiers:[modifier('ATK','up',20)]})
+add('rinbou#0',1,[1029],{recipients:[ally(unit('Cavalry'),true)],modifiers:[modifier('ATK','up',20)]})
+add('doukin#0',1,[1030],{recipients:[ally(unit('Cavalry'),true)],modifiers:[modifier('DEF','up',20)]})
 add('shin#1',0,[1223,1224],{recipients:[ally(faction('qin'))],conditions:[count(faction('qin'))],modifiers:[modifier('ATK','up',5)]})
 add('shin#1',1,[1225,1226],{recipients:[ally(group('Hi Shin Unit'))],conditions:[count(group('Hi Shin Unit'))],modifiers:[modifier('ATK','up',5)]})
 add('shunshinkun#2',0,[1610,1611,1612,1613,1614,1615,1616,1617,1618,1619],{

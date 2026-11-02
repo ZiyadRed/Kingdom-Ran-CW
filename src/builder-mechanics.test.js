@@ -167,7 +167,9 @@ describe('F03 stable Builder identity',()=>{
     for(const row of BUILDER_MECHANIC_ROWS){
       // Kishou's three named-ally triggers are checked against source IDs and
       // formation outcomes above; parser parity is not its acceptance gate.
-      if(row.sourceKey==='kishou#2'||row.conditions?.some(condition=>condition.kind==='battleState'&&condition.state==='surviving')) continue
+      // Source-backed November corrections supersede incomplete legacy rows;
+      // their guard, garrison and status outcomes are tested independently.
+      if(['kishou#2','renpa#3','ei_sei#2','gii#0'].includes(row.sourceKey)||row.conditions?.some(condition=>condition.kind==='battleState'&&condition.state==='surviving')) continue
       const stable=scopedOwner(row,true)
       const legacy=scopedOwner(row,false)
       const mechanic=BUILDER_MECHANICS[row.id]

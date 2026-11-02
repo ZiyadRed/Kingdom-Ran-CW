@@ -65,11 +65,11 @@ describe('real BuffTable formation summaries', () => {
   })
 
   it('keeps an actual unsupported source fail-closed and out of the player table',()=>{
-    const eiSei=findCharById('ei_sei')
+    const shikika=findCharById('shikika')
     const karin=findCharById('karin')
-    const result=calcCharBuffs(eiSei,[eiSei],[karin],false,false,true)
+    const result=calcCharBuffs(shikika,[shikika],[karin],false,false,true)
     expect(result.meta.unsupported.length).toBeGreaterThan(0)
-    const html=renderForLocale(<BuffTable atk={[eiSei]} def={[karin]} initialIncludeCombat={true}/>,'en')
+    const html=renderForLocale(<BuffTable atk={[shikika]} def={[karin]} initialIncludeCombat={true}/>,'en')
     expect(html).not.toContain(CATALOGS.en.buffs.unsupported)
     expect(html).not.toContain(CATALOGS.en.buffs.notCalculated)
     expect(html).not.toContain('buff-applicability-notice')

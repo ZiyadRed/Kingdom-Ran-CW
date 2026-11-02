@@ -16,6 +16,12 @@
 
 ## NEW CHARACTER / CW CARD INTEGRATION CONTRACT
 
+- **Ryuuto release boundary (owner instruction, 2026-11-03):** Keep Ryuuto's
+  upcoming card data, skills, artwork, and integration local until its official
+  in-game release is verified. Do not push or deploy it early, even behind a
+  scheduled visibility gate. This does not exclude his existing character or
+  released skills from team presets.
+
 **Mandatory.** Before adding a character, skill, CW/CW6 card, game data or a new
 mechanic, read `docs/CONTENT_INTEGRATION_RULES.md`. It is the detailed contract;
 this is the non-negotiable summary.

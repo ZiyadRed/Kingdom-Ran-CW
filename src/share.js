@@ -105,6 +105,7 @@ export const DEFAULT_SHARE_LABELS={
   withCombat:'Strategy + combat skill effects included.',
   strategyOnly:'Strategy skills only.',
   summaryConditions:'Calculated from selected formations and skills. Survival-dependent effects assume the required generals remain alive; battle-state effects are listed separately.',
+  inflictionBonusHelp:'Status application rates show the increase from selected skills, not the final chance against an opponent.',
   calculatedFromFormation:'Calculated from this formation',
   conditionalEffects:'Conditional effects',
   notCalculated:'Not calculated',
@@ -342,10 +343,12 @@ export function formatTeamBuffShare({
   labels,
 }={}){
   const L=withLabels(labels)
+  const hasInflictionBonus=[...atkBuffs,...defBuffs].some(({buffs})=>Object.entries(buffs).some(([stat,bucket])=>/Infliction Rate$/.test(stat)&&(bucket.up||bucket.down)))
   const lines=[
     `**${L.teamBuffSummary}**`,
     includeCombat?L.withCombat:L.strategyOnly,
     L.summaryConditions,
+    ...(hasInflictionBonus?[L.inflictionBonusHelp]:[]),
     `<${url}>`,
     '',
     ...formatBuffSideForShare(L.attackingFormation,atk,atkBuffs,atkEnemyDebuffs,{specialStats,statSortKey,labels:L}),

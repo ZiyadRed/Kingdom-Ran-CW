@@ -18,7 +18,7 @@ test('Metawatch renders new formations and compact structured role badges', asyn
     await page.setViewportSize({ width, height })
     await page.goto(path('/tiers'))
     await expect(page.locator('.mw-team').filter({ hasText: expected.renpa })).toBeVisible()
-    await expect(page.locator('.mw-team').filter({ hasText: expected.shou })).toBeVisible()
+    await expect(page.locator('.mw-team[data-team-preset="Shouheikun"] .mw-team-name')).toHaveText(expected.shou)
 
     const renpa = page.locator('.mw-member').filter({ has: page.locator('img[src*="/icons/Renpa.webp"]') }).first()
     const gohoumei = page.locator('.mw-member').filter({ has: page.locator('img[src*="/icons/Gohoumei.webp"]') }).first()

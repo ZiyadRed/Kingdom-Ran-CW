@@ -7,3 +7,11 @@
 .buff-row-click { width: 100%; font: inherit; color: inherit; text-align: start; }
 .buff-row-click:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
 .buff-sources[hidden] { display: none; }
+.builder-role-note { margin: 0 0 .55rem; color: var(--txt2); font-size: .72rem; line-height: 1.5; }
+.buff-effect-reference { margin-block-start: 1rem; border-block-start: 1px solid var(--bdr); padding-block-start: .6rem; font-size: .75rem; }
+.buff-effect-reference summary { cursor: pointer; font-weight: 700; color: var(--txt2); line-height: 1.5; }
+.buff-effect-reference summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.buff-effect-reference > p { color: var(--txt2); line-height: 1.6; }
+.buff-effect-reference-row { padding-block: .6rem; border-block-end: 1px solid var(--bdr); }
+.buff-effect-reference-row .buff-source-row { justify-content: flex-start; gap: .4rem; }
+.buff-effect-reference-row .buff-source-evidence { margin-inline-start: 0; margin-block-start: .25rem; }

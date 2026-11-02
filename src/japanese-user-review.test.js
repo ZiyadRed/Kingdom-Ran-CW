@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
-  ALL, calcCharBuffs, calcTeamEnemyDebuffs, getMultiplier, isTargetedBy, parseBuffEffect,
+  ALL, calcCharBuffs, calcTeamEnemyDebuffs, getMultiplier, getReleaseData, isTargetedBy, parseBuffEffect,
 } from './core.jsx'
 import { localizedCharacter, localizedText } from './i18n/data.js'
 import { CATALOGS } from './i18n/i18n.js'
@@ -17,6 +17,40 @@ const rowOwner = (id, slot, index) => {
   return { ...c, roleSkill: null, skills: [{ ...skill, effects: [skill.effects[index]] }] }
 }
 const buffs = (recipient, team) => calcCharBuffs(recipient, team, [], false, true, true)
+
+describe('site-wide Japanese text coverage',()=>{
+  it('keeps every authored Japanese UI string localized, allowing only established brand and format names',()=>{
+    const untranslated=[]
+    const visit=(value,path)=>{
+      if(typeof value==='string'){
+        const text=value.replace(/{{[^}]+}}/g,'').replace(/\b(?:RanHQ|Discord|YouTube|PNG|CW6|VS|X)\b/g,'')
+        if(/[A-Za-z]/.test(text)) untranslated.push({path,value})
+      }else if(value&&typeof value==='object'){
+        for(const [key,child] of Object.entries(value)) visit(child,`${path}.${key}`)
+      }
+    }
+    visit(CATALOGS.ja,'ja')
+    expect(untranslated).toEqual([])
+  })
+
+  it('covers all character and role skill text, including internal-affairs and expanded effect fields',()=>{
+    const untranslated=[]
+    for(const character of getReleaseData(Infinity).ALL){
+      const localized=localizedCharacter(character,'ja')
+      const skills=[...localized.skills,...(localized.roleSkill?[localized.roleSkill]:[])]
+      for(const [index,skill] of skills.entries()){
+        for(const [effectIndex,effect] of skill.displayEffects.entries()){
+          for(const field of ['condition','target','effect','duration']){
+            const text=effect[field]||''
+            if(/[A-Za-z]|\{-\d+:\d+\}/.test(text.replace(/\b(?:CW6|CW|UR|SR|HP)\b/g,'')))
+              untranslated.push({character:character.id,index,effectIndex,field,text})
+          }
+        }
+      }
+    }
+    expect(untranslated).toEqual([])
+  })
+})
 
 describe('source-backed Japanese review corrections', () => {
   it('applies Karin’s penalty to her other Chu allies and never to the enemy summary', () => {

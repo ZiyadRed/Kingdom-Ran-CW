@@ -511,6 +511,8 @@ export const META_TEAMS=[
   {tier:'A',name:'Hi Shin',         country:'qin',           members:['Garo','Gakurai','Naki','Robin']},
   {tier:'A',name:'YTW + Triplets',  country:'mountain_folk', members:['Yotanwa','Toji','Fuji','Ramauji']},
   {tier:'A',name:'Chu Cavalry',     country:'chu',           members:['Kyoubou','Rinbukun','Rokin','Kanmei']},
+  {tier:'A',name:'Rigan',           country:'zhao',          members:['Kishou','Kisui','Batei','Ryuuto']},
+  {tier:'B',name:'Qin Bow Command', country:'qin',           members:['Shouheikun','Sougen','Soujin','Soutan']},
   {tier:'B',name:'6GG',             country:'qin',           members:['Sho','Ouki','Tou','Kyou']},
   {tier:'B',name:'Renpa v1',        country:'wei',           members:['Rinko','Tairoji','Renpa','Kouretsu']},
   {tier:'B',name:'Renpa v3',        country:'wei',           members:['Rinko','Renpa','Kaishibou','Gohoumei']},
@@ -518,16 +520,18 @@ export const META_TEAMS=[
   {tier:'B',name:'Han',             country:'han',           members:['Seikai','Chouin','Bakan','Nakon']},
   {tier:'C',name:'Ai',              country:'ai',            members:['Rouai','Hanoki','Ryofui','Hanroki']},
   {tier:'C',name:'Archer Garrison', country:MIXED_COUNTRY,   members:['Rouai','Queen Biki','Seikai','Keisha']},
-  {tier:'C',name:'Rigan',           country:'zhao',          members:['Kishou','Kisui','Batei','Ryuuto']},
   {tier:'C',name:'Kanki',           country:'qin',           members:['Zenou','Raido','Kanki','Naki']},
   {tier:'C',name:'Ousen Army',      country:'qin',           members:['Eiki','Makou','Akou','Ousen']},
   {tier:'C',name:'Shouheikun',      country:'qin',           members:['Shouheikun','Sougen','Hyoushiga','Kaioku']},
   {tier:'C',name:'Yan',             country:'yan',           members:['Ordo','Gakuki','Yukii','Otaji']},
   // ── Party-Builder-only extras (no `tier`, not on the tier list) ──
+  {name:'Riboku Vanguard',country:'zhao',members:['Shunsuiju','Houken','Bananji','Riboku']},
+  {name:'Wei v2',         country:'wei', members:['Tairoji','Ranbihaku','Reiou','Gohoumei']},
   {name:'Ouhon',          country:'qin', members:['Shoutaku','Ouhon','Kanjou','Gakuki']},
   {name:'Ousen v3',       country:'qin', members:['Ousen','Akou','Makou','Kyuukou']},
   {name:'Karin',          country:'chu', members:['Rien','Karin','Kaen','Goutoku']},
   {name:'Chu',            country:'chu', members:['Kyoubou','Rinbukun','Kanmei','Shunshinkun']},
+  {name:'Kanmei Army',    country:'chu', members:['Kyoubou','Kanmei','Beiman','Jinou']},
   {name:'Renpa v2',       country:'wei', members:['Rinko','Kouretsu','Renpa','Kaishibou']},
   {name:'Moubo',          country:'qin', members:['Choushi','Moubu','Raiki','Ouken']},
   {name:'Qin Shields',    country:'qin', members:['Hakuki','Akou','Ousen','Ei Sei']},
@@ -710,7 +714,8 @@ export const FACTION_MAP={'qin':'qin','zhao':'zhao','chu':'chu','wei':'wei','yan
 export const STATUS_EFFECTS=['Confusion','Poison','Paralysis','Betrayal','Burn','Fear','Illusion','Reckless']
 export const STATUS_RE=new RegExp('^('+STATUS_EFFECTS.join('|')+')','i')
 export const TARGET_NAME_ALIASES={moubo:'moubu',ghm:'gohoumei'}
-export const normalizeBuffStat=s=>/^Evasion Rate$/i.test(s)?'Evasion':s
+const BUFF_STAT_ALIASES={'Attack Down Resistance':'ATK Down Resistance','Defense Down Resistance':'DEF Down Resistance','Morale Cost':'Morale Consumption'}
+export const normalizeBuffStat=s=>BUFF_STAT_ALIASES[s]||(/^Evasion Rate$/i.test(s)?'Evasion':s)
 export const BUFF_APPLICABILITY=Object.freeze({
   APPLICABLE:'applicable',
   IMPOSSIBLE:'impossible',
@@ -768,7 +773,7 @@ const mergeEquivalentOpponentModifiers=modifiers=>{
 }
 export function parseBuffEffect(str){
   if(!str) return []
-  const results=[];let deferred=[],inheritedRecipientRaw=null
+  const results=[];let deferred=[],inheritedRecipientRaw=null,inheritedRestrict=false
   for(let part of str.split(/[,、/]/)){
     part=part.trim().replace(/\\/g,'').replace(/["\u201C\u201D\u300C\u300D]/g,'').trim().replace(/^and\s+/i,'')
     const dodgeState=/^(?:Dodge Chance|Evasion\s*\(Dodge Chance\))\s+\d+(?:\.\d+)?[%％]$/i.test(part)
@@ -778,7 +783,7 @@ export function parseBuffEffect(str){
     if(/\d+[%％]\s*Damage|^%\s*(?:of\s+|Damage)|HP Drain|Stun Rate/i.test(part)) continue
     if(/^Provoke$/i.test(part)) continue
     if(/^Normal Attack(?!\s+Seal)/i.test(part)) continue
-    let ownerType=null,antiEnemy=null,recipientRaw=inheritedRecipientRaw,m
+    let ownerType=null,antiEnemy=null,recipientRaw=inheritedRecipientRaw,restrictRecipient=inheritedRestrict,m
     const versus=extractOpponentQualifier(part)
     part=versus.text
     const opponentRaw=versus.raw
@@ -806,18 +811,22 @@ export function parseBuffEffect(str){
     // Some derived rows repeat a recipient scope inside the effect string.
     // Preserve it as a mechanical criterion instead of deleting it.
     m=part.match(/^Ally\s+\[([^\]]+)\]\s+(.+)/i)
-    if(m){recipientRaw=m[1].trim();part=m[2]}
-    if(recipientRaw) inheritedRecipientRaw=recipientRaw
+    if(m){recipientRaw=m[1].trim();restrictRecipient=false;part=m[2]}
+    // Bare unit prefixes qualify the recipient within the row's target. They
+    // are not separate stats such as "[Cavalry] ATK" or additional recipients.
+    m=part.match(/^\[(Infantry|Cavalry|Archer|Shield)\]\s+(.+)/i)
+    if(m){recipientRaw=m[1];restrictRecipient=true;part=m[2]}
+    if(recipientRaw){inheritedRecipientRaw=recipientRaw;inheritedRestrict=restrictRecipient}
     if(!part) continue
-    const qualify=r=>decorateBuffQualifier({...r,ownerType,antiEnemy,recipientRaw,opponentRaw})
+    const qualify=r=>decorateBuffQualifier({...r,ownerType,antiEnemy,recipientRaw,opponentRaw,...(restrictRecipient?{restrictRecipient:true}:{})})
     const flush=r=>{
       results.push(qualify(r))
       for(const d of deferred){
         if(d.statusPrefix!==undefined){
           const suffix=r.stat.replace(/^[A-Za-z]+\s*/,'')
-          if(suffix) results.push(decorateBuffQualifier({...d,stat:d.statusPrefix+' '+suffix,dir:r.dir,val:r.val}))
+          if(suffix) results.push(decorateBuffQualifier({...d,stat:d.statusPrefix+' '+suffix,dir:r.dir,val:r.val,...(r.valueMeaning?{valueMeaning:r.valueMeaning}:{})}))
         } else if(d.dir===r.dir){
-          results.push(decorateBuffQualifier({...d,val:r.val}))
+          results.push(decorateBuffQualifier({...d,val:r.val,...(r.valueMeaning?{valueMeaning:r.valueMeaning}:{})}))
         }
       }
       deferred=[]
@@ -835,7 +844,13 @@ export function parseBuffEffect(str){
     if(m){flush({stat:normalizeBuffStat(m[1].trim()),dir:m[2],val:parseFloat(m[3]),valueMeaning:{kind:'upperBound',max:parseFloat(m[3])},ownerType,antiEnemy});continue}
     // "Stat Up/Down X%"
     m=part.match(/^(.+?)\s+(Up|Down)\s+(\d+(?:\.\d+)?)[%％]/)
-    if(m){flush({stat:normalizeBuffStat(m[1].trim()),dir:m[2],val:parseFloat(m[3]),ownerType,antiEnemy});continue}
+    if(m){
+      const stat=normalizeBuffStat(m[1].trim()),val=parseFloat(m[3])
+      // A bonus to a status's application rate is a fixed modifier. Applying
+      // that status at X% chance is a separate, non-additive effect.
+      flush({stat,dir:m[2],val,...(/Infliction Rate$/i.test(stat)?{valueMeaning:{kind:'fixed',value:val}}:{}),ownerType,antiEnemy})
+      continue
+    }
     // "Stat Up/Down" (no value) — deferred
     m=part.match(/^(.+?)\s+(Up|Down)\s*$/)
     if(m){deferred.push(qualify({stat:normalizeBuffStat(m[1].trim()),dir:m[2]}));continue}
@@ -875,10 +890,10 @@ export function parseBuffEffect(str){
     if(m){flush({stat:m[1],dir:m[2],val:parseFloat(m[3]),ownerType,antiEnemy});continue}
     // "Morale Recovery X%" / "Continuous Morale Recovery X%"
     m=part.match(/^(?:Continuous\s+)?Morale Recovery\s+(\d+(?:\.\d+)?)[%％]$/i)
-    if(m){flush({stat:'Morale Recovery',dir:'Up',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
+    if(m){flush({stat:/^Continuous\b/i.test(part)?'Continuous Morale Recovery':'Morale Recovery',dir:'Up',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
     // "Continuous HP Recovery X%"
     m=part.match(/^Continuous HP Recovery\s+(\d+(?:\.\d+)?)[%％]$/i)
-    if(m){flush({stat:'HP Recovery',dir:'Up',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
+    if(m){flush({stat:'Continuous HP Recovery',dir:'Up',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
     // "HP Recovery Nullification X%"
     m=part.match(/^HP Recovery Nullification\s+(\d+(?:\.\d+)?)[%％]$/i)
     if(m){flush({stat:'HP Recovery Nullification',dir:'Up',val:parseFloat(m[1]),ownerType,antiEnemy});continue}
@@ -1311,7 +1326,7 @@ export function buffValueMeaning(modifier,effect){
   if(DYNAMIC_MULTIPLIER_RE.test(text)) return{kind:'perCounter',amount:value,cap:cap?Number(cap[1]):null,counter:/attack/i.test(text)?'attack':/turn/i.test(text)?'turn':/defeat|kill/i.test(text)?'defeat':'event'}
   if(/\b(?:scales?|proportional|according to|based on|depending on)\b[^.]*\bHP\b|\bHP\b[^.]*\b(?:scales?|proportional)\b/i.test(text)) return{kind:'dynamicMultiplier',max:cap?Number(cap[1]):value,basis:'HP'}
   if(modifier.valueMeaning?.kind==='upperBound'||/\b(?:max(?:imum)?|up to)\s*\d+(?:\.\d+)?[%％]/i.test(text)) return{kind:'upperBound',max:modifier.valueMeaning?.max??Number(cap?.[1]??value)}
-  if(modifier.valueMeaning&&modifier.valueMeaning.kind!=='fixed') return modifier.valueMeaning
+  if(modifier.valueMeaning&&(modifier.valueMeaning.kind!=='fixed'||/Infliction Rate$/i.test(modifier.stat))) return modifier.valueMeaning
   if(SPECIAL_STATS.has(modifier.stat)) return{kind:'flag',count:value}
   if(/(?:Infliction Rate|Attack Seal|HP Recovery Nullification)$/i.test(modifier.stat)) return{kind:'chance',rate:value}
   return{kind:'fixed',value}
@@ -1612,6 +1627,27 @@ export function builderMechanicCoverage(roster=ALL,includeCombat=true){
   return{total:rows.length,...counts,rows}
 }
 
+// Every selected battle effect remains reviewable, including damage, flat
+// healing, chance-based applications and effects omitted from numeric totals.
+// Preserve the original objects so source-ID localization and role masks work.
+export function teamEffectReferences(team,entries,enemyDebuffs,includeCombat=false){
+  const sources=[]
+  for(const result of [...entries.map(entry=>entry.buffs),enemyDebuffs]){
+    if(!result) continue
+    for(const bucket of Object.values(result)){
+      const lists=bucket.sources||{}
+      sources.push(...(Array.isArray(lists)?lists:Object.values(lists).flat()))
+    }
+    for(const key of ['conditionalEffects','missingInputs','unsupported']) sources.push(...result.meta?.[key]||[])
+  }
+  return team.flatMap(owner=>(owner.skills||[])
+    .filter(skill=>isBuffSummarySkill(skill,includeCombat))
+    .flatMap(skill=>(skill.effects||[]).map(effect=>({
+      ...sources.find(source=>source.owner.id===owner.id&&source.skill===skill&&source.effect===effect),
+      owner,skill,effect,
+    }))))
+}
+
 const raiseStableApplicability=(state,next)=>{
   const rank={
     [BUFF_APPLICABILITY.APPLICABLE]:0,
@@ -1771,6 +1807,7 @@ export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false,includeCo
         for(const modifier of modifiers){
           const{stat,dir,val}=modifier
           const additionalTargeted=modifier.recipientRaw&&modifier.recipientCriteria&&rosterCriterionMatches(G,modifier.recipientCriteria,owner,false)
+          if(modifier.restrictRecipient&&(!baseTargeted||!additionalTargeted)) continue
           // In the derived corpus an effect-level `Ally [X]` supplements the
           // row target; it does not narrow it.  Examples such as target
           // `Self`, effect `Ally [Cavalry] DEF Up` represent self + cavalry.
@@ -1799,7 +1836,7 @@ export function calcCharBuffs(G,team,enemyTeam,isDefense,showAll=false,includeCo
           const potential=application.state===BUFF_APPLICABILITY.CONDITIONAL
           const sourceList=potential?bucket.potentialSources:bucket.sources
           if(SPECIAL_STATS.has(stat)){
-            const times=(resolved.mechanic?val:(parseInt(eff.duration)||1))*mult
+            const times=(resolved.mechanic?val:(/^\d+\s+times?$/i.test(eff.duration||'')?parseInt(eff.duration):1))*mult
             if(potential) bucket.potentialUp+=times
             else bucket.up+=times
             sourceList.push({...source,contribution:times,dir:'up'})
@@ -2066,7 +2103,7 @@ export function buffEntryRarity(entry){
 export const INVERSE_STATS=new Set(['Morale Consumption','Skill Cooldown','Damage Received'])
 export const SPECIAL_STATS=new Set(['Attack Nullification','Sure Hit','Status Effect Immunity','Rampage','Less Likely to be Targeted'])
 // Canonical display order for buff stats
-export const STAT_ORDER=['Max HP','ATK','DEF','DEF Penetration','DEF Penetration Resistance','Guard','Attack Nullification','Sure Hit','Status Effect Immunity','Less Likely to be Targeted','Rampage','Max Morale','Morale Consumption','Morale Recovery','Critical Rate','Critical Damage','Hit Rate','HP Recovery','HP Recovery Nullification','Evasion','Dodge Chance','Squad Damage Reduction']
+export const STAT_ORDER=['Max HP','ATK','DEF','DEF Penetration','DEF Penetration Resistance','Guard','Attack Nullification','Sure Hit','Status Effect Immunity','Less Likely to be Targeted','Rampage','Max Morale','Morale Consumption','Morale Recovery','Continuous Morale Recovery','Critical Rate','Critical Damage','Hit Rate','HP Recovery','Continuous HP Recovery','HP Recovery Rate','HP Recovery Nullification','Evasion','Dodge Chance','Squad Damage Reduction',...STATUS_EFFECTS.flatMap(status=>[`${status} Infliction Rate`,`${status} Resistance`]),'Provoke Infliction Rate','Normal Attack Seal','Skill Attack Seal','Attack Seal','ATK Down Resistance','DEF Down Resistance','Damage Taken Increase Resistance','Damage Dealt Reduction Resistance','Damage Reduction Effect Resistance','Poison Damage']
 export function statSortKey(s){const i=STAT_ORDER.indexOf(s);return i===-1?STAT_ORDER.length:i}
 
 // ----- party-builder skill masks + hidden search tags (shared) -----

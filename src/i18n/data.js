@@ -114,10 +114,13 @@ function japaneseSkillSourceById(skillId, textId) {
   return null
 }
 
-// Presentation corrections for two legacy decompositions, keyed by verified
-// mstUnionConquestSkills.id. The original source descriptions are untouched.
+// Presentation corrections for legacy decompositions. Bare unit qualifiers
+// retain their recipient scope; source-specific corrections use verified
+// mstUnionConquestSkills.id. Original Japanese descriptions stay untouched.
 // Exact row guards prevent applying the correction to another effect/skill.
-function japaneseEffectRow(skillId, row) {
+function sourceEffectRow(skillId, row) {
+  const scoped=/^\[(Infantry|Cavalry|Archer|Shield)\]\s+((?:ATK|DEF)\s+(?:Up|Down)\s+\d+(?:\.\d+)?[%％])$/.exec(row?.effect||'')
+  if(row?.target==='Other ally'&&scoped) row={...row,target:`Other ally [${scoped[1]}]`,effect:scoped[2]}
   if (skillId === 147) {
     // 不屈の精神: both the immunity and the兵器 attack require 駐屯時.
     if (row?.target === 'Self' && row?.effect === 'Attack Immunity x3' && row?.condition == null) {
@@ -168,7 +171,7 @@ export function localizedSkill(skill, characterId, skillIndex, localeOrCode = 'e
   if (renderers) {
     const [condition, target, effect, duration] = renderers
     next.displayEffects = (skill?.effects || []).map((row) => {
-      const displayRow = code === 'ja' ? japaneseEffectRow(source?.skillId, row) : row
+      const displayRow = sourceEffectRow(source?.skillId, row)
       return {
         ...row,
         condition: condition(displayRow?.condition),
@@ -178,7 +181,7 @@ export function localizedSkill(skill, characterId, skillIndex, localeOrCode = 'e
       }
     })
   } else {
-    next.displayEffects = skill?.effects || []
+    next.displayEffects = (skill?.effects || []).map(row=>sourceEffectRow(source?.skillId,row))
   }
   return next
 }

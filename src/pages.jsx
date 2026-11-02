@@ -9,7 +9,7 @@ import { Link, useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import {
-  useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, ALL, useReleaseData, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, simulate, calcCharBuffs, calcTeamEnemyDebuffs, Picker, characterInitialRarity, INVERSE_STATS, SPECIAL_STATS, statSortKey, DEFAULT_SK, hasStar6, hasRoleSkill, roleBadgeType, updateSkillMasks, applyMask, matchCharacterSearch, searchCharacters, BUFF_APPLICABILITY
+  useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, ALL, useReleaseData, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, simulate, calcCharBuffs, calcTeamEnemyDebuffs, teamEffectReferences, Picker, characterInitialRarity, INVERSE_STATS, SPECIAL_STATS, statSortKey, DEFAULT_SK, hasStar6, hasRoleSkill, roleBadgeType, updateSkillMasks, applyMask, matchCharacterSearch, searchCharacters, BUFF_APPLICABILITY
 } from './core.jsx'
 import { characterSeo, routeSeo, setSeo } from './seo.js'
 import { classifyConditionParts } from './skillConditions.js'
@@ -791,6 +791,7 @@ export function useShareLabels(){
     summaryConditions:t('buffs.summaryConditions'),
     calculatedFromFormation:t('buffs.calculatedFromFormation'),
     conditionalEffects:t('buffs.conditionalEffects'),
+    inflictionBonusHelp:t('buffs.inflictionBonusHelp'),
     notCalculated:t('buffs.notCalculated'),
     selectOpponent:t('buffs.selectOpponent'),
     upToValue:value=>t('buffs.upToValue',{value}),
@@ -850,13 +851,13 @@ export function MetaTeamCard({team,onLoad}){
   const chars=team.members.map(findCharByName).filter(Boolean)
   const accent=team.color||CC[chars[0]?.country]||'var(--terra)'
   return(
-    <div className="meta-card" style={{borderTopColor:accent}}>
+    <div className="meta-card" data-team-preset={team.name} style={{borderTopColor:accent}}>
       <div className="meta-card-head">
         <span className="meta-name">{localizedTeamName(team.name,locale.code)}</span>
       </div>
       <div className="meta-members" dir="ltr">
         {chars.map((c,i)=>(
-          <div key={i} className="meta-member" dir={locale.direction}>
+          <div key={i} className="meta-member" dir={locale.direction} data-team-member={c.id}>
             <CharIcon c={c} size={60} round={true} className="meta-member-img"/>
             <span className="meta-member-name">{localizedCharacter(c,locale).displayName}</span>
           </div>
@@ -970,6 +971,7 @@ export function SideSlots({side,label,party,skMask,onSlot,onRm,onSkChange,builde
         <span>{label}</span>
         <TeamImageButton team={maskedTeam} side={side} builderState={builderState}/>
       </div>
+      {party.some(hasRoleSkill)&&<p className="builder-role-note">{t('builder.roleLimit')}</p>}
       {Array.from({length:4}).map((_,i)=>{
         const m=party[i]
         const display=m?localizedCharacter(m,locale):null
@@ -1261,10 +1263,13 @@ export function BuffTable({atk,def,builderState,initialIncludeCombat=false}){
   const defBuffs=def.map(g=>({general:g,buffs:calcCharBuffs(g,def,atk,true,false,includeCombat)}))
   const atkEnemyDebuffs=calcTeamEnemyDebuffs(atk,def,includeCombat,false)
   const defEnemyDebuffs=calcTeamEnemyDebuffs(def,atk,includeCombat,true)
+  const atkReferences=teamEffectReferences(atk,atkBuffs,atkEnemyDebuffs,includeCombat)
+  const defReferences=teamEffectReferences(def,defBuffs,defEnemyDebuffs,includeCombat)
+  const hasInflictionBonus=[...atkBuffs,...defBuffs].some(({buffs})=>Object.entries(buffs).some(([stat,bucket])=>/Infliction Rate$/.test(stat)&&(bucket.up||bucket.down)))
   const opponentMissing=hasMissingOpponentInput(atkBuffs,atkEnemyDebuffs)||hasMissingOpponentInput(defBuffs,defEnemyDebuffs)
   const hasAny=arr=>arr.some(({buffs})=>Object.keys(buffs).length>0||buffs.meta?.conditionalEffects.length||buffs.meta?.missingInputs.length||buffs.meta?.unsupported.length)
   const hasEnemyOutput=debuffs=>Object.keys(debuffs).length>0||debuffs.meta?.conditionalEffects.length||debuffs.meta?.missingInputs.length||debuffs.meta?.unsupported.length
-  if(!hasAny(atkBuffs)&&!hasAny(defBuffs)&&!hasEnemyOutput(atkEnemyDebuffs)&&!hasEnemyOutput(defEnemyDebuffs)) return null
+  if(!hasAny(atkBuffs)&&!hasAny(defBuffs)&&!hasEnemyOutput(atkEnemyDebuffs)&&!hasEnemyOutput(defEnemyDebuffs)&&!atkReferences.length&&!defReferences.length) return null
   return(
     <div className="sim-sec buff-summary">
       <div className="sec-hd sec-buff" style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:'1rem',flexWrap:'wrap'}}>
@@ -1294,10 +1299,11 @@ export function BuffTable({atk,def,builderState,initialIncludeCombat=false}){
         </div>
       </div>
       <p className="buff-summary-note">{t('buffs.summaryCalculatedOnly')}</p>
+      {hasInflictionBonus&&<p className="buff-summary-note" data-infliction-bonus-note>{t('buffs.inflictionBonusHelp')}</p>}
       {opponentMissing&&<p className="buff-opponent-notice" data-buff-opponent-notice>{t('buffs.opponentNotSelected')}</p>}
       <div className="strat-cols">
-        <BuffSideTable label={`⚔ ${t('buffs.attackingFormation')}`} entries={atkBuffs} side="attack" enemyDebuffs={atkEnemyDebuffs}/>
-        <BuffSideTable label={`🛡 ${t('buffs.defendingFormation')}`} entries={defBuffs} side="defense" enemyDebuffs={defEnemyDebuffs}/>
+        <BuffSideTable label={`⚔ ${t('buffs.attackingFormation')}`} entries={atkBuffs} side="attack" enemyDebuffs={atkEnemyDebuffs} references={atkReferences}/>
+        <BuffSideTable label={`🛡 ${t('buffs.defendingFormation')}`} entries={defBuffs} side="defense" enemyDebuffs={defEnemyDebuffs} references={defReferences}/>
       </div>
     </div>
   )
@@ -1322,7 +1328,23 @@ export function BuffSourceEvidence({source}){
     {source.valueMeaning?.kind==='dynamicMultiplier'&&<span className="buff-source-condition">{t('buffs.dynamicMeaning')}</span>}
   </div>
 }
-export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
+export function TeamEffectReference({sources}){
+  const[open,setOpen]=useState(false)
+  const locale=useLocale()
+  const{t}=useTranslation('common')
+  if(!sources.length) return null
+  return <details className="buff-effect-reference" onToggle={event=>setOpen(event.currentTarget.open)}>
+    <summary>{t('buffs.allSkillEffects')} <span>({formatLocaleNumber(sources.length,locale)})</span></summary>
+    {open&&<>
+      <p>{t('buffs.effectReferenceHelp')}</p>
+      {sources.map((source,index)=><div className="buff-effect-reference-row" data-effect-owner={source.owner.id} key={index}>
+        <div className="buff-source-row"><CharIcon c={source.owner} size={20} round/><b>{localizedCharacter(source.owner,locale).displayName}</b></div>
+        <BuffSourceEvidence source={source}/>
+      </div>)}
+    </>}
+  </details>
+}
+export function BuffSideTable({label,entries,side,enemyDebuffs={},references=[]}){
   const disclosureId=useId()
   const{t}=useTranslation('common')
   const locale=useLocale()
@@ -1477,6 +1499,7 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={}}){
           </div>
         )
       })}
+      <TeamEffectReference sources={references}/>
     </div>
   )
 }
@@ -1500,7 +1523,7 @@ function TierTeamCard({team,def,ss=false}){
   const locale = useLocale()
   const chars=team.members.map(findCharByName).filter(Boolean)
   return(
-    <div className={'mw-team'+(ss?' mw-team--ss':'')} style={{borderInlineStartColor:def.accent}}>
+    <div className={'mw-team'+(ss?' mw-team--ss':'')} data-team-preset={team.name} style={{borderInlineStartColor:def.accent}}>
       <div className="mw-team-name">{localizedTeamName(team.name,locale.code)}</div>
       <div className="mw-team-members" dir="ltr">
         {chars.map((c,ci)=>{
