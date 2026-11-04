@@ -601,13 +601,13 @@
           },
           {
             "condition": null,
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "DEF Down vs Archers 10%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "DEF Down vs Wei Fire Dragon 10%",
             "duration": null
           },

@@ -782,6 +782,7 @@ export function useShareLabels(){
     effect:t('shareOutput.effect'),
     skill:t('shareOutput.skill'),
     star6:t('shareOutput.star6'),
+    star6Compact:t('shareOutput.star6Compact'),
     unnamedSkill:t('shareOutput.unnamedSkill'),
     noGenerals:t('shareOutput.noGenerals'),
     team:t('teamCost.team'),

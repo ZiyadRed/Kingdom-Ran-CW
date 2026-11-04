@@ -11,7 +11,7 @@ import { japaneseSkillSource, localizedSkill } from './data.js'
 describe('audited compound Japanese conditions and targets',()=>{
   it('preserves damage thresholds, activation and formation selectors',()=>{
     expect(renderJapaneseCondition('When Garrisoning, upon % Damage activation')).toBe('駐屯時、割合ダメージ発生時')
-    expect(renderJapaneseCondition('Own remaining HP < 90%, from 170% Damage above')).toBe('自身の残り体力が90%未満、上記170%ダメージから')
+    expect(renderJapaneseCondition('Own remaining HP < 90%, from 170% Damage above')).toBe('自身の残り体力が90%未満、上記170%ダメージで与えた分')
     expect(renderJapaneseCondition('When Garrisoning, While gate has HP remaining')).toBe('駐屯時、城門の体力が残っている場合')
     expect(renderJapaneseCondition('When Garrisoning, enemy [Infantry] / enemy [Siege Weapon] with highest ATK')).toBe('駐屯時、攻撃力が最も高い敵歩兵武将／攻撃力が最も高い敵兵器')
     expect(renderJapaneseCondition('Other ally [Qin] or [Mountain Folk] alive, first enemy in formation')).toBe('自身以外の味方秦国武将または山の民武将が生存している場合、編成順が最も早い敵')
@@ -32,7 +32,7 @@ describe('audited compound Japanese conditions and targets',()=>{
   })
   it('keeps Soujin\'s Hi Shin Unit versus Shield restriction intact',()=>{
     expect(renderJapaneseTarget('Ally Hi Shin Unit [General] vs enemy [Shield] [General]'))
-      .toBe('敵盾兵武将に対する味方飛信隊武将')
+      .toBe('味方飛信隊武将（対敵盾兵武将）')
   })
   it('keeps separate counted targets and per-ally categories',()=>{
     expect(renderJapaneseTarget('1 each of [Zhao]/[Wei]/[Chu]/[Qi] enemy')).toBe('敵趙国・魏国・楚国・斉国武将各1名')

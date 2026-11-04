@@ -115,19 +115,19 @@ describe('new Metawatch formations', () => {
       .toEqual(['Rinko', 'Renpa', 'Kaishibou', 'Gohoumei'])
   })
 
-  it('adds Shouheikun exactly once as the supplied Qin Tier C formation', () => {
+  it('keeps Shouheikun exactly once as a Qin Party-Builder-only formation', () => {
     expect(byName('Shouheikun')).toHaveLength(1)
     const team = byName('Shouheikun')[0]
-    expect(team.tier).toBe('C')
+    expect(team.tier).toBeUndefined()
     expect(team.country).toBe('qin')
     expect(team.members).toEqual(['Shouheikun', 'Sougen', 'Hyoushiga', 'Kaioku'])
     expect(team.members.map((name) => findCharByName(name)?.name_en))
       .toEqual(['Shouheikun', 'Sougen', 'Hyoushiga', 'Kaioku'])
   })
 
-  it('keeps both formations in the derived tier list and the Party Builder grouping', () => {
+  it('lists Renpa v3 on the tier list, keeps Shouheikun off it, and keeps both in the Party Builder', () => {
     expect(TIER_TEAMS.filter((team) => team.name === 'Renpa v3')).toHaveLength(1)
-    expect(TIER_TEAMS.filter((team) => team.name === 'Shouheikun')).toHaveLength(1)
+    expect(TIER_TEAMS.filter((team) => team.name === 'Shouheikun')).toHaveLength(0)
     const wei = metaTeamsByCountry().find((group) => group.country === 'wei')
     const qin = metaTeamsByCountry().find((group) => group.country === 'qin')
     expect(wei.teams.some((team) => team.name === 'Renpa v3')).toBe(true)

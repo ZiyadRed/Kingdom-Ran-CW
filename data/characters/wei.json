@@ -62,7 +62,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "Critical Rate Down 20%",
             "duration": null
           }
@@ -99,7 +99,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "100% Damage",
             "duration": null
           },
@@ -749,13 +749,13 @@
           },
           {
             "condition": null,
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "DEF Down vs Archers 10%",
             "duration": null
           },
           {
             "condition": null,
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "DEF Down vs Wei Fire Dragon 10%",
             "duration": null
           },

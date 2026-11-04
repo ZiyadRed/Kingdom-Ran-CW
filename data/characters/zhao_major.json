@@ -618,12 +618,12 @@
           {
             "condition": "Own HP ≥ 90%, enemy [General] with highest remaining HP",
             "target": "1 enemy [General]",
-            "effect": "Poison Infliction 40%",
+            "effect": "Severe Poison Infliction 40%",
             "duration": "2 turns"
           },
           {
             "condition": "Own HP < 90%",
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "70% Damage",
             "duration": null
           },
@@ -635,8 +635,8 @@
           },
           {
             "condition": "Own HP < 90%",
-            "target": "Enemy [General]",
-            "effect": "Poison Infliction 40%",
+            "target": "All enemy [General]",
+            "effect": "Severe Poison Infliction 40%",
             "duration": "2 turns"
           }
         ]

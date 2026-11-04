@@ -165,7 +165,7 @@ test('Soujin shows the Hi Shin Unit Shield matchup in Japanese', async ({ page, 
   await page.goto(path('/archive/characters/soujin'))
   await settle(page)
   const skills = page.locator('.detail-panel .detail-skills')
-  await expect(skills).toContainText('敵盾兵武将に対する味方飛信隊武将')
+  await expect(skills).toContainText('味方飛信隊武将（対敵盾兵武将）')
   await expect(skills).not.toContainText(/Hi Shin Unit|Shield/)
 })
 

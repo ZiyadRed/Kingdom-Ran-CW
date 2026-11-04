@@ -623,7 +623,7 @@ function renderTargetExpression(raw) {
     const target = clean(versus[2])
     const against = TAG_INDEX.get(target.toLowerCase()) || lookupGroup(target) || renderTargetClause(target) ||
       (/^\[[^\]]+\]$/.test(target) ? renderTags(target) : null)
-    if (inner && against) return `${against}に対する${inner}`
+    if (inner && against) return `${inner}（対${against}）`
   }
 
   const direct = renderTargetClause(raw)
@@ -811,14 +811,14 @@ function renderConditionBody(body) {
   }
 
   match = new RegExp(`^From (?:the\\s+)?(${VALUE})\\s+Damage(?:\\s+above)?$`, 'i').exec(body)
-  if (match) return `上記${match[1]}ダメージから`
-  if (/^From (?:the )?% HP Damage(?:\s+above)?$/i.test(body)) return '残り体力割合ダメージから'
+  if (match) return `上記${match[1]}ダメージで与えた分`
+  if (/^From (?:the )?% HP Damage(?:\s+above)?$/i.test(body)) return '残り体力割合ダメージで与えた分'
   if (/^% HP Damage triggered$/i.test(body)) return '残り体力割合ダメージ発生時'
   if (/^upon % Damage activation$/i.test(body)) return '割合ダメージ発生時'
   if (/^gate has HP remaining$/i.test(body)) return '城門の体力が残っている場合'
   match=/^Damage dealt by (.+)$/i.exec(body)
   if(match&&lookupCharacter(match[1])) return `${lookupCharacter(match[1])}が与えたダメージ`
-  if (/^from damage$/i.test(body)) return 'ダメージから'
+  if (/^from damage$/i.test(body)) return '与えたダメージ分'
 
   // "Enemy [General] with highest ATK" -> 攻撃力が最も高い敵武将
   match = /^(.+?)\s+with\s+(?:the\s+)?(highest|lowest|higher|lower)\s+(.+)$/i.exec(body)

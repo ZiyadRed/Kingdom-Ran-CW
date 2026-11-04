@@ -99,6 +99,7 @@ export const DEFAULT_SHARE_LABELS={
   effect:'Effect',
   skill:'Skill',
   star6:'6-star',
+  star6Compact:'CW6',
   unnamedSkill:'Unnamed skill',
   noGenerals:'No generals selected',
   teamBuffSummary:'RanHQ Team Buff Summary',
@@ -662,7 +663,7 @@ function buildSkillCardLayout(ctx,skill,{x,y,width,mode,labels,index}){
   const badges=[{
     id:'type',text:term(L,skill?.type)||skill?.type||L.skill,bg:typeVisual.badge,fg:typeVisual.text,border:typeVisual.accent,
   }]
-  if(skill?.star6) badges.push({id:'cw6',text:compact?'CW6':L.star6,bg:SHARE_IMAGE_TOKENS.colors.cw6Surface,fg:'#624400',border:SHARE_IMAGE_TOKENS.colors.cw6})
+  if(skill?.star6) badges.push({id:'cw6',text:compact?(L.star6Compact||'CW6'):L.star6,bg:SHARE_IMAGE_TOKENS.colors.cw6Surface,fg:'#624400',border:SHARE_IMAGE_TOKENS.colors.cw6})
   if(compact){
     const identity=teamSkillCardIdentity(skill)
     badges.forEach(badge=>Object.assign(badge,badge.id==='cw6'?identity.cw6Badge:identity.typeBadge))

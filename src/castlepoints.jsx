@@ -269,7 +269,7 @@ export default function CastlePointsPage(){
           data-rank={me?.rank}
           data-tied={me?.isTied ? 'true' : 'false'}
         >
-          <b>{me ? `#${formatNumber(me.rank, locale)}` : '-'}</b>
+          <b>{me ? t('castlePoints.rankLabel', { rank: formatNumber(me.rank, locale) }) : '-'}</b>
           <span>{me ? projectedSummary(me.projected, t, locale) : t('noBoard', { defaultValue: 'No board' })}</span>
         </div>
       </section>

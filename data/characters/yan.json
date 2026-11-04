@@ -239,7 +239,7 @@
           },
           {
             "condition": "Own HP < 50%",
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "100% Damage",
             "duration": null
           },

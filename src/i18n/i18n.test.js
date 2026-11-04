@@ -34,7 +34,7 @@ describe('i18next initialization', () => {
     await new Promise((resolve) => setTimeout(resolve, 20))
     expect(i18n.language).toBe('ja')
     expect(i18n.t('common:appName')).toBe('RanHQ')
-    expect(i18n.t('common:nav.archive')).toBe('アーカイブ')
+    expect(i18n.t('common:nav.archive')).toBe('データベース')
   })
 
   it('keeps authored Japanese UI on the official skill, resource and battle-side terms', () => {
@@ -45,8 +45,8 @@ describe('i18next initialization', () => {
     expect(CATALOGS.ja.sim.defendingSide).toBe('駐屯側')
     expect(CATALOGS.ja.stats.hp).toBe('体力')
     expect(CATALOGS.ja.breadcrumbs).toBe('パンくずリスト')
-    expect(CATALOGS.ja.shareOutput.withCombat).toBe('軍略と戦技の効果を含む。')
-    expect(CATALOGS.ja.shareOutput.strategyOnly).toBe('軍略のみ。')
+    expect(CATALOGS.ja.shareOutput.withCombat).toBe('軍略と戦技の効果を含みます。')
+    expect(CATALOGS.ja.shareOutput.strategyOnly).toBe('軍略の効果のみ。')
   })
 
   it('initializing with French selects the French catalog with English fallback', async () => {

@@ -522,7 +522,6 @@ export const META_TEAMS=[
   {tier:'C',name:'Archer Garrison', country:MIXED_COUNTRY,   members:['Rouai','Queen Biki','Seikai','Keisha']},
   {tier:'C',name:'Kanki',           country:'qin',           members:['Zenou','Raido','Kanki','Naki']},
   {tier:'C',name:'Ousen Army',      country:'qin',           members:['Eiki','Makou','Akou','Ousen']},
-  {tier:'C',name:'Shouheikun',      country:'qin',           members:['Shouheikun','Sougen','Hyoushiga','Kaioku']},
   {tier:'C',name:'Yan',             country:'yan',           members:['Ordo','Gakuki','Yukii','Otaji']},
   // ── Party-Builder-only extras (no `tier`, not on the tier list) ──
   {name:'Riboku Vanguard',country:'zhao',members:['Shunsuiju','Houken','Bananji','Riboku']},
@@ -536,6 +535,7 @@ export const META_TEAMS=[
   {name:'Moubo',          country:'qin', members:['Choushi','Moubu','Raiki','Ouken']},
   {name:'Qin Shields',    country:'qin', members:['Hakuki','Akou','Ousen','Ei Sei']},
   {name:'Makou Army',     country:'qin', members:['Makou','Koujyun','Chouyou','Denrimi']},
+  {name:'Shouheikun',     country:'qin', members:['Shouheikun','Sougen','Hyoushiga','Kaioku']},
 ]
 // Tier list = the META_TEAMS that carry a tier, with their colour resolved.
 export const TIER_TEAMS=META_TEAMS.filter(t=>t.tier).map(t=>({...t,color:TIER_COLORS[t.tier]}))
@@ -711,7 +711,7 @@ export function simulateBattle(atkTeam,defTeam){
 // ── BUFF ENGINE ───────────────────────────────────────────────────────────────
 export const UNIT_TYPE_LIST=['Infantry','Cavalry','Archer','Shield']
 export const FACTION_MAP={'qin':'qin','zhao':'zhao','chu':'chu','wei':'wei','yan':'yan','qi':'qi','han':'han','mountain folk':'mountain_folk','ai':'ai'}
-export const STATUS_EFFECTS=['Confusion','Poison','Paralysis','Betrayal','Burn','Fear','Illusion','Reckless']
+export const STATUS_EFFECTS=['Confusion','Severe Poison','Poison','Paralysis','Betrayal','Burn','Fear','Illusion','Reckless']
 export const STATUS_RE=new RegExp('^('+STATUS_EFFECTS.join('|')+')','i')
 export const TARGET_NAME_ALIASES={moubo:'moubu',ghm:'gohoumei'}
 const BUFF_STAT_ALIASES={'Attack Down Resistance':'ATK Down Resistance','Defense Down Resistance':'DEF Down Resistance','Morale Cost':'Morale Consumption'}

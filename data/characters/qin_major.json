@@ -574,7 +574,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "Paralysis Infliction 40%",
             "duration": "2 turns"
           },
@@ -1001,7 +1001,7 @@
           },
           {
             "condition": "Own HP ≤ 70%",
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "Illusion Infliction 40%",
             "duration": "3 turns"
           }
@@ -1014,7 +1014,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "Burn Infliction 40%",
             "duration": "4 turns"
           },

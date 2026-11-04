@@ -215,7 +215,7 @@
         "effects": [
           {
             "condition": "Per other ally [Chu] [General]",
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "DEF Down 10%",
             "duration": "3 turns"
           },
@@ -666,7 +666,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "Critical Rate Up 20%, Critical Damage Down 50%",
             "duration": null
           }

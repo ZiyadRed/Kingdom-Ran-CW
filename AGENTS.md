@@ -58,6 +58,10 @@ this is the non-negotiable summary.
   genuinely new recurring term, then record it. Do not re-ask settled terms.
 - **Fixed policies**: Western digits in Arabic; skill names source-verbatim;
   `CW`/`CW6`/`UR`/`SR`/`R` kept as shorthand; `->` stays ASCII in share images.
+  **Japanese exception (owner instruction, 2026-11-04):** never show `CW`/`CW6`
+  to Japanese visitors. Use the game's own terms: `争覇★6追想カード` for CW6
+  cards, `☆6` for 6-star skills (as in in-game skill names), `同盟争覇戦`/`争覇`
+  for Castle War.
 - **Preset teams** are defined once in `META_TEAMS`; the tier list derives from
   it. Country is resolved from member data, never from the team name.
 - **Write guards as properties, not counts.** "Every character present has an

@@ -1,10 +1,10 @@
 import { test, expect } from './fixtures.js'
 
 const labels = {
-  en: { renpa: 'Renpa v3', shou: 'Shouheikun', role: 'Leader' },
-  ja: { renpa: '廉頗編成3', shou: '昌平君編成', role: '総大将' },
-  ar: { renpa: 'رينبا (نسخة 3)', shou: 'تشكيلة شوهيكون', role: 'قائد' },
-  fr: { renpa: 'Renpa v3', shou: 'Compo Shouheikun', role: 'Leader' },
+  en: { renpa: 'Renpa v3', role: 'Leader' },
+  ja: { renpa: '廉頗編成3', role: '総大将' },
+  ar: { renpa: 'رينبا (نسخة 3)', role: 'قائد' },
+  fr: { renpa: 'Renpa v3', role: 'Leader' },
 }
 
 const overlap = (one, two) => (
@@ -18,7 +18,7 @@ test('Metawatch renders new formations and compact structured role badges', asyn
     await page.setViewportSize({ width, height })
     await page.goto(path('/tiers'))
     await expect(page.locator('.mw-team').filter({ hasText: expected.renpa })).toBeVisible()
-    await expect(page.locator('.mw-team[data-team-preset="Shouheikun"] .mw-team-name')).toHaveText(expected.shou)
+    await expect(page.locator('.mw-team[data-team-preset="Shouheikun"]')).toHaveCount(0)
 
     const renpa = page.locator('.mw-member').filter({ has: page.locator('img[src*="/icons/Renpa.webp"]') }).first()
     const gohoumei = page.locator('.mw-member').filter({ has: page.locator('img[src*="/icons/Gohoumei.webp"]') }).first()

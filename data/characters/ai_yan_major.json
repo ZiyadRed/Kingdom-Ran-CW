@@ -71,7 +71,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "100% Damage",
             "duration": null
           },
@@ -260,7 +260,7 @@
           },
           {
             "condition": "Confused enemy [General] present",
-            "target": "Enemy [General]",
+            "target": "All confused enemy [General]",
             "effect": "Betrayal Infliction 40%",
             "duration": "3 turns"
           }
@@ -641,7 +641,7 @@
           },
           {
             "condition": null,
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "HP Seal 50%",
             "duration": "4 turns"
           }

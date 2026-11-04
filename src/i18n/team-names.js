@@ -45,7 +45,6 @@ const TEAM_NAMES = {
   'Rigan':          { ja: '離眼編成',      ar: 'تشكيلة ريغان', fr: 'Compo Rigan' },
   'Kanki':          { ja: '桓騎軍',        ar: 'جيش كانكي', fr: 'Armée de Kanki' },
   'Ousen Army':     { ja: '王翦軍',        ar: 'جيش أوسن', fr: 'Armée d’Ousen' },
-  'Shouheikun':     { ja: '昌平君編成',    ar: 'تشكيلة شوهيكون', fr: 'Compo Shouheikun' },
   'Yan':            { ja: '燕国編成',      ar: 'تشكيلة يان', fr: 'Compo Yan' },
 
   // ── Party-Builder-only extras ──
@@ -57,6 +56,7 @@ const TEAM_NAMES = {
   'Moubo':          { ja: '蒙武編成',      ar: 'تشكيلة موبو', fr: 'Compo Moubo' },
   'Qin Shields':    { ja: '秦国盾兵',      ar: 'دروع تشين', fr: 'Boucliers Qin' },
   'Makou Army':     { ja: '麻鉱軍',        ar: 'جيش ماكو', fr: 'Armée de Makou' },
+  'Shouheikun':     { ja: '昌平君編成',    ar: 'تشكيلة شوهيكون', fr: 'Compo Shouheikun' },
 }
 
 /**

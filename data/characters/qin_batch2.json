@@ -874,7 +874,7 @@
         "effects": [
           {
             "condition": null,
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "DEF Down 10%",
             "duration": null
           },
@@ -1377,7 +1377,7 @@
           },
           {
             "condition": "When Garrisoning",
-            "target": "Enemy [General]",
+            "target": "All enemy [General]",
             "effect": "ATK Down 20%",
             "duration": "3 turns"
           }

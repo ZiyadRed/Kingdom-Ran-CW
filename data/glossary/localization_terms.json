@@ -60,7 +60,7 @@
     {"key":"defending_side","english":"Defending Side","japanese":"駐屯側","arabic":"جهة الدفاع","source":"GAME_TERM","evidence":"https://www.kingdomran.jp/info/260902souha-skill","notes":"Battle-flow side label."},
     {"key":"search","english":"Search","japanese":"検索","arabic":"بحث","source":"SITE_UI","notes":"RanHQ interface label."},
     {"key":"reset","english":"Reset","japanese":"リセット","arabic":"إعادة ضبط","source":"SITE_UI","notes":"RanHQ interface label."},
-    {"key":"archive","english":"Archive","japanese":"アーカイブ","arabic":"الأرشيف","source":"SITE_UI","notes":"RanHQ interface label."},
+    {"key":"archive","english":"Archive","japanese":"データベース","arabic":"الأرشيف","source":"SITE_UI","notes":"RanHQ interface label."},
     {"key":"party_builder","english":"Party Builder","japanese":"編成作成","arabic":"منشئ التشكيلة","source":"SITE_UI","notes":"RanHQ interface label."},
     {"key":"site_guide","english":"Guide","japanese":"攻略","arabic":"الدليل","source":"SITE_TRANSLATED","notes":"RanHQ navigation label."}
   ]

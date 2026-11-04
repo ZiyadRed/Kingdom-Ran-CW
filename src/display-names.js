@@ -9,6 +9,8 @@ function comparableName(value) {
     .replace(/\s+/g, ' ')
     .trim()
     .replace(/\s*([.,!?;:()[\]{}])\s*/g, '$1')
+    // A ☆6/★6 suffix on one side only (skill names) is not new information.
+    .replace(/[☆★]\d+$/, '')
 }
 
 export function secondaryName(primary, japanese) {

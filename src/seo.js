@@ -77,8 +77,8 @@ const BASE_ROUTE_SEO = {
       pageType: 'WebPage',
     },
     '/archive': {
-      title: 'キングダム乱 武将・追想カードアーカイブ | RanHQ',
-      description: "武将データベース、またはCW6★追想カード一覧を選んでください。 武将名やスキル効果で検索し、勢力で絞り込んで、各武将のスキルを確認できます。",
+      title: 'キングダム乱 武将・追想カードデータベース | RanHQ',
+      description: "武将データベース、または争覇★6追想カード一覧を選んでください。 武将名やスキル効果で検索し、勢力で絞り込んで、各武将のスキルを確認できます。",
       pageType: 'CollectionPage',
     },
     '/archive/characters': {
@@ -87,8 +87,8 @@ const BASE_ROUTE_SEO = {
       pageType: 'CollectionPage',
     },
     '/archive/cw6-scene-cards': {
-      title: 'キングダム乱 CW6★追想カード・スキル一覧 | RanHQ',
-      description: 'キングダム乱のCW6★追想カードを対象武将、日本語スキル名、原文、効果とともに確認できます。',
+      title: 'キングダム乱 争覇★6追想カード・スキル一覧 | RanHQ',
+      description: 'キングダム乱の争覇★6追想カードを対象武将、日本語スキル名、原文、効果とともに確認できます。',
       pageType: 'CollectionPage',
     },
     '/guide': {
@@ -112,8 +112,8 @@ const BASE_ROUTE_SEO = {
       pageType: 'WebPage',
     },
     '/tiers': {
-      title: 'キングダム乱 同盟争覇戦ティアリスト・環境編成 | RanHQ',
-      description: 'キングダム乱の同盟争覇戦ティアリストと侵攻・駐屯の環境編成を確認できます。',
+      title: 'キングダム乱 同盟争覇戦 最強編成ランキング・環境編成 | RanHQ',
+      description: 'キングダム乱（キンラン）の同盟争覇戦で強い編成をランク別に紹介。よく使われる侵攻・駐屯の環境編成とメンバーを確認できます。',
       pageType: 'WebPage',
     },
     '/cost': {
@@ -530,7 +530,7 @@ export function characterSeo(character, options = {}) {
     description = `${identity}${englishName !== localizedName ? `／${englishName}` : ''}のキングダム乱・同盟争覇戦データ。${example}${skillCount}スキルの原文・効果${faction ? `、${faction}` : ''}を確認できます。`
     breadcrumbs = [
       { name: 'ホーム', path: '/' },
-      { name: 'アーカイブ', path: '/archive' },
+      { name: 'データベース', path: '/archive' },
       { name: '武将一覧', path: '/archive/characters' },
       { name: localizedName, path },
     ]
