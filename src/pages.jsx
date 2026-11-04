@@ -258,7 +258,7 @@ export function CW6SceneCardsPage(){
             </div>
             <button className="detail-close" onClick={clearSelection} aria-label={t('close')}>{'\u00d7'}</button>
           </div>
-          <div className="detail-skills">
+          <div className="detail-skills" tabIndex={0} role="region" aria-label={t('archive.skills')}>
             <OwnedToggle
               owned={tracker.isOwned('cw6Cards',selected.id)}
               onToggle={()=>tracker.toggleOwned('cw6Cards',selected.id)}
@@ -273,7 +273,8 @@ export function CW6SceneCardsPage(){
   )
 }
 
-const ARCHIVE_FACTION_IDS=FACTIONS.map(faction=>faction.id)
+const ARCHIVE_ALL_FACTIONS='all'
+const ARCHIVE_FACTION_IDS=[...FACTIONS.map(faction=>faction.id),ARCHIVE_ALL_FACTIONS]
 
 export function ArchivePage(){
   const {ALL,ARCHIVE_BROWSE_CHARACTERS,findCharById}=useReleaseData()
@@ -311,7 +312,8 @@ export function ArchivePage(){
   const filtered=useMemo(()=>{
     const source=deferredQuery?ALL:ARCHIVE_BROWSE_CHARACTERS
     const alphabetical=source.slice().sort((a,b)=>compareCharacters(a,b,locale))
-    return deferredQuery?searchCharacters(alphabetical,deferredQuery,locale):alphabetical.filter(c=>c.country===activeFac)
+    if(deferredQuery) return searchCharacters(alphabetical,deferredQuery,locale)
+    return activeFac===ARCHIVE_ALL_FACTIONS?alphabetical:alphabetical.filter(c=>c.country===activeFac)
   },[deferredQuery,activeFac,locale,ALL,ARCHIVE_BROWSE_CHARACTERS])
   const localizedSelected=useMemo(()=>selected?localizedCharacter(selected,locale):null,[selected,locale])
   const localizedFiltered=useMemo(()=>filtered.map(character=>localizedCharacter(character,locale)),[filtered,locale])
@@ -334,6 +336,12 @@ export function ArchivePage(){
           {search&&<button className="search-clear" type="button" onClick={()=>setSearch('')}>{t('clear')}</button>}
         </div>
         <div className="fac-nav">
+          <button className={`fac-item fac-item-all${activeFac===ARCHIVE_ALL_FACTIONS&&!hasSearch?' fac-active':''}`}
+            style={activeFac===ARCHIVE_ALL_FACTIONS&&!hasSearch?{'--fc':'var(--terra)'}:{}} onClick={()=>handleFacClick(ARCHIVE_ALL_FACTIONS)}>
+            <span className="fac-stripe" style={{background:'var(--terra)'}}/>
+            <span className="fac-name">{t('all')}</span>
+            <span className="fac-n">{ARCHIVE_BROWSE_CHARACTERS.length}</span>
+          </button>
           {FACTIONS.map(f=>{
             const n=ARCHIVE_BROWSE_CHARACTERS.filter(c=>c.country===f.id).length
             if(!n) return null
@@ -367,7 +375,7 @@ export function ArchivePage(){
           {search&&<button className="mobile-search-clear" type="button" aria-label={t('clear')} onClick={()=>setSearch('')}>✕</button>}
         </div>
         <div className="gallery-header">
-          <GalleryHeading className="gallery-title">{hasSearch?t('resultCount',{count:filtered.length}):t('archive.roster',{faction:factionDisplay(FACTIONS.find(f=>f.id===activeFac),locale)})}</GalleryHeading>
+          <GalleryHeading className="gallery-title">{hasSearch?t('resultCount',{count:filtered.length}):(activeFac===ARCHIVE_ALL_FACTIONS?t('archive.allRoster'):t('archive.roster',{faction:factionDisplay(FACTIONS.find(f=>f.id===activeFac),locale)}))}</GalleryHeading>
           <span className="gallery-count">{t('generalCount',{count:filtered.length})}</span>
         </div>
         {!hasSearch&&<p className="archive-browse-note">{t('archive.browseNote')}</p>}
@@ -449,7 +457,7 @@ export function ArchivePage(){
             </div>
             <button className="detail-close" onClick={clearSelection} aria-label={t('close')}>✕</button>
           </div>
-          <div className="detail-skills">
+          <div className="detail-skills" tabIndex={0} role="region" aria-label={t('archive.skills')}>
             {characterSkillsWithRole(localizedSelected||selected).length===0
               ?<p className="no-skills">{t('translationPending')}</p>
               :characterSkillsWithRole(localizedSelected||selected).map((sk,i)=>(
@@ -911,6 +919,7 @@ export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk
       {picker&&<Picker onSelect={c=>setSlot(c,picker.side,picker.idx)} onClose={()=>setPicker(null)} excl={excl} returnFocus={()=>document.querySelector(`[data-builder-slot="${picker.side}-${picker.idx}"] button, button[data-builder-slot="${picker.side}-${picker.idx}"]`)}/>}
       <h1 className="pg-title">{t('builder.title')}</h1>
       <p className="pg-sub">{t('builder.subtitle')}</p>
+      {atkF.length+defF.length===0&&<p className="builder-empty-hint"><button type="button" onClick={()=>document.getElementById('known-teams')?.scrollIntoView({behavior:'smooth',block:'start'})}>{t('builder.emptyHint')}</button></p>}
       {shareStatus==='invalid'&&<p className="builder-share-error" role="alert">{t('builder.sharedPlanInvalid')}</p>}
       <div className="builder-side-switch" role="group" aria-label={t('builder.formationSide')}>
         <button type="button" className={activeSide==='attack'?'active':''} aria-pressed={activeSide==='attack'} onClick={()=>setActiveSide('attack')}>{t('builder.attacking')} <span>{atkF.length}/4</span></button>
@@ -937,7 +946,7 @@ export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk
       )}
 
       {/* Meta Teams */}
-      <div className="meta-section">
+      <div className="meta-section" id="known-teams">
         <h2 className="meta-section-title">{t('builder.knownTeam')}</h2>
         <p className="meta-section-sub">{t('builder.knownTeamDescription')}</p>
         {metaTeamsByCountry().map(group=>(

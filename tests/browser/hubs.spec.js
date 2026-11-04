@@ -48,7 +48,8 @@ test('Archive overview and collections retain distinct crawlable pages and saved
   await expect(page.locator('.gallery-grid')).toBeVisible()
   // Browse counts cover accepted banners; search and direct routes retain the
   // full roster, independently of the hub's total-record count.
-  expect((await page.locator('.fac-n').allTextContents()).reduce((sum, count) => sum + Number(count), 0)).toBe(browseCount)
+  expect((await page.locator('.fac-item:not(.fac-item-all) .fac-n').allTextContents()).reduce((sum, count) => sum + Number(count), 0)).toBe(browseCount)
+  await expect(page.locator('.fac-item-all .fac-n')).toHaveText(String(browseCount))
   await expect(page.locator('.archive-tabs [aria-current=page]')).toHaveAttribute('href', path('/archive/characters')+'?faction=qin')
   await page.goBack()
   await expect(page.locator('.archive-hub')).toBeVisible()

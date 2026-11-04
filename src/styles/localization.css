@@ -142,3 +142,7 @@ html[dir="rtl"] .foot-discord { margin-left: 0; margin-right: auto; }
   }
 }
 .cp-mode-help{font-size:.78rem;line-height:1.5;color:var(--txt2);margin:-.5rem 0 1rem}
+
+/* Direction-bearing arrow icons point toward the reading direction. */
+html[dir="rtl"] .ui-icon-arrow { transform: scaleX(-1); }
+html[dir="rtl"] .home-task-links a:hover .ui-icon-arrow { transform: translateX(-3px) scaleX(-1); }

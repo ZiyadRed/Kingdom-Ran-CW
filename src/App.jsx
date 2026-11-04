@@ -106,7 +106,7 @@ function UiIcon({name,size=20}){
   if(name==='book') return <svg {...common}><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v17H7.5A3.5 3.5 0 0 0 4 22z"/><path d="M20 5.5A3.5 3.5 0 0 0 16.5 2H13v17h3.5A3.5 3.5 0 0 1 20 22z"/></svg>
   if(name==='tools') return <svg {...common}><path d="m14.7 6.3 3-3a4.2 4.2 0 0 1-5.3 5.3l-7 7a2.1 2.1 0 1 0 3 3l7-7a4.2 4.2 0 0 0 5.3-5.3l-3 3z"/></svg>
   if(name==='chevron') return <svg {...common}><path d="m8 10 4 4 4-4"/></svg>
-  if(name==='arrow') return <svg {...common}><path d="M5 12h14M14 7l5 5-5 5"/></svg>
+  if(name==='arrow') return <svg {...common} className="ui-icon-arrow"><path d="M5 12h14M14 7l5 5-5 5"/></svg>
   return null
 }
 function LocaleSwitcher(){

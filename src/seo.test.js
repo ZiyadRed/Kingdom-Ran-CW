@@ -142,3 +142,22 @@ describe('locale-aware SEO helpers', () => {
     expect(json).not.toMatch(/"@type":"(?:Product|Person|Review|AggregateRating)"/)
   })
 })
+
+describe('localized link previews', () => {
+  it('uses a localized site card and a per-general card for every general with art', async () => {
+    const { existsSync } = await import('node:fs')
+    const { CHAR_BY_ID } = await import('./core.jsx')
+    const characters = Object.values(CHAR_BY_ID)
+    expect(characters.length).toBeGreaterThan(0)
+    for (const code of ['en', 'ja', 'ar', 'fr']) {
+      const image = routeSeo('/', code).image
+      expect(image).toBe(`https://ranhq.vercel.app/og/ranhq-${code}.jpg`)
+      expect(existsSync(new URL(`../public/og/ranhq-${code}.jpg`, import.meta.url)), code).toBe(true)
+    }
+    for (const character of characters.filter(entry => entry?.image)) {
+      expect(existsSync(new URL(`../public/og/characters/${character.id}.jpg`, import.meta.url)), character.id).toBe(true)
+      expect(characterSeo(character, { locale: 'ja', displayName: character.name_jp }).image)
+        .toBe(`https://ranhq.vercel.app/og/characters/${character.id}.jpg`)
+    }
+  })
+})

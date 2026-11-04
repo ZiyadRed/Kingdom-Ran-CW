@@ -2,8 +2,7 @@ import jaSkillsDocument from '../../data/generated/ja/skills.json'
 import sourceIndexDocument from '../../data/generated/source_index.json'
 import characterReadingsDocument from '../../data/generated/ja/character_readings.json'
 import localizationTermsDocument from '../../data/glossary/localization_terms.json'
-import rawSkillNamesDocument from '../../data/source/ja/skill_name.raw.json'
-import rawSkillDescriptionsDocument from '../../data/source/ja/skill_desc.raw.json'
+import jaRawSkillText from '../generated/ja-raw-skill-text.js'
 import roleSkillsDocument from '../../data/souha_role_skills.json'
 import { AR_CHARACTER_NAMES } from './ar-character-names.js'
 import {
@@ -33,8 +32,10 @@ import {
 const JA_SKILLS = jaSkillsDocument.skills || {}
 const SOURCE_INDEX = sourceIndexDocument.skills || {}
 const JA_READINGS = characterReadingsDocument.characters || {}
-const JA_RAW_SKILL_NAMES = rawSkillNamesDocument.values || []
-const JA_RAW_SKILL_DESCRIPTIONS = rawSkillDescriptionsDocument.values || []
+// Exact raw STBL rows for every textId the runtime datasets reference; see
+// scripts/generate_ja_raw_skill_text.mjs.
+const JA_RAW_SKILL_NAMES = Object.fromEntries(Object.entries(jaRawSkillText).map(([id, [name]]) => [id, name]))
+const JA_RAW_SKILL_DESCRIPTIONS = Object.fromEntries(Object.entries(jaRawSkillText).map(([id, [, desc]]) => [id, desc]))
 const ROLE_SKILL_TEXT_IDS = Object.fromEntries(
   (roleSkillsDocument.skills || [])
     .map((row) => [row?.skill?.cwId, row?.skill?.textId])

@@ -27,7 +27,7 @@
   --salmon:  #EDBDA3;
   --txt:     #06264C;
   --txt2:    #2d4a6e;
-  --txt3:    #60697A;
+  --txt3:    #4F5767;
   --bdr:     #c8b898;
   --bdr2:    #b8a080;
   --red:     #c0392b;
@@ -350,7 +350,7 @@ img { display: block; max-width: 100%; height: auto }
 .fac-active     { background: rgba(255,255,255,.13) !important; color: #fff !important }
 .fac-stripe     { width: 4px; height: 18px; border-radius: 2px; flex-shrink: 0 }
 .fac-name       { flex: 1; font-size: .8rem }
-.fac-jp         { font-size: .65rem; color: rgba(255,255,255,.38) }
+.fac-jp         { font-size: .65rem; color: rgba(255,255,255,.6) }
 .fac-n          { font-size: .64rem; background: rgba(255,255,255,.12); border-radius: 10px; padding: 1px 6px; color: #fff }
 
 /* Mobile search bar - hidden on desktop, visible on mobile */
@@ -5065,3 +5065,8 @@ a.home-primary, a.home-secondary { text-align: center }
   .foot-primary a,
   .foot-legal a { display: inline-flex; align-items: center; min-height: 40px }
 }
+.detail-skills:focus-visible { outline: 2px solid var(--terra); outline-offset: -2px }
+.builder-empty-hint { margin: -.35rem 0 .9rem }
+.builder-empty-hint button { background: none; border: 0; padding: 0; color: var(--txt2); font: inherit; font-size: .82rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer }
+.builder-empty-hint button:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; border-radius: 2px }
+.meta-section { scroll-margin-top: calc(var(--hdr-h) + 12px) }
