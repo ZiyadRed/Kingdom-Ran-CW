@@ -500,7 +500,7 @@ export const META_TEAMS=[
   // comps built around a unit type rather than a state, whose members come
   // from four different countries.
   // ── Metawatch tier list (carry a `tier`; order within a tier = display order) ──
-  {tier:'SS',name:'Gyokuhou',       country:'qin',           members:['Shoutaku','Ouhon','Kyuukou','Kanjou']},
+  {tier:'S',name:'Gyokuhou',        country:'qin',           members:['Shoutaku','Ouhon','Kyuukou','Kanjou']},
   {tier:'S',name:'YTW',             country:'mountain_folk', members:['Katari','Yotanwa','Kitari','Ramauji']},
   {tier:'S',name:'Archers',         country:MIXED_COUNTRY,   members:['Keisha','Seikai','Hakurei','Queen Biki']},
   {tier:'A',name:'Zhao',            country:'zhao',          members:['Shunsuiju','Houken','Shinseijou','Riboku']},
