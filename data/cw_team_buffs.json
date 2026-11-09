@@ -668,10 +668,14 @@
         {
           "name": "Tonkaku",
           "name_jp": "惇角",
+          "character_id": "tonkaku",
+          "characterId": 259,
           "faction": "qin",
           "type": "SR",
           "value": 5.0,
-          "ownership_id": "buff_5ebf586a8551413394cb23f5f4fd9523"
+          "source_id": "normal:259:1887",
+          "ownership_id": "buff_5ebf586a8551413394cb23f5f4fd9523",
+          "skill_layer": "normal"
         },
         {
           "name": "Kanto",
@@ -700,16 +704,32 @@
           "source_id": "ura:86:10967",
           "ownership_id": "buff_4f45a8afff254961a37a904839a03cb5",
           "skill_layer": "ura"
+        },
+        {
+          "name": "Tonkoku",
+          "name_jp": "惇告",
+          "character_id": "tonkoku",
+          "characterId": 260,
+          "faction": "qin",
+          "type": "SR",
+          "value": 5.0,
+          "source_id": "ura:260:10967",
+          "ownership_id": "buff_e4446deaa9194bd1b407e9651fe56953",
+          "skill_layer": "ura"
         }
       ],
       "Defense": [
         {
           "name": "Tonkoku",
           "name_jp": "惇告",
+          "character_id": "tonkoku",
+          "characterId": 260,
           "faction": "qin",
           "type": "SR",
           "value": 5.0,
-          "ownership_id": "buff_d83d0cabae7a4ec5987657e5db263eca"
+          "source_id": "normal:260:1769",
+          "ownership_id": "buff_d83d0cabae7a4ec5987657e5db263eca",
+          "skill_layer": "normal"
         },
         {
           "name": "Denei",
@@ -765,6 +785,18 @@
           "value": 5.0,
           "source_id": "ura:228:10721",
           "ownership_id": "buff_7bbe197bbb324191b5f1db690a4f12fc",
+          "skill_layer": "ura"
+        },
+        {
+          "name": "Tonkaku",
+          "name_jp": "惇角",
+          "character_id": "tonkaku",
+          "characterId": 259,
+          "faction": "qin",
+          "type": "SR",
+          "value": 5.0,
+          "source_id": "ura:259:10721",
+          "ownership_id": "buff_ffea1aed825245ffb7f21627be3e67f6",
           "skill_layer": "ura"
         }
       ]

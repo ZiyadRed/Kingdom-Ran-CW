@@ -660,6 +660,32 @@
         "value": 18.2,
         "source_id": "cw:266:271",
         "ownership_id": "buff_e02eed8c891e4f1c89953532ae236a21"
+      },
+      {
+        "name": "Tonkaku",
+        "name_jp": "惇角",
+        "character_id": "tonkaku",
+        "characterId": 259,
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0,
+        "source_id": "ura:259:10797",
+        "ownership_id": "buff_0b89872a8e1a4623bf75f6448d3608fe",
+        "skill_layer": "ura"
+      },
+      {
+        "name": "Tonkoku",
+        "name_jp": "惇告",
+        "character_id": "tonkoku",
+        "characterId": 260,
+        "faction": "qin",
+        "type": "SR",
+        "star6": false,
+        "value": 5.0,
+        "source_id": "ura:260:10797",
+        "ownership_id": "buff_d6fd14137a7e491980cd41e8d218c3e6",
+        "skill_layer": "ura"
       }
     ],
     "Attack": [
@@ -817,7 +843,9 @@
         "type": "SR",
         "star6": false,
         "value": 5.0,
-        "ownership_id": "buff_cb259c964d084a54a83c2a293d80242b"
+        "source_id": "normal:260:1390",
+        "ownership_id": "buff_cb259c964d084a54a83c2a293d80242b",
+        "skill_layer": "normal"
       },
       {
         "name": "Tonkaku",
@@ -827,7 +855,9 @@
         "type": "SR",
         "star6": false,
         "value": 5.0,
-        "ownership_id": "buff_609d44a557c2410cbef8d6bd0d4eec6d"
+        "source_id": "normal:259:1390",
+        "ownership_id": "buff_609d44a557c2410cbef8d6bd0d4eec6d",
+        "skill_layer": "normal"
       },
       {
         "name": "Raiki",
@@ -985,7 +1015,9 @@
         "type": "SR",
         "star6": false,
         "value": 5.0,
-        "ownership_id": "buff_3fa6ee88dd31437eb5bf240a53467aa6"
+        "source_id": "normal:260:1576",
+        "ownership_id": "buff_3fa6ee88dd31437eb5bf240a53467aa6",
+        "skill_layer": "normal"
       },
       {
         "name": "Tonkaku",
@@ -995,7 +1027,9 @@
         "type": "SR",
         "star6": false,
         "value": 5.0,
-        "ownership_id": "buff_014cfa33f2c9424cba6d9d4baae5429e"
+        "source_id": "normal:259:1576",
+        "ownership_id": "buff_014cfa33f2c9424cba6d9d4baae5429e",
+        "skill_layer": "normal"
       },
       {
         "name": "Heirai",
