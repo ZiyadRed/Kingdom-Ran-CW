@@ -131,7 +131,8 @@ describe('Arabic target rendering', () => {
   it('orders a possessive target correctly', () => {
     // Audit AR-003: "[سلاح حصار] إصلاح" and "حليف الهجوم" were reversed.
     expect(renderArabicTarget('[Siege Weapon] repair')).toBe('إصلاح أسلحة الحصار')
-    expect(renderArabicTarget('Ally attack [Siege Weapon]')).toBe('هجوم أسلحة الحصار الحليفة')
+    expect(renderArabicTarget('Ally attack [Siege Weapon]')).toBe('أسلحة الحصار الهجومية الحليفة')
+    expect(renderArabicTarget('Ally defense [Siege Weapon]')).toBe('أسلحة الحصار الدفاعية الحليفة')
   })
 
   it('renders an army as a noun plus its canonical Latin name', () => {

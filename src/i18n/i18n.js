@@ -55,7 +55,7 @@ en.copyProgress = 'Copy your RanHQ progress backup:'
 en.pasteProgress = 'Paste your RanHQ progress backup:'
 en.progressImported = 'Progress imported.'
 en.progressImportFailed = 'That progress backup could not be read.'
-en.clearProgressConfirm = 'Clear all saved RanHQ progress on this browser?'
+en.clearProgressConfirm = 'Clear your owned CW6★ cards and Buff Tracker progress on this browser? Saved Party Builder teams are not affected.'
 en.buffs.teamSummary = 'Team Buff Summary'
 en.buffs.includeCombat = 'Include combat skills'
 en.buffs.includeCombatTitle = 'Also count buff/debuff effects from combat skills (Strategy plus selected Leader/Strategist skills are already included)'
@@ -104,7 +104,7 @@ ja.copyProgress = 'RanHQ進行状況のバックアップをコピー：'
 ja.pasteProgress = 'RanHQ進行状況のバックアップを貼り付け：'
 ja.progressImported = '進行状況を読み込みました。'
 ja.progressImportFailed = '進行状況のバックアップを読み込めませんでした。'
-ja.clearProgressConfirm = 'このブラウザに保存されたRanHQの進行状況をすべて削除しますか？'
+ja.clearProgressConfirm = 'このブラウザに保存した争覇★6追想カードとバフ管理の所持記録をすべて削除しますか？編成作成の編成は削除されません。'
 ja.buffs.teamSummary = '編成バフ概要'
 ja.buffs.includeCombat = '戦技も含める'
 ja.buffs.includeCombatTitle = '戦技のバフ・デバフも集計（軍略と選択した争覇総大将・争覇軍師スキルは常に含まれます）'
@@ -164,7 +164,7 @@ ar.copyProgress = 'انسخ نسخة RanHQ الاحتياطية للتقدم:'
 ar.pasteProgress = 'الصق نسخة RanHQ الاحتياطية للتقدم:'
 ar.progressImported = 'تم استيراد التقدم.'
 ar.progressImportFailed = 'تعذر قراءة نسخة التقدم الاحتياطية.'
-ar.clearProgressConfirm = 'هل تريد مسح كل تقدم RanHQ المحفوظ في هذا المتصفح؟'
+ar.clearProgressConfirm = 'هل تريد مسح بطاقات CW6★ المملوكة وتقدم متتبّع التعزيزات في هذا المتصفح؟ لن تتأثر الفرق المحفوظة في منشئ الفرق.'
 ar.buffs.teamSummary = 'ملخص تعزيزات الفريق'
 ar.buffs.includeCombat = 'تضمين المهارات القتالية'
 ar.buffs.includeCombatTitle = 'احتسب أيضًا تأثيرات التعزيز والإضعاف من المهارات القتالية (مهارات الاستراتيجية ومهارات القائد/الاستراتيجي المحددة مشمولة أصلًا)'
@@ -337,7 +337,7 @@ const fr = {
   pasteProgress: 'Collez votre sauvegarde de progression RanHQ :',
   progressImported: 'Progression importée.',
   progressImportFailed: 'Cette sauvegarde de progression n’a pas pu être lue.',
-  clearProgressConfirm: 'Effacer toute la progression RanHQ enregistrée sur ce navigateur ?',
+  clearProgressConfirm: 'Effacer les cartes CW6★ possédées et la progression du suivi des buffs sur ce navigateur ? Les équipes du créateur d’équipe ne sont pas touchées.',
 }
 fr.buffs = fr.teamCost.buffs
 fr.castlePoints = fr.teamCost.castlePoints
@@ -580,6 +580,16 @@ ar.buffs.normalSkill = 'مهارة أساسية'
 ar.buffs.uraSkill = 'مهارة خلفية'
 fr.buffs.normalSkill = 'Compétence normale'
 fr.buffs.uraSkill = 'Compétence Ura'
+
+// Archive profile navigation, CW6 card search and Builder side swap.
+Object.assign(en.archive, { addToBuilder: 'Add to Party Builder', previousGeneral: 'Previous general', nextGeneral: 'Next general', searchCards: 'Search cards or owners' })
+Object.assign(ja.archive, { addToBuilder: '編成作成に追加', previousGeneral: '前の武将', nextGeneral: '次の武将', searchCards: 'カード名・武将名で検索' })
+Object.assign(ar.archive, { addToBuilder: 'إضافة إلى منشئ الفرق', previousGeneral: 'الجنرال السابق', nextGeneral: 'الجنرال التالي', searchCards: 'ابحث عن بطاقة أو مالكها' })
+Object.assign(fr.archive, { addToBuilder: 'Ajouter au créateur d’équipe', previousGeneral: 'Général précédent', nextGeneral: 'Général suivant', searchCards: 'Rechercher une carte ou un détenteur' })
+en.builder.swapSides = 'Swap Attacking and Defending'
+ja.builder.swapSides = '侵攻側と駐屯側を入れ替え'
+ar.builder.swapSides = 'تبديل الهجوم والدفاع'
+fr.builder.swapSides = 'Inverser attaque et défense'
 
 export const CATALOGS = { en, ja, ar, fr }
 const resources = { en: { common: en }, ja: { common: ja }, ar: { common: ar }, fr: { common: fr } }

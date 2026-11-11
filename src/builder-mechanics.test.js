@@ -143,14 +143,15 @@ describe('F03 stable Builder identity',()=>{
     expect(result.meta.mechanicResolution.parserFallback).toHaveLength(0)
   })
 
-  it('leaves ambiguous source-map joins explicit and parser-only',()=>{
-    for(const sourceKey of ['futei#0','gakuki#0','kousonryu#0']){
+  it('resolves the renamed first skills to their owner-linked source IDs',()=>{
+    // Resolved 2026-11-10: the game renamed these slot-1 skills (【緑羊】/【橙亀】 -> 【黒虎】/【黒亀】).
+    for(const [sourceKey,skillId] of [['futei#0',412],['gakuki#0',412],['kousonryu#0',413]]){
       const source=sourceSkillMap.skills[sourceKey]
-      expect(source.status).toBe('ambiguous')
-      expect(source.skillId).toBeNull()
+      expect(source.status).toBe('resolved')
+      expect(source.skillId).toBe(skillId)
       const owner=AUDITED_ROSTER.find(character=>character.id===sourceKey.split('#')[0])
       const skill=owner.skills[Number(sourceKey.split('#')[1])]
-      expect((skill.effects||[]).every(effect=>!effect.mechanicId),sourceKey).toBe(true)
+      expect(skill.name_jp,sourceKey).toBe(source.sourceNameJp)
     }
   })
 

@@ -137,7 +137,7 @@ describe('Japanese target rendering', () => {
     expect(renderJapaneseTarget('Enemy generals')).toBe('敵武将')
     expect(renderJapaneseTarget('All enemies')).toBe('敵全武将')
     expect(renderJapaneseTerm('Way of The Great General')).toBe('大将軍への道')
-    expect(renderJapaneseTerm('Six Great Generals')).toBe('六大将軍')
+    expect(renderJapaneseTerm('Six Great Generals')).toBe('秦の六大将軍')
   })
 
   it('localizes status-infliction aggregate labels', () => {
@@ -309,7 +309,7 @@ describe('source-audited conquest mechanic distinctions', () => {
     expect(renderJapaneseEffect('Damage Reduction Effect Resistance 5.4%'))
       .toBe('与ダメージ減少効果耐性5.4%上昇')
     expect(renderJapaneseEffect('Damage Dealt Reduction Resistance 14.5%'))
-      .toBe('与ダメージ減少耐性14.5%上昇')
+      .toBe('与ダメージ減少効果耐性14.5%上昇')
     expect(renderJapaneseEffect('Squad Damage Reduction 6.2%')).toBe('部隊ダメージ6.2%軽減')
     expect(renderJapaneseEffect('Morale Cost Reduction 30%')).toBe('士気消費30%軽減')
     expect(renderJapaneseEffect('Currency Cost Down 3.2%')).toBe('貨幣消費量3.2%減少')

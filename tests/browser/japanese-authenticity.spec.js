@@ -27,11 +27,14 @@ test('Stats search keeps clear and search controls inside the input in both read
   }
 })
 
-test('Japanese profiles disclose unassigned source skills and archive links announce a name once', async ({ page, path, locale }) => {
+test('Japanese profiles show the resolved source skills and archive links announce a name once', async ({ page, path, locale }) => {
   test.skip(locale !== 'ja')
-  for (const id of ['futei', 'gakuki', 'kousonryu']) {
+  // Resolved 2026-11-10: these slot-1 skills were renamed in game and now join
+  // their owner-linked source rows, so no profile reports 原文未確認 any more.
+  for (const [id, name] of [['futei', '猛将一閃【黒虎】'], ['gakuki', '猛将一閃【黒虎】'], ['kousonryu', '猛将一閃【黒亀】']]) {
     await page.goto(path(`/archive/characters/${id}`))
-    await expect(page.locator('.sk-source-unavailable')).toHaveText('原文未確認')
+    await expect(page.locator('.sk-name').first()).toHaveText(name)
+    await expect(page.locator('.sk-source-unavailable')).toHaveCount(0)
   }
   await page.goto(path('/archive/characters'))
   const akou = page.locator('.banner-card[data-detail-id="akou"]')

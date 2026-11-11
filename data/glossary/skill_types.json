@@ -28,7 +28,7 @@
   "軍師スキル": {
     "en": "Strategist Skill",
     "short": "Strategist",
-    "description": "An optional turn-1 role skill. Only one Strategist can be assigned per formation; losing that general inflicts Confusion on all allies for 1 turn.",
+    "description": "An optional turn-1 role skill. Only one Strategist can be assigned per formation; when that general falls, every surviving ally has a 50% chance of being unable to act for 1 turn.",
     "color": "#16A085"
   },
 

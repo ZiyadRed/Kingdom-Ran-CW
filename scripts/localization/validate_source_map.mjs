@@ -30,11 +30,11 @@ const EXPECTED_RESOLVED = 11
 
 // ── Phase 2 CW-skill expectations ────────────────────────────────────────────
 const EXPECTED_SKILLS = 671
-const EXPECTED_SKILL_AMBIGUOUS = 3
-const EXPECTED_SKILL_DETERMINISTIC = 668
+const EXPECTED_SKILL_AMBIGUOUS = 0
+const EXPECTED_SKILL_DETERMINISTIC = 671
 const EXPECTED_BASE = 636
 const EXPECTED_SCENE_CARD_RANK = 35
-const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'kousonryu#0']
+const AMBIGUOUS_KEYS = []
 
 // The released October 28 skills must not regress to announcement-only data.
 const EXPECTED_SKILL_PENDING = 0

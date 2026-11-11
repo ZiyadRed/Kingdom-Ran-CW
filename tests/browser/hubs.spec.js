@@ -50,7 +50,7 @@ test('Archive overview and collections retain distinct crawlable pages and saved
   // full roster, independently of the hub's total-record count.
   expect((await page.locator('.fac-item:not(.fac-item-all) .fac-n').allTextContents()).reduce((sum, count) => sum + Number(count), 0)).toBe(browseCount)
   await expect(page.locator('.fac-item-all .fac-n')).toHaveText(String(browseCount))
-  await expect(page.locator('.archive-tabs [aria-current=page]')).toHaveAttribute('href', path('/archive/characters')+'?faction=qin')
+  await expect(page.locator('.archive-tabs [aria-current=page]')).toHaveAttribute('href', path('/archive/characters')+'?faction=all')
   await page.goBack()
   await expect(page.locator('.archive-hub')).toBeVisible()
   await cards.last().click()
@@ -71,14 +71,14 @@ test('all search-only records retain searchable cards and direct detail document
   await page.goto(path('/archive/characters'))
   // The first hydration pass restores the collection's default URL state.
   // Wait for that navigation before typing so it cannot reset the search.
-  await expect(page).toHaveURL(/\?faction=qin$/)
+  await expect(page).toHaveURL(/\?faction=all$/)
   const search = page.locator('input[type="search"]:visible').first()
   for (const character of searchOnly) {
     await search.fill(character.name_en)
     const detailPath = path(`/archive/characters/${character.id}`)
     const card=page.locator(`.banner-card[data-detail-id="${character.id}"]`)
     await expect(card).toBeVisible()
-    await expect(card).toHaveAttribute('href',detailPath+'?'+new URLSearchParams({faction:'qin',q:character.name_en}))
+    await expect(card).toHaveAttribute('href',detailPath+'?'+new URLSearchParams({faction:'all',q:character.name_en}))
     const detail = await staticPage(page, detailPath)
     expect(detail.heading, character.id).toBeTruthy()
     expect(detail.canonical).toBe('https://ranhq.vercel.app' + detailPath)
@@ -89,7 +89,7 @@ test('all search-only records retain searchable cards and direct detail document
 
 test('faction browsing keeps the full directory on the main collection only', async ({ page, path }) => {
   await page.goto(path('/archive/characters'))
-  await expect(page).toHaveURL(/\?faction=qin$/)
+  await expect(page).toHaveURL(/\?faction=all$/)
   await expect(page.locator('.archive-directory')).toBeVisible()
 
   await page.goto(path('/archive/characters?faction=zhao'))

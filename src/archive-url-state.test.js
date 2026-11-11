@@ -15,8 +15,12 @@ describe('validated Archive URL state',()=>{
   })
   it('fails malformed, repeated, control-character and overlong fields closed',()=>{
     for(const query of ['?q=one&q=two','?q=%00Moubu','?q=%ff','?q='+('a'.repeat(ARCHIVE_QUERY_LIMIT+1))]) expect(readArchiveUrlState(query,factions).query).toBe('')
-    for(const search of ['?faction=unknown','?faction=qin&faction=zhao','?faction=__proto__']) expect(readArchiveUrlState(search,factions).faction).toBe('qin')
-    expect(readArchiveUrlState('?q=Moubu&faction=unknown',factions)).toEqual({query:'Moubu',faction:'qin'})
+    for(const search of ['?faction=unknown','?faction=qin&faction=zhao','?faction=__proto__']) expect(readArchiveUrlState(search,factions).faction).toBe('all')
+    expect(readArchiveUrlState('?q=Moubu&faction=unknown',factions)).toEqual({query:'Moubu',faction:'all'})
+  })
+  it('opens the collection on All when no faction is given',()=>{
+    expect(readArchiveUrlState('',factions)).toEqual({query:'',faction:'all'})
+    expect(archiveStateSearch(readArchiveUrlState('',factions))).toBe('?faction=all')
   })
   it('keeps default faction explicit so Back cannot restore a later session bookmark',()=>{
     expect(archiveStateSearch({query:'',faction:'qin'})).toBe('?faction=qin')

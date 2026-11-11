@@ -28,15 +28,15 @@ const has = (p) => existsSync(join(root, p))
 // Assert project coverage and distinct canonical entries independently.
 const PENDING_KEYS = []
 const EXPECTED_PROJECT_SKILLS = 671
-const EXPECTED_DETERMINISTIC = 668
-const EXPECTED_CANONICAL_SKILLS = 608
-const EXPECTED_AMBIGUOUS = 3
+const EXPECTED_DETERMINISTIC = 671
+const EXPECTED_CANONICAL_SKILLS = 609
+const EXPECTED_AMBIGUOUS = 0
 // All October 28 additions now have exact canonical master assignments.
 const EXPECTED_PENDING = 0
 const EXPECTED_CHARACTERS = 212
 const EXPECTED_READINGS_AVAILABLE = 191
 const EXPECTED_READINGS_MISSING = 21
-const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'kousonryu#0']
+const AMBIGUOUS_KEYS = []
 
 const RAW_TABLES = [
   ['skill_name.raw.json', 'MsgUnionConquestSkillName.stbl', 891],

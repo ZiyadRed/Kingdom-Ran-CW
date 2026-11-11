@@ -869,7 +869,7 @@
       "sourceNameJp": "重追撃【橙羊】",
       "fingerprint": {
         "name_jp": "重追撃【橙羊】",
-        "effectsHash": "cf0833c316b1365355e4925add58ee654fa359adb129c6836c5561b67799c2f8"
+        "effectsHash": "78a2509ec46259a19842a7c50cc8207ade04f5a23833a2d290369532b0a812cc"
       }
     },
     "denei#1": {
@@ -1367,33 +1367,18 @@
       }
     },
     "futei#0": {
-      "status": "ambiguous",
+      "status": "resolved",
       "characterId": 170,
-      "skillId": null,
-      "textId": null,
+      "skillId": 412,
+      "textId": 516,
       "sourceType": "base",
       "sourceSlot": 1,
-      "sourceNameJp": null,
+      "sourceNameJp": "猛将一閃【黒虎】",
       "fingerprint": {
-        "name_jp": "猛将一閃【緑羊】",
+        "name_jp": "猛将一閃【黒虎】",
         "effectsHash": "219bc1822dcad6a2b0cdc46f5fbfb358803bab997050b55b4c8b240fcb3c3e9b"
       },
-      "candidates": [
-        {
-          "skillId": 412,
-          "textId": 516,
-          "sourceNameJp": "猛将一閃【黒虎】",
-          "basis": "owner_link",
-          "evidence": "mstUnionConquestGenerals characterId 170 skill1id=412."
-        },
-        {
-          "skillId": 74,
-          "textId": 74,
-          "sourceNameJp": "猛将一閃【緑羊】",
-          "basis": "content_match",
-          "evidence": "Current project name/content matches source skill 74; owner profile points to skill 412."
-        }
-      ]
+      "basis": "mstUnionConquestGenerals characterId 170 skill1id=412; project name and effect rows now match source 猛将一閃【黒虎】 (自身以外 scope), not the former content match. Resolved 2026-11-10."
     },
     "futei#1": {
       "status": "exact",
@@ -1557,33 +1542,18 @@
       }
     },
     "gakuki#0": {
-      "status": "ambiguous",
+      "status": "resolved",
       "characterId": 118,
-      "skillId": null,
-      "textId": null,
+      "skillId": 412,
+      "textId": 516,
       "sourceType": "base",
       "sourceSlot": 1,
-      "sourceNameJp": null,
+      "sourceNameJp": "猛将一閃【黒虎】",
       "fingerprint": {
-        "name_jp": "猛将一閃【緑羊】",
+        "name_jp": "猛将一閃【黒虎】",
         "effectsHash": "219bc1822dcad6a2b0cdc46f5fbfb358803bab997050b55b4c8b240fcb3c3e9b"
       },
-      "candidates": [
-        {
-          "skillId": 412,
-          "textId": 516,
-          "sourceNameJp": "猛将一閃【黒虎】",
-          "basis": "owner_link",
-          "evidence": "mstUnionConquestGenerals characterId 118 skill1id=412."
-        },
-        {
-          "skillId": 74,
-          "textId": 74,
-          "sourceNameJp": "猛将一閃【緑羊】",
-          "basis": "content_match",
-          "evidence": "Current project name/content matches source skill 74; owner profile points to skill 412."
-        }
-      ]
+      "basis": "mstUnionConquestGenerals characterId 118 skill1id=412; project name and effect rows now match source 猛将一閃【黒虎】 (自身以外 scope), not the former content match. Resolved 2026-11-10."
     },
     "gakuki#1": {
       "status": "exact",
@@ -1795,7 +1765,7 @@
       "sourceNameJp": "付与率上昇【赤象】",
       "fingerprint": {
         "name_jp": "付与率上昇【赤象】",
-        "effectsHash": "80e13f902cea62060ac6dfa5ec8a3dcbe998d4bf1ec96792d825ed8e6e5533f0"
+        "effectsHash": "f865b3ef238443ac6ee221adf804aa1c284e7d0ab027717d9e145430193ed108"
       }
     },
     "gii#1": {
@@ -1834,7 +1804,7 @@
       "sourceNameJp": "重追撃【黄象】",
       "fingerprint": {
         "name_jp": "重追撃【黄象】",
-        "effectsHash": "789a0cbc0cfe8477089ec55e1e095caa028d447d877e901aa9daeb8b6b5a1958"
+        "effectsHash": "76dd4ae816113cfa9b35f00096d2145458e584ff4b9709844b826625f8c44f32"
       }
     },
     "gika#1": {
@@ -2078,7 +2048,7 @@
       "sourceNameJp": "女傑の護衛",
       "fingerprint": {
         "name_jp": "女傑の護衛",
-        "effectsHash": "37c9509f29e8cb656dea7dd09f69a55ec5709e3a8fe9aa2c18715f80e477bf44"
+        "effectsHash": "cb55c23fd2d0df31dc947fc8fa1782ce011dce554cb5752f3472560c0b67a2c7"
       }
     },
     "goutoku#2": {
@@ -2265,7 +2235,7 @@
       "sourceNameJp": "貫く剛弓",
       "fingerprint": {
         "name_jp": "貫く剛弓",
-        "effectsHash": "0eeabd94b17368efc88792f27f3f60456ff7247e866103d7f0dfe163c2c917dd"
+        "effectsHash": "e3c026ac1dad30d7b92a634a4aa5864ed02a93d7d84f2c5e4e197c1a61378f72"
       }
     },
     "hakusui#0": {
@@ -2843,7 +2813,7 @@
       "sourceNameJp": "重追撃【赤亀】",
       "fingerprint": {
         "name_jp": "重追撃【赤亀】",
-        "effectsHash": "1546aa2de6b83ead69d3564e1cede66c1fac8eb12cf112c79e55f0b475ac71ed"
+        "effectsHash": "5ea4cc5e44f84f4f1481c55c87f420039eaa22d710e1b14f2ebb89847b446e5e"
       }
     },
     "jokan#1": {
@@ -3237,10 +3207,10 @@
       "sourceSlot": 3,
       "sourceNameJp": "不動の守護",
       "fingerprint": {
-        "name_jp": "不動の守備",
+        "name_jp": "不動の守護",
         "effectsHash": "57cf38092376adea3e1d6f30d28535b1b621064de2f1fd6cc42e20c93407bf52"
       },
-      "basis": "Owner-linked CW profile and effects resolve project 不動の守備 to source 不動の守護; literal name discrepancy is preserved."
+      "basis": "Owner-linked CW profile and effects (slot 3 = skill 600); project name corrected from 不動の守備 to source 不動の守護 on 2026-11-10."
     },
     "kanjou#0": {
       "status": "exact",
@@ -3618,7 +3588,7 @@
       "sourceNameJp": "急所一閃【赤羊】",
       "fingerprint": {
         "name_jp": "急所一閃【赤羊】",
-        "effectsHash": "bb3043e5d2b49317493ddcd717995f73dd8cf6aa2fc161312d5e12b1c8e1ee83"
+        "effectsHash": "a680fca91992b32fad008d2666f82e82b3b52bad94673fc418ca466fb6063d12"
       }
     },
     "kei#1": {
@@ -3792,7 +3762,7 @@
       "sourceNameJp": "猛将一閃【灰象】",
       "fingerprint": {
         "name_jp": "猛将一閃【灰象】",
-        "effectsHash": "bae54b3047abf16e14316d04046a4aca3dccafe76ab84a43f82ec688f30a5853"
+        "effectsHash": "4f8bc40c922051eed5beb51d1ec208b1dc351452dd46ff82912b875f03039ee4"
       }
     },
     "kinmou#1": {
@@ -4173,33 +4143,18 @@
       }
     },
     "kousonryu#0": {
-      "status": "ambiguous",
+      "status": "resolved",
       "characterId": 22,
-      "skillId": null,
-      "textId": null,
+      "skillId": 413,
+      "textId": 515,
       "sourceType": "base",
       "sourceSlot": 1,
-      "sourceNameJp": null,
+      "sourceNameJp": "猛将一閃【黒亀】",
       "fingerprint": {
-        "name_jp": "猛将一閃【橙亀】",
+        "name_jp": "猛将一閃【黒亀】",
         "effectsHash": "764a2a688fac72c9b32842fd1f0dbdf4031223837a88cbf5c26e268fdaa47ded"
       },
-      "candidates": [
-        {
-          "skillId": 413,
-          "textId": 515,
-          "sourceNameJp": "猛将一閃【黒亀】",
-          "basis": "owner_link",
-          "evidence": "mstUnionConquestGenerals characterId 22 skill1id=413."
-        },
-        {
-          "skillId": 24,
-          "textId": 24,
-          "sourceNameJp": "猛将一閃【橙亀】",
-          "basis": "content_match",
-          "evidence": "Current project name/content matches source skill 24; owner profile points to skill 413."
-        }
-      ]
+      "basis": "mstUnionConquestGenerals characterId 22 skill1id=413; project name and effect rows now match source 猛将一閃【黒亀】 (自身以外 scope), not the former content match. Resolved 2026-11-10."
     },
     "kousonryu#1": {
       "status": "exact",
@@ -4314,10 +4269,10 @@
       "sourceSlot": 1,
       "sourceNameJp": "猛将一閃【青象】",
       "fingerprint": {
-        "name_jp": "猛将一閃",
+        "name_jp": "猛将一閃【青象】",
         "effectsHash": "34e93ce87fa80ed4184c23dce1b82455c30000de8d1a17a544a923d8ef57d7b9"
       },
-      "basis": "Owner-linked CW profile resolves the unsuffixed project name to the character owner slot; source unit modifier 青象 is retained."
+      "basis": "Owner-linked CW profile (slot 1 = skill 139); project name aligned to source 猛将一閃【青象】 on 2026-11-10."
     },
     "kyomei#1": {
       "status": "exact",
@@ -4433,7 +4388,7 @@
       "sourceNameJp": "重追撃【橙亀】",
       "fingerprint": {
         "name_jp": "重追撃【橙亀】",
-        "effectsHash": "3372b1e4ed9cc38219a5b2f2c1cab91bb2fbde8d31c071055425554850b55c46"
+        "effectsHash": "392abf2de6148682fd0936e2703af34de1ebb669e9700664a2d4b955000c825f"
       }
     },
     "kyouen#1": {
@@ -4632,10 +4587,10 @@
       "sourceSlot": 3,
       "sourceNameJp": "体力強化・大改【歩兵】",
       "fingerprint": {
-        "name_jp": "体力強化・大改",
+        "name_jp": "体力強化・大改【歩兵】",
         "effectsHash": "ce53c0fc688b196f76471edee2b91944979d6c2e11453d15ea755c8d29b42505"
       },
-      "basis": "Owner-linked CW profile resolves the unsuffixed project name to source unit modifier 歩兵; source modifier is retained."
+      "basis": "Owner-linked CW profile (slot 3 = skill 271); project name aligned to source 体力強化・大改【歩兵】 on 2026-11-10."
     },
     "kyuukou#0": {
       "status": "exact",
@@ -5073,7 +5028,7 @@
       "sourceNameJp": "重追撃【赤羊】",
       "fingerprint": {
         "name_jp": "重追撃【赤羊】",
-        "effectsHash": "9507b38022ec814c634edc75ba66c9acd382c5d3afbcbe2156e5d2e5ab586d34"
+        "effectsHash": "189096203f7d014e93fcd91c2131607234489bcc0f2d05dc771b521c01000971"
       }
     },
     "muta#1": {
@@ -5813,7 +5768,7 @@
       "sourceNameJp": "単騎特攻",
       "fingerprint": {
         "name_jp": "単騎特攻",
-        "effectsHash": "70fd699eaea079a26fc9dd028c5c2224ae52155b2c5de288556c8af4509eb585"
+        "effectsHash": "0e38cd652e8400323f477ab3a7b4c6276a1f2e72ee557a78f8f74cea21e9e194"
       }
     },
     "ranbihaku#3": {
@@ -5978,7 +5933,7 @@
       "sourceSlot": null,
       "sourceNameJp": "熱き抱擁☆6",
       "fingerprint": {
-        "name_jp": "熱き抱擁",
+        "name_jp": "熱き抱擁☆6",
         "effectsHash": "2dbc0ae3b55bb054430dc73234796f8ee778b9130c7702bcb84c1ea70a835424"
       },
       "sceneCard": {
@@ -6171,7 +6126,7 @@
       "sourceNameJp": "弱将一閃【赤牛】",
       "fingerprint": {
         "name_jp": "弱将一閃【赤牛】",
-        "effectsHash": "c5130d5c19746ceb26856036869cf8746fac0f1bd4fc1678b496f1d81054aab1"
+        "effectsHash": "d26e25dfcb0947deb5c2c1fae26baeaa14f519672fe3c841015da5c492ad15f7"
       }
     },
     "rinbou#1": {
@@ -6293,7 +6248,7 @@
       "sourceNameJp": "残酷な追い打ち",
       "fingerprint": {
         "name_jp": "残酷な追い打ち",
-        "effectsHash": "b6af13af311896945a77daef264ee0591601e8b45e21b45fd73fe3d1ed4d718d"
+        "effectsHash": "75070e950b8b94a8dbb18ce04b2c99a955b4f3b98ebe72ca54498fe8c5abf1dd"
       }
     },
     "rinko#0": {
@@ -6401,10 +6356,10 @@
       "sourceSlot": 1,
       "sourceNameJp": "弱将一閃【赤亀】",
       "fingerprint": {
-        "name_jp": "弱将一閃",
+        "name_jp": "弱将一閃【赤亀】",
         "effectsHash": "f282f25e713832cd3b2b0e8c58b3668d76916bc7b49ac44631200cc64222222b"
       },
-      "basis": "Owner-linked CW profile resolves the unsuffixed project name to source unit modifier 赤亀; source modifier is retained."
+      "basis": "Owner-linked CW profile (slot 1 = skill 101); project name aligned to source 弱将一閃【赤亀】 on 2026-11-10."
     },
     "robin#1": {
       "status": "exact",
@@ -6442,7 +6397,7 @@
       "sourceNameJp": "急所一閃【赤虎】",
       "fingerprint": {
         "name_jp": "急所一閃【赤虎】",
-        "effectsHash": "927b95600ea81a820361b8efa502de6163270701ca2cc48a44d38d1f5fbb757b"
+        "effectsHash": "2f07d14a202fc896a7ce4b9cc75a1b3a40cbb50c35a53533126a89560abdc462"
       }
     },
     "roen#1": {
@@ -6663,7 +6618,7 @@
       "sourceNameJp": "人の世の掌握",
       "fingerprint": {
         "name_jp": "人の世の掌握",
-        "effectsHash": "d554e92ff44c1acb2b5556498b43f099d60b648c7accfb4bb703ffa3c67395f9"
+        "effectsHash": "55bf73c4baa4cd551d69ec6ed3578af969c68f75a978f15806d200afed659b70"
       }
     },
     "ryuukoku#0": {
@@ -6948,7 +6903,7 @@
       "sourceSlot": null,
       "sourceNameJp": "毒の支配☆6",
       "fingerprint": {
-        "name_jp": "毒の支配",
+        "name_jp": "毒の支配☆6",
         "effectsHash": "fc5d82ad395d8b1a48af40640f92bd083faf8db614cb0e904588065bcd181111"
       },
       "sceneCard": {
@@ -8348,7 +8303,7 @@
       "sourceNameJp": "生来強者☆6",
       "fingerprint": {
         "name_jp": "生来強者☆6",
-        "effectsHash": "2c93148c4fa6ac676c6ea03a6725a61d2ba81ff7c372b874a28be2e1579bd4a7"
+        "effectsHash": "23928d57053ed064c8ac86ed4dc539b5531c9afa031610b9d5ee9d2c40bc38de"
       },
       "sceneCard": {
         "cardId": 40210,
@@ -8696,7 +8651,7 @@
       "sourceNameJp": "猛将一閃【緑象】",
       "fingerprint": {
         "name_jp": "猛将一閃【緑象】",
-        "effectsHash": "61ad15b78527cf908ab78f1d45c7abefbc009629c0efa189177d702f8642bcbf"
+        "effectsHash": "8c70db7f1b8a4b502906f646b811587a8c2dd05314fd7a202a5e1dd025cb2ef6"
       }
     },
     "yuuren#1": {

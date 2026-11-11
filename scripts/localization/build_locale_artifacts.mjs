@@ -34,7 +34,7 @@ const J = (p) => JSON.parse(readFileSync(join(root, p), 'utf-8'))
 
 const SNAPSHOT = J('data/source/_provenance.json').sourceSnapshot.manifestSha256
 const RAW_SCHEMA = 'ranhq.stbl_raw/1'
-const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'kousonryu#0']
+const AMBIGUOUS_KEYS = []
 
 // NOTE ON COUNTS: 654 deterministic PROJECT ROWS resolve onto only 597 DISTINCT
 // canonical skillIds, because 42 canonical CW skills are legitimately shared by
@@ -45,9 +45,9 @@ const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'kousonryu#0']
 // `coveredProjectRows` counts the deterministic project rows they serve.
 const EXPECTED = {
   skills: 671,
-  deterministic: 668,
-  canonicalSkills: 608,
-  ambiguous: 3,
+  deterministic: 671,
+  canonicalSkills: 609,
+  ambiguous: 0,
   // October 28 supplies all announced Koshuu/Koreki assignments. Reject any
   // regression back to announcement-only rows or null canonical IDs.
   pending: 0,

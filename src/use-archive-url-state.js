@@ -8,7 +8,7 @@ export function useArchiveUrlState(factionIds,selected){
   const [hydrated,setHydrated]=useState(false)
   const initialized=useRef(false)
   const isCollection=location.pathname==='/archive/characters'
-  const defaultFaction=selected?.country||'qin'
+  const defaultFaction=selected?.country||'all'
   const state=readArchiveUrlState(hydrated?location.search:'',factionIds,defaultFaction)
   useEffect(()=>{
     if(initialized.current) return

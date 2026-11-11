@@ -499,8 +499,8 @@
     "rarity": "UR",
     "skills": [
       {
-        "name_en": "Weak General Flash",
-        "name_jp": "弱将一閃",
+        "name_en": "Weak General Flash [Red Turtle]",
+        "name_jp": "弱将一閃【赤亀】",
         "type": "Combat",
         "effects": [
           {
@@ -626,7 +626,7 @@
       },
       {
         "name_en": "Immovable Defense",
-        "name_jp": "不動の守備",
+        "name_jp": "不動の守護",
         "type": "Combat",
         "effects": [
           {
@@ -1154,7 +1154,7 @@
             "duration": "3 turns"
           },
           {
-            "condition": "When Attacking, enemy [General] with lowest remaining HP",
+            "condition": "Enemy [General] with lowest remaining HP",
             "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null

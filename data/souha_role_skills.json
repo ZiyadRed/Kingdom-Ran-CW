@@ -746,7 +746,7 @@
       "skill": {
         "cwId": 890,
         "textId": 889,
-        "name_en": "超大国の象徴",
+        "name_en": "Symbol of the Superpower",
         "name_jp": "超大国の象徴",
         "type": "Leader",
         "roleSkill": true,
@@ -802,7 +802,7 @@
       "skill": {
         "cwId": 891,
         "textId": 890,
-        "name_en": "火龍鳳翼",
+        "name_en": "Fire Dragon, Phoenix Wings",
         "name_jp": "火龍鳳翼",
         "type": "Strategist",
         "roleSkill": true,

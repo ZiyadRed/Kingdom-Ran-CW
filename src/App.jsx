@@ -196,6 +196,28 @@ export default function App(){
     setTeam(p=>{const n=[...p];const e=n.findIndex(id=>id===char.id);if(e!==-1)n[e]=null;n[idx]=char.id;return n})
     setSk(p=>{const n=[...p];n[idx]={...DEFAULT_SK};return n})
   }
+  // Archive profiles drop a general into the first open Attacking slot (then
+  // Defending). A general already on a team, or a full builder, just opens it.
+  const addToBuilder=char=>{
+    if(char&&!atk.includes(char.id)&&!def.includes(char.id)){
+      const atkIdx=atk.findIndex(id=>!id)
+      const defIdx=def.findIndex(id=>!id)
+      if(atkIdx!==-1) setSlot(char,'attack',atkIdx)
+      else if(defIdx!==-1) setSlot(char,'defense',defIdx)
+    }
+    navigate('/builder')
+  }
+  const swapSides=()=>setBuilderState(previous=>({
+    ...previous,
+    attack:previous.defense,
+    defense:previous.attack,
+    attackSkills:previous.defenseSkills,
+    defenseSkills:previous.attackSkills,
+  }))
+  const clearSide=side=>{
+    if(side==='attack'){ setAtk(Array(4).fill(null)); setAtkSk(defaultSks()) }
+    else { setDef(Array(4).fill(null)); setDefSk(defaultSks()) }
+  }
   // Receives already-resolved character objects (BuilderPage resolves names via
   // findCharByName) so the shell doesn't depend on the data module.
   const loadMetaTeam=(chars,side)=>{
@@ -308,11 +330,11 @@ export default function App(){
           <Routes>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/archive" element={<ArchiveHubPage/>}/>
-          <Route path="/archive/characters" element={<><ArchiveTabs active="characters"/><ArchivePage/></>}/>
-          <Route path="/archive/characters/:charId" element={<><ArchiveTabs active="characters"/><ArchivePage/></>}/>
+          <Route path="/archive/characters" element={<><ArchiveTabs active="characters"/><ArchivePage onAddToBuilder={addToBuilder}/></>}/>
+          <Route path="/archive/characters/:charId" element={<><ArchiveTabs active="characters"/><ArchivePage onAddToBuilder={addToBuilder}/></>}/>
           <Route path="/archive/cw6-scene-cards" element={<CW6SceneCardsPage/>}/>
-          <Route path="/archive/:charId" element={<><ArchiveTabs active="characters"/><ArchivePage/></>}/>
-          <Route path="/builder" element={<BuilderPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} setAtkSk={setAtkSk} setDefSk={setDefSk} setSlot={setSlot} rm={rm} goSim={()=>navigate('/sim')} loadMetaTeam={loadMetaTeam} sharedIncludeCombat={initialBuilderShare.status==='valid'&&initialBuilderShare.includeCombat} shareStatus={mounted?builderShareStatus:'absent'}/>}/>
+          <Route path="/archive/:charId" element={<><ArchiveTabs active="characters"/><ArchivePage onAddToBuilder={addToBuilder}/></>}/>
+          <Route path="/builder" element={<BuilderPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} setAtkSk={setAtkSk} setDefSk={setDefSk} setSlot={setSlot} rm={rm} goSim={()=>navigate('/sim')} loadMetaTeam={loadMetaTeam} swapSides={swapSides} clearSide={clearSide} sharedIncludeCombat={initialBuilderShare.status==='valid'&&initialBuilderShare.includeCombat} shareStatus={mounted?builderShareStatus:'absent'}/>}/>
           <Route path="/sim" element={<SimPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} goBuilder={()=>navigate('/builder')}/>}/>
           <Route path="/castle-points" element={<CastlePointsPage/>}/>
           <Route path="/buffs" element={<BuffsPage/>}/>

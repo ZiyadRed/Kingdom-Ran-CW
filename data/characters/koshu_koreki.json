@@ -9,7 +9,7 @@
     "icon": "/icons/Koshuu.webp",
     "skills": [
       {
-        "name_en": "低下耐性【赤羊】",
+        "name_en": "Debuff Resistance [Red Sheep]",
         "name_jp": "低下耐性【赤羊】",
         "type": "Strategy",
         "effects": [
@@ -48,7 +48,7 @@
         ]
       },
       {
-        "name_en": "憂国の老臣",
+        "name_en": "Elder Retainer Who Fears for the Nation",
         "name_jp": "憂国の老臣",
         "type": "Strategy",
         "effects": [
@@ -92,7 +92,7 @@
         ]
       },
       {
-        "name_en": "体力強化・大改【歩兵】",
+        "name_en": "HP Enhancement – Large Improved [Infantry]",
         "name_jp": "体力強化・大改【歩兵】",
         "type": "Internal Affairs",
         "effects": [
@@ -132,7 +132,7 @@
     "icon": "/icons/Koreki.webp",
     "skills": [
       {
-        "name_en": "急所攻撃【赤亀】",
+        "name_en": "Weak Point Attack [Red Turtle]",
         "name_jp": "急所攻撃【赤亀】",
         "type": "Combat",
         "effects": [
@@ -161,7 +161,7 @@
         ]
       },
       {
-        "name_en": "誘惑",
+        "name_en": "Temptation",
         "name_jp": "誘惑",
         "type": "Strategy",
         "effects": [
@@ -192,7 +192,7 @@
         ]
       },
       {
-        "name_en": "体力強化・大改【歩兵】",
+        "name_en": "HP Enhancement – Large Improved [Infantry]",
         "name_jp": "体力強化・大改【歩兵】",
         "type": "Internal Affairs",
         "effects": [

@@ -22,7 +22,8 @@ import { useLocale, formatNumber as formatLocaleNumber } from './i18n/index.js'
 import { localizedTeamName } from './i18n/team-names.js'
 import { localizedCharacterName } from './i18n/ar-character-names.js'
 import { localizedCharacter, localizedDuration, localizedSkill, localizedTarget, localizedText } from './i18n/data.js'
-import { compareCharacters } from './i18n/character-search.js'
+import { compareCharacters, normalizeContentSearch } from './i18n/character-search.js'
+import { matchesCharacterName } from './i18n/ar-character-names.js'
 import { builderShareUrl, characterShareUrl, createCharacterSkillsImage, createTeamSkillsImage, downloadBlob, formatCharacterSkillsShare, formatSceneCardShare, formatTeamBuffShare, sceneCardShareUrl, shareImageBlob, shareText } from './share.js'
 import { BUILDER_SCHEMA_VERSION } from './builder-storage.js'
 
@@ -111,7 +112,7 @@ const cw6ShareUrl=(localeCode='en',cardId)=>{
 }
 
 export function CW6SceneCardsPage(){
-  const {PUBLIC_CW6_CARDS}=useReleaseData()
+  const {PUBLIC_CW6_CARDS,findCharById}=useReleaseData()
   const shareLabels=useShareLabels()
   const locale=useLocale()
   const{t}=useTranslation('common')
@@ -119,6 +120,7 @@ export function CW6SceneCardsPage(){
   const navigate=useNavigate()
   const[artSrc,setArtSrc]=useState(null)
   const[progressFilter,setProgressFilter]=useState('all')
+  const[cardSearch,setCardSearch]=useState('')
   const[hydrated,setHydrated]=useState(false)
   const tracker=useProgressTracker()
   const cards=PUBLIC_CW6_CARDS
@@ -134,9 +136,19 @@ export function CW6SceneCardsPage(){
       navigate({pathname:location.pathname,search:cw6CardSearch(location.search),hash:location.hash},{replace:true})
     }
   },[selectedId,selected,location.pathname,location.search,location.hash,navigate])
+  // Release order is kept; search only narrows it. Owners match by Romaji,
+  // Japanese or Arabic name, and skill titles by any displayed language.
+  const cardQuery=normalizeContentSearch(cardSearch)
+  const cardMatchesSearch=card=>{
+    if(!cardQuery) return true
+    const owner=findCharById(card.owner_id)
+    if(owner&&matchesCharacterName(owner,cardSearch)) return true
+    return [card.skill_en,card.skill_jp,card.ownerName,card.ownerNameJp]
+      .some(value=>value&&normalizeContentSearch(value).includes(cardQuery))
+  }
   const visibleCards=cards.filter(card=>{
     const owned=tracker.isOwned('cw6Cards',card.id)
-    return progressFilter==='all'||(progressFilter==='owned'?owned:!owned)
+    return (progressFilter==='all'||(progressFilter==='owned'?owned:!owned))&&cardMatchesSearch(card)
   })
   const ownedCount=tracker.countOwned('cw6Cards',cards.map(c=>c.id))
   const GalleryHeading=selected?'h2':'h1'
@@ -180,8 +192,12 @@ export function CW6SceneCardsPage(){
             </div>
             <ProgressTools tracker={tracker}/>
           </div>
+          <div className="cw6-search">
+            <input className="cw6-search-input" type="search" maxLength={ARCHIVE_QUERY_LIMIT} aria-label={t('archive.searchCards')} placeholder={`${t('archive.searchCards')}…`} value={cardSearch} onChange={event=>setCardSearch(event.target.value)}/>
+          </div>
         </div>
         <div className="cw6-scene-grid">
+          {!visibleCards.length&&<p className="search-empty" role="status">{t('buffs.noCards')}</p>}
           {visibleCards.map((card,i)=>(
             <div
               key={card.id}
@@ -233,7 +249,9 @@ export function CW6SceneCardsPage(){
               {selected.ownerName&&(
                 <div className="detail-faction" style={{display:'flex',alignItems:'center',gap:'6px',color:'rgba(255,255,255,.82)'}}>
                   {selected.ownerIcon&&<img src={selected.ownerIcon} alt="" loading="lazy" decoding="async" style={{width:18,height:18,borderRadius:'50%',objectFit:'cover',objectPosition:'center top',border:'1px solid rgba(255,255,255,.22)'}}/>}
-                  <span>{localizedCharacterName(locale.code==='ja'?(selected.ownerNameJp||selected.ownerName):selected.ownerName, locale)}</span>
+                  {findCharById(selected.owner_id)
+                    ?<Link className="cw6-owner-link" to={`/archive/characters/${selected.owner_id}`}>{localizedCharacterName(locale.code==='ja'?(selected.ownerNameJp||selected.ownerName):selected.ownerName, locale)}</Link>
+                    :<span>{localizedCharacterName(locale.code==='ja'?(selected.ownerNameJp||selected.ownerName):selected.ownerName, locale)}</span>}
                 </div>
               )}
             </div>
@@ -273,10 +291,21 @@ export function CW6SceneCardsPage(){
   )
 }
 
+export function sharedDisplayNames(characters){
+  const seen=new Set(),shared=new Set()
+  for(const character of characters){
+    const name=character.displayName
+    if(!name) continue
+    if(seen.has(name)) shared.add(name)
+    seen.add(name)
+  }
+  return shared
+}
+
 const ARCHIVE_ALL_FACTIONS='all'
 const ARCHIVE_FACTION_IDS=[...FACTIONS.map(faction=>faction.id),ARCHIVE_ALL_FACTIONS]
 
-export function ArchivePage(){
+export function ArchivePage({onAddToBuilder}){
   const {ALL,ARCHIVE_BROWSE_CHARACTERS,findCharById}=useReleaseData()
   const shareLabels=useShareLabels()
   const{charId}=useParams()
@@ -317,12 +346,23 @@ export function ArchivePage(){
   },[deferredQuery,activeFac,locale,ALL,ARCHIVE_BROWSE_CHARACTERS])
   const localizedSelected=useMemo(()=>selected?localizedCharacter(selected,locale):null,[selected,locale])
   const localizedFiltered=useMemo(()=>filtered.map(character=>localizedCharacter(character,locale)),[filtered,locale])
+  // Prev/next step through whatever list is on screen, so a faction roster or
+  // a search result can be read profile by profile.
+  const selectedIndex=selected?filtered.findIndex(character=>character.id===selected.id):-1
+  const previousCharacter=selectedIndex>0?localizedFiltered[selectedIndex-1]:null
+  const nextCharacter=selectedIndex>=0&&selectedIndex<localizedFiltered.length-1?localizedFiltered[selectedIndex+1]:null
   const directory=useMemo(()=>FACTIONS.map(faction=>({
     faction,
     characters:ALL.filter(character=>character.country===faction.id)
       .map(character=>localizedCharacter(character,locale))
       .sort((a,b)=>compareCharacters(a,b,locale)),
   })).filter(group=>group.characters.length),[ALL,locale])
+  // Two different generals can share a romanized name (e.g. Kou 向 / Kou 昂).
+  // Show their original name next to it so the two links can be told apart.
+  const sharedNames=useMemo(()=>sharedDisplayNames(ALL.map(character=>localizedCharacter(character,locale))),[ALL,locale])
+  const nameWithDisambiguation=character=>sharedNames.has(character.displayName)
+    ?`${character.displayName} ${character.displaySecondaryName||character.name_jp||''}`.trim()
+    :character.displayName
   const galleryVisible=useArchiveGalleryVisible(!!selected)
 
   const GalleryHeading='h2'
@@ -402,7 +442,7 @@ export function ArchivePage(){
                   <ArchiveImage src={c.icon} alt="" className="banner-img banner-icon" enabled={galleryVisible} eager={!selected&&index<3}/>
                 </div>}
               <div className="banner-footer">
-                <span className="banner-name">{c.displayName}</span>
+                <span className="banner-name">{nameWithDisambiguation(c)}</span>
                 {skillTag&&<span className="banner-skill-tag" title={skillTag}>{skillTag.length>22?skillTag.slice(0,21)+'…':skillTag}</span>}
               </div>
             </Link>
@@ -410,13 +450,13 @@ export function ArchivePage(){
           })}
         </div>
         {/* Keep the crawlable directory on the main collection landing, not below each short faction roster. */}
-        {!selected&&!hasSearch&&activeFac===ARCHIVE_FACTION_IDS[0]&&<section className="archive-directory" aria-labelledby="archive-directory-title">
+        {!selected&&!hasSearch&&activeFac===ARCHIVE_ALL_FACTIONS&&<section className="archive-directory" aria-labelledby="archive-directory-title">
           <h2 id="archive-directory-title">{t('archive.directoryTitle')}</h2>
           <p>{t('archive.directoryDescription')}</p>
           {directory.map(group=><div className="archive-directory-group" key={group.faction.id}>
             <h3>{factionDisplay(group.faction,locale)}</h3>
             <div className="archive-directory-links">
-              {group.characters.map(character=><Link key={character.id} data-directory-id={character.id} to={`/archive/characters/${character.id}`}>{character.displayName}</Link>)}
+              {group.characters.map(character=><Link key={character.id} data-directory-id={character.id} to={`/archive/characters/${character.id}`}>{nameWithDisambiguation(character)}</Link>)}
             </div>
           </div>)}
         </section>}
@@ -443,6 +483,8 @@ export function ArchivePage(){
               )}
               <div className="detail-faction" style={{color:'var(--salmon)'}}>
                 {factionDisplay(FACTIONS.find(f=>f.id===selected.country),locale)}
+                {selected.rarity&&<span className="detail-meta">{selected.rarity}</span>}
+                {selected.unit_type&&<span className="detail-meta">{localizedText(selected.unit_type,locale)}</span>}
               </div>
               {characterSkillsWithRole(selected).some(skill=>skill.star6)&&(
                 <Link className="detail-related-link" to="/archive/cw6-scene-cards">{t('nav.sceneCards')}</Link>
@@ -457,6 +499,15 @@ export function ArchivePage(){
             </div>
             <button className="detail-close" onClick={clearSelection} aria-label={t('close')}>✕</button>
           </div>
+          {(previousCharacter||nextCharacter||onAddToBuilder)&&<div className="detail-stepper">
+            {previousCharacter
+              ?<Link className="detail-step" to={`/archive/characters/${previousCharacter.id}${returnSearch}`} aria-label={`${t('archive.previousGeneral')}: ${previousCharacter.displayName}`}><span aria-hidden="true">‹</span> {previousCharacter.displayName}</Link>
+              :<span className="detail-step-spacer"/>}
+            {onAddToBuilder&&<button type="button" className="detail-add-builder" onClick={()=>onAddToBuilder(selected)}>+ {t('archive.addToBuilder')}</button>}
+            {nextCharacter
+              ?<Link className="detail-step detail-step-next" to={`/archive/characters/${nextCharacter.id}${returnSearch}`} aria-label={`${t('archive.nextGeneral')}: ${nextCharacter.displayName}`}>{nextCharacter.displayName} <span aria-hidden="true">›</span></Link>
+              :<span className="detail-step-spacer"/>}
+          </div>}
           <div className="detail-skills" tabIndex={0} role="region" aria-label={t('archive.skills')}>
             {characterSkillsWithRole(localizedSelected||selected).length===0
               ?<p className="no-skills">{t('translationPending')}</p>
@@ -881,7 +932,7 @@ export function MetaTeamCard({team,onLoad}){
 }
 
 // ── PARTY BUILDER ─────────────────────────────────────────────────────────────
-export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk,setSlot,rm,goSim,loadMetaTeam,sharedIncludeCombat=false,shareStatus='absent'}){
+export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk,setSlot,rm,goSim,loadMetaTeam,swapSides,clearSide,sharedIncludeCombat=false,shareStatus='absent'}){
   const {findCharById,findCharByName}=useReleaseData()
   const{t}=useTranslation('common')
   const locale=useLocale()
@@ -907,6 +958,7 @@ export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk
     const setMasks=side==='attack'?setAtkSk:setDefSk
     setMasks(prev=>updateSkillMasks(prev,party,idx,mask))
   }
+  const scrollToKnownTeams=()=>document.getElementById('known-teams')?.scrollIntoView({behavior:'smooth',block:'start'})
   useEffect(()=>{
     const media=window.matchMedia('(max-width: 768px)')
     const sync=event=>setBuffsOpen(!event.matches)
@@ -919,7 +971,11 @@ export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk
       {picker&&<Picker onSelect={c=>setSlot(c,picker.side,picker.idx)} onClose={()=>setPicker(null)} excl={excl} returnFocus={()=>document.querySelector(`[data-builder-slot="${picker.side}-${picker.idx}"] button, button[data-builder-slot="${picker.side}-${picker.idx}"]`)}/>}
       <h1 className="pg-title">{t('builder.title')}</h1>
       <p className="pg-sub">{t('builder.subtitle')}</p>
-      {atkF.length+defF.length===0&&<p className="builder-empty-hint"><button type="button" onClick={()=>document.getElementById('known-teams')?.scrollIntoView({behavior:'smooth',block:'start'})}>{t('builder.emptyHint')}</button></p>}
+      {atkF.length+defF.length===0&&<p className="builder-empty-hint"><button type="button" onClick={scrollToKnownTeams}>{t('builder.emptyHint')}</button></p>}
+      {atkF.length+defF.length>0&&<div className="builder-toolbar">
+        <button type="button" className="builder-tool" onClick={scrollToKnownTeams}><span aria-hidden="true">↓</span> {t('builder.knownTeam')}</button>
+        {swapSides&&<button type="button" className="builder-tool" onClick={swapSides}><span aria-hidden="true">⇄</span> {t('builder.swapSides')}</button>}
+      </div>}
       {shareStatus==='invalid'&&<p className="builder-share-error" role="alert">{t('builder.sharedPlanInvalid')}</p>}
       <div className="builder-side-switch" role="group" aria-label={t('builder.formationSide')}>
         <button type="button" className={activeSide==='attack'?'active':''} aria-pressed={activeSide==='attack'} onClick={()=>setActiveSide('attack')}>{t('builder.attacking')} <span>{atkF.length}/4</span></button>
@@ -928,11 +984,13 @@ export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk
       <div className={`two-sides builder-two-sides builder-show-${activeSide}`}>
         <SideSlots side="attack"  label={t('builder.attacking')} party={atk} skMask={atkSk}
                    onSlot={i=>setPicker({side:'attack',idx:i})}  onRm={c=>rm(c,'attack')}
-                   onSkChange={(i,mk)=>updateSk('attack',i,mk)} builderState={builderShareState}/>
+                   onSkChange={(i,mk)=>updateSk('attack',i,mk)} builderState={builderShareState}
+                   onClear={clearSide&&(()=>clearSide('attack'))}/>
         <div className="vs-sep">{t('versus')}</div>
         <SideSlots side="defense" label={t('builder.defending')} party={def} skMask={defSk}
                    onSlot={i=>setPicker({side:'defense',idx:i})} onRm={c=>rm(c,'defense')}
-                   onSkChange={(i,mk)=>updateSk('defense',i,mk)} builderState={builderShareState}/>
+                   onSkChange={(i,mk)=>updateSk('defense',i,mk)} builderState={builderShareState}
+                   onClear={clearSide&&(()=>clearSide('defense'))}/>
       </div>
       {(atkF.length&&defF.length)>0&&<div className="cta-row"><button className="cta-btn" onClick={goSim}>{t('builder.viewBattleOrder')}</button></div>}
       {(atkM.length||defM.length)>0&&(
@@ -967,7 +1025,7 @@ export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk
   )
 }
 
-export function SideSlots({side,label,party,skMask,onSlot,onRm,onSkChange,builderState}){
+export function SideSlots({side,label,party,skMask,onSlot,onRm,onSkChange,builderState,onClear}){
   const locale=useLocale()
   const{t}=useTranslation('common')
   const ac=side==='attack'?'var(--red)':'var(--blue)'
@@ -979,6 +1037,7 @@ export function SideSlots({side,label,party,skMask,onSlot,onRm,onSkChange,builde
     <div className={`side side-${side}`}>
       <div className="side-lbl side-lbl-with-action" style={{color:ac,borderBottomColor:ac}}>
         <span>{label}</span>
+        {onClear&&party.some(Boolean)&&<button type="button" className="side-clear" onClick={onClear} aria-label={`${t('clear')} — ${label}`}>{t('clear')}</button>}
         <TeamImageButton team={maskedTeam} side={side} builderState={builderState}/>
       </div>
       {party.some(hasRoleSkill)&&<p className="builder-role-note">{t('builder.roleLimit')}</p>}
@@ -1562,6 +1621,8 @@ function TierTeamCard({team,def,ss=false}){
 
 export function TierPage(){
   const { t } = useTranslation('common')
+  // The SS showcase is drawn only while a team actually holds that tier.
+  const ssTeams=TIER_TEAMS.filter(team=>team.tier==='SS')
   return(
     <div className="mw-wrap">
       <div className="mw-inner">
@@ -1575,7 +1636,7 @@ export function TierPage(){
         </div>
 
         {/* SS — apex showcase (single, centered team) */}
-        <section className="mw-ss">
+        {ssTeams.length>0&&<section className="mw-ss">
           <div className="mw-ss-head">
             <svg className="mw-ss-watermark" width="180" height="180" viewBox="0 0 24 24" fill="#f5d77e" aria-hidden="true"><path d={SS_STAR}/><path d="M5 21h14"/></svg>
             <div className="mw-ss-badge">
@@ -1589,11 +1650,11 @@ export function TierPage(){
           </div>
           <div className="mw-ss-body">
             <div className="mw-ss-teams">
-              {TIER_TEAMS.filter(t=>t.tier==='SS').map((team,ti)=><TierTeamCard key={ti} team={team} def={TIER_DEFS.SS} ss/>)}
+              {ssTeams.map((team,ti)=><TierTeamCard key={ti} team={team} def={TIER_DEFS.SS} ss/>)}
             </div>
             <div className="mw-ss-tagline">{t('meta.kings')}</div>
           </div>
-        </section>
+        </section>}
 
         {/* S / A / B / C */}
         {['S','A','B','C'].map(tier=>{
@@ -1812,7 +1873,7 @@ export function TeamCostPage(){
             </div>
             <div className="picker-filters">
               <input ref={pickerInputRef} type="search" className="picker-search" aria-label={t('teamCost.search')} placeholder={t('teamCost.search')} value={search} onChange={e=>setSearch(e.target.value)}/>
-              {search&&<button type="button" onClick={()=>{setSearch('');pickerInputRef.current?.focus()}}>{t('clear')}</button>}
+              {search&&<button type="button" className="search-clear" onClick={()=>{setSearch('');pickerInputRef.current?.focus()}}>{t('clear')}</button>}
             </div>
             <div className="tc-picker-body" style={{overflowY:'auto',maxHeight:'55vh',padding:'8px'}}>
               {!filtered.length&&<p className="search-empty" role="status">{t('stats.noCharacterMatches',{query:search})}</p>}

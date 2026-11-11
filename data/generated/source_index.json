@@ -65,8 +65,8 @@
       "skillId": 162
     },
     "futei#0": {
-      "status": "ambiguous",
-      "skillId": null
+      "status": "resolved",
+      "skillId": 412
     },
     "futei#1": {
       "status": "exact",
@@ -2237,8 +2237,8 @@
       "skillId": 475
     },
     "gakuki#0": {
-      "status": "ambiguous",
-      "skillId": null
+      "status": "resolved",
+      "skillId": 412
     },
     "gakuki#1": {
       "status": "exact",
@@ -2485,8 +2485,8 @@
       "skillId": 535
     },
     "kousonryu#0": {
-      "status": "ambiguous",
-      "skillId": null
+      "status": "resolved",
+      "skillId": 413
     },
     "kousonryu#1": {
       "status": "exact",

@@ -229,7 +229,7 @@
             "duration": null
           },
           {
-            "condition": "When Garrisoning",
+            "condition": null,
             "target": "Self",
             "effect": "Provoke",
             "duration": "3 turns"
@@ -804,7 +804,7 @@
           {
             "condition": "Enemy [General] with highest ATK",
             "target": "3 enemy [General]",
-            "effect": "\"Illusion\"35%",
+            "effect": "Illusion Infliction 35%",
             "duration": "3 turns"
           }
         ]

@@ -364,6 +364,8 @@ export const PHRASES = {
   'When Garrisoning, % HP Damage triggered': 'En garnison, au déclenchement des dégâts en % de PV',
   'When Garrisoning, from % HP Damage': 'En garnison, à partir des dégâts en % de PV',
   'Per ally [Infantry] / per other ally [Archer] [General]': 'Par fantassin allié / par autre général archer allié',
+  // Display correction for 兵器開発の才 (skill 148) in src/i18n/data.js.
+  'Per other ally [Infantry] / per other ally [Archer] [General]': 'Par autre fantassin allié / par autre général archer allié',
   'Enemy "Riboku", "Ei Sei", "Queen Biki" "Attack Seal" 70%': '70% de chances d’infliger le sceau d’attaque aux généraux ennemis Riboku, Ei Sei et Queen Biki',
   'Other ally [Qin] or [Mountain Folk] alive, first enemy in formation': 'Un autre allié Qin ou du peuple des montagnes est en vie, premier ennemi de la formation',
   'Per ally Ousen Army [General] besides self': 'Par autre général allié de l’armée d’Ousen',

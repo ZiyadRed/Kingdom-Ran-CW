@@ -396,7 +396,7 @@
       },
       {
         "name_en": "Warm Embrace",
-        "name_jp": "熱き抱擁",
+        "name_jp": "熱き抱擁☆6",
         "type": "Strategy",
         "star6": true,
         "effects": [
@@ -585,8 +585,8 @@
             "duration": null
           },
           {
-            "condition": "Enemy [General] with highest DEF",
-            "target": "1 enemy [General]",
+            "condition": "Enemy [Shield] with highest DEF",
+            "target": "1 enemy [Shield]",
             "effect": "200% Damage",
             "duration": null
           },

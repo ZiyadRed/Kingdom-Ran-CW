@@ -1,7 +1,7 @@
 export const ARCHIVE_QUERY_LIMIT=200
 export const ARCHIVE_RETURN_KEY='ranhq:archive-return-v1'
 
-export function readArchiveUrlState(search,factionIds,defaultFaction='qin'){
+export function readArchiveUrlState(search,factionIds,defaultFaction='all'){
   const params=new URLSearchParams(search)
   const queries=params.getAll('q')
   const factions=params.getAll('faction')

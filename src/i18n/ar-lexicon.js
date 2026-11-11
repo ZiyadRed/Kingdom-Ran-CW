@@ -307,7 +307,7 @@ export const PHRASES = {
   'When Attacking': 'عند الهجوم',
   'Per turn elapsed': 'لكل جولة تنقضي',
   'Betrayal-afflicted': 'مصاب بالخيانة',
-  'Status Effect Immunity (excl. Provoke)': 'حصانة الحالات (عدا الاستفزاز)',
+  'Status Effect Immunity (excl. Provoke)': 'مناعة ضد الحالات (عدا الاستفزاز)',
   '% of Remaining HP Damage': 'ضرر بنسبة من الصحة المتبقية',
   '% of remaining HP Damage': 'ضرر بنسبة من الصحة المتبقية',
   'Higher own remaining HP (scales)': 'كلما زادت صحتك المتبقية',
@@ -324,6 +324,8 @@ export const PHRASES = {
   'Self vs infantry / vs cavalry': 'صاحب المهارة ضد المشاة / ضد الفرسان',
   'When Garrisoning, upon % Damage activation': 'عند الدفاع، عند تفعيل ضرر النسبة المئوية',
   'Per ally [Infantry] / per other ally [Archer] [General]': 'لكل حليف من المشاة / لكل حليف آخر من السهامين',
+  // Display correction for 兵器開発の才 (skill 148) in src/i18n/data.js: 自身以外 covers both unit types.
+  'Per other ally [Infantry] / per other ally [Archer] [General]': 'لكل حليف آخر من المشاة / لكل حليف آخر من السهامين',
   'Enemy "Riboku", "Ei Sei", "Queen Biki" "Attack Seal" 70%': 'ختم الهجوم بنسبة 70% على ريبوكو وإي سي والملكة بيكي من العدو',
   'Other ally [Qin] or [Mountain Folk] alive, first enemy in formation': 'حليف آخر من تشين أو جيش الجبال على قيد الحياة، وأول عدو في التشكيلة',
   'Per ally Ousen Army [General] besides self': 'لكل جنرال حليف من جيش أوسن عدا صاحب المهارة',

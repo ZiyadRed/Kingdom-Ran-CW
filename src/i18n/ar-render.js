@@ -867,10 +867,10 @@ function renderTargetClause(text, options = {}) {
   if (match) {
     const noun = /attack/i.test(match[1]) ? 'هجوم' : 'دفاع'
     const rest = clean(match[2])
-    // "Ally attack [Siege Weapon]" is the attack OF the allied siege weapons,
-    // so the tag heads the construct: هجوم أسلحة الحصار الحليفة.
+    // "Ally attack [Siege Weapon]" names the allied ATTACK-TYPE siege weapons
+    // (味方攻撃兵器), not "the attack of" the weapons: أسلحة الحصار الهجومية الحليفة.
     const tag = rest ? primaryTag(tagsIn(rest)) : null
-    if (tag) return `${noun} ${tag.coll} الحليفة`
+    if (tag) return `${tag.coll} ${/attack/i.test(match[1]) ? 'الهجومية' : 'الدفاعية'} الحليفة`
     return words(`${noun} الحليف`, renderTags(rest))
   }
 

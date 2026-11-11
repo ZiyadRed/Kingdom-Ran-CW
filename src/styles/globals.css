@@ -596,7 +596,8 @@ img { display: block; max-width: 100%; height: auto }
 .archive-directory-group + .archive-directory-group { border-top: 1px solid var(--bdr); margin-top: .85rem; padding-top: .85rem }
 .archive-directory-group h3 { color: var(--navy); font-size: .9rem; margin: 0 0 .4rem }
 .archive-directory-links { display: flex; flex-wrap: wrap; gap: .35rem .8rem }
-.archive-directory-links a { color: var(--navy); font-size: .82rem; line-height: 1.6; text-decoration: underline; text-underline-offset: 2px }
+/* inline-flex + min-height keeps each name a 24px-tall tap target (WCAG 2.5.8). */
+.archive-directory-links a { display: inline-flex; align-items: center; min-height: 24px; color: var(--navy); font-size: .82rem; line-height: 1.6; text-decoration: underline; text-underline-offset: 2px }
 .archive-directory-links a:hover, .archive-directory-links a:focus-visible { color: var(--terra) }
 .banner-card {
   position: relative; border-radius: 10px; overflow: hidden;
@@ -648,7 +649,7 @@ img { display: block; max-width: 100%; height: auto }
 .detail-name          { font-size: .95rem; font-weight: 800; color: #fff; line-height: 1.25 }
 .detail-jp            { font-size: .68rem; color: rgba(255,255,255,.5); margin-top: .1rem }
 .detail-faction       { font-size: .72rem; font-weight: 700; margin-top: .28rem }
-.detail-related-link  { display: inline-block; margin-top: .32rem; color: #f1c46d; font-size: .68rem; font-weight: 800; text-underline-offset: 2px }
+.detail-related-link  { display: inline-flex; align-items: center; min-height: 24px; margin-top: .1rem; color: #f1c46d; font-size: .68rem; font-weight: 800; text-underline-offset: 2px }
 .detail-actions       { display: flex; align-items: flex-start; gap: .35rem; padding-inline-end: 1.65rem; flex-shrink: 0 }
 .detail-close         { position: absolute; top: 8px; inset-inline-end: 8px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.75); border-radius: 4px; width: 24px; height: 24px; font-size: .7rem }
 .detail-close:hover   { background: rgba(255,255,255,.25); color: #fff }
@@ -682,7 +683,7 @@ img { display: block; max-width: 100%; height: auto }
   align-items: center;
   gap: .38rem;
   min-width: 0;
-  padding: .48rem .75rem;
+  padding: .2rem .75rem;
   color: var(--txt3);
   font-size: .68rem;
   line-height: 1.35;
@@ -690,7 +691,8 @@ img { display: block; max-width: 100%; height: auto }
 .seo-breadcrumbs ol { display: flex; align-items: center; gap: .38rem; min-width: 0; list-style: none }
 .seo-breadcrumbs li { display: inline-flex; align-items: center; min-width: 0 }
 .seo-breadcrumbs li + li::before { content: '›'; margin-inline: .38rem; color: var(--bdr2) }
-.seo-breadcrumbs a { color: var(--txt2); font-weight: 700; text-decoration: none }
+/* 24px-tall tap target without growing the bar: the links carry the height. */
+.seo-breadcrumbs a { display: inline-flex; align-items: center; min-height: 24px; color: var(--txt2); font-weight: 700; text-decoration: none }
 .seo-breadcrumbs a:hover { color: var(--accent-action-fg); text-decoration: underline; text-underline-offset: 2px }
 .seo-breadcrumbs [aria-current="page"] { overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
 .detail-panel > .seo-breadcrumbs { flex-shrink: 0; border-bottom: 1px solid var(--bdr); background: var(--sur2) }
@@ -5070,3 +5072,156 @@ a.home-primary, a.home-secondary { text-align: center }
 .builder-empty-hint button { background: none; border: 0; padding: 0; color: var(--txt2); font: inherit; font-size: .82rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer }
 .builder-empty-hint button:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; border-radius: 2px }
 .meta-section { scroll-margin-top: calc(var(--hdr-h) + 12px) }
+
+/* ============================================================
+   PROFILE QUICK FACTS + STEPPER
+   Rarity and unit type sit beside the faction; previous/next links
+   walk the list the visitor was browsing without going back.
+   ============================================================ */
+.detail-meta {
+  display: inline-block;
+  margin-inline-start: .45rem;
+  padding: 0 .38rem;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 4px;
+  color: rgba(255,255,255,.82);
+  font-size: .64rem;
+  line-height: 1.5;
+  vertical-align: 1px;
+}
+.detail-stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
+  flex-shrink: 0;
+  padding: .3rem .6rem;
+  border-bottom: 1px solid var(--bdr);
+  background: var(--sur2);
+}
+.detail-step {
+  display: block;
+  line-height: 36px;
+  min-height: 36px;
+  min-width: 0;
+  flex: 1 1 0;
+  padding: 0 .45rem;
+  border-radius: 6px;
+  color: var(--txt2);
+  font-size: .72rem;
+  font-weight: 800;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.detail-step-next { text-align: end }
+.detail-step-spacer { flex: 1 1 0 }
+.detail-step:hover { color: var(--accent-action-fg); background: rgba(224,127,72,.1) }
+.detail-add-builder {
+  flex: 0 0 auto;
+  min-height: 36px;
+  padding: 0 .75rem;
+  border: 1.5px solid rgba(224,127,72,.55);
+  border-radius: 7px;
+  background: rgba(224,127,72,.12);
+  color: var(--accent-action-fg);
+  font: inherit;
+  font-size: .72rem;
+  font-weight: 900;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.detail-add-builder:hover { background: rgba(224,127,72,.22) }
+.detail-add-builder:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px }
+.detail-step:focus-visible { outline: 2px solid var(--terra); outline-offset: 1px }
+.detail-step > span[aria-hidden] { font-size: 1rem; line-height: 1 }
+[dir="rtl"] .detail-step > span[aria-hidden] { display: inline-block; transform: scaleX(-1) }
+
+/* ============================================================
+   PARTY BUILDER TOOLBAR
+   Swap/known-team shortcuts once a team exists, plus a per-side Clear.
+   ============================================================ */
+.builder-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: -.35rem 0 .8rem;
+}
+.builder-tool {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  min-height: 36px;
+  padding: .3rem .7rem;
+  border: 1px solid var(--bdr2);
+  border-radius: 7px;
+  background: var(--sur);
+  color: var(--txt2);
+  font: inherit;
+  font-size: .76rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.builder-tool:hover { border-color: var(--terra); color: var(--accent-action-fg) }
+.builder-tool:focus-visible,
+.side-clear:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px }
+.side-lbl-with-action > .side-clear {
+  margin-inline-start: auto;
+  min-height: 30px;
+  padding: 0 .55rem;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: .68rem;
+  font-weight: 800;
+  opacity: .75;
+  cursor: pointer;
+}
+.side-lbl-with-action > .side-clear:hover { opacity: 1 }
+
+/* ============================================================
+   CW6 CARD SEARCH + OWNER LINK
+   ============================================================ */
+.cw6-search {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  flex-basis: 100%;
+}
+.cw6-search-input {
+  flex: 1;
+  min-width: 0;
+  max-width: 340px;
+  min-height: 38px;
+  padding: .4rem .7rem;
+  border: 1px solid var(--bdr2);
+  border-radius: 7px;
+  background: #fff;
+  color: var(--txt);
+  font: inherit;
+  font-size: .8rem;
+}
+.cw6-search-input:focus-visible { outline: 2px solid var(--terra); outline-offset: 1px; border-color: var(--terra) }
+.cw6-owner-link { color: inherit; font-weight: 800; text-decoration: underline; text-underline-offset: 2px }
+.cw6-owner-link:hover { color: #fff }
+.cw6-owner-link:focus-visible { outline: 2px solid var(--accent-action-focus-on-dark); outline-offset: 2px; border-radius: 2px }
+
+/* ============================================================
+   PHONE TAP TARGETS
+   The language picker and search clear button were ~30px and ~26px
+   on phones; give them a comfortable ~40px touch area.
+   ============================================================ */
+@media (max-width: 768px) {
+  .locale-switcher select { min-height: 40px !important; }
+  .mobile-search-clear {
+    min-width: 40px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    right: .35rem;
+  }
+}

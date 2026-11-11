@@ -134,7 +134,7 @@
           },
           {
             "condition": "When enemy [General] have Illusion status",
-            "target": "Ally Karin Army",
+            "target": "Ally [General]",
             "effect": "ATK Up 30%",
             "duration": null
           }

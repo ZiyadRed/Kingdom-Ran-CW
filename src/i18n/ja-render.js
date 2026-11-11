@@ -240,7 +240,8 @@ function renderEffectBody(body) {
   if (match) {
     const stat = lookupStat(match[2])
     const dir = directionOf(match[3])
-    if (stat && dir) return `${renderTags(match[1])}修理時の${stat}${match[4]}${DIRECTION[dir]}`
+    // Source wording: 消費する…の量を減少 / 修理速度を上昇.
+    if (stat && dir) return `${renderTags(match[1])}修理時の${stat}${match[4]}${dir === 'down' && /消費量$/.test(stat) ? '減少' : DIRECTION[dir]}`
   }
 
   match = new RegExp(`^(.+?)\\s+(Up|Down)\\s+vs\\s+(.+?)(?:\\s+(${VALUE}))?$`, 'i').exec(body)
@@ -539,7 +540,8 @@ function renderTargetClause(text) {
     if (of) {
       const ofGroup = lookupGroup(of[1])
       const where = TAG_INDEX.get(clean(of[2]).toLowerCase())
-      if (ofGroup && where) return `${head}${where}の${ofGroup}${tail}`
+      // 秦の六大将軍 already carries its state; do not render 秦国の秦の六大将軍.
+      if (ofGroup && where) return ofGroup.startsWith(`${where.replace(/国$/, '')}の`) ? `${head}${ofGroup}${tail || '武将'}` : `${head}${where}の${ofGroup}${tail}`
     }
     if (/^\[[^\]]+\]$/.test(rest)) {
       const selected = renderSelectorTags(rest + (tail ? '[General]' : ''))

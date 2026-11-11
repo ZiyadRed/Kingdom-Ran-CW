@@ -291,7 +291,7 @@
       "ownerIcon": "/icons/Renpa.webp",
       "skill": {
         "name_en": "Warm Embrace",
-        "name_jp": "熱き抱擁",
+        "name_jp": "熱き抱擁☆6",
         "type": "Strategy",
         "star6": true,
         "effects": [
@@ -641,7 +641,7 @@
       "ownerIcon": "/icons/Seikai.webp",
       "skill": {
         "name_en": "Poison Domination",
-        "name_jp": "毒の支配",
+        "name_jp": "毒の支配☆6",
         "type": "Strategy",
         "star6": true,
         "effects": [
@@ -732,21 +732,21 @@
             "duration": null
           },
           {
-            "condition": null,
-            "target": "Enemy [Wei] [General]",
+            "condition": "Enemy [Wei] [General] alive",
+            "target": "All enemy [General]",
             "effect": "ATK Down 20%",
             "duration": null
           },
           {
-            "condition": null,
-            "target": "Enemy [Chu] [General]",
+            "condition": "Enemy [Chu] [General] alive",
+            "target": "All enemy [General]",
             "effect": "Critical Damage Down 20%",
             "duration": null
           },
           {
-            "condition": null,
-            "target": "Enemy [Han] [General]",
-            "effect": "Current HP Down 20%",
+            "condition": "Enemy [Han] [General] alive",
+            "target": "All enemy [General]",
+            "effect": "HP Recovery Rate Down 20%",
             "duration": null
           }
         ]

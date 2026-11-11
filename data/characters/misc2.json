@@ -477,7 +477,7 @@
         "type": "Strategy",
         "effects": [
           {
-            "condition": "Other ally [General]",
+            "condition": null,
             "target": "Other ally [General]",
             "effect": "Confusion Infliction Rate Up 20%",
             "duration": null
@@ -726,8 +726,8 @@
     "rarity": "SR",
     "skills": [
       {
-        "name_en": "Fierce General Flash",
-        "name_jp": "猛将一閃",
+        "name_en": "Fierce General Flash [Blue Elephant]",
+        "name_jp": "猛将一閃【青象】",
         "type": "Combat",
         "effects": [
           {
@@ -1066,7 +1066,7 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "The enemy with the lowest remaining strength",
+            "condition": "Enemy [General] with lowest remaining HP",
             "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
@@ -1324,7 +1324,7 @@
           {
             "condition": null,
             "target": "Enemy [Shield]",
-            "effect": "\"Normal Attack Seal\"50%",
+            "effect": "Normal Attack Seal 50%",
             "duration": "2 turns"
           },
           {
@@ -1549,7 +1549,7 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "The enemy with the lowest remaining strength",
+            "condition": "Enemy [General] with lowest remaining HP",
             "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
@@ -1769,7 +1769,7 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "The enemy with the lowest defense.",
+            "condition": "Enemy [General] with lowest DEF",
             "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
@@ -2274,7 +2274,7 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "The enemy with the lowest remaining strength",
+            "condition": "Enemy [General] with lowest remaining HP",
             "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
@@ -2682,8 +2682,8 @@
         ]
       },
       {
-        "name_en": "HP Enhancement – Large Improved",
-        "name_jp": "体力強化・大改",
+        "name_en": "HP Enhancement – Large Improved [Infantry]",
+        "name_jp": "体力強化・大改【歩兵】",
         "type": "Internal Affairs",
         "effects": [
           {
@@ -2848,7 +2848,7 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "The enemy with the lowest defense.",
+            "condition": "Enemy [General] with lowest DEF",
             "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
@@ -2912,7 +2912,7 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "The enemy with the lowest attack power",
+            "condition": "Enemy [General] with lowest ATK",
             "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null

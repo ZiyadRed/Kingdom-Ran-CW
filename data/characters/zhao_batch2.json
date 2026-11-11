@@ -419,8 +419,8 @@
     "rarity": "SR",
     "skills": [
       {
-        "name_en": "Fierce General Flash [Orange Turtle]",
-        "name_jp": "猛将一閃【橙亀】",
+        "name_en": "Fierce General Flash [Black Turtle]",
+        "name_jp": "猛将一閃【黒亀】",
         "type": "Combat",
         "effects": [
           {
@@ -672,7 +672,7 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "The enemy with the lowest remaining strength",
+            "condition": "Enemy [General] with lowest remaining HP",
             "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null

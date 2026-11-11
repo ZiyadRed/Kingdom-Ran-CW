@@ -2059,7 +2059,7 @@ export function Picker({onSelect,onClose,excl=[],returnFocus}){
     <Dialog className="overlay" onClose={onClose} aria-label={t('archive.searchGenerals')} initialFocus={()=>ref.current} returnFocus={returnFocus}>
       <div className="picker" onClick={e=>e.stopPropagation()}>
         <div className="picker-head"><span>{t('archive.searchGenerals')}</span><button className="x-btn" aria-label={t('close')} onClick={onClose}>✕</button></div>
-        <div className="picker-filters"><input ref={ref} type="search" className="picker-search" aria-label={t('archive.searchGenerals')} placeholder={`${t('search')}…`} value={q} onChange={e=>setQ(e.target.value)}/>{q&&<button type="button" onClick={()=>{setQ('');ref.current?.focus()}}>{t('clear')}</button>}</div>
+        <div className="picker-filters"><input ref={ref} type="search" className="picker-search" aria-label={t('archive.searchGenerals')} placeholder={`${t('search')}…`} value={q} onChange={e=>setQ(e.target.value)}/>{q&&<button type="button" className="search-clear" onClick={()=>{setQ('');ref.current?.focus()}}>{t('clear')}</button>}</div>
         {!chars.length&&<p className="search-empty" role="status">{t('stats.noCharacterMatches',{query:q})}</p>}
         <div className="picker-grid">
           {chars.map(c=>(

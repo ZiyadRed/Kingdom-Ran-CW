@@ -15,7 +15,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const J = (p) => JSON.parse(readFileSync(join(root, p), 'utf-8'))
 
 const SNAPSHOT = J('data/source/_provenance.json').sourceSnapshot.manifestSha256
-const AMBIGUOUS_KEYS = ['futei#0', 'gakuki#0', 'kousonryu#0']
+const AMBIGUOUS_KEYS = []
 
 const skillName = J('data/source/ja/skill_name.raw.json')
 const skillDesc = J('data/source/ja/skill_desc.raw.json')
@@ -98,10 +98,11 @@ describe('generated Japanese skills', () => {
     expect(nameFor('ka#2')).toBe('部隊保護・特大改')
     expect(index.skills['raido#3'].skillId).toBe(506)
     expect(nameFor('raido#3')).toBe('野盗の腹心☆6')
-    // Source spelling is preserved; the project's own name_jp is NOT rewritten.
+    // Source spelling is preserved. The project's name_jp was corrected by hand to
+    // the source spelling on 2026-11-10 (it previously read 不動の守備).
     expect(index.skills['kakuun#2'].skillId).toBe(600)
     expect(nameFor('kakuun#2')).toBe('不動の守護')
-    expect(characters.find((c) => c.id === 'kakuun').skills[2].name_jp).toBe('不動の守備')
+    expect(characters.find((c) => c.id === 'kakuun').skills[2].name_jp).toBe('不動の守護')
   })
 })
 
@@ -121,7 +122,7 @@ describe('source index', () => {
     // The remaining deliberately ambiguous rows have no
     // assigned canonical game skill IDs.
     expect(entries.filter((e) => e.skillId === null)).toHaveLength(AMBIGUOUS_KEYS.length + pendingKeys.length)
-    expect(entries.filter((e) => e.status === 'ambiguous')).toHaveLength(3)
+    expect(entries.filter((e) => e.status === 'ambiguous')).toHaveLength(AMBIGUOUS_KEYS.length)
     expect(Object.entries(index.skills).filter(([, e]) => e.status === 'pending_source').map(([key]) => key).sort())
       .toEqual(pendingKeys)
   })

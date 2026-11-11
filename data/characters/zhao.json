@@ -356,8 +356,8 @@
             "duration": null
           },
           {
-            "condition": "Other [Zhao] ally alive, enemy with highest remaining HP",
-            "target": "1 enemy [General]",
+            "condition": "Other [Zhao] ally alive, enemy [Cavalry] with highest remaining HP",
+            "target": "1 enemy [Cavalry] [General]",
             "effect": "% of Remaining HP Damage 20%",
             "duration": null
           },
@@ -989,7 +989,7 @@
         "type": "Combat",
         "effects": [
           {
-            "condition": "The enemy with the lowest remaining strength",
+            "condition": "Enemy [General] with lowest remaining HP",
             "target": "1 enemy [General]",
             "effect": "150% Damage",
             "duration": null
