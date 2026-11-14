@@ -591,6 +591,33 @@ ja.builder.swapSides = '侵攻側と駐屯側を入れ替え'
 ar.builder.swapSides = 'تبديل الهجوم والدفاع'
 fr.builder.swapSides = 'Inverser attaque et défense'
 
+// UX improvement plan (2026-11-14): compact Battle Order, buff comparison
+// grid, archive fact strip and filters, loading polish and small items.
+en.ux = {
+  sim: { expandAll: 'Expand all', collapseAll: 'Collapse all', jumpToTurn: 'Jump to turn' },
+  filters: { noMatches: 'No generals match these filters.' },
+  example: { load: 'Load example' },
+  archive: { facts: 'General overview', passiveBuffs: 'Passive buffs this general gives', usedIn: 'Used in' },
+}
+ja.ux = {
+  sim: { expandAll: 'すべて開く', collapseAll: 'すべて閉じる', jumpToTurn: 'ターンへ移動' },
+  filters: { noMatches: '条件に一致する武将はいません。' },
+  example: { load: '例を読み込む' },
+  archive: { facts: '武将情報', passiveBuffs: 'この武将の常時バフ', usedIn: '採用編成' },
+}
+ar.ux = {
+  sim: { expandAll: 'توسيع الكل', collapseAll: 'طي الكل', jumpToTurn: 'الانتقال إلى الجولة' },
+  filters: { noMatches: 'لا توجد جنرالات تطابق هذه المرشحات.' },
+  example: { load: 'تحميل مثال' },
+  archive: { facts: 'معلومات الجنرال', passiveBuffs: 'التعزيزات الدائمة التي يمنحها هذا الجنرال', usedIn: 'ضمن التشكيلات' },
+}
+fr.ux = {
+  sim: { expandAll: 'Tout déplier', collapseAll: 'Tout replier', jumpToTurn: 'Aller au tour' },
+  filters: { noMatches: 'Aucun général ne correspond à ces filtres.' },
+  example: { load: 'Charger un exemple' },
+  archive: { facts: 'Fiche du général', passiveBuffs: 'Buffs passifs de ce général', usedIn: 'Utilisé dans' },
+}
+
 export const CATALOGS = { en, ja, ar, fr }
 const resources = { en: { common: en }, ja: { common: ja }, ar: { common: ar }, fr: { common: fr } }
 const supportedLngs = LOCALES.map((locale) => locale.code)

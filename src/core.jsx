@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocale, formatNumber as formatLocaleNumber, formatFixedNumber } from './i18n/index.js'
 import { versionPublicAsset, versionedPersosThumb } from './asset-url.js'
-import { localizedCharacter } from './i18n/data.js'
+import { localizedCharacter, localizedText } from './i18n/data.js'
 import { LEGACY_CHARACTER_NAME_ALIASES } from './i18n/ar-character-names.js'
 import { characterContentMatch, compareCharacters } from './i18n/character-search.js'
 import cw6SceneCards from '../data/cw6_scene_cards.json'
@@ -454,8 +454,10 @@ function CharacterIconImage({sources,displayName,style,className,load,color,size
   // a cached failed thumbnail without retrying either URL on unrelated renders.
   const imageRef=useCallback(image=>{
     if(image?.getAttribute('src')&&image.complete&&image.naturalWidth===0) fail()
+    // Skeleton (CSS, [data-skel]) until loaded; cached images are marked now.
+    else if(image?.complete&&image.naturalWidth>0) image.dataset.loaded=''
   },[fail])
-  if(src) return <img key={src} ref={imageRef} src={src} style={style} className={className} alt={displayName} decoding="async" onError={fail} {...load}/>
+  if(src) return <img key={src} ref={imageRef} src={src} style={style} className={className} alt={displayName} decoding="async" data-skel="" onLoad={event=>{event.currentTarget.dataset.loaded=''}} onError={fail} {...load}/>
   // Use an opaque parchment base so faction tint stays readable on dark headers.
   return <div role="img" aria-label={displayName} style={{...style,maxWidth:'100%',maxHeight:'100%',backgroundColor:'var(--sur)',backgroundImage:`linear-gradient(${color}33,${color}33)`,color:'var(--navy)',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:700,fontSize:size*.38+'px'}} className={className}>{Array.from(displayName.trim())[0]||'?'}</div>
 }
@@ -2044,23 +2046,70 @@ export function searchCharacters(characters, query, locale) {
   return [...exactNames, ...partialNames, ...content]
 }
 
+// ── Character filter chips (Archive, pickers) ────────────────────────────────
+// Single-select toggle chips; pressing the active chip clears that filter.
+export const FILTER_UNIT_TYPES=['Infantry','Cavalry','Archer','Shield']
+export function FilterChipGroup({label,options,value,onChange,className=''}){
+  const{t}=useTranslation('common')
+  return(
+    <div className={`filter-chip-group ${className}`.trim()} role="group" aria-label={label}>
+      <span className="filter-chip-label" aria-hidden="true">{label}</span>
+      <div className="filter-chip-row">
+        <button type="button" className={`filter-chip${!value?' is-on':''}`} aria-pressed={!value} onClick={()=>onChange(null)}>{t('all')}</button>
+        {options.map(option=>(
+          <button key={option.value} type="button" className={`filter-chip${value===option.value?' is-on':''}`} aria-pressed={value===option.value}
+            style={option.color?{'--chip-c':option.color}:undefined}
+            onClick={()=>onChange(value===option.value?null:option.value)}>
+            {option.icon&&<img src={option.icon} alt="" aria-hidden="true" className="filter-chip-icon"/>}
+            {option.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
+const UNIT_TYPE_ICON={Infantry:'/icons/controls/unit_infantry.webp',Cavalry:'/icons/controls/unit_cavalry.webp',Archer:'/icons/controls/unit_archer.webp',Shield:'/icons/controls/unit_shield.webp'}
+export const unitTypeFilterOptions=(locale,characters=null)=>FILTER_UNIT_TYPES
+  .filter(unit=>!characters||characters.some(c=>c.unit_type===unit))
+  .map(unit=>({value:unit,label:localizedText(unit,locale),icon:UNIT_TYPE_ICON[unit]}))
+export const stateFilterOptions=(locale,characters)=>FACTIONS
+  .filter(f=>characters.some(c=>c.country===f.id))
+  .map(f=>({value:f.id,label:locale.code==='ja'?f.jp:localizedText(f.label,locale),color:f.color}))
+export const filterCharactersByStateAndUnit=(characters,{state=null,unit=null}={})=>
+  (!state&&!unit)?characters:characters.filter(c=>(!state||c.country===state)&&(!unit||c.unit_type===unit))
+
+/** State + unit-type chips shared by the Party Builder, Team Cost and Stats pickers. */
+export function PickerFilters({characters,state,unit,onState,onUnit}){
+  const locale=useLocale()
+  const{t}=useTranslation('common')
+  return(
+    <div className="picker-chip-filters">
+      <FilterChipGroup label={t('state')} options={stateFilterOptions(locale,characters)} value={state} onChange={onState}/>
+      <FilterChipGroup label={t('unitType')} options={unitTypeFilterOptions(locale,characters)} value={unit} onChange={onUnit}/>
+    </div>
+  )
+}
+
 export function Picker({onSelect,onClose,excl=[],returnFocus}){
   const {ALL}=useReleaseData()
   const locale=useLocale()
   const{t}=useTranslation('common')
   const[q,setQ]=useState(''),ref=useRef(null)
+  const[stateFilter,setStateFilter]=useState(null)
+  const[unitFilter,setUnitFilter]=useState(null)
   const exclKey=excl.join('|')
   const chars=useMemo(()=>{
-    return searchCharacters(ALL.filter(c=>!excl.includes(c.id)),q,locale)
+    return searchCharacters(filterCharactersByStateAndUnit(ALL.filter(c=>!excl.includes(c.id)),{state:stateFilter,unit:unitFilter}),q,locale)
   // exclKey is the stable representation of `excl`; ESLint can't see that.
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[q,exclKey,locale,ALL])
+  },[q,exclKey,locale,ALL,stateFilter,unitFilter])
   return(
     <Dialog className="overlay" onClose={onClose} aria-label={t('archive.searchGenerals')} initialFocus={()=>ref.current} returnFocus={returnFocus}>
       <div className="picker" onClick={e=>e.stopPropagation()}>
         <div className="picker-head"><span>{t('archive.searchGenerals')}</span><button className="x-btn" aria-label={t('close')} onClick={onClose}>✕</button></div>
         <div className="picker-filters"><input ref={ref} type="search" className="picker-search" aria-label={t('archive.searchGenerals')} placeholder={`${t('search')}…`} value={q} onChange={e=>setQ(e.target.value)}/>{q&&<button type="button" className="search-clear" onClick={()=>{setQ('');ref.current?.focus()}}>{t('clear')}</button>}</div>
-        {!chars.length&&<p className="search-empty" role="status">{t('stats.noCharacterMatches',{query:q})}</p>}
+        <PickerFilters characters={ALL} state={stateFilter} unit={unitFilter} onState={setStateFilter} onUnit={setUnitFilter}/>
+        {!chars.length&&<p className="search-empty" role="status">{q.trim()?t('stats.noCharacterMatches',{query:q}):t('ux.filters.noMatches')}</p>}
         <div className="picker-grid">
           {chars.map(c=>(
             <button key={c.id} className="p-card" style={{borderTopColor:CC[c.country]||'#999'}} onClick={()=>{onSelect(c);onClose()}}>

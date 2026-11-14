@@ -2,15 +2,16 @@ import { ArtLightbox, ViewArtButton } from './art-preview.jsx'
 import './buff-summary.css'
 import { useMobileDetailFocus } from './use-mobile-detail-focus.js'
 import { useArchiveUrlState } from './use-archive-url-state.js'
-import { ARCHIVE_QUERY_LIMIT } from './archive-url-state.js'
+import { ARCHIVE_QUERY_LIMIT, ARCHIVE_RARITY_FILTERS } from './archive-url-state.js'
 import { secondaryName } from './display-names.js'
 import { startTransition, useState, useEffect, useMemo, useDeferredValue, useRef, useId } from 'react'
 import { Link, useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import {
-  useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, ALL, useReleaseData, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, simulate, calcCharBuffs, calcTeamEnemyDebuffs, teamEffectReferences, Picker, characterInitialRarity, INVERSE_STATS, SPECIAL_STATS, statSortKey, DEFAULT_SK, hasStar6, hasRoleSkill, roleBadgeType, updateSkillMasks, applyMask, matchCharacterSearch, searchCharacters, BUFF_APPLICABILITY
+  useProgressTracker, progressFilterItems, ProgressTools, OwnedToggle, ALL, useReleaseData, persosThumb, RED_CRYSTAL_TOTAL_COST, RED_CRYSTAL_SKILL_COSTS, FACTIONS, MIXED_COUNTRY, metaTeamsByCountry, CC, CharIcon, TYPE_COLOR, TIER_TEAMS, simulate, calcCharBuffs, calcTeamEnemyDebuffs, teamEffectReferences, Picker, characterInitialRarity, INVERSE_STATS, SPECIAL_STATS, statSortKey, DEFAULT_SK, hasStar6, hasRoleSkill, roleBadgeType, updateSkillMasks, applyMask, matchCharacterSearch, searchCharacters, BUFF_APPLICABILITY, META_TEAMS, buffEntryRarity, RARITY_COLOR, PickerFilters, FilterChipGroup, filterCharactersByStateAndUnit, unitTypeFilterOptions
 } from './core.jsx'
+import { characterFacts, characterMetaTeams, characterPassiveBuffs } from './archive-facts.js'
 import { characterSeo, routeSeo, setSeo } from './seo.js'
 import { classifyConditionParts } from './skillConditions.js'
 import { ArchiveImage, useArchiveGalleryVisible } from './archive-images.jsx'
@@ -211,7 +212,7 @@ export function CW6SceneCardsPage(){
                 onClick={()=>pickCard(card)}
               />
               <div className="cw6-card-art">
-                <ArchiveImage src={card.thumb||card.image} alt={sceneCardAccessibleName(card)} title={sceneCardAccessibleName(card)} enabled={galleryVisible} eager={!selected&&i<2} fade className="" style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'contain'}}/>
+                <ArchiveImage src={card.thumb||card.image} alt={sceneCardAccessibleName(card)} title={sceneCardAccessibleName(card)} enabled={galleryVisible} eager={!selected&&i<8} priority={!selected&&i<4} fade className="" style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'contain'}}/>
                 {card.image&&<ViewArtButton onClick={()=>setArtSrc(card.image)} style={{left:7,right:'auto'}}/>}
                 <OwnedToggle
                   owned={tracker.isOwned('cw6Cards',card.id)}
@@ -305,7 +306,7 @@ export function sharedDisplayNames(characters){
 const ARCHIVE_ALL_FACTIONS='all'
 const ARCHIVE_FACTION_IDS=[...FACTIONS.map(faction=>faction.id),ARCHIVE_ALL_FACTIONS]
 
-export function ArchivePage({onAddToBuilder}){
+export function ArchivePage({onAddToBuilder,onLoadTeam}){
   const {ALL,ARCHIVE_BROWSE_CHARACTERS,findCharById}=useReleaseData()
   const shareLabels=useShareLabels()
   const{charId}=useParams()
@@ -315,7 +316,7 @@ export function ArchivePage({onAddToBuilder}){
   const{t}=useTranslation('common')
   const selected=useMemo(()=>findCharById(charId),[charId,findCharById])
   const detailLayoutRef=useMobileDetailFocus(selected?.id)
-  const{faction:activeFac,query:search,setQuery:setSearch,setFaction:handleFacClick,returnSearch}=useArchiveUrlState(ARCHIVE_FACTION_IDS,selected)
+  const{faction:activeFac,query:search,unit:unitFilter=null,rarity:rarityFilter=null,setQuery:setSearch,setFaction:handleFacClick,setUnit,setRarity,returnSearch}=useArchiveUrlState(ARCHIVE_FACTION_IDS,selected)
   // Refine route metadata with source-backed character names/readings.
   useEffect(()=>{
     if(selected){
@@ -341,9 +342,17 @@ export function ArchivePage({onAddToBuilder}){
   const filtered=useMemo(()=>{
     const source=deferredQuery?ALL:ARCHIVE_BROWSE_CHARACTERS
     const alphabetical=source.slice().sort((a,b)=>compareCharacters(a,b,locale))
-    if(deferredQuery) return searchCharacters(alphabetical,deferredQuery,locale)
-    return activeFac===ARCHIVE_ALL_FACTIONS?alphabetical:alphabetical.filter(c=>c.country===activeFac)
-  },[deferredQuery,activeFac,locale,ALL,ARCHIVE_BROWSE_CHARACTERS])
+    // Unit-type and rarity chips narrow both the faction roster and a search.
+    // Rarity comes from character_rarity.json (buffEntryRarity); a general
+    // missing from that table never matches a rarity chip.
+    const chipFiltered=alphabetical.filter(c=>(!unitFilter||c.unit_type===unitFilter)&&(!rarityFilter||buffEntryRarity({name_jp:c.name_jp})===rarityFilter))
+    if(deferredQuery) return searchCharacters(chipFiltered,deferredQuery,locale)
+    return activeFac===ARCHIVE_ALL_FACTIONS?chipFiltered:chipFiltered.filter(c=>c.country===activeFac)
+  },[deferredQuery,activeFac,locale,ALL,ARCHIVE_BROWSE_CHARACTERS,unitFilter,rarityFilter])
+  const rarityOptions=useMemo(()=>{
+    const present=new Set(ALL.map(c=>buffEntryRarity({name_jp:c.name_jp})).filter(Boolean))
+    return ARCHIVE_RARITY_FILTERS.filter(r=>present.has(r)).map(r=>({value:r,label:r,color:RARITY_COLOR[r]}))
+  },[ALL])
   const localizedSelected=useMemo(()=>selected?localizedCharacter(selected,locale):null,[selected,locale])
   const localizedFiltered=useMemo(()=>filtered.map(character=>localizedCharacter(character,locale)),[filtered,locale])
   // Prev/next step through whatever list is on screen, so a faction roster or
@@ -418,9 +427,13 @@ export function ArchivePage({onAddToBuilder}){
           <GalleryHeading className="gallery-title">{hasSearch?t('resultCount',{count:filtered.length}):(activeFac===ARCHIVE_ALL_FACTIONS?t('archive.allRoster'):t('archive.roster',{faction:factionDisplay(FACTIONS.find(f=>f.id===activeFac),locale)}))}</GalleryHeading>
           <span className="gallery-count">{t('generalCount',{count:filtered.length})}</span>
         </div>
+        <div className="archive-filters">
+          <FilterChipGroup label={t('unitType')} options={unitTypeFilterOptions(locale)} value={unitFilter} onChange={setUnit}/>
+          <FilterChipGroup label={t('teamCost.rarity')} options={rarityOptions} value={rarityFilter} onChange={setRarity}/>
+        </div>
         {!hasSearch&&<p className="archive-browse-note">{t('archive.browseNote')}</p>}
         <div className="gallery-grid">
-          {!filtered.length&&<p className="search-empty" role="status">{t('stats.noCharacterMatches',{query:search})}</p>}
+          {!filtered.length&&<p className="search-empty" role="status">{search.trim()?t('stats.noCharacterMatches',{query:search}):t('ux.filters.noMatches')}</p>}
           {localizedFiltered.map((c,index)=>{
             const skillTag=deferredQuery?matchCharacterSearch(c,deferredQuery,locale)?.hint:null
             return(
@@ -437,9 +450,9 @@ export function ArchivePage({onAddToBuilder}){
                 src={persosThumb(c.image)}
                 srcSet={`${persosThumb(c.image)} 320w, ${c.image} 626w`}
                 sizes="(max-width: 480px) 23vw, (max-width: 768px) 31vw, 180px"
-                alt="" enabled={galleryVisible} eager={!selected&&index<3}/>
+                alt="" enabled={galleryVisible} eager={!selected&&index<8} priority={!selected&&index<4}/>
                 :<div className="banner-ph" style={{'--faction-color':CC[c.country]||'var(--navy)'}}>
-                  <ArchiveImage src={c.icon} alt="" className="banner-img banner-icon" enabled={galleryVisible} eager={!selected&&index<3}/>
+                  <ArchiveImage src={c.icon} alt="" className="banner-img banner-icon" enabled={galleryVisible} eager={!selected&&index<8} priority={!selected&&index<4}/>
                 </div>}
               <div className="banner-footer">
                 <span className="banner-name">{nameWithDisambiguation(c)}</span>
@@ -483,8 +496,6 @@ export function ArchivePage({onAddToBuilder}){
               )}
               <div className="detail-faction" style={{color:'var(--salmon)'}}>
                 {factionDisplay(FACTIONS.find(f=>f.id===selected.country),locale)}
-                {selected.rarity&&<span className="detail-meta">{selected.rarity}</span>}
-                {selected.unit_type&&<span className="detail-meta">{localizedText(selected.unit_type,locale)}</span>}
               </div>
               {characterSkillsWithRole(selected).some(skill=>skill.star6)&&(
                 <Link className="detail-related-link" to="/archive/cw6-scene-cards">{t('nav.sceneCards')}</Link>
@@ -499,6 +510,7 @@ export function ArchivePage({onAddToBuilder}){
             </div>
             <button className="detail-close" onClick={clearSelection} aria-label={t('close')}>✕</button>
           </div>
+          <ArchiveFactStrip character={selected}/>
           {(previousCharacter||nextCharacter||onAddToBuilder)&&<div className="detail-stepper">
             {previousCharacter
               ?<Link className="detail-step" to={`/archive/characters/${previousCharacter.id}${returnSearch}`} aria-label={`${t('archive.previousGeneral')}: ${previousCharacter.displayName}`}><span aria-hidden="true">‹</span> {previousCharacter.displayName}</Link>
@@ -516,9 +528,110 @@ export function ArchivePage({onAddToBuilder}){
               ))
             }
           </div>
+          <ArchivePassiveBuffs character={selected}/>
+          <ArchiveUsedIn character={selected} onLoadTeam={onLoadTeam}/>
         </article>
       )}
     </div>
+  )
+}
+
+// ── ARCHIVE FACT STRIP + CROSS-LINKS ─────────────────────────────────────────
+// Labels for Buff Tracker categories. Japanese uses the same short unit-type,
+// state and terrain chips as the Buff Tracker (state chips come from FACTIONS).
+const BUFF_CATEGORY_JA={Infantry:'歩兵',Cavalry:'騎兵',Archer:'弓兵',Shield:'盾兵',Slope:'坂路',Forest:'森林',River:'水路',Swamp:'泥濘',Ambush:'伏兵',Checkpoint:'関所'}
+const buffCategoryLabel=(value,locale)=>{
+  if(locale.code==='ja'){
+    const state=FACTIONS.find(f=>f.label===value)
+    if(state) return state.jp
+    if(BUFF_CATEGORY_JA[value]) return BUFF_CATEGORY_JA[value]
+  }
+  return localizedText(value,locale)
+}
+
+export function ArchiveFactStrip({character}){
+  const locale=useLocale()
+  const{t}=useTranslation('common')
+  const facts=characterFacts(character,{buffEntryRarity,redCrystalTotals:RED_CRYSTAL_TOTAL_COST})
+  if(!facts) return null
+  const items=[
+    facts.rarity&&{key:'rarity',label:t('teamCost.rarity'),value:<span className="fact-rarity" style={{'--rc':RARITY_COLOR[facts.rarity]||'var(--navy)'}}>{facts.rarity}</span>},
+    facts.unitType&&{key:'unit',label:t('unitType'),value:localizedText(facts.unitType,locale)},
+    facts.groups.length>0&&{key:'groups',label:t('buffs.specialUnits'),value:facts.groups.map(group=>localizedText(group,locale)).join(locale.code==='ja'?'・':locale.code==='ar'?'، ':', ')},
+    facts.redCrystalCost!=null&&{key:'cost',label:t('teamCost.needed'),value:<><img src="/icons/Red_Crystal.webp" alt="" width="14" height="14" className="fact-crystal"/>{formatLocaleNumber(facts.redCrystalCost,locale)}</>},
+  ].filter(Boolean)
+  if(!items.length) return null
+  return(
+    <dl className="detail-facts" aria-label={t('ux.archive.facts')}>
+      {items.map(item=>(
+        <div key={item.key} className={`detail-fact detail-fact-${item.key}`}>
+          <dt>{item.label}</dt>
+          <dd>{item.value}</dd>
+        </div>
+      ))}
+    </dl>
+  )
+}
+
+export function ArchivePassiveBuffs({character}){
+  const {ALL,CHAR_BY_ID,findCharByName}=useReleaseData()
+  const locale=useLocale()
+  const{t}=useTranslation('common')
+  const rows=useMemo(()=>characterPassiveBuffs(character,{ALL,CHAR_BY_ID,findCharByName}),[character,ALL,CHAR_BY_ID,findCharByName])
+  if(!rows.length) return null
+  return(
+    <section className="detail-section detail-passive" aria-labelledby={`passive-${character.id}`}>
+      <div className="detail-section-head">
+        <h2 id={`passive-${character.id}`}>{t('ux.archive.passiveBuffs')}</h2>
+        <Link to="/buffs" className="detail-section-link">{t('nav.buffTracker')} <span aria-hidden="true">›</span></Link>
+      </div>
+      <ul className="detail-passive-list">
+        {rows.map(row=>(
+          <li key={row.id} data-buff-source={row.id}>
+            <span className="detail-passive-cat">{buffCategoryLabel(row.key,locale)}<span className="detail-passive-sep" aria-hidden="true"> · </span>{localizedText(row.stat,locale)}</span>
+            <span className="buff-up">+{formatLocaleNumber(row.value,locale,{maximumFractionDigits:1})}%</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+export function ArchiveUsedIn({character,onLoadTeam}){
+  const {findCharByName}=useReleaseData()
+  const locale=useLocale()
+  const{t}=useTranslation('common')
+  const teams=useMemo(()=>characterMetaTeams(character,{META_TEAMS,findCharByName}),[character,findCharByName])
+  if(!teams.length) return null
+  return(
+    <section className="detail-section detail-used-in" aria-labelledby={`used-in-${character.id}`}>
+      <div className="detail-section-head">
+        <h2 id={`used-in-${character.id}`}>{t('ux.archive.usedIn')}</h2>
+      </div>
+      <ul className="detail-team-list">
+        {teams.map(team=>{
+          const members=team.members.map(findCharByName).filter(Boolean)
+          const name=localizedTeamName(team.name,locale.code)
+          return(
+            <li key={team.name} className="detail-team" data-team-preset={team.name}>
+              <div className="detail-team-head">
+                <b>{name}</b>
+                {team.tier&&<span className="detail-team-tier" style={{'--tc':TIER_DEFS[team.tier]?.accent||'var(--navy)'}}>{t('meta.tier',{tier:team.tier})}</span>}
+              </div>
+              <div className="detail-team-members" dir="ltr">
+                {/* Teammates only: the panel header already shows this general, and a
+                    second portrait of them would re-request the same art. */}
+                {members.filter(member=>member.id!==character.id).map(member=><span key={member.id} dir={locale.direction} title={localizedCharacter(member,locale).displayName}><CharIcon c={member} size={28} round/></span>)}
+              </div>
+              {onLoadTeam&&<div className="detail-team-actions">
+                <button type="button" className="meta-btn meta-atk" aria-label={`${t('setAttacker')}: ${name}`} onClick={()=>onLoadTeam(members,'attack')}>{t('attack')}</button>
+                <button type="button" className="meta-btn meta-def" aria-label={`${t('setDefender')}: ${name}`} onClick={()=>onLoadTeam(members,'defense')}>{t('defend')}</button>
+              </div>}
+            </li>
+          )
+        })}
+      </ul>
+    </section>
   )
 }
 
@@ -999,7 +1112,7 @@ export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk
             <span><strong>{t('builder.teamBuffs')}</strong><small>{t('builder.calculated')}</small></span>
             <span>{buffsOpen?t('builder.hide'):t('builder.review')}</span>
           </button>
-          {buffsOpen&&<BuffTable atk={atkM} def={defM} builderState={builderShareState} initialIncludeCombat={sharedIncludeCombat}/>}
+          {buffsOpen&&<BuffTable atk={atkM} def={defM} builderState={builderShareState} initialIncludeCombat={sharedIncludeCombat} activeSide={activeSide} onSideChange={setActiveSide} sideCounts={{attack:atkF.length,defense:defF.length}}/>}
         </section>
       )}
 
@@ -1047,7 +1160,7 @@ export function SideSlots({side,label,party,skMask,onSlot,onRm,onSkChange,builde
         return m?(
           <div key={i} data-builder-slot={`${side}-${i}`} data-builder-character={m.id} className="slot-filled" style={{borderLeftColor:CC[m.country]||'#999'}}>
             <span className="sn" style={{color:ac}}>{i+1}</span>
-            <CharIcon c={m} size={36} round={true}/>
+            <CharIcon c={m} size={36} round={true} eager/>
             <div className="slot-info"><span className="slot-en">{display.displayName}</span>{secondaryName(display.displayName,display.displaySecondaryName)&&<span className="slot-jp">{display.displaySecondaryName}</span>}</div>
             <SkillToggles char={m} mask={skMask?.[i]||DEFAULT_SK} onChange={nm=>onSkChange(i,nm)}/>
             <button className="slot-rm" onClick={()=>onRm(m)} aria-label={t('remove')}>✕</button>
@@ -1134,9 +1247,92 @@ export function SimPage({atk:atkIds,def:defIds,atkSk,defSk,goBuilder}){
       </section>
     </div>
   )
-  const{st,turns}=simulate(atkF,defF)
+  return <SimTimeline atkF={atkF} defF={defF} goBuilder={goBuilder}/>
+}
+
+// One-line action summary for the compact Battle Order row. It reuses the
+// skill's already-localized structured effect rows verbatim (target + effect)
+// and never rewords game text. When no effect row is available the row shows
+// only the skill name.
+export function skillTimelineSummary(skill){
+  const effects=(skill?.displayEffects||skill?.effects||[]).filter(e=>e&&(e.target||e.effect))
+  if(!effects.length) return null
+  const first=effects[0]
+  return {target:first.target||'',effect:first.effect||'',more:effects.length-1}
+}
+
+const normalAttackLabel=locale=>locale.code==='ja'?'通常攻撃':locale.code==='ar'?'هجوم عادي':locale.code==='fr'?'Attaque normale':'Normal Attack'
+
+function TimelineRow({entry,order,rowId,open,onToggle}){
+  const locale=useLocale()
+  const{t}=useTranslation('common')
+  const{kind,general,skill,side,role}=entry
+  const name=general.displayName||general.name_en
+  const skillName=skill?(skill.displayName||(locale.code==='ja'?skill.name_jp:skill.name_en)||t('unknown')):null
+  const summary=skill?skillTimelineSummary(skill):null
+  const col=skill?(TYPE_COLOR[skill.type]||'#888'):null
+  const panelId=`${rowId}-detail`
+  const sideLabel=t(side==='attack'?'sim.attackingSide':'sim.defendingSide')
+  const head=(
+    <>
+      <span className="te-order" aria-hidden="true">{formatLocaleNumber(order,locale)}</span>
+      <CharIcon c={general} size={30} round={true}/>
+      <span className="te-who">
+        <b className="te-name">{name}</b>
+        <span className={`te-tag te-side-tag te-side-${side}`}>{sideLabel}</span>
+      </span>
+      <span className="te-what">
+        <span className="te-skill-line">
+          <span className="te-skill-name">{skillName||normalAttackLabel(locale)}</span>
+          {skill&&<span className="te-type-chip" style={{'--chip':col}}>{skill.star6&&'☆6 '}{localizedText(skill.type,locale)}</span>}
+          {kind==='role'&&<span className="te-role-chip">{t('sim.specialRoleAction')}</span>}
+        </span>
+        {summary&&(
+          <span className="te-summary">
+            <span>{summary.target}</span>
+            {summary.target&&summary.effect&&<span className="eff-sep" aria-hidden="true"> → </span>}
+            <span>{summary.effect}</span>
+            {summary.more>0&&<span className="te-more">{` +${formatLocaleNumber(summary.more,locale)}`}</span>}
+          </span>
+        )}
+      </span>
+      {skill&&<span className="te-chevron" aria-hidden="true"/>}
+    </>
+  )
   return(
-    <div className="main-page">
+    <div className={`te te-${side}${kind==='role'?' te-role':''}${open?' te-open':''}`} data-event-kind={kind} data-role={role||undefined} data-order={order}>
+      <div className="te-stripe" style={{background:side==='attack'?'var(--red)':'var(--blue)'}}/>
+      <div className="te-body">
+        {skill
+          ?<button type="button" className="te-row" aria-expanded={open} aria-controls={panelId} onClick={onToggle}>{head}</button>
+          :<div className="te-row te-row-static">{head}</div>}
+        {skill&&open&&<div id={panelId} className="te-detail"><SkillCard skill={skill}/></div>}
+      </div>
+    </div>
+  )
+}
+
+function SimTimeline({atkF,defF,goBuilder}){
+  const locale=useLocale()
+  const{t}=useTranslation('common')
+  const baseId=useId()
+  const[openRows,setOpenRows]=useState(()=>new Set())
+  const{st,turns}=simulate(atkF,defF)
+  const rowKey=(turn,i)=>`${turn}:${i}`
+  const expandableKeys=turns.flatMap(({turn,entries})=>entries.map((e,i)=>e.skill?rowKey(turn,i):null).filter(Boolean))
+  const allOpen=expandableKeys.length>0&&expandableKeys.every(k=>openRows.has(k))
+  const toggle=key=>setOpenRows(prev=>{const next=new Set(prev);if(next.has(key))next.delete(key);else next.add(key);return next})
+  const toggleAll=()=>setOpenRows(allOpen?new Set():new Set(expandableKeys))
+  const turnAnchor=turn=>`${baseId.replace(/:/g,'')}-turn-${turn}`
+  const jumpTo=turn=>{
+    const el=document.getElementById(turnAnchor(turn))
+    if(!el) return
+    const reduce=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+    el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})
+    el.querySelector('.turn-lbl')?.focus({preventScroll:true})
+  }
+  return(
+    <div className="main-page sim-timeline-page">
       {/* ── Battle Result (hidden for now) ──────────────── */}
       {/* <BattleResult battle={battle} atkTeam={atkF} defTeam={defF} rerun={()=>setTick(t=>t+1)}/> */}
 
@@ -1154,34 +1350,31 @@ export function SimPage({atk:atkIds,def:defIds,atkSk,defSk,goBuilder}){
         <div className="form-vs">{t('versus')}</div>
         <FormBar generals={defF} side="defense" label={t('builder.defending')}/>
       </div>
-      <div className="sim-sec">
-        <div className="sec-hd sec-combat">{t('sim.activation')}</div>
+      <nav className="turn-jump" aria-label={t('ux.sim.jumpToTurn')}>
+        <span className="turn-jump-label" aria-hidden="true">{t('ux.sim.jumpToTurn')}</span>
+        {turns.map(({turn})=>(
+          <button key={turn} type="button" className="turn-jump-btn" onClick={()=>jumpTo(turn)} aria-label={t('sim.turn',{turn})}>{formatLocaleNumber(turn,locale)}</button>
+        ))}
+      </nav>
+      <div className="sim-sec sim-timeline">
+        <div className="sec-hd sec-combat sim-timeline-hd">
+          <span>{t('sim.activation')}</span>
+          {expandableKeys.length>0&&<button type="button" className="sim-expand-all" aria-pressed={allOpen} onClick={toggleAll}>{t(allOpen?'ux.sim.collapseAll':'ux.sim.expandAll')}</button>}
+        </div>
         <div className="turn-guidance">
           <strong>{t('sim.openingRule')}</strong>
           <span>{t('sim.roleConditional')}</span>
           <span>{t('sim.timelineLimit')}</span>
         </div>
         {turns.map(({turn,entries})=>(
-          <div key={turn} className="turn">
-            <div className="turn-lbl">{t('sim.turn',{turn})}</div>
+          <section key={turn} id={turnAnchor(turn)} className="turn" aria-label={t('sim.turn',{turn})}>
+            <h2 className="turn-lbl" tabIndex={-1}>{t('sim.turn',{turn})}</h2>
             <div className="turn-entries">
-              {entries.map(({kind,general,skill,side,role},i)=>(
-                <div key={`${kind}-${side}-${general.id}-${role||i}`} className={`te te-${side}${kind==='role'?' te-role':''}`} data-event-kind={kind} data-role={role||undefined} data-order={i+1}>
-                  <div className="te-stripe" style={{background:side==='attack'?'var(--red)':'var(--blue)'}}/>
-                  <span className="te-order" aria-hidden="true">{formatLocaleNumber(i+1,locale)}</span>
-                  <div className="te-body">
-                    <div className="te-gen">
-                      <CharIcon c={general} size={38} round={true}/>
-                      <div><b className="te-name">{general.displayName||general.name_en}</b>{secondaryName(general.displayName||general.name_en,general.name_jp)&&<span className="te-jp">{general.name_jp}</span>}</div>
-                      <span className="te-tag" style={{background:side==='attack'?'rgba(192,57,43,.18)':'rgba(26,95,168,.18)',color:side==='attack'?'#c0392b':'#1a5fa8',border:`1px solid ${side==='attack'?'rgba(192,57,43,.3)':'rgba(26,95,168,.3)'}`}}>{t(side==='attack'?'sim.attackingSide':'sim.defendingSide')}</span>
-                    </div>
-                    {kind==='role'&&<div className="te-role-priority">{t('sim.specialRoleAction')}</div>}
-                    {skill?<SkillCard skill={skill}/>:<div className="normal-atk">{locale.code==='ja'?'通常攻撃':locale.code==='ar'?'هجوم عادي':locale.code==='fr'?'Attaque normale':'Normal Attack'}</div>}
-                  </div>
-                </div>
+              {entries.map((entry,i)=>(
+                <TimelineRow key={`${entry.kind}-${entry.side}-${entry.general.id}-${entry.role||i}`} entry={entry} order={i+1} rowId={`${turnAnchor(turn)}-${i}`} open={openRows.has(rowKey(turn,i))} onToggle={()=>toggle(rowKey(turn,i))}/>
               ))}
             </div>
-          </div>
+          </section>
         ))}
       </div>
       <div className="sim-sec">
@@ -1320,7 +1513,7 @@ function hasMissingOpponentInput(entries,enemyDebuffs){
   ]
   return sources.some(source=>source.missingInputs?.some(input=>input.kind==='opposingFormation'))
 }
-export function BuffTable({atk,def,builderState,initialIncludeCombat=false}){
+export function BuffTable({atk,def,builderState,initialIncludeCombat=false,activeSide=null,onSideChange=null,sideCounts=null}){
   const shareLabels=useShareLabels()
   const locale=useLocale()
   const{t}=useTranslation('common')
@@ -1370,7 +1563,17 @@ export function BuffTable({atk,def,builderState,initialIncludeCombat=false}){
       <p className="buff-summary-note">{t('buffs.summaryCalculatedOnly')}</p>
       {hasInflictionBonus&&<p className="buff-summary-note" data-infliction-bonus-note>{t('buffs.inflictionBonusHelp')}</p>}
       {opponentMissing&&<p className="buff-opponent-notice" data-buff-opponent-notice>{t('buffs.opponentNotSelected')}</p>}
-      <div className="strat-cols">
+      {onSideChange&&activeSide&&(
+        <div className="buff-side-switch" role="group" aria-label={t('builder.formationSide')}>
+          {['attack','defense'].map(side=>(
+            <button key={side} type="button" className={activeSide===side?'active':''} aria-pressed={activeSide===side} onClick={()=>onSideChange(side)}>
+              {t(side==='attack'?'builder.attacking':'builder.defending')}
+              {sideCounts&&<span>{formatLocaleNumber(sideCounts[side],locale)}/{formatLocaleNumber(4,locale)}</span>}
+            </button>
+          ))}
+        </div>
+      )}
+      <div className={`strat-cols buff-cols${onSideChange&&activeSide?` buff-show-${activeSide}`:''}`}>
         <BuffSideTable label={`⚔ ${t('buffs.attackingFormation')}`} entries={atkBuffs} side="attack" enemyDebuffs={atkEnemyDebuffs} references={atkReferences}/>
         <BuffSideTable label={`🛡 ${t('buffs.defendingFormation')}`} entries={defBuffs} side="defense" enemyDebuffs={defEnemyDebuffs} references={defReferences}/>
       </div>
@@ -1413,6 +1616,13 @@ export function TeamEffectReference({sources}){
     </>}
   </details>
 }
+// One comparison grid per side: stats as rows (STAT_ORDER via statSortKey),
+// the side's generals as columns. Each value cell is the same disclosure button
+// the per-general rows used to be, so the computed entries, the source evidence
+// and the Guard "highest only" rule are unchanged; only the layout differs. The
+// wrappers use `display: contents` so every cell and evidence panel is placed
+// on one CSS grid while `[data-buff-general] [data-buff-stat]` still scopes a
+// cell to its general.
 export function BuffSideTable({label,entries,side,enemyDebuffs={},references=[]}){
   const disclosureId=useId()
   const{t}=useTranslation('common')
@@ -1422,103 +1632,121 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={},references=[]}
   const hasAny=entries.some(({buffs})=>Object.values(buffs).some(value=>value.up>0||value.down>0))
   const hasEnemyDebuffs=Object.values(enemyDebuffs).some(value=>Object.values(value.up||{}).some(Boolean)||Object.values(value.down||{}).some(Boolean))
   const fmt=v=>Number.isInteger(v)?v:v.toFixed(1)
+  const activeStats=entries.map(({buffs})=>new Map(Object.entries(buffs).filter(([,v])=>v.up>0||v.down>0)))
+  const statRows=[...new Set(activeStats.flatMap(map=>[...map.keys()]))].sort((a,b)=>statSortKey(a)-statSortKey(b))
+  const names=entries.map(({general})=>localizedCharacter(general,locale).displayName)
+  const renderCell=(g,gi,stat,buff,row)=>{
+    const{up,down,sources=[],instances}=buff
+    const inv=INVERSE_STATS.has(stat)
+    const isFlag=SPECIAL_STATS.has(stat)
+    const key=`${g.id}|${stat}`
+    const isOpen=expanded===key
+    const panelId=`${disclosureId}-${encodeURIComponent(key)}`
+    const cellStyle={gridRow:row,gridColumn:gi+2}
+    const panelStyle={gridRow:row+1,gridColumn:'1 / -1'}
+    const statName=localizedText(stat,locale)
+    const a11y=<><span className="buff-stat-name sr-only">{statName}</span><span className="sr-only"> · {names[gi]}: </span></>
+    const panelTitle=<div className="bg-panel-title"><span>{statName}</span> · <span>{names[gi]}</span></div>
+    // Guard doesn't stack — show the active (highest) instance, with the
+    // alternatives revealed on expand.
+    if(stat==='Guard'&&instances?.length){
+      const sorted=[...(instances||[])].sort((a,b)=>b.val-a.val)
+      const top=sorted[0]
+      const extra=sorted.length-1
+      return(
+        <div data-buff-stat={stat} className="bg-contents">
+          <button type="button" aria-expanded={isOpen} aria-controls={panelId} className={`buff-row buff-row-click bg-cell${isOpen?' buff-row-open':''}`} style={cellStyle}
+               onClick={()=>setExpanded(isOpen?null:key)}>
+            {a11y}
+            <span className="buff-vals">
+              {top&&<span className="buff-up">+{fmt(top.val)}%</span>}
+              {top?.duration&&<span className="buff-dur">{localizedDuration(top.duration,locale)}</span>}
+              {extra>0&&<span className="buff-more">+{extra}</span>}
+            </span>
+          </button>
+          <div id={panelId} hidden={!isOpen} className="buff-sources bg-panel" style={panelStyle}>
+            {panelTitle}
+            {sorted.map((inst,idx)=>(
+              <div key={idx} className="buff-source-contribution">
+              <div className="buff-source-row">
+                <CharIcon c={inst.owner} size={16} round={true}/>
+                <span className="buff-source-name">{localizedCharacter(inst.owner,locale).displayName}</span>
+                <span className="buff-up">+{fmt(inst.val)}%{inst.duration?` · ${localizedDuration(inst.duration,locale)}`:''}</span>
+              </div>
+              <BuffSourceEvidence source={inst}/>
+              </div>
+            ))}
+            <div className="buff-guard-note">{t('buffs.guardNote')}</div>
+          </div>
+        </div>
+      )
+    }
+    return(
+      <div data-buff-stat={stat} className="bg-contents">
+        <button type="button" aria-expanded={isOpen} aria-controls={panelId} className={`buff-row buff-row-click bg-cell${isOpen?' buff-row-open':''}`} style={cellStyle}
+             onClick={()=>setExpanded(isOpen?null:key)}>
+          {a11y}
+          <span className="buff-vals">
+            {isFlag
+              ?<span className="buff-up" style={{fontSize:'.75rem',letterSpacing:'.02em'}}>● {up}×</span>
+              :<>{up>0&&<span className={inv?'buff-down':'buff-up'}>+{fmt(up)}%</span>}
+                 {down>0&&<span className={inv?'buff-up':'buff-down'}>−{fmt(down)}%</span>}</>
+            }
+          </span>
+        </button>
+        <div id={panelId} hidden={!isOpen} className="buff-sources bg-panel" style={panelStyle}>
+          {panelTitle}
+          {sources.map((s,i)=>(
+            <div key={i} className="buff-source-contribution">
+            <div className="buff-source-row">
+              <CharIcon c={s.owner} size={16} round={true}/>
+              <span className="buff-source-name">{localizedCharacter(s.owner,locale).displayName}</span>
+              <span className={s.dir==='up'?(inv?'buff-down':'buff-up'):(inv?'buff-up':'buff-down')}>
+                {isFlag?`${s.contribution}×`:`${s.dir==='up'?'+':'−'}${fmt(s.contribution)}%`}
+              </span>
+            </div>
+            <BuffSourceEvidence source={s}/>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
   return(
-    <div className={`scol ${side==='attack'?'atk':'def'}`}>
+    <div className={`scol ${side==='attack'?'atk':'def'}`} data-buff-side={side}>
       <div className="scol-lbl" style={{color:ac,borderBottomColor:ac+'44'}}>{label}</div>
       <div className="buff-summary-note">{t('buffs.calculatedFromFormation')}</div>
-       {!hasAny&&!hasEnemyDebuffs?<p className="scol-none">{t('noRelevantBuffs')}</p>:entries.map(({general:g,buffs})=>{
-        const stats=Object.entries(buffs).filter(([,v])=>v.up>0||v.down>0).sort(([a],[b])=>statSortKey(a)-statSortKey(b))
-        return(
-          <div key={g.id} className="scol-gen" data-buff-general={g.id}>
-            <div className="scol-gen-hdr" style={{color:ac}}>
-              <CharIcon c={g} size={26} round={true}/>
-              <b>{localizedCharacter(g,locale).displayName}</b>
-              {g.unit_type&&<span className="scol-unit-badge" style={{background:ac+'22',color:ac,border:`1px solid ${ac}44`}}>{localizedText(g.unit_type,locale)}</span>}
-            </div>
-            {!stats.length?<div className="buff-none-row">—</div>:(
-              <div className="buff-stats">
-                {stats.map(([stat,buff])=>{
-                  const{up,down,sources=[],instances}=buff
-                  const inv=INVERSE_STATS.has(stat)
-                  const isFlag=SPECIAL_STATS.has(stat)
-                  // Guard doesn't stack — show one row for the active (highest) instance,
-                  // with the alternatives revealed on expand.
-                  if(stat==='Guard'&&instances?.length){
-                    const sorted=[...(instances||[])].sort((a,b)=>b.val-a.val)
-                    const top=sorted[0]
-                    const extra=sorted.length-1
-                    const key=`${g.id}|Guard`
-                    const isOpen=expanded===key
-                    return(
-                      <div key={stat} data-buff-stat={stat}>
-                        <button type="button" aria-expanded={isOpen} aria-controls={`${disclosureId}-${encodeURIComponent(key)}`} className={`buff-row buff-row-click${isOpen?' buff-row-open':''}`}
-                             onClick={()=>setExpanded(isOpen?null:key)}>
-                          <span className="buff-stat-name">{localizedText('Guard',locale)}</span>
-                          <span className="buff-vals">
-                            {top&&<span className="buff-up">+{fmt(top.val)}%</span>}
-                            {top?.duration&&<span className="buff-dur">{localizedDuration(top.duration,locale)}</span>}
-                            {extra>0&&<span className="buff-more">+{extra}</span>}
-                            <span className="buff-chevron" aria-hidden="true">{isOpen?'▴':'▾'}</span>
-                          </span>
-                        </button>
-                        {(
-                          <div id={`${disclosureId}-${encodeURIComponent(key)}`} hidden={!isOpen} className="buff-sources">
-                            {sorted.map((inst,idx)=>(
-                              <div key={idx} className="buff-source-contribution">
-                              <div className="buff-source-row">
-                                <CharIcon c={inst.owner} size={16} round={true}/>
-                                <span className="buff-source-name">{localizedCharacter(inst.owner,locale).displayName}</span>
-                                <span className="buff-up">+{fmt(inst.val)}%{inst.duration?` · ${localizedDuration(inst.duration,locale)}`:''}</span>
-                              </div>
-                              <BuffSourceEvidence source={inst}/>
-                              </div>
-                            ))}
-                             <div className="buff-guard-note">{t('buffs.guardNote')}</div>
-                          </div>
-                        )}
-                      </div>
-                    )
-                  }
-                  const key=`${g.id}|${stat}`
-                  const isOpen=expanded===key
+      {!hasAny&&!hasEnemyDebuffs?<p className="scol-none">{t('noRelevantBuffs')}</p>:statRows.length>0&&(
+        <div className="buff-grid-scroll">
+          <div className="buff-grid" style={{'--buff-cols':entries.length}}>
+            <div className="bg-corner" style={{gridRow:1,gridColumn:1}}/>
+            {entries.map(({general:g},gi)=>(
+              <div key={g.id} className="bg-colhead" data-buff-general={g.id} style={{gridRow:1,gridColumn:gi+2}}>
+                <div className="scol-gen-hdr" style={{color:ac}}>
+                  <CharIcon c={g} size={30} round={true}/>
+                  <b>{names[gi]}</b>
+                  {g.unit_type&&<span className="scol-unit-badge" style={{background:ac+'22',color:ac,border:`1px solid ${ac}44`}}>{localizedText(g.unit_type,locale)}</span>}
+                </div>
+              </div>
+            ))}
+            {statRows.map((stat,si)=>{
+              const row=2+si*2
+              return[
+                <div key={`stat-${stat}`} className="bg-stat" style={{gridRow:row,gridColumn:1}} aria-hidden="true">{localizedText(stat,locale)}</div>,
+                ...entries.map(({general:g},gi)=>{
+                  const buff=activeStats[gi].get(stat)
+                  if(!buff) return <div key={`${stat}-${g.id}`} className="bg-empty" style={{gridRow:row,gridColumn:gi+2}}/>
                   return(
-                    <div key={stat} data-buff-stat={stat}>
-                      <button type="button" aria-expanded={isOpen} aria-controls={`${disclosureId}-${encodeURIComponent(key)}`} className={`buff-row buff-row-click${isOpen?' buff-row-open':''}`}
-                           onClick={()=>setExpanded(isOpen?null:key)}>
-                        <span className="buff-stat-name">{localizedText(stat,locale)}</span>
-                        <span className="buff-vals">
-                          {isFlag
-                            ?<span className="buff-up" style={{fontSize:'.75rem',letterSpacing:'.02em'}}>● {up}×</span>
-                            :<>{up>0&&<span className={inv?'buff-down':'buff-up'}>+{fmt(up)}%</span>}
-                               {down>0&&<span className={inv?'buff-up':'buff-down'}>−{fmt(down)}%</span>}</>
-                          }
-                          <span className="buff-chevron" aria-hidden="true">{isOpen?'▴':'▾'}</span>
-                        </span>
-                      </button>
-                      {(
-                        <div id={`${disclosureId}-${encodeURIComponent(key)}`} hidden={!isOpen} className="buff-sources">
-                          {sources.map((s,i)=>(
-                            <div key={i} className="buff-source-contribution">
-                            <div className="buff-source-row">
-                              <CharIcon c={s.owner} size={16} round={true}/>
-                              <span className="buff-source-name">{localizedCharacter(s.owner,locale).displayName}</span>
-                              <span className={s.dir==='up'?(inv?'buff-down':'buff-up'):(inv?'buff-up':'buff-down')}>
-                                {isFlag?`${s.contribution}×`:`${s.dir==='up'?'+':'−'}${fmt(s.contribution)}%`}
-                              </span>
-                            </div>
-                            <BuffSourceEvidence source={s}/>
-                            </div>
-                          ))}
-                        </div>
-                      )}
+                    <div key={`${stat}-${g.id}`} className="bg-contents" data-buff-general={g.id}>
+                      {renderCell(g,gi,stat,buff,row)}
                     </div>
                   )
-                })}
-              </div>
-            )}
+                }),
+              ]
+            })}
           </div>
-        )
-      })}
+        </div>
+      )}
       {hasEnemyDebuffs&&Object.entries(enemyDebuffs).map(([target,{up,down,sources={}}])=>{
         const allStats=[
           ...Object.keys(down).map(s=>({s,v:down[s]||0,d:'down'})),
@@ -1587,12 +1815,21 @@ export const TIER_DEFS={
 // Star of David / shield star used in the SS header (lucide "star" path).
 const SS_STAR='M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z'
 
-function TierTeamCard({team,def,ss=false}){
+function TierTeamCard({team,def,ss=false,onLoadTeam}){
   const {findCharByName}=useReleaseData()
   const locale = useLocale()
+  const{t}=useTranslation('common')
   const chars=team.members.map(findCharByName).filter(Boolean)
+  // Clicking a team card loads it into the Party Builder (attacking side).
+  const load=onLoadTeam?()=>onLoadTeam(chars,'attack'):null
+  const interactive=load?{
+    role:'button',tabIndex:0,
+    'aria-label':`${t('setAttacker')}: ${localizedTeamName(team.name,locale.code)}`,
+    onClick:load,
+    onKeyDown:event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();load()}},
+  }:{}
   return(
-    <div className={'mw-team'+(ss?' mw-team--ss':'')} data-team-preset={team.name} style={{borderInlineStartColor:def.accent}}>
+    <div className={'mw-team'+(ss?' mw-team--ss':'')+(load?' mw-team--load':'')} data-team-preset={team.name} style={{borderInlineStartColor:def.accent}} {...interactive}>
       <div className="mw-team-name">{localizedTeamName(team.name,locale.code)}</div>
       <div className="mw-team-members" dir="ltr">
         {chars.map((c,ci)=>{
@@ -1619,7 +1856,7 @@ function TierTeamCard({team,def,ss=false}){
   )
 }
 
-export function TierPage(){
+export function TierPage({onLoadTeam}){
   const { t } = useTranslation('common')
   // The SS showcase is drawn only while a team actually holds that tier.
   const ssTeams=TIER_TEAMS.filter(team=>team.tier==='SS')
@@ -1650,7 +1887,7 @@ export function TierPage(){
           </div>
           <div className="mw-ss-body">
             <div className="mw-ss-teams">
-              {ssTeams.map((team,ti)=><TierTeamCard key={ti} team={team} def={TIER_DEFS.SS} ss/>)}
+              {ssTeams.map((team,ti)=><TierTeamCard key={ti} team={team} def={TIER_DEFS.SS} ss onLoadTeam={onLoadTeam}/>)}
             </div>
             <div className="mw-ss-tagline">{t('meta.kings')}</div>
           </div>
@@ -1667,7 +1904,7 @@ export function TierPage(){
                 <div className="mw-tier-label" style={{color:def.label}}>{t('meta.tier', { tier })}</div>
               </div>
               <div className="mw-teams">
-                {teams.map((team,ti)=><TierTeamCard key={ti} team={team} def={def}/>)}
+                {teams.map((team,ti)=><TierTeamCard key={ti} team={team} def={def} onLoadTeam={onLoadTeam}/>)}
               </div>
             </section>
           )
@@ -1685,7 +1922,7 @@ const COST_CHARACTER_BY_ID=new Map(COST_CHARACTERS.map(c=>[c.id,c]))
 const normalizeCostDraft=value=>normalizeTeamCostDraft(value,COST_CHARACTER_BY_ID)
 
 export function TeamCostPage(){
-  const {ALL}=useReleaseData()
+  const {ALL,findCharByName}=useReleaseData()
   const allChars=useMemo(()=>ALL.map(c=>({...c,rarity:characterInitialRarity(c)})),[ALL])
   const { t } = useTranslation('common')
   const locale = useLocale()
@@ -1694,6 +1931,8 @@ export function TeamCostPage(){
   const skillsDone=draft.skillsDone
   const[picker,setPicker]=useState(null)
   const[search,setSearch]=useState('')
+  const[pickerState,setPickerState]=useState(null)
+  const[pickerUnit,setPickerUnit]=useState(null)
   const closePicker=()=>{setPicker(null);setSearch('')}
   const pickerInputRef=useRef(null)
 
@@ -1704,7 +1943,7 @@ export function TeamCostPage(){
   const remainingCost=(rarity,done)=>SKILL_COSTS[rarity||'SR'].slice(done).reduce((s,v)=>s+v,0)
 
 
-  const filtered=searchCharacters(allChars.slice().sort((a,b)=>compareCharacters(a,b,locale.code)),search,locale)
+  const filtered=searchCharacters(filterCharactersByStateAndUnit(allChars,{state:pickerState,unit:pickerUnit}).slice().sort((a,b)=>compareCharacters(a,b,locale.code)),search,locale)
 
   const setSlot=(idx,char)=>{
     setDraft(p=>({ ...p, slots:p.slots.map((id,i)=>i===idx?char.id:id), skillsDone:p.skillsDone.map((done,i)=>i===idx?0:done) }))
@@ -1714,6 +1953,15 @@ export function TeamCostPage(){
     setDraft(p=>({ ...p, slots:p.slots.map((id,i)=>i===idx?null:id), skillsDone:p.skillsDone.map((done,i)=>i===idx?0:done) }))
   }
   const clearAll=()=>setDraft(createTeamCostDraft())
+  // Example = the first Metawatch team, offered only while every slot is empty
+  // (the updater re-checks, so saved slots are never overwritten).
+  const loadExample=()=>setDraft(p=>{
+    if(p.slots.some(Boolean)) return p
+    const ids=(TIER_TEAMS[0]?.members||[]).map(name=>findCharByName(name)?.id).filter(id=>COST_CHARACTER_BY_ID.has(id)).slice(0,4)
+    if(!ids.length) return p
+    const base=createTeamCostDraft()
+    return {...base,slots:base.slots.map((id,i)=>ids[i]||null)}
+  })
   const toggleSkill=(idx,n)=>setDraft(p=>({ ...p, skillsDone:p.skillsDone.map((done,i)=>i===idx?(done>=n?n-1:n):done) }))
 
   const filled=slots.filter(Boolean)
@@ -1747,6 +1995,7 @@ export function TeamCostPage(){
           {rCount>0&&<span style={{'--rarity-color':RCOL.R}}><b>{rCount}</b> R</span>}
           {nCount>0&&<span style={{'--rarity-color':RCOL.N}}><b>{nCount}</b> N</span>}
           {filled.length===0&&<span className="tc-summary-empty">{t('teamCost.chooseSlot')}</span>}
+          {filled.length===0&&<button type="button" className="tc-clear-all ux-example-btn" onClick={loadExample}>{t('ux.example.load')}</button>}
           {filled.length>0&&<button type="button" className="tc-clear-all" onClick={clearAll}>{t('teamCost.clearAll')}</button>}
         </div>
       </section>
@@ -1875,8 +2124,9 @@ export function TeamCostPage(){
               <input ref={pickerInputRef} type="search" className="picker-search" aria-label={t('teamCost.search')} placeholder={t('teamCost.search')} value={search} onChange={e=>setSearch(e.target.value)}/>
               {search&&<button type="button" className="search-clear" onClick={()=>{setSearch('');pickerInputRef.current?.focus()}}>{t('clear')}</button>}
             </div>
+            <PickerFilters characters={allChars} state={pickerState} unit={pickerUnit} onState={setPickerState} onUnit={setPickerUnit}/>
             <div className="tc-picker-body" style={{overflowY:'auto',maxHeight:'55vh',padding:'8px'}}>
-              {!filtered.length&&<p className="search-empty" role="status">{t('stats.noCharacterMatches',{query:search})}</p>}
+              {!filtered.length&&<p className="search-empty" role="status">{search.trim()?t('stats.noCharacterMatches',{query:search}):t('ux.filters.noMatches')}</p>}
               <div className="tc-picker-grid" style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(110px,1fr))',gap:'8px'}}>
                 {filtered.map(c=>{
                   const rarity=characterInitialRarity(c)

@@ -11,13 +11,16 @@ import { secondaryName } from '../../display-names.js'
 import { useLocale, formatNumber as formatLocaleNumber, formatFixedNumber } from '../../i18n/index.js'
 import { localizedCharacterName, matchesCharacterName } from '../../i18n/ar-character-names.js'
 import { localizedCharacter, localizedText } from '../../i18n/data.js'
-import { BUFF_UNIT_CATS, BUFF_STAT_COLORS, CAT_COLOR, TERRAIN_BUFFS, BUFF_STATES, STATE_FACTION_ID, BUFF_ARMIES, ARMY_PARENT_STATE, ARMY_ICON_CHAR, WOGG_BUFF_NAME, BUFF_SIEGE, SIEGE_META, WOGG_BUFF_SOURCES, UNIT_ICON_SCALE } from './data.js'
+import { BUFF_UNIT_CATS, BUFF_STAT_COLORS, CAT_COLOR, TERRAIN_BUFFS, BUFF_STATES, STATE_FACTION_ID, BUFF_ARMIES, ARMY_PARENT_STATE, ARMY_ICON_CHAR, WOGG_BUFF_NAME, BUFF_SIEGE, SIEGE_META, WOGG_BUFF_SOURCES, UNIT_ICON_SCALE, sortBuffSourcesByValue } from './data.js'
+
+// Cached icons are complete before React attaches onLoad; mark them at mount.
+const markSkeletonLoaded=image=>{ if(image?.complete&&image.naturalWidth>0) image.dataset.loaded='' }
 
 export function UnitCatIcon({cat,size=80}){
   const locale=useLocale()
   const imgs={'Infantry':'/icons/controls/unit_infantry.webp','Cavalry':'/icons/controls/unit_cavalry.webp','Archer':'/icons/controls/unit_archer.webp','Shield':'/icons/controls/unit_shield.webp'}
   const s=Math.round(size*( UNIT_ICON_SCALE[cat]||1))
-  return <img src={imgs[cat]} alt={localizedText(cat,locale)} loading="lazy" decoding="async" style={{width:s,height:s,objectFit:'contain',flexShrink:0}}/>
+  return <img src={imgs[cat]} alt={localizedText(cat,locale)} loading="lazy" decoding="async" data-skel="" ref={markSkeletonLoaded} onLoad={event=>{event.currentTarget.dataset.loaded=''}} style={{width:s,height:s,objectFit:'contain',flexShrink:0}}/>
 }
 
 export function TerrainIcon({terrain,size=72}){
@@ -281,7 +284,8 @@ export function BuffsPage(){
               : activeKind==='state'?(CC[STATE_FACTION_ID[activeKey]]||'#888')
               : activeKind==='siege'?(SIEGE_META[activeKey]?.color||'#888')
               : (CC[ARMY_PARENT_STATE[activeKey]]||'#888')
-    const entries=lookupEntries(activeKind,activeKey,activeStat)
+    // Highest buff first (render-time only; ownership ids are unaffected).
+    const entries=sortBuffSourcesByValue(lookupEntries(activeKind,activeKey,activeStat))
     const total=entries.reduce((s,e)=>s+(e.value||0)+(e.shard_bonus?5:0),0)
     const sc=BUFF_STAT_COLORS[activeStat]
     return(

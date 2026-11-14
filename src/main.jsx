@@ -14,6 +14,7 @@ import './styles/castle-controls.css'
 import './styles/reference-hubs.css'
 import './styles/redesign.css'
 import './styles/localization.css'
+import './styles/ux-improvements.css'
 
 // ── Locale is resolved from the URL BEFORE React mounts ─────────────────────
 // Document language/direction and the Router basename must be correct on the

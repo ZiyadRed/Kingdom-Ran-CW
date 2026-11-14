@@ -228,6 +228,21 @@ export default function CastlePointsPage(){
     updateBoard(() => defaultBoard())
   }
 
+  // "Load example" is offered only while this board is untouched, and the
+  // updater re-checks so it can never overwrite entered data.
+  const isEmptyBoard = current => current.length === 1 && current[0].isMine && current[0].name === null
+    && ['large', 'medium', 'small', 'carried'].every(key => !clampNumber(current[0][key]))
+  const loadExample = () => {
+    updateBoard(current => {
+      if (!isEmptyBoard(current)) return current
+      return [
+        { ...makeAlliance(0, true), large: 1, medium: 2, small: 3, carried: 1800 },
+        { ...makeAlliance(1), large: 2, medium: 1, small: 2, carried: 2100 },
+        { ...makeAlliance(2), large: 0, medium: 3, small: 4, carried: 1500 },
+      ]
+    })
+  }
+
   return (
     <div className="castle-points-page">
       <section className="cp-head">
@@ -281,7 +296,10 @@ export default function CastlePointsPage(){
               <h2>{t('castlePoints.board')}</h2>
               <span>{countLabel(board.length, 'allianceCount', t, locale)} / {countLabel(totalCastles, 'castleCount', t, locale)}</span>
             </div>
-            <button type="button" className="cp-soft-btn" onClick={resetBoard}>{t('castlePoints.reset')}</button>
+            <div className="cp-head-actions">
+              {isEmptyBoard(board) && <button type="button" className="cp-soft-btn ux-example-btn" onClick={loadExample}>{t('ux.example.load')}</button>}
+              <button type="button" className="cp-soft-btn" onClick={resetBoard}>{t('castlePoints.reset')}</button>
+            </div>
           </div>
 
           <div className="cp-table-shell">

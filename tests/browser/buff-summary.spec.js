@@ -73,7 +73,11 @@ test('formation summaries, contribution evidence and shared totals respect attac
   await expect(penetration(defense,'duke_hyou')).toHaveCount(0)
   await expect(penetration(defense,'ousen').locator('.buff-row')).toContainText('+30%')
   await expect(penetration(attack,'duke_hyou').locator('.buff-row')).toContainText('+20%')
-  for(const [row,value] of [[penetration(defense,'ousen'),30],[penetration(attack,'duke_hyou'),20]]) {
+  for(const [row,value,sideIndex] of [[penetration(defense,'ousen'),30,1],[penetration(attack,'duke_hyou'),20,0]]) {
+    // Phones (<=480px) show one formation grid at a time behind the
+    // Attacking/Defending tabs; desktop shows both and has no tabs.
+    const sideTab=summary.locator('.buff-side-switch button').nth(sideIndex)
+    if(await sideTab.isVisible()) await sideTab.click()
     await row.locator('.buff-row').click()
     await expect(row.locator('.buff-source-row')).toContainText(`+${value}%`)
     await expect(row.locator('.buff-source-skill')).not.toBeEmpty()

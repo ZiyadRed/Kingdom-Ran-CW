@@ -303,7 +303,7 @@ export default function App(){
                   onBlur={event=>{if(!event.currentTarget.contains(event.relatedTarget)){setOpenNav(current=>current===group.label?null:current);if(escapeClosedNav.current===group.label)escapeClosedNav.current=null}}}>
                   <Link className="nav-link" to={group.route} aria-expanded={group.items?openNav===group.label:undefined}>
                     <span>{navText(t,group.label)}</span>
-                    {group.label==='Teams'&&mounted&&selectedCount>0&&<span className="nav-count" aria-label={t('selectedGenerals',{count:selectedCount})}>{selectedCount}</span>}
+                    {group.label==='Teams'&&mounted&&selectedCount>0&&<span className="nav-count" title={t('selectedGenerals',{count:selectedCount})}><span aria-hidden="true">{selectedCount}</span><span className="sr-only">{t('selectedGenerals',{count:selectedCount})}</span></span>}
                     {group.items&&<UiIcon name="chevron" size={15}/>}
                   </Link>
                   {group.items&&(
@@ -330,15 +330,15 @@ export default function App(){
           <Routes>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/archive" element={<ArchiveHubPage/>}/>
-          <Route path="/archive/characters" element={<><ArchiveTabs active="characters"/><ArchivePage onAddToBuilder={addToBuilder}/></>}/>
-          <Route path="/archive/characters/:charId" element={<><ArchiveTabs active="characters"/><ArchivePage onAddToBuilder={addToBuilder}/></>}/>
+          <Route path="/archive/characters" element={<><ArchiveTabs active="characters"/><ArchivePage onAddToBuilder={addToBuilder} onLoadTeam={loadMetaTeam}/></>}/>
+          <Route path="/archive/characters/:charId" element={<><ArchiveTabs active="characters"/><ArchivePage onAddToBuilder={addToBuilder} onLoadTeam={loadMetaTeam}/></>}/>
           <Route path="/archive/cw6-scene-cards" element={<CW6SceneCardsPage/>}/>
-          <Route path="/archive/:charId" element={<><ArchiveTabs active="characters"/><ArchivePage onAddToBuilder={addToBuilder}/></>}/>
+          <Route path="/archive/:charId" element={<><ArchiveTabs active="characters"/><ArchivePage onAddToBuilder={addToBuilder} onLoadTeam={loadMetaTeam}/></>}/>
           <Route path="/builder" element={<BuilderPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} setAtkSk={setAtkSk} setDefSk={setDefSk} setSlot={setSlot} rm={rm} goSim={()=>navigate('/sim')} loadMetaTeam={loadMetaTeam} swapSides={swapSides} clearSide={clearSide} sharedIncludeCombat={initialBuilderShare.status==='valid'&&initialBuilderShare.includeCombat} shareStatus={mounted?builderShareStatus:'absent'}/>}/>
           <Route path="/sim" element={<SimPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} goBuilder={()=>navigate('/builder')}/>}/>
           <Route path="/castle-points" element={<CastlePointsPage/>}/>
           <Route path="/buffs" element={<BuffsPage/>}/>
-          <Route path="/tiers" element={<TierPage/>}/>
+          <Route path="/tiers" element={<TierPage onLoadTeam={loadMetaTeam}/>}/>
           <Route path="/cost" element={<TeamCostPage/>}/>
           <Route path="/cw-stats" element={<CWStatsPage/>}/>
           <Route path="/guide" element={<GuideHubPage/>}/>

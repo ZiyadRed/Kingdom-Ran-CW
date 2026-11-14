@@ -1,0 +1,281 @@
+/* UX improvement plan (2026-11-14)
+   Presentation-only layer on top of the same computed data. Uses logical
+   properties throughout so Arabic (RTL) mirrors without per-direction rules. */
+
+/* ── 1. Battle Order: compact timeline ─────────────────────────────────── */
+/* `body { overflow-x: hidden }` (globals.css) turns <body> into a scroll
+   container that never scrolls, so nothing sticks to the viewport. On the
+   Battle Order page only, `clip` keeps the same horizontal clipping without
+   creating that container, so turn headers (and the site header) can stick.
+   The page header is kept static here so the sticky stack stays short. */
+body:has(.sim-timeline-page) { overflow-x: clip; }
+.sim-timeline-page .sim-page-head { position: static; }
+/* `overflow: clip` keeps the rounded corners without creating a scroll
+   container either. */
+.sim-sec.sim-timeline { overflow: clip; }
+.sim-timeline-hd { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.sim-expand-all {
+  min-height: 32px; padding: 0 12px; border: 1px solid currentColor; border-radius: 6px;
+  background: var(--sur); color: var(--navy); font-size: 12px; font-weight: 800; cursor: pointer;
+}
+.sim-expand-all:hover { border-color: var(--terra); }
+
+.turn-jump {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  margin: -6px 0 14px; font-size: 12px;
+}
+.turn-jump-label { color: var(--txt3); font-weight: 700; margin-inline-end: 2px; }
+.turn-jump-btn {
+  min-width: 36px; min-height: 32px; padding: 0 10px; border: 1px solid var(--bdr); border-radius: 999px;
+  background: var(--sur); color: var(--navy); font-weight: 800; font-variant-numeric: tabular-nums; cursor: pointer;
+}
+.turn-jump-btn:hover { border-color: var(--terra); }
+
+.sim-timeline .turn { scroll-margin-top: calc(var(--hdr-h) + 12px); }
+.sim-timeline .turn-lbl {
+  position: sticky; top: var(--hdr-h); z-index: 6;
+  margin: 0; font-family: inherit; line-height: 1.4;
+  background: var(--bg2);
+  box-shadow: 0 1px 0 var(--bdr);
+}
+.sim-timeline .te { align-items: stretch; }
+.sim-timeline .te-body { padding: 0; min-width: 0; }
+.te-row {
+  display: grid; grid-template-columns: auto auto minmax(10rem, 15rem) minmax(0, 1fr) auto;
+  align-items: center; column-gap: 10px;
+  width: 100%; min-height: 48px; padding: 6px 12px 6px 8px; padding-inline: 8px 12px;
+  border: 0; background: transparent; color: inherit; font: inherit; text-align: start; cursor: pointer;
+}
+.te-row-static { cursor: default; }
+button.te-row:hover { background: rgba(6,38,76,.04); }
+button.te-row:focus-visible { outline-offset: -3px; }
+.sim-timeline .te-order { margin: 0; align-self: center; }
+html[dir="rtl"] .sim-timeline .te-order { margin: 0; }
+.te-who { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.te-who .te-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .86rem; }
+.te-side-tag { margin: 0; padding: 1px 6px; font-family: inherit; font-size: .62rem; letter-spacing: 0; border-radius: 4px; }
+.te-side-attack { background: rgba(192,57,43,.14); color: #a5281c; border: 1px solid rgba(192,57,43,.32); }
+.te-side-defense { background: rgba(26,95,168,.14); color: #15508f; border: 1px solid rgba(26,95,168,.32); }
+.te-what { display: grid; gap: 2px; min-width: 0; }
+.te-skill-line { display: flex; align-items: center; gap: 6px; min-width: 0; flex-wrap: wrap; }
+.te-skill-name { font-weight: 800; color: var(--navy); font-size: .86rem; overflow-wrap: anywhere; }
+.te-type-chip {
+  flex: 0 0 auto; padding: 1px 7px; border-radius: 4px; font-size: .66rem; font-weight: 800;
+  color: var(--navy);
+  background: color-mix(in srgb, var(--chip, #888) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--chip, #888) 45%, transparent);
+}
+.te-role-chip { flex: 0 0 auto; color: var(--terra2); font-size: .66rem; font-weight: 800; }
+.te-summary {
+  display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  color: var(--txt3); font-size: .76rem;
+}
+.te-summary .eff-sep { font-size: inherit; }
+.te-more { color: var(--txt3); font-weight: 700; }
+.te-chevron {
+  width: 9px; height: 9px; border-block-end: 2px solid var(--txt3); border-inline-end: 2px solid var(--txt3);
+  transform: rotate(45deg); transition: transform .15s ease; margin-inline: 4px;
+}
+.te-open .te-chevron { transform: rotate(-135deg); }
+.te-detail { padding: 2px 12px 12px; padding-inline-start: 46px; }
+@media (prefers-reduced-motion: reduce) { .te-chevron { transition: none; } }
+
+@media (max-width: 768px) {
+  .te-row {
+    grid-template-columns: auto auto minmax(0, 1fr) auto;
+    grid-template-areas: "order icon who chev" "order icon what chev";
+    row-gap: 2px; padding-inline: 6px 8px;
+  }
+  .te-row > .te-order { grid-area: order; }
+  .te-row > :nth-child(2) { grid-area: icon; }
+  .te-who { grid-area: who; }
+  .te-what { grid-area: what; }
+  .te-chevron { grid-area: chev; }
+  .te-detail { padding-inline: 6px; }
+  .turn-jump { margin-top: 0; }
+}
+.sim-timeline .turn-lbl:focus:not(:focus-visible) { outline: none; }
+
+/* ── 2. Party Builder: buff comparison grid ────────────────────────────── */
+.buff-grid-scroll { max-width: 100%; overflow-x: auto; overscroll-behavior-inline: contain; margin-block-end: .5rem; border: 1px solid var(--bdr); border-radius: 9px; background: var(--sur); }
+.buff-grid {
+  display: grid;
+  grid-template-columns: minmax(6.5rem, max-content) repeat(var(--buff-cols, 4), minmax(5.25rem, 1fr));
+  align-items: stretch;
+  min-width: min-content;
+  font-size: .78rem;
+}
+.buff-grid .bg-contents { display: contents; }
+.bg-corner, .bg-stat { position: sticky; inset-inline-start: 0; z-index: 2; background: var(--bg2); }
+.bg-corner { border-block-end: 1px solid var(--bdr); }
+.bg-colhead { min-width: 0; padding: 6px 6px 4px; border-block-end: 1px solid var(--bdr); border-inline-start: 1px solid var(--bdr); background: var(--bg2); }
+.bg-colhead .scol-gen-hdr { flex-direction: column; align-items: center; gap: 3px; margin: 0; padding: 0; border: 0; text-align: center; }
+.bg-colhead .scol-gen-hdr b { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .74rem; }
+.bg-colhead .scol-unit-badge { margin: 0; }
+.bg-stat {
+  display: flex; align-items: center; padding: 5px 8px; min-height: 36px;
+  border-block-start: 1px solid var(--bdr); color: var(--txt2); font-weight: 600; line-height: 1.25;
+  box-shadow: 1px 0 0 var(--bdr);
+}
+html[dir="rtl"] .bg-stat { box-shadow: -1px 0 0 var(--bdr); }
+.bg-empty { border-block-start: 1px solid var(--bdr); border-inline-start: 1px solid var(--bdr); }
+.buff-grid .bg-cell {
+  display: flex; align-items: center; justify-content: center; min-height: 36px; margin: 0; padding: 4px;
+  border: 0; border-block-start: 1px solid var(--bdr); border-inline-start: 1px solid var(--bdr); border-radius: 0;
+  background: transparent;
+}
+.buff-grid .bg-cell .buff-vals { margin: 0; flex-wrap: wrap; justify-content: center; gap: 3px; }
+.buff-grid .bg-cell:hover { background: rgba(6,38,76,.05); }
+.buff-grid .bg-cell.buff-row-open { background: rgba(224,127,72,.14); box-shadow: inset 0 -3px 0 var(--terra); }
+.buff-grid .bg-cell:focus-visible { outline: 3px solid var(--blue); outline-offset: -3px; }
+.buff-grid .bg-panel {
+  margin: 0; padding: 8px 10px 10px; border: 0; border-block-start: 1px solid var(--bdr); border-radius: 0;
+  border-inline-start: 3px solid var(--terra); background: var(--sur);
+  position: sticky; inset-inline-start: 0; max-width: min(100%, 92vw);
+}
+.bg-panel-title { font-weight: 800; color: var(--navy); font-size: .74rem; margin-block-end: 2px; }
+.buff-side-switch { display: none; }
+
+@media (max-width: 480px) {
+  .buff-side-switch {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-block-end: 1px solid var(--bdr); background: var(--sur);
+  }
+  .buff-side-switch button {
+    display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 40px;
+    border: 0; border-block-end: 3px solid transparent; background: transparent;
+    color: var(--txt3); font-size: 12px; font-weight: 800;
+  }
+  .buff-side-switch button span { font-size: 10px; font-variant-numeric: tabular-nums; }
+  .buff-side-switch button.active { border-block-end-color: var(--terra); color: var(--navy); }
+  .buff-show-attack > .scol.def,
+  .buff-show-defense > .scol.atk { display: none; }
+  .buff-grid { grid-template-columns: minmax(4.8rem, 6.5rem) repeat(var(--buff-cols, 4), minmax(3.5rem, 1fr)); font-size: .72rem; }
+  .bg-stat { padding-inline: 6px; font-size: .7rem; overflow-wrap: anywhere; }
+  .bg-colhead { padding-inline: 3px; }
+  .bg-colhead .scol-gen-hdr b { font-size: .68rem; }
+  .bg-colhead .scol-unit-badge { display: none; }
+  .buff-grid .bg-cell { padding: 3px 2px; }
+  .buff-grid .bg-cell .buff-up, .buff-grid .bg-cell .buff-down { padding-inline: 5px; font-size: .68rem; }
+  .buff-summary .buff-cols > .scol { padding-inline: 8px; }
+}
+
+/* ── 3. Archive character panel: fact strip and cross-links ─────────────── */
+.detail-facts {
+  display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 8px 14px 4px;
+}
+.detail-fact {
+  display: inline-flex; align-items: baseline; gap: 6px; min-width: 0;
+  padding: 4px 9px; border: 1px solid var(--bdr); border-radius: 999px; background: var(--sur);
+  font-size: .74rem; line-height: 1.35;
+}
+.detail-fact dt { color: var(--txt3); font-weight: 600; }
+.detail-fact dd { margin: 0; color: var(--navy); font-weight: 800; overflow-wrap: anywhere; }
+.detail-fact-groups { border-radius: 10px; }
+.fact-rarity { color: var(--rc); }
+.fact-crystal { display: inline-block; vertical-align: -2px; margin-inline-end: 3px; object-fit: contain; }
+.detail-section { margin: 14px 14px 0; padding-block-start: 12px; border-block-start: 1px solid var(--bdr); }
+.detail-section:last-child { padding-block-end: 16px; }
+.detail-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-block-end: 8px; }
+.detail-section-head h2 { margin: 0; color: var(--navy); font-size: .92rem; font-weight: 800; }
+.detail-section-link { color: var(--accent-action-fg, var(--terra2)); font-size: .76rem; font-weight: 800; text-decoration: none; white-space: nowrap; }
+.detail-section-link:hover { text-decoration: underline; }
+.detail-passive-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 4px 10px; margin: 0; padding: 0; list-style: none; }
+.detail-passive-list li { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 30px; padding: 3px 8px; border: 1px solid var(--bdr); border-radius: 6px; background: var(--sur); font-size: .78rem; }
+.detail-passive-cat { color: var(--txt2); font-weight: 600; min-width: 0; }
+.detail-team-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+.detail-team { display: grid; gap: 6px; padding: 8px 10px; border: 1px solid var(--bdr); border-radius: 8px; background: var(--sur); }
+.detail-team-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: .82rem; color: var(--navy); }
+.detail-team-tier { flex: 0 0 auto; padding: 1px 7px; border-radius: 4px; font-size: .66rem; font-weight: 800; color: #fff; background: var(--tc); }
+.detail-team-members { display: flex; gap: 4px; }
+.detail-team-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.detail-team-actions .meta-btn { min-height: 36px; }
+@media (max-width: 768px) {
+  .detail-facts { padding-inline: 12px; }
+  .detail-section { margin-inline: 12px; }
+}
+/* With the new sections below the skills, the whole panel scrolls (it already
+   has overflow-y: auto) instead of squeezing the skills into an inner box. */
+.detail-panel > .detail-skills { flex: 0 0 auto; overflow: visible; }
+.detail-panel > .detail-facts, .detail-panel > .detail-section { flex-shrink: 0; }
+
+/* ── 4. Filter chips (Archive, pickers) ─────────────────────────────────── */
+.filter-chip-group { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.filter-chip-label { flex: 0 0 auto; color: var(--txt3); font-size: .7rem; font-weight: 700; }
+.filter-chip-row {
+  display: flex; gap: 5px; min-width: 0; overflow-x: auto; scrollbar-width: none;
+  overscroll-behavior-inline: contain; padding-block: 2px;
+}
+.filter-chip-row::-webkit-scrollbar { display: none; }
+.filter-chip {
+  --chip-c: var(--navy);
+  flex: 0 0 auto; display: inline-flex; align-items: center; gap: 4px;
+  min-height: 30px; padding: 0 10px; border: 1px solid var(--bdr); border-radius: 999px;
+  background: var(--sur); color: var(--txt2); font-size: .74rem; font-weight: 700; white-space: nowrap; cursor: pointer;
+}
+.filter-chip:hover { border-color: var(--chip-c); }
+.filter-chip.is-on { border-color: var(--chip-c); background: var(--chip-c); color: #fff; }
+.filter-chip-icon { width: 16px; height: 16px; object-fit: contain; }
+.filter-chip.is-on .filter-chip-icon { filter: brightness(0) invert(1); }
+.archive-filters { display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 8px 18px 4px; }
+.picker-chip-filters { display: grid; gap: 4px; padding: 6px 12px 8px; border-block-end: 1px solid var(--bdr); background: var(--sur); }
+.cwstats-search-results .picker-chip-filters { padding-inline: 8px; border-radius: 8px 8px 0 0; }
+@media (max-width: 768px) {
+  .archive-filters { flex-wrap: nowrap; flex-direction: column; gap: 4px; padding: 6px 10px 2px; }
+  .filter-chip { min-height: 32px; }
+}
+
+/* ── 6. Image loading polish ────────────────────────────────────────────── */
+/* Neutral skeleton behind image tiles until the image reports it loaded. */
+@keyframes ux-img-shimmer { 0% { background-position: 120% 0 } 100% { background-position: -120% 0 } }
+img[data-skel]:not([data-loaded]),
+:is(.banner-card, .banner-ph, .cw6-card-art):has(> .archive-img:not(.is-loaded)) {
+  background-color: #e3ded6;
+  background-image: linear-gradient(100deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 70%);
+  background-size: 220% 100%;
+  background-repeat: no-repeat;
+  animation: ux-img-shimmer 1.3s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  img[data-skel]:not([data-loaded]),
+  :is(.banner-card, .banner-ph, .cw6-card-art):has(> .archive-img:not(.is-loaded)) { animation: none; background-image: none; }
+}
+
+/* ── 7. Small items ──────────────────────────────────────────────────────── */
+/* Phone Archive: the state filters are one horizontally scrolling chip row
+   (was a two-row five-column grid), so the first cards sit higher. */
+@media (max-width: 768px) {
+  .archive-layout .fac-nav {
+    display: flex !important; flex-wrap: nowrap; grid-template-columns: none;
+    gap: 6px; padding: 6px 10px; overflow-x: auto; overflow-y: hidden;
+    scrollbar-width: none; overscroll-behavior-inline: contain; scroll-padding-inline: 10px;
+  }
+  .archive-layout .fac-nav::-webkit-scrollbar { display: none; }
+  .archive-layout .fac-item {
+    flex: 0 0 auto; width: auto; min-height: 34px; flex-direction: row; align-items: center; gap: 6px;
+    padding: 0 12px; border-radius: 999px; scroll-snap-align: start;
+  }
+  .archive-layout .fac-name {
+    display: inline; -webkit-line-clamp: unset; white-space: nowrap; overflow: visible;
+    font-size: .74rem; line-height: 1; max-width: none;
+  }
+  html[lang="fr"] .archive-layout .fac-name { font-size: .74rem; }
+  .archive-layout .fac-n { font-size: .62rem; padding: 0 .3rem; }
+}
+/* Tier list: team cards load into the Party Builder. */
+.mw-team--load { cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; }
+.mw-team--load:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(6,38,76,.14); }
+.mw-team--load:focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .mw-team--load, .mw-team--load:hover { transition: none; transform: none; } }
+/* Home hero: shorter on desktop so the three tool columns start within the
+   first screen (phones keep their stacked layout). */
+@media (min-width: 769px) {
+  .home-hero { min-height: clamp(320px, 28vw, 410px); }
+  .home-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
+  .home-hero-content { padding-block: 40px 44px; }
+  .home-hero h1 { font-size: clamp(46px, 4.8vw, 66px); margin-bottom: 10px; }
+  .home-hero p { margin-bottom: 18px; }
+}
+/* "Load example" on empty calculators */
+.cp-head-actions { display: inline-flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+.ux-example-btn { white-space: nowrap; }

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ALL, CharIcon, characterInitialRarity, searchCharacters, useReleaseData } from './core.jsx'
+import { ALL, CharIcon, PickerFilters, TIER_TEAMS, characterInitialRarity, filterCharactersByStateAndUnit, searchCharacters, useReleaseData } from './core.jsx'
 import { compareCharacters } from './i18n/character-search.js'
 import { useLocale } from './i18n/LocaleContext.jsx'
 import { localizedCharacter, localizedText } from './i18n/data.js'
@@ -466,10 +466,17 @@ function CharacterSearch({ team, teamId, teamNumber, query, open, activeSlot, in
     .sort((a, b) => compareCharacters(a, b, locale)), [roster, locale])
   const { t } = useTranslation('common')
   const searchInput = useRef(null)
+  const [stateFilter, setStateFilter] = useState(null)
+  const [unitFilter, setUnitFilter] = useState(null)
+  const filtersActive = Boolean(stateFilter || unitFilter)
   const normalizedQuery = query.trim().toLowerCase()
+  const filteredList = filterCharactersByStateAndUnit(characterList, { state: stateFilter, unit: unitFilter })
+  // A typed query keeps its bounded result list; chips alone browse the whole
+  // filtered roster (the results panel scrolls).
   const results = normalizedQuery
-    ? searchCharacters(characterList, query, locale).slice(0, 24)
-    : []
+    ? searchCharacters(filteredList, query, locale).slice(0, 24)
+    : filtersActive ? filteredList : []
+  const showResults = Boolean(normalizedQuery) || filtersActive
   const emptySlots = team.filter(Boolean).length < CW_STATS_SLOTS
   const hasTargetSlot = activeSlot?.teamId === teamId
   const canSelect = emptySlots || hasTargetSlot
@@ -495,13 +502,14 @@ function CharacterSearch({ team, teamId, teamNumber, query, open, activeSlot, in
 
       {open && (
         <div className="cwstats-search-results" role="listbox" aria-label={`${t('search')} · ${t('stats.team', { number: teamNumber })}`}>
-          {!normalizedQuery && (
+          <PickerFilters characters={characterList} state={stateFilter} unit={unitFilter} onState={setStateFilter} onUnit={setUnitFilter} />
+          {!showResults && (
             <p className="cwstats-search-hint">{t('stats.searchHint')}</p>
           )}
-          {normalizedQuery && results.length === 0 && (
-            <p className="cwstats-search-hint">{t('stats.noCharacterMatches', { query })}</p>
+          {showResults && results.length === 0 && (
+            <p className="cwstats-search-hint">{normalizedQuery ? t('stats.noCharacterMatches', { query }) : t('ux.filters.noMatches')}</p>
           )}
-          {normalizedQuery && results.map((character) => {
+          {showResults && results.map((character) => {
             const selectedInTeam = team.includes(character.id)
             return (
               <button
@@ -522,7 +530,7 @@ function CharacterSearch({ team, teamId, teamNumber, query, open, activeSlot, in
               </button>
             )
           })}
-          {normalizedQuery && !canSelect && results.length > 0 && (
+          {showResults && !canSelect && results.length > 0 && (
             <p className="cwstats-search-hint">{t('stats.fullHint')}</p>
           )}
         </div>
@@ -641,8 +649,24 @@ function TeamSection({ team, teamNumber, characters, query, open, activeSlot, ed
   )
 }
 
+// The calculator is empty when nothing has been entered: one team, no
+// generals, no saved character values.
+export const isEmptyCwStatsState = state => state.teams.length === 1
+  && state.teams[0].slots.every(id => !id)
+  && Object.keys(state.characters || {}).length === 0
+
+// "Load example" places the first Metawatch team in Team 1 and leaves every
+// stat field blank: screen values come from the player's own game, so none
+// are invented. It never touches a calculator that already has data.
+export const loadCwStatsExample = (state, characterIds) => {
+  if (!isEmptyCwStatsState(state)) return state
+  const teamId = state.teams[0].id
+  return characterIds.slice(0, CW_STATS_SLOTS).reduce((next, id) => assignCwStatsCharacter(next, teamId, id), state)
+}
+
 export function CWStatsPage() {
   const { t } = useTranslation('common')
+  const { findCharByName } = useReleaseData()
   const [state, setState, changed] = useHydratedState(createDefaultCwStatsState, readStoredCwStats)
   const [queries, setQueries] = useState({})
   const [openTeam, setOpenTeam] = useState(null)
@@ -772,6 +796,11 @@ export function CWStatsPage() {
         </div>
         <div className="cwstats-page-actions">
           <span className="cwstats-save-note" role="status" aria-live="polite" data-save-status={saveStatus}>{t(saveStatus === 'failed' ? 'stats.saveFailed' : saveStatus === 'saved' ? 'stats.saved' : 'stats.autoSave')}</span>
+          {isEmptyCwStatsState(state) && <button type="button" className="cwstats-clear-button ux-example-btn" onClick={() => {
+            const ids = (TIER_TEAMS[0]?.members || []).map(name => findCharByName(name)?.id).filter(Boolean)
+            setState(previous => loadCwStatsExample(previous, ids))
+            setEditingSlot({ teamId: state.teams[0].id, slotIndex: 0 })
+          }}>{t('ux.example.load')}</button>}
           <button type="button" className="cwstats-clear-button" onClick={clearSavedCalculator}>{t('stats.reset')}</button>
         </div>
       </header>

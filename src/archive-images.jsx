@@ -18,26 +18,36 @@ export function useArchiveGalleryVisible(hasSelection) {
 // lazy-loading alone starts too many offscreen requests on slow connections.
 // Remember revealed art across detail/back navigation, but withhold sources
 // while the mobile detail panel covers the gallery.
-export function ArchiveImage({ src, srcSet, sizes, alt, title, enabled, eager = false, fade = false, style, className = 'banner-img' }) {
+// Image tiles show a neutral skeleton (CSS) until the browser reports the
+// image loaded; `is-loaded` is set on load and for already-cached images.
+export const markImageLoaded = image => {
+  if (image?.complete && image.naturalWidth > 0) image.classList.add('is-loaded')
+}
+export const onImageLoaded = event => event.currentTarget.classList.add('is-loaded')
+
+// `eager` loads the first visible row immediately; `priority` (default: same
+// as eager) additionally asks for high fetch priority, used for the first few.
+export function ArchiveImage({ src, srcSet, sizes, alt, title, enabled, eager = false, priority = eager, fade = false, style, className = 'banner-img' }) {
   const ref = useRef(null)
   const [revealed, setRevealed] = useState(false)
   const active = enabled && (eager || revealed)
   useEffect(() => {
-    if (fade && active && ref.current?.complete && ref.current.naturalWidth > 0) ref.current.classList.add('is-loaded')
-  }, [active, fade, src])
+    if (active) markImageLoaded(ref.current)
+  }, [active, src])
   // React 18 passes this newer HTML attribute through in lowercase; its
   // camelCase form logs an unknown-property warning in development.
-  const priority = eager ? { fetchpriority: 'high' } : {}
+  const fetchPriority = eager && priority ? { fetchpriority: 'high' } : {}
   useEffect(() => {
     if (!enabled || eager || revealed) return
     const element = ref.current
     if ('IntersectionObserver' in window) {
+      // Start a little before a tile scrolls into view so it is rarely blank.
       const observer = new IntersectionObserver(entries => {
         if (entries.some(entry => entry.isIntersecting)) {
           setRevealed(true)
           observer.disconnect()
         }
-      })
+      }, { rootMargin: '240px 0px' })
       observer.observe(element)
       return () => observer.disconnect()
     }
@@ -57,7 +67,7 @@ export function ArchiveImage({ src, srcSet, sizes, alt, title, enabled, eager = 
   }, [enabled, eager, revealed])
 
   return <img ref={ref} src={active ? src : undefined} srcSet={active ? srcSet : undefined}
-    sizes={sizes} alt={alt} title={title} className={`${fade ? 'fade-img ' : ''}${className}`} style={{...style, ...(!active ? { visibility: 'hidden' } : {})}}
-    onLoad={fade ? event => event.currentTarget.classList.add('is-loaded') : undefined}
-    loading={eager ? 'eager' : 'lazy'} {...priority} decoding="async" />
+    sizes={sizes} alt={alt} title={title} className={`archive-img ${fade ? 'fade-img ' : ''}${className}`.trim()} style={{...style, ...(!active ? { visibility: 'hidden' } : {})}}
+    onLoad={onImageLoaded}
+    loading={eager ? 'eager' : 'lazy'} {...fetchPriority} decoding="async" />
 }

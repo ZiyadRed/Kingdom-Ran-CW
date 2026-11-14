@@ -121,3 +121,16 @@ export const WOGG_BUFF_SOURCES = [
 ]
 
 export const UNIT_ICON_SCALE={Infantry:1.18,Cavalry:1.18,Archer:1,Shield:1}
+
+// Display order for a Buff Tracker source list: highest buff first. A source's
+// full contribution counts its independent +5% shard upgrade. Array sort is
+// stable, so equal values keep their authored order. This is presentation only:
+// ownership is keyed by each entry's authored `ownership_id`, never by position,
+// and the data files are not reordered.
+export const buffSourceDisplayValue = entry => (Number(entry?.value) || 0) + (entry?.shard_bonus ? 5 : 0)
+export function sortBuffSourcesByValue(entries) {
+  return (entries || [])
+    .map((entry, index) => ({ entry, index }))
+    .sort((a, b) => buffSourceDisplayValue(b.entry) - buffSourceDisplayValue(a.entry) || a.index - b.index)
+    .map(({ entry }) => entry)
+}
