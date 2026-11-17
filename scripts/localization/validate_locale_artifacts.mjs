@@ -27,9 +27,9 @@ const has = (p) => existsSync(join(root, p))
 // Multiple deterministic project rows can share a canonical CW skillId.
 // Assert project coverage and distinct canonical entries independently.
 const PENDING_KEYS = []
-const EXPECTED_PROJECT_SKILLS = 671
-const EXPECTED_DETERMINISTIC = 671
-const EXPECTED_CANONICAL_SKILLS = 609
+const EXPECTED_PROJECT_SKILLS = 672
+const EXPECTED_DETERMINISTIC = 672
+const EXPECTED_CANONICAL_SKILLS = 610
 const EXPECTED_AMBIGUOUS = 0
 // All October 28 additions now have exact canonical master assignments.
 const EXPECTED_PENDING = 0

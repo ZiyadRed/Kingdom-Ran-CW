@@ -611,6 +611,40 @@
             "duration": null
           }
         ]
+      },
+      {
+        "name_en": "Guardian’s Blessing",
+        "name_jp": "守り子の加護☆6",
+        "type": "Strategy",
+        "star6": true,
+        "cwId": 889,
+        "textId": 888,
+        "effects": [
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "HP Recovery Rate Down 50%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Kisui is alive",
+            "target": "Ally Kisui Army",
+            "effect": "ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Batei is alive",
+            "target": "Ally Kisui Army",
+            "effect": "Hit Rate Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Kisui and Batei are alive",
+            "target": "Ally Kisui Army",
+            "effect": "Illusion Resistance 60%",
+            "duration": null
+          }
+        ]
       }
     ],
     "image": "/persos/ryuuto.webp",

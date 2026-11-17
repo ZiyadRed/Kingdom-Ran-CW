@@ -29,13 +29,13 @@
     "unresolved": 0
   },
   "cwSkillMapping": {
-    "inputFileSha256": "842AE1AEBFA318AF73E8793F2C46E749844A2DA4559AD152E4A34B5FF6988DEC",
-    "total": 671,
+    "inputFileSha256": "0718372470AC26A1F17DB54F6D094C9DF6C86823B0084939F867DCAD698FFCC3",
+    "total": 672,
     "exact": 628,
-    "resolved": 43,
+    "resolved": 44,
     "ambiguous": 0,
     "unresolved": 0,
-    "deterministic": 671,
+    "deterministic": 672,
     "pendingSource": 0
   },
   "stblTables": {
@@ -61,10 +61,10 @@
     }
   },
   "generatedArtifacts": {
-    "deterministicProjectSkills": 671,
-    "canonicalJapaneseSkills": 609,
+    "deterministicProjectSkills": 672,
+    "canonicalJapaneseSkills": 610,
     "ambiguousProjectSkills": 0,
-    "sourceIndexRows": 671,
+    "sourceIndexRows": 672,
     "rubyReadingsAvailable": 191,
     "rubyReadingsMissing": 21
   }

@@ -5,7 +5,7 @@ import release from '../data/source/released_content_2026-10-28.json'
 import units from '../data/cw_buffs.json'
 import teams from '../data/cw_team_buffs.json'
 import legacy from '../data/buff_ownership_legacy.json'
-import { CHAR_BY_ID, PUBLIC_CW6_CARDS, applyMask, calcCharBuffs, calcTeamEnemyDebuffs, normalizeProgress, simulate } from './core.jsx'
+import { CHAR_BY_ID, applyMask, getReleaseData, calcCharBuffs, calcTeamEnemyDebuffs, normalizeProgress, simulate } from './core.jsx'
 import { localizedCharacter, japaneseSkillSource } from './i18n/data.js'
 import { AR_CHARACTER_NAMES, matchesCharacterName } from './i18n/ar-character-names.js'
 
@@ -112,9 +112,11 @@ describe('released October 28 characters and role skills', () => {
     expect(firstTurn.entries.filter(entry => entry.kind === 'role').map(entry => entry.role)).toEqual(['Leader', 'Strategist'])
   })
 
-  it('keeps the next Ryuuto CW6 and unreleased character records outside the public roster', () => {
-    expect(PUBLIC_CW6_CARDS.some(card => card.id === 42005)).toBe(false)
-    expect(CHAR_BY_ID.ryuuto.skills.some(skill => release.excludedFuture.cwSkillIds.includes(skill.cwId))).toBe(false)
+  it('keeps Ryuuto CW6 behind its release time and unreleased character records outside the public roster', () => {
+    // Card 42005 ships with publicTime 1794996000 (2026-11-18 10:00 UTC); before that it stays hidden.
+    const before = getReleaseData(1794996000000 - 1)
+    expect(before.PUBLIC_CW6_CARDS.some(card => card.id === 42005)).toBe(false)
+    expect(before.findCharById('ryuuto').skills.some(skill => release.excludedFuture.cwSkillIds.includes(skill.cwId))).toBe(false)
     for (const character of Object.values(CHAR_BY_ID)) {
       expect(release.excludedFuture.characterIds).not.toContain(character.source?.characterId)
     }

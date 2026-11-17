@@ -21,6 +21,11 @@
   in-game release is verified. Do not push or deploy it early, even behind a
   scheduled visibility gate. This does not exclude his existing character or
   released skills from team presets.
+  **Owner exception (2026-11-17, updated 2026-11-18):** the CW6 card 42005
+  release on branch `release/ryuuto-cw6-20261118` is pushed at 11:00 Riyadh on
+  2026-11-18 and stays hidden by its `publicTime` gate until 13:00 Riyadh
+  (10:00 UTC). The game data says 12:00; the owner moved the site gate to 13:00
+  because the in-game maintenance was extended.
 
 **Mandatory.** Before adding a character, skill, CW/CW6 card, game data or a new
 mechanic, read `docs/CONTENT_INTEGRATION_RULES.md`. It is the detailed contract;

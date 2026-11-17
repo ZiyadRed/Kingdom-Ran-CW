@@ -44,9 +44,9 @@ const AMBIGUOUS_KEYS = []
 // mistaken for the other: `rows` counts entries in the file, and
 // `coveredProjectRows` counts the deterministic project rows they serve.
 const EXPECTED = {
-  skills: 671,
-  deterministic: 671,
-  canonicalSkills: 609,
+  skills: 672,
+  deterministic: 672,
+  canonicalSkills: 610,
   ambiguous: 0,
   // October 28 supplies all announced Koshuu/Koreki assignments. Reject any
   // regression back to announcement-only rows or null canonical IDs.

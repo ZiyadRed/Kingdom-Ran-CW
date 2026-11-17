@@ -1,7 +1,7 @@
 {
   "_meta": {
     "schema": "ranhq.source_index/1",
-    "rows": 671
+    "rows": 672
   },
   "skills": {
     "rouai#0": {
@@ -2347,6 +2347,10 @@
     "ryuuto#2": {
       "status": "exact",
       "skillId": 538
+    },
+    "ryuuto#3": {
+      "status": "resolved",
+      "skillId": 889
     },
     "kishou#0": {
       "status": "exact",

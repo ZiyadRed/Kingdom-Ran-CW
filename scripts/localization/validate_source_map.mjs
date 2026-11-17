@@ -29,11 +29,11 @@ const EXPECTED_EXACT = 201
 const EXPECTED_RESOLVED = 11
 
 // ── Phase 2 CW-skill expectations ────────────────────────────────────────────
-const EXPECTED_SKILLS = 671
+const EXPECTED_SKILLS = 672
 const EXPECTED_SKILL_AMBIGUOUS = 0
-const EXPECTED_SKILL_DETERMINISTIC = 671
+const EXPECTED_SKILL_DETERMINISTIC = 672
 const EXPECTED_BASE = 636
-const EXPECTED_SCENE_CARD_RANK = 35
+const EXPECTED_SCENE_CARD_RANK = 36
 const AMBIGUOUS_KEYS = []
 
 // The released October 28 skills must not regress to announcement-only data.

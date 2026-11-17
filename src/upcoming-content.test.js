@@ -31,3 +31,37 @@ describe('Batei future CW6',()=>{
     expect(calcCharBuffs(owner,[owner,ryuuto],[],false,true)['Betrayal Resistance']?.up||0).toBe(0)
   })
 })
+
+const ryuutoRelease=1794996000000
+const ryuutoAfter=getReleaseData(ryuutoRelease)
+const ryuuto=applyMask(ryuutoAfter.findCharById('ryuuto'),{n:0,s6:true,role:false})
+const bareAfter=id=>({...ryuutoAfter.findCharById(id),skills:[],roleSkill:null})
+
+describe('Ryuuto future CW6',()=>{
+  it('gates the card and character skill at the same source boundary',()=>{
+    const before=getReleaseData(ryuutoRelease-1)
+    expect(before.PUBLIC_CW6_CARDS.some(card=>card.id===42005)).toBe(false)
+    expect(before.findCharById('ryuuto').skills.some(skill=>skill.cwId===889)).toBe(false)
+    expect(ryuutoAfter.PUBLIC_CW6_CARDS.find(card=>card.id===42005)).toMatchObject({owner_id:'ryuuto',publicTime:1794996000,cwIds:[884,885,886,887,888,889]})
+    expect(ryuuto.skills).toHaveLength(1)
+    expect(ryuuto.skills[0].cwId).toBe(889)
+  })
+  it('cuts healing for every enemy general without touching allies',()=>{
+    const kisui=bareAfter('kisui')
+    expect(calcTeamEnemyDebuffs([ryuuto,kisui])['All enemies']?.down?.['HP Recovery Rate']).toBe(50)
+    expect(calcCharBuffs(kisui,[ryuuto,kisui],[],false,true)['HP Recovery Rate']).toBeUndefined()
+  })
+  it('ties each Kisui army bonus to the named surviving partners',()=>{
+    const kisui=bareAfter('kisui'),batei=bareAfter('batei'),shin=bareAfter('shin')
+    const withKisui=calcCharBuffs(kisui,[ryuuto,kisui],[],false,true)
+    expect(withKisui.ATK?.up).toBe(20)
+    expect(withKisui['Hit Rate']?.up||0).toBe(0)
+    expect(withKisui['Illusion Resistance']?.up||0).toBe(0)
+    const withBatei=calcCharBuffs(batei,[ryuuto,batei],[],false,true)
+    expect(withBatei['Hit Rate']?.up).toBe(30)
+    expect(withBatei.ATK?.up||0).toBe(0)
+    const full=calcCharBuffs(kisui,[ryuuto,kisui,batei],[],false,true)
+    expect(full['Illusion Resistance']?.up).toBe(60)
+    expect(calcCharBuffs(shin,[ryuuto,kisui,batei,shin],[],false,true).ATK?.up||0).toBe(0)
+  })
+})

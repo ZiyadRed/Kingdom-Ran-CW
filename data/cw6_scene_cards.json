@@ -1581,6 +1581,61 @@
           }
         ]
       }
+    },
+    {
+      "id": 42005,
+      "imageId": 12005,
+      "name_jp": "守るべきもの",
+      "name_en": "What Must Be Protected",
+      "skill_en": "Guardian’s Blessing",
+      "skill_jp": "守り子の加護",
+      "image": "/scene_cards/webp/Ryuuto-CW6-star.webp",
+      "thumb": "/scene_cards/thumbs/Ryuuto-CW6-star-thumb.webp",
+      "owner_id": "ryuuto",
+      "ownerName": "Ryuuto",
+      "ownerNameJp": "劉冬",
+      "ownerIcon": "/icons/Ryuuto.webp",
+      "publicTime": 1794996000,
+      "cwIds": [
+        884,
+        885,
+        886,
+        887,
+        888,
+        889
+      ],
+      "skill": {
+        "name_en": "Guardian’s Blessing",
+        "name_jp": "守り子の加護☆6",
+        "type": "Strategy",
+        "star6": true,
+        "effects": [
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "HP Recovery Rate Down 50%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Kisui is alive",
+            "target": "Ally Kisui Army",
+            "effect": "ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Batei is alive",
+            "target": "Ally Kisui Army",
+            "effect": "Hit Rate Up 30%",
+            "duration": null
+          },
+          {
+            "condition": "When ally Kisui and Batei are alive",
+            "target": "Ally Kisui Army",
+            "effect": "Illusion Resistance 60%",
+            "duration": null
+          }
+        ]
+      }
     }
   ]
 }

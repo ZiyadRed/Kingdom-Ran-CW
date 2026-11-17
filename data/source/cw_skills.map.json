@@ -8958,6 +8958,63 @@
         "name_jp": "体力強化・大改【歩兵】",
         "effectsHash": "e88df5bd75313ab8aa7ff3b4f732e9dc3cb4a2597496d9f5fd803760f1478eef"
       }
+    },
+    "ryuuto#3": {
+      "status": "resolved",
+      "characterId": 213,
+      "skillId": 889,
+      "textId": 888,
+      "sourceType": "scene_card_rank",
+      "sourceSlot": null,
+      "sourceNameJp": "守り子の加護☆6",
+      "fingerprint": {
+        "name_jp": "守り子の加護☆6",
+        "effectsHash": "ad7950fcd1332c1f656f018c2201293fd6b7cbdd96662975de0bf4fedbfdf8bd"
+      },
+      "sceneCard": {
+        "cardId": 42005,
+        "rank": 6,
+        "rankGroupId": 36,
+        "ranks": [
+          {
+            "id": 211,
+            "rankGroupId": 36,
+            "rank": 1,
+            "skillId": 884
+          },
+          {
+            "id": 212,
+            "rankGroupId": 36,
+            "rank": 2,
+            "skillId": 885
+          },
+          {
+            "id": 213,
+            "rankGroupId": 36,
+            "rank": 3,
+            "skillId": 886
+          },
+          {
+            "id": 214,
+            "rankGroupId": 36,
+            "rank": 4,
+            "skillId": 887
+          },
+          {
+            "id": 215,
+            "rankGroupId": 36,
+            "rank": 5,
+            "skillId": 888
+          },
+          {
+            "id": 216,
+            "rankGroupId": 36,
+            "rank": 6,
+            "skillId": 889
+          }
+        ]
+      },
+      "basis": "Current stable-ID scene card 42005 -> rank group 36 -> rank 6 skill 889 -> textId 888. Availability gated by card.publicTime."
     }
   }
 }

@@ -416,6 +416,7 @@ export const PHRASES = {
   'When ally Batei and Ryuuto are both alive': 'Quand les alliés Batei et Ryuuto sont tous les deux en vie',
   'When ally Batei and Ryuuto are alive': 'Quand les alliés Batei et Ryuuto sont en vie',
   'When ally Kisui and Ryuuto are alive': 'Quand les alliés Kisui et Ryuuto sont en vie',
+  'When ally Kisui and Batei are alive': 'Quand les alliés Kisui et Batei sont en vie',
   'When ally Batei or Ryuuto is alive': 'Quand au moins un des deux alliés, Batei ou Ryuuto, est en vie',
   'When ally Hi Shin Unit member is alive': 'Quand un membre allié de l’unité Hi Shin est en vie',
   'Other ally Hi Shin Unit member alive': 'Un autre membre allié de l’unité Hi Shin est en vie',
