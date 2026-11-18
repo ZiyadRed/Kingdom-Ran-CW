@@ -18,7 +18,8 @@ jobs:
     # Vercel must wait for the main run, not reuse a passing release-branch check.
     name: ${{ github.ref == 'refs/heads/main' && 'acceptance-main' || 'acceptance' }}
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    # check:release alone takes ~16 min; slow runner setup (8 min browser install on 2026-11-18) needs headroom.
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
