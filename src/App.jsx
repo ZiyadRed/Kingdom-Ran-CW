@@ -334,7 +334,7 @@ export default function App(){
           <Route path="/archive/characters/:charId" element={<><ArchiveTabs active="characters"/><ArchivePage onAddToBuilder={addToBuilder} onLoadTeam={loadMetaTeam}/></>}/>
           <Route path="/archive/cw6-scene-cards" element={<CW6SceneCardsPage/>}/>
           <Route path="/archive/:charId" element={<><ArchiveTabs active="characters"/><ArchivePage onAddToBuilder={addToBuilder} onLoadTeam={loadMetaTeam}/></>}/>
-          <Route path="/builder" element={<BuilderPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} setAtkSk={setAtkSk} setDefSk={setDefSk} setSlot={setSlot} rm={rm} goSim={()=>navigate('/sim')} loadMetaTeam={loadMetaTeam} swapSides={swapSides} clearSide={clearSide} sharedIncludeCombat={initialBuilderShare.status==='valid'&&initialBuilderShare.includeCombat} shareStatus={mounted?builderShareStatus:'absent'}/>}/>
+          <Route path="/builder" element={<BuilderPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} setAtkSk={setAtkSk} setDefSk={setDefSk} setSlot={setSlot} rm={rm} goSim={()=>navigate('/sim')} loadMetaTeam={loadMetaTeam} swapSides={swapSides} clearSide={clearSide} sharedIncludeCombat={initialBuilderShare.status==='valid'?initialBuilderShare.includeCombat:true} shareStatus={mounted?builderShareStatus:'absent'}/>}/>
           <Route path="/sim" element={<SimPage atk={atk} def={def} atkSk={atkSk} defSk={defSk} goBuilder={()=>navigate('/builder')}/>}/>
           <Route path="/castle-points" element={<CastlePointsPage/>}/>
           <Route path="/buffs" element={<BuffsPage/>}/>

@@ -187,7 +187,8 @@ test('expanded Japanese buff summary and copied text contain no English labels',
   const toggle = page.locator('.builder-buff-toggle')
   if (await toggle.getAttribute('aria-expanded') === 'false') await toggle.click()
   const summary = page.locator('.buff-summary')
-  await summary.locator('input[type="checkbox"]').check()
+  // Combat skills are included by default.
+  await expect(summary.locator('.buff-mode input')).not.toBeChecked()
   await expect(summary.locator('.buff-row').first()).toBeVisible()
   await expect(summary).toContainText('攻撃力低下耐性')
   const screenText = await summary.textContent()

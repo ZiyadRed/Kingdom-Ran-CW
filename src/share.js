@@ -1190,3 +1190,387 @@ function drawTexture(ctx,width,height){
   }
   ctx.restore()
 }
+
+// ── Team buff table image ────────────────────────────────────────────────────
+// One formation renders 1080 wide; both formations render side by side, 2000
+// wide. Everything is laid out in CSS pixels and painted at 2x. The layout is
+// computed left-to-right and mirrored at paint time for Arabic.
+//
+// model = {
+//   labels:{title,eyebrow,brand,brandSub,onEnemy,footer,site,noBuffs,allCount(n),direction},
+//   sides:[{key:'attack'|'defense',chip,members:[{entity,name,unit}],
+//           rows:[{kind:'shared'|'single'|'varies',stat,qual,value:{text,tone,sub},values:[{text,tone,sub}|null]}],
+//           enemy:[{stat,value,target}]}],
+//   fileName,
+// }
+export const BUFF_IMAGE_SINGLE_WIDTH=1080
+export const BUFF_IMAGE_WIDE_WIDTH=2000
+export const BUFF_IMAGE_SCALE=2
+export const BUFF_IMAGE_COLORS=Object.freeze({
+  page:'#f7efe3',navy:'#08294f',ink:'#102a43',muted:'#5f513f',faint:'#cdbfa6',
+  good:'#13714a',bad:'#b9342b',band:'#e6f1e8',bandText:'#2b6b49',card:'#fffdf8',
+  head:'#f3e9da',zebra:'#fcf7ef',rule:'#efe4d2',border:'#d8c5a8',brand:'#75502d',
+  attack:'#b9342b',defense:'#235e9a',eyebrowAttack:'#f3a79e',eyebrowDefense:'#a5c8ee',eyebrowBoth:'#e8c9a0',
+  onNavy:'#c8d6e5',brandOnNavy:'#e5edf5',brandSubOnNavy:'#a9bed5',
+})
+const BUFF_DISPLAY_FONT=`Oswald, ${IMAGE_FONT}`
+const BUFF_BODY_FONT=`Barlow, ${IMAGE_FONT}`
+const buffBody=(weight,size)=>`${weight} ${size}px ${BUFF_BODY_FONT}`
+const buffDisplay=(weight,size)=>`${weight} ${size}px ${BUFF_DISPLAY_FONT}`
+const BUFF_HEAD_HEIGHT=210
+const isLatinText=text=>/^[\x20-\x7EÀ-ɏ’]*$/.test(String(text||''))
+
+/** Wrap to at most maxLines; the last line is ellipsized when text remains. */
+function wrapMeasured(measure,text,font,maxWidth,maxLines){
+  const words=String(text||'').split(/\s+/).filter(Boolean)
+  if(!words.length) return ['']
+  // Scripts without spaces (Japanese) wrap per character.
+  const tokens=words.length===1&&measure(words[0],font)>maxWidth?[...words[0]]:words
+  const joiner=tokens===words?' ':''
+  const lines=[]
+  let line=''
+  for(const token of tokens){
+    const next=line?`${line}${joiner}${token}`:token
+    if(!line||measure(next,font)<=maxWidth) line=next
+    else{
+      lines.push(line)
+      line=token
+    }
+  }
+  if(line) lines.push(line)
+  if(lines.length<=maxLines) return lines
+  const kept=lines.slice(0,maxLines)
+  kept[maxLines-1]=fitMeasured(measure,lines.slice(maxLines-1).join(joiner),font,maxWidth)
+  return kept
+}
+
+function fitMeasured(measure,text,font,maxWidth){
+  const value=String(text||'')
+  if(measure(value,font)<=maxWidth) return value
+  const chars=[...value]
+  while(chars.length&&measure(`${chars.join('')}…`,font)>maxWidth) chars.pop()
+  return `${chars.join('').trimEnd()}…`
+}
+
+/**
+ * Pure geometry for the buff image. `measure(text,font,{spacing})` returns a
+ * width in CSS pixels; tests pass a deterministic stub.
+ */
+export function buildBuffImageLayout(measure,model){
+  const sides=model?.sides||[]
+  const L=model?.labels||{}
+  const wide=sides.length>1
+  const width=wide?BUFF_IMAGE_WIDE_WIDTH:BUFF_IMAGE_SINGLE_WIDTH
+  const pad=40
+  const gap=44
+  const columnWidth=wide?(width-(pad*2)-gap)/2:width-(pad*2)
+  const eyebrowY=40
+  const titleY=eyebrowY+33
+  const membersLine=wide?'':fitMeasured(measure,(sides[0]?.members||[]).map(member=>member.name).join(' · '),buffBody(600,28),width-(48*2))
+  const membersY=titleY+84
+  const bandH=wide?titleY+74+38:membersY+34+36
+  const ruleH=10
+  const top=bandH+ruleH+34
+  // The stat column grows to fit the longest name on one line (shared by both
+  // formations), while every value column keeps at least 150px.
+  const longestStat=Math.max(0,...sides.flatMap(side=>(side.rows||[]).map(row=>measure(row.stat,buffBody(600,31)))))
+  const maxStatW=Math.min(380,columnWidth-(4*150))
+  const statW=Math.round(Math.min(maxStatW,Math.max(wide?270:300,longestStat+48)))
+  const sections=sides.map((side,index)=>buildBuffImageSection(measure,side,{
+    x:pad+(index*(columnWidth+gap)),y:top,w:columnWidth,withChip:wide,statW,labels:L,
+  }))
+  const contentBottom=sections.length?Math.max(...sections.map(section=>section.bottom)):top
+  const footerY=contentBottom+34
+  const height=Math.ceil(footerY+26+36)
+  return {width,height,wide,pad,bandH,ruleH,eyebrowY,titleY,membersY,membersLine,sections,footerY,labels:L,direction:L.direction==='rtl'?'rtl':'ltr'}
+}
+
+function buildBuffImageSection(measure,side,{x,y,w,withChip,statW,labels}){
+  let cursor=y
+  let chip=null
+  if(withChip){
+    const chipFont=buffDisplay(600,25)
+    const chipText=String(side.chip||'').toUpperCase()
+    const chipW=Math.ceil(measure(chipText,chipFont,{spacing:3.5})+36)
+    const membersFont=buffBody(600,27)
+    const membersW=Math.max(0,w-chipW-18)
+    chip={x,y:cursor,w:chipW,h:46,text:chipText,font:chipFont,
+      members:{x:x+chipW+18,w:membersW,font:membersFont,text:fitMeasured(measure,side.members.map(member=>member.name).join(' · '),membersFont,membersW)}}
+    cursor+=46+18
+  }
+  const count=Math.max(1,side.members.length)
+  const cellW=(w-statW)/count
+  const statFont=buffBody(600,31)
+  const headers=side.members.map(member=>({
+    name:fitMeasured(measure,member.name,buffBody(700,29),cellW-12),
+    unit:fitMeasured(measure,member.unit||'',buffBody(600,21),cellW-12),
+  }))
+  const table={x,y:cursor,w,statW,cellW,count,headH:BUFF_HEAD_HEIGHT,headers,rows:[]}
+  let rowY=cursor+BUFF_HEAD_HEIGHT
+  const rows=side.rows?.length?side.rows:[{kind:'empty',stat:labels.noBuffs||''}]
+  const fitStat=row=>{
+    if(row.kind==='empty') return {statSize:31,statLines:[fitMeasured(measure,row.stat,statFont,w-52)]}
+    const max=statW-48
+    if(measure(row.stat,statFont)<=max) return {statSize:31,statLines:[row.stat]}
+    // Names without spaces (Japanese) shrink before wrapping so a word is never
+    // split mid-way (e.g. a line starting with ー).
+    if(!/\s/.test(String(row.stat).trim())){
+      for(let size=30;size>=23;size-=1) if(measure(row.stat,buffBody(600,size))<=max) return {statSize:size,statLines:[row.stat]}
+    }
+    return {statSize:31,statLines:wrapMeasured(measure,row.stat,statFont,max,2)}
+  }
+  rows.forEach((row,index)=>{
+    const {statSize,statLines}=fitStat(row)
+    const qual=row.qual?fitMeasured(measure,row.qual,buffBody(600,21),statW-48):''
+    const textH=(statLines.length*Math.round(statSize*1.16))+(qual?27:0)
+    const hasSub=row.kind!=='shared'&&(row.values||[]).some(value=>value?.sub)
+    const h=Math.max(90,textH+28,hasSub?112:0)
+    table.rows.push({...row,index,y:rowY,h,statLines,statSize,qual})
+    rowY+=h
+  })
+  table.h=rowY-table.y
+  cursor=rowY
+  let enemy=null
+  if(side.enemy?.length){
+    const headY=cursor+28
+    const cardTop=headY+30+14
+    const cols=w>=700?2:1
+    const itemW=w/cols
+    const statF=buffBody(600,31)
+    const valueF=buffBody(700,43)
+    const targetF=buffBody(600,22)
+    const items=side.enemy.map(item=>{
+      const need=measure(item.stat,statF)+18+measure(item.value,valueF)+24+measure(item.target,targetF)
+      return {...item,twoLine:need>itemW-56}
+    })
+    const placed=[]
+    let cy=cardTop
+    for(let start=0;start<items.length;start+=cols){
+      const group=items.slice(start,start+cols)
+      const h=group.some(item=>item.twoLine)?118:88
+      group.forEach((item,column)=>{
+        // The last item of a short row takes the remaining width.
+        const itemWidth=column===group.length-1?w-(column*itemW):itemW
+        placed.push({...item,x:x+(column*itemW),y:cy,w:itemWidth,h,column,target:fitMeasured(measure,item.target,targetF,itemWidth-56)})
+      })
+      cy+=h
+    }
+    enemy={headY,cardTop,cardH:cy-cardTop,items:placed,cols,itemW,x,w,title:String(labels.onEnemy||'').toUpperCase()}
+    cursor=cy
+  }
+  return {key:side.key,chip,table,enemy,bottom:cursor,x,w}
+}
+
+async function ensureBuffImageFonts(){
+  if(typeof document==='undefined'||!document.fonts?.load) return
+  const fonts=['600 70px Oswald','600 25px Oswald','700 43px Barlow','600 31px Barlow','700 29px Barlow','600 21px Barlow']
+  try{
+    await Promise.race([
+      Promise.all(fonts.map(font=>document.fonts.load(font))),
+      new Promise(resolve=>setTimeout(resolve,2500)),
+    ])
+  }catch{ /* fall back to system fonts */ }
+}
+
+export async function createBuffTableImage(model){
+  if(typeof document==='undefined') throw new Error('Image rendering requires a browser.')
+  await ensureBuffImageFonts()
+  const labels=model?.labels||{}
+  const measureCanvas=document.createElement('canvas')
+  const measureCtx=measureCanvas.getContext('2d')
+  applyDirection(measureCtx,labels)
+  const measure=(text,font,{spacing=0}={})=>{
+    measureCtx.font=font
+    const value=String(text||'')
+    return measureCtx.measureText(value).width+(spacing&&isLatinText(value)?spacing*value.length:0)
+  }
+  const layout=buildBuffImageLayout(measure,model)
+  const portraits=await Promise.all((model.sides||[]).map(side=>Promise.all(side.members.map(member=>loadImage(member.entity?.icon||persosThumb(member.entity?.image))))))
+  const canvas=document.createElement('canvas')
+  canvas.width=Math.ceil(layout.width*BUFF_IMAGE_SCALE)
+  canvas.height=Math.ceil(layout.height*BUFF_IMAGE_SCALE)
+  const ctx=canvas.getContext('2d')
+  ctx.scale(BUFF_IMAGE_SCALE,BUFF_IMAGE_SCALE)
+  applyDirection(ctx,labels)
+  paintBuffImage(ctx,layout,model,portraits)
+  const blob=await canvasToBlob(canvas)
+  return {blob,fileName:model.fileName||'ranhq-team-buffs.png',layout}
+}
+
+function paintBuffImage(ctx,layout,model,portraits){
+  const C=BUFF_IMAGE_COLORS
+  const L=layout.labels
+  const W=layout.width
+  const rtl=layout.direction==='rtl'
+  const mirror=(x,w=0)=>rtl?W-x-w:x
+  const bidi=text=>rtl?`‎${text}‎`:text
+  const setSpacing=value=>{ if('letterSpacing' in ctx) ctx.letterSpacing=`${value}px` }
+  // Draw text inside an LTR box {x,w}; align is logical (start/center/end).
+  const text=(value,x,w,baseline,font,color,align='start',spacing=0)=>{
+    if(value===undefined||value===null||value==='') return
+    let anchor
+    let textAlign
+    if(align==='center'){ anchor=mirror(x,w)+(w/2); textAlign='center' }
+    else if(align==='start'){ anchor=rtl?mirror(x,w)+w:x; textAlign=rtl?'right':'left' }
+    else{ anchor=rtl?mirror(x,w):x+w; textAlign=rtl?'left':'right' }
+    setSpacing(spacing&&isLatinText(value)?spacing:0)
+    drawText(ctx,String(value),anchor,baseline,font,color,textAlign)
+    setSpacing(0)
+  }
+  const box=(x,y,w,h,fill,radius=0,stroke=null,lineWidth=2)=>{
+    roundedRect(ctx,mirror(x,w),y,w,h,radius)
+    if(fill){ ctx.fillStyle=fill; ctx.fill() }
+    if(stroke){ ctx.strokeStyle=stroke; ctx.lineWidth=lineWidth; ctx.stroke() }
+  }
+  const measure=(value,font)=>{ ctx.font=font; return ctx.measureText(String(value||'')).width }
+  const toneColor=tone=>tone==='bad'?C.bad:C.good
+
+  ctx.fillStyle=C.page
+  ctx.fillRect(0,0,W,layout.height)
+
+  // Header band.
+  ctx.fillStyle=C.navy
+  ctx.fillRect(0,0,W,layout.bandH)
+  const firstKey=model.sides?.[0]?.key
+  const eyebrowColor=layout.wide?C.eyebrowBoth:firstKey==='defense'?C.eyebrowDefense:C.eyebrowAttack
+  text(String(L.eyebrow||'').toUpperCase(),48,W-96,layout.eyebrowY+22,buffDisplay(600,25),eyebrowColor,'start',4)
+  text(L.title,48,W-96,layout.titleY+64,buffDisplay(600,70),'#ffffff')
+  if(layout.membersLine) text(layout.membersLine,48,W-96,layout.membersY+27,buffBody(600,28),C.onNavy)
+  text(L.brand,48,W-96,layout.eyebrowY+24,buffDisplay(600,25),C.brandOnNavy,'end',1)
+  text(L.brandSub,48,W-96,layout.eyebrowY+50,buffBody(600,19),C.brandSubOnNavy,'end')
+
+  // Rule under the band: one colour per formation, in reading order.
+  const keys=(model.sides||[]).map(side=>side.key)
+  const ruleY=layout.bandH
+  keys.forEach((key,index)=>{
+    const w=W/keys.length
+    ctx.fillStyle=key==='defense'?C.defense:C.attack
+    ctx.fillRect(mirror(index*w,w),ruleY,w,layout.ruleH)
+  })
+
+  layout.sections.forEach((section,sectionIndex)=>{
+    const side=model.sides[sectionIndex]
+    const accent=side.key==='defense'?C.defense:C.attack
+    if(section.chip){
+      const chip=section.chip
+      box(chip.x,chip.y,chip.w,chip.h,accent,10)
+      text(chip.text,chip.x,chip.w,chip.y+33,chip.font,'#ffffff','center',3.5)
+      text(chip.members.text,chip.members.x,chip.members.w,chip.y+33,chip.members.font,'#3b4a5c')
+    }
+    const t=section.table
+    // Card, header strip and zebra rows clipped to the rounded card.
+    ctx.save()
+    roundedRect(ctx,mirror(t.x,t.w),t.y,t.w,t.h,20)
+    ctx.clip()
+    ctx.fillStyle=C.card
+    ctx.fillRect(mirror(t.x,t.w),t.y,t.w,t.h)
+    ctx.fillStyle=C.head
+    ctx.fillRect(mirror(t.x,t.w),t.y,t.w,t.headH)
+    t.rows.forEach(row=>{
+      if(row.index%2===1){ ctx.fillStyle=C.zebra; ctx.fillRect(mirror(t.x,t.w),row.y,t.w,row.h) }
+      if(row.index>0){ ctx.fillStyle=C.rule; ctx.fillRect(mirror(t.x,t.w),row.y-1,t.w,2) }
+    })
+    ctx.fillStyle=C.border
+    ctx.fillRect(mirror(t.x,t.w),t.y+t.headH-2,t.w,2)
+    ctx.restore()
+    box(t.x,t.y,t.w,t.h,null,20,C.border,2)
+
+    // Column heads: portrait, name, unit type.
+    side.members.forEach((member,index)=>{
+      const cx=t.x+t.statW+(index*t.cellW)
+      const size=98
+      const px=cx+((t.cellW-size)/2)
+      const py=t.y+22
+      const image=portraits[sectionIndex]?.[index]
+      ctx.save()
+      roundedRect(ctx,mirror(px,size),py,size,size,22)
+      ctx.clip()
+      ctx.fillStyle='#e8dcc8'
+      ctx.fillRect(mirror(px,size),py,size,size)
+      if(image) drawImageCover(ctx,image,mirror(px,size),py,size,size)
+      ctx.restore()
+      roundedRect(ctx,mirror(px,size),py,size,size,22)
+      ctx.strokeStyle='#ffffff'
+      ctx.lineWidth=3
+      ctx.stroke()
+      roundedRect(ctx,mirror(px-2.5,size+5),py-2.5,size+5,size+5,24)
+      ctx.strokeStyle=C.border
+      ctx.lineWidth=2
+      ctx.stroke()
+      text(bidi(t.headers[index].name),cx,t.cellW,py+size+12+26,buffBody(700,29),C.navy,'center')
+      text(t.headers[index].unit,cx,t.cellW,py+size+12+26+30,buffBody(600,21),C.muted,'center')
+    })
+
+    // Rows.
+    t.rows.forEach(row=>{
+      const statX=t.x+26
+      const statW=row.kind==='empty'?t.w-52:t.statW-48
+      const size=row.statSize||31
+      const lineH=Math.round(size*1.16)
+      const blockH=(row.statLines.length*lineH)+(row.qual?27:0)
+      const startY=row.y+((row.h-blockH)/2)
+      row.statLines.forEach((line,lineIndex)=>text(line,statX,statW,startY+Math.round(size*.94)+(lineIndex*lineH),buffBody(600,size),row.kind==='empty'?C.muted:C.ink))
+      if(row.qual) text(row.qual,statX,statW,startY+(row.statLines.length*lineH)+21,buffBody(600,21),C.muted)
+      if(row.kind==='empty') return
+      const valuesX=t.x+t.statW
+      const valuesW=t.cellW*t.count
+      if(row.kind==='shared'){
+        const bandX=valuesX+18
+        const bandW=valuesW-36
+        const bandY=row.y+((row.h-64)/2)
+        box(bandX,bandY,bandW,64,C.band,14)
+        const allText=String(L.allCount?.(t.count)||'').toUpperCase()
+        const allFont=buffBody(700,22)
+        const valueFont=buffBody(700,43)
+        const value=row.value||{}
+        const allW=measure(allText,allFont)+(isLatinText(allText)?3*allText.length:0)
+        const valueW=measure(value.text,valueFont)
+        const subFont=buffBody(600,21)
+        const subW=value.sub?measure(value.sub,subFont)+14:0
+        const total=allW+20+valueW+subW
+        let cursor=bandX+((bandW-total)/2)
+        text(allText,cursor,allW,bandY+40,allFont,C.bandText,'start',3)
+        cursor+=allW+20
+        text(bidi(value.text),cursor,valueW,bandY+47,valueFont,toneColor(value.tone))
+        if(value.sub) text(value.sub,cursor+valueW+14,subW,bandY+44,subFont,C.muted)
+        return
+      }
+      const values=row.values||[]
+      values.forEach((value,index)=>{
+        const cx=valuesX+(index*t.cellW)
+        if(!value){
+          text('—',cx,t.cellW,row.y+(row.h/2)+15,buffBody(600,43),C.faint,'center')
+          return
+        }
+        let size=43
+        while(size>26&&measure(value.text,buffBody(700,size))>t.cellW-16) size-=1
+        const baseline=row.y+(row.h/2)+(value.sub?2:15)
+        text(bidi(value.text),cx,t.cellW,baseline,buffBody(700,size),toneColor(value.tone),'center')
+        if(value.sub) text(value.sub,cx,t.cellW,baseline+30,buffBody(600,20),C.muted,'center')
+      })
+    })
+
+    // Effects on the enemy.
+    const e=section.enemy
+    if(e){
+      text(e.title,e.x+4,e.w,e.headY+24,buffDisplay(600,25),C.bad,'start',3.5)
+      box(e.x,e.cardTop,e.w,e.cardH,C.card,20,C.border,2)
+      e.items.forEach((item,index)=>{
+        if(item.column>0){ ctx.fillStyle=C.rule; ctx.fillRect(mirror(item.x-1,2),item.y+14,2,item.h-28) }
+        if(index>=e.cols){ ctx.fillStyle=C.rule; ctx.fillRect(mirror(item.x+14,item.w-28),item.y-1,item.w-28,2) }
+        const statFont=buffBody(600,31)
+        const valueFont=buffBody(700,43)
+        const statW=measure(item.stat,statFont)
+        const line1=item.twoLine?item.y+52:item.y+(item.h/2)+14
+        text(item.stat,item.x+28,statW,line1,statFont,C.ink)
+        text(bidi(item.value),item.x+28+statW+18,measure(item.value,valueFont),line1+2,valueFont,C.bad)
+        if(item.twoLine) text(item.target,item.x+28,item.w-56,item.y+94,buffBody(600,22),C.muted)
+        else text(item.target,item.x,item.w-28,line1,buffBody(600,22),C.muted,'end')
+      })
+    }
+  })
+
+  // Footer.
+  text(L.footer,layout.pad+4,W-(layout.pad*2)-8,layout.footerY+24,buffBody(600,22),C.muted)
+  text(L.site,layout.pad+4,W-(layout.pad*2)-8,layout.footerY+25,buffBody(700,25),C.brand,'end')
+}

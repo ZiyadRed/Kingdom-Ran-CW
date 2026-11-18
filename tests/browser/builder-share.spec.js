@@ -51,7 +51,8 @@ async function expectRecipient(page, url, viewport, expectedStoredBuilder = null
 
   const disclosure = page.locator('.builder-buff-toggle')
   if (await disclosure.getAttribute('aria-expanded') === 'false') await disclosure.click()
-  await expect(page.locator('.buff-summary input[type="checkbox"]')).toBeChecked()
+  // The shared link carried combat skills, so "Strategy skills only" stays off.
+  await expect(page.locator('.buff-summary .buff-mode input')).not.toBeChecked()
   expect(await page.evaluate(() => localStorage.getItem('ranhq:party-builder'))).toBe(expectedStoredBuilder)
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true)
   expect(errors).toEqual([])
@@ -65,7 +66,8 @@ test('truncated Builder shares restore full plans in fresh desktop and mobile co
   const disclosure = page.locator('.builder-buff-toggle')
   if (await disclosure.getAttribute('aria-expanded') === 'false') await disclosure.click()
   const summary = page.locator('.buff-summary')
-  await summary.locator('input[type="checkbox"]').check()
+  // Combat skills are included by default.
+  await expect(summary.locator('.buff-mode input')).not.toBeChecked()
   await page.evaluate(() => {
     Object.defineProperty(navigator, 'share', { configurable: true, value: undefined })
     Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async text => { window.__builderShare = text } } })

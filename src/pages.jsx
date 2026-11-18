@@ -25,7 +25,8 @@ import { localizedCharacterName } from './i18n/ar-character-names.js'
 import { localizedCharacter, localizedDuration, localizedSkill, localizedTarget, localizedText } from './i18n/data.js'
 import { compareCharacters, normalizeContentSearch } from './i18n/character-search.js'
 import { matchesCharacterName } from './i18n/ar-character-names.js'
-import { builderShareUrl, characterShareUrl, createCharacterSkillsImage, createTeamSkillsImage, downloadBlob, formatCharacterSkillsShare, formatSceneCardShare, formatTeamBuffShare, sceneCardShareUrl, shareImageBlob, shareText } from './share.js'
+import { builderShareUrl, characterShareUrl, createBuffTableImage, createCharacterSkillsImage, createTeamSkillsImage, downloadBlob, formatCharacterSkillsShare, formatSceneCardShare, formatTeamBuffShare, sceneCardShareUrl, shareImageBlob, shareText } from './share.js'
+import { classifyBuffRows, enemyDebuffRows, enemyDebuffText, formatBuffNumber, groupCellsBySources, sortedGuardInstances } from './buff-table-rows.js'
 import { BUILDER_SCHEMA_VERSION } from './builder-storage.js'
 
 export function ArchiveTabs({active}){
@@ -1045,7 +1046,7 @@ export function MetaTeamCard({team,onLoad}){
 }
 
 // ── PARTY BUILDER ─────────────────────────────────────────────────────────────
-export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk,setSlot,rm,goSim,loadMetaTeam,swapSides,clearSide,sharedIncludeCombat=false,shareStatus='absent'}){
+export function BuilderPage({atk:atkIds,def:defIds,atkSk,defSk,setAtkSk,setDefSk,setSlot,rm,goSim,loadMetaTeam,swapSides,clearSide,sharedIncludeCombat=true,shareStatus='absent'}){
   const {findCharById,findCharByName}=useReleaseData()
   const{t}=useTranslation('common')
   const locale=useLocale()
@@ -1513,11 +1514,180 @@ function hasMissingOpponentInput(entries,enemyDebuffs){
   ]
   return sources.some(source=>source.missingInputs?.some(input=>input.kind==='opposingFormation'))
 }
-export function BuffTable({atk,def,builderState,initialIncludeCombat=false,activeSide=null,onSideChange=null,sideCounts=null}){
+// Phones get the one-line-per-buff list instead of the stats x generals grid.
+// Starts false so server/prerender output and the first client render match.
+function useIsPhone(query='(max-width: 480px)'){
+  const[isPhone,setIsPhone]=useState(false)
+  useEffect(()=>{
+    if(typeof window==='undefined'||!window.matchMedia) return undefined
+    const media=window.matchMedia(query)
+    const sync=()=>setIsPhone(media.matches)
+    sync()
+    media.addEventListener('change',sync)
+    return()=>media.removeEventListener('change',sync)
+  },[query])
+  return isPhone
+}
+const BUFF_ROW_OPTIONS={inverseStats:INVERSE_STATS,specialStats:SPECIAL_STATS}
+const activeBuffStats=entries=>entries.map(({buffs})=>new Map(Object.entries(buffs).filter(([,value])=>value.up>0||value.down>0)))
+const sortedBuffStatRows=activeStats=>[...new Set(activeStats.flatMap(map=>[...map.keys()]))].sort((a,b)=>statSortKey(a)-statSortKey(b))
+
+/** Plain-data model for createBuffTableImage: localized text only, no React. */
+function buffImageSide({key,chip,entries,enemyDebuffs,locale}){
+  const activeStats=activeBuffStats(entries)
+  const rows=classifyBuffRows(activeStats,sortedBuffStatRows(activeStats),BUFF_ROW_OPTIONS).map(row=>{
+    const stat=localizedText(row.stat,locale)
+    const valueOf=cell=>cell&&{text:cell.parts.map(part=>part.text).join(' '),tone:cell.parts[0]?.tone||'good'}
+    const durations=[...new Set(row.cells.filter(Boolean).map(cell=>cell.duration||''))]
+    const commonDuration=durations.length===1&&durations[0]?localizedDuration(durations[0],locale):''
+    // The image does not draw Guard's non-stacking alternatives (+N), so equal
+    // visible values merge there even when the alternatives differ.
+    const values=row.cells.map(valueOf)
+    const looksShared=row.kind==='shared'||(row.cells.length>1&&row.present.length===row.cells.length&&
+      values.every(value=>value.text===values[0].text&&value.tone===values[0].tone)&&durations.length===1)
+    if(looksShared) return {kind:'shared',stat,qual:commonDuration,value:values[0]}
+    return {kind:row.kind,stat,qual:commonDuration,values:row.cells.map(cell=>cell&&{
+      ...valueOf(cell),
+      sub:!commonDuration&&cell.duration?localizedDuration(cell.duration,locale):'',
+    })}
+  })
+  return {
+    key,chip,
+    members:entries.map(({general})=>({entity:general,name:localizedCharacter(general,locale).displayName,unit:general.unit_type?localizedText(general.unit_type,locale):''})),
+    rows,
+    enemy:enemyDebuffRows(enemyDebuffs).map(row=>({stat:localizedText(row.stat,locale),value:enemyDebuffText(row),target:localizedTarget(row.target,locale)})),
+  }
+}
+
+const DOWNLOAD_ICON=<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg>
+
+// "Save image": pick attacking team, defending team or both, then hand the PNG
+// to the phone's share sheet (Save Image) or show it with Copy/Download.
+export function BuffImageButton({teams,buildModel,defaultChoice,isPhone}){
+  const{t}=useTranslation('common')
+  const titleId=useId()
+  const[open,setOpen]=useState(false)
+  const[choice,setChoice]=useState(defaultChoice)
+  const[status,setStatus]=useState('idle')
+  const[preview,setPreview]=useState(null)
+  const triggerRef=useRef(null)
+  const optionRef=useRef(null)
+  useEffect(()=>()=>{if(preview?.url) URL.revokeObjectURL(preview.url)},[preview?.url])
+  const available={attack:teams.attack.length>0,defense:teams.defense.length>0,both:teams.attack.length>0&&teams.defense.length>0}
+  const options=[
+    {key:'attack',title:t('buffs.attackingTeam'),note:teams.attack.map(general=>general.name).join(' · ')||t('shareOutput.noGenerals'),faces:[teams.attack]},
+    {key:'defense',title:t('buffs.defendingTeam'),note:teams.defense.map(general=>general.name).join(' · ')||t('shareOutput.noGenerals'),faces:[teams.defense]},
+    {key:'both',title:t('buffs.bothTeams'),note:t('buffs.bothTeamsNote'),faces:[teams.attack,teams.defense]},
+  ]
+  const clearPreview=()=>setPreview(prev=>{
+    if(prev?.url) URL.revokeObjectURL(prev.url)
+    return null
+  })
+  const openPicker=()=>{
+    setChoice(available[defaultChoice]?defaultChoice:(['both','attack','defense'].find(key=>available[key])||'attack'))
+    setStatus('idle')
+    clearPreview()
+    setOpen(true)
+  }
+  const close=()=>{
+    setOpen(false)
+    clearPreview()
+    setStatus(current=>current==='shared'?current:'idle')
+  }
+  const flash=next=>{
+    setStatus(next)
+    window.setTimeout(()=>setStatus('idle'),next==='failed'?2200:1800)
+  }
+  const make=async()=>{
+    if(!available[choice]) return
+    try{
+      setStatus('making')
+      const rendered=await createBuffTableImage(buildModel(choice))
+      // Phones: straight to the share sheet, which offers "Save Image".
+      if(isPhone){
+        const result=await shareImageBlob(rendered.blob,rendered.fileName,`${t('builder.teamBuffs')} - RanHQ`)
+        if(result==='shared'){ setOpen(false); flash('shared'); return }
+        if(result==='cancelled'){ setStatus('idle'); return }
+      }
+      setPreview({...rendered,url:URL.createObjectURL(rendered.blob),wide:choice==='both'})
+      setStatus('idle')
+    }catch{
+      flash('failed')
+    }
+  }
+  const copyPreview=async()=>{
+    if(!preview) return
+    try{
+      const result=await shareImageBlob(preview.blob,preview.fileName,`${t('builder.teamBuffs')} - RanHQ`)
+      if(result==='cancelled') return
+      flash(result==='shared'?'shared':result==='copied'?'copied':'idle')
+    }catch{
+      flash('failed')
+    }
+  }
+  const goLabel=status==='making'?t('making'):status==='failed'?t('imageFailed'):t('buffs.saveImage')
+  return(
+    <>
+      <button ref={triggerRef} type="button" className="buff-save-btn" onClick={openPicker} aria-haspopup="dialog">
+        {DOWNLOAD_ICON}<span>{status==='shared'&&!open?t('shared'):t('buffs.saveImage')}</span>
+      </button>
+      {open&&(
+        <Dialog className="share-preview-backdrop" aria-labelledby={titleId} onClose={close} initialFocus={()=>optionRef.current} returnFocus={()=>triggerRef.current}>
+          <div className={`share-preview buff-save${preview?.wide?' share-preview-wide':''}`} onClick={event=>event.stopPropagation()}>
+            <div className="share-preview-head">
+              <div>
+                <strong id={titleId}>{t('buffs.saveAsImage')}</strong>
+                <span>{preview?t('pasteImageHint'):t('buffs.saveImageChoose')}</span>
+              </div>
+              <button type="button" className="share-preview-close" onClick={close}>{t('close')}</button>
+            </div>
+            {!preview?(
+              <>
+                <fieldset className="buff-save-options">
+                  <legend className="sr-only">{t('buffs.saveAsImage')}</legend>
+                  {options.map(option=>(
+                    <label key={option.key} className={`buff-save-option${choice===option.key?' is-on':''}${available[option.key]?'':' is-off'}`} data-save-choice={option.key}>
+                      <input ref={choice===option.key?optionRef:undefined} type="radio" name={`${titleId}-choice`} value={option.key}
+                        checked={choice===option.key} disabled={!available[option.key]} onChange={()=>setChoice(option.key)}/>
+                      <span className="buff-save-text"><b>{option.title}</b><span>{option.note}</span></span>
+                      <span className="buff-save-faces" aria-hidden="true">
+                        {option.faces.map((group,groupIndex)=>(
+                          <span key={groupIndex}>{group.map(general=><CharIcon key={general.entity.id} c={general.entity} size={24} round/>)}</span>
+                        ))}
+                      </span>
+                    </label>
+                  ))}
+                </fieldset>
+                <div className="share-preview-actions buff-save-actions">
+                  <button type="button" className="buff-save-go" onClick={make} disabled={status==='making'||!available[choice]}>{DOWNLOAD_ICON}<span>{goLabel}</span></button>
+                </div>
+                {isPhone&&<p className="buff-save-hint">{t('buffs.saveImageHint')}</p>}
+              </>
+            ):(
+              <>
+                <div className="share-preview-img-wrap">
+                  <img src={preview.url} alt={`${t('builder.teamBuffs')} ${t('imagePreview')}`}/>
+                </div>
+                <div className="share-preview-actions">
+                  <button type="button" className="share-btn" onClick={()=>{clearPreview();setStatus('idle')}}>{t('buffs.back')}</button>
+                  <button type="button" className="share-btn" onClick={copyPreview}>{status==='copied'?t('copied'):status==='shared'?t('shared'):t('copyImage')}</button>
+                  <button type="button" className="share-btn buff-save-download" onClick={()=>downloadBlob(preview.blob,preview.fileName)}>{t('downloadPng')}</button>
+                </div>
+              </>
+            )}
+          </div>
+        </Dialog>
+      )}
+    </>
+  )
+}
+
+export function BuffTable({atk,def,builderState,initialIncludeCombat=true,activeSide=null,onSideChange=null,sideCounts=null}){
   const shareLabels=useShareLabels()
   const locale=useLocale()
   const{t}=useTranslation('common')
   const[includeCombat,setIncludeCombat]=useState(Boolean(initialIncludeCombat))
+  const isPhone=useIsPhone()
   if(!atk.length&&!def.length) return null
   // Formation totals use the selected sides. Runtime and missing-input effects
   // are disclosed individually, never added to a public hypothetical total.
@@ -1532,12 +1702,36 @@ export function BuffTable({atk,def,builderState,initialIncludeCombat=false,activ
   const hasAny=arr=>arr.some(({buffs})=>Object.keys(buffs).length>0||buffs.meta?.conditionalEffects.length||buffs.meta?.missingInputs.length||buffs.meta?.unsupported.length)
   const hasEnemyOutput=debuffs=>Object.keys(debuffs).length>0||debuffs.meta?.conditionalEffects.length||debuffs.meta?.missingInputs.length||debuffs.meta?.unsupported.length
   if(!hasAny(atkBuffs)&&!hasAny(defBuffs)&&!hasEnemyOutput(atkEnemyDebuffs)&&!hasEnemyOutput(defEnemyDebuffs)&&!atkReferences.length&&!defReferences.length) return null
+  const memberChips=entries=>entries.map(({general})=>({entity:general,name:localizedCharacter(general,locale).displayName}))
+  const buildImageModel=choice=>{
+    const attack=()=>buffImageSide({key:'attack',chip:t('builder.attacking'),entries:atkBuffs,enemyDebuffs:atkEnemyDebuffs,locale})
+    const defense=()=>buffImageSide({key:'defense',chip:t('builder.defending'),entries:defBuffs,enemyDebuffs:defEnemyDebuffs,locale})
+    return {
+      sides:choice==='both'?[attack(),defense()]:choice==='defense'?[defense()]:[attack()],
+      fileName:`ranhq-team-buffs-${choice}.png`,
+      labels:{
+        title:t('builder.teamBuffs'),
+        eyebrow:choice==='both'?t('buffs.attackVsDefense'):choice==='defense'?t('buffs.defendingTeam'):t('buffs.attackingTeam'),
+        brand:'RanHQ',
+        brandSub:t('nav.partyBuilder'),
+        onEnemy:t('buffs.onEnemy'),
+        footer:includeCombat?t('shareOutput.withCombat'):t('shareOutput.strategyOnly'),
+        site:'ranhq.vercel.app',
+        noBuffs:t('noRelevantBuffs'),
+        allCount:count=>t('buffs.allCount',{count}),
+        direction:locale.direction,
+      },
+    }
+  }
+  const defaultImageChoice=isPhone&&activeSide?activeSide:(atk.length&&def.length?'both':atk.length?'attack':'defense')
   return(
     <div className="sim-sec buff-summary">
-      <div className="sec-hd sec-buff" style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:'1rem',flexWrap:'wrap'}}>
+      <div className="sec-hd sec-buff buff-summary-head">
          <span>⚡ {t('buffs.teamSummary')}</span>
         <div className="sec-actions">
+          <BuffImageButton teams={{attack:memberChips(atkBuffs),defense:memberChips(defBuffs)}} buildModel={buildImageModel} defaultChoice={defaultImageChoice} isPhone={isPhone}/>
           <ShareButton
+            label={t('buffs.shareText')}
             title={t('shareOutput.teamBuffSummary')}
             getText={()=>formatTeamBuffShare({
               atk,
@@ -1553,10 +1747,9 @@ export function BuffTable({atk,def,builderState,initialIncludeCombat=false,activ
                labels:shareLabels,
              })}
           />
-          <label style={{display:'inline-flex',alignItems:'center',gap:'.4rem',fontSize:'.72rem',fontWeight:400,cursor:'pointer',textTransform:'none',letterSpacing:'normal'}}
-            title={t('buffs.includeCombatTitle')}>
-            <input type="checkbox" checked={includeCombat} onChange={e=>setIncludeCombat(e.target.checked)} style={{cursor:'pointer'}}/>
-             {t('buffs.includeCombat')}
+          <label className="buff-mode" title={t('buffs.strategySkillsOnlyTitle')}>
+            <input type="checkbox" role="switch" checked={!includeCombat} onChange={e=>setIncludeCombat(!e.target.checked)}/>
+            <span>{t('buffs.strategySkillsOnly')}</span>
           </label>
         </div>
       </div>
@@ -1574,8 +1767,8 @@ export function BuffTable({atk,def,builderState,initialIncludeCombat=false,activ
         </div>
       )}
       <div className={`strat-cols buff-cols${onSideChange&&activeSide?` buff-show-${activeSide}`:''}`}>
-        <BuffSideTable label={`⚔ ${t('buffs.attackingFormation')}`} entries={atkBuffs} side="attack" enemyDebuffs={atkEnemyDebuffs} references={atkReferences}/>
-        <BuffSideTable label={`🛡 ${t('buffs.defendingFormation')}`} entries={defBuffs} side="defense" enemyDebuffs={defEnemyDebuffs} references={defReferences}/>
+        <BuffSideTable label={`⚔ ${t('buffs.attackingFormation')}`} entries={atkBuffs} side="attack" enemyDebuffs={atkEnemyDebuffs} references={atkReferences} layout={isPhone?'list':'grid'}/>
+        <BuffSideTable label={`🛡 ${t('buffs.defendingFormation')}`} entries={defBuffs} side="defense" enemyDebuffs={defEnemyDebuffs} references={defReferences} layout={isPhone?'list':'grid'}/>
       </div>
     </div>
   )
@@ -1623,7 +1816,56 @@ export function TeamEffectReference({sources}){
 // wrappers use `display: contents` so every cell and evidence panel is placed
 // on one CSS grid while `[data-buff-general] [data-buff-stat]` still scopes a
 // cell to its general.
-export function BuffSideTable({label,entries,side,enemyDebuffs={},references=[]}){
+//
+// layout="list" (phones) shows the same entries one line per buff: values every
+// general shares collapse to "All N", a buff only one general has shows that
+// general, and only real differences get one value per general. Single and
+// per-general cells keep the `[data-buff-general] [data-buff-stat]` scoping.
+
+/** Contributions behind one general's value (shared by grid and list). */
+function BuffCellSources({stat,buff,title}){
+  const locale=useLocale()
+  const{t}=useTranslation('common')
+  const inv=INVERSE_STATS.has(stat)
+  const isFlag=SPECIAL_STATS.has(stat)
+  const fmt=formatBuffNumber
+  if(stat==='Guard'&&buff?.instances?.length){
+    return <>
+      {title}
+      {sortedGuardInstances(buff).map((inst,idx)=>(
+        <div key={idx} className="buff-source-contribution">
+        <div className="buff-source-row">
+          <CharIcon c={inst.owner} size={16} round={true}/>
+          <span className="buff-source-name">{localizedCharacter(inst.owner,locale).displayName}</span>
+          <span className="buff-up">+{fmt(inst.val)}%{inst.duration?` · ${localizedDuration(inst.duration,locale)}`:''}</span>
+        </div>
+        <BuffSourceEvidence source={inst}/>
+        </div>
+      ))}
+      <div className="buff-guard-note">{t('buffs.guardNote')}</div>
+    </>
+  }
+  return <>
+    {title}
+    {(buff?.sources||[]).map((s,i)=>(
+      <div key={i} className="buff-source-contribution">
+      <div className="buff-source-row">
+        <CharIcon c={s.owner} size={16} round={true}/>
+        <span className="buff-source-name">{localizedCharacter(s.owner,locale).displayName}</span>
+        <span className={s.dir==='up'?(inv?'buff-down':'buff-up'):(inv?'buff-up':'buff-down')}>
+          {isFlag?`${s.contribution}×`:`${s.dir==='up'?'+':'−'}${fmt(s.contribution)}%`}
+        </span>
+      </div>
+      <BuffSourceEvidence source={s}/>
+      </div>
+    ))}
+  </>
+}
+const buffValueParts=parts=>parts.map((part,index)=>(
+  <span key={index} className={part.tone==='bad'?'buff-down':'buff-up'}>{part.text}</span>
+))
+
+export function BuffSideTable({label,entries,side,enemyDebuffs={},references=[],layout='grid'}){
   const disclosureId=useId()
   const{t}=useTranslation('common')
   const locale=useLocale()
@@ -1631,12 +1873,13 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={},references=[]}
   const ac=side==='attack'?'var(--red)':'var(--blue)'
   const hasAny=entries.some(({buffs})=>Object.values(buffs).some(value=>value.up>0||value.down>0))
   const hasEnemyDebuffs=Object.values(enemyDebuffs).some(value=>Object.values(value.up||{}).some(Boolean)||Object.values(value.down||{}).some(Boolean))
-  const fmt=v=>Number.isInteger(v)?v:v.toFixed(1)
-  const activeStats=entries.map(({buffs})=>new Map(Object.entries(buffs).filter(([,v])=>v.up>0||v.down>0)))
-  const statRows=[...new Set(activeStats.flatMap(map=>[...map.keys()]))].sort((a,b)=>statSortKey(a)-statSortKey(b))
+  const fmt=formatBuffNumber
+  const activeStats=activeBuffStats(entries)
+  const statRows=sortedBuffStatRows(activeStats)
   const names=entries.map(({general})=>localizedCharacter(general,locale).displayName)
+  const isList=layout==='list'
   const renderCell=(g,gi,stat,buff,row)=>{
-    const{up,down,sources=[],instances}=buff
+    const{up,down,instances}=buff
     const inv=INVERSE_STATS.has(stat)
     const isFlag=SPECIAL_STATS.has(stat)
     const key=`${g.id}|${stat}`
@@ -1665,18 +1908,7 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={},references=[]}
             </span>
           </button>
           <div id={panelId} hidden={!isOpen} className="buff-sources bg-panel" style={panelStyle}>
-            {panelTitle}
-            {sorted.map((inst,idx)=>(
-              <div key={idx} className="buff-source-contribution">
-              <div className="buff-source-row">
-                <CharIcon c={inst.owner} size={16} round={true}/>
-                <span className="buff-source-name">{localizedCharacter(inst.owner,locale).displayName}</span>
-                <span className="buff-up">+{fmt(inst.val)}%{inst.duration?` · ${localizedDuration(inst.duration,locale)}`:''}</span>
-              </div>
-              <BuffSourceEvidence source={inst}/>
-              </div>
-            ))}
-            <div className="buff-guard-note">{t('buffs.guardNote')}</div>
+            <BuffCellSources stat={stat} buff={buff} title={panelTitle}/>
           </div>
         </div>
       )
@@ -1695,20 +1927,137 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={},references=[]}
           </span>
         </button>
         <div id={panelId} hidden={!isOpen} className="buff-sources bg-panel" style={panelStyle}>
-          {panelTitle}
-          {sources.map((s,i)=>(
-            <div key={i} className="buff-source-contribution">
-            <div className="buff-source-row">
-              <CharIcon c={s.owner} size={16} round={true}/>
-              <span className="buff-source-name">{localizedCharacter(s.owner,locale).displayName}</span>
-              <span className={s.dir==='up'?(inv?'buff-down':'buff-up'):(inv?'buff-up':'buff-down')}>
-                {isFlag?`${s.contribution}×`:`${s.dir==='up'?'+':'−'}${fmt(s.contribution)}%`}
-              </span>
-            </div>
-            <BuffSourceEvidence source={s}/>
-            </div>
+          <BuffCellSources stat={stat} buff={buff} title={panelTitle}/>
+        </div>
+      </div>
+    )
+  }
+  const toggle=key=>setExpanded(current=>current===key?null:key)
+  const panelIdFor=key=>`${disclosureId}-${encodeURIComponent(key)}`
+  const renderList=()=>{
+    const rows=classifyBuffRows(activeStats,statRows,BUFF_ROW_OPTIONS)
+    const count=entries.length
+    const enemyRows=enemyDebuffRows(enemyDebuffs)
+    return(
+      <div className="buff-list" style={{'--buff-cols':count}}>
+        <div className="bl-faces" aria-hidden="true">
+          {entries.map(({general:g},gi)=>(
+            <div key={g.id} className="bl-face"><CharIcon c={g} size={42} round={true}/><span>{names[gi]}</span></div>
           ))}
         </div>
+        {rows.map(row=>{
+          const statName=localizedText(row.stat,locale)
+          const durations=[...new Set(row.cells.filter(Boolean).map(cell=>cell.duration||''))]
+          const commonDuration=durations.length===1&&durations[0]?localizedDuration(durations[0],locale):''
+          const statLabel=<span className="bl-stat"><span className="buff-stat-name">{statName}</span>{commonDuration&&<small>{commonDuration}</small>}</span>
+          if(row.kind==='shared'){
+            const key=`all|${row.stat}`
+            const isOpen=expanded===key
+            const cell=row.cells[0]
+            const groups=groupCellsBySources(row.stat,row.cells)
+            const allLabel=t('buffs.allCount',{count})
+            return(
+              <div key={row.stat} className="bl-row" data-buff-row={row.stat} data-buff-row-kind="shared">
+                <button type="button" aria-expanded={isOpen} aria-controls={panelIdFor(key)} className={`buff-row buff-row-click bl-line${isOpen?' buff-row-open':''}`} onClick={()=>toggle(key)}>
+                  {statLabel}
+                  <span className="bl-all">{allLabel}</span>
+                  <span className="bl-val">{buffValueParts(cell.parts)}{cell.more>0&&<span className="buff-more">+{cell.more}</span>}</span>
+                </button>
+                <div id={panelIdFor(key)} hidden={!isOpen} className="buff-sources bl-panel">
+                  {groups.map(group=>(
+                    <div key={group.signature} className="bl-group">
+                      <BuffCellSources stat={row.stat} buff={group.buff} title={<div className="bg-panel-title"><span>{statName}</span> · <span>{group.indexes.length===count?allLabel:group.indexes.map(index=>names[index]).join(', ')}</span></div>}/>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
+          }
+          if(row.kind==='single'){
+            const gi=row.present[0]
+            const g=entries[gi].general
+            const cell=row.cells[gi]
+            const key=`${g.id}|${row.stat}`
+            const isOpen=expanded===key
+            return(
+              <div key={row.stat} className="bl-row" data-buff-row={row.stat} data-buff-row-kind="single">
+                <div data-buff-general={g.id}><div data-buff-stat={row.stat}>
+                  <button type="button" aria-expanded={isOpen} aria-controls={panelIdFor(key)} className={`buff-row buff-row-click bl-line${isOpen?' buff-row-open':''}`} onClick={()=>toggle(key)}>
+                    {statLabel}
+                    {count>1&&<span className="bl-who"><CharIcon c={g} size={26} round={true}/>{names[gi]}</span>}
+                    <span className="bl-val">{buffValueParts(cell.parts)}{cell.more>0&&<span className="buff-more">+{cell.more}</span>}</span>
+                  </button>
+                  <div id={panelIdFor(key)} hidden={!isOpen} className="buff-sources bl-panel">
+                    <BuffCellSources stat={row.stat} buff={cell.buff} title={<div className="bg-panel-title"><span>{statName}</span> · <span>{names[gi]}</span></div>}/>
+                  </div>
+                </div></div>
+              </div>
+            )
+          }
+          return(
+            <div key={row.stat} className="bl-row bl-varies" data-buff-row={row.stat} data-buff-row-kind="varies">
+              {statLabel}
+              <div className="bl-vals">
+                {row.cells.map((cell,gi)=>{
+                  const g=entries[gi].general
+                  if(!cell) return <span key={g.id} className="bl-none" style={{gridColumn:gi+1}} aria-hidden="true">—</span>
+                  const key=`${g.id}|${row.stat}`
+                  const isOpen=expanded===key
+                  return(
+                    <div key={g.id} className="bl-contents" data-buff-general={g.id}><div className="bl-contents" data-buff-stat={row.stat}>
+                      <button type="button" aria-expanded={isOpen} aria-controls={panelIdFor(key)} className={`buff-row buff-row-click bl-cell${isOpen?' buff-row-open':''}`} style={{gridColumn:gi+1}} onClick={()=>toggle(key)}>
+                        <span className="sr-only">{statName} · {names[gi]}: </span>
+                        <span className="bl-cell-val">{buffValueParts(cell.parts)}</span>
+                        {!commonDuration&&cell.duration&&<small>{localizedDuration(cell.duration,locale)}</small>}
+                        {cell.more>0&&<span className="buff-more">+{cell.more}</span>}
+                      </button>
+                      <div id={panelIdFor(key)} hidden={!isOpen} className="buff-sources bl-panel">
+                        <BuffCellSources stat={row.stat} buff={cell.buff} title={<div className="bg-panel-title"><span>{statName}</span> · <span>{names[gi]}</span></div>}/>
+                      </div>
+                    </div></div>
+                  )
+                })}
+              </div>
+            </div>
+          )
+        })}
+        {enemyRows.length>0&&(
+          <div className="bl-enemy">
+            <div className="bl-enemy-h">{t('buffs.onEnemy')}</div>
+            {enemyRows.map(item=>{
+              const key=`deb|${item.target}|${item.dir}|${item.stat}`
+              const isOpen=expanded===key
+              return(
+                <div key={key} className="bl-row" data-buff-enemy-row={item.stat}>
+                  <button type="button" aria-expanded={isOpen} aria-controls={panelIdFor(key)} className={`buff-row buff-row-click bl-line${isOpen?' buff-row-open':''}`} onClick={()=>toggle(key)}>
+                    <span className="bl-stat"><span className="buff-stat-name">{localizedText(item.stat,locale)}</span><small>{localizedTarget(item.target,locale)}</small></span>
+                    <span className="bl-val"><span className="buff-down">{enemyDebuffText(item)}</span></span>
+                  </button>
+                  <div id={panelIdFor(key)} hidden={!isOpen} className="buff-sources bl-panel">
+                    {item.sources.map((x,i)=>(
+                      <div key={i} className="buff-source-contribution">
+                      <div className="buff-source-row">
+                        <CharIcon c={x.owner} size={16} round={true}/>
+                        <span className="buff-source-name">{localizedCharacter(x.owner,locale).displayName}</span>
+                        <span className="buff-down">{x.dir==='down'?'−':'+'}{fmt(x.contribution)}%</span>
+                      </div>
+                      <BuffSourceEvidence source={x}/>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </div>
+    )
+  }
+  if(isList){
+    return(
+      <div className={`scol ${side==='attack'?'atk':'def'} buff-list-side`} data-buff-side={side}>
+        {!hasAny&&!hasEnemyDebuffs?<p className="scol-none">{t('noRelevantBuffs')}</p>:renderList()}
+        <TeamEffectReference sources={references}/>
       </div>
     )
   }

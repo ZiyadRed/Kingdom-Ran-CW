@@ -74,6 +74,9 @@ test('status-rate bonuses render, share, and retain every selected effect in the
     await page.setViewportSize(viewport)
     await page.goto(path('/builder'))
     const summary=await openSummary(page)
+    // Start from strategy skills only, then add combat skills back.
+    const strategyOnly=summary.locator('.buff-mode input')
+    await strategyOnly.check()
     const betrayal=summary.locator('.scol.atk [data-buff-general="hanoki"] [data-buff-stat="Betrayal Infliction Rate"]')
     await expect(betrayal.locator('.buff-row')).toContainText('+60%')
     await betrayal.locator('.buff-row').click()
@@ -83,7 +86,7 @@ test('status-rate bonuses render, share, and retain every selected effect in the
     await refs.locator('summary').click()
     await expect(refs.locator('[data-effect-owner]').first()).toBeVisible()
     const beforeCombat=await refs.locator('[data-effect-owner]').count()
-    await summary.locator('input[type="checkbox"]').check()
+    await strategyOnly.uncheck()
     await expect.poll(()=>refs.locator('[data-effect-owner]').count()).toBeGreaterThan(beforeCombat)
     if(locale==='ja') expect((await refs.innerText()).replace(/\b(?:CW6|HP)\b/g,'')).not.toMatch(/[A-Za-z]/)
     await page.evaluate(()=>{

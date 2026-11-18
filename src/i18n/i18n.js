@@ -618,6 +618,77 @@ fr.ux = {
   archive: { facts: 'Fiche du général', passiveBuffs: 'Buffs passifs de ce général', usedIn: 'Utilisé dans' },
 }
 
+// Party Builder buff summary: phone list, strategy-only switch and Save image.
+// Combat skills are counted by default; the switch narrows the totals.
+Object.assign(en.buffs, {
+  strategySkillsOnly: 'Strategy skills only',
+  strategySkillsOnlyTitle: 'Leave out combat skills and count only Strategy plus selected Leader/Strategist skills',
+  shareText: 'Share text',
+  saveImage: 'Save image',
+  saveAsImage: 'Save as image',
+  saveImageChoose: 'Choose what goes in the picture.',
+  saveImageHint: 'Opens your phone’s share menu, where you can save it to your photos.',
+  attackingTeam: 'Attacking team',
+  defendingTeam: 'Defending team',
+  bothTeams: 'Both teams',
+  bothTeamsNote: 'Attacking and defending, side by side',
+  attackVsDefense: 'Attacking vs defending',
+  allCount: 'All {{count}}',
+  onEnemy: 'On the enemy',
+  back: 'Back',
+})
+Object.assign(ja.buffs, {
+  strategySkillsOnly: '軍略のみ',
+  strategySkillsOnlyTitle: '戦技を除き、軍略と選択した争覇総大将・争覇軍師スキルのみを集計します',
+  shareText: 'テキストで共有',
+  saveImage: '画像を保存',
+  saveAsImage: '画像として保存',
+  saveImageChoose: '画像に入れる編成を選んでください。',
+  saveImageHint: '共有メニューが開き、写真に保存できます。',
+  attackingTeam: '侵攻編成',
+  defendingTeam: '駐屯編成',
+  bothTeams: '両方の編成',
+  bothTeamsNote: '侵攻と駐屯を横並びで',
+  attackVsDefense: '侵攻と駐屯',
+  allCount: '{{count}}人全員',
+  onEnemy: '敵への効果',
+  back: '戻る',
+})
+Object.assign(ar.buffs, {
+  strategySkillsOnly: 'مهارات الاستراتيجية فقط',
+  strategySkillsOnlyTitle: 'استبعد المهارات القتالية واحتسب مهارات الاستراتيجية ومهارات القائد/الاستراتيجي المحددة فقط',
+  shareText: 'مشاركة كنص',
+  saveImage: 'حفظ كصورة',
+  saveAsImage: 'حفظ الجدول كصورة',
+  saveImageChoose: 'اختر ما تريد إظهاره في الصورة.',
+  saveImageHint: 'تُفتح قائمة المشاركة في هاتفك، ومنها يمكنك حفظ الصورة في معرض الصور.',
+  attackingTeam: 'فريق الهجوم',
+  defendingTeam: 'فريق الدفاع',
+  bothTeams: 'الفريقان معًا',
+  bothTeamsNote: 'الهجوم والدفاع جنبًا إلى جنب',
+  attackVsDefense: 'الهجوم ضد الدفاع',
+  allCount: 'الكل ({{count}})',
+  onEnemy: 'على العدو',
+  back: 'رجوع',
+})
+Object.assign(fr.buffs, {
+  strategySkillsOnly: 'Compétences de stratégie uniquement',
+  strategySkillsOnlyTitle: 'Exclure les compétences de combat et ne compter que les compétences de stratégie et les compétences de Leader ou de Stratège sélectionnées',
+  shareText: 'Partager le texte',
+  saveImage: 'Enregistrer l’image',
+  saveAsImage: 'Enregistrer en image',
+  saveImageChoose: 'Choisissez ce qui apparaît sur l’image.',
+  saveImageHint: 'Ouvre le menu de partage de votre téléphone pour l’enregistrer dans vos photos.',
+  attackingTeam: 'Équipe d’attaque',
+  defendingTeam: 'Équipe de défense',
+  bothTeams: 'Les deux équipes',
+  bothTeamsNote: 'Attaque et défense côte à côte',
+  attackVsDefense: 'Attaque contre défense',
+  allCount: 'Les {{count}}',
+  onEnemy: 'Sur l’ennemi',
+  back: 'Retour',
+})
+
 export const CATALOGS = { en, ja, ar, fr }
 const resources = { en: { common: en }, ja: { common: ja }, ar: { common: ar }, fr: { common: fr } }
 const supportedLngs = LOCALES.map((locale) => locale.code)

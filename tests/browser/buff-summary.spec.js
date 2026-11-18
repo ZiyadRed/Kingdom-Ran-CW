@@ -1,7 +1,11 @@
 import { test, expect, instrumentStorage, settle } from './fixtures.js'
 import { CATALOGS } from '../../src/i18n/i18n.js'
 
+// The per-general grid is the desktop layout; phones get the list, tested below.
+const desktop={width:1440,height:900}
+
 test('buff, Guard alternative and enemy disclosures support keyboard activation', async ({ page, path }) => {
+  await page.setViewportSize(desktop)
   const mask={n:3,s6:true,role:false}
   await instrumentStorage(page, {'ranhq:party-builder':JSON.stringify({
     version:1, attack:['ouhon','ousen','renpa',null], defense:['duke_hyou',null,null,null],
@@ -12,7 +16,8 @@ test('buff, Guard alternative and enemy disclosures support keyboard activation'
   const summaryToggle=page.locator('.builder-buff-toggle')
   if(await summaryToggle.getAttribute('aria-expanded')==='false') await summaryToggle.click()
   const summary=page.locator('.buff-summary')
-  await summary.locator('input[type="checkbox"]').check()
+  // Combat skills (Guard, penetration) are counted by default.
+  await expect(summary.locator('.buff-mode input')).not.toBeChecked()
   const attack=summary.locator('.scol.atk')
   const rows=[
     attack.locator('[data-buff-general="ouhon"] [data-buff-stat]:not([data-buff-stat="Guard"]) .buff-row').first(),
@@ -51,6 +56,7 @@ test('buff, Guard alternative and enemy disclosures support keyboard activation'
 })
 
 test('formation summaries, contribution evidence and shared totals respect attack and defense', async ({ page, path, locale }) => {
+  await page.setViewportSize(desktop)
   const mask={ n:3, s6:false, role:false }
   await instrumentStorage(page, { 'ranhq:party-builder': JSON.stringify({
     version:1,
@@ -66,6 +72,8 @@ test('formation summaries, contribution evidence and shared totals respect attac
   await expect(disclosure).toHaveAttribute('aria-expanded','true')
   const summary=page.locator('.buff-summary')
   await expect(summary).toBeVisible()
+  // These values are the strategy-skill totals.
+  await summary.locator('.buff-mode input').check()
   const attack=summary.locator('.scol.atk')
   const defense=summary.locator('.scol.def')
   const penetration=(side,id)=>side.locator(`[data-buff-general="${id}"] [data-buff-stat="DEF Penetration"]`)
@@ -74,8 +82,8 @@ test('formation summaries, contribution evidence and shared totals respect attac
   await expect(penetration(defense,'ousen').locator('.buff-row')).toContainText('+30%')
   await expect(penetration(attack,'duke_hyou').locator('.buff-row')).toContainText('+20%')
   for(const [row,value,sideIndex] of [[penetration(defense,'ousen'),30,1],[penetration(attack,'duke_hyou'),20,0]]) {
-    // Phones (<=480px) show one formation grid at a time behind the
-    // Attacking/Defending tabs; desktop shows both and has no tabs.
+    // Desktop shows both formations and has no tabs; phones show one side at
+    // a time behind the Attacking/Defending tabs.
     const sideTab=summary.locator('.buff-side-switch button').nth(sideIndex)
     if(await sideTab.isVisible()) await sideTab.click()
     await row.locator('.buff-row').click()
@@ -112,6 +120,7 @@ test('formation summaries, contribution evidence and shared totals respect attac
 })
 
 test('survival-qualified formation values and missing-opponent disclosures stay distinct',async({page,path,locale})=>{
+  await page.setViewportSize(desktop)
   const mask={n:3,s6:false,role:false}
   let seeded=false
   const open=async defense=>{
@@ -127,6 +136,7 @@ test('survival-qualified formation values and missing-opponent disclosures stay 
     await settle(page)
     const toggle=page.locator('.builder-buff-toggle')
     if(await toggle.getAttribute('aria-expanded')==='false') await toggle.click()
+    await page.locator('.buff-summary .buff-mode input').check()
     return page.locator('.buff-summary')
   }
   const matched=await open('hakurei')
@@ -161,6 +171,74 @@ test('survival-qualified formation values and missing-opponent disclosures stay 
   const toggle=page.locator('.builder-buff-toggle')
   if(await toggle.getAttribute('aria-expanded')==='false') await toggle.click()
   const multiSummary=page.locator('.buff-summary')
+  await multiSummary.locator('.buff-mode input').check()
   await expect(multiSummary.locator('[data-buff-opponent-notice]')).toHaveCount(1)
   await expect(multiSummary.locator('.buff-applicability-notice')).toHaveCount(0)
+})
+
+test('phones list each buff once, merge shared values and save one or both teams as an image',async({page,path,locale})=>{
+  const mask={n:3,s6:true,role:false}
+  await instrumentStorage(page,{'ranhq:party-builder':JSON.stringify({
+    version:1,attack:['shoutaku','ouhon','kyuukou','kanjou'],defense:['katari','yotanwa','kitari','ramauji'],
+    attackSkills:[mask,mask,mask,mask],defenseSkills:[mask,mask,mask,mask],
+  })})
+  await page.goto(path('/builder'))
+  await settle(page)
+  const toggle=page.locator('.builder-buff-toggle')
+  if(await toggle.getAttribute('aria-expanded')==='false') await toggle.click()
+  const summary=page.locator('.buff-summary')
+  const attack=summary.locator('.scol.atk')
+  await expect(attack.locator('.buff-list')).toBeVisible()
+  await expect(summary.locator('.buff-grid')).toHaveCount(0)
+
+  // Combat skills count by default; the switch narrows to strategy skills.
+  const strategyOnly=summary.locator('.buff-mode input')
+  await expect(strategyOnly).not.toBeChecked()
+  const shared=attack.locator('[data-buff-row="Hit Rate"]')
+  await expect(shared).toHaveAttribute('data-buff-row-kind','shared')
+  await expect(shared.locator('.bl-all')).toHaveText(CATALOGS[locale].buffs.allCount.replace('{{count}}','4'))
+  await expect(shared.locator('.bl-val .buff-up')).toHaveText('+60%')
+  for(const selector of ['.bl-stat','.bl-val .buff-up']){
+    expect(parseFloat(await shared.locator(selector).first().evaluate(node=>getComputedStyle(node).fontSize))).toBeGreaterThanOrEqual(15)
+  }
+  const atkRow=attack.locator('[data-buff-row="ATK"]')
+  await expect(atkRow).toHaveAttribute('data-buff-row-kind','varies')
+  await strategyOnly.check()
+  await expect(atkRow).toHaveAttribute('data-buff-row-kind','shared')
+  await strategyOnly.uncheck()
+  await expect(atkRow).toHaveAttribute('data-buff-row-kind','varies')
+
+  // Differing values sit under each general and still open their sources.
+  const maxHp=attack.locator('[data-buff-row="Max HP"]')
+  await expect(maxHp).toHaveAttribute('data-buff-row-kind','varies')
+  const ouhon=maxHp.locator('[data-buff-general="ouhon"] [data-buff-stat="Max HP"] .buff-row')
+  await expect(ouhon).toContainText('+200%')
+  await ouhon.click()
+  await expect(ouhon).toHaveAttribute('aria-expanded','true')
+  await expect(maxHp.locator('[data-buff-general="ouhon"] .buff-source-contribution')).toHaveCount(3)
+  await ouhon.click()
+  await expect(attack.locator('.bl-enemy [data-buff-enemy-row]').first()).toBeVisible()
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
+
+  // Save image: defaults to the visible side and renders high-resolution PNGs.
+  await page.evaluate(()=>{
+    Object.defineProperty(navigator,'share',{configurable:true,value:undefined})
+    Object.defineProperty(navigator,'clipboard',{configurable:true,value:undefined})
+  })
+  await summary.locator('.buff-save-btn').click()
+  const dialog=page.locator('dialog.share-preview-backdrop')
+  await expect(dialog.locator('[data-save-choice="attack"] input')).toBeChecked()
+  await expect(dialog.locator('[data-save-choice="both"] input')).toBeEnabled()
+  expect(await dialog.evaluate(node=>node.querySelector('.buff-save').scrollWidth<=node.querySelector('.buff-save').clientWidth)).toBe(true)
+  for(const [choice,width] of [['attack',2160],['both',4000]]){
+    await dialog.locator(`[data-save-choice="${choice}"] input`).check()
+    await dialog.locator('.buff-save-go').click()
+    const image=dialog.locator('.share-preview-img-wrap img')
+    await expect.poll(()=>image.evaluate(node=>node.complete?node.naturalWidth:0),{timeout:20000}).toBe(width)
+    await expect(dialog.locator('.buff-save-download')).toBeVisible()
+    await dialog.getByRole('button',{name:CATALOGS[locale].buffs.back}).click()
+  }
+  await dialog.locator('.share-preview-close').click()
+  await expect(dialog).toHaveCount(0)
+  await expect(summary.locator('.buff-save-btn')).toBeFocused()
 })

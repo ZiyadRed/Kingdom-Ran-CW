@@ -160,6 +160,110 @@ html[dir="rtl"] .bg-stat { box-shadow: -1px 0 0 var(--bdr); }
   .buff-summary .buff-cols > .scol { padding-inline: 8px; }
 }
 
+/* Buff summary header: Save image, Share text and the strategy-only switch. */
+.buff-summary-head { display: flex; align-items: center; justify-content: space-between; gap: .6rem 1rem; flex-wrap: wrap; }
+.buff-save-btn {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: .34rem .7rem;
+  border: 1.5px solid var(--navy); border-radius: 7px; background: var(--navy); color: #fff;
+  font-size: .72rem; font-weight: 900; line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap; cursor: pointer;
+}
+.buff-save-btn:hover { background: #0c3566; }
+.buff-save-btn:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.buff-save-btn svg { width: 14px; height: 14px; flex: none; }
+.buff-mode { display: inline-flex; align-items: center; gap: .45rem; color: var(--txt2); font-size: .74rem; font-weight: 600; letter-spacing: normal; text-transform: none; cursor: pointer; }
+.buff-mode input {
+  appearance: none; -webkit-appearance: none; flex: none; width: 38px; height: 22px; margin: 0; border-radius: 11px; cursor: pointer;
+  background: #bfae92 radial-gradient(circle at 11px 11px, #fff 8px, transparent 8.5px);
+  transition: background-color .15s;
+}
+.buff-mode input:checked { background: var(--navy) radial-gradient(circle at 27px 11px, #fff 8px, transparent 8.5px); }
+html[dir="rtl"] .buff-mode input { background-image: radial-gradient(circle at 27px 11px, #fff 8px, transparent 8.5px); }
+html[dir="rtl"] .buff-mode input:checked { background-image: radial-gradient(circle at 11px 11px, #fff 8px, transparent 8.5px); }
+.buff-mode input:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+/* Party Builder buff list (phones, rendered instead of the grid). */
+.buff-list { margin-block: 2px .6rem; border: 1px solid var(--bdr); border-radius: 14px; background: #fffdf9; overflow: hidden; }
+.bl-faces { display: grid; grid-template-columns: repeat(var(--buff-cols, 4), minmax(0, 1fr)); padding: 12px 4px 10px; border-block-end: 1px solid #e3d5bf; background: #f6efe3; }
+.bl-face { display: flex; flex-direction: column; align-items: center; gap: 5px; min-width: 0; }
+.bl-face img { box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--bdr); }
+.bl-face span { max-width: 100%; overflow: hidden; color: var(--navy); font-size: 13.5px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+.bl-row { border-block-end: 1px solid #ece2d1; }
+.bl-row:last-child { border-block-end: 0; }
+.bl-contents { display: contents; }
+.buff-list .buff-row { margin: 0; border: 0; border-radius: 0; background: transparent; color: inherit; font-size: inherit; }
+.buff-list .buff-row-click:hover { background: rgba(6,38,76,.04); }
+.buff-list .buff-row-click:focus-visible { outline: 3px solid var(--blue); outline-offset: -3px; }
+.buff-list .bl-line { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 48px; padding: 6px 14px; }
+.bl-stat { flex: 1; min-width: 0; color: var(--txt); font-size: 15.5px; font-weight: 600; line-height: 1.25; text-align: start; }
+.bl-stat .buff-stat-name { display: block; overflow: visible; color: inherit; font-size: inherit; font-weight: inherit; white-space: normal; }
+.bl-stat small { display: block; margin-block-start: 1px; color: var(--txt3); font-size: 12.5px; font-weight: 600; }
+.bl-all { flex: none; padding: 3px 7px; border-radius: 6px; background: #e3efe5; color: #1f6b45; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+html[lang="ja"] .bl-all, html[lang="ar"] .bl-all { letter-spacing: 0; }
+.bl-val { display: inline-flex; flex: none; align-items: center; justify-content: flex-end; gap: 6px; min-width: 58px; }
+.buff-list .buff-up, .buff-list .buff-down {
+  padding: 0; border-radius: 0; background: none; font-size: 17.5px; font-weight: 700;
+  font-variant-numeric: tabular-nums; direction: ltr; unicode-bidi: isolate;
+}
+.buff-list .buff-up { color: #13714a; }
+.buff-list .buff-down { color: #b9342b; }
+.buff-list .buff-more { background: var(--bg2); color: var(--txt3); font-size: 12px; direction: ltr; unicode-bidi: isolate; }
+.bl-who { display: inline-flex; flex: none; align-items: center; gap: 6px; max-width: 42%; overflow: hidden; color: var(--txt2); font-size: 14px; font-weight: 600; white-space: nowrap; }
+.bl-who img { box-shadow: 0 0 0 1px var(--bdr); }
+.bl-varies { padding-block: 11px 7px; }
+.bl-varies > .bl-stat { display: block; padding-inline: 14px; }
+.bl-vals { display: grid; grid-template-columns: repeat(var(--buff-cols, 4), minmax(0, 1fr)); margin-block-start: 5px; padding-inline: 4px; }
+.buff-list .bl-cell { grid-row: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 1px; min-width: 0; min-height: 44px; margin: 0 3px; padding: 3px 0; border-radius: 9px; }
+.bl-cell small { color: var(--txt3); font-size: 12px; font-weight: 600; }
+.bl-none { grid-row: 1; align-self: start; padding-block-start: 4px; color: #ad9d80; font-size: 17px; font-weight: 600; text-align: center; }
+.buff-list .bl-cell.buff-row-open { background: #fbe3d3; box-shadow: inset 0 0 0 2px var(--terra); }
+.buff-list .bl-line.buff-row-open { background: rgba(224,127,72,.1); }
+.buff-list .bl-panel { margin: 0; padding: 10px 14px 12px; border: 0; border-block-start: 1px solid #ecd9c0; border-radius: 0; background: #fbf3e8; }
+.bl-vals > .bl-contents > .bl-contents > .bl-panel { grid-column: 1 / -1; grid-row: 2; margin: 8px -4px 0; }
+.bl-panel .bg-panel-title { margin-block-end: 4px; color: var(--navy); font-size: 14px; font-weight: 800; }
+.bl-panel .buff-source-row { gap: 8px; font-size: 14px; }
+.buff-summary .bl-panel .buff-source-evidence { margin-inline-start: 24px; font-size: 13px; }
+.bl-panel .buff-up, .bl-panel .buff-down { font-size: 15px; }
+.bl-panel .buff-guard-note { color: var(--txt3); font-size: 12.5px; }
+.bl-group + .bl-group { margin-block-start: 8px; padding-block-start: 8px; border-block-start: 1px dashed #e2d0b5; }
+.bl-enemy-h { padding: 16px 14px 4px; border-block-start: 2px solid #ece2d1; color: #b9342b; font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+html[lang="ja"] .bl-enemy-h, html[lang="ar"] .bl-enemy-h { letter-spacing: 0; }
+.buff-list-side .buff-effect-reference { margin-block-start: .4rem; }
+
+@media (max-width: 480px) {
+  .buff-summary-head { padding-block: 12px; }
+  .buff-summary-head .sec-actions { width: 100%; justify-content: flex-start; gap: 8px 10px; }
+  .buff-save-btn { min-height: 40px; padding-inline: 14px; font-size: 14px; }
+  .buff-save-btn svg { width: 17px; height: 17px; }
+  .buff-mode { font-size: 14px; }
+  .buff-summary .scol.buff-list-side { padding-inline: 0; }
+}
+
+/* Save image dialog. */
+.buff-save { width: min(520px, calc(100vw - 24px)); font-size: 15px; font-weight: 400; letter-spacing: normal; text-transform: none; text-align: start; }
+.buff-save.share-preview-wide { width: min(1240px, calc(100vw - 24px)); }
+.buff-save-options { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; min-width: 0; margin: 0; padding: 14px 14px 4px; border: 0; }
+.buff-save-option { display: flex; align-items: center; gap: 12px; min-width: 0; padding: 12px; border: 1px solid #e0d1b8; border-radius: 12px; background: #fffdf9; cursor: pointer; }
+.buff-save-option.is-on { padding: 11px; border: 2px solid var(--navy); background: #f4f7fb; }
+.buff-save-option.is-off { opacity: .55; cursor: not-allowed; }
+.buff-save-option input { flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--navy); }
+.buff-save-option input:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.buff-save-text { flex: 1; min-width: 0; }
+.buff-save-text b { display: block; color: var(--navy); font-size: 15.5px; font-weight: 700; }
+.buff-save-text span { display: block; overflow: hidden; color: var(--txt3); font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
+.buff-save-faces { display: flex; flex: none; flex-direction: column; gap: 3px; }
+.buff-save-faces > span { display: flex; }
+.buff-save-faces img { box-shadow: 0 0 0 2px #fffdf9; }
+.buff-save-faces > span > * + * { margin-inline-start: -8px; }
+.buff-save-actions { justify-content: stretch; border-top: 0; }
+.buff-save-go {
+  display: inline-flex; flex: 1; align-items: center; justify-content: center; gap: 9px; min-height: 48px;
+  border: 0; border-radius: 10px; background: var(--navy); color: #fff; font-size: 16px; font-weight: 800; cursor: pointer;
+}
+.buff-save-go svg { width: 19px; height: 19px; }
+.buff-save-go:disabled { opacity: .7; cursor: wait; }
+.buff-save-go:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.buff-save-hint { margin: 0; padding: 0 14px 14px; color: var(--txt3); font-size: 13px; line-height: 1.4; text-align: center; }
+
 /* ── 3. Archive character panel: fact strip and cross-links ─────────────── */
 .detail-facts {
   display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 8px 14px 4px;

@@ -16,6 +16,26 @@ const syntheticGeneral=(id,effects=[],unit_type='Infantry')=>({
 })
 const occurrences=(value,needle)=>value.split(needle).length-1
 
+describe('combat skills in the formation summary', () => {
+  const combatOwner={id:'combat_owner',name_en:'combat_owner',name_jp:'未来戦技',country:'qin',unit_type:'Infantry',
+    skills:[
+      {name_en:'Combat skill',name_jp:'戦技',type:'Combat',effects:[{condition:null,target:'Self',effect:'ATK Up 37%',duration:null}]},
+      {name_en:'Strategy skill',name_jp:'軍略',type:'Strategy',effects:[{condition:null,target:'Self',effect:'DEF Up 11%',duration:null}]},
+    ]}
+  for(const code of ['en','ja','ar','fr']) {
+    it(`${code}: counts combat skills by default and offers a strategy-only switch`, () => {
+      const html=renderForLocale(<BuffTable atk={[combatOwner]} def={[]}/>,code)
+      expect(html).toContain('+37%')
+      expect(html).toContain(CATALOGS[code].buffs.strategySkillsOnly)
+      expect(html).toMatch(/<input type="checkbox" role="switch"(?![^>]*checked)/)
+      const strategyOnly=renderForLocale(<BuffTable atk={[combatOwner]} def={[]} initialIncludeCombat={false}/>,code)
+      expect(strategyOnly).not.toContain('+37%')
+      expect(strategyOnly).toContain('+11%')
+      expect(strategyOnly).toMatch(/<input type="checkbox" role="switch" checked=""/)
+    })
+  }
+})
+
 describe('real BuffTable formation summaries', () => {
   for(const code of ['en','ja','ar','fr']) {
     it(`${code}: excludes the wrong side at the UI call site`, () => {
