@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs'
 import { GUIDE_SECTION_IDS } from '../../src/seo.js'
 import { readCharacters } from '../../scripts/seo/routes.mjs'
 import { test, expect, expectLocale, instrumentStorage, saved, storage, settle } from './fixtures.js'
@@ -67,7 +68,11 @@ test('Archive overview and collections retain distinct crawlable pages and saved
 
 test('all search-only records retain searchable cards and direct detail documents', async ({ page, path }) => {
   const searchOnly = readCharacters().filter(character => !character.image)
-  expect(searchOnly).toHaveLength(19)
+  // Bannerless records are exactly the banner audit's unresolved fallbacks
+  // (Roen left that list when his official LG card was added on 2026-11-23).
+  const unresolved = JSON.parse(readFileSync('docs/character-integrity/banner-rework.json', 'utf8')).characters
+    .filter(entry => entry.outcome === 'KEEP FALLBACK / UNRESOLVED').map(entry => entry.id)
+  expect(searchOnly.map(character => character.id).sort()).toEqual(unresolved.sort())
   await page.goto(path('/archive/characters'))
   // The first hydration pass restores the collection's default URL state.
   // Wait for that navigation before typing so it cannot reset the search.
