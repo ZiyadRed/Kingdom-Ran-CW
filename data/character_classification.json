@@ -210,5 +210,7 @@
   "yuuren": {"unit_type": "Infantry", "groups": [], "initial_rarity": "SR"},
   "zenou": {"unit_type": "Infantry", "groups": ["Kanki Army"], "initial_rarity": "UR"},
   "koshuu": {"unit_type": "Infantry", "groups": [], "initial_rarity": "SR", "stats_fallback_rarity": "SR"},
-  "koreki": {"unit_type": "Infantry", "groups": [], "initial_rarity": "SR", "stats_fallback_rarity": "SR"}
+  "koreki": {"unit_type": "Infantry", "groups": [], "initial_rarity": "SR", "stats_fallback_rarity": "SR"},
+  "choukatsu": {"unit_type": "Cavalry", "groups": [], "initial_rarity": "SR", "stats_fallback_rarity": "SR"},
+  "maikou": {"unit_type": "Cavalry", "groups": [], "initial_rarity": "SR", "stats_fallback_rarity": "SR"}
 }

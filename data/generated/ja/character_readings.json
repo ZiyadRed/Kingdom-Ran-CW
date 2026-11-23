@@ -1,8 +1,8 @@
 {
   "_meta": {
     "schema": "ranhq.ja_character_readings/1",
-    "rows": 212,
-    "available": 191,
+    "rows": 214,
+    "available": 193,
     "missing": 21
   },
   "characters": {
@@ -13,6 +13,8 @@
     "ordo": null,
     "futei": "ふてい",
     "kouyoku": "こうよく",
+    "choukatsu": "ちょうかつ",
+    "maikou": "まいこう",
     "jinou": "じんおう",
     "goumasho": "ごうましょ",
     "beiman": "べいまん",

@@ -1,0 +1,306 @@
+{
+  "schema": "ranhq.announced_characters/1",
+  "reviewDate": "2026-11-23",
+  "sourceSnapshot": {
+    "snapshotDate": "2026-11-18",
+    "sourceRoot": "C:\\kingdom_data\\decrypted",
+    "masterFiles": {
+      "masters_001.bin": "0F552C4264DF10279C85B600D1753E0B33A7049360709A1B3F5DBCF11091383E",
+      "masters_002.bin": "3053AC0267F572A5E4A4AED5E3742E4F615BD0CC583E0D29D317C5493208575E",
+      "masters_003.bin": "FD9D69232831E44B57155428186EE39AA1A0A44CFC279513042E5C11FC487129",
+      "masters_004.bin": "D315FA4500BAFDC5786D365FD1E83995D3F8486356316425077536D201D47E93",
+      "masters_005.bin": "C77FD97E0B2182C5EFF48DF4688F5890DA1D0B1364980F6486DAE27D7972012A"
+    },
+    "manifestSha256": "1BD25A5D8573341567E28830A3501BB14DC08738321EEB6D7B2CED32A97AC414",
+    "limitation": "Acquisition from November 18 (before Ver8.9.0). Choukatsu/Maikou CW assignments are generic placeholder skill 1 (mstUnionConquestGenerals 270/271 skill1id=1, skill2-10=0), so the published announcement is the source for their CW kits until the released data is acquired."
+  },
+  "officialMaintenance": {
+    "url": "https://www.kingdomran.jp/info/261123maintenance",
+    "version": "8.9.0",
+    "start": "2026-11-25T14:00:00+09:00",
+    "end": "2026-11-25T18:00:00+09:00"
+  },
+  "visibility": "Owner instruction 2026-11-23: publish immediately from the official announcement; no release-time gate.",
+  "characters": [
+    {
+      "id": "choukatsu",
+      "characterId": 270,
+      "generalIds": [
+        571,
+        572
+      ],
+      "nameJp": "趙括",
+      "rubyJp": "ちょうかつ",
+      "initialRarity": "SR",
+      "availableRarities": [
+        "SR",
+        "UR"
+      ],
+      "classification": {
+        "country": "zhao",
+        "unitType": "Cavalry",
+        "attributeId": 1,
+        "postTypeId": 1
+      },
+      "announcement": {
+        "url": "https://www.kingdomran.jp/info/srur_chokatsu",
+        "date": "2026-11-23"
+      },
+      "artwork": {
+        "url": "https://s3.ap-northeast-1.amazonaws.com/official-operation.s3.sand.okp.mobcast.io/wp-content/uploads/2026/11/06134812/39ef9229d0be918026161204e55c3b6e.png",
+        "rarity": "UR",
+        "sourceSha256": "7AD0933483CCF03837B31F8BDC32073199B3BA1061FB1ECF1C27EC868D03DA97",
+        "width": 313,
+        "height": 440,
+        "output": "public/persos/choukatsu.webp",
+        "thumbnail": "public/persos/thumbs/choukatsu.webp",
+        "outputSha256": "b4a666b3822ee08fb2cdfed524fe04cd920f7aabff4fc0d555594e153fe1a3ef",
+        "lossless": true,
+        "preparation": "Lossless PNG-to-WebP conversion (exact RGB under alpha); decoded RGBA pixels byte-identical; no crop, resize, retouch or composite. 313px source, so the thumbnail is a byte-identical twin.",
+        "iconNote": "Native icon unavailable: the November 18 acquisition maps both new UR assets to placeholder design 216. The authentic UR card is used by the existing portrait fallback."
+      },
+      "cwSkills": [
+        {
+          "projectKey": "choukatsu#0",
+          "characterId": 270,
+          "sourceSlot": 1,
+          "nameJp": "勇将一閃【赤羊】",
+          "typeJp": "戦技スキル",
+          "descriptionJp": "最大体力が最も高い敵武将1名に150%のダメージを与える。\n敵争覇総大将に150%のダメージを与える。",
+          "skillId": null,
+          "textId": null
+        },
+        {
+          "projectKey": "choukatsu#1",
+          "characterId": 270,
+          "sourceSlot": 2,
+          "nameJp": "狙うは大将",
+          "typeJp": "戦技スキル",
+          "descriptionJp": "味方趙国武将の士気を20%回復する。\n最大体力が最も高い敵武将1名に150%のダメージを与える。\n敵争覇総大将に150%のダメージを与える。",
+          "skillId": null,
+          "textId": null
+        },
+        {
+          "projectKey": "choukatsu#2",
+          "characterId": 270,
+          "sourceSlot": 3,
+          "nameJp": "拙速な特攻",
+          "typeJp": "戦技スキル",
+          "descriptionJp": "自身に「捨て身」状態(4ターン)を付与する。\n最大体力が最も高い敵武将1名に150%のダメージを与える。\n敵争覇総大将に170%のダメージを与える。",
+          "skillId": null,
+          "textId": null
+        }
+      ],
+      "excludedFutureGeneralIds": [
+        573
+      ]
+    },
+    {
+      "id": "maikou",
+      "characterId": 271,
+      "generalIds": [
+        574,
+        575
+      ],
+      "nameJp": "昧広",
+      "rubyJp": "まいこう",
+      "initialRarity": "SR",
+      "availableRarities": [
+        "SR",
+        "UR"
+      ],
+      "classification": {
+        "country": "zhao",
+        "unitType": "Cavalry",
+        "attributeId": 1,
+        "postTypeId": 1
+      },
+      "announcement": {
+        "url": "https://www.kingdomran.jp/info/srur_maikou",
+        "date": "2026-11-23"
+      },
+      "artwork": {
+        "url": "https://s3.ap-northeast-1.amazonaws.com/official-operation.s3.sand.okp.mobcast.io/wp-content/uploads/2026/11/06134810/a975d5fd535ea4b8b4bda8d3c9d434b6.png",
+        "rarity": "UR",
+        "sourceSha256": "50EE931D56F6576EBC0DB39DD80EAB432163D680130A6FB3288E107B8AE3F2A6",
+        "width": 313,
+        "height": 440,
+        "output": "public/persos/maikou.webp",
+        "thumbnail": "public/persos/thumbs/maikou.webp",
+        "outputSha256": "3417228f6feecf0bdd1b53723cb6b59ed4aa8207bf9e0d0c0812432ebb889635",
+        "lossless": true,
+        "preparation": "Lossless PNG-to-WebP conversion (exact RGB under alpha); decoded RGBA pixels byte-identical; no crop, resize, retouch or composite. 313px source, so the thumbnail is a byte-identical twin.",
+        "iconNote": "Native icon unavailable: the November 18 acquisition maps both new UR assets to placeholder design 216. The authentic UR card is used by the existing portrait fallback."
+      },
+      "cwSkills": [
+        {
+          "projectKey": "maikou#0",
+          "characterId": 271,
+          "sourceSlot": 1,
+          "nameJp": "名将一閃【黄虎】",
+          "typeJp": "戦技スキル",
+          "descriptionJp": "味方趙国武将の「錯乱」状態の敵武将に対する攻撃力が10%上昇(3ターン)する。\n侵攻時には、20%の確率で敵秦国武将に「錯乱」状態(3ターン)を付与する。\n最大士気が最も高い敵武将1名に150%のダメージを与える。",
+          "skillId": null,
+          "textId": null
+        },
+        {
+          "projectKey": "maikou#1",
+          "characterId": 271,
+          "sourceSlot": 2,
+          "nameJp": "手筈通り",
+          "typeJp": "軍略スキル",
+          "descriptionJp": "味方趙国武将の「錯乱」状態の付与確率が20%上昇する。",
+          "skillId": null,
+          "textId": null
+        },
+        {
+          "projectKey": "maikou#2",
+          "characterId": 271,
+          "sourceSlot": 3,
+          "nameJp": "不意の襲撃",
+          "typeJp": "戦技スキル",
+          "descriptionJp": "味方趙国武将の「錯乱」状態の敵武将に対する攻撃力が20%上昇(3ターン)する。\n侵攻時には、40%の確率で敵秦国武将に「錯乱」状態(3ターン)を付与する。\n最大士気が最も高い敵武将1名に170%のダメージを与える。",
+          "skillId": null,
+          "textId": null
+        }
+      ],
+      "excludedFutureGeneralIds": [
+        576
+      ]
+    }
+  ],
+  "verifiedBuffs": [
+    {
+      "kind": "state",
+      "category": "Zhao",
+      "stat": "Attack",
+      "character_id": "choukatsu",
+      "characterId": 270,
+      "value": 5.0,
+      "skillLayer": "normal",
+      "generalId": 572,
+      "slot": 5,
+      "skillId": 1681,
+      "skillNameJp": "争覇攻撃力強化【趙】",
+      "fieldAbilityId": 187,
+      "level": 99,
+      "fieldRow": {
+        "effectLvB": 50000,
+        "countryId": 2,
+        "belongId": 0
+      },
+      "ownership_id": "buff_7a7b9b8e1a264cecaeabdd851f9a2b00"
+    },
+    {
+      "kind": "state",
+      "category": "Zhao",
+      "stat": "Attack",
+      "character_id": "maikou",
+      "characterId": 271,
+      "value": 5.0,
+      "skillLayer": "normal",
+      "generalId": 575,
+      "slot": 5,
+      "skillId": 1681,
+      "skillNameJp": "争覇攻撃力強化【趙】",
+      "fieldAbilityId": 187,
+      "level": 99,
+      "fieldRow": {
+        "effectLvB": 50000,
+        "countryId": 2,
+        "belongId": 0
+      },
+      "ownership_id": "buff_203d6352d42d4ea6aa3f6936321e7761"
+    },
+    {
+      "kind": "army",
+      "category": "Hishin Unit",
+      "stat": "Defense",
+      "character_id": "roen",
+      "characterId": 80,
+      "value": 5.0,
+      "skillLayer": "normal",
+      "generalId": 607,
+      "slot": 5,
+      "skillId": 1769,
+      "skillNameJp": "争覇防御力強化【飛信隊】",
+      "fieldAbilityId": 90,
+      "level": 99,
+      "fieldRow": {
+        "effectLvB": 50000,
+        "countryId": 0,
+        "belongId": 8
+      },
+      "ownership_id": "buff_6ebad572376449699e2f6e1458390500"
+    },
+    {
+      "kind": "unit",
+      "category": "Shield",
+      "stat": "Defense",
+      "character_id": "roen",
+      "characterId": 80,
+      "value": 5.0,
+      "skillLayer": "ura",
+      "generalId": 607,
+      "bindingId": 414,
+      "slot": 6,
+      "skillId": 10842,
+      "skillNameJp": "争覇防御力強化【盾兵】",
+      "fieldAbilityId": 96,
+      "level": 99,
+      "fieldRow": {
+        "effectLvB": 50000,
+        "countryId": 0,
+        "belongId": 0
+      },
+      "ownership_id": "buff_640c2fd0620a47f5b70a569332d27143"
+    }
+  ],
+  "notIncluded": [
+    {
+      "character": "youka",
+      "skillNameJp": "争覇攻撃力強化【秦】",
+      "reason": "Announced as a new 裏スキル, but the November 18 acquisition has no mstUnitSecondSkillGenerals binding for Youka's generals 491/492 and no ura row with this name, so its value cannot be verified yet."
+    },
+    {
+      "character": "gokei",
+      "reason": "争覇総大将スキル announced without name or effect; not present in the November 18 acquisition (chiefGeneralSkillId 0)."
+    },
+    {
+      "character": "goumasho",
+      "reason": "争覇軍師スキル announced without name or effect; not present in the November 18 acquisition (tacticianSkillId 0)."
+    }
+  ],
+  "upgrades": [
+    {
+      "id": "roen",
+      "characterId": 80,
+      "generalIds": [
+        24,
+        606,
+        607,
+        608
+      ],
+      "announcement": {
+        "url": "https://www.kingdomran.jp/info/urlg_roen",
+        "date": "2026-11-23"
+      },
+      "cwSkillsUnchanged": "mstUnionConquestGenerals 80 keeps skills 80/177/294; the announcement lists no 争覇戦スキル changes.",
+      "unitTypeNote": "Every Roen general (24, 606, 607, 608) has attributeId 3 (Shield); classification unchanged.",
+      "rarityNote": "Initial rarity stays R, matching other R→SR→UR→LG generals (Raido, Shin, Seki).",
+      "artwork": {
+        "url": "https://s3.ap-northeast-1.amazonaws.com/official-operation.s3.sand.okp.mobcast.io/wp-content/uploads/2026/11/06135111/8d036064dbefc33b2d510133a1279ce0.png",
+        "rarity": "LG",
+        "sourceSha256": "E29AA0FB80833C257E3F880C01EC975885A39AE8E22876FA4ECEA2EE3203AA0E",
+        "width": 313,
+        "height": 440,
+        "output": "public/persos/roen.webp",
+        "thumbnail": "public/persos/thumbs/roen.webp",
+        "outputSha256": "5bf9a59682660581637bbe006352cbbf5c033fcb0eea0fe166057047b5dc9744",
+        "lossless": true,
+        "preparation": "Lossless PNG-to-WebP conversion (exact RGB under alpha); decoded RGBA pixels byte-identical; no crop, resize, retouch or composite. 313px source, so the thumbnail is a byte-identical twin.",
+        "iconNote": "Existing native Roen icon kept."
+      }
+    }
+  ]
+}

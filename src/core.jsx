@@ -23,6 +23,7 @@ import misc         from '../data/characters/misc.json'
 import misc2        from '../data/characters/misc2.json'
 import aiYanMajor   from '../data/characters/ai_yan_major.json'
 import koshuKoreki  from '../data/characters/koshu_koreki.json'
+import choukatsuMaikou from '../data/characters/choukatsu_maikou.json'
 import cwBuffsData  from '../data/cw_buffs.json'
 import cwMaxStats   from '../data/cw_max_stats.json'
 import sceneCardBuffs from '../data/scene_card_cw_buffs.json'
@@ -214,7 +215,7 @@ const completeRoster = [
   ...mountainFolk,...qin,...qinBatch2,...qinMajor,
   ...zhao,...zhaoBatch2,...zhaoMajor,...otherStates,
   ...chu,...chuMajor,...wei,...yan,...qi,
-  ...aiYanMajor,...misc,...misc2,...koshuKoreki,
+  ...aiYanMajor,...misc,...misc2,...koshuKoreki,...choukatsuMaikou,
 ].filter(c=>c.country!=='unknown').map(c=>{
   const entry=ROLE_SKILL_BY_OWNER[c.id]
   if(!entry) return c

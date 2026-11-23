@@ -75,6 +75,8 @@ export function correctedCharacterSearchTarget(query) {
 }
 
 export const AR_CHARACTER_NAMES = {
+  'Choukatsu': 'تشوكاتسو',
+  'Maikou': 'مايكو',
   'Koshuu': 'كوشو',
   'Koreki': 'كوريكي',
   'Rouai': 'رواي',

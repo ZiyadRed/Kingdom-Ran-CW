@@ -3,7 +3,7 @@
     "schema": "ranhq.character_names/1",
     "source": "data/characters/*.json",
     "note": "English character name -> Japanese name, for effect text that names an ally",
-    "entries": 211
+    "entries": 213
   },
   "names": {
     "Rouai": "嫪毐",
@@ -13,6 +13,8 @@
     "Ordo": "オルド",
     "Futei": "傅抵",
     "Kouyoku": "項翼",
+    "Choukatsu": "趙括",
+    "Maikou": "昧広",
     "Jinou": "仁凹",
     "Goumasho": "剛摩諸",
     "Beiman": "貝満",

@@ -1373,6 +1373,19 @@
         "star6": false,
         "value": 3.8,
         "ownership_id": "buff_748d97a788ea4b45bddc057eeaa4e7f6"
+      },
+      {
+        "name": "Roen",
+        "name_jp": "魯延",
+        "character_id": "roen",
+        "characterId": 80,
+        "faction": "qin",
+        "type": "R",
+        "star6": false,
+        "value": 5.0,
+        "skill_layer": "ura",
+        "source_id": "ura:80:10842",
+        "ownership_id": "buff_640c2fd0620a47f5b70a569332d27143"
       }
     ]
   }

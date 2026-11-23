@@ -44,15 +44,16 @@ const AMBIGUOUS_KEYS = []
 // mistaken for the other: `rows` counts entries in the file, and
 // `coveredProjectRows` counts the deterministic project rows they serve.
 const EXPECTED = {
-  skills: 672,
+  skills: 678,
   deterministic: 672,
   canonicalSkills: 610,
   ambiguous: 0,
-  // October 28 supplies all announced Koshuu/Koreki assignments. Reject any
-  // regression back to announcement-only rows or null canonical IDs.
-  pending: 0,
-  characters: 212,
-  readingsAvailable: 191,
+  // Choukatsu/Maikou CW kits come from the November 23 announcement: the
+  // November 18 acquisition still assigns them generic skill 1. These six rows
+  // stay pending_source with null canonical IDs until the Ver8.9.0 data lands.
+  pending: 6,
+  characters: 214,
+  readingsAvailable: 193,
   readingsMissing: 21,
 }
 

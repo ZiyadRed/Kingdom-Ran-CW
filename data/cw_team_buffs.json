@@ -19,6 +19,30 @@
           "type": "UR",
           "value": 5.0,
           "ownership_id": "buff_86b3d8d4b593403b8679adf42deeb2ae"
+        },
+        {
+          "name": "Choukatsu",
+          "name_jp": "趙括",
+          "character_id": "choukatsu",
+          "characterId": 270,
+          "faction": "zhao",
+          "type": "UR",
+          "value": 5.0,
+          "skill_layer": "normal",
+          "source_id": "normal:270:1681",
+          "ownership_id": "buff_7a7b9b8e1a264cecaeabdd851f9a2b00"
+        },
+        {
+          "name": "Maikou",
+          "name_jp": "昧広",
+          "character_id": "maikou",
+          "characterId": 271,
+          "faction": "zhao",
+          "type": "UR",
+          "value": 5.0,
+          "skill_layer": "normal",
+          "source_id": "normal:271:1681",
+          "ownership_id": "buff_203d6352d42d4ea6aa3f6936321e7761"
         }
       ],
       "Defense": [
@@ -798,6 +822,18 @@
           "source_id": "ura:259:10721",
           "ownership_id": "buff_ffea1aed825245ffb7f21627be3e67f6",
           "skill_layer": "ura"
+        },
+        {
+          "name": "Roen",
+          "name_jp": "魯延",
+          "character_id": "roen",
+          "characterId": 80,
+          "faction": "qin",
+          "type": "R",
+          "value": 5.0,
+          "skill_layer": "normal",
+          "source_id": "normal:80:1769",
+          "ownership_id": "buff_6ebad572376449699e2f6e1458390500"
         }
       ]
     },

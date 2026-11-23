@@ -1,0 +1,168 @@
+[
+  {
+    "id": "choukatsu",
+    "name_en": "Choukatsu",
+    "name_jp": "趙括",
+    "country": "zhao",
+    "rarity": "SR",
+    "image": "/persos/choukatsu.webp",
+    "skills": [
+      {
+        "name_en": "Valiant General Flash [Red Sheep]",
+        "name_jp": "勇将一閃【赤羊】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": "Enemy with highest max HP",
+            "target": "1 enemy [General]",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Leader]",
+            "effect": "150% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Aim for the Commander",
+        "name_jp": "狙うは大将",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Zhao]",
+            "effect": "Morale Recovery 20%",
+            "duration": null
+          },
+          {
+            "condition": "Enemy with highest max HP",
+            "target": "1 enemy [General]",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Leader]",
+            "effect": "150% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Reckless Charge",
+        "name_jp": "拙速な特攻",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "\"Reckless\"",
+            "duration": "4 turns"
+          },
+          {
+            "condition": "Enemy with highest max HP",
+            "target": "1 enemy [General]",
+            "effect": "150% Damage",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Enemy [Leader]",
+            "effect": "170% Damage",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "source": {
+      "characterId": 270,
+      "generalIds": [
+        571,
+        572
+      ]
+    }
+  },
+  {
+    "id": "maikou",
+    "name_en": "Maikou",
+    "name_jp": "昧広",
+    "country": "zhao",
+    "rarity": "SR",
+    "image": "/persos/maikou.webp",
+    "skills": [
+      {
+        "name_en": "Master General Flash [Yellow Tiger]",
+        "name_jp": "名将一閃【黄虎】",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Zhao] vs confused enemy [General]",
+            "effect": "ATK Up 10%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Enemy [Qin]",
+            "effect": "Confusion Infliction 20%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
+            "effect": "150% Damage",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "As Planned",
+        "name_jp": "手筈通り",
+        "type": "Strategy",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Zhao]",
+            "effect": "Confusion Infliction Rate Up 20%",
+            "duration": null
+          }
+        ]
+      },
+      {
+        "name_en": "Surprise Raid",
+        "name_jp": "不意の襲撃",
+        "type": "Combat",
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally [Zhao] vs confused enemy [General]",
+            "effect": "ATK Up 20%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "When Attacking",
+            "target": "Enemy [Qin]",
+            "effect": "Confusion Infliction 40%",
+            "duration": "3 turns"
+          },
+          {
+            "condition": "Enemy [General] with highest max morale",
+            "target": "1 enemy [General]",
+            "effect": "170% Damage",
+            "duration": null
+          }
+        ]
+      }
+    ],
+    "source": {
+      "characterId": 271,
+      "generalIds": [
+        574,
+        575
+      ]
+    }
+  }
+]

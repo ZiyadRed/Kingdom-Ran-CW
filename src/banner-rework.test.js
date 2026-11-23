@@ -38,13 +38,13 @@ function readLosslessWebp(bytes) {
 }
 
 describe('strict replacement-banner acceptance', () => {
-  it('records a decision for all 21 rejected attempts and keeps 19 on fallback', () => {
+  it('records a decision for all 21 rejected attempts and keeps 18 on fallback', () => {
     expect(audit.characters.map(entry => entry.id)).toEqual(expectedIds)
     expect(audit.counts).toEqual({
       attempted: 21,
-      accepted_new_banner: 2,
+      accepted_new_banner: 3,
       accepted_improved_crop: 0,
-      keep_fallback_unresolved: 19,
+      keep_fallback_unresolved: 18,
     })
     for (const entry of audit.characters) {
       expect(entry.rejected_attempt.decision, entry.id).toBe('REJECTED')
@@ -55,15 +55,17 @@ describe('strict replacement-banner acceptance', () => {
     }
   })
 
-  it('maps only the two official transparent overview banners', () => {
+  it('maps only the official transparent banners', () => {
     const accepted = audit.characters.filter(entry => entry.outcome === 'ACCEPTED NEW BANNER')
-    expect(accepted.map(entry => entry.id)).toEqual(['yugi', 'domon'])
+    // Roen's official LG card arrived with the November 23, 2026 announcement.
+    expect(accepted.map(entry => entry.id)).toEqual(['yugi', 'roen', 'domon'])
     for (const entry of accepted) {
       const character = ALL.find(candidate => candidate.id === entry.id)
       const banner = entry.accepted_banner
       expect(character.image, entry.id).toBe(versionPublicAsset(`/persos/${entry.id}.webp`))
       expect(new URL(banner.source_page).hostname).toBe('www.kingdomran.jp')
-      expect(new URL(banner.source_url).hostname).toBe('dxqkr1fuhva1u.cloudfront.net')
+      // kingdomran.jp serves its uploads from these two official asset hosts.
+      expect(['dxqkr1fuhva1u.cloudfront.net', 's3.ap-northeast-1.amazonaws.com']).toContain(new URL(banner.source_url).hostname)
       for (const path of [banner.final_path, banner.thumbnail_path]) {
         const bytes = fs.readFileSync(path)
         expect(bytes.length, path).toBe(banner.bytes)
@@ -75,7 +77,7 @@ describe('strict replacement-banner acceptance', () => {
 
   it('does not leave rejected files or mappings in the release tree', () => {
     const unresolved = audit.characters.filter(entry => entry.outcome === 'KEEP FALLBACK / UNRESOLVED')
-    expect(unresolved).toHaveLength(19)
+    expect(unresolved).toHaveLength(18)
     for (const entry of unresolved) {
       const character = ALL.find(candidate => candidate.id === entry.id)
       expect(character.image ?? null, entry.id).toBe(null)

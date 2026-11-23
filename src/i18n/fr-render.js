@@ -863,10 +863,20 @@ function renderSuperlativeTail(text) {
 export function renderFrenchTarget(value) {
   const raw = clean(value)
   if (!raw) return value
+  // CW formation roles (Leader / Stratège, as in fr-lexicon).
+  if (raw === 'Ally [Leader]') return 'Leader allié'
+  if (raw === 'Ally [Strategist]') return 'Stratège allié'
+  if (raw === 'Enemy [Leader]') return 'Leader ennemi'
   if (hasUnknownTags(raw)) return value
 
   const phrase = PHRASE_INDEX.get(raw.toLowerCase())
   if (phrase) return phrase
+  // The bonus applies only against enemy generals under Confusion.
+  const versusConfused = /^(.+?)\s+vs\s+confused\s+enemy\s+\[General\]$/i.exec(raw)
+  if (versusConfused) {
+    const inner = renderFrenchTarget(versusConfused[1])
+    if (inner && inner !== versusConfused[1]) return `${inner} contre les généraux ennemis sous Confusion`
+  }
 
   // A selector may carry a superlative tail: "1 enemy [General] with highest ATK".
   const superlative = /^(.+?)\s+(with\s+(?:highest|lowest)\s+.+)$/i.exec(raw)

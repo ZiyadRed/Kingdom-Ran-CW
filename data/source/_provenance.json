@@ -21,22 +21,22 @@
     }
   },
   "characterMapping": {
-    "inputFileSha256": "64229350605449213A0063BE7070D34C03DBD9C0AC1AAC2535E08EB23ECC697F",
-    "total": 212,
-    "exact": 201,
+    "inputFileSha256": "0D7C46B16056752870A07824A3916CC26F279A1879AA7FE67E45983CB8846280",
+    "total": 214,
+    "exact": 203,
     "resolved": 11,
     "ambiguous": 0,
     "unresolved": 0
   },
   "cwSkillMapping": {
-    "inputFileSha256": "0718372470AC26A1F17DB54F6D094C9DF6C86823B0084939F867DCAD698FFCC3",
-    "total": 672,
+    "inputFileSha256": "EA3F5462D09053F0D788611057C57A0BEBB8281F05E4917993887C99366E455B",
+    "total": 678,
     "exact": 628,
     "resolved": 44,
     "ambiguous": 0,
     "unresolved": 0,
     "deterministic": 672,
-    "pendingSource": 0
+    "pendingSource": 6
   },
   "stblTables": {
     "MsgUnionConquestSkillName.stbl": {
@@ -64,8 +64,8 @@
     "deterministicProjectSkills": 672,
     "canonicalJapaneseSkills": 610,
     "ambiguousProjectSkills": 0,
-    "sourceIndexRows": 672,
-    "rubyReadingsAvailable": 191,
+    "sourceIndexRows": 678,
+    "rubyReadingsAvailable": 193,
     "rubyReadingsMissing": 21
   }
 }

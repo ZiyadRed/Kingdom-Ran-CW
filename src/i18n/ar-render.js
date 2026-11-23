@@ -1079,6 +1079,15 @@ export function renderArabicTarget(value) {
   if (!raw) return value
   if (raw === 'Ally [Leader]') return 'القائد الحليف'
   if (raw === 'Ally [Strategist]') return 'الاستراتيجي الحليف'
+  // CW damage aimed at the opposing formation's Leader (敵争覇総大将).
+  if (raw === 'Enemy [Leader]') return 'قائد العدو'
+  // "Ally [Zhao] vs confused enemy [General]": the buff only counts against
+  // enemy generals currently under Confusion (「錯乱」状態の敵武将に対する).
+  const versusConfused = /^(.+?)\s+vs\s+confused\s+enemy\s+\[General\]$/i.exec(raw)
+  if (versusConfused) {
+    const inner = renderTargetExpression(versusConfused[1], { pluralAllyTarget: true })
+    if (inner) return `${inner} ضد جنرالات العدو المرتبكين`
+  }
   if (hasUnknownTags(raw)) return value
   return renderTargetExpression(raw, { pluralAllyTarget: true }) ?? value
 }

@@ -1,7 +1,7 @@
 {
   "_meta": {
     "schema": "ranhq.source_index/1",
-    "rows": 672
+    "rows": 678
   },
   "skills": {
     "rouai#0": {
@@ -91,6 +91,30 @@
     "kouyoku#2": {
       "status": "exact",
       "skillId": 433
+    },
+    "choukatsu#0": {
+      "status": "pending_source",
+      "skillId": null
+    },
+    "choukatsu#1": {
+      "status": "pending_source",
+      "skillId": null
+    },
+    "choukatsu#2": {
+      "status": "pending_source",
+      "skillId": null
+    },
+    "maikou#0": {
+      "status": "pending_source",
+      "skillId": null
+    },
+    "maikou#1": {
+      "status": "pending_source",
+      "skillId": null
+    },
+    "maikou#2": {
+      "status": "pending_source",
+      "skillId": null
     },
     "jinou#0": {
       "status": "exact",

@@ -2721,6 +2721,30 @@
         4
       ],
       "status": "exact"
+    },
+    "choukatsu": {
+      "characterId": 270,
+      "generalIds": [
+        571,
+        572
+      ],
+      "rarityIds": [
+        3,
+        4
+      ],
+      "status": "exact"
+    },
+    "maikou": {
+      "characterId": 271,
+      "generalIds": [
+        574,
+        575
+      ],
+      "rarityIds": [
+        3,
+        4
+      ],
+      "status": "exact"
     }
   }
 }

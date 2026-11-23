@@ -28,7 +28,7 @@ Every old attempt has an opaque black matte around the irregular frame. A rectan
 | Hyou (`hyou`, 漂) | Black matte; action composition otherwise plausible | Rejected | KEEP FALLBACK - no clean official finished action card found |
 | Kei (`kei`, 慶) | Black matte; flat patterned low-rarity presentation | Rejected | KEEP FALLBACK - no suitable authentic finished action card found |
 | Hakukisai (`hakukisei`, 白亀西) | Black matte; flat patterned low-rarity presentation | Rejected | KEEP FALLBACK - no suitable authentic finished action card found |
-| Roen (`roen`, 魯延) | Black matte; flat patterned low-rarity presentation | Rejected | KEEP FALLBACK - no suitable authentic finished action card found |
+| Roen (`roen`, 魯延) | Black matte; flat patterned low-rarity presentation | Rejected | ACCEPTED NEW BANNER (2026-11-23) - official transparent LG card from the Ver8.9.0 announcement |
 | Kou (`kou2`, 昂) | Black matte; flat patterned low-rarity presentation | Rejected | KEEP FALLBACK - no suitable authentic finished action card found |
 | Gotan (`gotan`, 剛炭) | Black matte; flat patterned low-rarity presentation | Rejected | KEEP FALLBACK - no suitable authentic finished action card found |
 | Shuki (`shuki`, 朱鬼) | Black matte; flat patterned low-rarity presentation | Rejected | KEEP FALLBACK - no suitable authentic finished action card found |

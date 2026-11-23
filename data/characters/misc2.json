@@ -2841,6 +2841,7 @@
     "name_jp": "魯延",
     "country": "qin",
     "rarity": "R",
+    "image": "/persos/roen.webp",
     "skills": [
       {
         "name_en": "Weak Point Flash [Red Tiger]",

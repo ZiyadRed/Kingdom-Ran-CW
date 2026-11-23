@@ -27,7 +27,8 @@ const readings = J('data/generated/ja/character_readings.json')
 const provenance = J('data/source/_provenance.json')
 const skillMap = J('data/source/cw_skills.map.json')
 const deterministicRows = Object.values(skillMap.skills).filter(entry => ['exact', 'resolved'].includes(entry.status))
-const pendingKeys = []
+// Choukatsu/Maikou: announcement-only until the Ver8.9.0 master data is acquired.
+const pendingKeys = ['choukatsu#0', 'choukatsu#1', 'choukatsu#2', 'maikou#0', 'maikou#1', 'maikou#2']
 
 const characters = []
 for (const f of readdirSync(join(root, 'data/characters'))) {

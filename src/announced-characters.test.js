@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import announcements from '../data/source/announced_characters_2026-10-26.json'
+import novemberAnnouncement from '../data/source/announced_characters_2026-11-23.json'
 import sourceMap from '../data/source/cw_skills.map.json'
 import release from '../data/source/released_content_2026-10-28.json'
 import units from '../data/cw_buffs.json'
@@ -117,8 +118,12 @@ describe('released October 28 characters and role skills', () => {
     const before = getReleaseData(1794996000000 - 1)
     expect(before.PUBLIC_CW6_CARDS.some(card => card.id === 42005)).toBe(false)
     expect(before.findCharById('ryuuto').skills.some(skill => release.excludedFuture.cwSkillIds.includes(skill.cwId))).toBe(false)
+    // Choukatsu (270) and Maikou (271) were officially announced on November 23
+    // and are published from that announcement; every other future id stays out.
+    const announcedLater = new Set(novemberAnnouncement.characters.map(character => character.characterId))
+    const stillExcluded = release.excludedFuture.characterIds.filter(id => !announcedLater.has(id))
     for (const character of Object.values(CHAR_BY_ID)) {
-      expect(release.excludedFuture.characterIds).not.toContain(character.source?.characterId)
+      expect(stillExcluded).not.toContain(character.source?.characterId)
     }
   })
 })

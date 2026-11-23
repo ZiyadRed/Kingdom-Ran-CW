@@ -49,9 +49,9 @@
   },
   "counts": {
     "attempted": 21,
-    "accepted_new_banner": 2,
+    "accepted_new_banner": 3,
     "accepted_improved_crop": 0,
-    "keep_fallback_unresolved": 19
+    "keep_fallback_unresolved": 18
   },
   "visual_review": {
     "locales": [
@@ -636,12 +636,39 @@
           "sha256": null
         }
       ],
-      "outcome": "KEEP FALLBACK / UNRESOLVED",
+      "outcome": "ACCEPTED NEW BANNER",
       "source_result": {
         "better_authentic_finished_banner_required": true,
-        "finished_banner_found": false,
+        "finished_banner_found": true,
         "local_game_asset_limit": "An authentic transparent character layer exists, but no matching finished action-scene card/background was found; composing a new banner was rejected.",
-        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located."
+        "reason": "No clean authentic finished action-scene banner meeting the visual contract was located.",
+        "resolved": "2026-11-23: the official LG card published with the Ver8.9.0 announcement meets the visual contract."
+      },
+      "accepted_banner": {
+        "source_page": "https://www.kingdomran.jp/info/urlg_roen",
+        "source_url": "https://s3.ap-northeast-1.amazonaws.com/official-operation.s3.sand.okp.mobcast.io/wp-content/uploads/2026/11/06135111/8d036064dbefc33b2d510133a1279ce0.png",
+        "source_sha256": "e29aa0fb80833c257e3f880c01ec975885a39ae8e22876fa4ecea2ee3203aa0e",
+        "webp_sha256": "5bf9a59682660581637bbe006352cbbf5c033fcb0eea0fe166057047b5dc9744",
+        "bytes": 188534,
+        "rationale": "Official LG card from the November 23, 2026 announcement: complete night-camp action scene with the Hishin Unit, intentional subject framing, readable name and rarity, and transparent ornate corners consistent with accepted RanHQ banners.",
+        "source_type": "Official Kingdom Ran announcement-page card PNG (official S3 asset host used by kingdomran.jp)",
+        "source_dimensions": [
+          313,
+          440
+        ],
+        "source_alpha_range": [
+          0,
+          255
+        ],
+        "final_path": "public/persos/roen.webp",
+        "thumbnail_path": "public/persos/thumbs/roen.webp",
+        "final_dimensions": [
+          313,
+          440
+        ],
+        "final_alpha": true,
+        "processing": "Decoded the official PNG to RGBA and encoded it as lossless WebP (exact RGB under alpha). No crop, resize, stretch, retouch, compositing, painting, or generative fill. Decoded RGBA pixels were verified byte-identical.",
+        "accepted_date": "2026-11-23"
       }
     },
     {

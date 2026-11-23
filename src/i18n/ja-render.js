@@ -437,6 +437,12 @@ function renderTargetClause(text) {
   if (!raw) return null
   if (raw === 'Ally [Leader]') return '味方総大将'
   if (raw === 'Ally [Strategist]') return '味方軍師'
+  if (raw === 'Enemy [Leader]') return '敵争覇総大将'
+  const versusConfused = /^(.+?)\s+vs\s+confused\s+enemy\s+\[General\]$/i.exec(raw)
+  if (versusConfused) {
+    const inner = renderTargetClause(versusConfused[1])
+    if (inner) return `${inner}（対「錯乱」状態の敵武将）`
+  }
   const named=lookupCharacter(raw)
   if(named) return named
 

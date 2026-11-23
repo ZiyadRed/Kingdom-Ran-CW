@@ -158,6 +158,10 @@ https://ranhq.vercel.app/archive/characters/chouin
 https://ranhq.vercel.app/ja/archive/characters/chouin
 https://ranhq.vercel.app/ar/archive/characters/chouin
 https://ranhq.vercel.app/fr/archive/characters/chouin
+https://ranhq.vercel.app/archive/characters/choukatsu
+https://ranhq.vercel.app/ja/archive/characters/choukatsu
+https://ranhq.vercel.app/ar/archive/characters/choukatsu
+https://ranhq.vercel.app/fr/archive/characters/choukatsu
 https://ranhq.vercel.app/archive/characters/chouko
 https://ranhq.vercel.app/ja/archive/characters/chouko
 https://ranhq.vercel.app/ar/archive/characters/chouko
@@ -562,6 +566,10 @@ https://ranhq.vercel.app/archive/characters/kyuukou
 https://ranhq.vercel.app/ja/archive/characters/kyuukou
 https://ranhq.vercel.app/ar/archive/characters/kyuukou
 https://ranhq.vercel.app/fr/archive/characters/kyuukou
+https://ranhq.vercel.app/archive/characters/maikou
+https://ranhq.vercel.app/ja/archive/characters/maikou
+https://ranhq.vercel.app/ar/archive/characters/maikou
+https://ranhq.vercel.app/fr/archive/characters/maikou
 https://ranhq.vercel.app/archive/characters/maki
 https://ranhq.vercel.app/ja/archive/characters/maki
 https://ranhq.vercel.app/ar/archive/characters/maki
