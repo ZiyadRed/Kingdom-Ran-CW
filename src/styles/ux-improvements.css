@@ -383,3 +383,103 @@ img[data-skel]:not([data-loaded]),
 /* "Load example" on empty calculators */
 .cp-head-actions { display: inline-flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
 .ux-example-btn { white-space: nowrap; }
+
+/* ── 8. Effect keywords and their explanations (skill cards) ─────────────── */
+/* A status named inside an effect is an inline toggletip button: dotted
+   underline, same colour and weight as the text around it. The class beats the
+   site-wide `button { min-height }` rules, so the line height is unchanged. */
+.eff-term {
+  display: inline; min-height: 0; min-width: 0; margin: 0; padding: 0; border: 0; border-radius: 2px;
+  background: none; color: inherit; font: inherit; line-height: inherit; text-align: inherit;
+  text-decoration: underline dotted; text-decoration-thickness: 1.5px; text-underline-offset: 3px;
+  cursor: help; transition: background-color .12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.eff-term:hover, .eff-term.is-open { background: rgba(192, 57, 43, .1); text-decoration-style: solid; }
+.eff-term:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; }
+.eff-tip {
+  position: fixed; z-index: 1200; box-sizing: border-box;
+  width: max-content; max-width: min(280px, calc(100vw - 16px));
+  padding: 8px 10px; border-radius: 8px; border: 1px solid #c0392b;
+  background: #0b1f3a; color: #f3ece2; box-shadow: 0 10px 28px rgba(6, 38, 76, .32);
+  font-size: .76rem; font-weight: 500; line-height: 1.5; text-align: start;
+  pointer-events: none;
+}
+.eff-tip-buff { border-color: #27ae60; }
+.eff-tip-stat { border-color: #5b7fd1; }
+.eff-tip-head { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
+.eff-tip-icon { width: 20px; height: 20px; flex: 0 0 auto; object-fit: contain; }
+.eff-tip-name { color: #fff; font-weight: 800; font-size: .8rem; }
+.eff-tip-desc { display: block; }
+/* Japanese wraps at phrase boundaries where the browser supports it. */
+.eff-tip:lang(ja) { word-break: auto-phrase; line-break: strict; }
+.sk-type { display: inline-flex; align-items: center; gap: 3px; }
+.sk-type-icon { width: 14px; height: 14px; object-fit: contain; flex: 0 0 auto; }
+
+/* ── 9. Archive role and effect filters ──────────────────────────────────── */
+/* Role and status icons keep their colours on a selected chip. */
+.archive-role-filter .filter-chip-icon, .effect-chip .filter-chip-icon { width: 18px; height: 18px; }
+.archive-role-filter .filter-chip.is-on .filter-chip-icon,
+.effect-chip.is-on .filter-chip-icon, .effect-pill-icon { filter: none; }
+.effect-filter { flex: 1 1 100%; min-width: 0; }
+.effect-filter-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.effect-filter-toggle {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 12px;
+  border: 1px solid var(--navy); border-radius: 999px; background: var(--sur); color: var(--navy);
+  font-size: .76rem; font-weight: 800; white-space: nowrap;
+}
+.effect-filter-toggle:hover, .effect-filter-toggle[aria-expanded="true"] { background: var(--navy); color: #fff; }
+.effect-filter-toggle.is-active { border-color: var(--terra); }
+.effect-filter-count {
+  min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; box-sizing: border-box;
+  display: inline-grid; place-items: center; background: var(--terra); color: #fff; font-size: .66rem; line-height: 1;
+}
+.effect-filter-caret { width: 6px; height: 6px; border-inline-end: 2px solid currentColor; border-block-end: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .15s ease; }
+.effect-filter-toggle[aria-expanded="true"] .effect-filter-caret { transform: translateY(1px) rotate(225deg); }
+.effect-filter-pills { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; min-width: 0; }
+.effect-pill {
+  display: inline-flex; align-items: center; gap: 4px; min-height: 30px; padding: 0 6px 0 9px;
+  border: 1px solid var(--terra); border-radius: 999px; background: #fff4ec; color: var(--navy);
+  font-size: .74rem; font-weight: 700; white-space: nowrap;
+}
+.effect-pill:hover { background: #ffe6d4; }
+.effect-pill-icon { width: 16px; height: 16px; object-fit: contain; }
+.effect-pill-x { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; color: var(--terra2); font-size: .95rem; line-height: 1; }
+.effect-pill:hover .effect-pill-x { background: rgba(224, 127, 72, .18); }
+.effect-filter-clear { min-height: 30px; padding: 0 8px; border: 0; background: none; color: var(--txt2); font-size: .72rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.effect-filter-panel {
+  margin-top: 8px; padding: 10px 12px 12px; border: 1px solid var(--bdr); border-radius: 10px;
+  background: var(--sur); box-shadow: 0 6px 18px rgba(6, 38, 76, .08);
+}
+.effect-filter-panel[hidden] { display: none; }
+.effect-filter-hint { margin: 0 0 8px; color: var(--txt3); font-size: .72rem; line-height: 1.5; }
+.effect-filter-group + .effect-filter-group { margin-top: 10px; }
+.effect-filter-heading { display: block; margin-bottom: 5px; color: var(--txt2); font-size: .7rem; font-weight: 800; letter-spacing: .02em; }
+.effect-filter-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.effect-chip .effect-chip-n {
+  min-width: 18px; padding: 0 4px; border-radius: 999px; box-sizing: border-box; text-align: center;
+  background: var(--bg2); color: var(--txt2); font-size: .64rem; line-height: 16px;
+}
+.effect-chip.is-on .effect-chip-n { background: rgba(255, 255, 255, .22); color: #fff; }
+.effect-chip:disabled { opacity: .45; cursor: default; border-color: var(--bdr); }
+.effect-filter-actions { display: flex; justify-content: flex-end; margin-top: 10px; }
+.effect-filter-done {
+  min-height: 34px; padding: 0 14px; border: 0; border-radius: 8px;
+  background: var(--navy); color: #fff; font-size: .76rem; font-weight: 800;
+}
+.effect-filter-done:hover { background: var(--navy2); }
+/* Leader / Strategist badge on a banner card, opposite the faction tag. The
+   tag is physically top-right in every direction, so the badge is top-left. */
+.banner-role-badge {
+  position: absolute; top: 5px; left: 5px; z-index: 2; width: 22px; height: 22px; line-height: 0;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .5)); pointer-events: none;
+}
+.banner-role-badge img { width: 22px; height: 22px; object-fit: contain; }
+@media (max-width: 768px) {
+  .effect-filter-toggle { min-height: 34px; }
+  .effect-pill { min-height: 32px; }
+  .effect-filter-panel { padding: 10px; }
+  .effect-filter-actions { position: sticky; bottom: 8px; }
+  .effect-filter-done { width: 100%; min-height: 40px; box-shadow: 0 4px 12px rgba(6, 38, 76, .2); }
+  .banner-role-badge, .banner-role-badge img { width: 18px; height: 18px; }
+}

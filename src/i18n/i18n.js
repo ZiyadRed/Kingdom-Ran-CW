@@ -689,6 +689,95 @@ Object.assign(fr.buffs, {
   back: 'Retour',
 })
 
+// Archive role and effect filters (2026-11-23). Effect labels use the same
+// game vocabulary as each locale's skill renderer, so a chip reads exactly like
+// the effect it finds. Japanese follows the in-game skill text (必中, 見切り,
+// 回避率, 防御力貫通…); the role names are the formation roles 総大将/軍師.
+Object.assign(en.archive, {
+  roleFilter: 'Leader & Strategist',
+  role: { Leader: 'Leader', Strategist: 'Strategist' },
+  effectFilter: {
+    button: 'Filter by effect',
+    hint: 'Shows generals whose skills have every selected effect.',
+    ally: 'On allies',
+    enemy: 'On enemies',
+    remove: 'Remove filter: {{name}}',
+    showResults: 'Show results ({{count}})',
+  },
+  effects: {
+    'sure-hit': 'Sure Hit', guard: 'Guard', nullify: 'Attack Nullification', evasion: 'Evasion (Dodge Chance)',
+    'less-targeted': 'Less Likely to be Targeted', provoke: 'Provoke', 'status-immunity': 'Status Effect Immunity',
+    'status-resistance': 'Status Effect Resistance', 'hp-recovery': 'HP Recovery', 'morale-recovery': 'Morale Recovery',
+    'def-penetration': 'DEF Penetration', critical: 'Critical', 'hit-rate': 'Hit Rate',
+    poison: 'Poison', burn: 'Burn', paralysis: 'Paralysis', confusion: 'Confusion', betrayal: 'Betrayal',
+    fear: 'Fear', illusion: 'Illusion', seal: 'Attack Seal', 'hp-seal': 'HP Seal',
+    'atk-down': 'ATK Down', 'def-down': 'DEF Down', 'morale-down': 'Morale Down',
+  },
+})
+Object.assign(ja.archive, {
+  roleFilter: '総大将・軍師',
+  role: { Leader: '総大将', Strategist: '軍師' },
+  effectFilter: {
+    button: '効果で絞り込み',
+    hint: '選択した効果をすべて持つ武将を表示します。',
+    ally: '味方への効果',
+    enemy: '敵への効果',
+    remove: '「{{name}}」の絞り込みを解除',
+    showResults: '結果を表示（{{count}}）',
+  },
+  effects: {
+    'sure-hit': '必中', guard: 'ガード効果', nullify: '攻撃無効', evasion: '見切り・回避率',
+    'less-targeted': '狙われにくい', provoke: '挑発', 'status-immunity': '状態異常無効',
+    'status-resistance': '状態異常耐性', 'hp-recovery': '体力回復', 'morale-recovery': '士気回復',
+    'def-penetration': '防御力貫通', critical: 'クリティカル', 'hit-rate': '命中率',
+    poison: '毒', burn: '火傷', paralysis: '麻痺', confusion: '錯乱', betrayal: '裏切り',
+    fear: '恐怖', illusion: '幻影', seal: '封印', 'hp-seal': '体力回復無効',
+    'atk-down': '攻撃力低下', 'def-down': '防御力低下', 'morale-down': '士気低下',
+  },
+})
+Object.assign(ar.archive, {
+  roleFilter: 'القائد والاستراتيجي',
+  role: { Leader: 'القائد', Strategist: 'الاستراتيجي' },
+  effectFilter: {
+    button: 'التصفية حسب التأثير',
+    hint: 'يعرض الجنرالات الذين تملك مهاراتهم كل التأثيرات المحددة.',
+    ally: 'على الحلفاء',
+    enemy: 'على العدو',
+    remove: 'إزالة عامل التصفية: {{name}}',
+    showResults: 'عرض النتائج ({{count}})',
+  },
+  effects: {
+    'sure-hit': 'إصابة مؤكدة', guard: 'الصد', nullify: 'إبطال الهجوم', evasion: 'التفادي',
+    'less-targeted': 'أقل عرضة للاستهداف', provoke: 'الاستفزاز', 'status-immunity': 'مناعة ضد الحالات',
+    'status-resistance': 'مقاومة الحالات', 'hp-recovery': 'استعادة الصحة', 'morale-recovery': 'استعادة المعنويات',
+    'def-penetration': 'اختراق الدفاع', critical: 'الضربات الحرجة', 'hit-rate': 'معدل الإصابة',
+    poison: 'السم', burn: 'الحرق', paralysis: 'الشلل', confusion: 'الارتباك', betrayal: 'الخيانة',
+    fear: 'الخوف', illusion: 'الوهم', seal: 'ختم الهجوم', 'hp-seal': 'ختم استعادة الصحة',
+    'atk-down': 'خفض الهجوم', 'def-down': 'خفض الدفاع', 'morale-down': 'خفض المعنويات',
+  },
+})
+Object.assign(fr.archive, {
+  roleFilter: 'Leader et Stratège',
+  role: { Leader: 'Leader', Strategist: 'Stratège' },
+  effectFilter: {
+    button: 'Filtrer par effet',
+    hint: 'Affiche les généraux dont les compétences ont tous les effets choisis.',
+    ally: 'Sur les alliés',
+    enemy: 'Sur l’ennemi',
+    remove: 'Retirer le filtre : {{name}}',
+    showResults: 'Voir les résultats ({{count}})',
+  },
+  effects: {
+    'sure-hit': 'Coup assuré', guard: 'Garde', nullify: 'Annulation d’attaque', evasion: 'Esquive',
+    'less-targeted': 'Ciblage réduit', provoke: 'Provocation', 'status-immunity': 'Immunité aux altérations d’état',
+    'status-resistance': 'Résistance aux altérations d’état', 'hp-recovery': 'Soin des PV', 'morale-recovery': 'Regain de moral',
+    'def-penetration': 'Pénétration de défense', critical: 'Coups critiques', 'hit-rate': 'Précision',
+    poison: 'Poison', burn: 'Brûlure', paralysis: 'Paralysie', confusion: 'Confusion', betrayal: 'Trahison',
+    fear: 'Peur', illusion: 'Illusion', seal: 'Sceau d’attaque', 'hp-seal': 'Sceau de soin',
+    'atk-down': 'Baisse d’attaque', 'def-down': 'Baisse de défense', 'morale-down': 'Baisse de moral',
+  },
+})
+
 export const CATALOGS = { en, ja, ar, fr }
 const resources = { en: { common: en }, ja: { common: ja }, ar: { common: ar }, fr: { common: fr } }
 const supportedLngs = LOCALES.map((locale) => locale.code)

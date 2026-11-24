@@ -4,7 +4,8 @@
  * This is the SINGLE source of Arabic terminology for dynamically rendered
  * game text (skill effects, targets, conditions, durations). It deliberately
  * mirrors the terminology already established by the hand-written Arabic guide
- * copy in `src/guide.jsx` and by `data/glossary/localization_terms.json` — do
+ * copy in `src/guide.jsx` (status effects: `src/effect-glossary.js`) and by
+ * `data/glossary/localization_terms.json` — do
  * not introduce a competing wording here. When the guide and this file would
  * disagree, the guide/glossary wins and this file is corrected.
  *

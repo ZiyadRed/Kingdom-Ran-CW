@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { SOUHA_LEADER_ROLES, GUIDE_SECTIONS, TERRAIN_EFFECTS } from './guide.jsx'
 import { findCharByName } from './core.jsx'
+import { STATUS_EFFECT_COPY } from './effect-glossary.js'
 import { readFileSync } from 'node:fs'
 
 // The Guide route is deliberately split from core.jsx so /guide does not
@@ -142,13 +143,15 @@ describe('guide copy parity between English fallbacks and translations', () => {
     expect(fallbacks.actionsItems).toHaveLength(4)
   })
 
+  // Status names and descriptions are shared with the skill-card toggletips and
+  // live in src/effect-glossary.js.
   it('keeps HP Seal aligned with recovery nullification in Arabic', () => {
-    expect(copy.ar.effects.items['HP Seal'].name).toBe('ختم استعادة الصحة')
+    expect(STATUS_EFFECT_COPY.ar['HP Seal'].name).toBe('ختم استعادة الصحة')
   })
 
   it('keeps the current strategist defeat penalty distinct from ordinary 錯乱', () => {
     expect(copy.ja.leaders.roles.strategist.risk).toContain('「混乱」')
     expect(copy.ja.types.items['軍師スキル'].description).toContain('「混乱」')
-    expect(copy.ja.effects.items.Confusion.name).toBe('錯乱')
+    expect(STATUS_EFFECT_COPY.ja.Confusion.name).toBe('錯乱')
   })
 })

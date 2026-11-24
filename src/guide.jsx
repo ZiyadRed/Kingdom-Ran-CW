@@ -9,6 +9,7 @@ import { isGuideSection } from './seo.js'
 import { versionPublicAsset } from './asset-url.js'
 import NotFoundPage from './NotFoundPage.jsx'
 import statusEffects from '../data/glossary/status_effects.json'
+import { statusEffectCopy } from './effect-glossary.js'
 import unitMatchups  from '../data/glossary/unit_matchups.json'
 import skillTypesGlossary from '../data/glossary/skill_types.json'
 import souhaRoleSkills from '../data/souha_role_skills.json'
@@ -277,27 +278,6 @@ const GUIDE_COPY = {
       intro: '同盟争覇戦の特殊効果と状態異常です。軍師が戦闘不能になると、味方に1ターンの「混乱」（50%の確率で行動できなくなる）が付与されます。敵味方を問わず攻撃する「錯乱」とは別の状態異常です。',
       buffsTitle: 'バフ',
       debuffsTitle: 'デバフ',
-      items: {
-        'Less Likely to be Targeted': { name: '敵武将から狙われにくい状態', description: '敵の通常攻撃・スキル攻撃の対象から除外されます。ただし、この状態の武将しか生存していない場合や、敵の攻撃対象数が味方全員の人数と同じ場合は対象になります。' },
-        Reckless: { name: '捨て身', description: '攻撃力が大きく上がりますが、受けるダメージも増加します。' },
-        'Evasion (Dodge Chance)': { name: '見切り', description: '攻撃を受けたとき、一定確率でその攻撃を回避します。' },
-        Guard: { name: 'ガード効果', description: '指定された攻撃の被ダメージを軽減します。指定回数発動すると解除されます。' },
-        'Attack Nullification': { name: '無効効果', description: '指定された攻撃の被ダメージを0にします。指定回数発動すると解除されます。' },
-        'Sure Hit': { name: '必中', description: '自身の命中率、相手の回避率、見切りの有無にかかわらず攻撃が命中します。' },
-        'Status Effect Immunity': { name: '状態異常無効', description: '挑発を除く状態異常の付与を防ぎます。指定回数発動すると解除され、回数指定がない場合は回数制限なく防ぎます。' },
-        Provoke: { name: '挑発', description: '敵武将からの通常攻撃・スキル攻撃を自身に集中させます。対象条件を満たさない攻撃や、兵器を対象とする攻撃には影響しません。' },
-        Poison: { name: '毒', description: '各ターンの開始時、最大体力の割合分のダメージを受けます。' },
-        'Severe Poison': { name: '猛毒', description: '各ターンの開始時、最大体力の割合分のダメージを受けます。毒より強力で、毒とは重複せず猛毒が優先されます。' },
-        Burn: { name: '火傷', description: '各ターンの開始時、最大体力の割合分のダメージを受けます。' },
-        Illusion: { name: '幻影', description: '命中率を下げます。' },
-        Paralysis: { name: '麻痺', description: '毎ターン、一定確率で行動（通常攻撃・スキル攻撃）できなくなります。' },
-        Confusion: { name: '錯乱', description: '味方と敵を区別せず攻撃します。' },
-        Betrayal: { name: '裏切り', description: '効果中は味方武将を攻撃します。' },
-        Rampage: { name: '暴走', description: '攻撃力が上がりますが、味方武将を攻撃する可能性があります。' },
-        Fear: { name: '恐怖', description: '士気が回復しなくなります。' },
-        'Attack Seal': { name: '封印', description: '通常攻撃封印は通常攻撃の行動順をスキップし、戦技は発動できます。スキル攻撃封印は戦技の代わりに通常攻撃を行います。攻撃封印は通常攻撃と戦技の両方を行えなくなります。' },
-        'HP Seal': { name: '体力回復無効', description: '体力が回復しなくなります。' },
-      },
     },
     matchups: {
       intro: '騎兵・弓兵・盾兵には三すくみの相性があります。有利な兵種には与ダメージが増加し、不利な兵種には減少します。',
@@ -507,27 +487,6 @@ const GUIDE_COPY = {
       intro: 'تعزيزات وإضعافات يمكن تطبيقها أثناء معارك حرب القلاع.',
       buffsTitle: 'التعزيزات',
       debuffsTitle: 'الإضعافات',
-      items: {
-        'Less Likely to be Targeted': { name: 'أقل عرضة للاستهداف', description: 'تُستبعد الوحدة من استهداف الهجمات العادية وهجمات المهارات للعدو.' },
-        Reckless: { name: 'متهور', description: 'يزيد قوة الهجوم كثيرًا، لكن الضرر المتلقى يزداد أيضًا.' },
-        'Evasion (Dodge Chance)': { name: 'التفادي', description: 'احتمال تفادي الهجمات الواردة.' },
-        Guard: { name: 'الصد', description: 'تقلل الضرر من هجوم محدد، وتُستهلك بعد عدد محدد من التفعيلات.' },
-        'Attack Nullification': { name: 'إبطال الهجوم', description: 'تخفض ضرر هجوم محدد إلى 0، وتُستهلك بعد عدد محدد من التفعيلات.' },
-        'Sure Hit': { name: 'إصابة مؤكدة', description: 'تصيب الهجمات دائمًا بغض النظر عن معدل الإصابة أو التفادي.' },
-        'Status Effect Immunity': { name: 'مناعة ضد الحالات', description: 'تمنع تطبيق الإضعافات (باستثناء الاستفزاز)، وتُستهلك بعد عدد محدد من التفعيلات.' },
-        Provoke: { name: 'الاستفزاز', description: 'يركز هجمات ضرر العدو على نفسه.' },
-        Poison: { name: 'السم', description: 'تتلقى الوحدة ضررًا يساوي نسبة من أقصى صحتها في بداية كل جولة.' },
-        'Severe Poison': { name: 'السم الشديد', description: 'تتلقى الوحدة ضررًا يساوي نسبة من أقصى صحتها في بداية كل جولة، وهو أكبر من السم.' },
-        Burn: { name: 'الحرق', description: 'تتلقى الوحدة ضررًا يساوي نسبة من أقصى صحتها في بداية كل جولة.' },
-        Illusion: { name: 'الوهم', description: 'يخفض معدل الإصابة.' },
-        Paralysis: { name: 'الشلل', description: 'احتمال منع الفعل (الهجوم العادي وهجوم المهارة) في كل جولة.' },
-        Confusion: { name: 'الارتباك', description: 'تهاجم الحلفاء والأعداء بلا تمييز.' },
-        Betrayal: { name: 'الخيانة', description: 'تهاجم الجنرالات الحلفاء أثناء فعالية التأثير.' },
-        Rampage: { name: 'الهياج', description: 'تزداد قوة الهجوم، لكن توجد فرصة لمهاجمة الجنرالات الحلفاء.' },
-        Fear: { name: 'الخوف', description: 'يتعطل استرداد المعنويات.' },
-        'Attack Seal': { name: 'تعطيل الهجوم', description: 'يعطل الفعل المحدد. وتشمل الأنواع تعطيل الهجوم العادي وتعطيل هجوم المهارة وتعطيل الهجوم (كلاهما).' },
-        'HP Seal': { name: 'ختم استعادة الصحة', description: 'يتعطل استرداد الصحة.' },
-      },
     },
     matchups: {
       intro: 'يتبع الضرر بين أنواع الوحدات علاقة حجر-ورق-مقص.',
@@ -778,27 +737,6 @@ const GUIDE_COPY = {
       intro: 'Liste des buffs et débuffs pouvant être appliqués pendant les batailles de Conquête d’Alliance.',
       buffsTitle: 'Buffs',
       debuffsTitle: 'Débuffs',
-      items: {
-        'Less Likely to be Targeted': { name: 'Ciblage réduit', description: 'L’unité est exclue du ciblage des attaques normales et des attaques de compétence ennemies.' },
-        Reckless: { name: 'Témérité', description: 'Augmente fortement la puissance d’attaque, mais les dégâts subis augmentent aussi.' },
-        'Evasion (Dodge Chance)': { name: 'Esquive', description: 'Chance d’esquiver les attaques reçues.' },
-        Guard: { name: 'Garde', description: 'Réduit les dégâts d’une attaque. L’effet disparaît après un nombre défini de déclenchements.' },
-        'Attack Nullification': { name: 'Annulation d’attaque', description: 'Réduit à 0 les dégâts d’une attaque. L’effet disparaît après un nombre défini de déclenchements.' },
-        'Sure Hit': { name: 'Coup assuré', description: 'Les attaques touchent toujours, quelles que soient la précision et l’esquive.' },
-        'Status Effect Immunity': { name: 'Immunité aux altérations d’état', description: 'Bloque l’application des débuffs, à l’exception de la Provocation. L’effet disparaît après un nombre défini de déclenchements.' },
-        Provoke: { name: 'Provocation', description: 'Concentre sur soi les attaques de dégâts ennemies.' },
-        Poison: { name: 'Poison', description: 'Inflige un pourcentage des PV max en dégâts au début de chaque tour.' },
-        'Severe Poison': { name: 'Poison violent', description: 'Inflige un pourcentage des PV max en dégâts au début de chaque tour, plus élevé que le Poison.' },
-        Burn: { name: 'Brûlure', description: 'Inflige un pourcentage des PV max en dégâts au début de chaque tour.' },
-        Illusion: { name: 'Illusion', description: 'Réduit la précision.' },
-        Paralysis: { name: 'Paralysie', description: 'Risque, à chaque tour, d’empêcher d’agir (attaque normale et attaque de compétence).' },
-        Confusion: { name: 'Confusion', description: 'Attaque alliés et ennemis sans distinction.' },
-        Betrayal: { name: 'Trahison', description: 'Attaque les généraux alliés tant que l’effet est actif.' },
-        Rampage: { name: 'Furie', description: 'La puissance d’attaque augmente, mais l’unité risque d’attaquer des généraux alliés.' },
-        Fear: { name: 'Peur', description: 'Le regain de moral est désactivé.' },
-        'Attack Seal': { name: 'Sceau d’attaque', description: 'Désactive l’action visée. Variantes : sceau d’attaque normale, sceau d’attaque de compétence, sceau d’attaque (les deux).' },
-        'HP Seal': { name: 'Sceau de soin', description: 'Le soin des PV est désactivé.' },
-      },
     },
     matchups: {
       intro: 'Les dégâts entre types d’unités suivent un principe de pierre-papier-ciseaux.',
@@ -1819,7 +1757,8 @@ export function TargetingRulesSection(){
 
 export function EffectCard({entry,accent}){
   const locale = useLocale()
-  const localized = guideSectionCopy(locale, 'effects', 'items', {})[entry.name_en] || {}
+  // Shared with the skill-card effect toggletips (src/effect-glossary.js).
+  const localized = statusEffectCopy(entry.name_en, locale) || {}
   const name = localized.name || (locale?.code === 'ja' ? entry.name_jp : entry.name_en)
   const description = localized.description || entry.description
   return(

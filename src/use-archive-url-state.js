@@ -40,8 +40,9 @@ export function useArchiveUrlState(factionIds,selected){
     returnSearch:archiveStateSearch(state),
     setQuery:query=>update({query},{replace:true}),
     setFaction:faction=>update({faction,query:''}),
-    // Unit-type and rarity filters combine with the faction and the search.
+    // Unit-type, role and effect filters combine with the faction and the search.
     setUnit:unit=>update({unit:unit||undefined}),
-    setRarity:rarity=>update({rarity:rarity||undefined}),
+    setRole:role=>update({role:role||undefined}),
+    setEffects:effects=>update({effects:effects?.length?effects:undefined}),
   }
 }

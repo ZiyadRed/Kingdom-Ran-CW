@@ -39,6 +39,7 @@
     {"key":"sure_hit","english":"Sure Hit","japanese":"必中","arabic":"إصابة مؤكدة","source":"GAME_TERM","notes":"Status/effect label."},
     {"key":"provoke","english":"Provoke","japanese":"挑発","arabic":"استفزاز","source":"GAME_TERM","notes":"Status/effect label."},
     {"key":"confusion","english":"Confusion","japanese":"錯乱","arabic":"ارتباك","source":"GAME_TERM","notes":"Status/effect label."},
+    {"key":"attack_seal","english":"Attack Seal","japanese":"攻撃封印","arabic":"ختم الهجوم","source":"GAME_TERM","notes":"Status/effect label. Owner-approved Arabic (2026-11-24): the Guide, the effect popups and the skill text all say ختم الهجوم."},
     {"key":"strategist_defeat_penalty","english":"Strategist defeat penalty","japanese":"混乱","arabic":"ارتباك","source":"GAME_TERM","evidence":"https://www.kingdomran.jp/info/260902souha-skill","notes":"Current role-specific penalty term; distinct from the source-linked ordinary status 錯乱."},
     {"key":"betrayal","english":"Betrayal","japanese":"裏切り","arabic":"خيانة","source":"GAME_TERM","notes":"Status/effect label."},
     {"key":"rampage","english":"Rampage","japanese":"暴走","arabic":"هياج","source":"GAME_TERM","notes":"Status/effect label."},

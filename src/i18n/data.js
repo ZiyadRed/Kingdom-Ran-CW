@@ -179,6 +179,9 @@ export function localizedSkill(skill, characterId, skillIndex, localeOrCode = 'e
         target: target(displayRow?.target),
         effect: effect(displayRow?.effect),
         duration: duration(displayRow?.duration),
+        // The canonical English effect stays available so the skill card can
+        // tell which mechanic a translated word belongs to (see effect-glossary.js).
+        sourceEffect: displayRow?.effect ?? null,
       }
     })
   } else {

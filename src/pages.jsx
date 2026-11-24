@@ -2,9 +2,13 @@ import { ArtLightbox, ViewArtButton } from './art-preview.jsx'
 import './buff-summary.css'
 import { useMobileDetailFocus } from './use-mobile-detail-focus.js'
 import { useArchiveUrlState } from './use-archive-url-state.js'
-import { ARCHIVE_QUERY_LIMIT, ARCHIVE_RARITY_FILTERS } from './archive-url-state.js'
+import { ARCHIVE_EFFECT_LIMIT, ARCHIVE_QUERY_LIMIT } from './archive-url-state.js'
+import { ARCHIVE_EFFECT_FILTERS, ARCHIVE_EFFECT_GROUPS, ARCHIVE_ROLE_FILTERS, characterRole, effectFilterCounts, filterCharactersByRoleAndEffects } from './archive-effect-filters.js'
+import { EffectTermDescriptions, EffectText } from './effect-term.jsx'
+import { versionPublicAsset } from './asset-url.js'
+import { effectTermSegments } from './effect-glossary.js'
 import { secondaryName } from './display-names.js'
-import { startTransition, useState, useEffect, useMemo, useDeferredValue, useRef, useId } from 'react'
+import { startTransition, useState, useEffect, useMemo, useCallback, useDeferredValue, useRef, useId } from 'react'
 import { Link, useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -84,8 +88,8 @@ const FACTION_RAIL_SHORT={fr:{'Mountain Folk':'Montagne'}}
 const factionRailLabel=(f,locale)=>FACTION_RAIL_SHORT[locale?.code]?.[f?.label]||factionDisplay(f,locale)
 
 const ROLE_SKILL_ICON={
-  Leader:'/icons/royal_helmet_hex_badge.webp',
-  Strategist:'/icons/feather_fan_hex_badge.webp',
+  Leader:versionPublicAsset('/icons/royal_helmet_hex_badge.webp'),
+  Strategist:versionPublicAsset('/icons/feather_fan_hex_badge.webp'),
 }
 
 const SKILL_LEVEL_ICON={
@@ -307,6 +311,74 @@ export function sharedDisplayNames(characters){
 const ARCHIVE_ALL_FACTIONS='all'
 const ARCHIVE_FACTION_IDS=[...FACTIONS.map(faction=>faction.id),ARCHIVE_ALL_FACTIONS]
 
+/**
+ * "Filter by effect": a disclosure button that opens the effect chips in place,
+ * plus the selected effects as removable pills. Several effects can be chosen;
+ * a general must have all of them. Each chip shows how many generals it would
+ * leave, and a chip that would leave none is disabled.
+ */
+export function ArchiveEffectFilter({selected,counts,resultCount,onChange}){
+  const{t}=useTranslation('common')
+  const locale=useLocale()
+  const[open,setOpen]=useState(false)
+  const panelId=useId()
+  const toggleRef=useRef(null)
+  const label=id=>t(`archive.effects.${id}`)
+  const toggle=id=>onChange(selected.includes(id)?selected.filter(value=>value!==id):[...selected,id])
+  const full=selected.length>=ARCHIVE_EFFECT_LIMIT
+  const close=()=>{setOpen(false);toggleRef.current?.focus()}
+  return(
+    <div className={`effect-filter${open?' is-open':''}`}>
+      <div className="effect-filter-bar">
+        <button ref={toggleRef} type="button" className={`effect-filter-toggle${selected.length?' is-active':''}`} aria-expanded={open} aria-controls={panelId} onClick={()=>setOpen(value=>!value)}>
+          <svg className="effect-filter-funnel" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false"><path d="M2 3h12l-4.6 5.4V13l-2.8 1.2V8.4z" fill="currentColor"/></svg>
+          <span>{t('archive.effectFilter.button')}</span>
+          {selected.length>0&&<span className="effect-filter-count">{formatLocaleNumber(selected.length,locale)}</span>}
+          <span className="effect-filter-caret" aria-hidden="true"/>
+        </button>
+        {selected.length>0&&<div className="effect-filter-pills">
+          {selected.map(id=>{
+            const filter=ARCHIVE_EFFECT_FILTERS.find(item=>item.id===id)
+            return(
+              <button key={id} type="button" className="effect-pill" aria-label={t('archive.effectFilter.remove',{name:label(id)})} onClick={()=>toggle(id)}>
+                {filter?.icon&&<img src={filter.icon} alt="" aria-hidden="true" className="effect-pill-icon"/>}
+                <span>{label(id)}</span>
+                <span className="effect-pill-x" aria-hidden="true">×</span>
+              </button>
+            )
+          })}
+          {selected.length>1&&<button type="button" className="effect-filter-clear" onClick={()=>onChange([])}>{t('clear')}</button>}
+        </div>}
+      </div>
+      <div id={panelId} className="effect-filter-panel" hidden={!open} onKeyDown={event=>{if(event.key==='Escape'){event.stopPropagation();close()}}}>
+        <p className="effect-filter-hint">{t('archive.effectFilter.hint')}</p>
+        {ARCHIVE_EFFECT_GROUPS.map(group=>(
+          <div key={group} className="effect-filter-group" role="group" aria-label={t(`archive.effectFilter.${group}`)}>
+            <span className="effect-filter-heading" aria-hidden="true">{t(`archive.effectFilter.${group}`)}</span>
+            <div className="effect-filter-chips">
+              {ARCHIVE_EFFECT_FILTERS.filter(filter=>filter.group===group).map(filter=>{
+                const on=selected.includes(filter.id)
+                const count=counts[filter.id]||0
+                return(
+                  <button key={filter.id} type="button" className={`filter-chip effect-chip${on?' is-on':''}`} data-effect-filter={filter.id} aria-pressed={on}
+                    disabled={!on&&(!count||full)} onClick={()=>toggle(filter.id)}>
+                    {filter.icon&&<img src={filter.icon} alt="" aria-hidden="true" className="filter-chip-icon"/>}
+                    <span>{label(filter.id)}</span>
+                    <span className="effect-chip-n">{formatLocaleNumber(count,locale)}</span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        ))}
+        <div className="effect-filter-actions">
+          <button type="button" className="effect-filter-done" onClick={close}>{t('archive.effectFilter.showResults',{count:formatLocaleNumber(resultCount,locale)})}</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export function ArchivePage({onAddToBuilder,onLoadTeam}){
   const {ALL,ARCHIVE_BROWSE_CHARACTERS,findCharById}=useReleaseData()
   const shareLabels=useShareLabels()
@@ -317,7 +389,10 @@ export function ArchivePage({onAddToBuilder,onLoadTeam}){
   const{t}=useTranslation('common')
   const selected=useMemo(()=>findCharById(charId),[charId,findCharById])
   const detailLayoutRef=useMobileDetailFocus(selected?.id)
-  const{faction:activeFac,query:search,unit:unitFilter=null,rarity:rarityFilter=null,setQuery:setSearch,setFaction:handleFacClick,setUnit,setRarity,returnSearch}=useArchiveUrlState(ARCHIVE_FACTION_IDS,selected)
+  const{faction:activeFac,query:search,unit:unitFilter=null,role:roleFilter=null,effects:urlEffects,setQuery:setSearch,setFaction:handleFacClick,setUnit,setRole,setEffects,returnSearch}=useArchiveUrlState(ARCHIVE_FACTION_IDS,selected)
+  // The URL state is re-read on every render; key the selection by value.
+  const effectKey=(urlEffects||[]).join(' ')
+  const effectFilters=useMemo(()=>effectKey?effectKey.split(' '):[],[effectKey])
   // Refine route metadata with source-backed character names/readings.
   useEffect(()=>{
     if(selected){
@@ -340,20 +415,25 @@ export function ArchivePage({onAddToBuilder,onLoadTeam}){
   const deferredSearch=useDeferredValue(search)
   const deferredQuery=deferredSearch.trim()
   const hasSearch=Boolean(search.trim())
-  const filtered=useMemo(()=>{
-    const source=deferredQuery?ALL:ARCHIVE_BROWSE_CHARACTERS
+  // Role and effect filters look through skills, so like a text search they
+  // cover every general, including those without banner art.
+  const hasSkillFilter=Boolean(roleFilter)||effectFilters.length>0
+  // Faction (or search), unit type and role applied to a source list: every
+  // filter except the effects, which the chips count against.
+  const scopeOf=useCallback(source=>{
     const alphabetical=source.slice().sort((a,b)=>compareCharacters(a,b,locale))
-    // Unit-type and rarity chips narrow both the faction roster and a search.
-    // Rarity comes from character_rarity.json (buffEntryRarity); a general
-    // missing from that table never matches a rarity chip.
-    const chipFiltered=alphabetical.filter(c=>(!unitFilter||c.unit_type===unitFilter)&&(!rarityFilter||buffEntryRarity({name_jp:c.name_jp})===rarityFilter))
+    // Chips narrow both the faction roster and a search.
+    const chipFiltered=filterCharactersByRoleAndEffects(alphabetical.filter(c=>!unitFilter||c.unit_type===unitFilter),{role:roleFilter})
     if(deferredQuery) return searchCharacters(chipFiltered,deferredQuery,locale)
     return activeFac===ARCHIVE_ALL_FACTIONS?chipFiltered:chipFiltered.filter(c=>c.country===activeFac)
-  },[deferredQuery,activeFac,locale,ALL,ARCHIVE_BROWSE_CHARACTERS,unitFilter,rarityFilter])
-  const rarityOptions=useMemo(()=>{
-    const present=new Set(ALL.map(c=>buffEntryRarity({name_jp:c.name_jp})).filter(Boolean))
-    return ARCHIVE_RARITY_FILTERS.filter(r=>present.has(r)).map(r=>({value:r,label:r,color:RARITY_COLOR[r]}))
-  },[ALL])
+  },[deferredQuery,activeFac,locale,unitFilter,roleFilter])
+  const fullScope=useMemo(()=>scopeOf(ALL),[scopeOf,ALL])
+  const scoped=useMemo(()=>deferredQuery||hasSkillFilter?fullScope:scopeOf(ARCHIVE_BROWSE_CHARACTERS),[deferredQuery,hasSkillFilter,fullScope,scopeOf,ARCHIVE_BROWSE_CHARACTERS])
+  const filtered=useMemo(()=>filterCharactersByRoleAndEffects(scoped,{effects:effectFilters}),[scoped,effectFilters])
+  // A chip's number is what the gallery shows after pressing it, and pressing
+  // one widens the gallery to every general, so count against the full scope.
+  const effectCounts=useMemo(()=>effectFilterCounts(fullScope,effectFilters),[fullScope,effectFilters])
+  const roleOptions=useMemo(()=>ARCHIVE_ROLE_FILTERS.map(role=>({value:role,label:t(`archive.role.${role}`),icon:ROLE_SKILL_ICON[role]})),[t])
   const localizedSelected=useMemo(()=>selected?localizedCharacter(selected,locale):null,[selected,locale])
   const localizedFiltered=useMemo(()=>filtered.map(character=>localizedCharacter(character,locale)),[filtered,locale])
   // Prev/next step through whatever list is on screen, so a faction roster or
@@ -430,13 +510,15 @@ export function ArchivePage({onAddToBuilder,onLoadTeam}){
         </div>
         <div className="archive-filters">
           <FilterChipGroup label={t('unitType')} options={unitTypeFilterOptions(locale)} value={unitFilter} onChange={setUnit}/>
-          <FilterChipGroup label={t('teamCost.rarity')} options={rarityOptions} value={rarityFilter} onChange={setRarity}/>
+          <FilterChipGroup label={t('archive.roleFilter')} options={roleOptions} value={roleFilter} onChange={setRole} className="archive-role-filter"/>
+          <ArchiveEffectFilter selected={effectFilters} counts={effectCounts} resultCount={filtered.length} onChange={setEffects}/>
         </div>
-        {!hasSearch&&<p className="archive-browse-note">{t('archive.browseNote')}</p>}
+        {!hasSearch&&!hasSkillFilter&&<p className="archive-browse-note">{t('archive.browseNote')}</p>}
         <div className="gallery-grid">
           {!filtered.length&&<p className="search-empty" role="status">{search.trim()?t('stats.noCharacterMatches',{query:search}):t('ux.filters.noMatches')}</p>}
           {localizedFiltered.map((c,index)=>{
             const skillTag=deferredQuery?matchCharacterSearch(c,deferredQuery,locale)?.hint:null
+            const role=characterRole(c)
             return(
             <Link key={c.id}
               data-detail-id={c.id}
@@ -447,6 +529,9 @@ export function ArchivePage({onAddToBuilder,onLoadTeam}){
               <div className="banner-faction-tag" style={{background:CC[c.country]||'#666'}}>
                 {FACTIONS.find(f=>f.id===c.country)?.jp||c.country}
               </div>
+              {role&&<span className="banner-role-badge" data-role-badge={role} title={t(`archive.role.${role}`)} aria-hidden="true">
+                <img src={ROLE_SKILL_ICON[role]} alt="" width="22" height="22" loading="lazy" decoding="async" draggable="false"/>
+              </span>}
               {c.image?<ArchiveImage
                 src={persosThumb(c.image)}
                 srcSet={`${persosThumb(c.image)} 320w, ${c.image} 626w`}
@@ -642,6 +727,12 @@ export function SkillCard({skill}){
   const col=TYPE_COLOR[skill.type]||'#888'
   const displayName=skill.displayName||(locale.code==='ja'?skill.name_jp:skill.name_en)||t('unknown')
   const displayEffects=skill.displayEffects||skill.effects||[]
+  // Status keywords in each effect, explained on hover/tap. The English source
+  // row decides which mechanic a translated word belongs to.
+  const effectSegments=displayEffects.map(e=>effectTermSegments(e.effect,e.sourceEffect??e.effect,locale))
+  const effectTerms=[...new Set(effectSegments.flat().filter(segment=>typeof segment!=='string').map(segment=>segment.term))]
+  const effectIdBase=useId()
+  const describedBy=term=>`${effectIdBase}-effect-${effectTerms.indexOf(term)}`
   return(
     <div className="sk" data-type={skill.type}>
       <div className="sk-head" style={{borderLeftColor:col,borderRightColor:col}}>
@@ -651,7 +742,10 @@ export function SkillCard({skill}){
         </div>
         <div className="sk-tags">
           {skill.star6&&<span className="tag t-star">☆6</span>}
-          <span className="tag sk-type" style={{background:col+'22',border:`1px solid ${col}55`}}>{localizedText(skill.type,locale)}</span>
+          <span className="tag sk-type" style={{background:col+'22',border:`1px solid ${col}55`}}>
+            {ROLE_SKILL_ICON[skill.type]&&<img className="sk-type-icon" src={ROLE_SKILL_ICON[skill.type]} alt="" aria-hidden="true" width="14" height="14" decoding="async"/>}
+            {localizedText(skill.type,locale)}
+          </span>
           {skill.type==='Internal Affairs'&&<span className="tag t-map">{localizedText('Map',locale)}</span>}
         </div>
       </div>
@@ -669,11 +763,12 @@ export function SkillCard({skill}){
             <div className="eff-body">
               <span className="eff-tgt">{e.target}</span>
               <span className="eff-sep">→</span>
-              <span className="eff-val">{e.effect}</span>
+              <span className="eff-val"><EffectText segments={effectSegments[i]} describedBy={describedBy}/></span>
               {e.duration&&<span className="eff-dur">{e.duration}</span>}
             </div>
           </div>
         ))}
+        <EffectTermDescriptions terms={effectTerms} describedBy={describedBy}/>
       </div>
     </div>
   )
