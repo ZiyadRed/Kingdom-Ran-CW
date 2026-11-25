@@ -45,13 +45,13 @@ const AMBIGUOUS_KEYS = []
 // `coveredProjectRows` counts the deterministic project rows they serve.
 const EXPECTED = {
   skills: 678,
-  deterministic: 672,
-  canonicalSkills: 610,
+  deterministic: 678,
+  canonicalSkills: 616,
   ambiguous: 0,
-  // Choukatsu/Maikou CW kits come from the November 23 announcement: the
-  // November 18 acquisition still assigns them generic skill 1. These six rows
-  // stay pending_source with null canonical IDs until the Ver8.9.0 data lands.
-  pending: 6,
+  // Rows for characters announced before their master data ships stay
+  // pending_source with null canonical IDs. Choukatsu/Maikou were promoted
+  // with the Ver8.9.0 (2026-11-25) master, so none remain.
+  pending: 0,
   characters: 214,
   readingsAvailable: 193,
   readingsMissing: 21,

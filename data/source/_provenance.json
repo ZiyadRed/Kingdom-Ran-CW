@@ -1,8 +1,8 @@
 {
   "_schema": "ranhq.provenance/1",
   "sourceSnapshot": {
-    "snapshotLabel": "v8.8.0_20261028_263b4f3c",
-    "snapshotDate": "2026-10-28",
+    "snapshotLabel": "v8.9.0_20261125_61c98a09",
+    "snapshotDate": "2026-11-25",
     "sourceRoot": "C:\\kingdom_data\\decrypted",
     "decoder": {
       "name": "extract_ja_text.py",
@@ -11,13 +11,13 @@
       "stblLayout": "STBL header + little-endian offset table + NUL-terminated UTF-8 strings",
       "masterDecoder": "msgpack master packets (masters_001.bin..masters_005.bin)"
     },
-    "manifestSha256": "D6E9D9D90BBD419F3988D7650D018B2BCF11F6A0E3B2174F7BDDFA97AA5AC60D",
+    "manifestSha256": "4D1E929F87D54FD0D977A76F65F787C9D527555FDB22475C2F4F45E52B968F93",
     "masterFiles": {
-      "masters_001.bin": "3C86DB76159404ED23C2A81AB124C75D43CCEA5271BCF7F5FF15637C4ED90E34",
-      "masters_002.bin": "6E86B56D7ED49099E47DF52B01F4EB9156D976297C7DB802A4309BF055EE7A05",
-      "masters_003.bin": "9D0A917185DB2D8A9559E0C205F73666156C38BB717BBD37EA1EEFAD687B4318",
-      "masters_004.bin": "008800E405DD18C0F54860A14DE4BE3B8C8083FB7DEB0F268564E63B6F36E286",
-      "masters_005.bin": "231B77DF53B6117EA763FA5534C852DE1AB4C8408994E1B71F84620DE9DFC77B"
+      "masters_001.bin": "B9D01724191CDE6C9F3D7E25E9FEE432A1DA87D1A9B372538C6C525C1E83FD63",
+      "masters_002.bin": "FC74517FE58062AD2FD4B01C18EDEF12F9F684229622DBB5E8B833E8574E4772",
+      "masters_003.bin": "DC421DD7F24E392E6418127B7888C3E1534795604DC5681792911783FF2795E4",
+      "masters_004.bin": "4EA06A2BB1B1399B7C8A98EFD0FCF9454818B2D1D2DEC9ED0F4B36C8385163BD",
+      "masters_005.bin": "A493419ED998DE8ED9F068E67878177EFA1A6C432369F4A74C5C6AAE674377C8"
     }
   },
   "characterMapping": {
@@ -29,26 +29,26 @@
     "unresolved": 0
   },
   "cwSkillMapping": {
-    "inputFileSha256": "EA3F5462D09053F0D788611057C57A0BEBB8281F05E4917993887C99366E455B",
+    "inputFileSha256": "00F1C1F84AEC44E97A874D015E466BCBFE19ECB369E075CC4D8C62044C92B4AB",
     "total": 678,
-    "exact": 628,
+    "exact": 634,
     "resolved": 44,
     "ambiguous": 0,
     "unresolved": 0,
-    "deterministic": 672,
-    "pendingSource": 6
+    "deterministic": 678,
+    "pendingSource": 0
   },
   "stblTables": {
     "MsgUnionConquestSkillName.stbl": {
-      "sha256": "03A7ABD39D7CAB1439665F416B4980CFCFF51E5AC041738918890F8B0318C547",
-      "entries": 891
+      "sha256": "9D16E71B694F8BA436E9E8D537A29EA9B7D24066935368955361AAC74783ACA5",
+      "entries": 905
     },
     "MsgUnionConquestSkillDesc.stbl": {
-      "sha256": "F6C5DBFFE4736677912FB8C528952CA317E7A41CDD6146BD492A9D71B099ADDC",
-      "entries": 891
+      "sha256": "66F4125200062040DC8D589E3E3A04AD6CD4BCD9E034A59FE15EC4932D1894CF",
+      "entries": 905
     },
     "MsgUnitGeneralRubyName.stbl": {
-      "sha256": "F5DBF16029BCB2E1CC17441FC83BE423DAFEC4534538090BCED47B535E331070",
+      "sha256": "FF99B23F8323FD808B18CF591F969B3E775B50E66CC555DCD322E2A1EBD8CC01",
       "entries": 654
     },
     "MsgUnitGeneralName.stbl": {
@@ -61,8 +61,8 @@
     }
   },
   "generatedArtifacts": {
-    "deterministicProjectSkills": 672,
-    "canonicalJapaneseSkills": 610,
+    "deterministicProjectSkills": 678,
+    "canonicalJapaneseSkills": 616,
     "ambiguousProjectSkills": 0,
     "sourceIndexRows": 678,
     "rubyReadingsAvailable": 193,

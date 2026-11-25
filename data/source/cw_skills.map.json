@@ -9017,84 +9017,84 @@
       "basis": "Current stable-ID scene card 42005 -> rank group 36 -> rank 6 skill 889 -> textId 888. Availability gated by card.publicTime."
     },
     "choukatsu#0": {
-      "status": "pending_source",
+      "status": "exact",
       "characterId": 270,
-      "skillId": null,
-      "textId": null,
+      "skillId": 892,
+      "textId": 891,
       "sourceType": "base",
       "sourceSlot": 1,
       "sourceNameJp": "勇将一閃【赤羊】",
-      "basis": "Official announcement https://www.kingdomran.jp/info/srur_chokatsu (2026-11-23). November 18 acquisition still assigns generic skill 1 to character 270; promote to exact after the Ver8.9.0 data is acquired.",
+      "basis": "November 25 current master (v8.9.0): characterId 270 -> CW profile skill slot -> skill textId.",
       "fingerprint": {
         "name_jp": "勇将一閃【赤羊】",
         "effectsHash": "84b1e1b4ee13ca8d5beb913e5a54d758cc8bad765ebf44829fb4700c6038492f"
       }
     },
     "choukatsu#1": {
-      "status": "pending_source",
+      "status": "exact",
       "characterId": 270,
-      "skillId": null,
-      "textId": null,
+      "skillId": 893,
+      "textId": 892,
       "sourceType": "base",
       "sourceSlot": 2,
       "sourceNameJp": "狙うは大将",
-      "basis": "Official announcement https://www.kingdomran.jp/info/srur_chokatsu (2026-11-23). November 18 acquisition still assigns generic skill 1 to character 270; promote to exact after the Ver8.9.0 data is acquired.",
+      "basis": "November 25 current master (v8.9.0): characterId 270 -> CW profile skill slot -> skill textId.",
       "fingerprint": {
         "name_jp": "狙うは大将",
         "effectsHash": "9110b076225e90145456b0fd4519fd304c5f975b54221309eb40eb2f89294480"
       }
     },
     "choukatsu#2": {
-      "status": "pending_source",
+      "status": "exact",
       "characterId": 270,
-      "skillId": null,
-      "textId": null,
+      "skillId": 894,
+      "textId": 893,
       "sourceType": "base",
       "sourceSlot": 3,
       "sourceNameJp": "拙速な特攻",
-      "basis": "Official announcement https://www.kingdomran.jp/info/srur_chokatsu (2026-11-23). November 18 acquisition still assigns generic skill 1 to character 270; promote to exact after the Ver8.9.0 data is acquired.",
+      "basis": "November 25 current master (v8.9.0): characterId 270 -> CW profile skill slot -> skill textId.",
       "fingerprint": {
         "name_jp": "拙速な特攻",
         "effectsHash": "f18513285c03c8558a9daee533c47bbf9e94df49eb5face02e53fa5bb2e9109c"
       }
     },
     "maikou#0": {
-      "status": "pending_source",
+      "status": "exact",
       "characterId": 271,
-      "skillId": null,
-      "textId": null,
+      "skillId": 895,
+      "textId": 894,
       "sourceType": "base",
       "sourceSlot": 1,
       "sourceNameJp": "名将一閃【黄虎】",
-      "basis": "Official announcement https://www.kingdomran.jp/info/srur_maikou (2026-11-23). November 18 acquisition still assigns generic skill 1 to character 271; promote to exact after the Ver8.9.0 data is acquired.",
+      "basis": "November 25 current master (v8.9.0): characterId 271 -> CW profile skill slot -> skill textId.",
       "fingerprint": {
         "name_jp": "名将一閃【黄虎】",
         "effectsHash": "39e53d9ef9e58ffd617a710ba5c07f9cc422d4b15131efb0813e9cd554e92be9"
       }
     },
     "maikou#1": {
-      "status": "pending_source",
+      "status": "exact",
       "characterId": 271,
-      "skillId": null,
-      "textId": null,
+      "skillId": 896,
+      "textId": 895,
       "sourceType": "base",
       "sourceSlot": 2,
       "sourceNameJp": "手筈通り",
-      "basis": "Official announcement https://www.kingdomran.jp/info/srur_maikou (2026-11-23). November 18 acquisition still assigns generic skill 1 to character 271; promote to exact after the Ver8.9.0 data is acquired.",
+      "basis": "November 25 current master (v8.9.0): characterId 271 -> CW profile skill slot -> skill textId.",
       "fingerprint": {
         "name_jp": "手筈通り",
         "effectsHash": "4c41ebba78feb0e39a2ec897fdaf03e85d5e4920215fd27701cb0b705f34b68f"
       }
     },
     "maikou#2": {
-      "status": "pending_source",
+      "status": "exact",
       "characterId": 271,
-      "skillId": null,
-      "textId": null,
+      "skillId": 897,
+      "textId": 896,
       "sourceType": "base",
       "sourceSlot": 3,
       "sourceNameJp": "不意の襲撃",
-      "basis": "Official announcement https://www.kingdomran.jp/info/srur_maikou (2026-11-23). November 18 acquisition still assigns generic skill 1 to character 271; promote to exact after the Ver8.9.0 data is acquired.",
+      "basis": "November 25 current master (v8.9.0): characterId 271 -> CW profile skill slot -> skill textId.",
       "fingerprint": {
         "name_jp": "不意の襲撃",
         "effectsHash": "d6313991d2b8c59b579f37c3eb118a7554a03af696bcbbbc1cc1360f535b8801"

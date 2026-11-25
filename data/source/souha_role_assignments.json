@@ -1,12 +1,18 @@
 {
-  "snapshot": "v8.8.0_20261028_263b4f3c",
-  "manifestSha256": "D6E9D9D90BBD419F3988D7650D018B2BCF11F6A0E3B2174F7BDDFA97AA5AC60D",
+  "snapshot": "v8.9.0_20261125_61c98a09",
+  "manifestSha256": "4D1E929F87D54FD0D977A76F65F787C9D527555FDB22475C2F4F45E52B968F93",
   "assignments": [
     {
       "characterId": 16,
       "sourceField": "chiefGeneralSkillId",
       "skillId": 878,
       "textId": 877
+    },
+    {
+      "characterId": 21,
+      "sourceField": "chiefGeneralSkillId",
+      "skillId": 904,
+      "textId": 903
     },
     {
       "characterId": 34,
@@ -61,6 +67,12 @@
       "sourceField": "tacticianSkillId",
       "skillId": 858,
       "textId": 857
+    },
+    {
+      "characterId": 192,
+      "sourceField": "tacticianSkillId",
+      "skillId": 905,
+      "textId": 904
     },
     {
       "characterId": 198,
@@ -120,6 +132,40 @@
       "skill9id": 0,
       "skill10id": 0,
       "chiefGeneralSkillId": 878,
+      "tacticianSkillId": 0
+    },
+    {
+      "id": 21,
+      "characterId": 21,
+      "defPenetrateRate": 0,
+      "maxMp": 1920,
+      "criticalRate": 500,
+      "criticalDamageRate": 15000,
+      "hitRate": 10000,
+      "dodgeRate": 0,
+      "adAttributeSlay": 12000,
+      "daAttributeSlay": 8000,
+      "generalExpGroupId": 1,
+      "chiefGeneralUnlockSkillGroupId": 1,
+      "tacticianUnlockSkillGroupId": 0,
+      "generalUpgradeGroupId": 1,
+      "generalUpgradeExclusiveGroupIds": "0",
+      "generalGrowthGroupId": 4,
+      "generalKillDecayId": 4,
+      "maxUpgradeLv": 3,
+      "advancedMaxUpgradeLv": 3,
+      "advancedMaxUpgradeLvPublicTime": -1,
+      "skill1id": 29,
+      "skill2id": 82,
+      "skill3id": 83,
+      "skill4id": 0,
+      "skill5id": 0,
+      "skill6id": 0,
+      "skill7id": 0,
+      "skill8id": 0,
+      "skill9id": 0,
+      "skill10id": 0,
+      "chiefGeneralSkillId": 904,
       "tacticianSkillId": 0
     },
     {
@@ -427,6 +473,40 @@
       "skill10id": 0,
       "chiefGeneralSkillId": 0,
       "tacticianSkillId": 858
+    },
+    {
+      "id": 192,
+      "characterId": 192,
+      "defPenetrateRate": 0,
+      "maxMp": 1920,
+      "criticalRate": 500,
+      "criticalDamageRate": 15000,
+      "hitRate": 10000,
+      "dodgeRate": 0,
+      "adAttributeSlay": 12000,
+      "daAttributeSlay": 8000,
+      "generalExpGroupId": 1,
+      "chiefGeneralUnlockSkillGroupId": 0,
+      "tacticianUnlockSkillGroupId": 2,
+      "generalUpgradeGroupId": 1,
+      "generalUpgradeExclusiveGroupIds": "0",
+      "generalGrowthGroupId": 4,
+      "generalKillDecayId": 4,
+      "maxUpgradeLv": 3,
+      "advancedMaxUpgradeLv": 3,
+      "advancedMaxUpgradeLvPublicTime": -1,
+      "skill1id": 427,
+      "skill2id": 428,
+      "skill3id": 429,
+      "skill4id": 0,
+      "skill5id": 0,
+      "skill6id": 0,
+      "skill7id": 0,
+      "skill8id": 0,
+      "skill9id": 0,
+      "skill10id": 0,
+      "chiefGeneralSkillId": 0,
+      "tacticianSkillId": 905
     },
     {
       "id": 198,

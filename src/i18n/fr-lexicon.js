@@ -298,6 +298,7 @@ export const SKILL_TYPES = {
 /** Standalone phrases with a fixed, whole-string French rendering. */
 export const PHRASES = {
   'Remove Sure Hit': 'Dissipe l’état Coup assuré',
+  'Reflect Cavalry Attacks': 'Renvoie les attaques de cavalerie',
   ...SKILL_TYPES,
   // A badge marking an Internal Affairs skill as affecting the CW map.
   'Map': 'Carte',

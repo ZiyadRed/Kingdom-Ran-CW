@@ -23,7 +23,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const J = (p) => JSON.parse(readFileSync(join(root, p), 'utf-8'))
 
 // ── Phase 1 character expectations ───────────────────────────────────────────
-const PENDING_KEYS = ['choukatsu#0', 'choukatsu#1', 'choukatsu#2', 'maikou#0', 'maikou#1', 'maikou#2']
+const PENDING_KEYS = []
 const EXPECTED_TOTAL = 214
 const EXPECTED_EXACT = 203
 const EXPECTED_RESOLVED = 11
@@ -31,13 +31,14 @@ const EXPECTED_RESOLVED = 11
 // ── Phase 2 CW-skill expectations ────────────────────────────────────────────
 const EXPECTED_SKILLS = 678
 const EXPECTED_SKILL_AMBIGUOUS = 0
-const EXPECTED_SKILL_DETERMINISTIC = 672
+const EXPECTED_SKILL_DETERMINISTIC = 678
 const EXPECTED_BASE = 642
 const EXPECTED_SCENE_CARD_RANK = 36
 const AMBIGUOUS_KEYS = []
 
-// Choukatsu/Maikou CW kits are announcement-only until Ver8.9.0 data is acquired.
-const EXPECTED_SKILL_PENDING = 6
+// Choukatsu/Maikou were promoted to exact from the Ver8.9.0 (2026-11-25) master;
+// no announcement-only rows remain.
+const EXPECTED_SKILL_PENDING = 0
 const roleSource = J('data/source/souha_role_assignments.json')
 const EXPECTED_ROLE_SKILLS = roleSource.assignments.length
 

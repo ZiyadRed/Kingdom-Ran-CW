@@ -26,21 +26,21 @@ const has = (p) => existsSync(join(root, p))
 
 // Multiple deterministic project rows can share a canonical CW skillId.
 // Assert project coverage and distinct canonical entries independently.
-const PENDING_KEYS = ['choukatsu#0', 'choukatsu#1', 'choukatsu#2', 'maikou#0', 'maikou#1', 'maikou#2']
+const PENDING_KEYS = []
 const EXPECTED_PROJECT_SKILLS = 678
-const EXPECTED_DETERMINISTIC = 672
-const EXPECTED_CANONICAL_SKILLS = 610
+const EXPECTED_DETERMINISTIC = 678
+const EXPECTED_CANONICAL_SKILLS = 616
 const EXPECTED_AMBIGUOUS = 0
-// Choukatsu/Maikou: announcement-only until the Ver8.9.0 master data is acquired.
-const EXPECTED_PENDING = 6
+// Choukatsu/Maikou were promoted to exact from the Ver8.9.0 (2026-11-25) master.
+const EXPECTED_PENDING = 0
 const EXPECTED_CHARACTERS = 214
 const EXPECTED_READINGS_AVAILABLE = 193
 const EXPECTED_READINGS_MISSING = 21
 const AMBIGUOUS_KEYS = []
 
 const RAW_TABLES = [
-  ['skill_name.raw.json', 'MsgUnionConquestSkillName.stbl', 891],
-  ['skill_desc.raw.json', 'MsgUnionConquestSkillDesc.stbl', 891],
+  ['skill_name.raw.json', 'MsgUnionConquestSkillName.stbl', 905],
+  ['skill_desc.raw.json', 'MsgUnionConquestSkillDesc.stbl', 905],
   ['general_ruby.raw.json', 'MsgUnitGeneralRubyName.stbl', 654],
   ['general_name.raw.json', 'MsgUnitGeneralName.stbl', 654],
   ['skill_effect_desc.raw.json', 'MsgUnionConquestSkillEffectDesc.stbl', 1020],

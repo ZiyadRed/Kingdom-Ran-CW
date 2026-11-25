@@ -1,5 +1,5 @@
 {
-  "snapshot": "v8.8.0_20261028_263b4f3c",
+  "snapshot": "v8.9.0_20261125_61c98a09",
   "source": "mstUnionConquestGenerals.chiefGeneralSkillId / tacticianSkillId",
   "skills": [
     {
@@ -840,6 +840,120 @@
             "condition": null,
             "target": "Ally [Wei]",
             "effect": "Morale Recovery 20%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "owner_id": "gokei",
+      "characterId": 21,
+      "ownerName": "Gokei",
+      "ownerNameJp": "呉慶",
+      "ownerIcon": "/icons/Gokei.webp",
+      "role": "Leader",
+      "role_jp": "総大将",
+      "sourceField": "chiefGeneralSkillId",
+      "unlockSkillGroupId": 1,
+      "skill": {
+        "cwId": 904,
+        "textId": 903,
+        "name_en": "Unyielding Interception",
+        "name_jp": "不退の迎撃",
+        "type": "Leader",
+        "roleSkill": true,
+        "mp": 2000,
+        "skillType": 2,
+        "timing": 1,
+        "mainIconId": 405,
+        "subIconIds": [
+          239,
+          2,
+          176,
+          14
+        ],
+        "effectIds": [
+          3680,
+          3681,
+          3682,
+          3683,
+          1019,
+          3684,
+          3685
+        ],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Ally Wei Fire Dragon / Ally Gohoumei / Ally Ranbihaku",
+            "effect": "Reflect Cavalry Attacks",
+            "duration": "3 times"
+          },
+          {
+            "condition": null,
+            "target": "Ally [Wei]",
+            "effect": "ATK Up 20%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "All enemy [General]",
+            "effect": "DEF Down 20%",
+            "duration": null
+          }
+        ]
+      }
+    },
+    {
+      "owner_id": "goumasho",
+      "characterId": 192,
+      "ownerName": "Goumasho",
+      "ownerNameJp": "剛摩諸",
+      "ownerIcon": "/icons/Goumasho.webp",
+      "role": "Strategist",
+      "role_jp": "軍師",
+      "sourceField": "tacticianSkillId",
+      "unlockSkillGroupId": 2,
+      "skill": {
+        "cwId": 905,
+        "textId": 904,
+        "name_en": "Supreme Strategy [Goumasho]",
+        "name_jp": "至強の軍略【剛摩諸】",
+        "type": "Strategist",
+        "roleSkill": true,
+        "mp": 1000,
+        "skillType": 2,
+        "timing": 1,
+        "mainIconId": 404,
+        "subIconIds": [
+          3,
+          110,
+          274,
+          4
+        ],
+        "effectIds": [
+          3295,
+          1751,
+          3686,
+          1867,
+          3687
+        ],
+        "effects": [
+          {
+            "condition": null,
+            "target": "Self",
+            "effect": "DEF Up 40%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Kanmei Army",
+            "effect": "Critical Damage Up 30%",
+            "duration": null
+          },
+          {
+            "condition": null,
+            "target": "Ally Kanmei Army",
+            "effect": "HP Recovery 20%",
             "duration": null
           }
         ]

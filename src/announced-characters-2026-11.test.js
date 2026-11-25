@@ -4,6 +4,8 @@ import { createHash } from 'node:crypto'
 import announcement from '../data/source/announced_characters_2026-11-23.json'
 import sourceMap from '../data/source/cw_skills.map.json'
 import characterMap from '../data/source/characters.map.json'
+import rawSkillNames from '../data/source/ja/skill_name.raw.json'
+import rawSkillDescs from '../data/source/ja/skill_desc.raw.json'
 import units from '../data/cw_buffs.json'
 import teams from '../data/cw_team_buffs.json'
 import legacy from '../data/buff_ownership_legacy.json'
@@ -29,13 +31,16 @@ describe('November 23 announcement: Choukatsu, Maikou and Roen', () => {
     }
   })
 
-  it('ships the announced CW kits verbatim by name and keeps them pending_source until released data exists', () => {
+  it('maps the announced CW kits to the Ver8.9.0 master IDs, whose text matches the announcement verbatim', () => {
+    const exactIds = { choukatsu: [[892, 891], [893, 892], [894, 893]], maikou: [[895, 894], [896, 895], [897, 896]] }
     for (const source of announcement.characters) {
       const character = CHAR_BY_ID[source.id]
       expect(character.skills.map(skill => skill.name_jp)).toEqual(source.cwSkills.map(skill => skill.nameJp))
       for (const [index, skill] of source.cwSkills.entries()) {
-        expect(sourceMap.skills[`${source.id}#${index}`]).toMatchObject({ status: 'pending_source', skillId: null, textId: null, sourceNameJp: skill.nameJp })
-        expect(skill.descriptionJp).toContain(skill.nameJp === '手筈通り' ? '錯乱' : 'ダメージ')
+        const [skillId, textId] = exactIds[source.id][index]
+        expect(sourceMap.skills[`${source.id}#${index}`]).toMatchObject({ status: 'exact', skillId, textId, sourceNameJp: skill.nameJp })
+        expect(rawSkillNames.values[textId]).toBe(skill.nameJp)
+        expect(rawSkillDescs.values[textId]).toBe(skill.descriptionJp)
       }
     }
   })

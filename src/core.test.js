@@ -178,6 +178,33 @@ describe('Souha Leader / Strategist staging', () => {
     expect(calcCharBuffs(en,team,[],false,true)['HP Recovery']?.up).toBe(30)
     expect(calcTeamEnemyDebuffs(team)['All enemies']?.down?.['Critical Damage']).toBe(30)
   })
+  it('applies Gokei Wei ATK and enemy DEF down while keeping cavalry reflect out of numeric totals', () => {
+    const gokei = applyMask(findCharByName('Gokei'), {n:0, s6:false, role:true})
+    const strip = name => ({...findCharByName(name), skills:[], roleSkill:null})
+    const gohoumei = strip('Gohoumei')
+    const shin = strip('Shin')
+    const team = [gokei, gohoumei, shin]
+    expect(gokei.roleSkill).toMatchObject({cwId:904, textId:903, type:'Leader'})
+    expect(calcCharBuffs(gokei,team,[],false,true).ATK?.up).toBe(20)
+    expect(calcCharBuffs(gohoumei,team,[],false,true).ATK?.up).toBe(20)
+    expect(calcCharBuffs(shin,team,[],false,true).ATK).toBeUndefined()
+    expect(parseBuffEffect('Reflect Cavalry Attacks')).toEqual([])
+    expect(calcTeamEnemyDebuffs(team)['All enemies']?.down?.DEF).toBe(20)
+  })
+  it('applies Goumasho self DEF and Kanmei Army critical damage and healing', () => {
+    const goumasho = applyMask(findCharByName('Goumasho'), {n:0, s6:false, role:true})
+    const strip = name => ({...findCharByName(name), skills:[], roleSkill:null})
+    const kanmei = strip('Kanmei')
+    const shin = strip('Shin')
+    const team = [goumasho, kanmei, shin]
+    expect(goumasho.roleSkill).toMatchObject({cwId:905, textId:904, type:'Strategist'})
+    expect(calcCharBuffs(goumasho,team,[],false,true).DEF?.up).toBe(40)
+    expect(calcCharBuffs(goumasho,team,[],false,true)['Critical Damage']?.up).toBe(30)
+    expect(calcCharBuffs(kanmei,team,[],false,true).DEF).toBeUndefined()
+    expect(calcCharBuffs(kanmei,team,[],false,true)['Critical Damage']?.up).toBe(30)
+    expect(calcCharBuffs(kanmei,team,[],false,true)['HP Recovery']?.up).toBe(20)
+    expect(calcCharBuffs(shin,team,[],false,true)['Critical Damage']).toBeUndefined()
+  })
 })
 
 // Enemy debuffs (the "↓ Enemy …" rows) must honour the same conditions the

@@ -93,28 +93,28 @@
       "skillId": 433
     },
     "choukatsu#0": {
-      "status": "pending_source",
-      "skillId": null
+      "status": "exact",
+      "skillId": 892
     },
     "choukatsu#1": {
-      "status": "pending_source",
-      "skillId": null
+      "status": "exact",
+      "skillId": 893
     },
     "choukatsu#2": {
-      "status": "pending_source",
-      "skillId": null
+      "status": "exact",
+      "skillId": 894
     },
     "maikou#0": {
-      "status": "pending_source",
-      "skillId": null
+      "status": "exact",
+      "skillId": 895
     },
     "maikou#1": {
-      "status": "pending_source",
-      "skillId": null
+      "status": "exact",
+      "skillId": 896
     },
     "maikou#2": {
-      "status": "pending_source",
-      "skillId": null
+      "status": "exact",
+      "skillId": 897
     },
     "jinou#0": {
       "status": "exact",
