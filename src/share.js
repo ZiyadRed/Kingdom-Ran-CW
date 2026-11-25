@@ -120,6 +120,10 @@ export const DEFAULT_SHARE_LABELS={
   noRelevantBuffs:'No relevant buffs.',
   enemyDebuffOn:'Enemy debuff on',
   sceneCardSkill:'CW6 Card Skill',
+  // Empty cells in the team image's aligned skill rows.
+  slotNotSelected:'Not selected',
+  slotNoSceneCardSkill:'No CW6 card skill',
+  slotNoRoleSkill:'No Leader / Strategist skill',
   unknown:'Unknown',
   truncated:'...truncated for Discord.',
   fullDetails:'Full details',
@@ -562,8 +566,11 @@ export function buildTeamImageLayout(ctx,members,{title,side,labels=DEFAULT_SHAR
   const brandBlock=measureTextBlock(ctx,L.partyBuilder,{
     x:margin,y:12,w:width-(margin*2),font:`900 17px ${IMAGE_FONT}`,lineHeight:21,align:rtl?'left':'right',maxLines:1,
   })
+  // Every column shares one row per skill slot (1, 2, 3, CW6, Leader/Strategist),
+  // so the same slot lines up across the team.
+  const rows=measureTeamSkillRows(ctx,members,{width:presentation.colWidth,labels:L,top:headerHeight+24+TEAM_PROFILE_HEIGHT+14})
   const memberLayouts=members.map((member,index)=>buildTeamMemberLayout(ctx,member,{
-    x:presentation.columnX[index],y:headerHeight+24,width:presentation.colWidth,labels:L,index,
+    x:presentation.columnX[index],y:headerHeight+24,width:presentation.colWidth,labels:L,index,rows,
   }))
   const columnHeight=Math.max(240,...memberLayouts.map(layout=>layout.height))
   memberLayouts.forEach(layout=>{
@@ -598,11 +605,11 @@ export function teamImagePresentationLayout({count,direction='ltr',width=TEAM_IM
   }
 }
 
-function buildTeamMemberLayout(ctx,member,{x,y,width,labels,index}){
+function buildTeamMemberLayout(ctx,member,{x,y,width,labels,index,rows}){
   const L=withLabels(labels)
   const rtl=L.direction==='rtl'
   const padding=14
-  const profileHeight=124
+  const profileHeight=TEAM_PROFILE_HEIGHT
   const portrait={x:rtl?x+width-82:x+16,y:y+18,w:66,h:66}
   const textX=rtl?x+16:x+94
   const textWidth=width-110
@@ -619,7 +626,22 @@ function buildTeamMemberLayout(ctx,member,{x,y,width,labels,index}){
   })
   const skillLayouts=[]
   let cursorY=y+profileHeight+14
-  ;(member?.skills||[]).forEach((skill,skillIndex)=>{
+  const placeholders=[]
+  if(rows&&member?.skills?.length){
+    const slotted=teamSkillSlots(member)
+    rows.forEach(row=>{
+      const hit=slotted.find(entry=>entry.key===row.key)
+      if(hit){
+        const skillLayout=buildSkillCardLayout(ctx,hit.skill,{x:x+padding,y:row.y,width:width-(padding*2),mode:'team',labels:L,index:hit.index})
+        skillLayout.height=row.h
+        skillLayout.box.h=row.h
+        skillLayouts.push(skillLayout)
+      }else{
+        placeholders.push(measureSlotPlaceholder(ctx,member,row,{x:x+padding,w:width-(padding*2),labels:L}))
+      }
+      cursorY=row.y+row.h+10
+    })
+  }else (member?.skills||[]).forEach((skill,skillIndex)=>{
     const skillLayout=buildSkillCardLayout(ctx,skill,{x:x+padding,y:cursorY,width:width-(padding*2),mode:'team',labels:L,index:skillIndex})
     skillLayouts.push(skillLayout)
     cursorY+=skillLayout.height+10
@@ -630,8 +652,51 @@ function buildTeamMemberLayout(ctx,member,{x,y,width,labels,index}){
   const height=cursorY-y+padding
   return {
     kind:'member',x,y,width,height,index,member,labels:L,box:{x,y,w:width,h:height},profileHeight,
-    portrait,nameBlock,sourceBlock,metaBlock,skillLayouts,empty,
+    portrait,nameBlock,sourceBlock,metaBlock,skillLayouts,empty,placeholders,
   }
+}
+
+const TEAM_PROFILE_HEIGHT=124
+const TEAM_SLOT_ORDER=['s0','s1','s2','cw6','role']
+
+/**
+ * Assign each selected skill to its row: numbered skills by position, the CW6
+ * card skill, then the Leader/Strategist skill (applyMask appends it last).
+ */
+export function teamSkillSlots(member){
+  let base=0
+  return (member?.skills||[]).map((skill,index)=>{
+    const key=member?.assignedRole&&index===member.skills.length-1?'role':skill?.star6?'cw6':`s${base++}`
+    return {key,skill,index}
+  })
+}
+
+function measureTeamSkillRows(ctx,members,{width,labels,top}){
+  const heights={}
+  members.forEach(member=>teamSkillSlots(member).forEach(entry=>{
+    const probe=buildSkillCardLayout(ctx,entry.skill,{x:0,y:0,width:width-28,mode:'team',labels,index:entry.index})
+    heights[entry.key]=Math.max(heights[entry.key]||0,probe.height)
+  }))
+  let y=top
+  return TEAM_SLOT_ORDER.filter(key=>heights[key]).map(key=>{
+    const row={key,y,h:heights[key]}
+    y+=row.h+10
+    return row
+  })
+}
+
+function measureSlotPlaceholder(ctx,member,row,{x,w,labels}){
+  const L=withLabels(labels)
+  // "Not selected" when the general has that skill but it is toggled off.
+  const text=row.key==='cw6'
+    ?(member?.hasStar6Skill?L.slotNotSelected:L.slotNoSceneCardSkill)
+    :row.key==='role'
+      ?(member?.roleSkill?L.slotNotSelected:L.slotNoRoleSkill)
+      :L.slotNotSelected
+  const block=measureTextBlock(ctx,text,{
+    x:x+12,y:row.y+Math.min(row.h/2,40)-9,w:w-24,font:`700 13px ${IMAGE_FONT}`,lineHeight:17,align:'center',maxLines:2,
+  })
+  return {kind:'placeholder',key:row.key,x,y:row.y,w,h:row.h,text,block}
 }
 
 const TEAM_SKILL_COLORS={
@@ -863,6 +928,11 @@ export function inspectShareImageLayout(layout){
       if(member.empty) within(member.empty.block,member.empty,`team member ${memberIndex+1} empty text`)
       disjoint(member.skillLayouts.map(skill=>skill.box),`team member ${memberIndex+1} skill`)
       member.skillLayouts.forEach((skill,index)=>inspectSkill(skill,`team member ${memberIndex+1} skill ${index+1}`))
+      ;(member.placeholders||[]).forEach((slot,index)=>{
+        within(slot,member.box,`team member ${memberIndex+1} empty slot ${index+1}`)
+        within(slot.block,slot,`team member ${memberIndex+1} empty slot ${index+1} text`)
+      })
+      disjoint([...member.skillLayouts.map(skill=>skill.box),...(member.placeholders||[])],`team member ${memberIndex+1} slot`)
     })
     within(layout.teamEmpty,root,'team empty state')
     if(layout.teamEmpty) within(layout.teamEmpty.block,layout.teamEmpty,'team empty text')
@@ -901,6 +971,7 @@ export function shareImagePaintText(layout){
       add(member.sourceBlock)
       add(member.metaBlock)
       member.skillLayouts.forEach(addSkill)
+      ;(member.placeholders||[]).forEach(slot=>add(slot.block))
       add(member.empty?.block)
     })
     add(layout.teamEmpty?.block)
@@ -971,6 +1042,16 @@ async function drawTeamMemberColumn(ctx,layout){
   drawTextBlock(ctx,layout.sourceBlock,colors.sourceOnDark)
   drawTextBlock(ctx,layout.metaBlock,'#ffffff')
   skillLayouts.forEach(skill=>drawSkillCard(ctx,skill))
+  ;(layout.placeholders||[]).forEach(box=>{
+    ctx.save()
+    roundedRect(ctx,box.x,box.y,box.w,box.h,SHARE_IMAGE_TOKENS.radius.skill)
+    ctx.setLineDash([6,6])
+    ctx.strokeStyle=colors.border
+    ctx.lineWidth=1.2
+    ctx.stroke()
+    ctx.restore()
+    drawTextBlock(ctx,box.block,colors.secondary)
+  })
   if(layout.empty) drawEmptyState(ctx,layout.empty,L)
 }
 
@@ -1165,7 +1246,9 @@ function factionLabel(country){
 function teamSkillTitle(skill,index,labels){
   const L=withLabels(labels)
   const name=displayName(skill)||L.unnamedSkill
-  return skill?.star6?`${L.sceneCardSkill}: ${name}`:`${index+1}. ${name}`
+  if(skill?.star6) return `${L.sceneCardSkill}: ${name}`
+  if(skill?.type==='Leader'||skill?.type==='Strategist') return name
+  return `${index+1}. ${name}`
 }
 
 function formatEffectCompact(effect,labels){

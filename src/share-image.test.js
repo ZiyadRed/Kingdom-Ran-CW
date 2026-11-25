@@ -10,6 +10,7 @@ import {
   shareImagePaintText,
   skillTypeVisual,
   teamSkillCardIdentity,
+  teamSkillSlots,
 } from './share.js'
 
 function measuringContext(){
@@ -124,5 +125,36 @@ describe('generated share-image contract',()=>{
     const pending=buildTeamImageLayout(measuringContext(),[{...character,skills:[],skillsDisabled:false}],{})
     expect(disabled.memberLayouts[0].empty.text).toBe('Aucune compétence sélectionnée')
     expect(pending.memberLayouts[0].empty.text).toBe('Translation pending')
+  })
+
+  it('lines up each skill slot across team columns and marks empty slots',()=>{
+    const plain=(name,count=1)=>({name_en:name,type:'Combat',effects:Array.from({length:count},()=>effect)})
+    const cw6={...plain('Card skill'),type:'Strategy',star6:true}
+    const role={name_en:'Role skill',type:'Leader',effects:[effect]}
+    const longFirst={...character,id:'a',skills:[plain('Long first',4),plain('Second')],hasStar6Skill:false}
+    const withExtras={...character,id:'b',roleSkill:role,assignedRole:'Leader',hasStar6Skill:true,skills:[plain('First'),plain('Second'),plain('Third'),cw6,role]}
+    const roleUnassigned={...character,id:'c',roleSkill:role,hasStar6Skill:true,skills:[plain('First')]}
+    expect(teamSkillSlots(withExtras).map(slot=>slot.key)).toEqual(['s0','s1','s2','cw6','role'])
+    const layout=buildTeamImageLayout(measuringContext(),[longFirst,withExtras,roleUnassigned])
+    expect(inspectShareImageLayout(layout)).toEqual({ok:true,issues:[]})
+    const [a,b,c]=layout.memberLayouts
+    // Same slot, same top and height in every column.
+    expect(b.skillLayouts[0].box.y).toBe(a.skillLayouts[0].box.y)
+    expect(b.skillLayouts[0].box.h).toBe(a.skillLayouts[0].box.h)
+    expect(b.skillLayouts[1].box.y).toBe(a.skillLayouts[1].box.y)
+    expect(c.skillLayouts[0].box.y).toBe(a.skillLayouts[0].box.y)
+    // Missing slots become labelled placeholders in the same rows.
+    expect(a.placeholders.map(slot=>[slot.key,slot.text])).toEqual([
+      ['s2','Not selected'],['cw6','No CW6 card skill'],['role','No Leader / Strategist skill'],
+    ])
+    expect(c.placeholders.map(slot=>[slot.key,slot.text])).toEqual([
+      ['s1','Not selected'],['s2','Not selected'],['cw6','Not selected'],['role','Not selected'],
+    ])
+    expect(a.placeholders[1].y).toBe(b.skillLayouts[3].box.y)
+    expect(a.placeholders[2].y).toBe(b.skillLayouts[4].box.y)
+    // The role badge names the role, so its title carries no slot number.
+    expect(b.skillLayouts[4].titleBlock.text).toBe('Role skill')
+    expect(b.skillLayouts[2].titleBlock.text).toBe('3. Third')
+    expect(shareImagePaintText(layout).join(' ')).toContain('No Leader / Strategist skill')
   })
 })

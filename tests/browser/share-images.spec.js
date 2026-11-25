@@ -2,10 +2,10 @@ import { test, expect } from './fixtures.js'
 
 const characters={en:'moubu',ja:'kisui',ar:'ka',fr:'gokei'}
 const localized={
-  en:{disabled:'No skills selected',cw6:'Morale Consumption Down 30%'},
-  ja:{disabled:'スキル未選択',cw6:'士気消費30%低下'},
-  ar:{disabled:'لم تُحدد أي مهارات',cw6:'خفض استهلاك المعنويات بنسبة 30%'},
-  fr:{disabled:'Aucune compétence sélectionnée',cw6:'-30% de consommation de moral'},
+  en:{disabled:'No skills selected',cw6:'Morale Consumption Down 30%',noRole:'No Leader / Strategist skill'},
+  ja:{disabled:'スキル未選択',cw6:'士気消費30%低下',noRole:'争覇総大将・争覇軍師スキルなし'},
+  ar:{disabled:'لم تُحدد أي مهارات',cw6:'خفض استهلاك المعنويات بنسبة 30%',noRole:'لا توجد مهارة قائد أو استراتيجي'},
+  fr:{disabled:'Aucune compétence sélectionnée',cw6:'-30% de consommation de moral',noRole:'Pas de compétence de Leader ou de Stratège'},
 }
 const team='?plan=1&a=shouheikun%2Crenpa%2Cshin%2Cmakou&d=rien%2Cbeiman%2Ckarin%2Cshunshinkun&as=311%2C311%2C310%2C310&ds=310%2C310%2C310%2C310&c=1'
 const disabledTeam=team.replace('as=311%2C311%2C310%2C310','as=000%2C311%2C310%2C310')
@@ -59,12 +59,14 @@ test('character share PNG uses the unified measured renderer',async({page,path,l
   expectImage(result,2160)
 })
 
-test('attack and defense team PNGs preserve slots and readable mixed skill types',async({page,path})=>{
+test('attack and defense team PNGs preserve slots and readable mixed skill types',async({page,path,locale})=>{
   await page.goto(path(`/builder${team}`))
   for(const side of ['attack','defense']){
     if(side==='defense') await page.locator('.builder-side-switch button').nth(1).click()
     const result=await renderPreview(page,page.locator(`.side-${side} .team-share-btn`))
     expectImage(result,2250)
+    // Skill rows line up across columns; generals without a role skill get a labelled empty slot.
+    if(side==='attack') expect(result.paint.map(item=>item.text).join(' ')).toContain(localized[locale].noRole)
   }
 })
 
