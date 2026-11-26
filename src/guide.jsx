@@ -252,15 +252,15 @@ const GUIDE_COPY = {
     },
     interactions: {
       intro: '複数の効果を付与したときの、上書き・重複・優先順位を確認できます。',
-      labels: { overwrite: '効果の上書き', stack: 'ガード効果と無効効果の重複', guard_overwrite: 'ガード効果の上書き判定' },
+      labels: { overwrite: '効果の上書き', stack: 'ガード効果・無効効果・反射効果の重複', guard_overwrite: 'ガード効果の上書き判定' },
       notes: {
         overwrite: '「敵武将から狙われにくい状態」と「挑発」は、それぞれ同じ効果を再付与すると後の効果に切り替わります。「錯乱」と「暴走」は互いに上書きされますが、「裏切り」が優先され、裏切り中に錯乱や暴走は付与できません。',
-        stack: 'ガード効果と無効効果は同時に付与できます。攻撃を受けると無効効果でダメージが0になり、両方の残り回数が1回ずつ減ります。ただし、回避や見切りで攻撃を避けた場合は減りません。',
+        stack: 'ガード効果・無効効果・反射効果は同時に付与できます。反射効果は反射対象が異なる場合（例：「騎兵・秦国」「騎兵・歩兵」）、それぞれ重複して付与されます。攻撃を受けると無効効果や反射効果でダメージが0になったのち、付与されている効果すべての残り回数が1回ずつ減ります。ただし、反射効果の回数は、反射対象の武将から攻撃を受けたときだけ減ります。また、回避や見切りで攻撃を避けた場合は減りません。',
         guard_overwrite: 'ガード効果を再付与すると、軽減率と残り回数から算出した判定値を比較し、高い方が適用されます。新しい効果の判定値が低い場合は、現在のガード効果が残ります。',
       },
       formula: '判定値 = 軽減率 × 残り回数',
       example: '30% × 2回 = 60 ＜ 70% × 1回 = 70 → 70%のガード効果に上書き',
-      effects: { Provoke: '挑発', 'Less Likely to be Targeted': '敵武将から狙われにくい状態', Confusion: '錯乱', Betrayal: '裏切り', Rampage: '暴走', 'Attack Nullification': '無効効果', Guard: 'ガード効果' },
+      effects: { Provoke: '挑発', 'Less Likely to be Targeted': '敵武将から狙われにくい状態', Confusion: '錯乱', Betrayal: '裏切り', Rampage: '暴走', 'Attack Nullification': '無効効果', Reflect: '反射効果', Guard: 'ガード効果' },
     },
     targeting: {
       intro: '戦技の対象条件と優先順位、挑発や錯乱による対象選択の変化を確認できます。',
@@ -466,12 +466,12 @@ const GUIDE_COPY = {
       labels: { overwrite: 'يستبدل أحدهما الآخر', stack: 'يتراكم بترتيب أولوية', guard_overwrite: 'يستبدل الصد بقيمة الحكم' },
       notes: {
         overwrite: 'يبقى آخر تأثير طُبق فعالًا فقط. يؤدي تطبيق أحدهما إلى إزالة الآخر.',
-        stack: 'يمكن أن يكون كلاهما فعالًا في الوقت نفسه. يُفعّل إبطال الهجوم أولًا ويخفض الضرر إلى 0، لكن كلا التأثيرين يستهلك شحنة.',
+        stack: 'يمكن أن تكون تأثيرات الصد وإبطال الهجوم وعكس الهجوم فعالة في الوقت نفسه، وتتراكم تأثيرات عكس الهجوم الموجهة ضد مهاجمين مختلفين (مثل الفرسان وتشين، أو الفرسان والمشاة) كلٌّ على حدة. عند تلقي هجوم، يخفض إبطال الهجوم أو عكس الهجوم الضرر إلى 0 أولًا، ثم يفقد كل تأثير فعال شحنة واحدة، باستثناء عكس الهجوم الذي لا يفقد شحنة إلا إذا كان المهاجم ممن يعكس هجماتهم.',
         guard_overwrite: 'تطبيق الصد على جنرال لديه صد فعّال لا يستبدله دائمًا. يقارن النظام قيمة حكم لكل منهما: نسبة التخفيض × الشحنات المتبقية. تفوز القيمة الأعلى. وإذا خسر التأثير الجديد يبقى الصد الحالي دون تغيير.',
       },
       formula: 'قيمة الحكم = نسبة التخفيض × الشحنات المتبقية',
       example: '30% × شحنتين = 60  مقابل  70% × شحنة واحدة = 70  ← يستبدل 70%',
-      effects: { Provoke: 'الاستفزاز', 'Less Likely to be Targeted': 'أقل عرضة للاستهداف', Confusion: 'الارتباك', Betrayal: 'الخيانة', Rampage: 'الهياج', 'Attack Nullification': 'إبطال الهجوم', Guard: 'الصد' },
+      effects: { Provoke: 'الاستفزاز', 'Less Likely to be Targeted': 'أقل عرضة للاستهداف', Confusion: 'الارتباك', Betrayal: 'الخيانة', Rampage: 'الهياج', 'Attack Nullification': 'إبطال الهجوم', Reflect: 'عكس الهجوم', Guard: 'الصد' },
     },
     targeting: {
       intro: 'كيفية اختيار المهارات لأهدافها، وكيف تؤثر الحالات الخاصة في الاستهداف.',
@@ -690,12 +690,12 @@ const GUIDE_COPY = {
       labels: { overwrite: 'L’un remplace l’autre', stack: 'Cumul avec ordre de priorité', guard_overwrite: 'La Garde est remplacée selon sa valeur' },
       notes: {
         overwrite: 'Seul le dernier effet appliqué reste actif. Appliquer l’un retire l’autre.',
-        stack: 'Les deux peuvent être actifs en même temps. L’Annulation d’attaque agit en premier et réduit les dégâts à 0 — mais les deux effets consomment quand même une charge.',
+        stack: 'La Garde, l’Annulation d’attaque et le Renvoi d’attaque peuvent être actifs en même temps, et des Renvois d’attaque visant des attaquants différents (par ex. cavaliers et Qin, ou cavaliers et fantassins) se cumulent séparément. Quand une attaque est reçue, l’Annulation d’attaque ou le Renvoi d’attaque réduit d’abord les dégâts à 0, puis chaque effet actif perd une charge — sauf le Renvoi d’attaque, qui n’en perd une que si l’attaquant fait partie de ceux qu’il renvoie.',
         guard_overwrite: 'Appliquer une Garde à un général qui en possède déjà une ne remplace pas toujours l’effet actif. Le système compare la valeur de priorité de chaque Garde : % de réduction × charges restantes. La plus élevée l’emporte. Si le nouvel effet a la valeur la plus faible, la Garde existante reste inchangée.',
       },
       formula: 'Valeur de priorité = % de réduction × charges restantes',
       example: '30% × 2 charges = 60  contre  70% × 1 charge = 70  →  70% remplace',
-      effects: { Provoke: 'Provocation', 'Less Likely to be Targeted': 'Ciblage réduit', Confusion: 'Confusion', Betrayal: 'Trahison', Rampage: 'Furie', 'Attack Nullification': 'Annulation d’attaque', Guard: 'Garde' },
+      effects: { Provoke: 'Provocation', 'Less Likely to be Targeted': 'Ciblage réduit', Confusion: 'Confusion', Betrayal: 'Trahison', Rampage: 'Furie', 'Attack Nullification': 'Annulation d’attaque', Reflect: 'Renvoi d’attaque', Guard: 'Garde' },
     },
     targeting: {
       intro: 'Ces règles expliquent comment les compétences choisissent leur cible et comment les effets d’état influencent ce choix.',
@@ -1580,11 +1580,12 @@ export const EFFECT_INTERACTIONS=[
   {
     type:'stack',
     label:'Stack with Priority Order',
-    note:'Both can be active at the same time. Attack Nullification triggers first and reduces damage to 0 — but both effects still consume a charge.',
+    note:'Guard, Attack Nullification and Reflect can all be active at the same time, and Reflects against different attackers (e.g. Cavalry and Qin, or Cavalry and Infantry) stack separately. When hit, Attack Nullification or Reflect first reduces the damage to 0, then every active effect loses a charge — except Reflect, which only loses a charge when the attacker is one it reflects.',
     groups:[
       {
         effects:[
           {name_en:'Attack Nullification', icon:'/icons/status/nullify.webp'},
+          {name_en:'Reflect',              icon:'/icons/status/reflect.webp'},
           {name_en:'Guard',                icon:'/icons/status/guard.webp'},
         ],
       },

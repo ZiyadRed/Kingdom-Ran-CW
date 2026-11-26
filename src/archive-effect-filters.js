@@ -57,6 +57,7 @@ export const ARCHIVE_EFFECT_FILTERS = [
   { id: 'sure-hit', group: 'ally', icon: icon('surehit'), match: anyPart(text => /\bSure Hit\b/.test(text) && !/\bRemove Sure Hit\b/.test(text)) },
   { id: 'guard', group: 'ally', icon: icon('guard'), match: anyPart(text => /\bGuard\b/.test(text)) },
   { id: 'nullify', group: 'ally', icon: icon('nullify'), match: anyPart(text => /\bAttack (?:Nullification|Immunity)\b/.test(text)) },
+  { id: 'reflect', group: 'ally', icon: icon('reflect'), match: anyPart(text => /\bReflect\b/.test(text)) },
   // 見切り (the dodge status) and a raised 回避率 (evasion rate).
   { id: 'evasion', group: 'ally', icon: icon('evasion'), match: row => anyPart(text => /(?:\bEvasion \(Dodge Chance\)|\bDodge Chance) \d/.test(text))(row) || anyPart(text => /\bEvasion \(Dodge Chance\) Up\b/.test(text), 'ally')(row) },
   { id: 'less-targeted', group: 'ally', icon: icon('less_targeted'), match: anyPart(text => /\bLess Likely to be Targeted\b/.test(text)) },

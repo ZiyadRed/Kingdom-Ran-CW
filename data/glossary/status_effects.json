@@ -31,6 +31,12 @@
       "description": "Reduces damage from a specified attack to 0. Consumed after a set number of activations."
     },
     {
+      "name_en": "Reflect",
+      "name_jp": "反射効果",
+      "icon": "/icons/status/reflect.webp",
+      "description": "Takes 0 damage from the specified attackers, then deals damage back to the general who attacked. Guard and similar effects do not trigger against that damage. Consumed after a set number of activations."
+    },
+    {
       "name_en": "Sure Hit",
       "name_jp": "必中",
       "icon": "/icons/status/surehit.webp",

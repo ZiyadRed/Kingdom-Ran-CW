@@ -17,6 +17,7 @@ export const STATUS_EFFECT_COPY = {
     'Evasion (Dodge Chance)': { name: '見切り', description: '攻撃を受けたとき、一定確率でその攻撃を回避します。' },
     Guard: { name: 'ガード効果', description: '指定された攻撃の被ダメージを軽減します。指定回数発動すると解除されます。' },
     'Attack Nullification': { name: '無効効果', description: '指定された攻撃の被ダメージを0にします。指定回数発動すると解除されます。' },
+    Reflect: { name: '反射効果', description: '指定された対象からの被ダメージを0にしたのち、攻撃した武将にダメージを与えます。このダメージに対してガード効果などは発動しません。指定回数発動すると解除されます。' },
     'Sure Hit': { name: '必中', description: '自身の命中率、相手の回避率、見切りの有無にかかわらず攻撃が命中します。' },
     'Status Effect Immunity': { name: '状態異常無効', description: '挑発を除く状態異常の付与を防ぎます。指定回数発動すると解除され、回数指定がない場合は回数制限なく防ぎます。' },
     Provoke: { name: '挑発', description: '敵武将からの通常攻撃・スキル攻撃を自身に集中させます。対象条件を満たさない攻撃や、兵器を対象とする攻撃には影響しません。' },
@@ -38,6 +39,7 @@ export const STATUS_EFFECT_COPY = {
     'Evasion (Dodge Chance)': { name: 'التفادي', description: 'احتمال تفادي الهجمات الواردة.' },
     Guard: { name: 'الصد', description: 'تقلل الضرر من هجوم محدد، وتُستهلك بعد عدد محدد من التفعيلات.' },
     'Attack Nullification': { name: 'إبطال الهجوم', description: 'تخفض ضرر هجوم محدد إلى 0، وتُستهلك بعد عدد محدد من التفعيلات.' },
+    Reflect: { name: 'عكس الهجوم', description: 'تخفض الضرر الوارد من المهاجمين المحددين إلى 0، ثم تُلحق ضررًا بالجنرال الذي هاجم. لا تُفعَّل تأثيرات مثل الصد ضد هذا الضرر، وتُستهلك بعد عدد محدد من التفعيلات.' },
     'Sure Hit': { name: 'إصابة مؤكدة', description: 'تصيب الهجمات دائمًا بغض النظر عن معدل الإصابة أو التفادي.' },
     'Status Effect Immunity': { name: 'مناعة ضد الحالات', description: 'تمنع تطبيق الإضعافات (باستثناء الاستفزاز)، وتُستهلك بعد عدد محدد من التفعيلات.' },
     Provoke: { name: 'الاستفزاز', description: 'يركز هجمات ضرر العدو على نفسه.' },
@@ -59,6 +61,7 @@ export const STATUS_EFFECT_COPY = {
     'Evasion (Dodge Chance)': { name: 'Esquive', description: 'Chance d’esquiver les attaques reçues.' },
     Guard: { name: 'Garde', description: 'Réduit les dégâts d’une attaque. L’effet disparaît après un nombre défini de déclenchements.' },
     'Attack Nullification': { name: 'Annulation d’attaque', description: 'Réduit à 0 les dégâts d’une attaque. L’effet disparaît après un nombre défini de déclenchements.' },
+    Reflect: { name: 'Renvoi d’attaque', description: 'Réduit à 0 les dégâts reçus des attaquants visés, puis inflige des dégâts au général qui a attaqué. La Garde et les effets similaires ne s’appliquent pas à ces dégâts. L’effet disparaît après un nombre défini de déclenchements.' },
     'Sure Hit': { name: 'Coup assuré', description: 'Les attaques touchent toujours, quelles que soient la précision et l’esquive.' },
     'Status Effect Immunity': { name: 'Immunité aux altérations d’état', description: 'Bloque l’application des débuffs, à l’exception de la Provocation. L’effet disparaît après un nombre défini de déclenchements.' },
     Provoke: { name: 'Provocation', description: 'Concentre sur soi les attaques de dégâts ennemies.' },
@@ -130,6 +133,8 @@ export const EFFECT_TERMS = [
   ['Guard', /\bGuard\b/, { en: /\bGuard\b/g, ja: /ガード効果/g, ar: word('الصد'), fr: word('garde', 'giu') }],
   ['Sure Hit', /\bSure Hit\b/, { en: /\bSure Hit\b/g, ja: /必中/g, ar: word('(?:ال)?إصابة (?:ال)?مؤكدة'), fr: word('coup assuré', 'giu') }],
   ['Attack Nullification', /\bAttack (?:Nullification|Immunity)\b/, { en: /\bAttack (?:Nullification|Immunity)\b/g, ja: /攻撃無効/g, ar: word('إبطال الهجوم|حصانة من الهجوم'), fr: word(`annulation d${APOSTROPHE}attaque|immunité aux attaques`, 'giu') }],
+  // 反射 (effectType 177): skill rows read "Reflect Cavalry Attacks" / 騎兵武将の攻撃を反射.
+  ['Reflect', /\bReflect\b/, { en: /\bReflect\b/g, ja: /反射/g, ar: word('عكس(?: الهجوم)?'), fr: word(`renvoie|renvoi d${APOSTROPHE}attaque`, 'giu') }],
   ['Less Likely to be Targeted', /\bLess Likely to be Targeted\b/, { en: /\bLess Likely to be Targeted\b/g, ja: /狙われにくい/g, ar: word('أقل عرضة للاستهداف'), fr: word('ciblage réduit', 'giu') }],
   ['Status Effect Immunity', /\bStatus Effect Immunity\b/, { en: /\bStatus Effect Immunity\b/g, ja: /状態異常無効/g, ar: word('مناعة ضد الحالات'), fr: word(`immunité aux altérations d${APOSTROPHE}état`, 'giu') }],
   // 見切り is the dodge status ("Evasion (Dodge Chance) 20%"). The same English

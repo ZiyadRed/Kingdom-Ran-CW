@@ -705,7 +705,7 @@ Object.assign(en.archive, {
     showResults: 'Show results ({{count}})',
   },
   effects: {
-    'sure-hit': 'Sure Hit', guard: 'Guard', nullify: 'Attack Nullification', evasion: 'Evasion (Dodge Chance)',
+    'sure-hit': 'Sure Hit', guard: 'Guard', nullify: 'Attack Nullification', reflect: 'Reflect', evasion: 'Evasion (Dodge Chance)',
     'less-targeted': 'Less Likely to be Targeted', provoke: 'Provoke', 'status-immunity': 'Status Effect Immunity',
     'status-resistance': 'Status Effect Resistance', 'hp-recovery': 'HP Recovery', 'morale-recovery': 'Morale Recovery',
     'def-penetration': 'DEF Penetration', critical: 'Critical', 'hit-rate': 'Hit Rate',
@@ -726,7 +726,7 @@ Object.assign(ja.archive, {
     showResults: '結果を表示（{{count}}）',
   },
   effects: {
-    'sure-hit': '必中', guard: 'ガード効果', nullify: '攻撃無効', evasion: '見切り・回避率',
+    'sure-hit': '必中', guard: 'ガード効果', nullify: '攻撃無効', reflect: '反射効果', evasion: '見切り・回避率',
     'less-targeted': '狙われにくい', provoke: '挑発', 'status-immunity': '状態異常無効',
     'status-resistance': '状態異常耐性', 'hp-recovery': '体力回復', 'morale-recovery': '士気回復',
     'def-penetration': '防御力貫通', critical: 'クリティカル', 'hit-rate': '命中率',
@@ -747,7 +747,7 @@ Object.assign(ar.archive, {
     showResults: 'عرض النتائج ({{count}})',
   },
   effects: {
-    'sure-hit': 'إصابة مؤكدة', guard: 'الصد', nullify: 'إبطال الهجوم', evasion: 'التفادي',
+    'sure-hit': 'إصابة مؤكدة', guard: 'الصد', nullify: 'إبطال الهجوم', reflect: 'عكس الهجوم', evasion: 'التفادي',
     'less-targeted': 'أقل عرضة للاستهداف', provoke: 'الاستفزاز', 'status-immunity': 'مناعة ضد الحالات',
     'status-resistance': 'مقاومة الحالات', 'hp-recovery': 'استعادة الصحة', 'morale-recovery': 'استعادة المعنويات',
     'def-penetration': 'اختراق الدفاع', critical: 'الضربات الحرجة', 'hit-rate': 'معدل الإصابة',
@@ -768,7 +768,7 @@ Object.assign(fr.archive, {
     showResults: 'Voir les résultats ({{count}})',
   },
   effects: {
-    'sure-hit': 'Coup assuré', guard: 'Garde', nullify: 'Annulation d’attaque', evasion: 'Esquive',
+    'sure-hit': 'Coup assuré', guard: 'Garde', nullify: 'Annulation d’attaque', reflect: 'Renvoi d’attaque', evasion: 'Esquive',
     'less-targeted': 'Ciblage réduit', provoke: 'Provocation', 'status-immunity': 'Immunité aux altérations d’état',
     'status-resistance': 'Résistance aux altérations d’état', 'hp-recovery': 'Soin des PV', 'morale-recovery': 'Regain de moral',
     'def-penetration': 'Pénétration de défense', critical: 'Coups critiques', 'hit-rate': 'Précision',

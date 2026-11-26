@@ -84,6 +84,12 @@ describe('Archive role and effect filtering', () => {
     expect(characterEffectFilterIds({ ...renpa, roleSkill: null }).has('status-resistance')).toBe(false)
   })
 
+  it('finds Reflect inside Gokei’s Leader skill', () => {
+    const gokei = ALL.find(c => c.id === 'gokei')
+    expect(characterEffectFilterIds(gokei).has('reflect')).toBe(true)
+    expect(characterEffectFilterIds({ ...gokei, roleSkill: null }).has('reflect')).toBe(false)
+  })
+
   it('requires every selected effect and counts what each chip would leave', () => {
     const both = filterCharactersByRoleAndEffects(ALL, { effects: ['guard', 'sure-hit'] })
     expect(both.length).toBeGreaterThan(0)

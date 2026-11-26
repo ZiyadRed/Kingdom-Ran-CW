@@ -62,6 +62,16 @@ describe('effect keywords inside rendered effects', () => {
     expect(marked('防御力貫通20%上昇、防御力貫通耐性40%上昇', 'DEF Penetration Up 20%, DEF Penetration Resistance Up 40%', 'ja')).toEqual([['防御力貫通', 'DEF Penetration']])
   })
 
+  it('marks the new Reflect effect where each locale names it', () => {
+    const source = 'Reflect Cavalry Attacks'
+    expect(marked(source, source, 'en')).toEqual([['Reflect', 'Reflect']])
+    expect(marked('騎兵武将の攻撃を反射', source, 'ja')).toEqual([['反射', 'Reflect']])
+    expect(marked('عكس هجمات الفرسان', source, 'ar')).toEqual([['عكس', 'Reflect']])
+    expect(marked('Renvoie les attaques de cavalerie', source, 'fr')).toEqual([['Renvoie', 'Reflect']])
+    const reflect = EFFECT_TERMS.find(term => term.key === 'Reflect')
+    expect(effectTermInfo(reflect, 'ja')).toMatchObject({ name: '反射効果', kind: 'buff', icon: expect.stringMatching(/^\/icons\/status\/reflect\.webp\?v=/) })
+  })
+
   it('separates the dodge status (見切り) from a raised evasion rate (回避率)', () => {
     expect(marked('見切り20%', 'Evasion (Dodge Chance) 20%', 'ja')).toEqual([['見切り', 'Evasion (Dodge Chance)']])
     expect(marked('回避率20%上昇', 'Evasion (Dodge Chance) Up 20%', 'ja')).toEqual([])
