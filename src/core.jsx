@@ -774,6 +774,8 @@ const mergeEquivalentOpponentModifiers=modifiers=>{
   }
   return merged
 }
+const REFLECT_UNIT_TYPES=['Infantry','Cavalry','Archer','Shield']
+const REFLECT_RE=new RegExp(`^Reflect\\s+(${REFLECT_UNIT_TYPES.join('|')})\\s+Attacks$`,'i')
 export function parseBuffEffect(str){
   if(!str) return []
   const results=[];let deferred=[],inheritedRecipientRaw=null,inheritedRestrict=false
@@ -784,7 +786,6 @@ export function parseBuffEffect(str){
     if(!part) continue
     if(/^enemy/i.test(part)) continue
     if(/\d+[%％]\s*Damage|^%\s*(?:of\s+|Damage)|HP Drain|Stun Rate/i.test(part)) continue
-    if(/^Provoke$/i.test(part)) continue
     if(/^Normal Attack(?!\s+Seal)/i.test(part)) continue
     let ownerType=null,antiEnemy=null,recipientRaw=inheritedRecipientRaw,restrictRecipient=inheritedRestrict,m
     const versus=extractOpponentQualifier(part)
@@ -842,6 +843,15 @@ export function parseBuffEffect(str){
     if(/^Sure Hit$/i.test(part)){flush({stat:'Sure Hit',dir:'Up',val:1,ownerType,antiEnemy});continue}
     if(/^Less Likely to be Targeted$/i.test(part)){flush({stat:'Less Likely to be Targeted',dir:'Up',val:1,ownerType,antiEnemy});continue}
     if(/^Rampage$/i.test(part)){flush({stat:'Rampage',dir:'Up',val:1,ownerType,antiEnemy});continue}
+    // Battle-changing states with no stat value: shown as markers like Sure Hit.
+    // 挑発 draws enemy attacks onto the holder; 捨て身 trades damage taken for ATK.
+    if(/^Provoke$/i.test(part)){flush({stat:'Provoke',dir:'Up',val:1,ownerType,antiEnemy});continue}
+    if(/^Reckless$/i.test(part)){flush({stat:'Reckless',dir:'Up',val:1,ownerType,antiEnemy});continue}
+    // 反射 (effectType 177) names the attacker type it reflects.
+    m=part.match(REFLECT_RE)
+    if(m){flush({stat:`Reflect ${REFLECT_UNIT_TYPES.find(type=>type.toLowerCase()===m[1].toLowerCase())} Attacks`,dir:'Up',val:1,ownerType,antiEnemy});continue}
+    // 必中状態を解除: strips Sure Hit from the targets (an enemy-side marker).
+    if(/^Remove Sure Hit$/i.test(part)){flush({stat:'Remove Sure Hit',dir:'Up',val:1,ownerType,antiEnemy});continue}
     // "ATK Up (max X%)" — stacking buff with cap, no per-stack value given
     m=part.match(/^(.+?)\s+(Up|Down)\s+\(max\s+(\d+(?:\.\d+)?)[%％]\)$/i)
     if(m){flush({stat:normalizeBuffStat(m[1].trim()),dir:m[2],val:parseFloat(m[3]),valueMeaning:{kind:'upperBound',max:parseFloat(m[3])},ownerType,antiEnemy});continue}
@@ -2151,9 +2161,10 @@ export function buffEntryRarity(entry){
 // ----- shared stat ordering (used by buff engine + buff tables) -----
 // Stats where "Down" is beneficial for the buff receiver (e.g. less morale cost = good)
 export const INVERSE_STATS=new Set(['Morale Consumption','Skill Cooldown','Damage Received'])
-export const SPECIAL_STATS=new Set(['Attack Nullification','Sure Hit','Status Effect Immunity','Rampage','Less Likely to be Targeted'])
+const REFLECT_STATS=REFLECT_UNIT_TYPES.map(type=>`Reflect ${type} Attacks`)
+export const SPECIAL_STATS=new Set(['Attack Nullification','Sure Hit','Remove Sure Hit','Status Effect Immunity','Rampage','Less Likely to be Targeted','Provoke','Reckless',...REFLECT_STATS])
 // Canonical display order for buff stats
-export const STAT_ORDER=['Max HP','ATK','DEF','DEF Penetration','DEF Penetration Resistance','Guard','Attack Nullification','Sure Hit','Status Effect Immunity','Less Likely to be Targeted','Rampage','Max Morale','Morale Consumption','Morale Recovery','Continuous Morale Recovery','Critical Rate','Critical Damage','Hit Rate','HP Recovery','Continuous HP Recovery','HP Recovery Rate','HP Recovery Nullification','Evasion','Dodge Chance','Squad Damage Reduction',...STATUS_EFFECTS.flatMap(status=>[`${status} Infliction Rate`,`${status} Resistance`]),'Provoke Infliction Rate','Normal Attack Seal','Skill Attack Seal','Attack Seal','ATK Down Resistance','DEF Down Resistance','Damage Taken Increase Resistance','Damage Dealt Reduction Resistance','Damage Reduction Effect Resistance','Poison Damage']
+export const STAT_ORDER=['Max HP','ATK','DEF','DEF Penetration','DEF Penetration Resistance','Guard','Attack Nullification',...REFLECT_STATS,'Sure Hit','Remove Sure Hit','Status Effect Immunity','Less Likely to be Targeted','Provoke','Rampage','Reckless','Max Morale','Morale Consumption','Morale Recovery','Continuous Morale Recovery','Critical Rate','Critical Damage','Hit Rate','HP Recovery','Continuous HP Recovery','HP Recovery Rate','HP Recovery Nullification','Evasion','Dodge Chance','Squad Damage Reduction',...STATUS_EFFECTS.flatMap(status=>[`${status} Infliction Rate`,`${status} Resistance`]),'Provoke Infliction Rate','Normal Attack Seal','Skill Attack Seal','Attack Seal','ATK Down Resistance','DEF Down Resistance','Damage Taken Increase Resistance','Damage Dealt Reduction Resistance','Damage Reduction Effect Resistance','Poison Damage']
 export function statSortKey(s){const i=STAT_ORDER.indexOf(s);return i===-1?STAT_ORDER.length:i}
 
 // ----- party-builder skill masks + hidden search tags (shared) -----

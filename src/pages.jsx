@@ -1653,7 +1653,7 @@ function buffImageSide({key,chip,entries,enemyDebuffs,locale}){
     key,chip,
     members:entries.map(({general})=>({entity:general,name:localizedCharacter(general,locale).displayName,unit:general.unit_type?localizedText(general.unit_type,locale):''})),
     rows,
-    enemy:enemyDebuffRows(enemyDebuffs).map(row=>({stat:localizedText(row.stat,locale),value:enemyDebuffText(row),target:localizedTarget(row.target,locale)})),
+    enemy:enemyDebuffRows(enemyDebuffs).map(row=>({stat:localizedText(row.stat,locale),value:enemyDebuffText(row,SPECIAL_STATS),target:localizedTarget(row.target,locale)})),
   }
 }
 
@@ -2129,7 +2129,7 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={},references=[],
                 <div key={key} className="bl-row" data-buff-enemy-row={item.stat}>
                   <button type="button" aria-expanded={isOpen} aria-controls={panelIdFor(key)} className={`buff-row buff-row-click bl-line${isOpen?' buff-row-open':''}`} onClick={()=>toggle(key)}>
                     <span className="bl-stat"><span className="buff-stat-name">{localizedText(item.stat,locale)}</span><small>{localizedTarget(item.target,locale)}</small></span>
-                    <span className="bl-val"><span className="buff-down">{enemyDebuffText(item)}</span></span>
+                    <span className="bl-val"><span className="buff-down">{enemyDebuffText(item,SPECIAL_STATS)}</span></span>
                   </button>
                   <div id={panelIdFor(key)} hidden={!isOpen} className="buff-sources bl-panel">
                     {item.sources.map((x,i)=>(
@@ -2137,7 +2137,7 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={},references=[],
                       <div className="buff-source-row">
                         <CharIcon c={x.owner} size={16} round={true}/>
                         <span className="buff-source-name">{localizedCharacter(x.owner,locale).displayName}</span>
-                        <span className="buff-down">{x.dir==='down'?'−':'+'}{fmt(x.contribution)}%</span>
+                        <span className="buff-down">{enemyDebuffText({stat:item.stat,dir:x.dir,value:x.contribution},SPECIAL_STATS)}</span>
                       </div>
                       <BuffSourceEvidence source={x}/>
                       </div>
@@ -2218,7 +2218,7 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={},references=[],
                          onClick={()=>setExpanded(isOpen?null:rowKey)}>
                       <span className="buff-stat-name" style={{color:'#b05000',fontWeight:700,fontSize:'.75rem'}}>{localizedText(s,locale)}</span>
                       <span className="buff-vals">
-                        {v>0&&<span className="buff-down">{d==='down'?'−':'+'}{fmt(v)}%</span>}
+                        {v>0&&<span className="buff-down">{enemyDebuffText({stat:s,dir:d,value:v},SPECIAL_STATS)}</span>}
                         <span className="buff-chevron" aria-hidden="true">{isOpen?'▴':'▾'}</span>
                       </span>
                     </button>
@@ -2229,7 +2229,7 @@ export function BuffSideTable({label,entries,side,enemyDebuffs={},references=[],
                           <div className="buff-source-row">
                             <CharIcon c={x.owner} size={16} round={true}/>
                             <span className="buff-source-name">{localizedCharacter(x.owner,locale).displayName}</span>
-                            <span className="buff-down">{x.dir==='down'?'−':'+'}{fmt(x.contribution)}%</span>
+                            <span className="buff-down">{enemyDebuffText({stat:s,dir:x.dir,value:x.contribution},SPECIAL_STATS)}</span>
                           </div>
                           <BuffSourceEvidence source={x}/>
                           </div>

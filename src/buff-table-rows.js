@@ -109,6 +109,8 @@ export function enemyDebuffRows(enemyDebuffs){
   })
 }
 
-export function enemyDebuffText(row){
+export function enemyDebuffText(row,specialStats=new Set()){
+  // Markers (e.g. Remove Sure Hit) have no percentage, like the ally-side flags.
+  if(row.dir==='up'&&specialStats.has(row.stat)) return `● ${formatBuffNumber(row.value)}×`
   return `${row.dir==='down'?'−':'+'}${formatBuffNumber(row.value)}%`
 }

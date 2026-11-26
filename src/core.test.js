@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { parseBuffEffect, simulate, ALL, META_TEAMS, findCharByName, calcCwStats, isTargetedBy, normalizeEnemyTarget, calcCharBuffs, calcTeamEnemyDebuffs, SOUHA_ROLE_SKILLS, SOUHA_ROLE_PRIORITY, DEFAULT_SK, defaultSks, applyMask, updateSkillMasks, normalizeProgress } from './core.jsx'
+import { parseBuffEffect, simulate, ALL, META_TEAMS, findCharByName, calcCwStats, isTargetedBy, normalizeEnemyTarget, calcCharBuffs, calcTeamEnemyDebuffs, SOUHA_ROLE_SKILLS, SOUHA_ROLE_PRIORITY, DEFAULT_SK, defaultSks, applyMask, updateSkillMasks, normalizeProgress, SPECIAL_STATS } from './core.jsx'
 
 // The buff-text parser is the most intricate pure function in the engine.
 // These lock its behaviour against the documented terminology + formats.
@@ -162,7 +162,9 @@ describe('Souha Leader / Strategist staging', () => {
       expect(buffs['HP Recovery']?.up).toBe(20)
     }
     expect(calcCharBuffs(shin, team, [], false, true).ATK).toBeUndefined()
-    expect(parseBuffEffect('Remove Sure Hit')).toEqual([])
+    // Kanki's Leader skill strips Sure Hit from every enemy: an enemy-side marker, never a Sure Hit "down".
+    expect(parseBuffEffect('Remove Sure Hit')).toMatchObject([{stat:'Remove Sure Hit',dir:'Up',val:1}])
+    expect(calcTeamEnemyDebuffs(team)['All enemies']?.up?.['Remove Sure Hit']).toBe(1)
     expect(calcTeamEnemyDebuffs(team)['All enemies']?.down?.['Sure Hit']).toBeUndefined()
   })
   it('applies Kaioku cavalry DEF separately from Qin healing and enemy critical damage', () => {
@@ -178,7 +180,7 @@ describe('Souha Leader / Strategist staging', () => {
     expect(calcCharBuffs(en,team,[],false,true)['HP Recovery']?.up).toBe(30)
     expect(calcTeamEnemyDebuffs(team)['All enemies']?.down?.['Critical Damage']).toBe(30)
   })
-  it('applies Gokei Wei ATK and enemy DEF down while keeping cavalry reflect out of numeric totals', () => {
+  it('applies Gokei Wei ATK, enemy DEF down and a cavalry Reflect marker for his Wei Fire Dragons', () => {
     const gokei = applyMask(findCharByName('Gokei'), {n:0, s6:false, role:true})
     const strip = name => ({...findCharByName(name), skills:[], roleSkill:null})
     const gohoumei = strip('Gohoumei')
@@ -188,8 +190,30 @@ describe('Souha Leader / Strategist staging', () => {
     expect(calcCharBuffs(gokei,team,[],false,true).ATK?.up).toBe(20)
     expect(calcCharBuffs(gohoumei,team,[],false,true).ATK?.up).toBe(20)
     expect(calcCharBuffs(shin,team,[],false,true).ATK).toBeUndefined()
-    expect(parseBuffEffect('Reflect Cavalry Attacks')).toEqual([])
+    expect(parseBuffEffect('Reflect Cavalry Attacks')).toMatchObject([{stat:'Reflect Cavalry Attacks',dir:'Up',val:1}])
+    expect(SPECIAL_STATS.has('Reflect Cavalry Attacks')).toBe(true)
+    // Gokei (a Wei Fire Dragon) and Gohoumei reflect; Shin does not. The marker
+    // counts reflections, read from the skill's "3 times".
+    expect(calcCharBuffs(gokei,team,[],false,true)['Reflect Cavalry Attacks']?.up).toBe(3)
+    expect(calcCharBuffs(gohoumei,team,[],false,true)['Reflect Cavalry Attacks']?.up).toBe(3)
+    expect(calcCharBuffs(shin,team,[],false,true)['Reflect Cavalry Attacks']).toBeUndefined()
     expect(calcTeamEnemyDebuffs(team)['All enemies']?.down?.DEF).toBe(20)
+  })
+  it('marks self Provoke and Reckless from combat skills as battle-state rows', () => {
+    expect(parseBuffEffect('Provoke')).toMatchObject([{stat:'Provoke',dir:'Up',val:1}])
+    expect(parseBuffEffect('"Reckless"')).toMatchObject([{stat:'Reckless',dir:'Up',val:1}])
+    // Applying Provoke to an enemy stays an infliction rate, not a self marker.
+    expect(parseBuffEffect('Provoke Infliction')).toMatchObject([{stat:'Provoke Infliction Rate',val:100}])
+    for(const stat of ['Provoke','Reckless','Remove Sure Hit']) expect(SPECIAL_STATS.has(stat)).toBe(true)
+    const withSkills = name => ({...findCharByName(name), roleSkill:null})
+    const moubu = withSkills('Moubu')
+    expect(calcCharBuffs(moubu,[moubu],[],false,true,true).Reckless?.up).toBe(1)
+    // Any general whose combat skill provokes on self, unconditionally.
+    const provoker = ALL.find(c => (c.skills||[]).some(s => s.type==='Combat' && (s.effects||[]).some(e => e.target==='Self' && !e.condition && /^"?Provoke"?$/.test(e.effect))))
+    expect(provoker).toBeTruthy()
+    expect(calcCharBuffs({...provoker,roleSkill:null},[{...provoker,roleSkill:null}],[],false,true,true).Provoke?.up).toBeGreaterThanOrEqual(1)
+    // Combat skills only count when the combat switch is on.
+    expect(calcCharBuffs(moubu,[moubu],[],false,true,false).Reckless).toBeUndefined()
   })
   it('applies Goumasho self DEF and Kanmei Army critical damage and healing', () => {
     const goumasho = applyMask(findCharByName('Goumasho'), {n:0, s6:false, role:true})

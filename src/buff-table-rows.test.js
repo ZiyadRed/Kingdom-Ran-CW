@@ -60,6 +60,10 @@ describe('buff row classification', () => {
     expect(rows).toHaveLength(1)
     expect(rows[0]).toMatchObject({target:'All enemies',stat:'ATK',dir:'down',value:30})
     expect(enemyDebuffText(rows[0])).toBe('−30%')
+    // Enemy-side markers such as Kanki's Remove Sure Hit read like ally flags, not "+1%".
+    const marker={target:'All enemies',stat:'Remove Sure Hit',dir:'up',value:1,sources:[]}
+    expect(enemyDebuffText(marker,new Set(['Remove Sure Hit']))).toBe('● 1×')
+    expect(enemyDebuffText(marker)).toBe('+1%')
   })
 })
 

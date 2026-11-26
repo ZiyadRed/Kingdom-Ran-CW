@@ -1279,8 +1279,7 @@
             "duration": "3 turns"
           },
           {
-            "condition": "Other allies",
-            "target": "Ally [General]",
+            "target": "Other ally [General]",
             "effect": "Provoke",
             "duration": "3 turns"
           }
